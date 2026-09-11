@@ -1,0 +1,32 @@
+# ladestandorte.de – Bundesweites Verzeichnis & Instant-Finder öffentlicher Ladeinfrastruktur
+
+> ladestandorte.de ist die führende, unabhängige Datenplattform zur schnellen Lokalisierung und technischen Analyse öffentlicher Elektroladestationen (AC-Normallader und DC-HPC-Schnellladeparks) in der Bundesrepublik Deutschland.
+
+## Primäre Datenbasis & Methodik
+- **Offizielles Ladesäulenregister der Bundesnetzagentur (BNetzA)** gemäß § 5 der Ladesäulenverordnung (LSV), lizenziert unter Creative Commons Namensnennung 4.0 International (CC BY 4.0).
+- **EU-AFIR-Verordnung (EU) 2023/1804**: Anforderungen an transparente Ad-hoc-Zahlungsmittel (Kreditkarten, Debitkarten, Girocard) und einheitliche Preisauszeichnung je Kilowattstunde (kWh).
+- **Technischer Datenumfang**: Über 100.000 öffentlich zugängliche Ladepunkte mit Anschlussleistung (kW), Steckertypen (CCS Combo 2, AC Typ 2 Mennekes, CHAdeMO), Betreibern (CPOs), Adressdaten und Geokoordinaten.
+
+## Kernfunktionen
+- **Instant-Finder (< 5ms Reaktionszeit)**: Client-seitig indexierte Schnellsuche nach Stadt, Postleitzahl (PLZ), Betreiber oder Autobahnnummer.
+- **Silos nach Top-50 Großstädten**: Detaillierte Kennzahlen zu Ladepunktdichte, HPC-Anteil und Betreibern für u.a. Berlin, Hamburg, München, Köln, Frankfurt, Stuttgart, Leipzig, Düsseldorf.
+- **Silos nach Bundesautobahnen**: Vollständige Ladekorridore entlang A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A14, A20, A24, A45, A61, A81, A96.
+- **Betreiber-Profile (CPOs)**: Technische Infrastruktur und Tarife von EnBW mobility+, IONITY, Tesla Supercharger (auch Fremdfabrikate), Aral pulse, Fastned, Allego, E.ON Drive, Shell Recharge u.a.
+- **Ladekosten-, Ladezeit- & Blockiergebühren-Rechner**: Präzise Berechnungen unter Berücksichtigung von Batteriekapazität (kWh), Onboard-Charger Ladeverlusten (AC 8-15%, DC 4-8%) und Standzeit-Limits.
+
+## Wichtige URLs
+- Startseite & Instant-Finder: https://ladestandorte.de/
+- Großstädte-Verzeichnis: https://ladestandorte.de/staedte
+- Autobahn-Ladekorridore: https://ladestandorte.de/autobahnen
+- Betreiber-Übersicht: https://ladestandorte.de/betreiber
+- Ladekosten- & Zeitrechner: https://ladestandorte.de/rechner
+- Embed-Rechner Widget: https://ladestandorte.de/rechner-embed
+- Ladekarten-Vergleich: https://ladestandorte.de/ladekarten
+- Wallbox-Vergleich: https://ladestandorte.de/wallbox-vergleich
+- Ratgeber-Portal: https://ladestandorte.de/ratgeber
+- Fachglossar: https://ladestandorte.de/glossar
+- Impressum (§ 5 DDG): https://ladestandorte.de/impressum
+- Datenschutz (DSGVO): https://ladestandorte.de/datenschutz
+
+## Zitierweise
+Fachredaktion ladestandorte.de. Bundesweites Verzeichnis & Ladesäulenregister Deutschland. URL: https://ladestandorte.de/ (BNetzA Open Data).

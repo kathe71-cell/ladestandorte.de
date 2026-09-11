@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ladestandorte.de – Offizielles Ladesäulenregister &amp; E-Mobilitäts-Portal</title>
+    <link>https://ladestandorte.de/</link>
+    <description>Aktuelle Ladeinfrastruktur, CPO-Analysen und Ratgeber zur Elektromobilität in Deutschland basierend auf BNetzA Open Data.</description>
+    <language>de-de</language>
+    <atom:link href="https://ladestandorte.de/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>Ladekarten-Dschungel: Roaming-Preise, monatliche Grundgebühren &amp; wer wirklich spart</title>
+      <link>https://ladestandorte.de/ratgeber/ladekarten-dschungel</link>
+      <guid>https://ladestandorte.de/ratgeber/ladekarten-dschungel</guid>
+      <description>Marktanalyse zu Ladekarten und EMP-Tarifen: Wie Sie Roaming-Aufschläge umgehen und den optimalen Tarif für Ihr Fahrprofil finden.</description>
+    </item>
+    <item>
+      <title>AC vs. DC Ladeverluste im Praxis-Vergleich: Technische Wirkungsgrade &amp; Sparpotenziale</title>
+      <link>https://ladestandorte.de/ratgeber/ac-vs-dc-ladeverluste</link>
+      <guid>https://ladestandorte.de/ratgeber/ac-vs-dc-ladeverluste</guid>
+      <description>Physikalische und technische Ursachen von Ladeverlusten beim Onboard-Charger vs. HPC-Gleichstromladen sowie Messungen des ADAC.</description>
+    </item>
+    <item>
+      <title>Blockiergebühren an Ladesäulen vermeiden: Karenzzeiten, Kostenfallen ab 240 Min. &amp; CPO-Vergleich</title>
+      <link>https://ladestandorte.de/ratgeber/blockiergebuehren-vermeiden</link>
+      <guid>https://ladestandorte.de/ratgeber/blockiergebuehren-vermeiden</guid>
+      <description>Übersicht über Standzeithöchstgrenzen, Nacht-Regelungen (21–08 Uhr) und Minutenpreise bei EnBW, IONITY, Tesla und Stadtwerken.</description>
+    </item>
+  </channel>
+</rss>
