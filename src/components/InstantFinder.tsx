@@ -25,6 +25,9 @@ export const InstantFinder: React.FC<Props> = ({
   
   const [query, setQuery] = useState(initialQuery);
   const [hpcOnly, setHpcOnly] = useState(defaultHpcOnly);
+  const [coveredOnly, setCoveredOnly] = useState(false);
+  const [wcGastroOnly, setWcGastroOnly] = useState(false);
+  const [afirOnly, setAfirOnly] = useState(false);
   const [activeTab, setActiveTab] = useState<'all' | 'station' | 'city' | 'motorway' | 'operator'>('all');
   const [results, setResults] = useState<SearchResultItem[]>([]);
   const [durationMs, setDurationMs] = useState<number>(0);
@@ -34,8 +37,11 @@ export const InstantFinder: React.FC<Props> = ({
   // Execute instant search in sub-5ms
   useEffect(() => {
     const { results: matched, durationMs: elapsed } = instantSearch(query, {
-      hpcOnly: hpcOnly
-    }, 20);
+      hpcOnly,
+      coveredOnly,
+      wcGastroOnly,
+      afirOnly
+    }, 25);
 
     let filtered = matched;
     if (activeTab !== 'all') {
@@ -44,7 +50,7 @@ export const InstantFinder: React.FC<Props> = ({
 
     setResults(filtered);
     setDurationMs(elapsed);
-  }, [query, hpcOnly, activeTab]);
+  }, [query, hpcOnly, coveredOnly, wcGastroOnly, afirOnly, activeTab]);
 
   const handleClear = () => {
     setQuery('');
@@ -159,19 +165,65 @@ export const InstantFinder: React.FC<Props> = ({
               </button>
             </div>
 
-            {/* HPC Switch */}
-            <label className="inline-flex items-center gap-2 cursor-pointer select-none text-xs font-bold text-slate-800">
-              <input
-                type="checkbox"
-                checked={hpcOnly}
-                onChange={(e) => setHpcOnly(e.target.checked)}
-                className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300"
-              />
-              <span className="flex items-center gap-1 text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-mono">
-                <Zap className="w-3 h-3 text-emerald-600 fill-emerald-600" />
-                <span>Nur HPC (≥ 150 kW)</span>
-              </span>
-            </label>
+            {/* Quick Filters */}
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <label className="inline-flex items-center gap-1 cursor-pointer select-none text-xs font-bold text-slate-800">
+                <input
+                  type="checkbox"
+                  checked={hpcOnly}
+                  onChange={(e) => setHpcOnly(e.target.checked)}
+                  className="w-3.5 h-3.5 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300"
+                />
+                <span className={`flex items-center gap-1 px-2 py-0.5 rounded border text-[11px] font-mono transition-colors ${
+                  hpcOnly ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-slate-50 text-slate-700 border-slate-200'
+                }`}>
+                  <Zap className="w-3 h-3" />
+                  <span>≥ 150 kW</span>
+                </span>
+              </label>
+
+              <label className="inline-flex items-center gap-1 cursor-pointer select-none text-xs font-bold text-slate-800">
+                <input
+                  type="checkbox"
+                  checked={coveredOnly}
+                  onChange={(e) => setCoveredOnly(e.target.checked)}
+                  className="w-3.5 h-3.5 rounded text-amber-600 focus:ring-amber-500 border-slate-300"
+                />
+                <span className={`flex items-center gap-1 px-2 py-0.5 rounded border text-[11px] font-mono transition-colors ${
+                  coveredOnly ? 'bg-amber-400 text-slate-950 font-black border-amber-500' : 'bg-slate-50 text-slate-700 border-slate-200'
+                }`}>
+                  <span>☔ Überdacht</span>
+                </span>
+              </label>
+
+              <label className="inline-flex items-center gap-1 cursor-pointer select-none text-xs font-bold text-slate-800">
+                <input
+                  type="checkbox"
+                  checked={wcGastroOnly}
+                  onChange={(e) => setWcGastroOnly(e.target.checked)}
+                  className="w-3.5 h-3.5 rounded text-blue-600 focus:ring-blue-500 border-slate-300"
+                />
+                <span className={`flex items-center gap-1 px-2 py-0.5 rounded border text-[11px] font-mono transition-colors ${
+                  wcGastroOnly ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 text-slate-700 border-slate-200'
+                }`}>
+                  <span>🚻 WC &amp; Gastro</span>
+                </span>
+              </label>
+
+              <label className="inline-flex items-center gap-1 cursor-pointer select-none text-xs font-bold text-slate-800">
+                <input
+                  type="checkbox"
+                  checked={afirOnly}
+                  onChange={(e) => setAfirOnly(e.target.checked)}
+                  className="w-3.5 h-3.5 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300"
+                />
+                <span className={`flex items-center gap-1 px-2 py-0.5 rounded border text-[11px] font-mono transition-colors ${
+                  afirOnly ? 'bg-emerald-800 text-white border-emerald-800' : 'bg-slate-50 text-slate-700 border-slate-200'
+                }`}>
+                  <span>💳 AFIR Kartenzahlung</span>
+                </span>
+              </label>
+            </div>
           </div>
         )}
       </div>
@@ -256,6 +308,31 @@ export const InstantFinder: React.FC<Props> = ({
                       <p className="text-xs sm:text-sm text-slate-600 truncate mt-0.5">
                         {item.subtitle}
                       </p>
+
+                      {isStation && (
+                        <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
+                          {(item.data as StationData).isCovered && (
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
+                              ☔ Überdacht
+                            </span>
+                          )}
+                          {((item.data as StationData).hasRestrooms || (item.data as StationData).hasDining) && (
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
+                              🚻 WC / Gastro
+                            </span>
+                          )}
+                          {(item.data as StationData).hasAfirTerminal && (
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                              💳 Girocard/Kreditkarte
+                            </span>
+                          )}
+                          {(item.data as StationData).exitDistance && (
+                            <span className="text-[10px] font-mono text-slate-500 hidden sm:inline">
+                              📍 {(item.data as StationData).exitDistance}
+                            </span>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
 

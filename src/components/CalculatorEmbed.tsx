@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
-import { Calculator, Zap, Clock, Euro, Copy, Check, Code, Share2 } from 'lucide-react';
+import { Calculator, Zap, Clock, Euro, Copy, Check, Code, Share2, Car, Sparkles } from 'lucide-react';
+import { VEHICLES_DATA, VehicleData } from '../data/vehicles';
 
 interface Props {
   isEmbed?: boolean;
@@ -42,6 +43,21 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
 
   const [linkCopied, setLinkCopied] = useState(false);
   const [embedCopied, setEmbedCopied] = useState(false);
+  const [selectedVehicleId, setSelectedVehicleId] = useState<string>('tesla-model-y-lr');
+
+  const selectedVehicle = VEHICLES_DATA.find(v => v.id === selectedVehicleId);
+
+  const handleVehicleSelect = (id: string) => {
+    setSelectedVehicleId(id);
+    const vehicle = VEHICLES_DATA.find(v => v.id === id);
+    if (vehicle) {
+      setBatteryCapacity(vehicle.batteryNetKwh);
+      // If selected vehicle peak is available, set chargePower to its peak or 150 kW
+      setChargePower(Math.min(vehicle.maxKwDc, 300));
+      setStartSoc(10);
+      setEndSoc(80);
+    }
+  };
 
   const location = useLocation();
   const isRechnerPage = location.pathname === '/rechner';
@@ -158,6 +174,50 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
         {/* Controls Column (7 Cols) */}
         <div className="lg:col-span-7 space-y-6">
           
+          {/* Fahrzeug-Schnellwähler */}
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3">
+            <div className="flex items-center justify-between">
+              <label htmlFor="vehicle-select" className="text-xs font-mono uppercase tracking-wider text-slate-700 font-bold flex items-center gap-1.5">
+                <Car className="w-4 h-4 text-emerald-600" />
+                <span>Fahrzeug-Schnellwähler:</span>
+              </label>
+              {selectedVehicle && selectedVehicle.systemVoltage === 800 ? (
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold font-mono bg-purple-100 text-purple-900 border border-purple-300 flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-purple-600" />
+                  <span>800V Ultra-Fast Lader</span>
+                </span>
+              ) : selectedVehicle ? (
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono bg-slate-200 text-slate-700">
+                  400V System
+                </span>
+              ) : null}
+            </div>
+
+            <select
+              id="vehicle-select"
+              value={selectedVehicleId}
+              onChange={(e) => handleVehicleSelect(e.target.value)}
+              className="w-full px-3 py-2.5 text-sm bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 font-semibold text-slate-900 shadow-xs cursor-pointer"
+            >
+              <option value="">-- Individuelles Fahrzeug (Manuell anpassen) --</option>
+              {VEHICLES_DATA.map((v) => (
+                <option key={v.id} value={v.id}>
+                  {v.brand} {v.model} – {v.variant} ({v.batteryNetKwh} kWh, Peak {v.maxKwDc} kW)
+                </option>
+              ))}
+            </select>
+
+            {selectedVehicle && (
+              <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-xs text-slate-600 pt-1 border-t border-slate-200/60 font-medium">
+                <span>Ø Verbrauch: <strong>{selectedVehicle.consumptionKwhPer100Km} kWh/100km</strong></span>
+                <span>·</span>
+                <span>Max. DC-Peak: <strong>{selectedVehicle.maxKwDc} kW</strong></span>
+                <span>·</span>
+                <span>Werksangabe 10–80 %: <strong className="text-emerald-700">~{selectedVehicle.typical10to80Min} Min.</strong></span>
+              </div>
+            )}
+          </div>
+
           {/* Battery Capacity */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">

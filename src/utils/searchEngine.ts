@@ -16,6 +16,10 @@ export interface SearchResultItem {
 
 export interface SearchFilters {
   hpcOnly?: boolean;
+  coveredOnly?: boolean;
+  wcGastroOnly?: boolean;
+  afirOnly?: boolean;
+  autoChargeOnly?: boolean;
   operatorSlug?: string;
   connectorType?: string;
   motorwaySlug?: string;
@@ -142,6 +146,34 @@ export function instantSearch(query: string, filters: SearchFilters = {}, limit:
       if (item.type === 'station') {
         const st = item.data as StationData;
         if (!st.isHpc || st.kwMax < 150) continue;
+      }
+    }
+
+    if (filters.coveredOnly) {
+      if (item.type === 'station') {
+        const st = item.data as StationData;
+        if (!st.isCovered) continue;
+      }
+    }
+
+    if (filters.wcGastroOnly) {
+      if (item.type === 'station') {
+        const st = item.data as StationData;
+        if (!st.hasRestrooms && !st.hasDining) continue;
+      }
+    }
+
+    if (filters.afirOnly) {
+      if (item.type === 'station') {
+        const st = item.data as StationData;
+        if (!st.hasAfirTerminal) continue;
+      }
+    }
+
+    if (filters.autoChargeOnly) {
+      if (item.type === 'station') {
+        const st = item.data as StationData;
+        if (!st.hasAutoCharge) continue;
       }
     }
 

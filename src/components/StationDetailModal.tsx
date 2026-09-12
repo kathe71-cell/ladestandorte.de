@@ -114,6 +114,36 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
             </div>
           </div>
 
+          {/* Komfort & Ausstattung (USPs) */}
+          <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/90 space-y-2.5">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-amber-950 font-bold flex items-center gap-1.5">
+              <span>Ausstattung &amp; Komfort vor Ort</span>
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              <div className="flex items-center gap-2 text-slate-800">
+                <span className="text-base">{station.isCovered ? '☔' : '🌤️'}</span>
+                <span>Überdachung: <strong className={station.isCovered ? 'text-emerald-800' : 'text-slate-600'}>{station.isCovered ? 'Ja (Wetterschutz)' : 'Nein (Freistehend)'}</strong></span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-800">
+                <span className="text-base">🚻</span>
+                <span>WC &amp; Gastro: <strong className={station.hasRestrooms || station.hasDining ? 'text-emerald-800' : 'text-slate-600'}>{station.hasRestrooms || station.hasDining ? 'In Gehweite vorhanden' : 'Keine Angaben'}</strong></span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-800">
+                <span className="text-base">💳</span>
+                <span>AFIR-Terminal: <strong className={station.hasAfirTerminal ? 'text-emerald-800' : 'text-slate-600'}>{station.hasAfirTerminal ? 'Girocard / Kreditkarte direkt' : 'Via Ladekarte / App'}</strong></span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-800">
+                <span className="text-base">⚡</span>
+                <span>Einstecken &amp; Laden: <strong className={station.hasAutoCharge ? 'text-emerald-800' : 'text-slate-600'}>{station.hasAutoCharge ? 'AutoCharge aktiv' : 'Manuelle Autorisierung'}</strong></span>
+              </div>
+            </div>
+            {station.exitDistance && (
+              <p className="text-xs text-amber-900 pt-1 border-t border-amber-200/60 font-mono">
+                📍 Autobahn-Lage: <strong>{station.exitDistance}</strong>
+              </p>
+            )}
+          </div>
+
           {/* Offizielle Registerdaten */}
           <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1.5 font-mono">
             <div className="flex items-center gap-2 text-slate-800 font-bold">
@@ -126,25 +156,36 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row gap-2.5 pt-2">
             <a
               href={googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-sm text-sm transition-all min-h-[48px]"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-sm text-xs sm:text-sm transition-all min-h-[48px]"
             >
               <Navigation className="w-4 h-4" />
-              <span>Navigation via Google Maps</span>
+              <span>Google Maps</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+            </a>
+
+            <a
+              href={`https://maps.apple.com/?daddr=${station.lat},${station.lng}&dirflg=d`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl shadow-sm text-xs sm:text-sm transition-all min-h-[48px]"
+            >
+              <Navigation className="w-4 h-4" />
+              <span>Apple Maps</span>
               <ExternalLink className="w-3.5 h-3.5 opacity-80" />
             </a>
 
             <button
               type="button"
               onClick={handleShare}
-              className="inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-4 rounded-xl text-sm transition-colors min-h-[48px]"
+              className="inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-4 rounded-xl text-xs sm:text-sm transition-colors min-h-[48px]"
             >
               {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
-              <span>{copied ? 'Link kopiert!' : 'Standort teilen'}</span>
+              <span>{copied ? 'Kopiert!' : 'Teilen'}</span>
             </button>
           </div>
 

@@ -50,7 +50,7 @@ export const CHARGING_CARDS: ChargingCard[] = [
     roamingPoints: "Über 750.000 Ladepunkte im HyperNetz",
     badge: "Tarif für Viellader",
     bestFor: "Regelmäßige Langstreckenfahrer & Autobahnnutzer",
-    officialUrl: "https://www.enbw.com/elektromobilitaet/produkte-und-tarife/ladetarife",
+    officialUrl: "https://www.enbw.com/elektromobilitaet",
     features: [
       "Vergünstigter Tarif im größten Schnellladenetz Deutschlands",
       "AutoCharge-Funktion: Einstecken und automatischer Ladebeginn",
@@ -113,7 +113,7 @@ export const CHARGING_CARDS: ChargingCard[] = [
     roamingPoints: "Über 650.000 Ladepunkte",
     badge: "Handels- & Tankstellennetz",
     bestFor: "Einkaufslader bei Rewe, Penny & Shell Tankstellen",
-    officialUrl: "https://www.shell.de/autofahrer/shell-recharge",
+    officialUrl: "https://www.shell.de/",
     features: [
       "Keine monatliche Grundgebühr",
       "Inklusive Shell ClubSmart Treuepunkten",

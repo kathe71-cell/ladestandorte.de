@@ -23,15 +23,7 @@ import GlossarPage from './pages/GlossarPage';
 import ImpressumPage from './pages/ImpressumPage';
 import DatenschutzPage from './pages/DatenschutzPage';
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
+import ScrollToTop from './components/ScrollToTop';
 
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -46,6 +38,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
@@ -54,7 +47,6 @@ export function App() {
   return (
     <Router>
       <VercelAnalytics />
-      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
