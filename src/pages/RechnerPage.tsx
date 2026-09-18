@@ -16,13 +16,13 @@ export const RechnerPage: React.FC = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://ladestandorte.de/"
+            "item": "https://www.ladestandorte.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Ladezeit-Rechner",
-            "item": "https://ladestandorte.de/rechner"
+            "item": "https://www.ladestandorte.de/rechner"
           }
         ]
       },
@@ -45,7 +45,7 @@ export const RechnerPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
         title="Ladezeit- & Ladekosten-Rechner für Elektroautos · Interaktives Tool"
-        description="Ladedauer (10-80 % SoC), Ladeverluste & Stromkosten an AC- und HPC-Schnellladesäulen exakt berechnen. Kostenloses Online-Tool."
+        description="Ladedauer (10-80 % SoC), Ladeverluste & Stromkosten an AC- und HPC-Schnellladesäulen im Modell berechnen. Kostenloses Online-Tool."
         canonicalPath="/rechner"
         schema={schema}
       />
@@ -60,7 +60,7 @@ export const RechnerPage: React.FC = () => {
           Ladezeit- &amp; Ladekosten-Rechner
         </h1>
         <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Berechnen Sie auf Basis physikalischer Messwerte und realer Ladekurven die Ladedauer von 10 % bis 80 % State of Charge (SoC), die anfallenden Ladeverluste und die exakten Kosten je Ladevorgang.
+          Ermitteln Sie im Rahmen einer beispielhaften Modellrechnung die geschätzte Ladedauer (10 % bis 80 % SoC), typische Ladeverluste und ungefähre Kosten je Ladevorgang.
         </p>
       </div>
 
@@ -107,7 +107,14 @@ export const RechnerPage: React.FC = () => {
       />
 
       {/* Trust & E-E-A-T */}
-      <EEATBadge topic="Modellrechnung &amp; Elektrotechnische Wirkungsgrade" />
+      <EEATBadge
+        topic="Modellrechnung &amp; Ladeverluste"
+        source1Title="Fahrzeugdaten &amp; Berechnungsgrundlage"
+        source1Text="Modellrechnung basierend auf Herstellerangaben zu nutzbaren Netto-Batteriekapazitäten, On-Board-Lader-Limits (AC) und Ladekurven."
+        source2Title="Modellannahmen zu Ladeverlusten"
+        source2Text="Modellannahme: Energieaufschlag auf die Nettoenergie von 12 % bei AC und 6 % bei DC. Reale Werte variieren je nach Fahrzeug, Temperatur und Ladeleistung."
+        dateText="Stand: Modellrechnung 2026"
+      />
 
     </div>
   );

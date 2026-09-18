@@ -29,19 +29,19 @@ export const CityPage: React.FC = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://ladestandorte.de/"
+            "item": "https://www.ladestandorte.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Großstädte",
-            "item": "https://ladestandorte.de/staedte"
+            "item": "https://www.ladestandorte.de/staedte"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": city.name,
-            "item": `https://ladestandorte.de/staedte/${city.slug}`
+            "item": `https://www.ladestandorte.de/staedte/${city.slug}`
           }
         ]
       },

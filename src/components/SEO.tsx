@@ -6,17 +6,19 @@ interface SEOProps {
   description: string;
   canonicalPath?: string;
   schema?: object | object[];
+  noIndex?: boolean;
 }
 
 export const SEO: React.FC<SEOProps> = ({
   title,
   description,
   canonicalPath,
-  schema
+  schema,
+  noIndex = false
 }) => {
   const location = useLocation();
   const path = canonicalPath || location.pathname;
-  const canonicalUrl = `https://ladestandorte.de${path === '/' ? '' : path}`;
+  const canonicalUrl = `https://www.ladestandorte.de${path === '/' ? '' : path}`;
 
   useEffect(() => {
     // 1. Page Title (< 60 chars recommended)
@@ -25,7 +27,16 @@ export const SEO: React.FC<SEOProps> = ({
       : `${title} · ladestandorte.de`;
     document.title = formattedTitle;
 
-    // 2. Meta Description (< 155 chars)
+    // 2. Meta Robots
+    let metaRobots = document.querySelector('meta[name="robots"]');
+    if (!metaRobots) {
+      metaRobots = document.createElement('meta');
+      metaRobots.setAttribute('name', 'robots');
+      document.head.appendChild(metaRobots);
+    }
+    metaRobots.setAttribute('content', noIndex ? 'noindex, follow' : 'index, follow');
+
+    // 3. Meta Description (< 155 chars)
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
       metaDesc = document.createElement('meta');
@@ -34,7 +45,7 @@ export const SEO: React.FC<SEOProps> = ({
     }
     metaDesc.setAttribute('content', description);
 
-    // 3. Canonical URL
+    // 4. Canonical URL
     let linkCanonical = document.querySelector('link[rel="canonical"]');
     if (!linkCanonical) {
       linkCanonical = document.createElement('link');

@@ -15,19 +15,19 @@ const getArticleSchema = (headline: string, description: string, slug: string) =
           "@type": "ListItem",
           "position": 1,
           "name": "Startseite",
-          "item": "https://ladestandorte.de/"
+          "item": "https://www.ladestandorte.de/"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Ratgeber",
-          "item": "https://ladestandorte.de/ratgeber"
+          "item": "https://www.ladestandorte.de/ratgeber"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": headline,
-          "item": `https://ladestandorte.de/ratgeber/${slug}`
+          "item": `https://www.ladestandorte.de/ratgeber/${slug}`
         }
       ]
     },
@@ -35,12 +35,12 @@ const getArticleSchema = (headline: string, description: string, slug: string) =
       "@type": "Article",
       "headline": headline,
       "description": description,
-      "mainEntityOfPage": `https://ladestandorte.de/ratgeber/${slug}`,
+      "mainEntityOfPage": `https://www.ladestandorte.de/ratgeber/${slug}`,
       "inLanguage": "de-DE",
       "publisher": {
         "@type": "Organization",
         "name": "ladestandorte.de",
-        "url": "https://ladestandorte.de/"
+        "url": "https://www.ladestandorte.de/"
       }
     }
   ]
@@ -149,7 +149,14 @@ export const RatgeberArticlePage: React.FC = () => {
           urlPath="/ratgeber/ladekarten-dschungel"
         />
 
-        <EEATBadge topic="Ladekarten-Analyse &amp; Tarifstrukturen" />
+        <EEATBadge
+          topic="Ladekarten-Analyse &amp; Tarifstrukturen"
+          source1Title="Tarifblätter der Betreiber (EMP)"
+          source1Text="Erhebung anhand der aktuellen Preis- und Konditionsblätter der Betreiber (EnBW, Ionity, EWE Go u. a.)."
+          source2Title="Redaktionelle Einordnung"
+          source2Text="Unabhängige Wirtschaftlichkeitsanalyse für Laternenparker und Vielfahrer ohne Affiliate-Bevorzugung."
+          dateText="Stand: September 2026"
+        />
       </article>
     );
   }
@@ -259,7 +266,14 @@ export const RatgeberArticlePage: React.FC = () => {
           urlPath="/ratgeber/ac-vs-dc-ladeverluste"
         />
 
-        <EEATBadge topic="Elektrotechnik &amp; Ladeverlust-Messungen" />
+        <EEATBadge
+          topic="Elektrotechnik &amp; Ladeverlust-Messungen"
+          source1Title="Messtechnische Grundlagen"
+          source1Text="Wirkungsgrad- und Verlustkurven von Onboard-Ladern (AC) und HPC-Leistungselektronik (DC) basierend auf Fachstudien und ADAC-Messreihen."
+          source2Title="Physikalische Erläuterung"
+          source2Text="Modellannahmen zur Wandlung von Drehstrom in Gleichstrom sowie thermischer Verlustleistung in Traktionsbatterien."
+          dateText="Stand: Fachredaktion 2026"
+        />
       </article>
     );
   }
@@ -375,7 +389,14 @@ export const RatgeberArticlePage: React.FC = () => {
         urlPath="/ratgeber/blockiergebuehren-vermeiden"
       />
 
-      <EEATBadge topic="Verbraucherschutz &amp; Standzeitgebühren" />
+      <EEATBadge
+        topic="Verbraucherschutz &amp; Standzeitgebühren"
+        source1Title="AGB &amp; Tarifwerke der Betreiber"
+        source1Text="Auswertung der Blockiergebühren-Regelungen, Karenzzeiten und Deckelungen führender EMPs und CPOs (EnBW, EWE Go, Ionity, Tesla u. a.)."
+        source2Title="Praxishinweise für Verbraucher"
+        source2Text="Hinweise zur Vermeidung unbemerkter Mehrkosten bei Nachtladungen und automatischen Ladezeitbegrenzungen."
+        dateText="Stand: September 2026"
+      />
     </article>
   );
 };

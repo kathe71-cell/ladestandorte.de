@@ -15,13 +15,13 @@ export const LadekartenVergleichPage: React.FC = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://ladestandorte.de/"
+            "item": "https://www.ladestandorte.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Ladekarten-Vergleich",
-            "item": "https://ladestandorte.de/ladekarten"
+            "item": "https://www.ladestandorte.de/ladekarten"
           }
         ]
       }
@@ -53,7 +53,7 @@ export const LadekartenVergleichPage: React.FC = () => {
 
       {/* Info notice */}
       <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 leading-relaxed">
-        <strong>Unabhängiger Verbraucherhinweis:</strong> Alle Angaben zu Tarifen, kWh-Preisen und Grundgebühren basieren auf den öffentlich zugänglichen Preisblättern der jeweiligen Elektromobilitätsanbieter (EMP). ladestandorte.de führt diesen Vergleich rein redaktionell und unabhängig.
+        <strong>Unabhängiger Verbraucherhinweis (Stand: September 2026):</strong> Alle Angaben zu Tarifen, kWh-Preisen und Grundgebühren basieren auf den öffentlich zugänglichen Standard-Preisblättern der jeweiligen Elektromobilitätsanbieter (EMP). Reale Abrechnungspreise können durch Roaming-Partner, dynamische Tarife und Blockiergebühren abweichen. ladestandorte.de führt diesen Vergleich rein redaktionell und unabhängig.
       </div>
 
       {/* Cards Comparison Grid */}
@@ -147,7 +147,14 @@ export const LadekartenVergleichPage: React.FC = () => {
         urlPath="/ladekarten"
       />
 
-      <EEATBadge topic="Ladekarten- und EMP-Tarifvergleich" />
+      <EEATBadge
+        topic="Ladekarten- und EMP-Tarifvergleich"
+        source1Title="Tarifdaten der Mobilitätsanbieter (EMP)"
+        source1Text="Erfasst anhand öffentlich einsehbarer Preisblätter und Vertragsbedingungen der Betreiber (EnBW, EWE Go, Maingau, Ionity, Tesla u. a.)."
+        source2Title="Verbraucherhinweis zu Roaming &amp; Nebenentgelten"
+        source2Text="Preise an Fremdladestationen können durch Roaming-Aufschläge, variable Ad-hoc-Tarife oder Blockiergebühren variieren. Vor dem Laden stets Säulendisplay oder App prüfen."
+        dateText="Stand: Tarifblätter September 2026"
+      />
 
     </div>
   );

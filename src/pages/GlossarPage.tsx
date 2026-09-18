@@ -29,13 +29,13 @@ export const GlossarPage: React.FC = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://ladestandorte.de/"
+            "item": "https://www.ladestandorte.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Glossar",
-            "item": "https://ladestandorte.de/glossar"
+            "item": "https://www.ladestandorte.de/glossar"
           }
         ]
       },
@@ -43,7 +43,7 @@ export const GlossarPage: React.FC = () => {
         "@type": "DefinedTermSet",
         "name": "E-Mobilitäts- & Ladeinfrastruktur Glossar",
         "description": "Definitionen aller maßgeblichen Fachbegriffe der Ladeinfrastruktur wie CCS, Type 2, AFIR, CPO, EMP und Eichrecht.",
-        "url": "https://ladestandorte.de/glossar"
+        "url": "https://www.ladestandorte.de/glossar"
       }
     ]
   };
@@ -155,7 +155,14 @@ export const GlossarPage: React.FC = () => {
       />
 
       {/* EEAT Badge */}
-      <EEATBadge topic="Normen- &amp; Begriffslexikon" />
+      <EEATBadge
+        topic="Normen- &amp; Begriffslexikon"
+        source1Title="Normative Fachgrundlagen"
+        source1Text="Definitionen und Begriffsbestimmungen orientiert an DIN EN 62196, IEC 61851, EU-AFIR (2023/1804) und Ladesäulenverordnung (LSV)."
+        source2Title="Redaktionelle Aufbereitung"
+        source2Text="Allgemeinverständliche Erläuterungen und Praxistipps für Elektroautofahrer durch die Redaktion ladestandorte.de."
+        dateText="Stand: Normenlexikon 2026"
+      />
 
     </div>
   );

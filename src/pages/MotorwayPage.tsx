@@ -30,19 +30,19 @@ export const MotorwayPage: React.FC = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://ladestandorte.de/"
+            "item": "https://www.ladestandorte.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Autobahnen",
-            "item": "https://ladestandorte.de/autobahnen"
+            "item": "https://www.ladestandorte.de/autobahnen"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": motorway.name,
-            "item": `https://ladestandorte.de/autobahnen/${motorway.slug}`
+            "item": `https://www.ladestandorte.de/autobahnen/${motorway.slug}`
           }
         ]
       }

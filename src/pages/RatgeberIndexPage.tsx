@@ -15,13 +15,13 @@ export const RatgeberIndexPage: React.FC = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://ladestandorte.de/"
+            "item": "https://www.ladestandorte.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Ratgeber",
-            "item": "https://ladestandorte.de/ratgeber"
+            "item": "https://www.ladestandorte.de/ratgeber"
           }
         ]
       }
@@ -114,7 +114,14 @@ export const RatgeberIndexPage: React.FC = () => {
       </div>
 
       {/* EEAT Badge */}
-      <EEATBadge topic="Redaktionelle Fachratgeber" />
+      <EEATBadge
+        topic="Redaktionelle Fachratgeber"
+        source1Title="Fachliche Primärquellen"
+        source1Text="Recherche und Auswertung einschlägiger Normen (DIN VDE), Bundesgesetze (LSV, GEIG, EnWG) und Veröffentlichungen der Bundesnetzagentur."
+        source2Title="Redaktionelle Unabhängigkeit"
+        source2Text="Unabhängige fachliche Ratgeberbeiträge ohne bezahlte Produktplatzierungen oder Herstellerkooperationen."
+        dateText="Stand: Fachredaktion 2026"
+      />
 
     </div>
   );

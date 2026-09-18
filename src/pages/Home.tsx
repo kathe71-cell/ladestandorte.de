@@ -20,28 +20,28 @@ export const Home: React.FC = () => {
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://ladestandorte.de/#website",
-        "url": "https://ladestandorte.de/",
+        "@id": "https://www.ladestandorte.de/#website",
+        "url": "https://www.ladestandorte.de/",
         "name": "ladestandorte.de",
         "description": "Bundesweites Ladesäulenregister und Instant-Finder öffentlicher Ladeinfrastruktur in Deutschland.",
         "inLanguage": "de-DE",
         "publisher": {
           "@type": "Organization",
           "name": "ladestandorte.de",
-          "url": "https://ladestandorte.de/"
+          "url": "https://www.ladestandorte.de/"
         },
         "potentialAction": {
           "@type": "SearchAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://ladestandorte.de/suche?q={search_term_string}"
+            "urlTemplate": "https://www.ladestandorte.de/suche?q={search_term_string}"
           },
           "query-input": "required name=search_term_string"
         }
       },
       {
         "@type": "FAQPage",
-        "@id": "https://ladestandorte.de/#faq",
+        "@id": "https://www.ladestandorte.de/#faq",
         "mainEntity": [
           {
             "@type": "Question",
@@ -91,8 +91,8 @@ export const Home: React.FC = () => {
   return (
     <div className="space-y-16 sm:space-y-24 pb-16">
       <SEO
-        title="Ladesäulenregister Deutschland · Über 100.000 Ladepunkte im Instant-Finder"
-        description="Offizielles Ladesäulenregister der Bundesnetzagentur (BNetzA). Über 100.000 Ladepunkte & HPC-Schnelllader in unter 5 ms nach Stadt, PLZ oder Autobahn finden."
+        title="Ladesäulenregister Deutschland · Verzeichnis & Instant-Finder"
+        description="Bundesweites Ladesäulenregister der BNetzA (> 100.000 Ladepunkte). Verzeichnisse für Städte, Autobahnen & CPOs sowie Instant-Finder für Flagship-Hubs."
         canonicalPath="/"
         schema={homeSchema}
       />
@@ -122,12 +122,16 @@ export const Home: React.FC = () => {
               Öffentliches <span className="text-emerald-600">Ladesäulenregister</span> Deutschland
             </h1>
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl">
-              Durchsuchen Sie über 100.000 verifizierte Ladepunkte nach Stadt, Postleitzahl, Betreiber oder Bundesautobahn in unter 5 Millisekunden.
+              Das amtliche Bundesregister umfasst über 100.000 öffentlich zugängliche Ladepunkte. Nutzen Sie unsere redaktionellen Verzeichnisse für 50 Großstädte, Autobahnen und Betreiber sowie den Instant-Finder für kuratierte Flagship-Hubs in unter 5 Millisekunden.
             </p>
           </div>
 
           {/* Instant-Finder Component (data-svsearch) */}
-          <div className="max-w-4xl mb-12">
+          <div className="max-w-4xl mb-12 space-y-2">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-500 px-1">
+              <span>⚡ Schnellsuche: Flagship-Hubs (83 Standorte) &amp; Verzeichnisse (Musterbestand)</span>
+              <span className="text-emerald-700 font-semibold">Bundesweit: &gt; 100.000 BNetzA-Ladepunkte</span>
+            </div>
             <InstantFinder autoFocus={false} showFilters={true} />
           </div>
 
@@ -559,7 +563,14 @@ export const Home: React.FC = () => {
 
       {/* E-E-A-T Redaktionelle Trust-Box */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <EEATBadge topic="Bundesnetzagentur Ladesäulenregister &amp; AFIR-Infrastruktur" />
+        <EEATBadge
+          topic="Ladeinfrastruktur Deutschland"
+          source1Title="Amtliche Primärdatenbasis"
+          source1Text="Ladesäulenregister der Bundesnetzagentur (BNetzA) gemäß § 5 LSV (Open Data, CC BY 4.0) für bundesweite Registerstatistiken."
+          source2Title="Redaktionelle Kuration &amp; Flagship-Hubs"
+          source2Text="Ausgewählte Musterstandorte und Betreiberübersichten redaktionell aufbereitet. Keine Echtzeitdaten zur aktuellen Belegung oder Betriebsbereitschaft."
+          dateText="Stand: BNetzA Open Data"
+        />
       </section>
 
     </div>

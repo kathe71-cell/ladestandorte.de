@@ -28,13 +28,13 @@ export const CitiesIndexPage: React.FC = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://ladestandorte.de/"
+            "item": "https://www.ladestandorte.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Großstädte",
-            "item": "https://ladestandorte.de/staedte"
+            "item": "https://www.ladestandorte.de/staedte"
           }
         ]
       },
@@ -42,7 +42,7 @@ export const CitiesIndexPage: React.FC = () => {
         "@type": "CollectionPage",
         "name": "Ladesäulen in deutschen Großstädten",
         "description": "Ladeinfrastruktur-Kennzahlen der 50 größten Städte Deutschlands basierend auf dem BNetzA-Ladesäulenregister.",
-        "url": "https://ladestandorte.de/staedte"
+        "url": "https://www.ladestandorte.de/staedte"
       }
     ]
   };

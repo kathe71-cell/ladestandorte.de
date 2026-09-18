@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zap, CheckCircle2, Sun, Smartphone } from 'lucide-react';
+import { Zap, CheckCircle2, Sun, Smartphone, Info } from 'lucide-react';
 import { WALLBOXES_DATA } from '../data/wallboxes';
 import { EEATBadge } from '../components/EEATBadge';
 import { CitationBox } from '../components/CitationBox';
@@ -16,13 +16,13 @@ export const WallboxVergleichPage: React.FC = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://ladestandorte.de/"
+            "item": "https://www.ladestandorte.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Wallbox-Vergleich",
-            "item": "https://ladestandorte.de/wallboxen"
+            "item": "https://www.ladestandorte.de/wallbox-vergleich"
           }
         ]
       }
@@ -33,8 +33,8 @@ export const WallboxVergleichPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
         title="Wallbox-Vergleich: 11 kW & 22 kW Heimladestationen im Überblick"
-        description="Führende Wallboxen im herstellerunabhängigen Vergleich. 11 kW vs. 22 kW, PV-Überschussladen, KfW-Förderung, App-Steuerung und Sicherheit im Überblick."
-        canonicalPath="/wallboxen"
+        description="Führende Wallboxen im herstellerunabhängigen Vergleich. 11 kW vs. 22 kW, PV-Überschussladen, Förderstatus (Länder/Kommunen), App-Steuerung und Sicherheit im Überblick."
+        canonicalPath="/wallbox-vergleich"
         schema={schema}
       />
       
@@ -48,11 +48,22 @@ export const WallboxVergleichPage: React.FC = () => {
           Wallbox-Vergleich: 11-kW- &amp; 22-kW-Heimladestationen im Überblick
         </h1>
         <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Sicher und komfortabel in der eigenen Garage oder im Carport laden. Entdecken Sie führende Wallboxen mit PV-Überschussladung, App-Steuerung und KfW-Förderfähigkeit im direkten Leistungsvergleich.
+          Sicher und komfortabel in der eigenen Garage oder im Carport laden. Entdecken Sie führende Wallboxen mit PV-Überschussladung, App-Steuerung und Lastmanagement im direkten Leistungsvergleich.
         </p>
       </div>
 
-      {/* Info notice */}
+      {/* Info notice on Subsidies / KfW */}
+      <div className="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 text-xs text-amber-950 leading-relaxed space-y-1.5">
+        <div className="font-bold flex items-center gap-1.5 text-sm text-amber-900">
+          <Info className="w-4 h-4 text-amber-700 shrink-0" />
+          <span>Aktueller Hinweis zum Förderstatus (KfW &amp; Regionale Förderprogramme):</span>
+        </div>
+        <p className="text-slate-700">
+          Die früheren bundesweiten KfW-Zuschussprogramme für private Wallboxen (KfW 440 und KfW 442 „Solarstrom für Elektroautos“) sind geschlossen bzw. deren Fördermittel sind ausgeschöpft. Auch das Bundesprogramm <strong>KfW 441 (Ladestationen für Elektrofahrzeuge – Unternehmen)</strong> nimmt keine Neuanträge mehr an und ist beendet. Eine finanzielle Förderung privater und gewerblicher Ladepunkte ist aktuell primär über <strong>regionale Förderprogramme einzelner Bundesländer, Landkreise, Kommunen oder lokaler Stadtwerke/Energieversorger</strong> möglich.
+        </p>
+      </div>
+
+      {/* Unabhängiger Marktüberblick Notice */}
       <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 leading-relaxed">
         <strong>Unabhängiger Marktüberblick:</strong> Alle Preisangaben sind unverbindliche Richtwerte (UVP bzw. durchschnittlicher Marktpreis). ladestandorte.de bietet diesen Vergleich rein informatorisch und unabhängig von Händlern oder Herstellern an.
       </div>
@@ -94,9 +105,9 @@ export const WallboxVergleichPage: React.FC = () => {
                     <span>App-Steuerung</span>
                   </span>
                 )}
-                {wb.kfwEligible && (
-                  <span className="inline-flex items-center gap-1 bg-slate-100 text-slate-800 px-2 py-0.5 rounded-md font-medium">
-                    <span>KfW-förderfähig</span>
+                {wb.fundingEligible && (
+                  <span className="inline-flex items-center gap-1 bg-slate-100 text-slate-800 border border-slate-200 px-2 py-0.5 rounded-md font-medium text-[11px]" title={wb.fundingNote}>
+                    <span>Regionale Förderung möglich</span>
                   </span>
                 )}
               </div>
@@ -109,6 +120,10 @@ export const WallboxVergleichPage: React.FC = () => {
                   </div>
                 ))}
               </div>
+
+              <p className="text-[11px] text-slate-500 pt-1 border-t border-slate-100/80">
+                Förderstatus: {wb.fundingNote}
+              </p>
             </div>
 
             <div className="pt-5 border-t border-slate-100 mt-6 space-y-2">
@@ -130,7 +145,14 @@ export const WallboxVergleichPage: React.FC = () => {
         urlPath="/wallbox-vergleich"
       />
 
-      <EEATBadge topic="Heimladeinfrastruktur &amp; Wallbox-Installation" />
+      <EEATBadge
+        topic="Heimladeinfrastruktur &amp; Wallbox-Installation"
+        source1Title="Herstellerangaben &amp; Datenblätter"
+        source1Text="Technische Spezifikationen (Ladeleistung, Schnittstellen, IP-Schutzklasse) laut offiziellen Herstellerdatenblättern (go-e, Heidelberg, Webasto, Easee, ABL u. a.)."
+        source2Title="Normen &amp; Installationsvorgaben"
+        source2Text="Vorgaben nach DIN EN 61851-1, VDE-AR-N 4100 und Steuerbarkeit nach § 14a EnWG. Fachgerechte Installation durch eingetragene Elektrofachbetriebe erforderlich."
+        dateText="Stand: Herstellerdaten 2026"
+      />
 
     </div>
   );

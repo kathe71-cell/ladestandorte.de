@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Lock } from 'lucide-react';
+import { ShieldCheck, Lock, Server } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 export const DatenschutzPage: React.FC = () => {
@@ -34,36 +34,46 @@ export const DatenschutzPage: React.FC = () => {
         </div>
 
         <div className="pt-4 border-t border-slate-100">
-          <h2 className="text-lg font-bold text-slate-950 mb-2">2. Grundsatz: Maximale Datensparsamkeit &amp; Zero-CDN</h2>
+          <h2 className="text-lg font-bold text-slate-950 mb-2">2. Webhosting &amp; Server-Logfiles (Vercel Inc.)</h2>
           <p>
-            Wir nehmen den Schutz Ihrer Privatsphäre sehr ernst. Auf ladestandorte.de werden keinerlei externe Schriftarten von Drittanbieter-Servern (wie z. B. Google Fonts) nachgeladen. Alle Schriften stammen ausschließlich aus dem nativen Schriftarten-Stack Ihres eigenen Betriebssystems (System Fonts). Dadurch wird beim Seitenaufruf keine IP-Adresse an externe Font-Provider übertragen.
+            Diese Website wird gehostet bei <strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133, Walnut, CA 91789, USA.
+          </p>
+          <p className="mt-2">
+            Beim Aufruf unserer Seiten verarbeitet der Webserver von Vercel technisch erforderliche Verbindungsdaten in sogenannten Server-Logfiles. Zu diesen Daten gehören die IP-Adresse des anfragenden Geräts, Datum und Uhrzeit des Zugriffs, die abgerufene Seite bzw. Ressource, HTTP-Statuscode, die übertragene Datenmenge sowie Informationen über den verwendeten Browser und das Betriebssystem (User-Agent).
+          </p>
+          <p className="mt-2">
+            Die Erfassung und temporäre Speicherung dieser Daten erfolgt auf Grundlage von <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> (unser berechtigtes Interesse an der sicheren Auslieferung, der Stabilität und der Abwehr von Cyber-Angriffen auf unsere Web-Infrastruktur). Die Daten werden gelöscht, sobald sie für den Zweck ihrer Erhebung nicht mehr erforderlich sind. Mit Vercel Inc. besteht eine datenschutzrechtliche Vereinbarung zur Auftragsverarbeitung (Data Processing Agreement – DPA) einschließlich der EU-Standardvertragsklauseln (SCCs).
           </p>
         </div>
 
         <div className="pt-4 border-t border-slate-100">
-          <h2 className="text-lg font-bold text-slate-950 mb-2">3. Vercel Web Analytics (Cookielose, DSGVO-konforme Reichweitenmessung)</h2>
+          <h2 className="text-lg font-bold text-slate-950 mb-2">3. Keine externen Schriften-CDNs (Lokaler System-Font-Stack)</h2>
           <p>
-            Diese Website nutzt <strong>Vercel Web Analytics</strong>, einen Analysedienst der Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.
-          </p>
-          <p className="mt-2">
-            Vercel Web Analytics arbeitet <strong>vollständig ohne Cookies</strong> und ohne Erstellung dauerhafter Nutzerprofile. Zur Erkennung eindeutiger Besucher generiert der Dienst einen temporären, einwegverschlüsselten Hash-Wert aus der IP-Adresse, dem User-Agent und der Domain. Die ursprüngliche IP-Adresse wird nicht gespeichert und lässt sich zu keinem Zeitpunkt rekonstruieren.
-          </p>
-          <p className="mt-2">
-            Rechtsgrundlage ist unser berechtigtes Interesse an der technischen Optimierung und wirtschaftlichen Auswertung unseres Webangebots gemäß <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>.
+            Zum Schutz Ihrer Privatsphäre und zur Vermeidung unnötiger Drittstaaten-Transfers bindet ladestandorte.de <strong>keine externen Schriftarten (wie Google Fonts oder Adobe Fonts)</strong> über externe Server ein. Es werden ausschließlich die auf Ihrem Betriebssystem lokal installierten Systemschriften (System Font Stack) verwendet. Beim Laden der Typografie werden daher zu keinem Zeitpunkt personenbezogene Daten an externe Schrift-Provider übertragen.
           </p>
         </div>
 
         <div className="pt-4 border-t border-slate-100">
-          <h2 className="text-lg font-bold text-slate-950 mb-2">4. Werbefreie Informationsplattform ohne Werbetracking</h2>
+          <h2 className="text-lg font-bold text-slate-950 mb-2">4. Vercel Web Analytics (Cookielose, datensparsame Reichweitenmessung)</h2>
           <p>
-            ladestandorte.de wird als reines Informations- und Verbraucherportal betrieben. Es werden keine Werbenetzwerke, keine Affiliate-Partnerprogramme, keine Werbe-Cookies und keine Profiling-Dienste von Drittanbietern eingesetzt.
+            Diese Website nutzt <strong>Vercel Web Analytics</strong> zur anonymisierten statistischen Auswertung der Nutzung unseres Webangebots.
+          </p>
+          <p className="mt-2">
+            Vercel Web Analytics arbeitet <strong>vollständig ohne Cookies</strong> und ohne Erstellung persistenter Nutzerprofile. Zur Unterscheidung einzelner Besuche wird aus IP-Adresse, User-Agent und Domain ein flüchtiger, kryptografischer Einweg-Hash erzeugt. Die IP-Adresse selbst wird zu keinem Zeitpunkt unverschlüsselt dauerhaft gespeichert und kann nicht rekonstruiert werden. Rechtsgrundlage ist unser berechtigtes Interesse an der bedarfsgerechten Gestaltung und technischen Optimierung unseres Webangebots (Art. 6 Abs. 1 lit. f DSGVO).
+          </p>
+        </div>
+
+        <div className="pt-4 border-t border-slate-100">
+          <h2 className="text-lg font-bold text-slate-950 mb-2">5. TLS-/SSL-Verschlüsselung</h2>
+          <p>
+            Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine durchgehende TLS-/HTTPS-Verschlüsselung mit aktuellen Sicherheitszertifikaten. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
           </p>
         </div>
 
         <div className="pt-4 border-t border-slate-100">
           <h2 className="text-lg font-bold text-slate-950 mb-2">6. Ihre Rechte als betroffene Person</h2>
           <p>
-            Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung (Art. 15 DSGVO), das Recht auf Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO) sowie Einschränkung der Verarbeitung (Art. 18 DSGVO). Wenden Sie sich hierzu an die im Impressum hinterlegte Adresse.
+            Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung (Art. 15 DSGVO), das Recht auf Berichtigung unrichtiger Daten (Art. 16 DSGVO), das Recht auf Löschung (Art. 17 DSGVO), das Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO) sowie das Recht auf Datenübertragbarkeit (Art. 20 DSGVO). Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Datenschutz-Aufsichtsbehörde zu (Art. 77 DSGVO). Wenden Sie sich bei datenschutzrechtlichen Anfragen an die im Impressum hinterlegten Kontaktdaten.
           </p>
         </div>
 

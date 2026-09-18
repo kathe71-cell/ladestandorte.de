@@ -84,10 +84,10 @@ export const ImpressumPage: React.FC = () => {
 
         <div className="pt-4 border-t border-slate-100 space-y-2">
           <h2 className="text-sm font-mono uppercase tracking-wider text-slate-400 font-bold mb-2">
-            Verbraucherstreitbeilegung
+            Verbraucherstreitbeilegung (§ 36 VSBG)
           </h2>
           <p className="text-xs text-slate-600 leading-relaxed">
-            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="nofollow noopener noreferrer" className="text-emerald-700 underline">https://ec.europa.eu/consumers/odr</a>. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+            Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen (§ 36 Verbraucherstreitbeilegungsgesetz – VSBG).
           </p>
         </div>
       </div>

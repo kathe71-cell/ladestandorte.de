@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
-import { Calculator, Zap, Clock, Euro, Copy, Check, Code, Share2, Car, Sparkles } from 'lucide-react';
-import { VEHICLES_DATA, VehicleData } from '../data/vehicles';
+import { Calculator, Zap, Clock, Euro, Check, Code, Share2, Car, Sparkles, AlertTriangle, Info } from 'lucide-react';
+import { VEHICLES_DATA } from '../data/vehicles';
 
 interface Props {
   isEmbed?: boolean;
@@ -13,7 +13,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   // State defaults or from URL query
   const [batteryCapacity, setBatteryCapacity] = useState<number>(() => {
     const val = Number(searchParams.get('capacity'));
-    return val && val > 0 ? val : 77; // Standardz. B. VW ID.4 / Tesla Model 3 Long Range
+    return val && val > 0 ? val : 75; // Tesla Model Y Long Range Standard (75 kWh netto)
   });
 
   const [chargePower, setChargePower] = useState<number>(() => {
@@ -37,7 +37,6 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   });
 
   const [currentLossPercent, setCurrentLossPercent] = useState<number>(() => {
-    // DC usually 5-8%, AC usually 10-15%
     return chargePower > 22 ? 6 : 12;
   });
 
@@ -52,8 +51,11 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
     const vehicle = VEHICLES_DATA.find(v => v.id === id);
     if (vehicle) {
       setBatteryCapacity(vehicle.batteryNetKwh);
-      // If selected vehicle peak is available, set chargePower to its peak or 150 kW
-      setChargePower(Math.min(vehicle.maxKwDc, 300));
+      if (chargePower <= 22) {
+        setChargePower(vehicle.maxKwAc);
+      } else {
+        setChargePower(Math.min(vehicle.maxKwDc, 300));
+      }
       setStartSoc(10);
       setEndSoc(80);
     }
@@ -73,7 +75,6 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
       params.set('price', String(pricePerKwh));
       setSearchParams(params, { replace: true });
     } else if (location.pathname === '/' && searchParams.has('capacity')) {
-      // Clean up homepage URL if params were previously attached
       const newParams = new URLSearchParams(searchParams);
       newParams.delete('capacity');
       newParams.delete('kw');
@@ -93,22 +94,55 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
     }
   }, [chargePower]);
 
-  // Calculations
-  const socDeltaPercent = Math.max(0, endSoc - startSoc);
-  const netEnergyKwh = (batteryCapacity * socDeltaPercent) / 100;
-  const grossEnergyKwh = netEnergyKwh * (1 + currentLossPercent / 100);
-  const totalCostEur = grossEnergyKwh * pricePerKwh;
+  // Detection of manual adjustments
+  const isCustomCapacity = selectedVehicle ? batteryCapacity !== selectedVehicle.batteryNetKwh : false;
+  const isCustomKw = selectedVehicle ? (
+    chargePower <= 22 
+      ? chargePower !== selectedVehicle.maxKwAc 
+      : chargePower !== Math.min(selectedVehicle.maxKwDc, 300)
+  ) : false;
 
-  // Realistic charging speed curve estimation (effective average kW)
-  // At >80% speed drops, at peak it might be near max
-  const effectiveAverageKw = chargePower > 150 
-    ? Math.min(chargePower * 0.78, 220) 
-    : chargePower > 22 
-    ? chargePower * 0.85 
-    : chargePower;
+  // Validation: startSoc must be strictly less than endSoc
+  const isInvalidSoc = startSoc >= endSoc;
 
-  const durationHours = grossEnergyKwh / effectiveAverageKw;
-  const durationMinutes = Math.round(durationHours * 60);
+  // Effective charging power calculation
+  const vehicleAcLimit = selectedVehicle?.maxKwAc ?? 11;
+  const vehicleDcLimit = selectedVehicle?.maxKwDc ?? chargePower;
+
+  let effectiveAverageKw = 11;
+  let isAcCapped = false;
+  let isDcCapped = false;
+
+  if (chargePower <= 22) {
+    // AC charging: strictly capped by vehicle's on-board AC converter
+    effectiveAverageKw = Math.min(chargePower, vehicleAcLimit);
+    if (chargePower > vehicleAcLimit) {
+      isAcCapped = true;
+    }
+  } else {
+    // DC fast charging (HPC): capped by vehicle DC peak & realistic curve factor
+    const peakDc = Math.min(chargePower, vehicleDcLimit);
+    if (chargePower > vehicleDcLimit) {
+      isDcCapped = true;
+    }
+    // 800V architectures (Taycan, Ioniq 5, EV6) hold higher average charging curve (~82%)
+    // 400V architectures drop to ~76% average power over 10-80% SoC
+    const curveFactor = selectedVehicle?.systemVoltage === 800 ? 0.82 : (peakDc > 150 ? 0.76 : 0.82);
+    effectiveAverageKw = Math.max(1, peakDc * curveFactor);
+  }
+
+  // Net and gross energy calculation (Loss definition: markup on net energy stored)
+  const socDeltaPercent = isInvalidSoc ? 0 : endSoc - startSoc;
+  const netEnergyKwh = isInvalidSoc ? 0 : (batteryCapacity * socDeltaPercent) / 100;
+  const grossEnergyKwh = isInvalidSoc ? 0 : netEnergyKwh * (1 + currentLossPercent / 100);
+  const lossKwh = isInvalidSoc ? 0 : grossEnergyKwh - netEnergyKwh;
+  const totalCostEur = isInvalidSoc ? 0 : grossEnergyKwh * pricePerKwh;
+
+  const durationHours = isInvalidSoc || effectiveAverageKw <= 0 ? 0 : grossEnergyKwh / effectiveAverageKw;
+  const durationMinutes = isInvalidSoc ? 0 : Math.round(durationHours * 60);
+
+  const vehicleConsumption = selectedVehicle?.consumptionKwhPer100Km ?? 17.5;
+  const rangeGainKm = isInvalidSoc ? 0 : Math.round((netEnergyKwh / vehicleConsumption) * 100);
 
   const handleCopyLink = () => {
     const url = `${window.location.origin}/rechner?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}`;
@@ -118,7 +152,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   };
 
   const handleCopyEmbed = () => {
-    const iframeCode = `<iframe src="https://ladestandorte.de/rechner-embed?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}" width="100%" height="680" style="border:1px solid #e2e8f0;border-radius:16px;max-width:720px;display:block;margin:auto;" title="Ladezeit- & Ladekostenrechner ladestandorte.de"></iframe><p style="font-size:12px;text-align:center;color:#64748b;margin-top:8px;">Bereitgestellt von <a href="https://ladestandorte.de" target="_blank" style="color:#059669;font-weight:bold;">ladestandorte.de</a></p>`;
+    const iframeCode = `<iframe src="https://www.ladestandorte.de/rechner-embed?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}" width="100%" height="680" style="border:1px solid #e2e8f0;border-radius:16px;max-width:720px;display:block;margin:auto;" title="Ladezeit- & Ladekostenrechner ladestandorte.de"></iframe><p style="font-size:12px;text-align:center;color:#64748b;margin-top:8px;">Bereitgestellt von <a href="https://www.ladestandorte.de" target="_blank" style="color:#059669;font-weight:bold;">ladestandorte.de</a></p>`;
     navigator.clipboard.writeText(iframeCode);
     setEmbedCopied(true);
     setTimeout(() => setEmbedCopied(false), 2500);
@@ -139,7 +173,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            Simulieren Sie präzise Ladedauer, Ladeverluste und Gesamtkosten für Ihr Elektroauto.
+            Beispielhafte Modellrechnung für Ladedauer, Ladeverluste und Ladekosten für Elektrofahrzeuge.
           </p>
         </div>
 
@@ -148,7 +182,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             <button
               type="button"
               onClick={handleCopyLink}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors min-h-[40px]"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors min-h-[40px] cursor-pointer"
               aria-label="Link mit Konfiguration kopieren"
             >
               {linkCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
@@ -158,7 +192,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             <button
               type="button"
               onClick={handleCopyEmbed}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors min-h-[40px]"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors min-h-[40px] cursor-pointer"
               aria-label="Widget Einbettungscode kopieren"
             >
               {embedCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Code className="w-4 h-4" />}
@@ -167,6 +201,19 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           </div>
         )}
       </div>
+
+      {/* Validation Banner if Start SoC >= End SoC */}
+      {isInvalidSoc && (
+        <div className="mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-red-950 flex items-start gap-3 animate-in fade-in duration-200">
+          <AlertTriangle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+          <div className="text-xs sm:text-sm space-y-1">
+            <strong className="font-bold block">Ungültiger Ladebereich:</strong>
+            <p>
+              Der Start-Ladestand ({startSoc} %) muss kleiner sein als der Ziel-Ladestand ({endSoc} %). Die Berechnung wurde gestoppt. Bitte passen Sie die Regler an.
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Interactive Controls & Results Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -184,7 +231,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               {selectedVehicle && selectedVehicle.systemVoltage === 800 ? (
                 <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold font-mono bg-purple-100 text-purple-900 border border-purple-300 flex items-center gap-1">
                   <Sparkles className="w-3 h-3 text-purple-600" />
-                  <span>800V Ultra-Fast Lader</span>
+                  <span>800V System (Sehr flache Ladekurve)</span>
                 </span>
               ) : selectedVehicle ? (
                 <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono bg-slate-200 text-slate-700">
@@ -202,7 +249,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               <option value="">-- Individuelles Fahrzeug (Manuell anpassen) --</option>
               {VEHICLES_DATA.map((v) => (
                 <option key={v.id} value={v.id}>
-                  {v.brand} {v.model} – {v.variant} ({v.batteryNetKwh} kWh, Peak {v.maxKwDc} kW)
+                  {v.brand} {v.model} – {v.variant} (Peak {v.maxKwDc} kW DC / {v.maxKwAc} kW AC)
                 </option>
               ))}
             </select>
@@ -213,6 +260,8 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                 <span>·</span>
                 <span>Max. DC-Peak: <strong>{selectedVehicle.maxKwDc} kW</strong></span>
                 <span>·</span>
+                <span>Max. AC-Lader: <strong>{selectedVehicle.maxKwAc} kW</strong></span>
+                <span>·</span>
                 <span>Werksangabe 10–80 %: <strong className="text-emerald-700">~{selectedVehicle.typical10to80Min} Min.</strong></span>
               </div>
             )}
@@ -221,11 +270,16 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* Battery Capacity */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
-              <label htmlFor="capacity-range" className="font-bold text-slate-800">
-                Akkukapazität (netto / nutzbar):
+              <label htmlFor="capacity-range" className="font-bold text-slate-800 flex items-center gap-1.5">
+                <span>Akkukapazität (netto nutzbar):</span>
+                {isCustomCapacity && (
+                  <span className="text-[10px] font-mono text-amber-900 bg-amber-100 border border-amber-300 px-1.5 py-0.2 rounded font-semibold">
+                    (manuell angepasst)
+                  </span>
+                )}
               </label>
               <span className="font-mono font-black text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md text-base">
-                {batteryCapacity} kWh
+                {batteryCapacity} kWh netto
               </span>
             </div>
             <input
@@ -240,7 +294,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             />
             <div className="flex justify-between text-[11px] font-mono text-slate-400">
               <span>20 kWh (Kleinwagen)</span>
-              <span>77 kWh (Mittelklasse)</span>
+              <span>75–77 kWh (Mittelklasse)</span>
               <span>130 kWh (Oberklasse)</span>
             </div>
           </div>
@@ -248,8 +302,13 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* Ladeleistung in kW */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
-              <label htmlFor="kw-range" className="font-bold text-slate-800">
-                Ladeleistung (Ladesäule / Wallbox):
+              <label htmlFor="kw-range" className="font-bold text-slate-800 flex items-center gap-1.5">
+                <span>Ladesäulen-Nennleistung:</span>
+                {isCustomKw && (
+                  <span className="text-[10px] font-mono text-amber-900 bg-amber-100 border border-amber-300 px-1.5 py-0.2 rounded font-semibold">
+                    (manuell angepasst)
+                  </span>
+                )}
               </label>
               <span className="font-mono font-black text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md text-base">
                 {chargePower} kW {chargePower > 22 ? '(DC Schnelllader)' : '(AC Normallader)'}
@@ -271,7 +330,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                   key={kw}
                   type="button"
                   onClick={() => setChargePower(kw)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-colors ${
+                  className={`px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-colors cursor-pointer ${
                     chargePower === kw
                       ? 'bg-slate-900 text-white'
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
@@ -281,18 +340,37 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                 </button>
               ))}
             </div>
+
+            {/* Vehicle Limitation Warnings */}
+            {isAcCapped && (
+              <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-center gap-2">
+                <Info className="w-4 h-4 text-amber-600 shrink-0" />
+                <span>
+                  <strong>Fahrzeuglimit AC:</strong> Der bordeigene AC-Lader Ihres Fahrzeugs limitiert auf max. <strong>{vehicleAcLimit} kW</strong> (trotz {chargePower} kW Säule).
+                </span>
+              </div>
+            )}
+            {isDcCapped && (
+              <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-center gap-2">
+                <Info className="w-4 h-4 text-amber-600 shrink-0" />
+                <span>
+                  <strong>Fahrzeuglimit DC:</strong> Die maximale DC-Ladeleistung Ihres Fahrzeugs liegt bei <strong>{vehicleDcLimit} kW</strong> (trotz {chargePower} kW Säule).
+                </span>
+              </div>
+            )}
           </div>
 
           {/* State of Charge (SoC) Slider Range */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 block">
+              <label htmlFor="start-soc" className="text-xs font-bold text-slate-700 block">
                 Start-Ladestand (SoC): <span className="font-mono font-black text-slate-900">{startSoc} %</span>
               </label>
               <input
+                id="start-soc"
                 type="range"
                 min="0"
-                max={endSoc - 5}
+                max="95"
                 step="5"
                 value={startSoc}
                 onChange={(e) => setStartSoc(Number(e.target.value))}
@@ -300,12 +378,13 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 block">
+              <label htmlFor="end-soc" className="text-xs font-bold text-slate-700 block">
                 Ziel-Ladestand (SoC): <span className="font-mono font-black text-slate-900">{endSoc} %</span>
               </label>
               <input
+                id="end-soc"
                 type="range"
-                min={startSoc + 5}
+                min="5"
                 max="100"
                 step="5"
                 value={endSoc}
@@ -346,7 +425,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                   key={item.label}
                   type="button"
                   onClick={() => setPricePerKwh(item.p)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors ${
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                     Math.abs(pricePerKwh - item.p) < 0.005
                       ? 'bg-emerald-700 text-white'
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
@@ -356,6 +435,9 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                 </button>
               ))}
             </div>
+            <p className="text-[11px] text-slate-500">
+              Modellannahmen (Stand: September 2026). Reale Preise variieren je nach Ladekarte, Roaming-Aufschlag und Blockiergebühren.
+            </p>
           </div>
 
         </div>
@@ -365,13 +447,13 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold block mb-1">
-              Berechnungsergebnis
+              Modellrechnung Ergebnis
             </span>
             <div className="text-3xl sm:text-4xl font-black tracking-tight text-white font-mono">
               {totalCostEur.toFixed(2).replace('.', ',')} €
             </div>
             <p className="text-xs text-slate-400 mt-1">
-              Gesamtkosten für {grossEnergyKwh.toFixed(1).replace('.', ',')} kWh brutto
+              Gesamtkosten für {grossEnergyKwh.toFixed(1).replace('.', ',')} kWh brutto (ab Ladesäule)
             </p>
           </div>
 
@@ -381,10 +463,20 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-slate-300 text-sm">
                 <Clock className="w-4 h-4 text-emerald-400" />
-                <span>Geschätzte Ladezeit:</span>
+                <span>Geschätzte Ladedauer:</span>
               </div>
               <span className="text-lg font-black text-white font-mono">
-                {durationMinutes >= 60 ? `${Math.floor(durationMinutes / 60)}h ${durationMinutes % 60}m` : `${durationMinutes} min`}
+                {isInvalidSoc ? '0 min' : durationMinutes >= 60 ? `${Math.floor(durationMinutes / 60)}h ${durationMinutes % 60}m` : `${durationMinutes} min`}
+              </span>
+            </div>
+
+            {/* Effektive Ø Leistung */}
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-slate-400">Effektive Ø Leistung:</span>
+              <span className="font-mono text-slate-200 font-bold">
+                {isInvalidSoc ? '0 kW' : `~ ${effectiveAverageKw.toFixed(0)} kW`}
+                {isAcCapped && ` (AC-Limit ${vehicleAcLimit} kW)`}
+                {isDcCapped && ` (DC-Limit ${vehicleDcLimit} kW)`}
               </span>
             </div>
 
@@ -399,14 +491,14 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               </span>
             </div>
 
-            {/* Ladeverluste */}
+            {/* Ladeverluste (Eindeutige Definition als Aufschlag) */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-slate-300 text-sm">
                 <Zap className="w-4 h-4 text-amber-400" />
-                <span>Ladeverlust ({currentLossPercent} %):</span>
+                <span>Ladeverlust (+{currentLossPercent} %):</span>
               </div>
               <span className="text-sm font-bold text-amber-400 font-mono">
-                + {(grossEnergyKwh - netEnergyKwh).toFixed(1).replace('.', ',')} kWh
+                + {lossKwh.toFixed(1).replace('.', ',')} kWh
               </span>
             </div>
 
@@ -417,15 +509,20 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                 <span>Ca. Reichweitengewinn:</span>
               </div>
               <span className="text-sm font-bold text-emerald-400 font-mono">
-                + {Math.round((netEnergyKwh / 18) * 100)} km (bei 18 kWh/100km)
+                + {rangeGainKm} km (bei Ø {vehicleConsumption.toFixed(1).replace('.', ',')} kWh/100km)
               </span>
             </div>
 
           </div>
 
-          {/* Legal Note */}
-          <div className="pt-3 border-t border-slate-800 text-[11px] text-slate-400 leading-normal">
-            * Modellrechnung. Die tatsächliche Ladezeit und Kosten hängen von Außentemperatur, Batterievorkonditionierung, Fahrzeug-Ladekurve und CPO-Tarifen ab.
+          {/* Legal Note & Loss equation definition */}
+          <div className="pt-3 border-t border-slate-800 text-[11px] text-slate-400 leading-normal space-y-1">
+            <p>
+              * Unverbindliche Modellrechnung. Die tatsächliche Ladezeit und Ladeleistung hängen von Akkutemperatur, Vorkonditionierung, Batteriemanagementsystem (BMS) und Ladekurve ab.
+            </p>
+            <p className="text-[10px] text-slate-500">
+              Verlustleistungs-Definition: Brutto-Bezug ab Säule = Nettoenergie × (1 + {currentLossPercent} %). Verluste entstehen durch AC/DC-Wandlung im bordeigenen Lader (AC ca. 10–15 %) bzw. Leitungen und Kühlung (DC ca. 5–8 %).
+            </p>
           </div>
 
         </div>

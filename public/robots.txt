@@ -1,4 +1,4 @@
-# https://ladestandorte.de robots.txt
+# https://www.ladestandorte.de robots.txt
 User-agent: *
 Allow: /
 
@@ -26,5 +26,5 @@ User-agent: Google-Extended
 Allow: /
 
 # Sitemap Index
-Sitemap: https://ladestandorte.de/sitemap.xml
-Host: https://ladestandorte.de
+Sitemap: https://www.ladestandorte.de/sitemap.xml
+Host: https://www.ladestandorte.de

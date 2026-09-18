@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
             </div>
             
             <p className="text-sm text-slate-400 leading-relaxed pr-4">
-              Das herstellerunabhängige Verbraucher- und Datenportal für die öffentliche Ladeinfrastruktur in Deutschland. Täglich aktualisierte Datenbasis auf Grundlage des amtlichen Ladesäulenregisters der Bundesnetzagentur (BNetzA).
+              Das herstellerunabhängige Verbraucher- und Datenportal für die öffentliche Ladeinfrastruktur in Deutschland. Regelmäßig gepflegte Datenbasis auf Grundlage des amtlichen Ladesäulenregisters der Bundesnetzagentur (BNetzA Open Data).
             </p>
 
             <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400 space-y-1">
@@ -116,11 +116,11 @@ export const Footer: React.FC = () => {
           <div className="flex flex-wrap items-center gap-3 text-slate-300">
             <span>BNetzA Open Data (CC BY 4.0)</span>
             <span>·</span>
-            <span>EU-AFIR konform</span>
+            <span>AFIR Marktübersicht</span>
             <span>·</span>
-            <span>100 % Zero-CDN</span>
+            <span>Lokale System-Fonts (Kein Font-CDN)</span>
             <span>·</span>
-            <span>WCAG AAA</span>
+            <span>Barrierearmes Design (WCAG 2.1)</span>
           </div>
         </div>
 

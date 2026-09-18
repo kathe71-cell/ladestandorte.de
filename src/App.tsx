@@ -25,7 +25,7 @@ import DatenschutzPage from './pages/DatenschutzPage';
 
 import ScrollToTop from './components/ScrollToTop';
 
-function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const isEmbed = location.pathname === '/rechner-embed';
 
@@ -43,32 +43,38 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+export function AppContent() {
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/suche" element={<SearchPage />} />
+        <Route path="/staedte" element={<CitiesIndexPage />} />
+        <Route path="/staedte/:citySlug" element={<CityPage />} />
+        <Route path="/autobahnen" element={<MotorwaysIndexPage />} />
+        <Route path="/autobahnen/:autobahnSlug" element={<MotorwayPage />} />
+        <Route path="/betreiber" element={<OperatorsIndexPage />} />
+        <Route path="/betreiber/:operatorSlug" element={<OperatorPage />} />
+        <Route path="/rechner" element={<RechnerPage />} />
+        <Route path="/rechner-embed" element={<RechnerEmbedPage />} />
+        <Route path="/ladekarten" element={<LadekartenVergleichPage />} />
+        <Route path="/wallbox-vergleich" element={<WallboxVergleichPage />} />
+        <Route path="/ratgeber" element={<RatgeberIndexPage />} />
+        <Route path="/ratgeber/:articleSlug" element={<RatgeberArticlePage />} />
+        <Route path="/glossar" element={<GlossarPage />} />
+        <Route path="/impressum" element={<ImpressumPage />} />
+        <Route path="/datenschutz" element={<DatenschutzPage />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </Layout>
+  );
+}
+
 export function App() {
   return (
     <Router>
       <VercelAnalytics />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/suche" element={<SearchPage />} />
-          <Route path="/staedte" element={<CitiesIndexPage />} />
-          <Route path="/staedte/:citySlug" element={<CityPage />} />
-          <Route path="/autobahnen" element={<MotorwaysIndexPage />} />
-          <Route path="/autobahnen/:autobahnSlug" element={<MotorwayPage />} />
-          <Route path="/betreiber" element={<OperatorsIndexPage />} />
-          <Route path="/betreiber/:operatorSlug" element={<OperatorPage />} />
-          <Route path="/rechner" element={<RechnerPage />} />
-          <Route path="/rechner-embed" element={<RechnerEmbedPage />} />
-          <Route path="/ladekarten" element={<LadekartenVergleichPage />} />
-          <Route path="/wallbox-vergleich" element={<WallboxVergleichPage />} />
-          <Route path="/ratgeber" element={<RatgeberIndexPage />} />
-          <Route path="/ratgeber/:articleSlug" element={<RatgeberArticlePage />} />
-          <Route path="/glossar" element={<GlossarPage />} />
-          <Route path="/impressum" element={<ImpressumPage />} />
-          <Route path="/datenschutz" element={<DatenschutzPage />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </Layout>
+      <AppContent />
     </Router>
   );
 }

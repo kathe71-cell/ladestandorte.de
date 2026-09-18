@@ -7,7 +7,8 @@ export interface WallboxItem {
   hasApp: boolean;
   hasRfid: boolean;
   hasSolarCharging: boolean;
-  kfwEligible: boolean;
+  fundingEligible: boolean;
+  fundingNote: string;
   priceEst: number; // €
   features: string[];
 }
@@ -22,7 +23,8 @@ export const WALLBOXES_DATA: WallboxItem[] = [
     hasApp: true,
     hasRfid: true,
     hasSolarCharging: true,
-    kfwEligible: true,
+    fundingEligible: true,
+    fundingNote: "Regionale Zuschüsse (Länder/Kommunen) möglich; KfW-Programme (440, 441, 442) beendet",
     priceEst: 589,
     features: [
       "Mobil einsetzbar über rote CEE 16A Steckdose",
@@ -40,7 +42,8 @@ export const WALLBOXES_DATA: WallboxItem[] = [
     hasApp: false,
     hasRfid: false,
     hasSolarCharging: true,
-    kfwEligible: true,
+    fundingEligible: true,
+    fundingNote: "Regionale Zuschüsse (Länder/Kommunen) möglich; KfW-Programme (440, 441, 442) beendet",
     priceEst: 429,
     features: [
       "Integrierte Lastmanagement-Schnittstelle bis 16 Wallboxen",
@@ -58,7 +61,8 @@ export const WALLBOXES_DATA: WallboxItem[] = [
     hasApp: true,
     hasRfid: false,
     hasSolarCharging: true,
-    kfwEligible: true,
+    fundingEligible: true,
+    fundingNote: "Regionale Zuschüsse (Länder/Kommunen) möglich; KfW-Programme (440, 441, 442) beendet",
     priceEst: 649,
     features: [
       "Bis zu 22 kW Ladeleistung konfigurierbar",
@@ -76,7 +80,8 @@ export const WALLBOXES_DATA: WallboxItem[] = [
     hasApp: true,
     hasRfid: true,
     hasSolarCharging: true,
-    kfwEligible: true,
+    fundingEligible: true,
+    fundingNote: "Regionale Zuschüsse (Länder/Kommunen) möglich; KfW-Programme (440, 441, 442) beendet",
     priceEst: 519,
     features: [
       "Kompakteste Bauform am Markt (nur 1,5 kg Gewicht)",
@@ -94,7 +99,8 @@ export const WALLBOXES_DATA: WallboxItem[] = [
     hasApp: false,
     hasRfid: false,
     hasSolarCharging: false,
-    kfwEligible: true,
+    fundingEligible: true,
+    fundingNote: "Regionale Zuschüsse (Länder/Kommunen) möglich; KfW-Programme (440, 441, 442) beendet",
     priceEst: 389,
     features: [
       "Bewährter Klassiker für unkompliziertes Laden im Alltag",

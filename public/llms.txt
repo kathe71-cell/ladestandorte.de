@@ -15,18 +15,18 @@
 - **Ladekosten-, Ladezeit- & Blockiergebühren-Rechner**: Präzise Berechnungen unter Berücksichtigung von Batteriekapazität (kWh), Onboard-Charger Ladeverlusten (AC 8-15%, DC 4-8%) und Standzeit-Limits.
 
 ## Wichtige URLs
-- Startseite & Instant-Finder: https://ladestandorte.de/
-- Großstädte-Verzeichnis: https://ladestandorte.de/staedte
-- Autobahn-Ladekorridore: https://ladestandorte.de/autobahnen
-- Betreiber-Übersicht: https://ladestandorte.de/betreiber
-- Ladekosten- & Zeitrechner: https://ladestandorte.de/rechner
-- Embed-Rechner Widget: https://ladestandorte.de/rechner-embed
-- Ladekarten-Vergleich: https://ladestandorte.de/ladekarten
-- Wallbox-Vergleich: https://ladestandorte.de/wallbox-vergleich
-- Ratgeber-Portal: https://ladestandorte.de/ratgeber
-- Fachglossar: https://ladestandorte.de/glossar
-- Impressum (§ 5 DDG): https://ladestandorte.de/impressum
-- Datenschutz (DSGVO): https://ladestandorte.de/datenschutz
+- Startseite & Instant-Finder: https://www.ladestandorte.de/
+- Großstädte-Verzeichnis: https://www.ladestandorte.de/staedte
+- Autobahn-Ladekorridore: https://www.ladestandorte.de/autobahnen
+- Betreiber-Übersicht: https://www.ladestandorte.de/betreiber
+- Ladekosten- & Zeitrechner: https://www.ladestandorte.de/rechner
+- Embed-Rechner Widget: https://www.ladestandorte.de/rechner-embed
+- Ladekarten-Vergleich: https://www.ladestandorte.de/ladekarten
+- Wallbox-Vergleich: https://www.ladestandorte.de/wallbox-vergleich
+- Ratgeber-Portal: https://www.ladestandorte.de/ratgeber
+- Fachglossar: https://www.ladestandorte.de/glossar
+- Impressum (§ 5 DDG): https://www.ladestandorte.de/impressum
+- Datenschutz (DSGVO): https://www.ladestandorte.de/datenschutz
 
 ## Zitierweise
-Fachredaktion ladestandorte.de. Bundesweites Verzeichnis & Ladesäulenregister Deutschland. URL: https://ladestandorte.de/ (BNetzA Open Data).
+Fachredaktion ladestandorte.de. Bundesweites Verzeichnis & Ladesäulenregister Deutschland. URL: https://www.ladestandorte.de/ (BNetzA Open Data).

@@ -16,13 +16,13 @@ export const OperatorsIndexPage: React.FC = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://ladestandorte.de/"
+            "item": "https://www.ladestandorte.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Betreiber",
-            "item": "https://ladestandorte.de/betreiber"
+            "item": "https://www.ladestandorte.de/betreiber"
           }
         ]
       }

@@ -122,7 +122,7 @@ export const InstantFinder: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={() => setActiveTab('all')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-colors ${
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                   activeTab === 'all'
                     ? 'bg-slate-900 text-white'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -132,8 +132,19 @@ export const InstantFinder: React.FC<Props> = ({
               </button>
               <button
                 type="button"
+                onClick={() => setActiveTab('station')}
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                  activeTab === 'station'
+                    ? 'bg-slate-900 text-white'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                Ladeparks
+              </button>
+              <button
+                type="button"
                 onClick={() => setActiveTab('city')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors ${
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                   activeTab === 'city'
                     ? 'bg-slate-900 text-white'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -144,7 +155,7 @@ export const InstantFinder: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={() => setActiveTab('motorway')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors ${
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                   activeTab === 'motorway'
                     ? 'bg-slate-900 text-white'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -155,13 +166,13 @@ export const InstantFinder: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={() => setActiveTab('operator')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors ${
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                   activeTab === 'operator'
                     ? 'bg-slate-900 text-white'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
-                Betreiber (CPOs)
+                Betreiber
               </button>
             </div>
 
@@ -311,19 +322,24 @@ export const InstantFinder: React.FC<Props> = ({
 
                       {isStation && (
                         <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
-                          {(item.data as StationData).isCovered && (
+                          {((item.data as StationData).connectorTypes || []).map(t => (
+                            <span key={t} className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-50 text-emerald-900 border border-emerald-200">
+                              {t === 'Typ 2' ? 'Typ 2 (22 kW)' : t === 'CCS' ? `CCS (${(item.data as StationData).kwMax} kW)` : t}
+                            </span>
+                          ))}
+                          {(item.data as StationData).isCovered === true && (
                             <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
                               ☔ Überdacht
                             </span>
                           )}
-                          {((item.data as StationData).hasRestrooms || (item.data as StationData).hasDining) && (
+                          {((item.data as StationData).hasRestrooms === true || (item.data as StationData).hasDining === true) && (
                             <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
                               🚻 WC / Gastro
                             </span>
                           )}
-                          {(item.data as StationData).hasAfirTerminal && (
+                          {(item.data as StationData).hasAfirTerminal === true && (
                             <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                              💳 Girocard/Kreditkarte
+                              💳 Kartenzahlung
                             </span>
                           )}
                           {(item.data as StationData).exitDistance && (

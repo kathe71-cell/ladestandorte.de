@@ -1,3 +1,8 @@
+export interface StationConnector {
+  type: string;
+  maxKw: number;
+}
+
 export interface StationData {
   id: string;
   name: string;
@@ -11,6 +16,7 @@ export interface StationData {
   kwMax: number;
   pointsCount: number;
   connectorTypes: string[];
+  connectors?: StationConnector[];
   accessType: string;
   paymentMethods: string[];
   lat: number;
@@ -18,13 +24,34 @@ export interface StationData {
   bnetzaId: string;
   isHpc: boolean;
   openingYear: number;
-  // Neue Komfort- & AFIR-Attribute (USPs)
-  isCovered?: boolean;
-  hasRestrooms?: boolean;
-  hasDining?: boolean;
-  hasAfirTerminal?: boolean;
-  hasAutoCharge?: boolean;
-  exitDistance?: string;
+  // Redaktionelle Zusatzattribute (nicht Bestandteil des amtlichen BNetzA-Registers)
+  // null oder undefined bedeutet: "Nicht bekannt"
+  isCovered?: boolean | null;
+  hasRestrooms?: boolean | null;
+  hasDining?: boolean | null;
+  hasAfirTerminal?: boolean | null;
+  hasAutoCharge?: boolean | null;
+  exitDistance?: string | null;
+  dataSource?: string;
+  importDate?: string;
+}
+
+export function getStationConnectors(station: StationData): StationConnector[] {
+  if (station.connectors && station.connectors.length > 0) {
+    return station.connectors;
+  }
+  return station.connectorTypes.map(type => {
+    if (type === 'CCS') {
+      return { type: 'CCS', maxKw: station.kwMax };
+    }
+    if (type === 'Typ 2') {
+      return { type: 'Typ 2', maxKw: station.kwMax <= 22 ? station.kwMax : 22 };
+    }
+    if (type === 'CHAdeMO') {
+      return { type: 'CHAdeMO', maxKw: Math.min(station.kwMax, 50) };
+    }
+    return { type, maxKw: station.kwMax <= 22 ? station.kwMax : 22 };
+  });
 }
 
 export const STATIONS_DATA: StationData[] = [
