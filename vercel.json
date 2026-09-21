@@ -28,5 +28,18 @@
       "source": "/((?!_vercel/.*|api/.*|ads\\.txt|robots\\.txt|sitemap\\.xml|feed\\.xml|llms\\.txt|.*\\.svg|.*\\.png|.*\\.ico|.*\\.js|.*\\.css).*)",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "ladestandorte.de"
+        }
+      ],
+      "destination": "https://www.ladestandorte.de/$1",
+      "permanent": true
+    }
   ]
 }
