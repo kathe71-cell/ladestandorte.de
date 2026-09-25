@@ -29,4 +29,4 @@
 - Datenschutz (DSGVO): https://www.ladestandorte.de/datenschutz
 
 ## Zitierweise
-Fachredaktion ladestandorte.de. Bundesweites Verzeichnis & Ladesäulenregister Deutschland. URL: https://www.ladestandorte.de/ (BNetzA Open Data).
+ladestandorte.de (Hrsg.). Bundesweites Verzeichnis & Ladesäulenregister Deutschland. URL: https://www.ladestandorte.de/ (BNetzA Open Data).

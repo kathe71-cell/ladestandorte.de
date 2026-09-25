@@ -32,7 +32,7 @@ export const EEATBadge: React.FC<Props> = ({
               Redaktionelle Transparenz &amp; Datenherkunft
             </span>
             <span className="text-sm font-bold text-slate-900">
-              Geprüft durch Fachredaktion ladestandorte.de ({topic})
+              Redaktionelle Prüfung: ladestandorte.de ({topic})
             </span>
           </div>
         </div>

@@ -191,7 +191,7 @@ export const RatgeberArticlePage: React.FC = () => {
             AC vs. DC Ladeverluste im Praxis-Vergleich: Technische Wirkungsgrade &amp; Sparpotenziale
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed font-serif">
-            Nicht jede Kilowattstunde, die der Stromzähler misst, kommt auch in den Batteriezellen an. In diesem Fachbeitrag analysieren wir die physikalischen Ursachen von Ladeverlusten beim AC- und DC-Laden anhand von ADAC-Messungen und Laborwerten.
+            Nicht jede Kilowattstunde, die der Stromzähler misst, kommt auch in den Batteriezellen an. In diesem Leitfaden analysieren wir die physikalischen Ursachen von Ladeverlusten beim AC- und DC-Laden anhand von ADAC-Messungen und Laborwerten.
           </p>
         </header>
 
@@ -272,7 +272,7 @@ export const RatgeberArticlePage: React.FC = () => {
           source1Text="Wirkungsgrad- und Verlustkurven von Onboard-Ladern (AC) und HPC-Leistungselektronik (DC) basierend auf Fachstudien und ADAC-Messreihen."
           source2Title="Physikalische Erläuterung"
           source2Text="Modellannahmen zur Wandlung von Drehstrom in Gleichstrom sowie thermischer Verlustleistung in Traktionsbatterien."
-          dateText="Stand: Fachredaktion 2026"
+          dateText="Stand: Redaktionell geprüft 2026"
         />
       </article>
     );

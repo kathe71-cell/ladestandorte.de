@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
                 <span>Rechtlicher Unabhängigkeitshinweis</span>
               </div>
               <p>
-                ladestandorte.de ist ein unabhängiges Fachportal und steht in keinem gesellschaftsrechtlichen Verhältnis zur Bundesnetzagentur oder den dargestellten Betreibern (CPOs).
+                ladestandorte.de ist ein unabhängiges Informationsportal und steht in keinem gesellschaftsrechtlichen Verhältnis zur Bundesnetzagentur oder den dargestellten Betreibern (CPOs).
               </p>
             </div>
           </div>

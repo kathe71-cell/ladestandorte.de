@@ -17,7 +17,7 @@ export const CitationBox: React.FC<Props> = ({
   const [copied, setCopied] = useState(false);
   const fullUrl = `https://www.ladestandorte.de${urlPath}`;
   const currentDate = dateStr || new Date().toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
-  const citationText = `Fachredaktion ladestandorte.de. ${title}. Bundesweites Ladesäulenregister Deutschland. Online verfügbar unter: ${fullUrl} (Stand: ${currentDate}).`;
+  const citationText = `ladestandorte.de (Hrsg.). ${title}. Bundesweites Ladesäulenregister Deutschland. Online verfügbar unter: ${fullUrl} (Stand: ${currentDate}).`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(citationText);

@@ -57,15 +57,6 @@ export const ImpressumPage: React.FC = () => {
 
         <div className="pt-4 border-t border-slate-100 space-y-2">
           <h2 className="text-sm font-mono uppercase tracking-wider text-slate-400 font-bold mb-2">
-            Umsatzsteuer-Status
-          </h2>
-          <p className="text-sm text-slate-700 leading-relaxed">
-            Als Kleinunternehmer im Sinne von <strong>§ 19 Abs. 1 UStG</strong> wird keine Umsatzsteuer berechnet und ausgewiesen.
-          </p>
-        </div>
-
-        <div className="pt-4 border-t border-slate-100 space-y-2">
-          <h2 className="text-sm font-mono uppercase tracking-wider text-slate-400 font-bold mb-2">
             Inhaltlich Verantwortlicher gemäß § 18 Abs. 2 MStV
           </h2>
           <p className="text-sm text-slate-700">

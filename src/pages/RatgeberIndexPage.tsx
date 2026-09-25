@@ -115,12 +115,12 @@ export const RatgeberIndexPage: React.FC = () => {
 
       {/* EEAT Badge */}
       <EEATBadge
-        topic="Redaktionelle Fachratgeber"
+        topic="Redaktionelle Leitfäden"
         source1Title="Fachliche Primärquellen"
         source1Text="Recherche und Auswertung einschlägiger Normen (DIN VDE), Bundesgesetze (LSV, GEIG, EnWG) und Veröffentlichungen der Bundesnetzagentur."
         source2Title="Redaktionelle Unabhängigkeit"
-        source2Text="Unabhängige fachliche Ratgeberbeiträge ohne bezahlte Produktplatzierungen oder Herstellerkooperationen."
-        dateText="Stand: Fachredaktion 2026"
+        source2Text="Unabhängige redaktionelle Ratgeberbeiträge ohne bezahlte Produktplatzierungen oder Herstellerkooperationen."
+        dateText="Stand: Redaktionell geprüft 2026"
       />
 
     </div>

@@ -140,6 +140,16 @@ export const WallboxVergleichPage: React.FC = () => {
         ))}
       </div>
 
+      {/* Fachlicher Hinweis zur Dimensionierung bei PV-Überschussladung */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-2">
+        <h3 className="font-extrabold text-slate-900 text-base">
+          Wie viel Solarenergie wird für das Laden zu Hause benötigt?
+        </h3>
+        <p>
+          Um ein Elektroauto an sonnigen Tagen ganz oder teilweise mit eigenem Dachstrom zu versorgen, wird in der Praxis meist eine Photovoltaikanlage ab etwa 6 bis 10 kWp in Kombination mit einer steuerbaren Wallbox empfohlen. Den voraussichtlichen Jahresertrag und Eigenverbrauchsanteil für verschiedene Dachausrichtungen können Sie mit dem herstellerneutralen <a href="https://www.wattpeak.de/ertragsrechner" target="_blank" rel="noopener" className="font-bold text-emerald-800 underline hover:text-emerald-600">PV-Ertragsrechner auf wattpeak.de</a> berechnen.
+        </p>
+      </div>
+
       <CitationBox
         title="Wallbox-Vergleich: Heimladestationen mit PV-Überschussladen"
         urlPath="/wallbox-vergleich"

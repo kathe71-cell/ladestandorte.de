@@ -371,10 +371,10 @@ export const Home: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-mono font-bold mb-2">
             <TrendingUp className="w-3.5 h-3.5" />
-            <span>AUS DER FACHREDAKTION</span>
+            <span>RATGEBER &amp; LEITFÄDEN</span>
           </div>
           <h2 className="text-3xl font-extrabold text-slate-950 tracking-tight">
-            Fundierte Fachratgeber &amp; Marktanalysen
+            Fundierte Leitfäden &amp; Marktanalysen
           </h2>
           <p className="text-sm text-slate-600 mt-2">
             Verlässliche Leitfäden zu Tarifen, Elektrotechnik und gesetzlichen Neuregelungen.
