@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Zap, ExternalLink, ShieldCheck, Database } from 'lucide-react';
+import { AmazonPartnerSentence } from '@plattform/core';
 
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
-          
+
           {/* Col 1 & 2: Brand & Portal mission */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
@@ -20,9 +21,9 @@ export const Footer: React.FC = () => {
                 ladestandorte<span className="text-emerald-400">.de</span>
               </span>
             </div>
-            
+
             <p className="text-sm text-slate-400 leading-relaxed pr-4">
-              Das herstellerunabhängige Verbraucher- und Datenportal für die öffentliche Ladeinfrastruktur in Deutschland. Regelmäßig gepflegte Datenbasis auf Grundlage des amtlichen Ladesäulenregisters der Bundesnetzagentur (BNetzA Open Data).
+              Das redaktionell unabhängige Verbraucher- und Datenportal für die öffentliche Ladeinfrastruktur in Deutschland – finanziert über gekennzeichnete Partnerlinks. Regelmäßig gepflegte Datenbasis auf Grundlage des amtlichen Ladesäulenregisters der Bundesnetzagentur (BNetzA Open Data).
             </p>
 
             <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400 space-y-1">
@@ -31,7 +32,7 @@ export const Footer: React.FC = () => {
                 <span>Rechtlicher Unabhängigkeitshinweis</span>
               </div>
               <p>
-                ladestandorte.de ist ein unabhängiges Informationsportal und steht in keinem gesellschaftsrechtlichen Verhältnis zur Bundesnetzagentur oder den dargestellten Betreibern (CPOs).
+                ladestandorte.de ist ein redaktionell unabhängiges Informationsportal und steht in keinem gesellschaftsrechtlichen Verhältnis zur Bundesnetzagentur oder den dargestellten Betreibern (CPOs).
               </p>
             </div>
           </div>
@@ -101,11 +102,9 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        {/* Unabhängiger Verbraucherhinweis */}
-        <div className="pt-6 pb-6 border-t border-slate-900 text-xs text-slate-400 leading-relaxed">
-          <p>
-            Hinweis zur redaktionellen Unabhängigkeit: ladestandorte.de ist ein neutrales, werbefreies Verbraucher- und Informationsportal zur öffentlichen Ladeinfrastruktur in Deutschland. Alle Daten stammen aus amtlichen Open-Data-Registern der Bundesnetzagentur sowie unabhängigen redaktionellen Recherchen.
-          </p>
+        {/* Amazon-Pflichtsatz */}
+        <div className="pt-6 pb-4 border-t border-slate-900 text-xs text-slate-400 leading-relaxed" data-amazon-sentence>
+          <AmazonPartnerSentence />
         </div>
 
         {/* Bottom Facts Strip */}

@@ -1,6 +1,7 @@
 import React from 'react';
-import { ShieldCheck, Mail, Phone, MapPin, AlertCircle } from 'lucide-react';
+import { ShieldCheck, Mail, Phone } from 'lucide-react';
 import { SEO } from '../components/SEO';
+import { AmazonPartnerSentence } from '@plattform/core';
 
 export const ImpressumPage: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ export const ImpressumPage: React.FC = () => {
         description="Impressum und Anbieterkennzeichnung gemäß § 5 Digitale-Dienste-Gesetz (DDG) für das Informationsportal ladestandorte.de."
         canonicalPath="/impressum"
       />
-      
+
       <header className="space-y-3 border-b border-slate-200 pb-6">
         <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-bold block">
           Rechtliche Pflichtangaben
@@ -23,7 +24,7 @@ export const ImpressumPage: React.FC = () => {
         </p>
       </header>
 
-      {/* Betreiberdaten – AUSSCHLIESSLICH hier auf /impressum */}
+      {/* Betreiberdaten */}
       <div className="p-6 sm:p-8 bg-white rounded-3xl border border-slate-200 shadow-sm space-y-6">
         <div>
           <h2 className="text-sm font-mono uppercase tracking-wider text-slate-400 font-bold mb-2">
@@ -69,7 +70,16 @@ export const ImpressumPage: React.FC = () => {
             Unabhängigkeitshinweis &amp; Datenherkunft
           </h2>
           <p className="text-xs text-slate-600 leading-relaxed">
-            ladestandorte.de ist ein unabhängiges Verbraucher- und Datenportal. Es besteht kein gesellschaftsrechtliches oder wirtschaftliches Abhängigkeitsverhältnis zur Bundesnetzagentur (BNetzA) oder den auf dieser Plattform aufgeführten Ladesäulenbetreibern (CPOs) und Mobilitätsanbietern (EMPs). Alle Angaben und Daten des Ladesäulenregisters beruhen auf amtlichen Open-Data-Veröffentlichungen der Bundesnetzagentur gemäß Creative Commons Namensnennung 4.0 International Lizenz (CC BY 4.0).
+            ladestandorte.de ist ein redaktionell unabhängiges Verbraucher- und Datenportal – finanziert über gekennzeichnete Partnerlinks. Es besteht kein gesellschaftsrechtliches oder wirtschaftliches Abhängigkeitsverhältnis zur Bundesnetzagentur (BNetzA) oder den auf dieser Plattform aufgeführten Ladesäulenbetreibern (CPOs) und Mobilitätsanbietern (EMPs). Alle Angaben und Daten des Ladesäulenregisters beruhen auf amtlichen Open-Data-Veröffentlichungen der Bundesnetzagentur gemäß Creative Commons Namensnennung 4.0 International Lizenz (CC BY 4.0).
+          </p>
+        </div>
+
+        <div className="pt-4 border-t border-slate-100 space-y-2">
+          <h2 className="text-sm font-mono uppercase tracking-wider text-slate-400 font-bold mb-2">
+            Amazon-Partnerprogramm
+          </h2>
+          <p className="text-xs text-slate-600 leading-relaxed">
+            <AmazonPartnerSentence />
           </p>
         </div>
 

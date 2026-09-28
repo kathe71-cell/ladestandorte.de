@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { SiteProvider } from '@plattform/core';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import VercelAnalytics from './components/VercelAnalytics';
@@ -24,6 +25,8 @@ import ImpressumPage from './pages/ImpressumPage';
 import DatenschutzPage from './pages/DatenschutzPage';
 
 import ScrollToTop from './components/ScrollToTop';
+import { siteConfig } from './site.config';
+import { products } from './products';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -74,7 +77,9 @@ export function App() {
   return (
     <Router>
       <VercelAnalytics />
-      <AppContent />
+      <SiteProvider config={siteConfig} products={products}>
+        <AppContent />
+      </SiteProvider>
     </Router>
   );
 }

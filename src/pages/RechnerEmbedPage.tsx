@@ -1,6 +1,7 @@
 import React from 'react';
 import { CalculatorEmbed } from '../components/CalculatorEmbed';
 import { SEO } from '../components/SEO';
+import { AmazonPartnerSentence } from '@plattform/core';
 
 export const RechnerEmbedPage: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ export const RechnerEmbedPage: React.FC = () => {
       />
       <div className="w-full max-w-2xl">
         <CalculatorEmbed isEmbed={true} />
+        <AmazonPartnerSentence className="sr-only" />
       </div>
     </div>
   );

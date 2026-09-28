@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Lock, Server } from 'lucide-react';
 import { SEO } from '../components/SEO';
+import { PrivacyAmazonSection } from '@plattform/core';
 
 export const DatenschutzPage: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ export const DatenschutzPage: React.FC = () => {
         description="Datenschutzerklärung nach DSGVO und TDDDG. Informationen über die Datenverarbeitung ohne Tracking-Cookies und ohne Drittstaaten-Transfer."
         canonicalPath="/datenschutz"
       />
-      
+
       <header className="space-y-3 border-b border-slate-200 pb-6">
         <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-bold block">
           Datenschutz nach DSGVO &amp; TDDDG
@@ -25,7 +26,7 @@ export const DatenschutzPage: React.FC = () => {
       </header>
 
       <div className="p-6 sm:p-8 bg-white rounded-3xl border border-slate-200 shadow-sm space-y-6 text-sm text-slate-700 leading-relaxed">
-        
+
         <div>
           <h2 className="text-lg font-bold text-slate-950 mb-2">1. Verantwortlicher</h2>
           <p>
@@ -66,12 +67,17 @@ export const DatenschutzPage: React.FC = () => {
         <div className="pt-4 border-t border-slate-100">
           <h2 className="text-lg font-bold text-slate-950 mb-2">5. TLS-/SSL-Verschlüsselung</h2>
           <p>
-            Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine durchgehende TLS-/HTTPS-Verschlüsselung mit aktuellen Sicherheitszertifikaten. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
+            Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine durchgehende TLS-/HTTPS-Verschlüsselung mit aktuellen Sicherheitszertifikaten. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
           </p>
         </div>
 
+        {/* Amazon-Partnerprogramm Datenschutz */}
         <div className="pt-4 border-t border-slate-100">
-          <h2 className="text-lg font-bold text-slate-950 mb-2">6. Ihre Rechte als betroffene Person</h2>
+          <PrivacyAmazonSection number="6." />
+        </div>
+
+        <div className="pt-4 border-t border-slate-100">
+          <h2 className="text-lg font-bold text-slate-950 mb-2">7. Ihre Rechte als betroffene Person</h2>
           <p>
             Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung (Art. 15 DSGVO), das Recht auf Berichtigung unrichtiger Daten (Art. 16 DSGVO), das Recht auf Löschung (Art. 17 DSGVO), das Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO) sowie das Recht auf Datenübertragbarkeit (Art. 20 DSGVO). Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Datenschutz-Aufsichtsbehörde zu (Art. 77 DSGVO). Wenden Sie sich bei datenschutzrechtlichen Anfragen an die im Impressum hinterlegten Kontaktdaten.
           </p>
