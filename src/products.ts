@@ -43,8 +43,8 @@ export const products: Product[] = [
   // ── Easee ─────────────────────────────────────────────
   {
     id: 'easee-charge',
-    asin: 'B0BD4Y5F8G',
-    label: 'Easee Charge 11 kW',
+    asin: 'B0FM86TJK1',
+    label: 'Easee Charge Up 11 kW',
     hint: 'Kompakteste Bauform, integrierter eSIM-Mobilfunk',
     checked: '2026-09-28',
     type: 'produkt',
@@ -259,7 +259,7 @@ export const products: Product[] = [
   // ── Anker ─────────────────────────────────────────────
   {
     id: 'anker-solix-v1-11',
-    asin: 'B0FNCWMVT9',
+    asin: 'B0FNCZD36Y',
     label: 'Anker SOLIX V1 Wallbox 11 kW',
     hint: '11 kW, WLAN, Bluetooth, PV-Integration, App',
     checked: '2026-09-28',

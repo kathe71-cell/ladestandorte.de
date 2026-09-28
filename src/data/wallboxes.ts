@@ -109,7 +109,7 @@ export const WALLBOXES_DATA: WallboxItem[] = [
   {
     id: 'easee-charge-11',
     productId: 'easee-charge',
-    name: 'Easee Charge 11 kW',
+    name: 'Easee Charge Up 11 kW',
     brand: 'Easee',
     maxKw: 11,
     cableLengthM: 0,
