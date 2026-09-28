@@ -740,4 +740,3 @@ export const WALLBOXES_DATA: WallboxItem[] = [
     ],
   },
 ];
-];
