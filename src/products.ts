@@ -1,6 +1,7 @@
 import type { Product } from '@plattform/core';
 
 export const products: Product[] = [
+  // ── go-e ──────────────────────────────────────────────
   {
     id: 'go-e-gemini-flex',
     asin: 'B0DKFVC2HC',
@@ -17,8 +18,9 @@ export const products: Product[] = [
     hint: 'Festinstallation, WLAN, App-Steuerung, PV-Überschuss',
     checked: '2026-09-28',
     type: 'produkt',
-    status: 'inaktiv',
+    status: 'aktiv',
   },
+  // ── Heidelberg ────────────────────────────────────────
   {
     id: 'heidelberg-energy-control',
     asin: 'B0BCNX3T5T',
@@ -28,6 +30,7 @@ export const products: Product[] = [
     type: 'produkt',
     status: 'aktiv',
   },
+  // ── Webasto ───────────────────────────────────────────
   {
     id: 'webasto-next',
     asin: 'B0CKRK7BBG',
@@ -37,6 +40,7 @@ export const products: Product[] = [
     type: 'produkt',
     status: 'aktiv',
   },
+  // ── Easee ─────────────────────────────────────────────
   {
     id: 'easee-charge',
     asin: 'B0BD4Y5F8G',
@@ -46,6 +50,7 @@ export const products: Product[] = [
     type: 'produkt',
     status: 'aktiv',
   },
+  // ── ABL ───────────────────────────────────────────────
   {
     id: 'abl-emh1',
     asin: 'B07XKGCPKL',
@@ -57,13 +62,14 @@ export const products: Product[] = [
   },
   {
     id: 'abl-emh2',
-    asin: 'B09ABLEMH22',
-    label: 'ABL eMH2 Wallbox 11 kW',
-    hint: 'Mit RFID und Lastmanagement-Schnittstelle',
+    asin: 'B08QFXFFFJ',
+    label: 'ABL eMH2 Wallbox 22 kW',
+    hint: 'Mit RFID und Lastmanagement-Schnittstelle, 22 kW',
     checked: '2026-09-28',
     type: 'produkt',
-    status: 'inaktiv',
+    status: 'aktiv',
   },
+  // ── Keba ──────────────────────────────────────────────
   {
     id: 'keba-p30-x-11',
     asin: 'B0CYHC2GWD',
@@ -75,13 +81,14 @@ export const products: Product[] = [
   },
   {
     id: 'keba-p30-c-22',
-    asin: 'B07KEBAP30C',
+    asin: '',
     label: 'KEBA P30 c-Series 22 kW',
     hint: '22 kW, RFID, robustes Kunststoffgehäuse',
     checked: '2026-09-28',
     type: 'produkt',
     status: 'inaktiv',
   },
+  // ── Mennekes ──────────────────────────────────────────
   {
     id: 'mennekes-amtron-compact-11',
     asin: 'B09SPQ57KL',
@@ -91,33 +98,37 @@ export const products: Product[] = [
     type: 'produkt',
     status: 'aktiv',
   },
+  // ── Juice Technology ──────────────────────────────────
   {
     id: 'juice-charger-me3-22',
-    asin: 'B07JUICE222',
-    label: 'juice CHARGER me3 22 kW',
-    hint: '22 kW, App, PV-Überschuss, dynamisches Lastmanagement',
+    asin: 'B00YMG2TFM',
+    label: 'juice CHARGER me3 11 kW',
+    hint: '11 kW, App, PV-Überschuss, dynamisches Lastmanagement',
     checked: '2026-09-28',
     type: 'produkt',
-    status: 'inaktiv',
+    status: 'aktiv',
   },
+  // ── Wallbe ────────────────────────────────────────────
   {
     id: 'wallbe-eco-11',
-    asin: 'B07WALLBE11',
-    label: 'wallbe ECO Wallbox 11 kW',
+    asin: '',
+    label: 'Wallbe Eco 2.0 11 kW',
     hint: 'Einsteigermodell, robust, OCPP-fähig',
     checked: '2026-09-28',
     type: 'produkt',
     status: 'inaktiv',
   },
+  // ── ChargePoint ───────────────────────────────────────
   {
     id: 'chargepoint-home-flex-11',
-    asin: 'B07CHRGHFX',
+    asin: '',
     label: 'ChargePoint Home Flex 11 kW',
     hint: 'WiFi, App, flexible Ampere-Einstellung',
     checked: '2026-09-28',
     type: 'produkt',
     status: 'inaktiv',
   },
+  // ── Fronius ───────────────────────────────────────────
   {
     id: 'fronius-wattpilot-11',
     asin: 'B09DG815ZD',
@@ -129,13 +140,14 @@ export const products: Product[] = [
   },
   {
     id: 'fronius-wattpilot-22',
-    asin: 'B09FRNWP22',
-    label: 'Fronius Wattpilot Home 22 kW',
-    hint: '22 kW, PV-Überschussladen, App',
+    asin: 'B0BVZCHJ5Y',
+    label: 'Fronius Wattpilot Go 22 kW',
+    hint: '22 kW, PV-Überschussladen, portabel & stationär',
     checked: '2026-09-28',
     type: 'produkt',
-    status: 'inaktiv',
+    status: 'aktiv',
   },
+  // ── Wallbox Chargers ──────────────────────────────────
   {
     id: 'wallbox-pulsar-plus-11',
     asin: 'B08Y5KTBJ4',
@@ -145,24 +157,27 @@ export const products: Product[] = [
     type: 'produkt',
     status: 'aktiv',
   },
+  // ── Schneider Electric ────────────────────────────────
   {
     id: 'schneider-evlink-home-11',
-    asin: 'B07SCHNEV11',
-    label: 'Schneider EVlink Home 11 kW',
-    hint: 'Bewährte Industriequalität für die Heimanwendung',
+    asin: 'B0CCSD136M',
+    label: 'Schneider EVlink Home Smart 11 kW',
+    hint: 'Bewährte Industriequalität, App, RFID',
     checked: '2026-09-28',
     type: 'produkt',
-    status: 'inaktiv',
+    status: 'aktiv',
   },
+  // ── Vestel ────────────────────────────────────────────
   {
     id: 'vestel-vc3-11',
-    asin: 'B09VESTVC3',
-    label: 'Vestel VC3 Wallbox 11 kW',
+    asin: 'B094R5YRDQ',
+    label: 'Vestel EVC04 Wallbox 11 kW',
     hint: 'OCPP, App, günstiger Einstiegspreis',
     checked: '2026-09-28',
     type: 'produkt',
-    status: 'inaktiv',
+    status: 'aktiv',
   },
+  // ── Alfen ─────────────────────────────────────────────
   {
     id: 'alfen-eve-single-pro-22',
     asin: 'B08TGTPVPG',
@@ -172,13 +187,54 @@ export const products: Product[] = [
     type: 'produkt',
     status: 'aktiv',
   },
+  // ── Smappee ───────────────────────────────────────────
   {
     id: 'smappee-ev-wall-22',
-    asin: 'B09SMAPEV2',
+    asin: '',
     label: 'Smappee EV Wall 22 kW',
     hint: '22 kW, dynamisches Lastmanagement, Hausenergie-Integration',
     checked: '2026-09-28',
     type: 'produkt',
     status: 'inaktiv',
+  },
+  // ── Tesla ─────────────────────────────────────────────
+  {
+    id: 'tesla-wall-connector-gen3',
+    asin: 'B0BW16BBKQ',
+    label: 'Tesla Wall Connector Gen. 3 22 kW',
+    hint: 'Bis 22 kW, Typ-2, WiFi, auch für Nicht-Tesla geeignet',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
+  },
+  // ── myenergi ──────────────────────────────────────────
+  {
+    id: 'myenergi-zappi-22',
+    asin: 'B092R9CRBG',
+    label: 'myenergi Zappi 22 kW',
+    hint: '22 kW, PV-Überschussladen, Hub-kompatibel',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
+  },
+  // ── Autel ─────────────────────────────────────────────
+  {
+    id: 'autel-maxicharger-22',
+    asin: 'B0BXLXLRG5',
+    label: 'Autel MaxiCharger AC 22 kW',
+    hint: '22 kW, RFID, WiFi, App, OCPP 1.6',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
+  },
+  // ── Morec ─────────────────────────────────────────────
+  {
+    id: 'morec-wallbox-11',
+    asin: 'B0CP5X2ZQ4',
+    label: 'Morec Wallbox 11 kW',
+    hint: '11 kW, 6 m Kabel, Typ 2, Preis-Leistungs-Tipp',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
   },
 ];

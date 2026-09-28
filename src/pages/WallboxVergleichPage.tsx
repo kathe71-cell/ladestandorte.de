@@ -81,8 +81,8 @@ export const WallboxVergleichPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
-        title="Wallbox-Vergleich 2026: 20+ Heimladestationen im Überblick"
-        description="Über 20 Wallboxen im herstellerunabhängigen Vergleich – filterbar nach Leistung, PV-Überschussladen, App, RFID und Marke. 11 kW vs. 22 kW, Förderstatus und Preise."
+        title="Wallbox-Vergleich 2026: 30+ Heimladestationen im Überblick"
+        description="Über 30 Wallboxen im herstellerunabhängigen Vergleich – filterbar nach Leistung, PV-Überschussladen, App, RFID und Marke. 11 kW vs. 22 kW, Förderstatus und Preise."
         canonicalPath="/wallbox-vergleich"
         schema={schema}
       />
