@@ -6,13 +6,18 @@ import { EEATBadge } from '../components/EEATBadge';
 import { CitationBox } from '../components/CitationBox';
 import { SEO } from '../components/SEO';
 
-// IDs müssen exakt mit products.ts übereinstimmen
+// IDs müssen exakt mit products.ts übereinstimmen (aktive Produkte)
 const WALLBOX_PRODUCT_IDS = [
-  'go-e-gemini-flex-11',
+  'go-e-gemini-flex',
   'heidelberg-energy-control',
-  'webasto-next-11',
-  'easee-charge-lite',
+  'webasto-next',
+  'easee-charge',
   'abl-emh1',
+  'keba-p30-x-11',
+  'mennekes-amtron-compact-11',
+  'fronius-wattpilot-11',
+  'wallbox-pulsar-plus-11',
+  'alfen-eve-single-pro-22',
 ];
 
 type SortKey = 'priceAsc' | 'priceDesc' | 'kwAsc' | 'kwDesc';
