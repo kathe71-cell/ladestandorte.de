@@ -1,24 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import { Zap, CheckCircle2, Sun, Smartphone, Info, Shield, Network, SlidersHorizontal, ArrowUpDown, X } from 'lucide-react';
+import { Zap, CheckCircle2, Sun, Smartphone, Info, Shield, Network, SlidersHorizontal, ArrowUpDown, X, ShoppingCart } from 'lucide-react';
 import { WALLBOXES_DATA } from '../data/wallboxes';
-import { ProductLinks, AdPageNotice } from '@plattform/core';
+import { AffiliateLink, AdPageNotice } from '@plattform/core';
 import { EEATBadge } from '../components/EEATBadge';
 import { CitationBox } from '../components/CitationBox';
 import { SEO } from '../components/SEO';
-
-// IDs müssen exakt mit products.ts übereinstimmen (aktive Produkte)
-const WALLBOX_PRODUCT_IDS = [
-  'go-e-gemini-flex',
-  'heidelberg-energy-control',
-  'webasto-next',
-  'easee-charge',
-  'abl-emh1',
-  'keba-p30-x-11',
-  'mennekes-amtron-compact-11',
-  'fronius-wattpilot-11',
-  'wallbox-pulsar-plus-11',
-  'alfen-eve-single-pro-22',
-];
 
 type SortKey = 'priceAsc' | 'priceDesc' | 'kwAsc' | 'kwDesc';
 
@@ -126,6 +112,9 @@ export const WallboxVergleichPage: React.FC = () => {
         </p>
       </div>
 
+      {/* Affiliate-Hinweis */}
+      <AdPageNotice />
+
       {/* ── Filter & Sort Bar ─────────────────────────────── */}
       <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 space-y-4">
         <div className="flex items-center gap-2 text-sm font-bold text-slate-800">
@@ -143,7 +132,6 @@ export const WallboxVergleichPage: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap gap-3">
-          {/* Leistung */}
           {([0, 11, 22] as const).map((kw) => (
             <button
               key={kw}
@@ -160,7 +148,6 @@ export const WallboxVergleichPage: React.FC = () => {
 
           <span className="text-slate-200 hidden sm:block self-center">|</span>
 
-          {/* Feature-Chips */}
           {(
             [
               { key: 'pv', label: 'PV-Überschuss', icon: <Sun className="w-3 h-3" /> },
@@ -185,7 +172,6 @@ export const WallboxVergleichPage: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap gap-3 items-center pt-1 border-t border-slate-200">
-          {/* Marke */}
           <div className="flex items-center gap-2">
             <label className="text-xs font-semibold text-slate-600 whitespace-nowrap">Marke:</label>
             <select
@@ -200,7 +186,6 @@ export const WallboxVergleichPage: React.FC = () => {
             </select>
           </div>
 
-          {/* Sortierung */}
           <div className="flex items-center gap-2 ml-auto">
             <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
             <label className="text-xs font-semibold text-slate-600 whitespace-nowrap">Sortierung:</label>
@@ -224,11 +209,6 @@ export const WallboxVergleichPage: React.FC = () => {
         </p>
       </div>
 
-      {/* Unabhängigkeitshinweis */}
-      <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 leading-relaxed">
-        <strong>Redaktionell unabhängiger Marktüberblick:</strong> Alle Preisangaben sind unverbindliche Richtwerte (UVP bzw. durchschnittlicher Marktpreis). ladestandorte.de bietet diesen Vergleich rein informatorisch und unabhängig von Händlern oder Herstellern an.
-      </div>
-
       {/* ── Wallboxen Grid ───────────────────────────────── */}
       {filtered.length === 0 ? (
         <div className="text-center py-16 text-slate-400 text-sm">
@@ -243,102 +223,94 @@ export const WallboxVergleichPage: React.FC = () => {
           {filtered.map((wb) => (
             <div
               key={wb.id}
-              className="p-6 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between"
+              className="p-6 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col"
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-lg">
-                    {wb.maxKw} kW
+              {/* Kachel-Kopf */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-lg">
+                  {wb.maxKw} kW
+                </span>
+                <span className="text-lg font-black text-slate-950 font-mono">
+                  ~ {wb.priceEst} €
+                </span>
+              </div>
+
+              {/* Name */}
+              <div className="mb-3">
+                <span className="text-xs font-mono text-slate-400 uppercase font-semibold">{wb.brand}</span>
+                <h2 className="text-xl font-black text-slate-950 tracking-tight mt-0.5">
+                  {wb.name}
+                </h2>
+              </div>
+
+              {/* Feature-Chips */}
+              <div className="flex flex-wrap gap-1.5 text-xs mb-4">
+                {wb.hasSolarCharging && (
+                  <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-md font-medium">
+                    <Sun className="w-3 h-3 text-amber-600" />
+                    PV-Überschuss
                   </span>
-                  <span className="text-lg font-black text-slate-950 font-mono">
-                    ~ {wb.priceEst} €
-                  </span>
-                </div>
-
-                <div>
-                  <span className="text-xs font-mono text-slate-400 uppercase font-semibold">{wb.brand}</span>
-                  <h2 className="text-xl font-black text-slate-950 tracking-tight mt-0.5">
-                    {wb.name}
-                  </h2>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5 text-xs">
-                  {wb.hasSolarCharging && (
-                    <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-md font-medium">
-                      <Sun className="w-3 h-3 text-amber-600" />
-                      PV-Überschuss
-                    </span>
-                  )}
-                  {wb.hasApp && (
-                    <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-900 border border-blue-200 px-2 py-0.5 rounded-md font-medium">
-                      <Smartphone className="w-3 h-3 text-blue-600" />
-                      App
-                    </span>
-                  )}
-                  {wb.hasRfid && (
-                    <span className="inline-flex items-center gap-1 bg-purple-50 text-purple-900 border border-purple-200 px-2 py-0.5 rounded-md font-medium">
-                      <Shield className="w-3 h-3 text-purple-600" />
-                      RFID
-                    </span>
-                  )}
-                  {wb.hasLoadManagement && (
-                    <span className="inline-flex items-center gap-1 bg-slate-100 text-slate-800 border border-slate-200 px-2 py-0.5 rounded-md font-medium">
-                      <Network className="w-3 h-3 text-slate-600" />
-                      Lastmgmt.
-                    </span>
-                  )}
-                  {wb.fundingEligible && (
-                    <span className="inline-flex items-center gap-1 bg-green-50 text-green-900 border border-green-200 px-2 py-0.5 rounded-md font-medium" title={wb.fundingNote}>
-                      Förderung mögl.
-                    </span>
-                  )}
-                </div>
-
-                <div className="space-y-1.5 text-xs text-slate-600 pt-2 border-t border-slate-100">
-                  {wb.features.map((f) => (
-                    <div key={f} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>{f}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {wb.cableLengthM > 0 && (
-                  <p className="text-[11px] text-slate-500 font-mono">
-                    Kabel: {wb.cableLengthM} m (fest angeschlagen)
-                  </p>
                 )}
-                {wb.cableLengthM === 0 && (
-                  <p className="text-[11px] text-slate-500 font-mono">
-                    Typ-2-Buchse (eigenes Kabel erforderlich)
-                  </p>
+                {wb.hasApp && (
+                  <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-900 border border-blue-200 px-2 py-0.5 rounded-md font-medium">
+                    <Smartphone className="w-3 h-3 text-blue-600" />
+                    App
+                  </span>
+                )}
+                {wb.hasRfid && (
+                  <span className="inline-flex items-center gap-1 bg-purple-50 text-purple-900 border border-purple-200 px-2 py-0.5 rounded-md font-medium">
+                    <Shield className="w-3 h-3 text-purple-600" />
+                    RFID
+                  </span>
+                )}
+                {wb.hasLoadManagement && (
+                  <span className="inline-flex items-center gap-1 bg-slate-100 text-slate-800 border border-slate-200 px-2 py-0.5 rounded-md font-medium">
+                    <Network className="w-3 h-3 text-slate-600" />
+                    Lastmgmt.
+                  </span>
+                )}
+                {wb.fundingEligible && (
+                  <span className="inline-flex items-center gap-1 bg-green-50 text-green-900 border border-green-200 px-2 py-0.5 rounded-md font-medium" title={wb.fundingNote}>
+                    Förderung mögl.
+                  </span>
                 )}
               </div>
 
-              <div className="pt-5 border-t border-slate-100 mt-4">
-                <div className="flex items-center justify-between text-xs font-mono text-slate-500">
-                  <span>Richtwert UVP:</span>
-                  <span className="font-bold text-slate-900">ca. {wb.priceEst} €</span>
-                </div>
+              {/* Feature-Liste */}
+              <div className="space-y-1.5 text-xs text-slate-600 pt-3 border-t border-slate-100 flex-1">
+                {wb.features.map((f) => (
+                  <div key={f} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>{f}</span>
+                  </div>
+                ))}
+                <p className="text-[11px] text-slate-400 font-mono pt-1">
+                  {wb.cableLengthM > 0
+                    ? `Kabel: ${wb.cableLengthM} m fest`
+                    : 'Typ-2-Buchse (Kabel separat)'}
+                </p>
+              </div>
+
+              {/* CTA – Affiliate-Link direkt in der Karte */}
+              <div className="pt-4 mt-4 border-t border-slate-100">
+                {wb.productId ? (
+                  <AffiliateLink
+                    id={wb.productId}
+                    className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-sm font-bold transition-colors"
+                  >
+                    <ShoppingCart className="w-4 h-4 shrink-0" />
+                    Bei Amazon ansehen *
+                  </AffiliateLink>
+                ) : (
+                  <div className="text-center text-xs text-slate-400 py-2">
+                    Nur im Fachhandel erhältlich
+                  </div>
+                )}
               </div>
             </div>
           ))}
         </div>
       )}
-
-      {/* ── Affiliate Affiliate Section ───────────────────── */}
-      <div className="rounded-3xl border border-emerald-200 bg-emerald-50/40 p-6 sm:p-8 space-y-6">
-        <div className="space-y-1">
-          <h2 className="text-2xl font-extrabold text-slate-950 tracking-tight">
-            Wallboxen auf Amazon.de kaufen
-          </h2>
-          <p className="text-xs text-slate-600 leading-relaxed">
-            Eine Auswahl der oben verglichenen Wallboxen ist direkt auf Amazon.de erhältlich. Die nachfolgenden Links sind Affiliate-Links – beim Kauf über diese Links erhalten wir eine Provision ohne Mehrkosten für Sie.
-          </p>
-        </div>
-        <AdPageNotice />
-        <ProductLinks ids={WALLBOX_PRODUCT_IDS} title="Wallboxen" />
-      </div>
 
       {/* PV-Dimensionierungshinweis */}
       <div className="p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-2">
