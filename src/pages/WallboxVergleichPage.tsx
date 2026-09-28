@@ -5,23 +5,14 @@ import { ProductLinks, AdPageNotice } from '@plattform/core';
 import { EEATBadge } from '../components/EEATBadge';
 import { CitationBox } from '../components/CitationBox';
 import { SEO } from '../components/SEO';
-import { ProductLinks, AdPageNotice } from '@plattform/core';
 
-// IDs for ProductLinks affiliate section (products available on Amazon.de)
+// IDs müssen exakt mit products.ts übereinstimmen
 const WALLBOX_PRODUCT_IDS = [
-  'go-e-gemini-flex',
-  'go-e-home-fix-11',
+  'go-e-gemini-flex-11',
   'heidelberg-energy-control',
-  'webasto-next',
-  'easee-charge',
+  'webasto-next-11',
+  'easee-charge-lite',
   'abl-emh1',
-  'keba-p30-x-11',
-  'mennekes-amtron-compact-11',
-  'juice-charger-me3-22',
-  'fronius-wattpilot-11',
-  'wallbox-pulsar-plus-11',
-  'schneider-evlink-home-11',
-  'alfen-eve-single-pro-22',
 ];
 
 type SortKey = 'priceAsc' | 'priceDesc' | 'kwAsc' | 'kwDesc';
