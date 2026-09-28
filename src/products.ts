@@ -3,7 +3,7 @@ import type { Product } from '@plattform/core';
 export const products: Product[] = [
   {
     id: 'go-e-gemini-flex',
-    asin: 'B09V3ZH5H7',
+    asin: 'B0DKFVC2HC',
     label: 'go-e Charger Gemini flex 11 kW',
     hint: 'Mobil & fest, PV-Überschussladen, RFID, App-Steuerung',
     checked: '2026-09-28',
@@ -21,7 +21,7 @@ export const products: Product[] = [
   },
   {
     id: 'heidelberg-energy-control',
-    asin: 'B08P4XWWZT',
+    asin: 'B0BCNX3T5T',
     label: 'Heidelberg Energy Control 11 kW',
     hint: 'Made in Germany, integriertes Lastmanagement',
     checked: '2026-09-28',
@@ -30,7 +30,7 @@ export const products: Product[] = [
   },
   {
     id: 'webasto-next',
-    asin: 'B09N4VHKKW',
+    asin: 'B0CKRK7BBG',
     label: 'Webasto Next 11 kW',
     hint: 'Bis 22 kW konfigurierbar, OTA-Updates, App-Monitoring',
     checked: '2026-09-28',
@@ -39,7 +39,7 @@ export const products: Product[] = [
   },
   {
     id: 'easee-charge',
-    asin: 'B0BXZ6XMZK',
+    asin: 'B0BD4Y5F8G',
     label: 'Easee Charge 11 kW',
     hint: 'Kompakteste Bauform, integrierter eSIM-Mobilfunk',
     checked: '2026-09-28',
@@ -48,7 +48,7 @@ export const products: Product[] = [
   },
   {
     id: 'abl-emh1',
-    asin: 'B00I3O55ZQ',
+    asin: 'B07XKGCPKL',
     label: 'ABL eMH1 Wallbox 11 kW',
     hint: 'Zuverlässiger Klassiker, extra langes 6,35 m Kabel',
     checked: '2026-09-28',
@@ -66,7 +66,7 @@ export const products: Product[] = [
   },
   {
     id: 'keba-p30-x-11',
-    asin: 'B07KEBAP30X',
+    asin: 'B0CYHC2GWD',
     label: 'KEBA P30 x-Series 11 kW',
     hint: 'RFID, MID-Zähler, Lastmanagement, österreichische Qualität',
     checked: '2026-09-28',
@@ -84,7 +84,7 @@ export const products: Product[] = [
   },
   {
     id: 'mennekes-amtron-compact-11',
-    asin: 'B07MENNK111',
+    asin: 'B09SPQ57KL',
     label: 'Mennekes Amtron Compact 11 kW',
     hint: 'RFID, Energiemessung, Made in Germany',
     checked: '2026-09-28',
@@ -120,7 +120,7 @@ export const products: Product[] = [
   },
   {
     id: 'fronius-wattpilot-11',
-    asin: 'B09FRNWP11',
+    asin: 'B09DG815ZD',
     label: 'Fronius Wattpilot Home 11 kW',
     hint: 'PV-Überschussladen, App, 3 Lademodi',
     checked: '2026-09-28',
@@ -138,7 +138,7 @@ export const products: Product[] = [
   },
   {
     id: 'wallbox-pulsar-plus-11',
-    asin: 'B08WBXPP11',
+    asin: 'B08Y5KTBJ4',
     label: 'Wallbox Pulsar Plus 11 kW',
     hint: 'Kompakt, App, RFID, Bluetooth & WiFi',
     checked: '2026-09-28',
@@ -165,7 +165,7 @@ export const products: Product[] = [
   },
   {
     id: 'alfen-eve-single-pro-22',
-    asin: 'B09ALFNSP2',
+    asin: 'B08TGTPVPG',
     label: 'Alfen Eve Single Pro-Line 22 kW',
     hint: '22 kW, OCPP, MID-Zähler, professionelle Ausstattung',
     checked: '2026-09-28',
