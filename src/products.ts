@@ -157,6 +157,15 @@ export const products: Product[] = [
     type: 'produkt',
     status: 'aktiv',
   },
+  {
+    id: 'wallbox-commander2-22',
+    asin: 'B09DLCY5K4',
+    label: 'Wallbox Commander 2 22 kW',
+    hint: '22 kW, 7" Touchscreen, RFID, OCPP, 7 m Kabel',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
+  },
   // ── Schneider Electric ────────────────────────────────
   {
     id: 'schneider-evlink-home-11',
@@ -236,5 +245,83 @@ export const products: Product[] = [
     checked: '2026-09-28',
     type: 'produkt',
     status: 'aktiv',
+  },
+  // ── Huawei ────────────────────────────────────────────
+  {
+    id: 'huawei-scharger-22',
+    asin: 'B0D58MXQPJ',
+    label: 'Huawei Smart Charger 22 kW',
+    hint: '22 kW, WLAN, RFID, FusionSolar-Integration',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
+  },
+  // ── Anker ─────────────────────────────────────────────
+  {
+    id: 'anker-solix-v1-11',
+    asin: 'B0FNCWMVT9',
+    label: 'Anker SOLIX V1 Wallbox 11 kW',
+    hint: '11 kW, WLAN, Bluetooth, PV-Integration, App',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
+  },
+  // ── Elli (VW Group) ───────────────────────────────────
+  {
+    id: 'elli-charger2-connect-11',
+    asin: 'B0DQ96YJMR',
+    label: 'Elli Charger 2 Connect 11 kW',
+    hint: 'VW Group, 11 kW, RFID, App, MID-Zähler, LAN/WLAN',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
+  },
+  {
+    id: 'elli-charger2-pro-22',
+    asin: 'B0DQ8X19HT',
+    label: 'Elli Charger 2 Pro 22 kW',
+    hint: '22 kW, RFID, MID, OCPP 2.0.1, LAN/WLAN/SIM+',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
+  },
+  {
+    id: 'elli-wallbox-standard-11',
+    asin: 'B0C1N1NXW5',
+    label: 'Volkswagen Elli Wallbox Standard 11 kW',
+    hint: '11 kW, 7,5 m Kabel, VW OEM, alle E-Autos',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
+  },
+  // ── SMA ───────────────────────────────────────────────
+  {
+    id: 'sma-ev-charger-22',
+    asin: 'B0D9C73JSP',
+    label: 'SMA EV Charger 22 kW',
+    hint: '22 kW, Sunny Home Manager, PV-Überschuss, 7,5 m Kabel',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'aktiv',
+  },
+  // ── Kostal ────────────────────────────────────────────
+  {
+    id: 'kostal-enector-11',
+    asin: '',
+    label: 'Kostal Enector 11 kW',
+    hint: '11 kW, Plenticore-Integration, PV-Überschuss',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'inaktiv',
+  },
+  // ── Sungrow ───────────────────────────────────────────
+  {
+    id: 'sungrow-ac011e-11',
+    asin: '',
+    label: 'Sungrow AC011E Wallbox 11 kW',
+    hint: '11 kW, OCPP, App, Sungrow-Wechselrichter-Integration',
+    checked: '2026-09-28',
+    type: 'produkt',
+    status: 'inaktiv',
   },
 ];
