@@ -5,6 +5,7 @@ import { ProductLinks, AdPageNotice } from '@plattform/core';
 import { EEATBadge } from '../components/EEATBadge';
 import { CitationBox } from '../components/CitationBox';
 import { SEO } from '../components/SEO';
+import { ProductLinks, AdPageNotice } from '@plattform/core';
 
 // IDs for ProductLinks affiliate section (products available on Amazon.de)
 const WALLBOX_PRODUCT_IDS = [
