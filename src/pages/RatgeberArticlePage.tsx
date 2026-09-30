@@ -398,15 +398,14 @@ export const RatgeberArticlePage: React.FC = () => {
         source2Text="Hinweise zur Vermeidung unbemerkter Mehrkosten bei Nachtladungen und automatischen Ladezeitbegrenzungen."
         dateText="Stand: September 2026"
       />
-    </article>
-  );
+
       <FloatingCTABar
         title="Die richtige Ladekarte finden"
         subtitle="Tarife & Roaming im Direktvergleich"
         link="/ladekarten"
         linkLabel="Ladekarten vergleichen"
       />
-    </div>
+    </article>
   );
 };
 
