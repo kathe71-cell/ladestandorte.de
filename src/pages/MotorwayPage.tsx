@@ -46,6 +46,27 @@ export const MotorwayPage: React.FC = () => {
             "item": `https://www.ladestandorte.de/autobahnen/${motorway.slug}`
           }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": `Welche Schnelllader gibt es an der ${motorway.name}?`,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": `An der ${motorway.name} (${motorway.route}) befinden sich ${motorway.totalChargingHubs} Schnellladeparks mit bis zu ${motorway.maxKw} kW Ladeleistung. Hauptbetreiber sind IONITY, EnBW mobility+, Tesla Supercharger und Aral pulse an den Raststätten.`
+            }
+          },
+          {
+            "@type": "Question",
+            "name": `Brauche ich eine Ladekarte für die ${motorway.name}?`,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nein. Seit April 2024 (AFIR-Verordnung) müssen alle Schnelllader über 50 kW kontaktlose Kartenzahlung akzeptieren. Eine Ladekarte (z.B. ADAC, EnBW, IONITY Passport) ermöglicht aber deutlich günstigere kWh-Preise."
+            }
+          }
+        ]
       }
     ]
   };
@@ -53,8 +74,8 @@ export const MotorwayPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
-        title={`Ladesäulen & Schnellladeparks an der ${motorway.name}`}
-        description={`Alle HPC-Schnelllader & Raststätten entlang der Bundesautobahn ${motorway.name} (${motorway.route}). ${motorway.totalChargingHubs} Ladeparks mit bis zu ${motorway.maxKw} kW.`}
+        title={`Schnellladen ${motorway.name}: HPC-Ladeparks an Raststätten & Autobahn 2026`}
+        description={`${motorway.totalChargingHubs} Schnellladeparks an der ${motorway.name} (${motorway.route}): IONITY, EnBW, Tesla & mehr. Bis zu ${motorway.maxKw} kW HPC. Alle Raststätten, Preise & Öffnungszeiten.`}
         canonicalPath={`/autobahnen/${motorway.slug}`}
         schema={schema}
       />

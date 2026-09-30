@@ -92,8 +92,8 @@ export const Home: React.FC = () => {
   return (
     <div className="space-y-16 sm:space-y-24 pb-16">
       <SEO
-        title="Ladesäulenregister Deutschland · Verzeichnis & Instant-Finder"
-        description="Bundesweites Ladesäulenregister der BNetzA (> 100.000 Ladepunkte). Verzeichnisse für Städte, Autobahnen & CPOs sowie Instant-Finder für Flagship-Hubs."
+        title="Ladesäulen Deutschland 2026: 100.000+ Ladepunkte · Finder & Vergleich"
+        description="Über 100.000 öffentliche Ladesäulen in Deutschland: Schnellladeparks an Autobahnen, Betreibervergleich (29 CPOs), Ladekarten-Ranking & kostenloser Instant-Finder. BNetzA Open Data 2026."
         canonicalPath="/"
         schema={homeSchema}
       />

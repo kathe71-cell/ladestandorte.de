@@ -26,6 +26,35 @@ export const MotorwaysIndexPage: React.FC = () => {
             "item": "https://www.ladestandorte.de/autobahnen"
           }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Wie viele Schnellladepunkte gibt es an deutschen Autobahnen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An deutschen Bundesautobahnen gibt es laut BNetzA-Register (Stand 2026) über 1.000 öffentliche HPC-Schnellladepunkte an mehr als 250 Rastsätten. Die Leistung reicht von 50 kW bis zu 400 kW."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Welche Ladenetzwerke sind an Autobahnen verfügbar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hauptsächlich IONITY, EnBW mobility+, Tesla Supercharger, Aral pulse und Fastned. IONITY betreibt exklusiv HPC-Lader an Tank & Rast Standorten, EnBW setzt auf überdachte HyperNetz-Hubs mit bis zu 400 kW."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Muss ich zum Schnellladen an der Autobahn eine App haben?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nein. Seit April 2024 (AFIR-Verordnung) müssen alle HPC-Ladesäulen über 50 kW kontaktlose Kartenzahlung anbieten. Eine Ladekarte ermöglicht aber oft günstigere Tarife."
+            }
+          }
+        ]
       }
     ]
   };
@@ -33,8 +62,8 @@ export const MotorwaysIndexPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
-        title="Schnellladen auf deutschen Autobahnen · Übersicht A1 bis A99"
-        description="Übersicht aller Schnellladeparks & Raststätten entlang deutscher Bundesautobahnen. HPC-Ladestationen mit bis zu 400 kW Leistung laut BNetzA-Register."
+        title="Ladesäulen Autobahn Deutschland: Schnellladeparks A1–A99 (2026)"
+        description="Alle HPC-Schnellladeparks an Autobahnen A1–A99: 59 Strecken, über 1.000 Ladepunkte an Tank & Rast. Bis zu 400 kW – IONITY, EnBW, Tesla, Aral pulse. BNetzA Open Data."
         canonicalPath="/autobahnen"
         schema={schema}
       />

@@ -55,8 +55,8 @@ export const OperatorPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
-        title={`${operator.name} Ladesäulen, Ladeparks & Tarife`}
-        description={`Alles über das Ladenetz von ${operator.name}. ${operator.totalPointsDE} Ladepunkte in Deutschland, bis zu ${operator.maxKw} kW HPC, Tarife & Bezahlung.`}
+        title={`${operator.name}: Ladenetz, Tarife & ${operator.totalPointsDE} Ladepunkte in Deutschland 2026`}
+        description={`${operator.name} im Faktencheck: ${operator.totalPointsDE} Ladepunkte, bis zu ${operator.maxKw} kW, ${operator.hpcShare}% HPC-Anteil. Preise, Roaming, Plug & Charge & Erfahrungen 2026.`}
         canonicalPath={`/betreiber/${operator.slug}`}
         schema={schema}
       />
