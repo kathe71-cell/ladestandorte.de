@@ -3,6 +3,7 @@ import { CHARGING_CARDS } from '../data/cards';
 import { EEATBadge } from '../components/EEATBadge';
 import { CitationBox } from '../components/CitationBox';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const LadekartenVergleichPage: React.FC = () => {
   const schema = {

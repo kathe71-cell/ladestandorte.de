@@ -4,6 +4,7 @@ import { ArrowLeft, Clock, Calendar, ShieldCheck, Zap, BookOpen, AlertTriangle, 
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 const getArticleSchema = (headline: string, description: string, slug: string) => ({
   "@context": "https://schema.org",
@@ -398,6 +399,14 @@ export const RatgeberArticlePage: React.FC = () => {
         dateText="Stand: September 2026"
       />
     </article>
+  );
+      <FloatingCTABar
+        title="Die richtige Ladekarte finden"
+        subtitle="Tarife & Roaming im Direktvergleich"
+        link="/ladekarten"
+        linkLabel="Ladekarten vergleichen"
+      />
+    </div>
   );
 };
 

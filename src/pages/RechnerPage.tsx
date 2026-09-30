@@ -4,6 +4,7 @@ import { CalculatorEmbed } from '../components/CalculatorEmbed';
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const RechnerPage: React.FC = () => {
   const schema = {

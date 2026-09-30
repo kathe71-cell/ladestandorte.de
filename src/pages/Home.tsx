@@ -9,6 +9,7 @@ import { CITIES_DATA } from '../data/cities';
 import { MOTORWAYS_DATA } from '../data/motorways';
 import { OPERATORS_DATA } from '../data/operators';
 import { GLOSSARY_DATA } from '../data/glossary';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const Home: React.FC = () => {
   const topCities = CITIES_DATA.slice(0, 12);

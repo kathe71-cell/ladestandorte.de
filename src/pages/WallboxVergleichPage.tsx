@@ -5,6 +5,7 @@ import { AffiliateLink, AdPageNotice } from '@plattform/core';
 import { EEATBadge } from '../components/EEATBadge';
 import { CitationBox } from '../components/CitationBox';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 type SortKey = 'priceAsc' | 'priceDesc' | 'kwAsc' | 'kwDesc';
 

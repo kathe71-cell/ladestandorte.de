@@ -4,6 +4,8 @@ import { ShieldCheck, Zap, CheckCircle2, ArrowRight, Star, CreditCard } from 'lu
 import { OPERATORS_DATA } from '../data/operators';
 import { STATIONS_DATA } from '../data/stations';
 import { CitationBox } from '../components/CitationBox';
+import { FloatingCTABar } from '../components/FloatingCTABar';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 
@@ -145,9 +147,20 @@ export const OperatorPage: React.FC = () => {
         urlPath={`/betreiber/${operator.slug}`}
       />
 
+      {/* Preishinweis */}
+      <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-800 leading-relaxed">
+        <strong>Hinweis zu Tarifen:</strong> Alle Preisangaben (AC/DC €/kWh) basieren auf öffentlich zugänglichen Standard-Preisblättern des Betreibers (Ad-hoc ohne Vertrag). Reale Preise können durch Ladekarten-Tarife, Roaming-Partner und dynamische Preismodelle deutlich abweichen. Bitte prüfe die aktuellen Preise direkt beim Betreiber.
+      </div>
+
       {/* EEAT Badge */}
       <EEATBadge topic={`Betreiber-Analyse ${operator.name}`} />
 
+      <FloatingCTABar
+        title="Günstig beim Betreiber laden"
+        subtitle="Die passende Ladekarte im Direktvergleich"
+        link="/ladekarten"
+        linkLabel="Ladekarten vergleichen"
+      />
     </div>
   );
 };

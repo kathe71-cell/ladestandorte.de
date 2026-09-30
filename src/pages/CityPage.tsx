@@ -7,6 +7,7 @@ import { StationDetailModal } from '../components/StationDetailModal';
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const CityPage: React.FC = () => {
   const { citySlug } = useParams<{ citySlug: string }>();

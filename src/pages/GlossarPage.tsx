@@ -4,6 +4,7 @@ import { GLOSSARY_DATA, GlossaryEntry } from '../data/glossary';
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const GlossarPage: React.FC = () => {
   const [query, setQuery] = useState('');

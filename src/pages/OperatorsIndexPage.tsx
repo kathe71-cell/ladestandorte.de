@@ -4,6 +4,7 @@ import { ShieldCheck, ArrowRight, Zap, CheckCircle2 } from 'lucide-react';
 import { OPERATORS_DATA } from '../data/operators';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const OperatorsIndexPage: React.FC = () => {
   const schema = {

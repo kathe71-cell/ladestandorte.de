@@ -5,6 +5,7 @@ import { EEATBadge } from '../components/EEATBadge';
 import { STATIONS_DATA } from '../data/stations';
 import { StationDetailModal } from '../components/StationDetailModal';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();

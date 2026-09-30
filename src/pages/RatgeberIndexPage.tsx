@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { BookOpen, ArrowRight, Clock } from 'lucide-react';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const RatgeberIndexPage: React.FC = () => {
   const schema = {

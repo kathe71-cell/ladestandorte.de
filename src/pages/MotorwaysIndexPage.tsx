@@ -4,6 +4,7 @@ import { Navigation, ArrowRight, Zap, ShieldCheck } from 'lucide-react';
 import { MOTORWAYS_DATA } from '../data/motorways';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const MotorwaysIndexPage: React.FC = () => {
   const schema = {

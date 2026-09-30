@@ -4,6 +4,7 @@ import { MapPin, Search, ArrowRight, TrendingUp } from 'lucide-react';
 import { CITIES_DATA } from '../data/cities';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const CitiesIndexPage: React.FC = () => {
   const [filter, setFilter] = useState('');

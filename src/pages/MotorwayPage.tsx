@@ -8,6 +8,7 @@ import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { StationDetailModal } from '../components/StationDetailModal';
 import { StationData } from '../data/stations';
+import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const MotorwayPage: React.FC = () => {
   const { autobahnSlug } = useParams<{ autobahnSlug: string }>();

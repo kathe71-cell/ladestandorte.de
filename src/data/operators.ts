@@ -28,8 +28,8 @@ export const OPERATORS_DATA: OperatorData[] = [
     plugAndCharge: false,
     autocharge: true, // AutoCharge via MAC-Adresse
     appRating: 4.8,
-    standardPriceAc: 0.59,
-    standardPriceDc: 0.59,
+    standardPriceAc: 0.54,
+    standardPriceDc: 0.54,
     bnetzaAnteil: "Größter Schnelllade-CPO Deutschlands",
     description: "Marktführer bei Ultra-Schnellladeparks (HyperNetz) mit überdachten Großhubs, Solar-PV-Dächern und nahtlosem AutoCharge.",
     features: ["EnBW HyperNetz mit bis zu 400 kW", "AutoCharge (Kabel einstecken und laden)", "100 % zertifizierter Ökostrom", "ADAC-Empfehlung und Testsieger bei Stiftung Warentest"]
@@ -46,7 +46,7 @@ export const OPERATORS_DATA: OperatorData[] = [
     autocharge: false,
     appRating: 4.5,
     standardPriceAc: 0.0, // Reine DC-HPC-Stationen
-    standardPriceDc: 0.69,
+    standardPriceDc: 0.72,
     bnetzaAnteil: "Führender europäischer Autobahn-HPC-Verbund",
     description: "Gemeinschaftsunternehmen von BMW, Mercedes-Benz, Ford, Hyundai, Porsche und Audi. Konzentriert sich exklusiv auf High Power Charging an europäischen Autobahnachsen.",
     features: ["Ausschließlich 350 kW HPC Lader", "Plug & Charge nach ISO 15118", "Direkt an Autobahn-Raststätten und Tank & Rast", "Europäisches Ladenetzwerk"]
@@ -63,7 +63,7 @@ export const OPERATORS_DATA: OperatorData[] = [
     autocharge: true,
     appRating: 4.9,
     standardPriceAc: 0.0,
-    standardPriceDc: 0.44, // Variabel je nach Uhrzeit
+    standardPriceDc: 0.46, // Variabel je nach Uhrzeit, Region und Auslastung
     bnetzaAnteil: "Höchste Zuverlässigkeit & dynamische Tarife",
     description: "Das weltweit größte Schnellladenetzwerk. In Deutschland sind über 85 % aller Supercharger-Standorte (V3 und V4) für alle Elektroautos aller Marken freigeschaltet.",
     features: ["Über 85 % für alle Fabrikate geöffnet", "Bis zu 350 kW an V4-Stationen", "Sehr günstige dynamische Tarife (ab ca. 0,38 €/kWh)", "AFIR-Kartenterminals an V4-Stationen"]
