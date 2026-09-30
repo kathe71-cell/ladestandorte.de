@@ -5,7 +5,6 @@ import { OPERATORS_DATA } from '../data/operators';
 import { STATIONS_DATA } from '../data/stations';
 import { CitationBox } from '../components/CitationBox';
 import { FloatingCTABar } from '../components/FloatingCTABar';
-import { FloatingCTABar } from '../components/FloatingCTABar';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 
