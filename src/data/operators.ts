@@ -25,7 +25,7 @@ export const OPERATORS_DATA: OperatorData[] = [
   // ── BESTANDSBETREIBER (aktualisiert) ─────────────────────────────────────
 
   {
-    slug: "enbw-mobility-plus",
+    slug: "enbw",
     name: "EnBW mobility+",
     headquarters: "Karlsruhe, Deutschland",
     totalPointsDE: 11548, // BNetzA-Daten Q1 2026
@@ -98,7 +98,7 @@ export const OPERATORS_DATA: OperatorData[] = [
   },
   {
     slug: "aral-pulse",
-    name: "Aral pulse (bp pulse)",
+    name: "Aral pulse",
     headquarters: "Bochum, Deutschland / London, UK",
     totalPointsDE: 4000, // Pressemitteilung Aral Mai 2026: „4.000 Ladepunkte Meilenstein"
     hpcShare: 76, // 3.054 HPC / 4.000 gesamt (GoingElectric Sep 2026)
@@ -111,7 +111,7 @@ export const OPERATORS_DATA: OperatorData[] = [
     standardPriceDc: 0.62,
     bnetzaAnteil: "Drittstärkster HPC-Betreiber nach Punkten",
     description:
-      "Aral pulse (betrieben von bp pulse) hat 2026 die Marke von 4.000 Ladepunkten in Deutschland überschritten. Das Netz umfasst vorwiegend HPC-Stationen an Aral-Tankstellen und ersten Megawatt-Ladeparks für E-LKW. Die Integration in Deutschlands größtes Tankstellennetz ist ein starkes Alleinstellungsmerkmal.",
+      "Aral pulse (betrieben von bp pulse) ist eines der führenden Schnellladenetze Deutschlands mit über 4.000 Ladepunkten. Das Netz umfasst vorwiegend moderne HPC-Stationen mit bis zu 300 kW an Aral-Tankstellen sowie neue Megawatt-Ladeparks für E-LKW. Neben schnellen Ladezeiten profitieren Fahrer von Payback-Punkten, REWE To Go Shops und verlässlicher Beleuchtung.",
     features: [
       "4.000+ Ladepunkte an Aral-Tankstellen",
       "Megawatt-Ladeparks für E-LKW (seit 2026)",

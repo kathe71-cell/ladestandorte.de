@@ -11,6 +11,7 @@ export interface CityData {
   plzs: string[];
   bnetzaStand: string;
   description: string;
+  connectedMotorways?: string[];
 }
 
 export const CITIES_DATA: CityData[] = [
@@ -715,3 +716,61 @@ export const CITIES_DATA: CityData[] = [
     description: "Wissenschaftsstadt mit hochmodernem Ladenetz im Neubaugebiet Bahnstadt und an der Autobahn A5/A656."
   }
 ];
+
+export const CITY_MOTORWAYS_MAP: Record<string, string[]> = {
+  berlin: ['a10', 'a2', 'a9', 'a11', 'a12', 'a13', 'a24'],
+  hamburg: ['a1', 'a7', 'a23', 'a24', 'a25'],
+  muenchen: ['a8', 'a9', 'a92', 'a94', 'a95', 'a96', 'a99'],
+  koeln: ['a1', 'a3', 'a4', 'a57', 'a59'],
+  frankfurt: ['a3', 'a5', 'a66', 'a67'],
+  stuttgart: ['a8', 'a81'],
+  duesseldorf: ['a3', 'a44', 'a46', 'a52', 'a57', 'a59'],
+  leipzig: ['a9', 'a14', 'a38'],
+  dortmund: ['a1', 'a2', 'a40', 'a44', 'a45'],
+  essen: ['a40', 'a42', 'a52'],
+  bremen: ['a1', 'a27', 'a28'],
+  dresden: ['a4', 'a13', 'a14', 'a17'],
+  hannover: ['a2', 'a7'],
+  nuernberg: ['a3', 'a6', 'a9', 'a73'],
+  duisburg: ['a3', 'a40', 'a42', 'a59'],
+  bochum: ['a40', 'a43', 'a44'],
+  wuppertal: ['a1', 'a46'],
+  bielefeld: ['a2', 'a33'],
+  bonn: ['a3', 'a59', 'a61'],
+  muenster: ['a1', 'a43'],
+  karlsruhe: ['a5', 'a8'],
+  mannheim: ['a6', 'a67'],
+  augsburg: ['a8'],
+  wiesbaden: ['a3', 'a66'],
+  kassel: ['a7', 'a44', 'a49'],
+  gelsenkirchen: ['a2', 'a42'],
+  moenchengladbach: ['a52', 'a61'],
+  braunschweig: ['a2', 'a39'],
+  chemnitz: ['a4', 'a72'],
+  kiel: ['a7', 'a21'],
+  aachen: ['a4', 'a44'],
+  halle: ['a9', 'a14', 'a38'],
+  magdeburg: ['a2', 'a14'],
+  freiburg: ['a5'],
+  krefeld: ['a44', 'a57'],
+  mainz: ['a60', 'a63'],
+  luebeck: ['a1', 'a20'],
+  erfurt: ['a4', 'a71'],
+  oberhausen: ['a2', 'a3', 'a42'],
+  rostock: ['a19', 'a20'],
+  hagen: ['a1', 'a45', 'a46'],
+  potsdam: ['a10'],
+  saarbruecken: ['a1', 'a6'],
+  hamm: ['a1', 'a2'],
+  ludwigshafen: ['a6', 'a61'],
+  muelheim: ['a40', 'a52'],
+  oldenburg: ['a28', 'a29'],
+  osnabrueck: ['a1', 'a30', 'a33'],
+  leverkusen: ['a1', 'a3', 'a59'],
+  heidelberg: ['a5']
+};
+
+export function getCityMotorwaySlugs(citySlug: string): string[] {
+  return CITY_MOTORWAYS_MAP[citySlug] || [];
+}
+

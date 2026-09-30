@@ -104,7 +104,18 @@ export const SEO: React.FC<SEOProps> = ({
     }
   }, [title, description, canonicalUrl, schema]);
 
-  return null;
+  if (!schema) {
+    return null;
+  }
+
+  return (
+    <script
+      id="page-schema-jsonld"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
 };
 
 export default SEO;
+

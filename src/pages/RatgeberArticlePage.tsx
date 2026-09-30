@@ -1,12 +1,12 @@
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ArrowLeft, Clock, Calendar, ShieldCheck, Zap, BookOpen, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock, Calendar, ShieldCheck, Zap, BookOpen, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
 
-const getArticleSchema = (headline: string, description: string, slug: string) => ({
+const getArticleSchema = (headline: string, description: string, slug: string, faqs?: { q: string; a: string }[]) => ({
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -43,7 +43,18 @@ const getArticleSchema = (headline: string, description: string, slug: string) =
         "name": "ladestandorte.de",
         "url": "https://www.ladestandorte.de/"
       }
-    }
+    },
+    ...(faqs && faqs.length > 0 ? [{
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": f.a
+        }
+      }))
+    }] : [])
   ]
 });
 
@@ -51,6 +62,21 @@ export const RatgeberArticlePage: React.FC = () => {
   const { articleSlug } = useParams<{ articleSlug: string }>();
 
   if (articleSlug === 'ladekarten-dschungel') {
+    const ladekartenFaqs = [
+      {
+        q: "Welche Ladekarte lohnt sich für Wenignutzer und Heimlader?",
+        a: "Für Fahrer, die primär an der eigenen Wallbox laden und öffentliche Säulen nur gelegentlich nutzen, empfehlen sich Tarife ohne monatliche Grundgebühr (z.B. MAINGAU Autostrom oder DKV Card), um feste Fixkosten zu vermeiden."
+      },
+      {
+        q: "Was ist der Unterschied zwischen CPO und EMP beim Laden?",
+        a: "Der CPO (Charge Point Operator, z.B. IONITY, Fastned, Aral pulse) betreibt die physische Ladesäule. Der EMP (E-Mobility Provider, z.B. EnBW mobility+, ADAC, Maingau) gibt die Ladekarte/App an den Endkunden aus und rechnet den Ladevorgang ab."
+      },
+      {
+        q: "Muss man heute noch zwingend eine Ladekarte besitzen?",
+        a: "Nein. Nach der EU-Verordnung AFIR müssen alle öffentlichen Schnelllader über 50 kW kontaktlose Kartenzahlung mit Debit- oder Kreditkarte ermöglichen. Allerdings sind die vertragsgebundenen Kilowattstundenpreise mit einer Ladekarte meist günstiger als der spontane Ad-hoc-Tarif."
+      }
+    ];
+
     return (
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
         <SEO
@@ -60,7 +86,8 @@ export const RatgeberArticlePage: React.FC = () => {
           schema={getArticleSchema(
             "Ladekarten-Dschungel: Roaming-Preise, monatliche Grundgebühren & wer wirklich spart",
             "Welche Ladekarte lohnt sich für welches Fahrprofil? Detaillierte Analyse zu CPO-Roaming, Grundgebühren-Modellen und den günstigsten Kombinationen.",
-            "ladekarten-dschungel"
+            "ladekarten-dschungel",
+            ladekartenFaqs
           )}
         />
         <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
@@ -145,6 +172,21 @@ export const RatgeberArticlePage: React.FC = () => {
           </p>
         </div>
 
+        {/* Direktlink zum interaktiven Ladekarten-Vergleich */}
+        <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 my-8">
+          <div>
+            <h3 className="font-bold text-slate-950 text-base">Tarifrechner &amp; Ladekarten-Vergleich 2026</h3>
+            <p className="text-sm text-slate-600 mt-1">Vergleichen Sie 18 aktuelle Ladekarten und berechnen Sie Ihre monatlichen Ladekosten für Ihr Fahrprofil.</p>
+          </div>
+          <Link
+            to="/ladekarten"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shrink-0 transition-colors"
+          >
+            <span>Zum Ladekarten-Vergleich</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
         <CitationBox
           title="Ladekarten-Dschungel: Roaming-Preise, monatliche Grundgebühren & wer wirklich spart"
           urlPath="/ratgeber/ladekarten-dschungel"
@@ -157,6 +199,13 @@ export const RatgeberArticlePage: React.FC = () => {
           source2Title="Redaktionelle Einordnung"
           source2Text="Unabhängige Wirtschaftlichkeitsanalyse für Laternenparker und Vielfahrer ohne Affiliate-Bevorzugung."
           dateText="Stand: September 2026"
+        />
+
+        <FloatingCTABar
+          title="18 Ladekarten im Direktvergleich"
+          subtitle="Monatliche Kosten nach Fahrprofil berechnen"
+          link="/ladekarten"
+          linkLabel="Tarife vergleichen"
         />
       </article>
     );

@@ -29,27 +29,37 @@ const staticRoutes = [
 
 const cityRoutes = (CITIES_DATA || []).map((c) => ({
   url: `/staedte/${c.slug}`,
-  title: `Ladesäulen in ${c.name}: ${c.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte & HPC | ladestandorte.de`,
-  desc: `Ladeinfrastruktur in ${c.name} (${c.bundesland}): ${c.ladepunkteGesamt} Ladepunkte, davon ${c.hpcLadepunkte} HPC-Schnelllader. Top Betreiber: ${c.topBetreiber.slice(0, 3).join(', ')}.`,
+  title: `Ladesäulen in ${c.name}: ${c.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte & HPC-Ladenetz 2026`,
+  desc: `Öffentliche Ladesäulen & HPC-Schnelllader in ${c.name} (${c.bundesland}): ${c.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte, ${c.hpcLadepunkte} HPC-Schnelllader. BNetzA Daten & Standorte 2026.`,
 }));
 
 const motorwayRoutes = (MOTORWAYS_DATA || []).map((m) => ({
   url: `/autobahnen/${m.slug}`,
-  title: `Ladesäulen an der ${m.name}: Schnelllader & Raststätten | ladestandorte.de`,
-  desc: `HPC-Schnellladeparks entlang der Bundesautobahn ${m.name} (${m.route}). Standorte von EnBW, Ionity, Fastned und Tesla Supercharger.`,
+  title: `Schnellladen ${m.name}: HPC-Ladeparks an Raststätten & Autobahn 2026`,
+  desc: `${m.totalChargingHubs} Schnellladeparks an der ${m.name} (${m.route}): IONITY, EnBW, Tesla & mehr. Bis zu ${m.maxKw} kW HPC. Alle Raststätten, Preise & Öffnungszeiten.`,
 }));
 
 const operatorRoutes = (OPERATORS_DATA || []).map((o) => ({
   url: `/betreiber/${o.slug}`,
-  title: `${o.name} Ladesäulen & Ladeparks in Deutschland | ladestandorte.de`,
-  desc: `Alles zum Ladenetz von ${o.name}: Standorte, Ladeleistungen bis ${o.maxKw} kW, Zugangsarten, Roaming und Tarife im Überblick.`,
+  title: `${o.name}: Ladenetz, Tarife & ${o.totalPointsDE.toLocaleString('de-DE')} Ladepunkte in Deutschland 2026`,
+  desc: `${o.name} im Faktencheck: ${o.totalPointsDE.toLocaleString('de-DE')} Ladepunkte, bis zu ${o.maxKw} kW HPC, ${o.hpcShare}% HPC-Anteil. Preise, Roaming, Plug & Charge & BNetzA-Daten 2026.`,
 }));
+
+// Legacy alias route for enbw-mobility-plus
+const aliasRoutes = [
+  {
+    url: '/betreiber/enbw-mobility-plus',
+    title: 'EnBW mobility+: Ladenetz, Tarife & 11.548 Ladepunkte in Deutschland 2026',
+    desc: 'EnBW mobility+ im Faktencheck: 11.548 Ladepunkte, bis zu 300 kW HPC, 66% HPC-Anteil. Preise, Roaming, Plug & Charge & BNetzA-Daten 2026.'
+  }
+];
 
 const allRoutes = [
   ...staticRoutes,
   ...cityRoutes,
   ...motorwayRoutes,
   ...operatorRoutes,
+  ...aliasRoutes,
 ];
 
 console.log(`Starting prerendering of ${allRoutes.length} routes for ladestandorte.de...`);

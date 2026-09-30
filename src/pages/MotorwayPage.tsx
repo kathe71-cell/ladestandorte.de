@@ -1,8 +1,10 @@
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Navigation, Zap, MapPin, ArrowRight, ShieldCheck, ExternalLink } from 'lucide-react';
-import { MOTORWAYS_DATA } from '../data/motorways';
+import { MOTORWAYS_DATA, getMotorwayCitySlugs, getMotorwayCrossingSlugs } from '../data/motorways';
+import { CITIES_DATA } from '../data/cities';
 import { STATIONS_DATA } from '../data/stations';
+import { getOperatorSlugByName } from '../utils/operatorHelper';
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
@@ -20,6 +22,16 @@ export const MotorwayPage: React.FC = () => {
   }
 
   const motorwayStations = STATIONS_DATA.filter(s => s.motorway === motorway.slug);
+
+  const citySlugs = getMotorwayCitySlugs(motorway.slug);
+  const connectedCities = citySlugs
+    .map(slug => CITIES_DATA.find(c => c.slug === slug))
+    .filter(Boolean) as typeof CITIES_DATA;
+
+  const crossingSlugs = getMotorwayCrossingSlugs(motorway.slug);
+  const crossingMotorways = crossingSlugs
+    .map(slug => MOTORWAYS_DATA.find(m => m.slug === slug))
+    .filter(Boolean) as typeof MOTORWAYS_DATA;
 
   const schema = {
     "@context": "https://schema.org",
@@ -132,9 +144,24 @@ export const MotorwayPage: React.FC = () => {
 
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
           <span className="text-xs font-mono text-slate-500 uppercase block">Führende Netze</span>
-          <span className="text-sm font-bold text-slate-900 mt-2 block truncate">
-            {motorway.mainCPOs.join(', ')}
-          </span>
+          <div className="flex flex-wrap gap-1 mt-1.5">
+            {motorway.mainCPOs.map((cpo, i) => {
+              const slug = getOperatorSlugByName(cpo);
+              return slug ? (
+                <Link
+                  key={cpo}
+                  to={`/betreiber/${slug}`}
+                  className="text-xs font-bold text-amber-900 hover:text-amber-700 hover:underline"
+                >
+                  {cpo}{i < motorway.mainCPOs.length - 1 ? ',' : ''}
+                </Link>
+              ) : (
+                <span key={cpo} className="text-xs font-bold text-slate-900">
+                  {cpo}{i < motorway.mainCPOs.length - 1 ? ',' : ''}
+                </span>
+              );
+            })}
+          </div>
           <span className="text-[11px] text-slate-500 mt-1 block">Direkt an Rastanlagen</span>
         </div>
 
@@ -235,6 +262,67 @@ export const MotorwayPage: React.FC = () => {
         </div>
       )}
 
+      {/* Städte entlang der Strecke */}
+      {connectedCities.length > 0 && (
+        <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
+            <MapPin className="w-4 h-4" />
+            <span>Städte &amp; Ballungsräume entlang der {motorway.name}</span>
+          </div>
+          <h2 className="text-xl font-bold text-slate-950">
+            Urbane Ladeinfrastruktur an der {motorway.name}-Trasse
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {connectedCities.map((city) => (
+              <Link
+                key={city.slug}
+                to={`/staedte/${city.slug}`}
+                className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs hover:border-emerald-300 hover:shadow-sm transition-all group flex flex-col justify-between"
+              >
+                <span className="font-bold text-sm text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  {city.name}
+                </span>
+                <span className="text-[11px] font-mono text-slate-500 mt-1">
+                  {city.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Anschluss-Autobahnen & Autobahnkreuze */}
+      {crossingMotorways.length > 0 && (
+        <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-700 font-bold">
+            <Navigation className="w-4 h-4" />
+            <span>Autobahnkreuze &amp; Anschluss-Strecken</span>
+          </div>
+          <h2 className="text-xl font-bold text-slate-950">
+            Kreuzende Autobahnkorridore ab {motorway.name}
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {crossingMotorways.map((mw) => (
+              <Link
+                key={mw.slug}
+                to={`/autobahnen/${mw.slug}`}
+                className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs hover:border-amber-300 hover:shadow-sm transition-all group flex items-center justify-between"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="w-10 h-7 rounded bg-amber-400 text-slate-950 font-black font-mono flex items-center justify-center text-xs">
+                    {mw.name}
+                  </span>
+                  <span className="text-xs font-medium text-slate-700 truncate max-w-[120px]">
+                    {mw.route}
+                  </span>
+                </div>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-amber-700 shrink-0" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Citation Box */}
       <CitationBox
         title={`Ladeinfrastruktur und Schnellladeparks an der Autobahn ${motorway.name}`}
@@ -250,6 +338,12 @@ export const MotorwayPage: React.FC = () => {
         onClose={() => setSelectedStation(null)}
       />
 
+      <FloatingCTABar
+        title="Günstig an Autobahnen laden"
+        subtitle="Die passende Ladekarte für Fernstrecken im Vergleich"
+        link="/ladekarten"
+        linkLabel="Ladekarten vergleichen"
+      />
     </div>
   );
 };

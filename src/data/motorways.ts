@@ -17,6 +17,8 @@ export interface MotorwayData {
   topHubs: { name: string; exit: string; operator: string; kw: number; points: number }[];
   mainCPOs: string[];
   description: string;
+  majorCities?: string[];
+  connectingMotorways?: string[];
 }
 
 export const MOTORWAYS_DATA: MotorwayData[] = [
@@ -980,3 +982,56 @@ export const MOTORWAYS_DATA: MotorwayData[] = [
       "Der A99 Münchner Autobahnring schließt den Autobahnring um München und verteilt Fernverkehr auf alle einmündenden Autobahnen (A8, A9, A92, A94, A95, A96).",
   },
 ];
+
+export const MOTORWAY_CITIES_MAP: Record<string, string[]> = {
+  a1: ['hamburg', 'bremen', 'osnabrueck', 'muenster', 'dortmund', 'hagen', 'wuppertal', 'leverkusen', 'koeln', 'saarbruecken'],
+  a2: ['oberhausen', 'gelsenkirchen', 'dortmund', 'hamm', 'bielefeld', 'hannover', 'braunschweig', 'magdeburg', 'potsdam', 'berlin'],
+  a3: ['oberhausen', 'duisburg', 'duesseldorf', 'leverkusen', 'koeln', 'bonn', 'wiesbaden', 'frankfurt', 'nuernberg'],
+  a4: ['aachen', 'koeln', 'erfurt', 'chemnitz', 'dresden'],
+  a5: ['frankfurt', 'heidelberg', 'mannheim', 'karlsruhe', 'freiburg'],
+  a6: ['saarbruecken', 'mannheim', 'heidelberg', 'nuernberg'],
+  a7: ['hamburg', 'hannover', 'kassel', 'augsburg'],
+  a8: ['karlsruhe', 'stuttgart', 'augsburg', 'muenchen'],
+  a9: ['berlin', 'potsdam', 'leipzig', 'halle', 'nuernberg', 'muenchen'],
+  a10: ['potsdam', 'berlin'],
+  a14: ['magdeburg', 'halle', 'leipzig', 'dresden'],
+  a24: ['hamburg', 'berlin'],
+  a40: ['duisburg', 'muelheim', 'essen', 'bochum', 'dortmund'],
+  a44: ['aachen', 'duesseldorf', 'dortmund', 'kassel'],
+  a45: ['dortmund', 'hagen', 'frankfurt'],
+  a52: ['moenchengladbach', 'krefeld', 'duesseldorf', 'essen', 'gelsenkirchen'],
+  a57: ['krefeld', 'duesseldorf', 'koeln'],
+  a59: ['duisburg', 'duesseldorf', 'leverkusen', 'koeln', 'bonn'],
+  a66: ['wiesbaden', 'frankfurt'],
+  a67: ['frankfurt', 'mannheim'],
+  a73: ['nuernberg'],
+  a81: ['stuttgart'],
+  a99: ['muenchen']
+};
+
+export const MOTORWAY_CROSSINGS_MAP: Record<string, string[]> = {
+  a1: ['a2', 'a3', 'a4', 'a7', 'a20', 'a24', 'a28', 'a30', 'a43', 'a44', 'a45', 'a46', 'a59', 'a61'],
+  a2: ['a1', 'a3', 'a7', 'a9', 'a10', 'a14', 'a33', 'a39', 'a42', 'a43', 'a45'],
+  a3: ['a1', 'a2', 'a4', 'a5', 'a6', 'a7', 'a9', 'a40', 'a46', 'a52', 'a59', 'a66', 'a67', 'a73', 'a93'],
+  a4: ['a1', 'a3', 'a5', 'a7', 'a9', 'a13', 'a14', 'a17', 'a44', 'a57', 'a61', 'a71', 'a72'],
+  a5: ['a3', 'a6', 'a7', 'a8', 'a66', 'a67'],
+  a6: ['a1', 'a3', 'a5', 'a7', 'a9', 'a61', 'a62', 'a63', 'a65', 'a67', 'a73', 'a93'],
+  a7: ['a1', 'a2', 'a3', 'a4', 'a5', 'a8', 'a21', 'a23', 'a38', 'a39', 'a44', 'a49', 'a70', 'a71', 'a96', 'a98'],
+  a8: ['a5', 'a7', 'a81', 'a92', 'a94', 'a95', 'a96', 'a99'],
+  a9: ['a2', 'a3', 'a4', 'a6', 'a10', 'a14', 'a38', 'a70', 'a72', 'a92', 'a93', 'a99'],
+  a10: ['a2', 'a9', 'a11', 'a12', 'a13', 'a24'],
+  a40: ['a3', 'a42', 'a43', 'a44', 'a45', 'a52', 'a57', 'a59'],
+  a45: ['a1', 'a2', 'a3', 'a4', 'a40', 'a42', 'a44', 'a46', 'a66'],
+  a66: ['a3', 'a5', 'a7', 'a67'],
+  a81: ['a6', 'a8', 'a98'],
+  a99: ['a8', 'a9', 'a92', 'a94', 'a96']
+};
+
+export function getMotorwayCitySlugs(motorwaySlug: string): string[] {
+  return MOTORWAY_CITIES_MAP[motorwaySlug] || [];
+}
+
+export function getMotorwayCrossingSlugs(motorwaySlug: string): string[] {
+  return MOTORWAY_CROSSINGS_MAP[motorwaySlug] || [];
+}
+
