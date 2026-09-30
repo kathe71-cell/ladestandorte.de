@@ -56,9 +56,6 @@ export const Header: React.FC = () => {
               <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-950 flex items-center">
                 ladestandorte<span className="text-emerald-600">.de</span>
               </span>
-              <span className="text-[10px] font-semibold tracking-wider uppercase text-slate-500 -mt-1 font-mono">
-                Ladesäulenregister DE
-              </span>
             </div>
           </Link>
 
