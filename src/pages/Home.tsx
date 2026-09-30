@@ -114,7 +114,7 @@ export const Home: React.FC = () => {
           {/* Superscript Tag */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-mono font-bold uppercase tracking-wider mb-6">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-            <span>BUNDESNETZAGENTUR REGISTER · E-MOBILITÄT DEUTSCHLAND</span>
+            <span>LADESÄULEN-VERZEICHNIS · E-MOBILITÄT DEUTSCHLAND</span>
           </div>
 
           {/* Display Headline */}
@@ -123,7 +123,7 @@ export const Home: React.FC = () => {
               Öffentliches <span className="text-emerald-600">Ladesäulenregister</span> Deutschland
             </h1>
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl">
-              Das amtliche Bundesregister umfasst über 100.000 öffentlich zugängliche Ladepunkte. Nutzen Sie unsere redaktionellen Verzeichnisse für 50 Großstädte, Autobahnen und Betreiber sowie den Instant-Finder für kuratierte Flagship-Hubs in unter 5 Millisekunden.
+              Über 100.000 öffentlich zugängliche Ladepunkte in Deutschland laut BNetzA Open Data. Nutzen Sie unsere redaktionellen Verzeichnisse für 50 Großstädte, Autobahnen und Betreiber sowie den Instant-Finder für kuratierte Flagship-Hubs in unter 5 Millisekunden.
             </p>
           </div>
 
