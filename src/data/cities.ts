@@ -97,7 +97,7 @@ export const CITIES_DATA: CityData[] = [
     topBetreiber: ["EnBW", "Stadtwerke Stuttgart", "Porsche Charging Lounge", "Tesla"],
     plzs: ["70173", "70178", "70197", "70372", "70565"],
     bnetzaStand: "Aktuell",
-    description: "In der Wiege des Automobilbaus betreibt EnBW ihr bundesweit modernstes Flagship-Ladenetz mit zahlreichen überdachten HyperHubs und bis zu 400 kW Ladeleistung."
+    description: "In der Wiege des Automobilbaus betreibt EnBW ihr bundesweit dichtes Ladenetz mit zahlreichen überdachten HyperHubs und bis zu 400 kW Ladeleistung."
   },
   {
     slug: "duesseldorf",
@@ -349,7 +349,7 @@ export const CITIES_DATA: CityData[] = [
     topBetreiber: ["ESWE Versorgung", "EnBW", "Aral pulse"],
     plzs: ["65183", "65185", "65203"],
     bnetzaStand: "Aktuell",
-    description: "Hessische Landeshauptstadt mit ESWE-Ladeinfrastruktur und optimaler Erreichbarkeit über die A66 und A671."
+    description: "Hessische Landeshauptstadt mit ESWE-Ladeinfrastruktur und guter Erreichbarkeit über die A66 und A671."
   },
   {
     slug: "kassel",

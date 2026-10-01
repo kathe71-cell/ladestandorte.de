@@ -23,6 +23,11 @@ const staticRoutes = [
   { url: '/ratgeber/ac-vs-dc-ladeverluste', title: 'AC vs. DC Ladeverluste: Wirkungsgrad im Detail | ladestandorte.de', desc: 'Wie viel Strom verpufft beim Laden? AC-Onboard-Lader vs. DC-Schnellladung, thermisches Management und Praxisverluste.' },
   { url: '/ratgeber/blockiergebuehren-vermeiden', title: 'Blockiergebühren an Ladesäulen vermeiden: Karenzzeiten & Tarife | ladestandorte.de', desc: 'Standzeitgebühren ab 240 Min. AC und 60 Min. DC vermeiden. Karenzzeiten, Kostenfallen, Nacht-Regelungen und Betreibervergleich verständlich aufbereitet.' },
   { url: '/glossar', title: 'E-Mobilität Glossar: Fachbegriffe von AC bis V2G | ladestandorte.de', desc: 'Verständliche Erklärungen aller wichtigen Begriffe rund um Laden, Batterietechnik, Steckertypen und Normen.' },
+  { url: '/mcs', title: 'Megawatt Charging System (MCS): E-Lkw Ladehubs in Deutschland 2026', desc: 'Megawatt-Schnellladen für schwere E-Lkw in Deutschland: Verifizierte MCS- und Lkw-Ladeparks bis 1.200 kW, Standorte, Normung & Korridore.' },
+  { url: '/mcs/ladestationen', title: 'MCS & E-Lkw Ladestationen Verzeichnis Deutschland 2026', desc: 'Verzeichnis aller verifizierten Megawatt- und Schwerlast-Ladeparks für Elektro-Lkw entlang deutscher Bundesautobahnen. Ladeleistung, Buchten & Dossiers.' },
+  { url: '/mcs/was-ist-mcs', title: 'Was ist MCS? Das Megawatt Charging System technisch erklärt', desc: 'Alles zum MCS-Ladestandard für schwere Nutzfahrzeuge: CharIN-Norm, bis zu 3.750 kW Ladeleistung, flüssigkeitsgekühlte Stecker & ISO 15118-20.' },
+  { url: '/mcs/mcs-vs-ccs', title: 'MCS vs. CCS im Vergleich: Unterschiede, Leistung & Ladezeiten', desc: 'Megawatt Charging System vs. Combined Charging System im direkten Vergleich: Steckergeometrie, Dauerstrom, Ladedauer und Einsatzbereiche.' },
+  { url: '/mcs/lkw-laden', title: 'Lkw-Laden & 45-Minuten-Pause: Logistik im Fernverkehr', desc: 'Wie E-Lkw-Laden mit den gesetzlichen Lenk- und Ruhezeiten nach EG 561/2006 harmoniert. Nachlademengen, Drive-Through-Buchten und Depot vs. Highway.' },
   { url: '/impressum', title: 'Impressum | ladestandorte.de', desc: 'Rechtliche Anbieterkennzeichnung und Kontaktinformationen von ladestandorte.de.' },
   { url: '/datenschutz', title: 'Datenschutzerklärung | ladestandorte.de', desc: 'Informationen zur Datenverarbeitung, DSGVO-Konformität und Privatsphäre auf ladestandorte.de.' },
 ];
@@ -36,7 +41,7 @@ const cityRoutes = (CITIES_DATA || []).map((c) => ({
 const motorwayRoutes = (MOTORWAYS_DATA || []).map((m) => ({
   url: `/autobahnen/${m.slug}`,
   title: `Schnellladen ${m.name}: HPC-Ladeparks an Raststätten & Autobahn 2026`,
-  desc: `${m.totalChargingHubs} Schnellladeparks an der ${m.name} (${m.route}): IONITY, EnBW, Tesla & mehr. Bis zu ${m.maxKw} kW HPC. Alle Raststätten, Preise & Öffnungszeiten.`,
+  desc: `Schnellladeparks an der ${m.name} (${m.route}): IONITY, EnBW, Tesla & mehr. Bis zu ${m.maxKw} kW HPC. Alle Raststätten, Preise & Öffnungszeiten.`,
 }));
 
 const operatorRoutes = (OPERATORS_DATA || []).map((o) => ({
@@ -101,3 +106,11 @@ for (const route of allRoutes) {
 }
 
 console.log(`Successfully prerendered ${successCount} of ${allRoutes.length} routes!`);
+
+// Generate static search index
+try {
+  const { generateSearchIndex } = await import('./scripts/build-search-index.js');
+  await generateSearchIndex();
+} catch (searchIndexErr) {
+  console.error('  ✗ Error building search index:', searchIndexErr);
+}

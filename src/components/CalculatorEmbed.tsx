@@ -7,33 +7,38 @@ interface Props {
   isEmbed?: boolean;
 }
 
-export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+// Robust query parameter parsing with fallback and bounds checking
+function parseNum(val: string | null, fallback: number, min?: number, max?: number): number {
+  if (val === null || val === undefined || val === '') return fallback;
+  const num = Number(val);
+  if (isNaN(num)) return fallback;
+  if (min !== undefined && num < min) return min;
+  if (max !== undefined && num > max) return max;
+  return num;
+}
 
-  // State defaults or from URL query
+export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
+  const [searchParams] = useSearchParams();
+
+  // State defaults or safely parsed from URL query
   const [batteryCapacity, setBatteryCapacity] = useState<number>(() => {
-    const val = Number(searchParams.get('capacity'));
-    return val && val > 0 ? val : 75; // Tesla Model Y Long Range Standard (75 kWh netto)
+    return parseNum(searchParams.get('capacity'), 75, 20, 130);
   });
 
   const [chargePower, setChargePower] = useState<number>(() => {
-    const val = Number(searchParams.get('kw'));
-    return val && val > 0 ? val : 150; // Standard 150 kW HPC
+    return parseNum(searchParams.get('kw'), 150, 3, 400);
   });
 
   const [startSoc, setStartSoc] = useState<number>(() => {
-    const val = Number(searchParams.get('start'));
-    return val !== null && !isNaN(val) ? val : 10;
+    return parseNum(searchParams.get('start'), 10, 0, 95);
   });
 
   const [endSoc, setEndSoc] = useState<number>(() => {
-    const val = Number(searchParams.get('end'));
-    return val && val > 0 ? val : 80;
+    return parseNum(searchParams.get('end'), 80, 5, 100);
   });
 
   const [pricePerKwh, setPricePerKwh] = useState<number>(() => {
-    const val = Number(searchParams.get('price'));
-    return val && val > 0 ? val : 0.49;
+    return parseNum(searchParams.get('price'), 0.49, 0.1, 2.0);
   });
 
   const [currentLossPercent, setCurrentLossPercent] = useState<number>(() => {
@@ -64,8 +69,11 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   const location = useLocation();
   const isRechnerPage = location.pathname === '/rechner';
 
-  // Only sync to URL state on the dedicated /rechner page, NEVER on the homepage!
+  // Smooth URL state synchronization via window.history.replaceState:
+  // Updates browser address bar for shareable link WITHOUT triggering React Router re-render cascades
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     if (isRechnerPage && !isEmbed) {
       const params = new URLSearchParams();
       params.set('capacity', String(batteryCapacity));
@@ -73,17 +81,12 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
       params.set('start', String(startSoc));
       params.set('end', String(endSoc));
       params.set('price', String(pricePerKwh));
-      setSearchParams(params, { replace: true });
-    } else if (location.pathname === '/' && searchParams.has('capacity')) {
-      const newParams = new URLSearchParams(searchParams);
-      newParams.delete('capacity');
-      newParams.delete('kw');
-      newParams.delete('start');
-      newParams.delete('end');
-      newParams.delete('price');
-      setSearchParams(newParams, { replace: true });
+      const newUrl = `${window.location.pathname}?${params.toString()}`;
+      window.history.replaceState(null, '', newUrl);
+    } else if (location.pathname === '/' && window.location.search.includes('capacity')) {
+      window.history.replaceState(null, '', '/');
     }
-  }, [batteryCapacity, chargePower, startSoc, endSoc, pricePerKwh, isEmbed, isRechnerPage, location.pathname, searchParams, setSearchParams]);
+  }, [batteryCapacity, chargePower, startSoc, endSoc, pricePerKwh, isEmbed, isRechnerPage, location.pathname]);
 
   // Adjust loss percentage when switching between AC and HPC
   useEffect(() => {

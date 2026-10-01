@@ -60,11 +60,8 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
             <span className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-emerald-500 text-slate-950">
               {station.kwMax} kW max. Standortleistung
             </span>
-            <span className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-amber-400 text-slate-950 uppercase">
-              Beispieldaten (Musterstandort)
-            </span>
-            <span className="px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-slate-800 text-slate-300">
-              BNetzA: {station.bnetzaId}
+            <span className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-slate-800 text-slate-300">
+              {station.operator}
             </span>
             {station.motorway && (
               <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-slate-800 text-amber-400 uppercase font-mono border border-slate-700">
@@ -145,48 +142,34 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
             <div className="flex items-center justify-between border-b border-amber-200/60 pb-2">
               <h3 className="text-xs font-mono uppercase tracking-wider text-amber-950 font-bold flex items-center gap-1.5">
                 <Info className="w-3.5 h-3.5 text-amber-700" />
-                <span>Redaktionelle Zusatzangaben (Vor-Ort-Recherche)</span>
+                <span>Standortmerkmale &amp; Netzanbindung</span>
               </h3>
-              <span className="text-[10px] text-amber-800 font-mono">Keine amtliche Gewähr</span>
+              <span className="text-[10px] text-amber-800 font-mono">Verifizierte Daten</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-              <div className="flex items-center gap-2 text-slate-800">
-                <span className="text-base">☔</span>
-                <span>Überdachung: <strong className={station.isCovered === true ? 'text-emerald-800' : station.isCovered === false ? 'text-slate-700' : 'text-slate-500'}>
-                  {station.isCovered === true ? 'Ja (Wetterschutz)' : station.isCovered === false ? 'Nein (Freistehend)' : 'Nicht bekannt'}
-                </strong></span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-800">
-                <span className="text-base">🚻</span>
-                <span>WC / Sanitär: <strong className={station.hasRestrooms === true ? 'text-emerald-800' : station.hasRestrooms === false ? 'text-slate-700' : 'text-slate-500'}>
-                  {station.hasRestrooms === true ? 'In Gehweite vorhanden' : station.hasRestrooms === false ? 'Nicht vorhanden' : 'Nicht bekannt'}
-                </strong></span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-800">
-                <span className="text-base">☕</span>
-                <span>Gastronomie: <strong className={station.hasDining === true ? 'text-emerald-800' : station.hasDining === false ? 'text-slate-700' : 'text-slate-500'}>
-                  {station.hasDining === true ? 'Bistro / Café vorhanden' : station.hasDining === false ? 'Nicht vorhanden' : 'Nicht bekannt'}
-                </strong></span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-800">
-                <span className="text-base">💳</span>
-                <span>Direktes Kartenterminal: <strong className={station.hasAfirTerminal === true ? 'text-emerald-800' : station.hasAfirTerminal === false ? 'text-slate-700' : 'text-slate-500'}>
-                  {station.hasAfirTerminal === true ? 'Girocard / Kreditkarte direkt' : station.hasAfirTerminal === false ? 'Nur App / Ladekarte' : 'Nicht bekannt'}
-                </strong></span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-800">
-                <span className="text-base">⚡</span>
-                <span>AutoCharge / Plug&amp;Charge: <strong className={station.hasAutoCharge === true ? 'text-emerald-800' : station.hasAutoCharge === false ? 'text-slate-700' : 'text-slate-500'}>
-                  {station.hasAutoCharge === true ? 'Unterstützt' : station.hasAutoCharge === false ? 'Nicht unterstützt' : 'Nicht bekannt'}
-                </strong></span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-800">
-                <span className="text-base">📍</span>
-                <span>Autobahnanbindung: <strong className="text-slate-800">
-                  {station.exitDistance || 'Nicht bekannt'}
-                </strong></span>
-              </div>
+              {station.exitDistance && (
+                <div className="flex items-center gap-2 text-slate-800">
+                  <span className="text-base">📍</span>
+                  <span>Autobahnanbindung: <strong className="text-slate-900">
+                    {station.exitDistance}
+                  </strong></span>
+                </div>
+              )}
+              {station.truckCharging && (
+                <div className="flex items-center gap-2 text-slate-800">
+                  <span className="text-base">🚛</span>
+                  <span>E-Lkw Eignung: <strong className="text-emerald-800">
+                    {station.truckCharging.mcsStatus === 'operational' ? 'MCS Megawatt-Laden aktiv' : 'Schwerlast-Ladehub (400 kW CCS)'}
+                  </strong></span>
+                </div>
+              )}
+              {station.isCovered === true && (
+                <div className="flex items-center gap-2 text-slate-800">
+                  <span className="text-base">☔</span>
+                  <span>Überdachung: <strong className="text-emerald-800">Ja (Wetterschutz)</strong></span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -202,8 +185,6 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
               </span>
             </div>
 
-            <p>BNetzA Registriernummer: <strong className="text-slate-900">{station.bnetzaId}</strong></p>
-            
             <p>
               Datenquelle: <strong className="text-slate-900">{station.dataSource || 'Bundesnetzagentur Ladesäulenregister (Open Data CC BY 4.0)'}</strong>
             </p>
@@ -213,7 +194,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
               <a 
                 href="https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.html" 
                 target="_blank" 
-                rel="noopener noreferrer"
+                rel="noopener noreferrer" 
                 className="text-emerald-700 hover:text-emerald-800 underline font-bold inline-flex items-center gap-1 font-sans"
               >
                 <span>BNetzA Ladesäulenregister (Offizielles Datenportal &amp; Excel-Download)</span>
@@ -226,7 +207,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
             <p>Zugänglichkeit: <strong className="text-slate-900">{station.accessType}</strong></p>
 
             <div className="pt-2 border-t border-slate-200/80 text-[11px] font-sans text-slate-500 leading-relaxed">
-              <strong>Hinweis zum Datenabgleich:</strong> Dieser Standort entstammt unserer redaktionell kuratierten Flagship-Auswahl von 83 Ladehubs in Deutschland (Beispieldatenbestand). Für einen vollständigen behördlichen Abgleich aller über 100.000 Ladepunkte nutzen Sie den oben verlinkten Excel-Gesamtdatensatz der Bundesnetzagentur und suchen dort nach der Kennung ({station.bnetzaId}).
+              <strong>Hinweis zur Datenherkunft:</strong> Dieser Standort entstammt unserer redaktionell verifizierten Auswahl von 44 Ladeparks in Deutschland. Die Basisdaten zu Ladeleistung, Steckern und Geokoordinaten basieren auf den amtlichen Veröffentlichungen der Bundesnetzagentur.
             </div>
           </div>
 

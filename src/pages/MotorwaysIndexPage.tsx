@@ -95,8 +95,8 @@ export const MotorwaysIndexPage: React.FC = () => {
                 <div className="w-14 h-9 rounded-xl bg-amber-400 text-slate-950 font-black font-mono flex items-center justify-center text-base shadow-xs">
                   {mw.name}
                 </div>
-                <span className="text-xs font-mono font-bold bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg">
-                  {mw.totalChargingHubs} Schnelllade-Hubs
+                <span className="text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200 px-2.5 py-1 rounded-lg">
+                  bis {mw.maxKw} kW HPC
                 </span>
               </div>
 

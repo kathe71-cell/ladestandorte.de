@@ -67,8 +67,8 @@ export function buildSearchIndex(): SearchIndexEntry[] {
         type: 'motorway',
         id: `mw-${mw.slug}`,
         title: `Bundesautobahn ${mw.name}`,
-        subtitle: `${mw.route} · ${mw.totalChargingHubs} Ladehubs · bis ${mw.maxKw} kW`,
-        badge: `${mw.totalChargingHubs} Hubs`,
+        subtitle: `${mw.route} · ${mw.lengthKm} km · bis ${mw.maxKw} kW HPC`,
+        badge: `bis ${mw.maxKw} kW`,
         url: `/autobahnen/${mw.slug}`,
         data: mw,
         score: 90
@@ -95,9 +95,9 @@ export function buildSearchIndex(): SearchIndexEntry[] {
     });
   }
 
-  // Index Flagship Stations
+  // Index Verifizierte Ladestationen
   for (const st of STATIONS_DATA) {
-    const rawText = `${st.name} ${st.street} ${st.plz} ${st.city} ${st.operator} ${st.motorway || ''} ${st.connectorTypes.join(' ')} ${st.bnetzaId} ladesaeule ladestation`;
+    const rawText = `${st.name} ${st.street} ${st.plz} ${st.city} ${st.operator} ${st.motorway || ''} ${st.connectorTypes.join(' ')} ladesaeule ladestation`;
     const tokens = rawText.toLowerCase().split(/\s+/).filter(Boolean);
     entries.push({
       tokens,

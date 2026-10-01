@@ -17,7 +17,7 @@ export const CitationBox: React.FC<Props> = ({
   const [copied, setCopied] = useState(false);
   const fullUrl = `https://www.ladestandorte.de${urlPath}`;
   const currentDate = dateStr || new Date().toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
-  const citationText = `ladestandorte.de (Hrsg.). ${title}. Bundesweites Ladesäulenregister Deutschland. Online verfügbar unter: ${fullUrl} (Stand: ${currentDate}).`;
+  const citationText = `ladestandorte.de (Hrsg.). ${title}. Verzeichnis öffentlicher Ladeinfrastruktur in Deutschland. Online verfügbar unter: ${fullUrl} (Stand: ${currentDate}).`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(citationText);
@@ -31,7 +31,7 @@ export const CitationBox: React.FC<Props> = ({
         <div className="flex items-center gap-2">
           <Quote className="w-4 h-4 text-emerald-600" />
           <span className="text-xs font-mono uppercase tracking-wider text-slate-700 font-bold">
-            Wissenschaftliche &amp; Journalistische Zitation (APA-Standard)
+            Quellenangabe &amp; Zitierweise
           </span>
         </div>
 

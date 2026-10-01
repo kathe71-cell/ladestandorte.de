@@ -62,8 +62,8 @@ export const SearchPage: React.FC = () => {
           topic="Suchindex &amp; BNetzA-Register"
           source1Title="Amtliche Primärdatenbasis"
           source1Text="Ladesäulenregister der Bundesnetzagentur (BNetzA) gemäß § 5 LSV (Open Data, CC BY 4.0)."
-          source2Title="Redaktionelle Kuration &amp; Beispieldaten"
-          source2Text="Der Finder durchsucht redaktionell kuratierte Musterstandorte und Flagship-Hubs. Zur Vollständigkeitsprüfung siehe das amtliche BNetzA-Gesamtregister."
+          source2Title="Redaktionelle Prüfung"
+          source2Text="Die Suche filtert verifizierte Standortdossiers, Autobahnen, Städte und Betreiber. Zur behördlichen Vollständigkeitsprüfung siehe das amtliche BNetzA-Gesamtregister."
           dateText="Stand: BNetzA Open Data"
         />
       </div>

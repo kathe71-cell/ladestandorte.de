@@ -2,10 +2,11 @@ import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { 
   Zap, MapPin, Navigation, ShieldCheck, CreditCard, ExternalLink, 
-  ArrowRight, ArrowLeft, Clock, Info, CheckCircle2, AlertCircle, Compass 
+  ArrowRight, ArrowLeft, Clock, Info, CheckCircle2, AlertCircle, Compass, Truck 
 } from 'lucide-react';
 import { STATIONS_DATA, getStationConnectors, isIndexableLocation, getStationUrl } from '../data/stations';
 import { CITIES_DATA } from '../data/cities';
+import { OPERATORS_DATA } from '../data/operators';
 import { getNearbyStations } from '../utils/geo';
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
@@ -29,6 +30,7 @@ export const StationDetailPage: React.FC = () => {
   }
 
   const hasCityPage = CITIES_DATA.some(c => c.slug === station.citySlug);
+  const operatorProfile = OPERATORS_DATA.find(o => o.slug === station.operatorSlug && (o.name === station.operator || o.slug === station.operator.toLowerCase()));
   const connectors = getStationConnectors(station);
   const nearbyStations = getNearbyStations(station, STATIONS_DATA, 5, 85);
   const isIndexable = isIndexableLocation(station);
@@ -74,7 +76,7 @@ export const StationDetailPage: React.FC = () => {
       {
         "@type": "ChargingStation",
         "name": station.name,
-        "description": `Öffentlicher Schnellladepark ${station.name} mit bis zu ${station.kwMax} kW HPC-Ladeleistung und ${station.pointsCount} Anschlüssen in ${station.city}. Betrieben von ${station.operator}. BNetzA-ID: ${station.bnetzaId}.`,
+        "description": `Öffentlicher Schnellladepark ${station.name} mit bis zu ${station.kwMax} kW HPC-Ladeleistung und ${station.pointsCount} Anschlüssen in ${station.city}. Betrieben von ${station.operator}.`,
         "address": {
           "@type": "PostalAddress",
           "streetAddress": station.street,
@@ -130,9 +132,35 @@ export const StationDetailPage: React.FC = () => {
           <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-slate-100 text-slate-800 border border-slate-200">
             {station.pointsCount} Ladepunkte
           </span>
-          <span className="px-3 py-1 rounded-md text-xs font-mono font-semibold bg-slate-50 text-slate-600 border border-slate-200">
-            BNetzA-ID: {station.bnetzaId}
-          </span>
+          {station.project && (
+            <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-blue-50 text-blue-900 border border-blue-200">
+              Projekt: {station.project}
+            </span>
+          )}
+          {station.hardwareProvider && (
+            <span className="px-3 py-1 rounded-md text-xs font-mono font-medium bg-slate-50 text-slate-700 border border-slate-200">
+              Hardware: {station.hardwareProvider}
+            </span>
+          )}
+          {station.truckCharging && (
+            <Link
+              to="/mcs/ladestationen"
+              className={`px-3 py-1 rounded-md text-xs font-mono font-bold inline-flex items-center gap-1.5 shadow-2xs ${
+                station.truckCharging.mcsStatus === 'operational'
+                  ? 'bg-blue-600 text-white hover:bg-blue-700'
+                  : 'bg-amber-100 text-amber-950 border border-amber-300 hover:bg-amber-200'
+              }`}
+            >
+              <Truck className="w-3.5 h-3.5" />
+              <span>
+                {station.truckCharging.mcsStatus === 'operational' 
+                  ? 'MCS Megawatt-Hub (Aktiv)' 
+                  : station.truckCharging.locationStatus === 'operational' 
+                    ? (station.truckCharging.mcsStatus === 'planned' ? 'E-Lkw Hub (400 kW CCS aktiv · MCS geplant)' : 'E-Lkw Hub (400 kW CCS aktiv · MCS im Ausbau)')
+                    : 'MCS Lkw-Hub (Geplant / Im Bau)'}
+              </span>
+            </Link>
+          )}
           {station.motorway && (
             <Link
               to={`/autobahnen/${station.motorway}`}
@@ -192,14 +220,25 @@ export const StationDetailPage: React.FC = () => {
 
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
           <span className="text-xs font-mono text-slate-500 uppercase block">Betreiber (CPO)</span>
-          <Link 
-            to={`/betreiber/${station.operatorSlug}`} 
-            className="text-base font-extrabold text-slate-900 hover:text-emerald-700 mt-2 block truncate"
-            title={station.operator}
-          >
-            {station.operator}
-          </Link>
-          <span className="text-[11px] text-emerald-700 font-semibold mt-1 block">CPO-Dossier ansehen →</span>
+          {operatorProfile ? (
+            <>
+              <Link 
+                to={`/betreiber/${station.operatorSlug}`} 
+                className="text-base font-extrabold text-slate-900 hover:text-emerald-700 mt-2 block truncate"
+                title={station.operator}
+              >
+                {station.operator}
+              </Link>
+              <span className="text-[11px] text-emerald-700 font-semibold mt-1 block">Betreiberprofil ansehen →</span>
+            </>
+          ) : (
+            <>
+              <span className="text-base font-extrabold text-slate-900 mt-2 block truncate" title={station.operator}>
+                {station.operator}
+              </span>
+              <span className="text-[11px] text-slate-500 font-mono mt-1 block">Betreiber / Konsortium</span>
+            </>
+          )}
         </div>
 
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
@@ -243,7 +282,7 @@ export const StationDetailPage: React.FC = () => {
             </div>
 
             <p className="text-xs text-slate-500 leading-relaxed">
-              * Die tatsächliche Ladezeit hängt von der fahrzeugseitigen Ladekurve, Batterietemperatur und dem State of Charge (SoC) ab. An HPC-Ladepunkten (≥ 150 kW) laden kompatible 800V-Fahrzeuge in ca. 18 Minuten von 10 % auf 80 %.
+              * Die tatsächliche Ladezeit hängt von der fahrzeugseitigen Ladekurve, Batterietemperatur und dem State of Charge (SoC) ab. Die angegebene Spitzenleistung (kW) stellt das technische Maximum der Ladesäule dar.
             </p>
           </div>
 
@@ -319,14 +358,109 @@ export const StationDetailPage: React.FC = () => {
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2.5">
                 <span className="text-xl">🏛️</span>
                 <div>
-                  <span className="text-slate-500 block">BNetzA-Registrierung:</span>
-                  <strong className="text-slate-900 font-mono block">
-                    {station.bnetzaId}
+                  <span className="text-slate-500 block">Datenquelle:</span>
+                  <strong className="text-slate-900 text-xs block">
+                    BNetzA-Ladesäulenregister (Open Data)
                   </strong>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* MCS & E-Lkw Schwerlast-Laden (Additive Erweiterung) */}
+          {station.truckCharging && (
+            <div className="bg-white rounded-2xl p-6 border-2 border-blue-200 shadow-xs space-y-4">
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <h2 className="text-lg font-bold text-slate-950 flex items-center gap-2">
+                  <Truck className="w-5 h-5 text-blue-600" />
+                  <span>MCS &amp; E-Lkw Schwerlast-Ladeinfrastruktur</span>
+                </h2>
+                <div className="flex items-center gap-1.5">
+                  <span className={`px-2.5 py-1 rounded-full text-xs font-mono font-bold ${
+                    station.truckCharging.locationStatus === 'operational'
+                      ? 'bg-emerald-100 text-emerald-950 border border-emerald-300'
+                      : 'bg-amber-100 text-amber-950 border border-amber-300'
+                  }`}>
+                    Ladepark: {station.truckCharging.locationStatus === 'operational' ? 'Geöffnet' : 'Im Bau'}
+                  </span>
+                  <span className={`px-2.5 py-1 rounded-full text-xs font-mono font-bold ${
+                    station.truckCharging.mcsStatus === 'operational'
+                      ? 'bg-blue-100 text-blue-950 border border-blue-300'
+                      : 'bg-slate-100 text-slate-700 border border-slate-300'
+                  }`}>
+                    MCS: {station.truckCharging.mcsStatus === 'operational' ? '● Aktiv' : station.truckCharging.mcsStatus === 'under-construction' ? '○ Im Ausbau' : 'Geplant'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                <div className="p-3 bg-blue-50/60 rounded-xl border border-blue-100">
+                  <span className="text-slate-500 block font-mono uppercase text-[10px]">Ladeleistung</span>
+                  <strong className="text-base font-black text-blue-900 font-mono block mt-0.5">
+                    {station.truckCharging.mcsAvailable && station.truckCharging.mcsMaxKw 
+                      ? `bis ${station.truckCharging.mcsMaxKw} kW MCS` 
+                      : `${station.truckCharging.ccsMaxKw || station.kwMax} kW CCS`}
+                  </strong>
+                  <span className="text-[11px] text-blue-700">
+                    {station.truckCharging.mcsAvailable 
+                      ? 'MCS-Standard verfügbar' 
+                      : `CCS aktiv (${station.truckCharging.ccsMaxKw || 400} kW) · MCS geplant`}
+                  </span>
+                </div>
+
+                <div className="p-3 bg-blue-50/60 rounded-xl border border-blue-100">
+                  <span className="text-slate-500 block font-mono uppercase text-[10px]">Lkw-Ladeplätze</span>
+                  <strong className="text-base font-black text-slate-950 font-mono block mt-0.5">
+                    {station.truckCharging.mcsPointsCount 
+                      ? `${station.truckCharging.mcsPointsCount} MCS-Punkte` 
+                      : `${station.pointsCount} Durchfahrtsbuchten`}
+                  </strong>
+                  <span className="text-[11px] text-slate-600">Gespanne / Sattelzüge</span>
+                </div>
+
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-slate-500 block font-mono uppercase text-[10px]">Durchfahrtsbuchten</span>
+                  <strong className="text-sm font-bold text-slate-900 block mt-1">
+                    {station.truckCharging.driveThrough ? '✓ Vorhanden' : 'Nicht belegt'}
+                  </strong>
+                  <span className="text-[10px] text-slate-500">Kein Absatteln nötig</span>
+                </div>
+
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-slate-500 block font-mono uppercase text-[10px]">Auflieger-Zugang</span>
+                  <strong className="text-sm font-bold text-slate-900 block mt-1">
+                    {station.truckCharging.trailerAccessible ? '✓ 40t-geeignet' : 'Nicht belegt'}
+                  </strong>
+                  <span className="text-[10px] text-slate-500">Sattelzug-Geometrie</span>
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1 font-mono">
+                <div className="flex items-center justify-between text-slate-700 font-bold">
+                  <span>Datenherkunft (Provenance): {station.truckCharging.provenance}</span>
+                  <span>Verifiziert: {station.truckCharging.lastVerifiedAt}</span>
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  Quelle: {station.truckCharging.source} {station.truckCharging.sourceUrl && `(${station.truckCharging.sourceUrl})`}
+                </p>
+                {station.truckCharging.expectedLaunch && (
+                  <p className="text-[11px] text-amber-800 font-semibold">
+                    Angekündigte Inbetriebnahme: {station.truckCharging.expectedLaunch}
+                  </p>
+                )}
+              </div>
+
+              <div className="pt-1 flex items-center justify-between text-xs">
+                <Link to="/mcs" className="text-blue-700 hover:text-blue-900 font-bold inline-flex items-center gap-1">
+                  <span>Zurück zum MCS-Themenhub</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <Link to="/mcs/was-ist-mcs" className="text-slate-600 hover:text-slate-900 underline">
+                  Was ist MCS? Technik erklärt →
+                </Link>
+              </div>
+            </div>
+          )}
 
         </div>
 
@@ -444,16 +578,18 @@ export const StationDetailPage: React.FC = () => {
                 </Link>
               )}
 
-              <Link
-                to={`/betreiber/${station.operatorSlug}`}
-                className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200 hover:border-purple-300 transition-colors group"
-              >
-                <div>
-                  <span className="text-slate-500 block text-[11px]">Betreiber-Profil:</span>
-                  <strong className="text-slate-900 group-hover:text-purple-700">{station.operator}</strong>
-                </div>
-                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-purple-600 transition-transform group-hover:translate-x-0.5" />
-              </Link>
+              {operatorProfile && (
+                <Link
+                  to={`/betreiber/${station.operatorSlug}`}
+                  className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200 hover:border-purple-300 transition-colors group"
+                >
+                  <div>
+                    <span className="text-slate-500 block text-[11px]">Betreiber-Profil:</span>
+                    <strong className="text-slate-900 group-hover:text-purple-700">{operatorProfile.name}</strong>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-purple-600 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              )}
             </div>
           </div>
 
@@ -540,7 +676,7 @@ export const StationDetailPage: React.FC = () => {
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
-                  <span>Standort-Dossier öffnen</span>
+                  <span>Standort ansehen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>

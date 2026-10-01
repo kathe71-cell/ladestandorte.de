@@ -13,7 +13,6 @@ export interface OperatorData {
   roamingPartnersCount: number;
   plugAndCharge: boolean;
   autocharge: boolean;
-  appRating: number;
   standardPriceAc: number; // €/kWh, 0 if no AC
   standardPriceDc: number; // €/kWh
   bnetzaAnteil: string; // kurze Positionierungsbeschreibung
@@ -34,14 +33,13 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 120,
     plugAndCharge: true,
     autocharge: true,
-    appRating: 4.6,
     standardPriceAc: 0.49,
     standardPriceDc: 0.49, // Tarif Free (ad-hoc); Tarif M: 0,46 €/kWh mit 5,99 € GG
-    bnetzaAnteil: "Marktführer Deutschland nach Ladepunkten",
+    bnetzaAnteil: "Überregionaler CPO mit breiter Bundesabdeckung",
     description:
-      "EnBW mobility+ ist Deutschlands größter öffentlicher Ladeinfrastrukturbetreiber mit über 11.500 Ladepunkten. Das Netz ist besonders dicht entlang von Autobahnen und in Ballungsräumen. Mit dem Tarif M (5,99 €/Monat) sinkt der kWh-Preis auf 0,46 € ohne weitere Unterscheidung zwischen AC und DC.",
+      "EnBW mobility+ ist Einer der führenden überregionalen Ladeinfrastrukturbetreiber in Deutschland mit über 11.500 registrierten Ladepunkten. Das Netz ist besonders dicht entlang von Autobahnen und in Ballungsräumen. Mit dem Tarif M (5,99 €/Monat) sinkt der kWh-Preis auf 0,46 € ohne weitere Unterscheidung zwischen AC und DC.",
     features: [
-      "Größtes Schnellladenetz Deutschlands",
+      "Dichtes Schnellladenetz an Autobahnen",
       "AutoCharge (Plug & Charge ohne Karte)",
       "HyperNetz mit über 750.000 europaweiten Roaming-Punkten",
       "Dynamische Abrechnung nach kWh (kein Minutentarif)",
@@ -58,7 +56,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 80,
     plugAndCharge: true,
     autocharge: false,
-    appRating: 4.3,
     standardPriceAc: 0,
     standardPriceDc: 0.79, // ad-hoc 2026; Passport Power: 0,41 €/kWh + 11,99 €/Monat
     bnetzaAnteil: "HPC-Spezialist an Autobahnen (Raststätten)",
@@ -82,10 +79,9 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 0, // Eigennetz; seit 2023 für Fremdmarken geöffnet
     plugAndCharge: true,
     autocharge: true,
-    appRating: 4.7,
     standardPriceAc: 0,
     standardPriceDc: 0.52, // Non-Tesla-Tarif; Tesla-Besitzer i.d.R. günstiger je nach Tarif
-    bnetzaAnteil: "Höchste installierte Leistung aller Betreiber (BNetzA 2026)",
+    bnetzaAnteil: "HPC-Netzwerk für Tesla- und CCS-Fahrzeuge",
     description:
       "Tesla Supercharger ist nach installierter Leistung der zweitstärkste Betreiber in Deutschland. Seit 2022/23 sind viele Standorte für Fremdmarken geöffnet. Die V4-Generation liefert bis zu 350 kW. Tesla-Besitzer zahlen günstiger, da Kosten im Fahrzeugvertrag oder Ladeabo integriert sind.",
     features: [
@@ -106,10 +102,9 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 50,
     plugAndCharge: true,
     autocharge: false,
-    appRating: 4.2,
     standardPriceAc: 0.52,
     standardPriceDc: 0.62,
-    bnetzaAnteil: "Drittstärkster HPC-Betreiber nach Punkten",
+    bnetzaAnteil: "HPC-Netz an Tankstellen und Knotenpunkten",
     description:
       "Aral pulse (betrieben von bp pulse) ist eines der führenden Schnellladenetze Deutschlands mit über 4.000 Ladepunkten. Das Netz umfasst vorwiegend moderne HPC-Stationen mit bis zu 300 kW an Aral-Tankstellen sowie neue Megawatt-Ladeparks für E-LKW. Neben schnellen Ladezeiten profitieren Fahrer von Payback-Punkten, REWE To Go Shops und verlässlicher Beleuchtung.",
     features: [
@@ -130,7 +125,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 60,
     plugAndCharge: true,
     autocharge: false,
-    appRating: 4.5,
     standardPriceAc: 0,
     standardPriceDc: 0.69, // ad-hoc; mit Fastned Unlimited günstiger
     bnetzaAnteil: "Premium-HPC-Netz an Autobahnen und Ballungsräumen",
@@ -154,7 +148,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 70,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.9,
     standardPriceAc: 0.48,
     standardPriceDc: 0.68,
     bnetzaAnteil: "Großer B2B-CPO mit Standorten an Einzelhandel und Parkplätzen",
@@ -178,10 +171,9 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 90,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.8,
     standardPriceAc: 0.47,
     standardPriceDc: 0.57,
-    bnetzaAnteil: "Zweistärkster Betreiber nach Ladepunkten (BNetzA Q1 2026)",
+    bnetzaAnteil: "Bundesweites Ladenetz an Gewerbestandorten",
     description:
       "E.ON Drive ist der zweitgrößte Ladeinfrastrukturbetreiber in Deutschland nach Bundesnetzagentur-Daten. Das Netz konzentriert sich auf städtische Standorte, Wohngebäude, Firmenparkplätze und Einzelhandelsstandorte mit einem Mix aus AC und DC.",
     features: [
@@ -202,7 +194,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 85,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.9,
     standardPriceAc: 0.55,
     standardPriceDc: 0.64,
     bnetzaAnteil: "Tankstellenintegriertes Netz mit dynamischer Preisgestaltung",
@@ -226,14 +217,13 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 40,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 4.1,
     standardPriceAc: 0.45,
     standardPriceDc: 0.55,
-    bnetzaAnteil: "Norddeutscher Stadtwerke-Marktführer",
+    bnetzaAnteil: "Regionaler CPO im norddeutschen Raum",
     description:
       "EWE Go ist die E-Mobilitäts-Marke des norddeutschen Energieversorgers EWE AG. Das Ladenetz ist besonders stark in Norddeutschland (Niedersachsen, Bremen, Hamburg-Umland) und wächst kontinuierlich. Günstiger Regionaltarif für EWE-Kunden.",
     features: [
-      "Stärkstes Netz in Norddeutschland",
+      "Breite Abdeckung im norddeutschen Raum",
       "Günstige Tarife für EWE-Strom-Kunden",
       "Integration mit EWE-Energie-Produkten",
       "Roaming über mehrere Plattformen",
@@ -250,7 +240,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 25,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.7,
     standardPriceAc: 0.44,
     standardPriceDc: 0.54,
     bnetzaAnteil: "Regionaler Stadtwerke-CPO Rheinland-Pfalz/Saarland",
@@ -277,7 +266,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 10,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.5,
     standardPriceAc: 0.49,
     standardPriceDc: 0.59,
     bnetzaAnteil: "Supermarkt-integriertes Laden (Betrieb durch CPO-Partner)",
@@ -301,10 +289,9 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 5,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.6,
     standardPriceAc: 0.45,
     standardPriceDc: 0.55,
-    bnetzaAnteil: "Größtes Discounter-Ladenetz Deutschlands",
+    bnetzaAnteil: "Discounter-Ladenetz an Filialstandorten",
     description:
       "Lidl betreibt über Tochterunternehmen und CPO-Kooperationen eigene Ladestationen an mehr als 2.400 Ladepunkten in deutschen Filialen. Das Netz wächst stark und zählt nach GoingElectric zu den größten Einzelhandels-Ladenetzen. Bezahlung per App, Karte oder per QR-Code.",
     features: [
@@ -325,7 +312,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 200,
     plugAndCharge: true,
     autocharge: true,
-    appRating: 4.3,
     standardPriceAc: 0.47,
     standardPriceDc: 0.55,
     bnetzaAnteil: "VW-Gruppe-Mobilitätsdienstleister mit Plug-&-Charge-Integration",
@@ -349,7 +335,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 60,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.8,
     standardPriceAc: 0.48,
     standardPriceDc: 0.58,
     bnetzaAnteil: "Schnell wachsender internationaler CPO mit HPC-Fokus",
@@ -373,7 +358,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 40,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.7,
     standardPriceAc: 0.50,
     standardPriceDc: 0.60,
     bnetzaAnteil: "Internationaler CPO-Arm von BP in Deutschland",
@@ -397,7 +381,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 55,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.8,
     standardPriceAc: 0.47,
     standardPriceDc: 0.57,
     bnetzaAnteil: "Skandinavischer CPO mit wachsender DE-Präsenz",
@@ -421,14 +404,13 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 150,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 4.0,
     standardPriceAc: 0.46,
     standardPriceDc: 0.58,
     bnetzaAnteil: "Software-Plattform-CPO mit eigenem Netz in NRW/BY/BW",
     description:
       "ChargePoint ist primär ein Software-Plattformanbieter für Ladestationen-Management, betreibt aber auch eigene Stationen in Deutschland, v.a. in NRW, Bayern und Baden-Württemberg. Das Netz basiert auf Drittanbieter-Hardware mit ChargePoint-Software. Weltweit einer der größten Netzwerke nach Anzahl der Standorte.",
     features: [
-      "Größtes Ladenetz weltweit nach Standorten",
+      "Internationales Ladenetzwerk",
       "ChargePoint-App für alle Partner-Stationen",
       "Flexible Abrechnungsmodelle",
       "Fokus NRW, Bayern, Baden-Württemberg",
@@ -445,7 +427,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 80,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.7,
     standardPriceAc: 0.46,
     standardPriceDc: 0.59,
     bnetzaAnteil: "Niederländischer Anbieter mit starker DE-Hardware-Präsenz",
@@ -469,7 +450,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 30,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 4.1,
     standardPriceAc: 0,
     standardPriceDc: 0.65,
     bnetzaAnteil: "Dänischer HPC-Betreiber mit zunehmender DE-Expansion",
@@ -493,7 +473,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 100,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 4.2,
     standardPriceAc: 0.43,
     standardPriceDc: 0.53,
     bnetzaAnteil: "ADAC-Vertrauensmarke für Mitglieder",
@@ -517,10 +496,9 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 200,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.8,
     standardPriceAc: 0.44,
     standardPriceDc: 0.54,
-    bnetzaAnteil: "Größtes Stadtwerke-Roaming-Netz Deutschlands",
+    bnetzaAnteil: "Stadtwerke-Verbundnetzwerk",
     description:
       "Ladenetz.de ist der Zusammenschluss von über 100 deutschen Stadtwerken und Regionalversorgern unter dem Dach der Bayernwerk Netz. Mit 5.725 Standorten ist es das größte regional verwurzelte Ladenetz Deutschlands. Die Stationen befinden sich vorwiegend in Wohnquartieren, Innenstädten und kommunalen Bereichen.",
     features: [
@@ -541,7 +519,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 5,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.4,
     standardPriceAc: 0.43,
     standardPriceDc: 0.53,
     bnetzaAnteil: "Großmarkt-integriertes Laden (Kaufland-Standorte)",
@@ -565,7 +542,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 10,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.3,
     standardPriceAc: 0.46,
     standardPriceDc: 0.56,
     bnetzaAnteil: "Dezentrale Einzelhandels-Ladestationen (regionale EDEKA-Verbünde)",
@@ -589,7 +565,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 20,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.9,
     standardPriceAc: 0.43,
     standardPriceDc: 0.53,
     bnetzaAnteil: "Regionaler Stadtwerke-CPO Aachener Stadtgebiet",
@@ -613,7 +588,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 70,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.9,
     standardPriceAc: 0.46,
     standardPriceDc: 0.56,
     bnetzaAnteil: "Energiekonzern-CPO mit Fokus auf Westdeutschland",
@@ -637,7 +611,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 65,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 4.0,
     standardPriceAc: 0.47,
     standardPriceDc: 0.44, // electrive.net März 2026: Senkung auf 0,44-0,49 €/kWh DC
     bnetzaAnteil: "Transparenter CPO mit gesenkten HPC-Preisen 2026",
@@ -661,7 +634,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 15,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.8,
     standardPriceAc: 0.44,
     standardPriceDc: 0.54,
     bnetzaAnteil: "Regionaler CPO für die Niederrhein-Region",
@@ -685,7 +657,6 @@ export const OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 5,
     plugAndCharge: false,
     autocharge: false,
-    appRating: 3.3,
     standardPriceAc: 0.44,
     standardPriceDc: 0.54,
     bnetzaAnteil: "Discounter-integriertes Laden, Eigenregie",

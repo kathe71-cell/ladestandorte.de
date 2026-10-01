@@ -50,6 +50,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/autobahnen" className="hover:text-emerald-400 transition-colors">Autobahnen A1 bis A99</Link></li>
               <li><Link to="/autobahnen/a3" className="hover:text-emerald-400 transition-colors">A3 Ladekorridor</Link></li>
               <li><Link to="/autobahnen/a7" className="hover:text-emerald-400 transition-colors">A7 Schnelllader</Link></li>
+              <li><Link to="/mcs" className="hover:text-emerald-400 transition-colors font-medium text-emerald-300">MCS &amp; E-Lkw Hubs</Link></li>
               <li><Link to="/betreiber" className="hover:text-emerald-400 transition-colors">Alle CPOs im Vergleich</Link></li>
             </ul>
           </div>

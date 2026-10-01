@@ -76,7 +76,37 @@
     <loc>https://www.ladestandorte.de/glossar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/ladestationen</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/was-ist-mcs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/mcs-vs-ccs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/lkw-laden</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-10-01</lastmod>
   </url>
   <url>
     <loc>https://www.ladestandorte.de/impressum</loc>

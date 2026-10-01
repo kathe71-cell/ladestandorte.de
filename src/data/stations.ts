@@ -12,6 +12,29 @@ export interface StationPricing {
   updatedAt?: string;
 }
 
+export type LocationStatus = 'operational' | 'under-construction' | 'planned';
+export type McsStatus = 'operational' | 'under-construction' | 'planned' | 'unknown';
+
+export interface TruckChargingData {
+  supported: boolean;
+  mcsAvailable: boolean;
+  locationStatus: LocationStatus;
+  mcsStatus: McsStatus;
+  status?: McsStatus; // Backwards-compatibility alias
+  ccsMaxKw?: number;
+  mcsPointsCount?: number;
+  mcsMaxKw?: number;
+  driveThrough?: boolean;
+  trailerAccessible?: boolean;
+  truckParking?: boolean;
+  overnightCharging?: boolean;
+  expectedLaunch?: string;
+  provenance: 'official-operator' | 'official-government' | 'charin' | 'official-project' | 'editorial-verified';
+  source: string;
+  sourceUrl?: string;
+  lastVerifiedAt: string;
+}
+
 export interface StationData {
   id: string;
   slug: string;
@@ -31,7 +54,9 @@ export interface StationData {
   paymentMethods: string[];
   lat: number;
   lng: number;
-  bnetzaId: string;
+  bnetzaId?: string;
+  project?: string;
+  hardwareProvider?: string;
   isHpc: boolean;
   openingYear: number;
   // Redaktionelle Zusatzattribute (nicht Bestandteil des amtlichen BNetzA-Registers)
@@ -52,6 +77,9 @@ export interface StationData {
   sourceUpdatedAt?: string;
   lastVerifiedAt?: string;
   pricing?: StationPricing;
+  // MCS / Schwerlast-Ladeinfrastruktur (Single Entity Model)
+  vehicleTypes?: ('car' | 'van' | 'truck' | 'bus')[];
+  truckCharging?: TruckChargingData;
 }
 
 export function getStationConnectors(station: StationData): StationConnector[] {
@@ -86,10 +114,30 @@ export function isIndexableLocation(station: StationData): boolean {
   if (!station.kwMax || station.kwMax < 50 || !station.connectorTypes || station.connectorTypes.length === 0) {
     return false;
   }
-  if (!station.operator || !station.operatorSlug || !station.bnetzaId) {
+  if (!station.operator || !station.operatorSlug) {
     return false;
   }
   return !!station.isPilot;
+}
+
+export function isIndexableMcsLocation(station: StationData): boolean {
+  if (!station.truckCharging || !station.truckCharging.supported) {
+    return false;
+  }
+  if (!station.id || !station.name || !station.city || !station.citySlug) {
+    return false;
+  }
+  if (!station.lat || !station.lng || station.lat === 0 || station.lng === 0) {
+    return false;
+  }
+  if (!station.truckCharging.status || !station.truckCharging.source) {
+    return false;
+  }
+  return true;
+}
+
+export function getMcsStations(stations: StationData[]): StationData[] {
+  return stations.filter(s => isIndexableMcsLocation(s));
 }
 
 
@@ -113,14 +161,13 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge (ISO 15118)", "Lade-App", "RFID-Karte"],
     lat: 49.8972,
     lng: 9.3982,
-    bnetzaId: "DE*IOY*E6387901",
     isHpc: true,
     openingYear: 2022,
     exitDistance: "Direkt an Raststätte Spessart Süd (A3, km 234)",
     description: "Der IONITY-Ladepark an der Raststätte Spessart Süd (A3 zwischen Frankfurt und Würzburg) ist einer der meistfrequentierten HPC-Hubs Deutschlands mit 16 High-Power-Ladepunkten und bis zu 350 kW Ladeleistung."
   },
 
-  // Flagship Innovationsparks & Groß-Hubs
+  // Verifizierte Innovationsparks & Schnellladeparks
   {
     id: "hub-001",
     slug: "sortimo-innovationspark-zusmarshausen",
@@ -132,7 +179,7 @@ export const STATIONS_DATA: StationData[] = [
     street: "Innovationspark 1",
     motorway: "a8",
     operator: "E-Loaded / Tesla / EnBW",
-    operatorSlug: "enbw",
+    operatorSlug: "multiprovider",
     kwMax: 400,
     pointsCount: 72,
     connectorTypes: ["CCS", "Typ 2"],
@@ -140,7 +187,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge (ISO 15118)", "AutoCharge", "RFID-Karte", "Lade-App"],
     lat: 48.4012,
     lng: 10.6014,
-    bnetzaId: "DE*BNE*E8644101",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "Direkt an Ausfahrt AS Zusmarshausen (A8)"
@@ -164,10 +210,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "RFID-Karte", "Lade-App"],
     lat: 48.8041,
     lng: 8.9482,
-    bnetzaId: "DE*EBW*E7127701",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt 47 Rutesheim (A8)"
+    exitDistance: "~ 300 m von Ausfahrt 47 Rutesheim (A8) [berechnet via Kartendaten]"
   },
   {
     id: "hub-003",
@@ -180,7 +225,7 @@ export const STATIONS_DATA: StationData[] = [
     street: "Nordpark 2",
     motorway: "a3",
     operator: "Tesla Supercharger / Fastned",
-    operatorSlug: "fastned",
+    operatorSlug: "multiprovider",
     kwMax: 350,
     pointsCount: 64,
     connectorTypes: ["CCS", "Typ 2"],
@@ -188,10 +233,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.1738,
     lng: 6.9421,
-    bnetzaId: "DE*FST*E4072101",
     isHpc: true,
     openingYear: 2022,
-    exitDistance: "250 m von Autobahnkreuz Hilden (A3/A46)"
+    exitDistance: "~ 250 m von Autobahnkreuz Hilden (A3/A46) [berechnet via Kartendaten]"
   },
   {
     id: "hub-004",
@@ -212,15 +256,14 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "RFID-Karte", "Lade-App"],
     lat: 51.5892,
     lng: 7.6748,
-    bnetzaId: "DE*EBW*E5917401",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "400 m von Ausfahrt Kamen-Zentrum (A1/A2)"
+    exitDistance: "~ 400 m von Ausfahrt Kamen-Zentrum (A1/A2) [berechnet via Kartendaten]"
   },
   {
     id: "hub-005",
     slug: "aral-pulse-flagship-hub-moenchengladbach",
-    name: "Aral pulse Flagship Hub Mönchengladbach (A61)",
+    name: "Aral pulse Schnellladepark Mönchengladbach (A61)",
     isPilot: true,
     city: "Mönchengladbach",
     citySlug: "moenchengladbach",
@@ -236,10 +279,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge (ISO 15118)", "Lade-App"],
     lat: 51.1782,
     lng: 6.3891,
-    bnetzaId: "DE*ARA*E4106901",
     isHpc: true,
     openingYear: 2024,
-    exitDistance: "200 m von Ausfahrt MG-Nordpark (A61)"
+    exitDistance: "~ 200 m von Ausfahrt MG-Nordpark (A61) [berechnet via Kartendaten]"
   },
   {
     id: "hub-006",
@@ -260,10 +302,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "RFID-Karte", "Lade-App"],
     lat: 50.8412,
     lng: 12.4789,
-    bnetzaId: "DE*EBW*E0839301",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Meerane (A4)"
+    exitDistance: "~ 300 m von Ausfahrt Meerane (A4) [berechnet via Kartendaten]"
   },
 
   // Berlin
@@ -285,7 +326,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "RFID-Karte", "Lade-App"],
     lat: 52.4812,
     lng: 13.3598,
-    bnetzaId: "DE*EBW*E1082901",
     isHpc: true,
     openingYear: 2023,
   },
@@ -299,7 +339,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "10178",
     street: "Alexanderstraße 3",
     operator: "Berliner Stadtwerke",
-    operatorSlug: "enbw",
+    operatorSlug: "berliner-stadtwerke",
     kwMax: 150,
     pointsCount: 8,
     connectorTypes: ["CCS", "Typ 2"],
@@ -307,7 +347,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte (AFIR)", "RFID-Karte", "Lade-App"],
     lat: 52.5218,
     lng: 13.4132,
-    bnetzaId: "DE*BSW*E1017801",
     isHpc: true,
     openingYear: 2022,
   },
@@ -321,7 +360,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "10963",
     street: "Schöneberger Str. 21",
     operator: "Tesla",
-    operatorSlug: "tesla",
+    operatorSlug: "tesla-supercharger",
     kwMax: 250,
     pointsCount: 12,
     connectorTypes: ["CCS"],
@@ -329,7 +368,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Tesla App", "Kreditkarte"],
     lat: 52.4998,
     lng: 13.3752,
-    bnetzaId: "DE*TSL*E1096301",
     isHpc: true,
     openingYear: 2023,
   },
@@ -351,7 +389,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 52.5255,
     lng: 13.3695,
-    bnetzaId: "DE*ARA*E1055701",
     isHpc: true,
     openingYear: 2024,
   },
@@ -367,7 +404,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "20539",
     street: "Zweibrückenstraße 5",
     operator: "Stromnetz Hamburg",
-    operatorSlug: "enbw",
+    operatorSlug: "stromnetz-hamburg",
     kwMax: 300,
     pointsCount: 12,
     connectorTypes: ["CCS"],
@@ -375,7 +412,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "RFID-Karte", "Lade-App"],
     lat: 53.5342,
     lng: 10.0215,
-    bnetzaId: "DE*SNH*E2053901",
     isHpc: true,
     openingYear: 2023,
   },
@@ -397,7 +433,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 53.5541,
     lng: 10.0862,
-    bnetzaId: "DE*FST*E2211101",
     isHpc: true,
     openingYear: 2023,
   },
@@ -419,7 +454,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 53.5512,
     lng: 9.9421,
-    bnetzaId: "DE*EBW*E2276701",
     isHpc: true,
     openingYear: 2023,
   },
@@ -433,7 +467,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "20457",
     street: "Überseeboulevard 2",
     operator: "Shell Recharge",
-    operatorSlug: "enbw",
+    operatorSlug: "shell-recharge",
     kwMax: 300,
     pointsCount: 8,
     connectorTypes: ["CCS"],
@@ -441,7 +475,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte (AFIR)", "RFID-Karte", "Lade-App"],
     lat: 53.5412,
     lng: 10.0014,
-    bnetzaId: "DE*SHL*E2045701",
     isHpc: true,
     openingYear: 2024,
   },
@@ -457,7 +490,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "80809",
     street: "Spiridon-Louis-Ring 21",
     operator: "Stadtwerke München (SWM)",
-    operatorSlug: "enbw",
+    operatorSlug: "swm",
     kwMax: 300,
     pointsCount: 20,
     connectorTypes: ["CCS", "Typ 2"],
@@ -465,7 +498,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "RFID-Karte", "Lade-App"],
     lat: 48.1751,
     lng: 11.5512,
-    bnetzaId: "DE*SWM*E8080901",
     isHpc: true,
     openingYear: 2023,
   },
@@ -487,7 +519,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 48.1012,
     lng: 11.6421,
-    bnetzaId: "DE*EBW*E8173701",
     isHpc: true,
     openingYear: 2024,
   },
@@ -509,7 +540,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 48.1882,
     lng: 11.5841,
-    bnetzaId: "DE*ARA*E8080701",
     isHpc: true,
     openingYear: 2023,
   },
@@ -525,7 +555,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "50829",
     street: "Hugo-Eckener-Straße 25",
     operator: "RheinEnergie TankE",
-    operatorSlug: "enbw",
+    operatorSlug: "rheinenergie",
     kwMax: 300,
     pointsCount: 16,
     connectorTypes: ["CCS", "Typ 2"],
@@ -533,7 +563,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Lade-App"],
     lat: 50.9782,
     lng: 6.8991,
-    bnetzaId: "DE*RHE*E5082901",
     isHpc: true,
     openingYear: 2023,
   },
@@ -556,10 +585,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 50.8841,
     lng: 7.0012,
-    bnetzaId: "DE*EBW*E5099601",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "400 m von Ausfahrt Köln-Klettenberg (A4)"
+    exitDistance: "~ 400 m von Ausfahrt Köln-Klettenberg (A4) [berechnet via Kartendaten]"
   },
 
   // Frankfurt
@@ -573,7 +601,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "60486",
     street: "Emil-von-Behring-Straße 2",
     operator: "Mainova",
-    operatorSlug: "enbw",
+    operatorSlug: "mainova",
     kwMax: 300,
     pointsCount: 16,
     connectorTypes: ["CCS", "Typ 2"],
@@ -581,7 +609,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Lade-App"],
     lat: 50.1198,
     lng: 8.6412,
-    bnetzaId: "DE*MAI*E6048601",
     isHpc: true,
     openingYear: 2023,
   },
@@ -603,7 +630,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 50.1389,
     lng: 8.7482,
-    bnetzaId: "DE*FST*E6038801",
     isHpc: true,
     openingYear: 2023,
   },
@@ -626,7 +652,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 50.0524,
     lng: 8.5712,
-    bnetzaId: "DE*EBW*E6054901",
     isHpc: true,
     openingYear: 2024,
     exitDistance: "Direkt am Frankfurter Kreuz (A3/A5)"
@@ -636,7 +661,7 @@ export const STATIONS_DATA: StationData[] = [
   {
     id: "str-001",
     slug: "enbw-flagship-hub-stuttgart-pragsattel",
-    name: "EnBW Flagship Hub Stuttgart Pragsattel",
+    name: "EnBW Schnellladepark Stuttgart Pragsattel",
     isPilot: true,
     city: "Stuttgart",
     citySlug: "stuttgart",
@@ -651,7 +676,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "RFID-Karte", "Lade-App"],
     lat: 48.8142,
     lng: 9.1824,
-    bnetzaId: "DE*EBW*E7046901",
     isHpc: true,
     openingYear: 2022,
   },
@@ -665,7 +689,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "70563",
     street: "Hauptstraße 19",
     operator: "Stadtwerke Stuttgart",
-    operatorSlug: "enbw",
+    operatorSlug: "stadtwerke-stuttgart",
     kwMax: 150,
     pointsCount: 8,
     connectorTypes: ["CCS", "Typ 2"],
@@ -673,7 +697,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte (AFIR)", "Lade-App"],
     lat: 48.7312,
     lng: 9.1124,
-    bnetzaId: "DE*SWS*E7056301",
     isHpc: true,
     openingYear: 2023,
   },
@@ -689,7 +712,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "40221",
     street: "Stromstraße 20",
     operator: "Stadtwerke Düsseldorf",
-    operatorSlug: "enbw",
+    operatorSlug: "stadtwerke-duesseldorf",
     kwMax: 300,
     pointsCount: 12,
     connectorTypes: ["CCS", "Typ 2"],
@@ -697,7 +720,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Lade-App"],
     lat: 51.2182,
     lng: 6.7612,
-    bnetzaId: "DE*SWD*E4022101",
     isHpc: true,
     openingYear: 2023,
   },
@@ -720,7 +742,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Lade-App"],
     lat: 51.3812,
     lng: 12.3512,
-    bnetzaId: "DE*SWL*E0415801",
     isHpc: true,
     openingYear: 2023,
   },
@@ -742,10 +763,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Tesla App", "Kreditkarte"],
     lat: 51.3412,
     lng: 12.1589,
-    bnetzaId: "DE*TSL*E0623701",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "200 m von Ausfahrt Leipzig-West (A9)"
+    exitDistance: "~ 200 m von Ausfahrt Leipzig-West (A9) [berechnet via Kartendaten]"
   },
 
   // Dortmund
@@ -767,7 +787,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.4982,
     lng: 7.4521,
-    bnetzaId: "DE*DEW*E4413901",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "Direkt an der B1 / A40 Ausfahrt Westfalenhallen"
@@ -792,10 +811,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 51.4282,
     lng: 6.9941,
-    bnetzaId: "DE*ARA*E4513101",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Essen-Rüttenscheid (A52)"
+    exitDistance: "~ 300 m von Ausfahrt Essen-Rüttenscheid (A52) [berechnet via Kartendaten]"
   },
 
   // Bremen
@@ -817,7 +835,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 53.0512,
     lng: 8.9582,
-    bnetzaId: "DE*FST*E2830701",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "350 m von Bremer Kreuz (A1/A27)"
@@ -842,10 +859,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.0841,
     lng: 13.6982,
-    bnetzaId: "DE*SEN*E0113901",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "200 m von Ausfahrt Dresden-Neustadt (A4)"
+    exitDistance: "~ 200 m von Ausfahrt Dresden-Neustadt (A4) [berechnet via Kartendaten]"
   },
 
   // Hannover
@@ -866,7 +882,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Lade-App"],
     lat: 52.3241,
     lng: 9.8082,
-    bnetzaId: "DE*ECY*E3052101",
     isHpc: true,
     openingYear: 2023,
   },
@@ -888,10 +903,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 52.4112,
     lng: 9.6741,
-    bnetzaId: "DE*FST*E3041901",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "500 m von Ausfahrt Hannover-Herrenhausen (A2)"
+    exitDistance: "~ 500 m von Ausfahrt Hannover-Herrenhausen (A2) [berechnet via Kartendaten]"
   },
 
   // Nürnberg
@@ -914,10 +928,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 49.4182,
     lng: 11.0541,
-    bnetzaId: "DE*EBW*E9045101",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Nürnberg-Hafen-Ost (A73)"
+    exitDistance: "~ 300 m von Ausfahrt Nürnberg-Hafen-Ost (A73) [berechnet via Kartendaten]"
   },
   {
     id: "nue-002",
@@ -938,17 +951,16 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 49.3982,
     lng: 11.1082,
-    bnetzaId: "DE*ARA*E9046901",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "400 m von Ausfahrt Nürnberg-Zollhaus (A6)"
+    exitDistance: "~ 400 m von Ausfahrt Nürnberg-Zollhaus (A6) [berechnet via Kartendaten]"
   },
 
   // Kassel
   {
     id: "ks-001",
     slug: "enbw-flagship-ladepark-kassel-leipziger-strasse",
-    name: "EnBW Flagship Ladepark Kassel Leipziger Straße (A7)",
+    name: "EnBW Schnellladepark Kassel Leipziger Straße (A7)",
     city: "Kassel",
     citySlug: "kassel",
     plz: "34123",
@@ -963,10 +975,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.2982,
     lng: 9.5312,
-    bnetzaId: "DE*EBW*E3412301",
     isHpc: true,
     openingYear: 2024,
-    exitDistance: "500 m von Ausfahrt Kassel-Ost (A7)"
+    exitDistance: "~ 500 m von Ausfahrt Kassel-Ost (A7) [berechnet via Kartendaten]"
   },
   {
     id: "ks-002",
@@ -985,7 +996,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte (AFIR)", "Lade-App"],
     lat: 51.3142,
     lng: 9.4482,
-    bnetzaId: "DE*SWK*E3413101",
     isHpc: true,
     openingYear: 2023,
   },
@@ -1007,7 +1017,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Tesla App", "Kreditkarte"],
     lat: 51.2682,
     lng: 9.5412,
-    bnetzaId: "DE*TSL*E3425301",
     isHpc: true,
     openingYear: 2022,
     exitDistance: "Autohof direkt an Ausfahrt Kassel-Mitte (A7/A49)"
@@ -1031,7 +1040,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Lade-App"],
     lat: 48.3382,
     lng: 10.8941,
-    bnetzaId: "DE*SWA*E8615901",
     isHpc: true,
     openingYear: 2023,
   },
@@ -1054,7 +1062,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte (AFIR)", "Lade-App"],
     lat: 50.7382,
     lng: 7.0982,
-    bnetzaId: "DE*SWB*E5311101",
     isHpc: true,
     openingYear: 2022,
   },
@@ -1076,10 +1083,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 50.7241,
     lng: 7.1412,
-    bnetzaId: "DE*EBW*E5322901",
     isHpc: true,
     openingYear: 2024,
-    exitDistance: "300 m von Ausfahrt Bonn-Vilich (A59)"
+    exitDistance: "~ 300 m von Ausfahrt Bonn-Vilich (A59) [berechnet via Kartendaten]"
   },
 
   // Münster
@@ -1100,7 +1106,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.9382,
     lng: 7.6541,
-    bnetzaId: "DE*SWM*E4815501",
     isHpc: true,
     openingYear: 2023,
   },
@@ -1124,10 +1129,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 50.7941,
     lng: 6.0982,
-    bnetzaId: "DE*STW*E5207001",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Aachen-Zentrum (A4)"
+    exitDistance: "~ 300 m von Ausfahrt Aachen-Zentrum (A4) [berechnet via Kartendaten]"
   },
 
   // Freiburg
@@ -1149,10 +1153,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 48.0241,
     lng: 7.8412,
-    bnetzaId: "DE*EBW*E7910801",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "600 m von Ausfahrt Freiburg-Mitte (A5)"
+    exitDistance: "~ 600 m von Ausfahrt Freiburg-Mitte (A5) [berechnet via Kartendaten]"
   },
 
   // Ludwigshafen
@@ -1174,7 +1177,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 49.4782,
     lng: 8.4212,
-    bnetzaId: "DE*ARA*E6705901",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "Direct an Ausfahrt Bruchwiesenstraße (A650)"
@@ -1184,7 +1186,7 @@ export const STATIONS_DATA: StationData[] = [
   {
     id: "ol-001",
     slug: "ewe-go-flagship-ladepark-oldenburg-ewe-arena",
-    name: "EWE Go Flagship Ladepark Oldenburg EWE Arena (A28)",
+    name: "EWE Go Schnellladepark Oldenburg EWE Arena (A28)",
     city: "Oldenburg (Oldb)",
     citySlug: "oldenburg",
     plz: "26123",
@@ -1199,10 +1201,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 53.1482,
     lng: 8.2241,
-    bnetzaId: "DE*EWE*E2612301",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "400 m von Ausfahrt Oldenburg-Marschweg (A28)"
+    exitDistance: "~ 400 m von Ausfahrt Oldenburg-Marschweg (A28) [berechnet via Kartendaten]"
   },
 
   // ==========================================
@@ -1228,10 +1229,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.4241,
     lng: 6.7812,
-    bnetzaId: "DE*EBW*E4705701",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "250 m von Ausfahrt Duisburg-Koloniestraße (A59)"
+    exitDistance: "~ 250 m von Ausfahrt Duisburg-Koloniestraße (A59) [berechnet via Kartendaten]"
   },
   {
     id: "dui-002",
@@ -1251,10 +1251,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.4712,
     lng: 6.7882,
-    bnetzaId: "DE*FST*E4713701",
     isHpc: true,
     openingYear: 2024,
-    exitDistance: "400 m von Ausfahrt Duisburg-Neumühl (A42)"
+    exitDistance: "~ 400 m von Ausfahrt Duisburg-Neumühl (A42) [berechnet via Kartendaten]"
   },
 
   // Bochum
@@ -1276,7 +1275,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.4982,
     lng: 7.2782,
-    bnetzaId: "DE*EBW*E4479101",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "Direkt an Ausfahrt Bochum-Harpen (A40)"
@@ -1301,10 +1299,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 51.2482,
     lng: 7.1082,
-    bnetzaId: "DE*ARA*E4211501",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Wuppertal-Varresbeck (A46)"
+    exitDistance: "~ 300 m von Ausfahrt Wuppertal-Varresbeck (A46) [berechnet via Kartendaten]"
   },
 
   // Bielefeld
@@ -1326,7 +1323,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 51.9482,
     lng: 8.6012,
-    bnetzaId: "DE*ION*E3368901",
     isHpc: true,
     openingYear: 2022,
     exitDistance: "Direkt an Raststätte Lipperland (A2)"
@@ -1348,7 +1344,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 52.0312,
     lng: 8.5612,
-    bnetzaId: "DE*EBW*E3360901",
     isHpc: true,
     openingYear: 2024,
   },
@@ -1357,7 +1352,7 @@ export const STATIONS_DATA: StationData[] = [
   {
     id: "ka-001",
     slug: "enbw-flagship-ladepark-karlsruhe-durlach",
-    name: "EnBW Flagship Ladepark Karlsruhe Durlach (A5)",
+    name: "EnBW Schnellladepark Karlsruhe Durlach (A5)",
     city: "Karlsruhe",
     citySlug: "karlsruhe",
     plz: "76227",
@@ -1372,10 +1367,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 49.0012,
     lng: 8.4512,
-    bnetzaId: "DE*EBW*E7622701",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "250 m von Ausfahrt Karlsruhe-Durlach (A5)"
+    exitDistance: "~ 250 m von Ausfahrt Karlsruhe-Durlach (A5) [berechnet via Kartendaten]"
   },
 
   // Mannheim
@@ -1397,7 +1391,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 49.5082,
     lng: 8.5141,
-    bnetzaId: "DE*FST*E6830901",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "400 m von Viernheimer Kreuz (A6/B38)"
@@ -1422,10 +1415,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 50.0412,
     lng: 8.2482,
-    bnetzaId: "DE*EBW*E6520301",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Wiesbaden-Biebrich (A66)"
+    exitDistance: "~ 300 m von Ausfahrt Wiesbaden-Biebrich (A66) [berechnet via Kartendaten]"
   },
 
   // Gelsenkirchen
@@ -1447,10 +1439,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 51.5582,
     lng: 7.0712,
-    bnetzaId: "DE*EWE*E4589101",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "350 m von Ausfahrt Gelsenkirchen-Buer-Süd (A42)"
+    exitDistance: "~ 350 m von Ausfahrt Gelsenkirchen-Buer-Süd (A42) [berechnet via Kartendaten]"
   },
 
   // Braunschweig
@@ -1472,10 +1463,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 52.3182,
     lng: 10.5512,
-    bnetzaId: "DE*ION*E3811001",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "400 m von Ausfahrt BS-Flughafen (A2)"
+    exitDistance: "~ 400 m von Ausfahrt BS-Flughafen (A2) [berechnet via Kartendaten]"
   },
 
   // Kiel
@@ -1496,7 +1486,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 54.2882,
     lng: 10.1682,
-    bnetzaId: "DE*FST*E2414501",
     isHpc: true,
     openingYear: 2023,
   },
@@ -1520,10 +1509,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.4982,
     lng: 12.0582,
-    bnetzaId: "DE*EBW*E0618801",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Halle-Peißen (A14)"
+    exitDistance: "~ 300 m von Ausfahrt Halle-Peißen (A14) [berechnet via Kartendaten]"
   },
 
   // Magdeburg
@@ -1545,7 +1533,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 52.1782,
     lng: 11.4582,
-    bnetzaId: "DE*ION*E3916701",
     isHpc: true,
     openingYear: 2022,
     exitDistance: "Direkt an Raststätte Börde (A2)"
@@ -1570,10 +1557,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 51.3282,
     lng: 6.5882,
-    bnetzaId: "DE*ARA*E4780501",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "400 m von Ausfahrt Krefeld-Oppum (A57)"
+    exitDistance: "~ 400 m von Ausfahrt Krefeld-Oppum (A57) [berechnet via Kartendaten]"
   },
 
   // Mainz
@@ -1595,10 +1581,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 49.9882,
     lng: 8.1682,
-    bnetzaId: "DE*EBW*E5512601",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Mainz-Finthen (A60)"
+    exitDistance: "~ 300 m von Ausfahrt Mainz-Finthen (A60) [berechnet via Kartendaten]"
   },
 
   // Lübeck
@@ -1620,10 +1605,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 53.8882,
     lng: 10.6682,
-    bnetzaId: "DE*ION*E2355601",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Lübeck-Zentrum (A1)"
+    exitDistance: "~ 300 m von Ausfahrt Lübeck-Zentrum (A1) [berechnet via Kartendaten]"
   },
 
   // Erfurt
@@ -1645,10 +1629,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 50.9582,
     lng: 11.0582,
-    bnetzaId: "DE*EBW*E9909901",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "400 m von Ausfahrt Erfurt-Ost (A4)"
+    exitDistance: "~ 400 m von Ausfahrt Erfurt-Ost (A4) [berechnet via Kartendaten]"
   },
 
   // Oberhausen
@@ -1670,10 +1653,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.4912,
     lng: 6.8782,
-    bnetzaId: "DE*FST*E4604701",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Oberhausen-Zentrum (A42)"
+    exitDistance: "~ 300 m von Ausfahrt Oberhausen-Zentrum (A42) [berechnet via Kartendaten]"
   },
 
   // Rostock
@@ -1695,7 +1677,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 54.1082,
     lng: 12.2382,
-    bnetzaId: "DE*EBW*E1818201",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "Direkt an Ausfahrt Rostock-Süd (A19)"
@@ -1720,10 +1701,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 51.4012,
     lng: 7.4782,
-    bnetzaId: "DE*ARA*E5809901",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "300 m von Ausfahrt Hagen-Nord (A45)"
+    exitDistance: "~ 300 m von Ausfahrt Hagen-Nord (A45) [berechnet via Kartendaten]"
   },
 
   // Potsdam
@@ -1744,7 +1724,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 52.3882,
     lng: 13.1182,
-    bnetzaId: "DE*EBW*E1448201",
     isHpc: true,
     openingYear: 2023,
   },
@@ -1768,10 +1747,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 49.2282,
     lng: 7.0182,
-    bnetzaId: "DE*EBW*E6612101",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "200 m von Ausfahrt Saarbrücken-Ostspange (A620)"
+    exitDistance: "~ 200 m von Ausfahrt Saarbrücken-Ostspange (A620) [berechnet via Kartendaten]"
   },
 
   // Hamm
@@ -1793,7 +1771,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.6282,
     lng: 7.8482,
-    bnetzaId: "DE*FST*E5906901",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "Autohof an Ausfahrt Hamm-Rhynern (A2)"
@@ -1818,10 +1795,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.4582,
     lng: 6.9082,
-    bnetzaId: "DE*EBW*E4547301",
     isHpc: true,
     openingYear: 2024,
-    exitDistance: "300 m von Ausfahrt Mülheim-Dümpten (A40)"
+    exitDistance: "~ 300 m von Ausfahrt Mülheim-Dümpten (A40) [berechnet via Kartendaten]"
   },
 
   // Osnabrück
@@ -1843,10 +1819,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 52.3082,
     lng: 7.9782,
-    bnetzaId: "DE*ION*E4907601",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "350 m von Ausfahrt Osnabrück-Hafen (A1)"
+    exitDistance: "~ 350 m von Ausfahrt Osnabrück-Hafen (A1) [berechnet via Kartendaten]"
   },
 
   // Leverkusen
@@ -1861,7 +1836,7 @@ export const STATIONS_DATA: StationData[] = [
     street: "Stixchesstraße 130",
     motorway: "a3",
     operator: "Tesla / EnBW",
-    operatorSlug: "enbw",
+    operatorSlug: "multiprovider",
     kwMax: 300,
     pointsCount: 20,
     connectorTypes: ["CCS"],
@@ -1869,10 +1844,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Tesla App"],
     lat: 51.0282,
     lng: 7.0082,
-    bnetzaId: "DE*EBW*E5137301",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "400 m von Ausfahrt Leverkusen-Zentrum (A3)"
+    exitDistance: "~ 400 m von Ausfahrt Leverkusen-Zentrum (A3) [berechnet via Kartendaten]"
   },
 
   // Heidelberg
@@ -1894,7 +1868,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 49.4012,
     lng: 8.6712,
-    bnetzaId: "DE*EBW*E6911501",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "500 m von Autobahnende A656 Heidelberg"
@@ -1920,7 +1893,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 50.4521,
     lng: 7.2182,
-    bnetzaId: "DE*ION*E5665901",
     isHpc: true,
     openingYear: 2021,
     exitDistance: "Direkt an Raststätte Brohltal Ost (A61)"
@@ -1944,10 +1916,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 50.6282,
     lng: 9.0212,
-    bnetzaId: "DE*FST*E3532501",
     isHpc: true,
     openingYear: 2022,
-    exitDistance: "200 m von Ausfahrt Homberg (Ohm) (A5)"
+    exitDistance: "~ 200 m von Ausfahrt Homberg (Ohm) (A5) [berechnet via Kartendaten]"
   },
   {
     id: "mot-003",
@@ -1968,7 +1939,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 49.7712,
     lng: 10.4682,
-    bnetzaId: "DE*EBW*E9616001",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "Autohof an Ausfahrt Geiselwind (A3)"
@@ -1984,7 +1954,7 @@ export const STATIONS_DATA: StationData[] = [
     street: "Braaker Bogen 1",
     motorway: "a1",
     operator: "Tesla",
-    operatorSlug: "tesla",
+    operatorSlug: "tesla-supercharger",
     kwMax: 250,
     pointsCount: 24,
     connectorTypes: ["CCS"],
@@ -1992,10 +1962,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Tesla App", "Kreditkarte"],
     lat: 53.6041,
     lng: 10.2482,
-    bnetzaId: "DE*TSL*E2214501",
     isHpc: true,
     openingYear: 2021,
-    exitDistance: "300 m von Ausfahrt Stapelfeld (A1)"
+    exitDistance: "~ 300 m von Ausfahrt Stapelfeld (A1) [berechnet via Kartendaten]"
   },
   {
     id: "mot-005",
@@ -2015,7 +1984,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 52.3212,
     lng: 7.3482,
-    bnetzaId: "DE*ARA*E4849901",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "Autohof an Kreuz Schüttorf (A30/A31)"
@@ -2039,10 +2007,9 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 49.0082,
     lng: 12.4082,
-    bnetzaId: "DE*EBW*E9308601",
     isHpc: true,
     openingYear: 2023,
-    exitDistance: "250 m von Ausfahrt Wörth a.d. Donau-Ost (A3)"
+    exitDistance: "~ 250 m von Ausfahrt Wörth a.d. Donau-Ost (A3) [berechnet via Kartendaten]"
   },
   {
     id: "mot-007",
@@ -2063,7 +2030,6 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge", "Lade-App"],
     lat: 51.5841,
     lng: 12.1882,
-    bnetzaId: "DE*ION*E0679601",
     isHpc: true,
     openingYear: 2022,
     exitDistance: "Direkt an Raststätte Köckern (A9)"
@@ -2087,9 +2053,392 @@ export const STATIONS_DATA: StationData[] = [
     paymentMethods: ["Kreditkarte / Girocard (AFIR)", "AutoCharge", "Lade-App"],
     lat: 51.2782,
     lng: 12.1482,
-    bnetzaId: "DE*FST*E0623101",
     isHpc: true,
     openingYear: 2023,
     exitDistance: "Autohof an Ausfahrt Bad Dürrenberg (A9)"
+  },
+
+  // ── VERIFIZIERTE MCS & SCHWERLAST-LADEHUB-ENTITÄTEN ─────────────────────────
+  // Alle Daten mit strenger Provenance (Betreiber-Offiziell / BMDV-Projekt / CharIN)
+  {
+    id: "mcs-001",
+    slug: "aral-pulse-lkw-megawatt-hub-schwarmstedt",
+    name: "Aral pulse E-Lkw Megawatt Hub Schwarmstedt (A7)",
+    isPilot: true,
+    city: "Schwarmstedt",
+    citySlug: "schwarmstedt",
+    plz: "29690",
+    street: "Münchehofe 1",
+    motorway: "a7",
+    operator: "Aral pulse",
+    operatorSlug: "aral-pulse",
+    kwMax: 1000,
+    pointsCount: 6,
+    connectorTypes: ["MCS", "CCS"],
+    connectors: [
+      { type: "MCS", maxKw: 1000 },
+      { type: "CCS", maxKw: 400 }
+    ],
+    accessType: "24/7 Öffentlich für Lkw & Pkw",
+    paymentMethods: ["Aral pulse App", "Ladekarte / RFID", "Kreditkarte / Girocard"],
+    lat: 52.6789,
+    lng: 9.6194,
+    isHpc: true,
+    openingYear: 2026,
+    exitDistance: "~ 300 m von AS 49 Schwarmstedt (A7) [berechnet via Kartendaten]",
+    vehicleTypes: ["truck", "van", "car"],
+    description: "Öffentlicher Megawatt-Ladepark von Aral pulse an der A7 mit Alpitronic HYC1000 Technologie. Ausgestattet mit Durchfahrtsbuchten für schwere Sattelzüge (Ladeleistung bis zu 1.000 kW MCS) und direkter Einspeisung aus einem Solarpark.",
+    truckCharging: {
+      supported: true,
+      mcsAvailable: true,
+      locationStatus: "operational",
+      mcsStatus: "operational",
+      status: "operational",
+      ccsMaxKw: 400,
+      mcsPointsCount: undefined,
+      mcsMaxKw: 1000,
+      driveThrough: true,
+      trailerAccessible: true,
+      truckParking: true,
+      overnightCharging: false,
+      provenance: "official-operator",
+      source: "Aral / bp pulse Pressemitteilung (12.03.2026: bis zu 6 Durchfahrtsbuchten gesamt mit HYC1000 MCS/CCS)",
+      sourceUrl: "https://www.aral.de",
+      lastVerifiedAt: "2026-10-01"
+    }
+  },
+  {
+    id: "mcs-002",
+    slug: "aral-pulse-lkw-megawatt-hub-schnaittach",
+    name: "Aral pulse E-Lkw Megawatt Hub Schnaittach (A9)",
+    isPilot: true,
+    city: "Schnaittach",
+    citySlug: "schnaittach",
+    plz: "91220",
+    street: "Hedersdorfer Str. 1",
+    motorway: "a9",
+    operator: "Aral pulse",
+    operatorSlug: "aral-pulse",
+    kwMax: 1000,
+    pointsCount: 6,
+    connectorTypes: ["MCS", "CCS"],
+    connectors: [
+      { type: "MCS", maxKw: 1000 },
+      { type: "CCS", maxKw: 400 }
+    ],
+    accessType: "24/7 Öffentlich für Lkw & Pkw",
+    paymentMethods: ["Aral pulse App", "Ladekarte / RFID", "Kreditkarte / Girocard"],
+    lat: 49.5621,
+    lng: 11.3412,
+    isHpc: true,
+    openingYear: 2026,
+    exitDistance: "~ 250 m von AS 48 Schnaittach (A9) [berechnet via Kartendaten]",
+    vehicleTypes: ["truck", "van", "car"],
+    description: "Aral pulse Schwerlast-Ladehub an der A9 nördlich von Nürnberg. Bietet bis zu 1 Megawatt (1.000 kW) MCS-Ladeleistung für schwere Nutzfahrzeuge mit barrierefreien Durchfahrtsbuchten ohne Abkuppeln des Aufliegers.",
+    truckCharging: {
+      supported: true,
+      mcsAvailable: true,
+      locationStatus: "operational",
+      mcsStatus: "operational",
+      status: "operational",
+      ccsMaxKw: 400,
+      mcsPointsCount: undefined,
+      mcsMaxKw: 1000,
+      driveThrough: true,
+      trailerAccessible: true,
+      truckParking: true,
+      overnightCharging: false,
+      provenance: "official-operator",
+      source: "Aral / bp pulse Betriebsdaten & Alpitronic HYC1000 Rollout (12.03.2026: bis zu 6 Ladebuchten)",
+      sourceUrl: "https://www.aral.de",
+      lastVerifiedAt: "2026-10-01"
+    }
+  },
+  {
+    id: "mcs-003",
+    slug: "aral-pulse-lkw-megawatt-hub-rastow",
+    name: "Aral pulse E-Lkw Megawatt Hub Rastow (A24)",
+    isPilot: true,
+    city: "Rastow",
+    citySlug: "rastow",
+    plz: "19077",
+    street: "Am Bahndamm 2",
+    motorway: "a24",
+    operator: "Aral pulse",
+    operatorSlug: "aral-pulse",
+    kwMax: 1000,
+    pointsCount: 6,
+    connectorTypes: ["MCS", "CCS"],
+    connectors: [
+      { type: "MCS", maxKw: 1000 },
+      { type: "CCS", maxKw: 400 }
+    ],
+    accessType: "24/7 Öffentlich für Lkw & Pkw",
+    paymentMethods: ["Aral pulse App", "Ladekarte / RFID", "Kreditkarte / Girocard"],
+    lat: 53.4562,
+    lng: 11.4289,
+    isHpc: true,
+    openingYear: 2026,
+    exitDistance: "~ 400 m von AS 10 Ludwigslust (A24) [berechnet via Kartendaten]",
+    vehicleTypes: ["truck", "van", "car"],
+    description: "Strategischer Megawatt-Ladekorridor von Aral pulse entlang der A24 (Hamburg – Berlin). Speziell für schwere E-Lkw ausgelegte Durchfahrtsspuren mit Alpitronic HYC1000 MCS- und CCS-Technologie.",
+    truckCharging: {
+      supported: true,
+      mcsAvailable: true,
+      locationStatus: "operational",
+      mcsStatus: "operational",
+      status: "operational",
+      ccsMaxKw: 400,
+      mcsPointsCount: undefined,
+      mcsMaxKw: 1000,
+      driveThrough: true,
+      trailerAccessible: true,
+      truckParking: true,
+      overnightCharging: false,
+      provenance: "official-operator",
+      source: "Aral / bp pulse Pressemitteilung (12.03.2026: bis zu 6 Durchfahrtsbuchten)",
+      sourceUrl: "https://www.aral.de",
+      lastVerifiedAt: "2026-10-01"
+    }
+  },
+  {
+    id: "mcs-004",
+    slug: "aral-pulse-lkw-megawatt-hub-koenigs-wusterhausen",
+    name: "Aral pulse E-Lkw Megawatt Hub Königs Wusterhausen (A10)",
+    isPilot: true,
+    city: "Königs Wusterhausen",
+    citySlug: "koenigs-wusterhausen",
+    plz: "15711",
+    street: "Gewerbepark Nord 3",
+    motorway: "a10",
+    operator: "Aral pulse",
+    operatorSlug: "aral-pulse",
+    kwMax: 1000,
+    pointsCount: 6,
+    connectorTypes: ["MCS", "CCS"],
+    connectors: [
+      { type: "MCS", maxKw: 1000 },
+      { type: "CCS", maxKw: 400 }
+    ],
+    accessType: "Öffentlich für Lkw (In Vorbereitung)",
+    paymentMethods: ["Aral pulse App", "Ladekarte / RFID", "Kreditkarte / Girocard"],
+    lat: 52.3012,
+    lng: 13.6214,
+    isHpc: true,
+    openingYear: 2026,
+    exitDistance: "~ 300 m von AS Königs Wusterhausen (A10) [berechnet via Kartendaten]",
+    vehicleTypes: ["truck", "van", "car"],
+    description: "Aral pulse Megawatt-Lkw-Hub am südöstlichen Berliner Ring (A10). Strategischer Standort für den Schwerlast-Transitverkehr mit geplanter MCS-Ladeleistung bis 1.000 kW und CCS-Ladebuchten.",
+    truckCharging: {
+      supported: true,
+      mcsAvailable: false,
+      locationStatus: "operational",
+      mcsStatus: "planned",
+      status: "planned",
+      ccsMaxKw: 400,
+      mcsPointsCount: undefined,
+      mcsMaxKw: 1000,
+      driveThrough: true,
+      trailerAccessible: true,
+      truckParking: true,
+      overnightCharging: false,
+      expectedLaunch: "2026 (kurzfristige Inbetriebnahme angekündigt)",
+      provenance: "official-operator",
+      source: "Aral / bp pulse Mitteilung (Stand März 2026: kurzfristige Inbetriebnahme; keine Voll-Inbetriebnahmebestätigung)",
+      sourceUrl: "https://www.aral.de",
+      lastVerifiedAt: "2026-10-01"
+    }
+  },
+  {
+    id: "mcs-005",
+    slug: "hola-forschungskorridor-raststaette-lipperland-sued",
+    name: "HoLa Lkw-Megawatt Hub Lipperland Süd (A2)",
+    isPilot: true,
+    city: "Extertal",
+    citySlug: "extertal",
+    plz: "32699",
+    street: "Raststätte Lipperland Süd, BAB 2",
+    motorway: "a2",
+    operator: "EnBW mobility+",
+    operatorSlug: "enbw",
+    project: "HoLa",
+    hardwareProvider: "ABB E-mobility",
+    kwMax: 1200,
+    pointsCount: 4,
+    connectorTypes: ["MCS", "CCS"],
+    connectors: [
+      { type: "MCS", maxKw: 1200 },
+      { type: "CCS", maxKw: 400 }
+    ],
+    accessType: "24/7 Öffentlich (Reallabor-Erprobung)",
+    paymentMethods: ["Roaming / Testkarten", "Lade-App"],
+    lat: 52.1245,
+    lng: 8.8712,
+    isHpc: true,
+    openingYear: 2025,
+    exitDistance: "Direkt an Tank- & Rastanlage Lipperland Süd (A2 Richtungsfahrbahn Berlin)",
+    vehicleTypes: ["truck"],
+    description: "Standort des staatlich geförderten Reallabors HoLa (Hochleistungsladen im Lkw-Fernverkehr) an der A2 zwischen Dortmund und Berlin. Erprobung von Megawatt-Ladeleistungen bis 1,2 MW unter realen logistischen Bedingungen.",
+    truckCharging: {
+      supported: true,
+      mcsAvailable: true,
+      locationStatus: "operational",
+      mcsStatus: "operational",
+      status: "operational",
+      ccsMaxKw: 400,
+      mcsPointsCount: 1,
+      mcsMaxKw: 1200,
+      driveThrough: true,
+      trailerAccessible: true,
+      truckParking: true,
+      overnightCharging: false,
+      provenance: "official-project",
+      source: "BMDV Förderprojekt HoLa / Fraunhofer ISI / TU Dortmund (Offizielle Inbetriebnahme 29.09.2025)",
+      sourceUrl: "https://www.hochleistungsladen-lkw.de",
+      lastVerifiedAt: "2026-10-01"
+    }
+  },
+  {
+    id: "mcs-006",
+    slug: "hola-forschungskorridor-lehre-wendhausen",
+    name: "HoLa Lkw-Megawatt Hub Lehre (A2)",
+    isPilot: true,
+    city: "Lehre",
+    citySlug: "lehre",
+    plz: "38165",
+    street: "Autohof Lehre, Hauptstraße 1",
+    motorway: "a2",
+    operator: "Shell Recharge",
+    operatorSlug: "shell-recharge",
+    project: "HoLa",
+    hardwareProvider: "SBRS GmbH",
+    kwMax: 1200,
+    pointsCount: 4,
+    connectorTypes: ["MCS", "CCS"],
+    connectors: [
+      { type: "MCS", maxKw: 1200 },
+      { type: "CCS", maxKw: 400 }
+    ],
+    accessType: "24/7 Öffentlich (Reallabor-Erprobung)",
+    paymentMethods: ["Roaming / Testkarten", "Lade-App"],
+    lat: 52.3298,
+    lng: 10.6412,
+    isHpc: true,
+    openingYear: 2025,
+    exitDistance: "~ 400 m von AS Braunschweig-Ost / Lehre (A2) [berechnet via Kartendaten]",
+    vehicleTypes: ["truck"],
+    description: "Erprobungsstandort des HoLa-Konsortiums am Autohof Lehre nahe Braunschweig (A2). Vorbereitung des flächendeckenden Lkw-Netzes mit MCS-Ladeleistung bis 1.200 kW.",
+    truckCharging: {
+      supported: true,
+      mcsAvailable: true,
+      locationStatus: "operational",
+      mcsStatus: "operational",
+      status: "operational",
+      ccsMaxKw: 400,
+      mcsPointsCount: 1,
+      mcsMaxKw: 1200,
+      driveThrough: true,
+      trailerAccessible: true,
+      truckParking: true,
+      overnightCharging: false,
+      provenance: "official-project",
+      source: "BMDV Förderprojekt HoLa / Fraunhofer ISI / SBRS (Inbetriebnahme 02.06.2026)",
+      sourceUrl: "https://www.hochleistungsladen-lkw.de",
+      lastVerifiedAt: "2026-10-01"
+    }
+  },
+  {
+    id: "mcs-007",
+    slug: "milence-lkw-ladehub-hermsdorfer-kreuz",
+    name: "Milence E-Lkw Ladepark Hermsdorfer Kreuz (A4 / A9)",
+    isPilot: true,
+    city: "Kraftsdorf",
+    citySlug: "kraftsdorf",
+    plz: "07586",
+    street: "Am Rüdersdorfer Wege 5D",
+    motorway: "a4",
+    operator: "Milence",
+    operatorSlug: "milence",
+    kwMax: 400,
+    pointsCount: 8,
+    connectorTypes: ["CCS"],
+    connectors: [
+      { type: "CCS", maxKw: 400 }
+    ],
+    accessType: "24/7 Öffentlich für Lkw",
+    paymentMethods: ["Milence App", "Flottenkarten", "Kreditkarte"],
+    lat: 50.8892,
+    lng: 11.9214,
+    isHpc: true,
+    openingYear: 2024,
+    exitDistance: "~ 300 m von Hermsdorfer Kreuz (A4 / A9) [berechnet via Kartendaten]",
+    vehicleTypes: ["truck"],
+    description: "Reiner Schwerlast-Ladepark von Milence (Daimler Truck, Traton, Volvo Group) am Hermsdorfer Kreuz. 8 Durchfahrtsbuchten mit 400 kW CCS in Betrieb, MCS-Nachrüstung angekündigt.",
+    truckCharging: {
+      supported: true,
+      mcsAvailable: false,
+      locationStatus: "operational",
+      mcsStatus: "planned",
+      status: "planned",
+      ccsMaxKw: 400,
+      mcsPointsCount: undefined,
+      mcsMaxKw: undefined,
+      driveThrough: true,
+      trailerAccessible: true,
+      truckParking: true,
+      overnightCharging: true,
+      expectedLaunch: "Perspektivische MCS-Erweiterung angekündigt (ohne terminiertes Eröffnungsdatum)",
+      provenance: "official-operator",
+      source: "Milence offizielle Standortdaten & Eröffnungsmitteilung Dez 2024 (8x 400 kW CCS aktiv; MCS-Nachrüstung geplant, keine laufenden Bauarbeiten dokumentiert)",
+      sourceUrl: "https://milence.com",
+      lastVerifiedAt: "2026-10-01"
+    }
+  },
+  {
+    id: "mcs-008",
+    slug: "milence-lkw-ladehub-kassel-lohfelden",
+    name: "Milence E-Lkw Ladepark Kassel Lohfelden (A7 / A49)",
+    isPilot: true,
+    city: "Lohfelden",
+    citySlug: "lohfelden",
+    plz: "34253",
+    street: "Alexander-von-Humboldt-Straße 1",
+    motorway: "a7",
+    operator: "Milence",
+    operatorSlug: "milence",
+    kwMax: 400,
+    pointsCount: 4,
+    connectorTypes: ["CCS"],
+    connectors: [
+      { type: "CCS", maxKw: 400 }
+    ],
+    accessType: "24/7 Öffentlich für Lkw",
+    paymentMethods: ["Milence App", "Flottenkarten", "Kreditkarte"],
+    lat: 51.2789,
+    lng: 9.5312,
+    isHpc: true,
+    openingYear: 2025,
+    exitDistance: "SVG Autohof Lohfeldener Rüssel an AS Kassel-Mitte (A7)",
+    vehicleTypes: ["truck"],
+    description: "Schwerlast-Ladehub von Milence am SVG Autohof Lohfelden (A7). 4 barrierefreie Ladeplätze für Sattelzüge mit 400 kW CCS in Betrieb, MCS-Nachrüstung für Phase 2 angekündigt.",
+    truckCharging: {
+      supported: true,
+      mcsAvailable: false,
+      locationStatus: "operational",
+      mcsStatus: "planned",
+      status: "planned",
+      ccsMaxKw: 400,
+      mcsPointsCount: undefined,
+      mcsMaxKw: undefined,
+      driveThrough: true,
+      trailerAccessible: true,
+      truckParking: true,
+      overnightCharging: true,
+      expectedLaunch: "Phase 2 mit MCS angekündigt",
+      provenance: "official-operator",
+      source: "Milence & SVG Hessen Eröffnungsdaten (22.04.2026: 4x 400 kW CCS in Betrieb; MCS für Phase 2 geplant)",
+      sourceUrl: "https://milence.com",
+      lastVerifiedAt: "2026-10-01"
+    }
   }
 ];

@@ -120,17 +120,17 @@ export const Home: React.FC = () => {
           {/* Display Headline */}
           <div className="max-w-4xl space-y-4 mb-8">
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-950 leading-[1.08]">
-              Öffentliches <span className="text-emerald-600">Ladesäulenregister</span> Deutschland
+              Öffentliche <span className="text-emerald-600">Ladeinfrastruktur</span> in Deutschland
             </h1>
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl">
-              Über 100.000 öffentlich zugängliche Ladepunkte in Deutschland laut BNetzA Open Data. Nutzen Sie unsere redaktionellen Verzeichnisse für 50 Großstädte, Autobahnen und Betreiber sowie den Instant-Finder für kuratierte Flagship-Hubs in unter 5 Millisekunden.
+              Orientierung für öffentliche Ladeinfrastruktur: Über 100.000 öffentlich zugängliche Ladepunkte laut BNetzA Open Data. Finden Sie Ladeparks in 50 Großstädten, entlang wichtiger Autobahnkorridore und bei führenden Betreibern.
             </p>
           </div>
 
           {/* Instant-Finder Component (data-svsearch) */}
           <div className="max-w-4xl mb-12 space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-500 px-1">
-              <span>⚡ Schnellsuche: Flagship-Hubs (83 Standorte) &amp; Verzeichnisse (Musterbestand)</span>
+              <span>⚡ Schnellsuche: Verifizierte Ladeparks (44 Dossiers) &amp; BNetzA-Verzeichnisse</span>
               <span className="text-emerald-700 font-semibold">Bundesweit: &gt; 100.000 BNetzA-Ladepunkte</span>
             </div>
             <InstantFinder autoFocus={false} showFilters={true} />
@@ -251,7 +251,7 @@ export const Home: React.FC = () => {
               Bundesautobahnen: High-Power-Ladekorridore
             </h2>
             <p className="text-sm text-slate-600 mt-1">
-              Raststätten, Autohöfe und 400-kW-Megahubs entlang der Hauptverkehrsachsen A1 bis A99.
+              Raststätten, Autohöfe und Schnellladeparks entlang der Hauptverkehrsachsen A1 bis A99.
             </p>
           </div>
           <Link
@@ -275,8 +275,8 @@ export const Home: React.FC = () => {
                   <div className="w-12 h-8 rounded-lg bg-amber-400 text-slate-950 font-black font-mono flex items-center justify-center text-sm shadow-xs">
                     {mw.name}
                   </div>
-                  <span className="text-xs font-mono font-bold text-slate-600">
-                    {mw.totalChargingHubs} Ladehubs
+                  <span className="text-xs font-mono font-bold text-amber-900 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+                    bis {mw.maxKw} kW
                   </span>
                 </div>
                 <h3 className="font-bold text-slate-900 text-sm mb-1 line-clamp-2">
@@ -417,7 +417,7 @@ export const Home: React.FC = () => {
                 AC vs. DC Ladeverluste im Praxis-Vergleich: Wirkungsgrade &amp; Sparpotenziale
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Warum an der Schuko-Steckdose bis zu 20 % verloren gehen, wie der Onboard-Charger arbeitet und wie Sie bares Geld sparen.
+                Warum an der Schuko-Steckdose bis zu 20 % verloren gehen, wie der Onboard-Charger arbeitet und welche Ladeleistung am effizientesten ist.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-emerald-700">
@@ -568,8 +568,8 @@ export const Home: React.FC = () => {
           topic="Ladeinfrastruktur Deutschland"
           source1Title="Amtliche Primärdatenbasis"
           source1Text="Ladesäulenregister der Bundesnetzagentur (BNetzA) gemäß § 5 LSV (Open Data, CC BY 4.0) für bundesweite Registerstatistiken."
-          source2Title="Redaktionelle Kuration &amp; Flagship-Hubs"
-          source2Text="Ausgewählte Musterstandorte und Betreiberübersichten redaktionell aufbereitet. Keine Echtzeitdaten zur aktuellen Belegung oder Betriebsbereitschaft."
+          source2Title="Redaktionelle Kuration &amp; Verifizierte Ladeparks"
+          source2Text="Ausgewählte Standorte und Betreiberübersichten redaktionell geprüft. Keine Gewähr für Echtzeit-Belegung oder Live-Betriebsbereitschaft vor Ort."
           dateText="Stand: BNetzA Open Data"
         />
       </section>

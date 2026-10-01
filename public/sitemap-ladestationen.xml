@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/frankfurt/ionity-raststaette-spessart-sued</loc>
+    <loc>https://www.ladestandorte.de/ladestation/rohrbrunn/ionity-raststaette-spessart-sued</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/augsburg/sortimo-innovationspark-zusmarshausen</loc>
+    <loc>https://www.ladestandorte.de/ladestation/zusmarshausen/sortimo-innovationspark-zusmarshausen</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/stuttgart/enbw-hyperhub-rutesheim</loc>
+    <loc>https://www.ladestandorte.de/ladestation/rutesheim/enbw-hyperhub-rutesheim</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/duesseldorf/seed-und-greet-ladepark-kreuz-hilden</loc>
+    <loc>https://www.ladestandorte.de/ladestation/hilden/seed-und-greet-ladepark-kreuz-hilden</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/dortmund/enbw-hyperhub-kamener-kreuz</loc>
+    <loc>https://www.ladestandorte.de/ladestation/kamen/enbw-hyperhub-kamener-kreuz</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -37,7 +37,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/chemnitz/enbw-hyperhub-meerane</loc>
+    <loc>https://www.ladestandorte.de/ladestation/meerane/enbw-hyperhub-meerane</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -175,43 +175,91 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/bonn/ionity-raststaette-brohltal-ost</loc>
+    <loc>https://www.ladestandorte.de/ladestation/niederzissen/ionity-raststaette-brohltal-ost</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/kassel/fastned-autohof-muecke</loc>
+    <loc>https://www.ladestandorte.de/ladestation/muecke/fastned-autohof-muecke</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/nuernberg/enbw-hyperhub-geiselwind</loc>
+    <loc>https://www.ladestandorte.de/ladestation/geiselwind/enbw-hyperhub-geiselwind</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/hamburg/tesla-supercharger-braak</loc>
+    <loc>https://www.ladestandorte.de/ladestation/braak/tesla-supercharger-braak</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/regensburg/enbw-hyperhub-woerth-an-der-donau</loc>
+    <loc>https://www.ladestandorte.de/ladestation/woerth-an-der-donau/enbw-hyperhub-woerth-an-der-donau</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/leipzig/ionity-raststaette-koeckern-west</loc>
+    <loc>https://www.ladestandorte.de/ladestation/sandersdorf-brehna/ionity-raststaette-koeckern-west</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.ladestandorte.de/ladestation/leipzig/fastned-autohof-nempitz</loc>
+    <loc>https://www.ladestandorte.de/ladestation/bad-duerrenberg/fastned-autohof-nempitz</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ladestation/schwarmstedt/aral-pulse-lkw-megawatt-hub-schwarmstedt</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ladestation/schnaittach/aral-pulse-lkw-megawatt-hub-schnaittach</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ladestation/rastow/aral-pulse-lkw-megawatt-hub-rastow</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ladestation/koenigs-wusterhausen/aral-pulse-lkw-megawatt-hub-koenigs-wusterhausen</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ladestation/extertal/hola-forschungskorridor-raststaette-lipperland-sued</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ladestation/lehre/hola-forschungskorridor-lehre-wendhausen</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ladestation/kraftsdorf/milence-lkw-ladehub-hermsdorfer-kreuz</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ladestation/lohfelden/milence-lkw-ladehub-kassel-lohfelden</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

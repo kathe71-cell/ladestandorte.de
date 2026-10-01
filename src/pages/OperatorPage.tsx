@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ShieldCheck, Zap, CheckCircle2, ArrowRight, Star, CreditCard, HelpCircle, MapPin } from 'lucide-react';
+import { ShieldCheck, Zap, CheckCircle2, ArrowRight, CreditCard, HelpCircle, MapPin } from 'lucide-react';
 import { OPERATORS_DATA } from '../data/operators';
 import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
 import { CitationBox } from '../components/CitationBox';
@@ -24,11 +24,10 @@ export const OperatorPage: React.FC = () => {
     return <Navigate to="/betreiber" replace />;
   }
 
-  // Match stations across normalized slugs
+  // Match stations strictly by operator slug
   const operatorStations = STATIONS_DATA.filter(s => 
     s.operatorSlug === operator.slug ||
-    (operator.slug === 'enbw' && (s.operatorSlug === 'enbw' || s.operatorSlug === 'enbw-mobility-plus')) ||
-    (operator.slug === 'tesla-supercharger' && (s.operatorSlug === 'tesla' || s.operatorSlug === 'tesla-supercharger'))
+    (operator.slug === 'enbw' && s.operatorSlug === 'enbw-mobility-plus')
   );
 
   const faqs = [
@@ -158,12 +157,15 @@ export const OperatorPage: React.FC = () => {
         </div>
 
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">App-Bewertung</span>
+          <span className="text-xs font-mono text-slate-500 uppercase block">Authentifizierung</span>
           <div className="flex items-center gap-1.5 mt-1">
-            <span className="text-3xl font-black text-slate-950 font-mono">{operator.appRating}</span>
-            <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
+            <span className="text-xl font-black text-slate-950 font-mono">
+              {operator.plugAndCharge ? 'ISO 15118' : (operator.autocharge ? 'AutoCharge' : 'RFID / App')}
+            </span>
           </div>
-          <span className="text-[11px] text-slate-500 mt-1 block">App Store / Play Store</span>
+          <span className="text-[11px] text-slate-500 mt-1 block">
+            {operator.plugAndCharge ? 'Plug & Charge aktiv' : (operator.autocharge ? 'AutoCharge unterstützt' : 'RFID- & App-Autorisierung')}
+          </span>
         </div>
       </div>
 
@@ -182,7 +184,7 @@ export const OperatorPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Flagship Stations Grid for this Operator */}
+      {/* Verifizierte Schnellladeparks des Betreibers */}
       {operatorStations.length > 0 && (
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
@@ -191,7 +193,7 @@ export const OperatorPage: React.FC = () => {
                 Verifizierte Schnellladeparks von {operator.name}
               </h2>
               <p className="text-xs sm:text-sm text-slate-500">
-                Ausgewählte Flagship-Standorte aus dem amtlichen BNetzA-Register mit Ladeleistung und Ausstattung.
+                Verifizierte Standorte aus dem BNetzA-Register mit Ladeleistung und Ausstattung.
               </p>
             </div>
             <Link
@@ -229,33 +231,15 @@ export const OperatorPage: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Badges */}
-                  <div className="flex flex-wrap gap-1.5 mt-1">
-                    {st.isCovered && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
-                        ☔ Überdacht
-                      </span>
-                    )}
-                    {(st.hasRestrooms || st.hasDining) && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
-                        🚻 WC / Gastro
-                      </span>
-                    )}
-                    {st.hasAfirTerminal && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                        💳 AFIR Kartenzahlung
-                      </span>
-                    )}
-                    {st.hasAutoCharge && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-800 border border-purple-200">
-                        ⚡ AutoCharge
-                      </span>
-                    )}
-                  </div>
+                  {st.exitDistance && (
+                    <span className="text-[10px] font-mono text-slate-600 block w-full mt-1">
+                      📍 {st.exitDistance}
+                    </span>
+                  )}
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-700">
-                  <span>Standort-Dossier öffnen</span>
+                  <span>Standort ansehen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>

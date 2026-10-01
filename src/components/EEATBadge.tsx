@@ -16,8 +16,8 @@ export const EEATBadge: React.FC<Props> = ({
   topic = 'Ladeinfrastruktur',
   source1Title = 'Amtliche Primärdatenquelle',
   source1Text = 'Ladesäulenregister der Bundesnetzagentur (BNetzA) gemäß § 5 LSV, lizenziert unter Creative Commons CC BY 4.0.',
-  source2Title = 'Redaktionelle Kuration',
-  source2Text = 'Kuratierte Musterstandorte und Flagship-Hubs. Keine Gewähr für Echtzeit-Verfügbarkeit oder Vollständigkeit des Gesamtregisters vor Ort.',
+  source2Title = 'Redaktionelle Prüfung',
+  source2Text = 'Kuratierte und verifizierte Ladeparks. Keine Gewähr für Echtzeit-Verfügbarkeit oder Vollständigkeit des amtlichen Gesamtregisters vor Ort.',
   dateText = 'Stand: BNetzA Open Data'
 }) => {
   return (

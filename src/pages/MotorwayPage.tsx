@@ -66,7 +66,7 @@ export const MotorwayPage: React.FC = () => {
             "name": `Welche Schnelllader gibt es an der ${motorway.name}?`,
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": `An der ${motorway.name} (${motorway.route}) befinden sich ${motorway.totalChargingHubs} Schnellladeparks mit bis zu ${motorway.maxKw} kW Ladeleistung. Hauptbetreiber sind IONITY, EnBW mobility+, Tesla Supercharger und Aral pulse an den Raststätten.`
+              "text": `Entlang der ${motorway.name} (${motorway.route}) stehen moderne Schnellladeparks mit bis zu ${motorway.maxKw} kW Ladeleistung zur Verfügung. Zu den führenden Betreibern zählen ${motorway.mainCPOs.join(', ')} direkt an Rastanlagen und Autohöfen.`
             }
           },
           {
@@ -86,7 +86,7 @@ export const MotorwayPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
         title={`Schnellladen ${motorway.name}: HPC-Ladeparks an Raststätten & Autobahn 2026`}
-        description={`${motorway.totalChargingHubs} Schnellladeparks an der ${motorway.name} (${motorway.route}): IONITY, EnBW, Tesla & mehr. Bis zu ${motorway.maxKw} kW HPC. Alle Raststätten, Preise & Öffnungszeiten.`}
+        description={`HPC-Schnellladeparks an der ${motorway.name} (${motorway.route}): ${motorway.mainCPOs.join(', ')} u.v.m. Bis zu ${motorway.maxKw} kW Ladeleistung. Verifizierte Standorte und Anfahrt.`}
         canonicalPath={`/autobahnen/${motorway.slug}`}
         schema={schema}
       />
@@ -126,11 +126,11 @@ export const MotorwayPage: React.FC = () => {
       {/* Key Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Schnelllade-Hubs</span>
+          <span className="text-xs font-mono text-slate-500 uppercase block">Streckenlänge</span>
           <span className="text-3xl font-black text-slate-950 font-mono mt-1 block">
-            {motorway.totalChargingHubs}
+            {motorway.lengthKm} km
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">Im 25-35 km Takt</span>
+          <span className="text-[11px] text-slate-500 mt-1 block">Gesamter Trassenverlauf</span>
         </div>
 
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
@@ -165,36 +165,16 @@ export const MotorwayPage: React.FC = () => {
         </div>
 
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Durchschnittsabstand</span>
+          <span className="text-xs font-mono text-slate-500 uppercase block">Verifizierte Ladeparks</span>
           <span className="text-3xl font-black text-emerald-600 font-mono mt-1 block">
-            ~ {(motorway.lengthKm / motorway.totalChargingHubs).toFixed(1)} km
+            {motorwayStations.length} Dossiers
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">Zwischen zwei Ladeparks</span>
+          <span className="text-[11px] text-slate-500 mt-1 block">
+            BNetzA-geprüfte Großhubs
+          </span>
         </div>
       </div>
 
-      {/* Top Hubs along this Motorway */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-950">
-          Wichtigste Schnelllade-Stationen an der {motorway.name}
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {motorway.topHubs.map((hub) => (
-            <div key={hub.name} className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="font-extrabold text-slate-950 text-base">{hub.name}</span>
-                <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200">
-                  {hub.kw} kW
-                </span>
-              </div>
-              <p className="text-xs text-slate-500">Ausfahrt: {hub.exit} · Betreiber: {hub.operator}</p>
-              <div className="text-xs font-mono font-semibold text-slate-700 bg-slate-50 p-2 rounded-lg">
-                {hub.points} HPC-Ladepunkte verfügbar
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {motorwayStations.length > 0 && (
         <div className="space-y-4">
@@ -221,42 +201,79 @@ export const MotorwayPage: React.FC = () => {
                     {st.street}, {st.plz} {st.city} · {st.operator}
                   </p>
                   
-                  {/* Komfort & AFIR Badges */}
-                  <div className="flex flex-wrap gap-1.5 mt-2">
-                    {st.isCovered && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
-                        ☔ Überdacht
-                      </span>
-                    )}
-                    {(st.hasRestrooms || st.hasDining) && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
-                        🚻 WC / Gastro
-                      </span>
-                    )}
-                    {st.hasAfirTerminal && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                        💳 AFIR Kartenzahlung
-                      </span>
-                    )}
-                    {st.hasAutoCharge && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-800 border border-purple-200">
-                        ⚡ AutoCharge
-                      </span>
-                    )}
-                    {st.exitDistance && (
-                      <span className="text-[10px] font-mono text-slate-600 block w-full mt-1">
-                        📍 {st.exitDistance}
-                      </span>
-                    )}
-                  </div>
+                  {st.exitDistance && (
+                    <span className="text-[10px] font-mono text-slate-600 block w-full mt-1">
+                      📍 {st.exitDistance}
+                    </span>
+                  )}
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-800">
-                  <span>Standort-Dossier öffnen</span>
+                  <span>Standort ansehen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* MCS & E-Lkw Schwerlast-Laden an der Autobahn (falls vorhanden) */}
+      {motorwayStations.some((s) => s.truckCharging?.supported) && (
+        <div className="p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 space-y-4">
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-emerald-400">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Megawatt Charging System (MCS) &amp; E-Lkw Korridor</span>
+            </div>
+            <Link
+              to="/mcs"
+              className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold underline"
+            >
+              Zum MCS-Hub-Portal →
+            </Link>
+          </div>
+          <div>
+            <h2 className="text-xl font-bold text-white">
+              E-Lkw &amp; Megawatt-Ladeinfrastruktur an der {motorway.name}
+            </h2>
+            <p className="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Für schwere Nutzfahrzeuge stehen an der {motorway.name} dedizierte Schwerlast-Ladeparks mit Durchfahrtsspuren (Drive-Through) und Leistungen bis 1.000+ kW zur Verfügung.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            {motorwayStations
+              .filter((s) => s.truckCharging?.supported)
+              .map((st) => (
+                <Link
+                  key={`truck-${st.id}`}
+                  to={getStationUrl(st)}
+                  className="p-4 bg-slate-800/80 hover:bg-slate-800 rounded-xl border border-slate-700 transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <span className="font-bold text-white text-sm group-hover:text-emerald-300 transition-colors line-clamp-1">
+                        {st.name}
+                      </span>
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                        st.truckCharging?.mcsStatus === 'operational'
+                          ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                          : 'bg-blue-950 text-blue-300 border border-blue-800'
+                      }`}>
+                        {st.truckCharging?.mcsStatus === 'operational' ? 'MCS Aktiv' : '400 kW CCS (MCS im Bau)'}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate-400">
+                      {st.city} · {st.operator} · {st.truckCharging?.mcsMaxKw || st.kwMax} kW
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] font-mono text-emerald-400 font-semibold">
+                    <span>{st.truckCharging?.mcsPointsCount || st.pointsCount} Lkw-Buchten {st.truckCharging?.driveThrough ? '· Drive-Through' : ''}</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
       )}

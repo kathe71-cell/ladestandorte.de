@@ -223,7 +223,7 @@ export const CityPage: React.FC = () => {
                       {mw.name}
                     </div>
                     <span className="text-xs font-mono font-bold text-slate-600">
-                      {mw.totalChargingHubs} Ladehubs
+                      Zur Autobahn
                     </span>
                   </div>
                   <h3 className="font-bold text-slate-900 text-sm mb-1 line-clamp-1 group-hover:text-amber-800 transition-colors">
@@ -244,7 +244,7 @@ export const CityPage: React.FC = () => {
         </div>
       )}
 
-      {/* Flagship Charging Stations in this City */}
+      {/* Verifizierte Ladestationen in dieser Stadt */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -306,34 +306,10 @@ export const CityPage: React.FC = () => {
                       {st.pointsCount} Anschlüsse
                     </span>
                   </div>
-
-                  {/* Komfort & AFIR Badges */}
-                  <div className="flex flex-wrap gap-1.5 mt-2.5">
-                    {st.isCovered && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
-                        ☔ Überdacht
-                      </span>
-                    )}
-                    {(st.hasRestrooms || st.hasDining) && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
-                        🚻 WC / Gastro
-                      </span>
-                    )}
-                    {st.hasAfirTerminal && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                        💳 AFIR Kartenzahlung
-                      </span>
-                    )}
-                    {st.hasAutoCharge && (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-800 border border-purple-200">
-                        ⚡ AutoCharge
-                      </span>
-                    )}
-                  </div>
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
-                  <span>Standort-Dossier öffnen</span>
+                  <span>Standort ansehen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>

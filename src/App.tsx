@@ -24,6 +24,11 @@ import GlossarPage from './pages/GlossarPage';
 import ImpressumPage from './pages/ImpressumPage';
 import DatenschutzPage from './pages/DatenschutzPage';
 import StationDetailPage from './pages/StationDetailPage';
+import McsHubPage from './pages/McsHubPage';
+import McsStationsPage from './pages/McsStationsPage';
+import McsWhatIsPage from './pages/McsWhatIsPage';
+import McsVsCcsPage from './pages/McsVsCcsPage';
+import McsTruckChargingPage from './pages/McsTruckChargingPage';
 
 import ScrollToTop from './components/ScrollToTop';
 import { siteConfig } from './site.config';
@@ -68,6 +73,11 @@ export function AppContent() {
         <Route path="/glossar" element={<GlossarPage />} />
         <Route path="/impressum" element={<ImpressumPage />} />
         <Route path="/datenschutz" element={<DatenschutzPage />} />
+        <Route path="/mcs" element={<McsHubPage />} />
+        <Route path="/mcs/ladestationen" element={<McsStationsPage />} />
+        <Route path="/mcs/was-ist-mcs" element={<McsWhatIsPage />} />
+        <Route path="/mcs/mcs-vs-ccs" element={<McsVsCcsPage />} />
+        <Route path="/mcs/lkw-laden" element={<McsTruckChargingPage />} />
         <Route path="/ladestation/:citySlug/:stationSlug" element={<StationDetailPage />} />
         <Route path="*" element={<Home />} />
       </Routes>
