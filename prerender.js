@@ -31,6 +31,7 @@ const staticRoutes = [
   { url: '/mcs/lkw-laden', title: 'Lkw-Laden & 45-Minuten-Pause: Logistik im Fernverkehr', desc: 'Wie E-Lkw-Laden mit den gesetzlichen Lenk- und Ruhezeiten nach EG 561/2006 harmoniert. Nachlademengen, Drive-Through-Buchten und Depot vs. Highway.' },
   { url: '/impressum', title: 'Impressum | ladestandorte.de', desc: 'Rechtliche Anbieterkennzeichnung und Kontaktinformationen von ladestandorte.de.' },
   { url: '/datenschutz', title: 'Datenschutzerklärung | ladestandorte.de', desc: 'Informationen zur Datenverarbeitung, DSGVO-Konformität und Privatsphäre auf ladestandorte.de.' },
+  { url: '/404', title: '404 – Seite nicht gefunden | ladestandorte.de', desc: 'Die angeforderte Seite existiert nicht oder wurde verschoben.' },
 ];
 
 const cityRoutes = (CITIES_DATA || []).map((c) => ({

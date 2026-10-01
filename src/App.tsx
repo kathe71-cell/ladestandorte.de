@@ -30,6 +30,7 @@ import McsStationsPage from './pages/McsStationsPage';
 import McsWhatIsPage from './pages/McsWhatIsPage';
 import McsVsCcsPage from './pages/McsVsCcsPage';
 import McsTruckChargingPage from './pages/McsTruckChargingPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 import ScrollToTop from './components/ScrollToTop';
 import { siteConfig } from './site.config';
@@ -81,7 +82,7 @@ export function AppContent() {
         <Route path="/mcs/mcs-vs-ccs" element={<McsVsCcsPage />} />
         <Route path="/mcs/lkw-laden" element={<McsTruckChargingPage />} />
         <Route path="/ladestation/:citySlug/:stationSlug" element={<StationDetailPage />} />
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
   );
