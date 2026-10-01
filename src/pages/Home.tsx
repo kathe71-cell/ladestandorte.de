@@ -191,13 +191,23 @@ export const Home: React.FC = () => {
               Detaillierte Registerdaten zu Gesamtzahl, HPC-Anteil und städtischen Ausbauquoten.
             </p>
           </div>
-          <Link
-            to="/staedte"
-            className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 hover:text-emerald-800 shrink-0"
-          >
-            <span>Alle 50 Städte ansehen</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex items-center gap-3 shrink-0">
+            <Link
+              to="/hpc-city-monitor"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-slate-700 hover:text-emerald-700"
+            >
+              <span>HPC City Monitor</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+            <span className="text-slate-300">|</span>
+            <Link
+              to="/staedte"
+              className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 hover:text-emerald-800"
+            >
+              <span>Alle 50 Städte ansehen</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

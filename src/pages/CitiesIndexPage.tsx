@@ -149,11 +149,19 @@ export const CitiesIndexPage: React.FC = () => {
           <span>Bevölkerung: <strong className="text-white">Destatis, Stand {destatisDate}</strong></span>
         </div>
         <div className="flex items-center gap-2">
+          <Link
+            to="/hpc-city-monitor"
+            className="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1"
+          >
+            <Activity className="w-3.5 h-3.5" />
+            <span>HPC City Monitor (≥150 kW)</span>
+          </Link>
+          <span className="text-slate-600">|</span>
           <span className="text-slate-400">Eigene Auswertung: ladestandorte.de</span>
           <span className="text-slate-600">|</span>
           <Link
             to="/methodik"
-            className="text-emerald-400 hover:text-emerald-300 underline font-medium flex items-center gap-1"
+            className="text-slate-400 hover:text-slate-200 underline font-medium flex items-center gap-1"
           >
             <span>Methodik</span>
             <ArrowRight className="w-3 h-3" />

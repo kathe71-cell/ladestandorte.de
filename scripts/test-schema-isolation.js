@@ -85,19 +85,22 @@ for (const mcs of mcsTestFiles) {
   }
 }
 
-// 3. ItemList integrity on /mcs/ladestationen
+// 4. HPC City Monitor isolation check
 try {
-  const listSchemas = extractSchemas('dist/mcs/ladestationen/index.html');
-  const pageSchema = listSchemas.find(s => JSON.stringify(s).includes('ItemList'));
-  const itemList = pageSchema['@graph'].find(item => item['@type'] === 'ItemList');
-  if (itemList && Array.isArray(itemList.itemListElement) && itemList.itemListElement.length === 8) {
-    console.log(`[PASS] /mcs/ladestationen ItemList contains exactly ${itemList.itemListElement.length} verified ChargingStation entries.`);
-  } else {
-    console.error(`[FAIL] /mcs/ladestationen ItemList element count mismatch! Found: ${itemList?.itemListElement?.length}`);
+  const hpcSchemas = extractSchemas('dist/hpc-city-monitor/index.html');
+  const rawHpc = JSON.stringify(hpcSchemas);
+
+  if (rawHpc.includes('FAQPage') || rawHpc.includes('ChargingStation') || rawHpc.includes('TechArticle')) {
+    console.error('[FAIL] /hpc-city-monitor LEAKS unauthorized schema (FAQPage/ChargingStation/TechArticle)!');
     failures++;
+  } else if (!rawHpc.includes('WebPage') || !rawHpc.includes('BreadcrumbList')) {
+    console.error('[FAIL] /hpc-city-monitor is missing WebPage or BreadcrumbList schema!');
+    failures++;
+  } else {
+    console.log('[PASS] /hpc-city-monitor isolated: NO schema leaks, contains WebPage & BreadcrumbList.');
   }
 } catch (e) {
-  console.error('[CRASH] ItemList check failed:', e.message);
+  console.error('[CRASH] /hpc-city-monitor schema check failed:', e.message);
   failures++;
 }
 

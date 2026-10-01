@@ -1,0 +1,51 @@
+city,slug,state,population,charging_points_total,points_150kw_plus,share_150kw_plus_percent,points_150kw_plus_per_1000_population,charging_points_per_1000_population,bnetza_snapshot,population_reference_date
+"Berlin",berlin,"Berlin",3685265,7617,988,12.97,0.27,2.07,2026-10-01,2024-12-31
+"Hamburg",hamburg,"Hamburg",1862565,6058,830,13.7,0.45,3.25,2026-10-01,2024-12-31
+"München",muenchen,"Bayern",1505005,3667,265,7.23,0.18,2.44,2026-10-01,2024-12-31
+"Köln",koeln,"Nordrhein-Westfalen",1024621,2711,321,11.84,0.31,2.65,2026-10-01,2024-12-31
+"Frankfurt am Main",frankfurt,"Hessen",756021,2161,198,9.16,0.26,2.86,2026-10-01,2024-12-31
+"Stuttgart",stuttgart,"Baden-Württemberg",612663,4231,150,3.55,0.24,6.91,2026-10-01,2024-12-31
+"Düsseldorf",duesseldorf,"Nordrhein-Westfalen",618685,2532,181,7.15,0.29,4.09,2026-10-01,2024-12-31
+"Leipzig",leipzig,"Sachsen",611850,1377,209,15.18,0.34,2.25,2026-10-01,2024-12-31
+"Dortmund",dortmund,"Nordrhein-Westfalen",603462,1368,243,17.76,0.4,2.27,2026-10-01,2024-12-31
+"Essen",essen,"Nordrhein-Westfalen",574682,1203,190,15.79,0.33,2.09,2026-10-01,2024-12-31
+"Bremen",bremen,"Bremen",586271,1431,181,12.65,0.31,2.44,2026-10-01,2024-12-31
+"Dresden",dresden,"Sachsen",564904,1137,286,25.15,0.51,2.01,2026-10-01,2024-12-31
+"Hannover",hannover,"Niedersachsen",522131,2015,175,8.68,0.34,3.86,2026-10-01,2024-12-31
+"Nürnberg",nuernberg,"Bayern",529508,1712,200,11.68,0.38,3.23,2026-10-01,2024-12-31
+"Duisburg",duisburg,"Nordrhein-Westfalen",502270,1145,113,9.87,0.22,2.28,2026-10-01,2024-12-31
+"Bochum",bochum,"Nordrhein-Westfalen",358676,981,224,22.83,0.62,2.74,2026-10-01,2024-12-31
+"Wuppertal",wuppertal,"Nordrhein-Westfalen",358193,483,100,20.7,0.28,1.35,2026-10-01,2024-12-31
+"Bielefeld",bielefeld,"Nordrhein-Westfalen",331605,721,133,18.45,0.4,2.17,2026-10-01,2024-12-31
+"Bonn",bonn,"Nordrhein-Westfalen",323336,1232,137,11.12,0.42,3.81,2026-10-01,2024-12-31
+"Münster",muenster,"Nordrhein-Westfalen",308258,772,104,13.47,0.34,2.5,2026-10-01,2024-12-31
+"Karlsruhe",karlsruhe,"Baden-Württemberg",309050,655,173,26.41,0.56,2.12,2026-10-01,2024-12-31
+"Mannheim",mannheim,"Baden-Württemberg",318035,824,176,21.36,0.55,2.59,2026-10-01,2024-12-31
+"Augsburg",augsburg,"Bayern",301105,578,110,19.03,0.37,1.92,2026-10-01,2024-12-31
+"Wiesbaden",wiesbaden,"Hessen",288850,1370,142,10.36,0.49,4.74,2026-10-01,2024-12-31
+"Kassel",kassel,"Hessen",197230,648,94,14.51,0.48,3.29,2026-10-01,2024-12-31
+"Gelsenkirchen",gelsenkirchen,"Nordrhein-Westfalen",267930,474,118,24.89,0.44,1.77,2026-10-01,2024-12-31
+"Mönchengladbach",moenchengladbach,"Nordrhein-Westfalen",267213,777,146,18.79,0.55,2.91,2026-10-01,2024-12-31
+"Braunschweig",braunschweig,"Niedersachsen",252962,1206,152,12.6,0.6,4.77,2026-10-01,2024-12-31
+"Chemnitz",chemnitz,"Sachsen",245618,544,150,27.57,0.61,2.21,2026-10-01,2024-12-31
+"Kiel",kiel,"Schleswig-Holstein",252668,580,108,18.62,0.43,2.3,2026-10-01,2024-12-31
+"Aachen",aachen,"Nordrhein-Westfalen",262670,1074,124,11.55,0.47,4.09,2026-10-01,2024-12-31
+"Halle (Saale)",halle,"Sachsen-Anhalt",226767,349,107,30.66,0.47,1.54,2026-10-01,2024-12-31
+"Magdeburg",magdeburg,"Sachsen-Anhalt",244329,561,190,33.87,0.78,2.3,2026-10-01,2024-12-31
+"Freiburg im Breisgau",freiburg,"Baden-Württemberg",237460,852,101,11.85,0.43,3.59,2026-10-01,2024-12-31
+"Krefeld",krefeld,"Nordrhein-Westfalen",231406,279,76,27.24,0.33,1.21,2026-10-01,2024-12-31
+"Mainz",mainz,"Rheinland-Pfalz",224684,571,80,14.01,0.36,2.54,2026-10-01,2024-12-31
+"Lübeck",luebeck,"Schleswig-Holstein",216889,758,152,20.05,0.7,3.49,2026-10-01,2024-12-31
+"Erfurt",erfurt,"Thüringen",218793,486,109,22.43,0.5,2.22,2026-10-01,2024-12-31
+"Oberhausen",oberhausen,"Nordrhein-Westfalen",213646,677,114,16.84,0.53,3.17,2026-10-01,2024-12-31
+"Rostock",rostock,"Mecklenburg-Vorpommern",205307,410,119,29.02,0.58,2,2026-10-01,2024-12-31
+"Hagen",hagen,"Nordrhein-Westfalen",190384,311,81,26.05,0.43,1.63,2026-10-01,2024-12-31
+"Potsdam",potsdam,"Brandenburg",184754,293,33,11.26,0.18,1.59,2026-10-01,2024-12-31
+"Saarbrücken",saarbruecken,"Saarland",182971,275,73,26.55,0.4,1.5,2026-10-01,2024-12-31
+"Hamm",hamm,"Nordrhein-Westfalen",179968,403,54,13.4,0.3,2.24,2026-10-01,2024-12-31
+"Ludwigshafen am Rhein",ludwigshafen,"Rheinland-Pfalz",177222,343,91,26.53,0.51,1.94,2026-10-01,2024-12-31
+"Mülheim an der Ruhr",muelheim,"Nordrhein-Westfalen",173050,405,74,18.27,0.43,2.34,2026-10-01,2024-12-31
+"Oldenburg (Oldb)",oldenburg,"Niedersachsen",176614,364,137,37.64,0.78,2.06,2026-10-01,2024-12-31
+"Osnabrück",osnabrueck,"Niedersachsen",166057,574,120,20.91,0.72,3.46,2026-10-01,2024-12-31
+"Leverkusen",leverkusen,"Nordrhein-Westfalen",168581,333,36,10.81,0.21,1.98,2026-10-01,2024-12-31
+"Heidelberg",heidelberg,"Baden-Württemberg",155756,784,46,5.87,0.3,5.03,2026-10-01,2024-12-31

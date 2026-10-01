@@ -30,6 +30,7 @@ import McsStationsPage from './pages/McsStationsPage';
 import McsWhatIsPage from './pages/McsWhatIsPage';
 import McsVsCcsPage from './pages/McsVsCcsPage';
 import McsTruckChargingPage from './pages/McsTruckChargingPage';
+import HpcCityMonitorPage from './pages/HpcCityMonitorPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 import ScrollToTop from './components/ScrollToTop';
@@ -62,6 +63,7 @@ export function AppContent() {
         <Route path="/suche" element={<SearchPage />} />
         <Route path="/staedte" element={<CitiesIndexPage />} />
         <Route path="/staedte/:citySlug" element={<CityPage />} />
+        <Route path="/hpc-city-monitor" element={<HpcCityMonitorPage />} />
         <Route path="/autobahnen" element={<MotorwaysIndexPage />} />
         <Route path="/autobahnen/:autobahnSlug" element={<MotorwayPage />} />
         <Route path="/betreiber" element={<OperatorsIndexPage />} />

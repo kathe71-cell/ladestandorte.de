@@ -21,6 +21,7 @@ console.log('=== ROUTE INTEGRITY & NOT-FOUND REGRESSION TEST ===');
 const MUST_RESOLVE_ROUTES = [
   '/',
   '/staedte',
+  '/hpc-city-monitor',
   '/mcs',
   '/mcs/was-ist-mcs',
   '/mcs/mcs-vs-ccs',

@@ -180,9 +180,16 @@ export const CityPage: React.FC = () => {
               Dokumentierte Nennleistung der Ladepunkte im BNetzA-Registerbestand (keine Inferenz der Stromart).
             </p>
           </div>
-          <Link to="/methodik" className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 underline">
-            Klassifikation in der Methodik
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link to="/hpc-city-monitor" className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 underline flex items-center gap-1">
+              <Activity className="w-3 h-3" />
+              <span>Im HPC City Monitor vergleichen</span>
+            </Link>
+            <span className="text-slate-300">·</span>
+            <Link to="/methodik" className="text-xs font-semibold text-slate-500 hover:text-slate-800 underline">
+              Methodik
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">

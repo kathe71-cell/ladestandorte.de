@@ -98,8 +98,11 @@ if (!berlin) {
   if (berlin.description.includes('dichteste urbane Ladenetz')) {
     console.error(`[FAIL] Berlin still contains 'dichteste urbane Ladenetz': "${berlin.description}"`);
     errors++;
+  } else if (!berlin.description.includes('unter den 50 ausgewerteten Städten')) {
+    console.error(`[FAIL] Berlin description must be explicitly scoped to 50 cities: "${berlin.description}"`);
+    errors++;
   } else {
-    console.log(`[PASS] Berlin known issue resolved: "${berlin.description}"`);
+    console.log(`[PASS] Berlin known issue resolved and scoped: "${berlin.description}"`);
   }
 }
 

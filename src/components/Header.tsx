@@ -14,7 +14,8 @@ import {
   Home as HomeIcon,
   BookOpen,
   HelpCircle,
-  Truck
+  Truck,
+  Activity
 } from 'lucide-react';
 import { GlobalSearchModal } from './GlobalSearchModal';
 
@@ -99,6 +100,13 @@ export const Header: React.FC = () => {
                   >
                     <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>Top 50 Städte</span>
+                  </Link>
+                  <Link
+                    to="/hpc-city-monitor"
+                    className="flex items-center gap-2.5 px-3.5 py-2 text-sm text-emerald-800 hover:text-emerald-950 hover:bg-emerald-50/70 font-semibold"
+                  >
+                    <Activity className="w-4 h-4 text-emerald-700 shrink-0" />
+                    <span>HPC City Monitor</span>
                   </Link>
                   <Link
                     to="/betreiber"
@@ -323,11 +331,22 @@ export const Header: React.FC = () => {
               to="/staedte"
               onClick={() => setMobileMenuOpen(false)}
               className={`flex items-center gap-3 px-3 py-3 rounded-xl text-base font-semibold min-h-[48px] ${
-                location.pathname.startsWith('/staedte') ? 'bg-emerald-50 text-emerald-900 font-bold' : 'text-slate-800 hover:bg-slate-100'
+                location.pathname === '/staedte' ? 'bg-emerald-50 text-emerald-900 font-bold' : 'text-slate-800 hover:bg-slate-100'
               }`}
             >
               <MapPin className="w-5 h-5 text-emerald-600" />
               <span>Städte &amp; Ballungsräume</span>
+            </Link>
+
+            <Link
+              to="/hpc-city-monitor"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center gap-3 px-3 py-3 rounded-xl text-base font-semibold min-h-[48px] ${
+                location.pathname === '/hpc-city-monitor' ? 'bg-emerald-50 text-emerald-900 font-bold' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <Activity className="w-5 h-5 text-emerald-600" />
+              <span>HPC City Monitor (≥150 kW)</span>
             </Link>
 
             <Link

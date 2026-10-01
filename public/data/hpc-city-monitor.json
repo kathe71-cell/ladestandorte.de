@@ -1,0 +1,579 @@
+{
+  "name": "HPC City Monitor",
+  "publisher": "ladestandorte.de",
+  "canonicalUrl": "https://www.ladestandorte.de/hpc-city-monitor",
+  "scope": {
+    "country": "DE",
+    "citiesCount": 50
+  },
+  "definition": {
+    "hpcClass": "Ladepunkte mit einer dokumentierten Nennleistung von >=150 kW",
+    "methodologyUrl": "https://www.ladestandorte.de/methodik"
+  },
+  "sources": {
+    "chargingInfrastructure": {
+      "provider": "Bundesnetzagentur (Ladesäulenregister)",
+      "retrievedAt": "2026-10-01T13:54:01.311Z",
+      "license": "CC BY 4.0",
+      "attribution": "Bundesnetzagentur.de"
+    },
+    "population": {
+      "provider": "Statistisches Bundesamt (Destatis)",
+      "referenceDate": "2024-12-31",
+      "license": "dl-de/by-2-0"
+    }
+  },
+  "generatedAt": "2026-10-01T15:15:54.097Z",
+  "cities": [
+    {
+      "slug": "berlin",
+      "name": "Berlin",
+      "bundesland": "Berlin",
+      "population": 3685265,
+      "chargingPointsTotal": 7617,
+      "chargingPoints150PlusKw": 988,
+      "share150PlusKwPercent": 12.97,
+      "points150PlusKwPer1000Pop": 0.27,
+      "chargingPointsPer1000Pop": 2.07
+    },
+    {
+      "slug": "hamburg",
+      "name": "Hamburg",
+      "bundesland": "Hamburg",
+      "population": 1862565,
+      "chargingPointsTotal": 6058,
+      "chargingPoints150PlusKw": 830,
+      "share150PlusKwPercent": 13.7,
+      "points150PlusKwPer1000Pop": 0.45,
+      "chargingPointsPer1000Pop": 3.25
+    },
+    {
+      "slug": "muenchen",
+      "name": "München",
+      "bundesland": "Bayern",
+      "population": 1505005,
+      "chargingPointsTotal": 3667,
+      "chargingPoints150PlusKw": 265,
+      "share150PlusKwPercent": 7.23,
+      "points150PlusKwPer1000Pop": 0.18,
+      "chargingPointsPer1000Pop": 2.44
+    },
+    {
+      "slug": "koeln",
+      "name": "Köln",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 1024621,
+      "chargingPointsTotal": 2711,
+      "chargingPoints150PlusKw": 321,
+      "share150PlusKwPercent": 11.84,
+      "points150PlusKwPer1000Pop": 0.31,
+      "chargingPointsPer1000Pop": 2.65
+    },
+    {
+      "slug": "frankfurt",
+      "name": "Frankfurt am Main",
+      "bundesland": "Hessen",
+      "population": 756021,
+      "chargingPointsTotal": 2161,
+      "chargingPoints150PlusKw": 198,
+      "share150PlusKwPercent": 9.16,
+      "points150PlusKwPer1000Pop": 0.26,
+      "chargingPointsPer1000Pop": 2.86
+    },
+    {
+      "slug": "stuttgart",
+      "name": "Stuttgart",
+      "bundesland": "Baden-Württemberg",
+      "population": 612663,
+      "chargingPointsTotal": 4231,
+      "chargingPoints150PlusKw": 150,
+      "share150PlusKwPercent": 3.55,
+      "points150PlusKwPer1000Pop": 0.24,
+      "chargingPointsPer1000Pop": 6.91
+    },
+    {
+      "slug": "duesseldorf",
+      "name": "Düsseldorf",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 618685,
+      "chargingPointsTotal": 2532,
+      "chargingPoints150PlusKw": 181,
+      "share150PlusKwPercent": 7.15,
+      "points150PlusKwPer1000Pop": 0.29,
+      "chargingPointsPer1000Pop": 4.09
+    },
+    {
+      "slug": "leipzig",
+      "name": "Leipzig",
+      "bundesland": "Sachsen",
+      "population": 611850,
+      "chargingPointsTotal": 1377,
+      "chargingPoints150PlusKw": 209,
+      "share150PlusKwPercent": 15.18,
+      "points150PlusKwPer1000Pop": 0.34,
+      "chargingPointsPer1000Pop": 2.25
+    },
+    {
+      "slug": "dortmund",
+      "name": "Dortmund",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 603462,
+      "chargingPointsTotal": 1368,
+      "chargingPoints150PlusKw": 243,
+      "share150PlusKwPercent": 17.76,
+      "points150PlusKwPer1000Pop": 0.4,
+      "chargingPointsPer1000Pop": 2.27
+    },
+    {
+      "slug": "essen",
+      "name": "Essen",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 574682,
+      "chargingPointsTotal": 1203,
+      "chargingPoints150PlusKw": 190,
+      "share150PlusKwPercent": 15.79,
+      "points150PlusKwPer1000Pop": 0.33,
+      "chargingPointsPer1000Pop": 2.09
+    },
+    {
+      "slug": "bremen",
+      "name": "Bremen",
+      "bundesland": "Bremen",
+      "population": 586271,
+      "chargingPointsTotal": 1431,
+      "chargingPoints150PlusKw": 181,
+      "share150PlusKwPercent": 12.65,
+      "points150PlusKwPer1000Pop": 0.31,
+      "chargingPointsPer1000Pop": 2.44
+    },
+    {
+      "slug": "dresden",
+      "name": "Dresden",
+      "bundesland": "Sachsen",
+      "population": 564904,
+      "chargingPointsTotal": 1137,
+      "chargingPoints150PlusKw": 286,
+      "share150PlusKwPercent": 25.15,
+      "points150PlusKwPer1000Pop": 0.51,
+      "chargingPointsPer1000Pop": 2.01
+    },
+    {
+      "slug": "hannover",
+      "name": "Hannover",
+      "bundesland": "Niedersachsen",
+      "population": 522131,
+      "chargingPointsTotal": 2015,
+      "chargingPoints150PlusKw": 175,
+      "share150PlusKwPercent": 8.68,
+      "points150PlusKwPer1000Pop": 0.34,
+      "chargingPointsPer1000Pop": 3.86
+    },
+    {
+      "slug": "nuernberg",
+      "name": "Nürnberg",
+      "bundesland": "Bayern",
+      "population": 529508,
+      "chargingPointsTotal": 1712,
+      "chargingPoints150PlusKw": 200,
+      "share150PlusKwPercent": 11.68,
+      "points150PlusKwPer1000Pop": 0.38,
+      "chargingPointsPer1000Pop": 3.23
+    },
+    {
+      "slug": "duisburg",
+      "name": "Duisburg",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 502270,
+      "chargingPointsTotal": 1145,
+      "chargingPoints150PlusKw": 113,
+      "share150PlusKwPercent": 9.87,
+      "points150PlusKwPer1000Pop": 0.22,
+      "chargingPointsPer1000Pop": 2.28
+    },
+    {
+      "slug": "bochum",
+      "name": "Bochum",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 358676,
+      "chargingPointsTotal": 981,
+      "chargingPoints150PlusKw": 224,
+      "share150PlusKwPercent": 22.83,
+      "points150PlusKwPer1000Pop": 0.62,
+      "chargingPointsPer1000Pop": 2.74
+    },
+    {
+      "slug": "wuppertal",
+      "name": "Wuppertal",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 358193,
+      "chargingPointsTotal": 483,
+      "chargingPoints150PlusKw": 100,
+      "share150PlusKwPercent": 20.7,
+      "points150PlusKwPer1000Pop": 0.28,
+      "chargingPointsPer1000Pop": 1.35
+    },
+    {
+      "slug": "bielefeld",
+      "name": "Bielefeld",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 331605,
+      "chargingPointsTotal": 721,
+      "chargingPoints150PlusKw": 133,
+      "share150PlusKwPercent": 18.45,
+      "points150PlusKwPer1000Pop": 0.4,
+      "chargingPointsPer1000Pop": 2.17
+    },
+    {
+      "slug": "bonn",
+      "name": "Bonn",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 323336,
+      "chargingPointsTotal": 1232,
+      "chargingPoints150PlusKw": 137,
+      "share150PlusKwPercent": 11.12,
+      "points150PlusKwPer1000Pop": 0.42,
+      "chargingPointsPer1000Pop": 3.81
+    },
+    {
+      "slug": "muenster",
+      "name": "Münster",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 308258,
+      "chargingPointsTotal": 772,
+      "chargingPoints150PlusKw": 104,
+      "share150PlusKwPercent": 13.47,
+      "points150PlusKwPer1000Pop": 0.34,
+      "chargingPointsPer1000Pop": 2.5
+    },
+    {
+      "slug": "karlsruhe",
+      "name": "Karlsruhe",
+      "bundesland": "Baden-Württemberg",
+      "population": 309050,
+      "chargingPointsTotal": 655,
+      "chargingPoints150PlusKw": 173,
+      "share150PlusKwPercent": 26.41,
+      "points150PlusKwPer1000Pop": 0.56,
+      "chargingPointsPer1000Pop": 2.12
+    },
+    {
+      "slug": "mannheim",
+      "name": "Mannheim",
+      "bundesland": "Baden-Württemberg",
+      "population": 318035,
+      "chargingPointsTotal": 824,
+      "chargingPoints150PlusKw": 176,
+      "share150PlusKwPercent": 21.36,
+      "points150PlusKwPer1000Pop": 0.55,
+      "chargingPointsPer1000Pop": 2.59
+    },
+    {
+      "slug": "augsburg",
+      "name": "Augsburg",
+      "bundesland": "Bayern",
+      "population": 301105,
+      "chargingPointsTotal": 578,
+      "chargingPoints150PlusKw": 110,
+      "share150PlusKwPercent": 19.03,
+      "points150PlusKwPer1000Pop": 0.37,
+      "chargingPointsPer1000Pop": 1.92
+    },
+    {
+      "slug": "wiesbaden",
+      "name": "Wiesbaden",
+      "bundesland": "Hessen",
+      "population": 288850,
+      "chargingPointsTotal": 1370,
+      "chargingPoints150PlusKw": 142,
+      "share150PlusKwPercent": 10.36,
+      "points150PlusKwPer1000Pop": 0.49,
+      "chargingPointsPer1000Pop": 4.74
+    },
+    {
+      "slug": "kassel",
+      "name": "Kassel",
+      "bundesland": "Hessen",
+      "population": 197230,
+      "chargingPointsTotal": 648,
+      "chargingPoints150PlusKw": 94,
+      "share150PlusKwPercent": 14.51,
+      "points150PlusKwPer1000Pop": 0.48,
+      "chargingPointsPer1000Pop": 3.29
+    },
+    {
+      "slug": "gelsenkirchen",
+      "name": "Gelsenkirchen",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 267930,
+      "chargingPointsTotal": 474,
+      "chargingPoints150PlusKw": 118,
+      "share150PlusKwPercent": 24.89,
+      "points150PlusKwPer1000Pop": 0.44,
+      "chargingPointsPer1000Pop": 1.77
+    },
+    {
+      "slug": "moenchengladbach",
+      "name": "Mönchengladbach",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 267213,
+      "chargingPointsTotal": 777,
+      "chargingPoints150PlusKw": 146,
+      "share150PlusKwPercent": 18.79,
+      "points150PlusKwPer1000Pop": 0.55,
+      "chargingPointsPer1000Pop": 2.91
+    },
+    {
+      "slug": "braunschweig",
+      "name": "Braunschweig",
+      "bundesland": "Niedersachsen",
+      "population": 252962,
+      "chargingPointsTotal": 1206,
+      "chargingPoints150PlusKw": 152,
+      "share150PlusKwPercent": 12.6,
+      "points150PlusKwPer1000Pop": 0.6,
+      "chargingPointsPer1000Pop": 4.77
+    },
+    {
+      "slug": "chemnitz",
+      "name": "Chemnitz",
+      "bundesland": "Sachsen",
+      "population": 245618,
+      "chargingPointsTotal": 544,
+      "chargingPoints150PlusKw": 150,
+      "share150PlusKwPercent": 27.57,
+      "points150PlusKwPer1000Pop": 0.61,
+      "chargingPointsPer1000Pop": 2.21
+    },
+    {
+      "slug": "kiel",
+      "name": "Kiel",
+      "bundesland": "Schleswig-Holstein",
+      "population": 252668,
+      "chargingPointsTotal": 580,
+      "chargingPoints150PlusKw": 108,
+      "share150PlusKwPercent": 18.62,
+      "points150PlusKwPer1000Pop": 0.43,
+      "chargingPointsPer1000Pop": 2.3
+    },
+    {
+      "slug": "aachen",
+      "name": "Aachen",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 262670,
+      "chargingPointsTotal": 1074,
+      "chargingPoints150PlusKw": 124,
+      "share150PlusKwPercent": 11.55,
+      "points150PlusKwPer1000Pop": 0.47,
+      "chargingPointsPer1000Pop": 4.09
+    },
+    {
+      "slug": "halle",
+      "name": "Halle (Saale)",
+      "bundesland": "Sachsen-Anhalt",
+      "population": 226767,
+      "chargingPointsTotal": 349,
+      "chargingPoints150PlusKw": 107,
+      "share150PlusKwPercent": 30.66,
+      "points150PlusKwPer1000Pop": 0.47,
+      "chargingPointsPer1000Pop": 1.54
+    },
+    {
+      "slug": "magdeburg",
+      "name": "Magdeburg",
+      "bundesland": "Sachsen-Anhalt",
+      "population": 244329,
+      "chargingPointsTotal": 561,
+      "chargingPoints150PlusKw": 190,
+      "share150PlusKwPercent": 33.87,
+      "points150PlusKwPer1000Pop": 0.78,
+      "chargingPointsPer1000Pop": 2.3
+    },
+    {
+      "slug": "freiburg",
+      "name": "Freiburg im Breisgau",
+      "bundesland": "Baden-Württemberg",
+      "population": 237460,
+      "chargingPointsTotal": 852,
+      "chargingPoints150PlusKw": 101,
+      "share150PlusKwPercent": 11.85,
+      "points150PlusKwPer1000Pop": 0.43,
+      "chargingPointsPer1000Pop": 3.59
+    },
+    {
+      "slug": "krefeld",
+      "name": "Krefeld",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 231406,
+      "chargingPointsTotal": 279,
+      "chargingPoints150PlusKw": 76,
+      "share150PlusKwPercent": 27.24,
+      "points150PlusKwPer1000Pop": 0.33,
+      "chargingPointsPer1000Pop": 1.21
+    },
+    {
+      "slug": "mainz",
+      "name": "Mainz",
+      "bundesland": "Rheinland-Pfalz",
+      "population": 224684,
+      "chargingPointsTotal": 571,
+      "chargingPoints150PlusKw": 80,
+      "share150PlusKwPercent": 14.01,
+      "points150PlusKwPer1000Pop": 0.36,
+      "chargingPointsPer1000Pop": 2.54
+    },
+    {
+      "slug": "luebeck",
+      "name": "Lübeck",
+      "bundesland": "Schleswig-Holstein",
+      "population": 216889,
+      "chargingPointsTotal": 758,
+      "chargingPoints150PlusKw": 152,
+      "share150PlusKwPercent": 20.05,
+      "points150PlusKwPer1000Pop": 0.7,
+      "chargingPointsPer1000Pop": 3.49
+    },
+    {
+      "slug": "erfurt",
+      "name": "Erfurt",
+      "bundesland": "Thüringen",
+      "population": 218793,
+      "chargingPointsTotal": 486,
+      "chargingPoints150PlusKw": 109,
+      "share150PlusKwPercent": 22.43,
+      "points150PlusKwPer1000Pop": 0.5,
+      "chargingPointsPer1000Pop": 2.22
+    },
+    {
+      "slug": "oberhausen",
+      "name": "Oberhausen",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 213646,
+      "chargingPointsTotal": 677,
+      "chargingPoints150PlusKw": 114,
+      "share150PlusKwPercent": 16.84,
+      "points150PlusKwPer1000Pop": 0.53,
+      "chargingPointsPer1000Pop": 3.17
+    },
+    {
+      "slug": "rostock",
+      "name": "Rostock",
+      "bundesland": "Mecklenburg-Vorpommern",
+      "population": 205307,
+      "chargingPointsTotal": 410,
+      "chargingPoints150PlusKw": 119,
+      "share150PlusKwPercent": 29.02,
+      "points150PlusKwPer1000Pop": 0.58,
+      "chargingPointsPer1000Pop": 2
+    },
+    {
+      "slug": "hagen",
+      "name": "Hagen",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 190384,
+      "chargingPointsTotal": 311,
+      "chargingPoints150PlusKw": 81,
+      "share150PlusKwPercent": 26.05,
+      "points150PlusKwPer1000Pop": 0.43,
+      "chargingPointsPer1000Pop": 1.63
+    },
+    {
+      "slug": "potsdam",
+      "name": "Potsdam",
+      "bundesland": "Brandenburg",
+      "population": 184754,
+      "chargingPointsTotal": 293,
+      "chargingPoints150PlusKw": 33,
+      "share150PlusKwPercent": 11.26,
+      "points150PlusKwPer1000Pop": 0.18,
+      "chargingPointsPer1000Pop": 1.59
+    },
+    {
+      "slug": "saarbruecken",
+      "name": "Saarbrücken",
+      "bundesland": "Saarland",
+      "population": 182971,
+      "chargingPointsTotal": 275,
+      "chargingPoints150PlusKw": 73,
+      "share150PlusKwPercent": 26.55,
+      "points150PlusKwPer1000Pop": 0.4,
+      "chargingPointsPer1000Pop": 1.5
+    },
+    {
+      "slug": "hamm",
+      "name": "Hamm",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 179968,
+      "chargingPointsTotal": 403,
+      "chargingPoints150PlusKw": 54,
+      "share150PlusKwPercent": 13.4,
+      "points150PlusKwPer1000Pop": 0.3,
+      "chargingPointsPer1000Pop": 2.24
+    },
+    {
+      "slug": "ludwigshafen",
+      "name": "Ludwigshafen am Rhein",
+      "bundesland": "Rheinland-Pfalz",
+      "population": 177222,
+      "chargingPointsTotal": 343,
+      "chargingPoints150PlusKw": 91,
+      "share150PlusKwPercent": 26.53,
+      "points150PlusKwPer1000Pop": 0.51,
+      "chargingPointsPer1000Pop": 1.94
+    },
+    {
+      "slug": "muelheim",
+      "name": "Mülheim an der Ruhr",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 173050,
+      "chargingPointsTotal": 405,
+      "chargingPoints150PlusKw": 74,
+      "share150PlusKwPercent": 18.27,
+      "points150PlusKwPer1000Pop": 0.43,
+      "chargingPointsPer1000Pop": 2.34
+    },
+    {
+      "slug": "oldenburg",
+      "name": "Oldenburg (Oldb)",
+      "bundesland": "Niedersachsen",
+      "population": 176614,
+      "chargingPointsTotal": 364,
+      "chargingPoints150PlusKw": 137,
+      "share150PlusKwPercent": 37.64,
+      "points150PlusKwPer1000Pop": 0.78,
+      "chargingPointsPer1000Pop": 2.06
+    },
+    {
+      "slug": "osnabrueck",
+      "name": "Osnabrück",
+      "bundesland": "Niedersachsen",
+      "population": 166057,
+      "chargingPointsTotal": 574,
+      "chargingPoints150PlusKw": 120,
+      "share150PlusKwPercent": 20.91,
+      "points150PlusKwPer1000Pop": 0.72,
+      "chargingPointsPer1000Pop": 3.46
+    },
+    {
+      "slug": "leverkusen",
+      "name": "Leverkusen",
+      "bundesland": "Nordrhein-Westfalen",
+      "population": 168581,
+      "chargingPointsTotal": 333,
+      "chargingPoints150PlusKw": 36,
+      "share150PlusKwPercent": 10.81,
+      "points150PlusKwPer1000Pop": 0.21,
+      "chargingPointsPer1000Pop": 1.98
+    },
+    {
+      "slug": "heidelberg",
+      "name": "Heidelberg",
+      "bundesland": "Baden-Württemberg",
+      "population": 155756,
+      "chargingPointsTotal": 784,
+      "chargingPoints150PlusKw": 46,
+      "share150PlusKwPercent": 5.87,
+      "points150PlusKwPer1000Pop": 0.3,
+      "chargingPointsPer1000Pop": 5.03
+    }
+  ]
+}
