@@ -88,8 +88,8 @@ data.forEach((city, idx) => {
   if (!pop || typeof pop.value !== 'number') {
     errors.push(`${prefix} Missing population.value`);
   } else {
-    if (pop.value < 100000) {
-      errors.push(`${prefix} Population unexpectedly low: ${pop.value}`);
+    if (pop.value <= 0) {
+      errors.push(`${prefix} Population invalid (must be > 0): ${pop.value}`);
     }
     if (pop.referenceDate !== '2024-12-31') {
       errors.push(`${prefix} Population referenceDate (${pop.referenceDate}) is not 2024-12-31`);

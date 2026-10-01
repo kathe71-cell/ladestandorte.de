@@ -1,751 +1,103 @@
+import generatedCitiesData from './generated/cities.generated.json';
+import editorialCitiesData from './cities-editorial.json';
+
+export interface CityPopulation {
+  value: number;
+  referenceDate: string;
+  source: string;
+  license: string;
+}
+
+export interface CityPowerClasses {
+  upTo22Kw: number;
+  between22And150Kw: number;
+  hpc150PlusKw: number;
+}
+
+export interface CityProvenance {
+  dataSource: string;
+  technicalDistributor: string;
+  license: string;
+  licenseUrl: string;
+  attribution: string;
+  retrievedAt: string;
+  sourcePublishedAt: string;
+  sourceDatasetDate: string | null;
+  maxRecordTimestamp: string;
+  rawSnapshotSha256: string;
+  completenessDisclaimer: string;
+}
+
+export interface CityBnetzaData {
+  ladestationen: number;
+  ladepunkteGesamt: number;
+  powerClasses: CityPowerClasses;
+  hpcLadepunkte: number; // >= 150 kW
+  avgKw: number;
+  topBetreiber: string[];
+  pointsPer1000Pop: number;
+  hpcPer1000Pop: number;
+  provenance: CityProvenance;
+}
+
 export interface CityData {
   slug: string;
   name: string;
   bundesland: string;
-  einwohner: number;
+  ags: string;
+  ars: string;
+  einwohner: number; // Destatis 2024
+  population: CityPopulation;
   ladepunkteGesamt: number;
   hpcLadepunkte: number; // >= 150 kW
-  acLadepunkte: number;
+  powerClasses: CityPowerClasses;
+  pointsPer1000Pop: number;
+  hpcPer1000Pop: number;
   avgKw: number;
   topBetreiber: string[];
   plzs: string[];
-  bnetzaStand: string;
   description: string;
+  bnetza: CityBnetzaData;
   connectedMotorways?: string[];
 }
 
-export const CITIES_DATA: CityData[] = [
-  {
-    slug: "berlin",
-    name: "Berlin",
-    bundesland: "Berlin",
-    einwohner: 3755000,
-    ladepunkteGesamt: 5420,
-    hpcLadepunkte: 680,
-    acLadepunkte: 4740,
-    avgKw: 42.5,
-    topBetreiber: ["Berliner Stadtwerke", "EnBW", "Tesla", "Allego", "TotalEnergies"],
-    plzs: ["10115", "10117", "10119", "10178", "10243", "10405", "10557", "10785", "13353"],
-    bnetzaStand: "Aktuell",
-    description: "Die Bundeshauptstadt verfügt über das dichteste urbane Ladenetz Deutschlands mit starkem Zuwachs an Schnellladeparks an Hauptverkehrsachsen und Einkaufszentren."
-  },
-  {
-    slug: "hamburg",
-    name: "Hamburg",
-    bundesland: "Hamburg",
-    einwohner: 1900000,
-    ladepunkteGesamt: 3840,
-    hpcLadepunkte: 520,
-    acLadepunkte: 3320,
-    avgKw: 48.2,
-    topBetreiber: ["Stromnetz Hamburg", "EnBW", "Aral pulse", "Shell Recharge", "Fastned"],
-    plzs: ["20095", "20099", "20354", "20457", "22083", "22303", "22767"],
-    bnetzaStand: "Aktuell",
-    description: "Hamburg gilt als Pionierstadt für öffentliche Ladeinfrastruktur mit einheitlichem Masterplan und hoher Dichte an städtischen AC-Säulen sowie Megawatt-Hubs im Hafenbereich."
-  },
-  {
-    slug: "muenchen",
-    name: "München",
-    bundesland: "Bayern",
-    einwohner: 1512000,
-    ladepunkteGesamt: 3450,
-    hpcLadepunkte: 610,
-    acLadepunkte: 2840,
-    avgKw: 52.1,
-    topBetreiber: ["SWM (Stadtwerke München)", "EnBW", "Tesla", "IONITY", "Aral pulse"],
-    plzs: ["80331", "80333", "80336", "80539", "80802", "81675"],
-    bnetzaStand: "Aktuell",
-    description: "München bietet durch die SWM und überregionale CPOs eine herausragende HPC-Versorgung entlang des Mittleren Rings und an den Autobahnzubringern A8, A9 und A96."
-  },
-  {
-    slug: "koeln",
-    name: "Köln",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 1084000,
-    ladepunkteGesamt: 2280,
-    hpcLadepunkte: 390,
-    acLadepunkte: 1890,
-    avgKw: 44.8,
-    topBetreiber: ["RheinEnergie (TankE)", "EnBW", "Fastned", "Aral pulse"],
-    plzs: ["50667", "50676", "50823", "50933", "51103"],
-    bnetzaStand: "Aktuell",
-    description: "Köln verbindet historische Stadtviertel über das TankE-Netzwerk mit leistungsstarken Schnellladeparks an den Autobahnringen A1, A3 und A4."
-  },
-  {
-    slug: "frankfurt",
-    name: "Frankfurt am Main",
-    bundesland: "Hessen",
-    einwohner: 773000,
-    ladepunkteGesamt: 2150,
-    hpcLadepunkte: 430,
-    acLadepunkte: 1720,
-    avgKw: 56.4,
-    topBetreiber: ["Mainova", "EnBW", "Tesla", "Aral pulse", "IONITY"],
-    plzs: ["60311", "60313", "60329", "60486", "60549"],
-    bnetzaStand: "Aktuell",
-    description: "Als Finanzmetropole und wichtigster Verkehrsknotenpunkt Hessens punktet Frankfurt mit extrem hoher HPC-Dichte rund um den Flughafen und das Frankfurter Kreuz (A3/A5)."
-  },
-  {
-    slug: "stuttgart",
-    name: "Stuttgart",
-    bundesland: "Baden-Württemberg",
-    einwohner: 635000,
-    ladepunkteGesamt: 1980,
-    hpcLadepunkte: 410,
-    acLadepunkte: 1570,
-    avgKw: 58.7,
-    topBetreiber: ["EnBW", "Stadtwerke Stuttgart", "Porsche Charging Lounge", "Tesla"],
-    plzs: ["70173", "70178", "70197", "70372", "70565"],
-    bnetzaStand: "Aktuell",
-    description: "In der Wiege des Automobilbaus betreibt EnBW ihr bundesweit dichtes Ladenetz mit zahlreichen überdachten HyperHubs und bis zu 400 kW Ladeleistung."
-  },
-  {
-    slug: "duesseldorf",
-    name: "Düsseldorf",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 629000,
-    ladepunkteGesamt: 1760,
-    hpcLadepunkte: 310,
-    acLadepunkte: 1450,
-    avgKw: 46.3,
-    topBetreiber: ["Stadtwerke Düsseldorf", "EnBW", "Fastned", "Shell Recharge"],
-    plzs: ["40210", "40212", "40213", "40477", "40549"],
-    bnetzaStand: "Aktuell",
-    description: "Die nordrhein-westfälische Landeshauptstadt forciert den Ausbau von Schnellladeparks an Ausfallstraßen und Park-and-Ride-Anlagen mit transparenten AFIR-Zahlungsmethoden."
-  },
-  {
-    slug: "leipzig",
-    name: "Leipzig",
-    bundesland: "Sachsen",
-    einwohner: 624000,
-    ladepunkteGesamt: 1540,
-    hpcLadepunkte: 290,
-    acLadepunkte: 1250,
-    avgKw: 51.0,
-    topBetreiber: ["L-Gruppe (Leipziger Stadtwerke)", "EnBW", "Tesla", "Allego"],
-    plzs: ["04103", "04109", "04155", "04229", "04315"],
-    bnetzaStand: "Aktuell",
-    description: "Leipzig ist der E-Mobilitäts-Spitzenreiter in Ostdeutschland mit rasant wachsendem Ladenetz entlang der Achsen A9, A14 und A38."
-  },
-  {
-    slug: "dortmund",
-    name: "Dortmund",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 593000,
-    ladepunkteGesamt: 1420,
-    hpcLadepunkte: 260,
-    acLadepunkte: 1160,
-    avgKw: 47.9,
-    topBetreiber: ["DEW21", "EnBW", "Aral pulse", "Fastned"],
-    plzs: ["44135", "44137", "44139", "44227", "44309"],
-    bnetzaStand: "Aktuell",
-    description: "Zentraler Ruhrgebiets-Knotenpunkt mit stark ausgebauten Ladezonen an der B1, Westfalenhallen und Anschlussstellen an die A1, A40 und A45."
-  },
-  {
-    slug: "essen",
-    name: "Essen",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 584000,
-    ladepunkteGesamt: 1390,
-    hpcLadepunkte: 240,
-    acLadepunkte: 1150,
-    avgKw: 45.2,
-    topBetreiber: ["Stadtwerke Essen", "E.ON Drive", "EnBW", "Aral pulse"],
-    plzs: ["45127", "45128", "45130", "45133", "45141"],
-    bnetzaStand: "Aktuell",
-    description: "Herz der Energieregion Rhein-Ruhr: Hohe Dichte an Schnellladestationen von E.ON und Aral pulse entlang der A40 und A52."
-  },
-  {
-    slug: "bremen",
-    name: "Bremen",
-    bundesland: "Bremen",
-    einwohner: 569000,
-    ladepunkteGesamt: 1210,
-    hpcLadepunkte: 210,
-    acLadepunkte: 1000,
-    avgKw: 46.5,
-    topBetreiber: ["swb", "EWE Go", "EnBW", "Tesla"],
-    plzs: ["28195", "28203", "28217", "28359"],
-    bnetzaStand: "Aktuell",
-    description: "Hanseatische Ladeinfrastruktur mit enger Verzahnung zwischen swb und EWE Go sowie hervorragender Autobahnanbindung an die A1 und A27."
-  },
-  {
-    slug: "dresden",
-    name: "Dresden",
-    bundesland: "Sachsen",
-    einwohner: 563000,
-    ladepunkteGesamt: 1190,
-    hpcLadepunkte: 220,
-    acLadepunkte: 970,
-    avgKw: 49.3,
-    topBetreiber: ["SachsenEnergie", "EnBW", "Tesla", "IONITY"],
-    plzs: ["01067", "01069", "01099", "01277"],
-    bnetzaStand: "Aktuell",
-    description: "Sachsens Landeshauptstadt verbindet innerstädtische Ladekorridore mit hochmodernen Ladeparks an der A4 und A17 Richtung Tschechien."
-  },
-  {
-    slug: "hannover",
-    name: "Hannover",
-    bundesland: "Niedersachsen",
-    einwohner: 545000,
-    ladepunkteGesamt: 1350,
-    hpcLadepunkte: 250,
-    acLadepunkte: 1100,
-    avgKw: 50.1,
-    topBetreiber: ["enercity", "EnBW", "Tesla", "Fastned"],
-    plzs: ["30159", "30161", "30175", "30521"],
-    bnetzaStand: "Aktuell",
-    description: "enercity zählt zu den innovativsten Stadtwerken Deutschlands mit flächendeckendem Laternen-Laden und Großladeparks am Messegelände und an der A2/A7."
-  },
-  {
-    slug: "nuernberg",
-    name: "Nürnberg",
-    bundesland: "Bayern",
-    einwohner: 523000,
-    ladepunkteGesamt: 1280,
-    hpcLadepunkte: 240,
-    acLadepunkte: 1040,
-    avgKw: 51.8,
-    topBetreiber: ["N-ERGIE", "EnBW", "Aral pulse", "Tesla"],
-    plzs: ["90402", "90403", "90409", "90471"],
-    bnetzaStand: "Aktuell",
-    description: "Frankens Metropole bietet ein starkes Netzwerk aus N-ERGIE Stationen und High-Speed-Ladern an den Autobahnen A3, A6 und A73."
-  },
-  {
-    slug: "duisburg",
-    name: "Duisburg",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 502000,
-    ladepunkteGesamt: 980,
-    hpcLadepunkte: 180,
-    acLadepunkte: 800,
-    avgKw: 46.1,
-    topBetreiber: ["Stadtwerke Duisburg", "EnBW", "Shell Recharge"],
-    plzs: ["47051", "47057", "47169"],
-    bnetzaStand: "Aktuell",
-    description: "Wichtiger Logistikknotenpunkt mit speziellem Fokus auf Ladeinfrastruktur im Binnenhafen und an den Autobahnen A40, A59 und A3."
-  },
-  {
-    slug: "bochum",
-    name: "Bochum",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 365000,
-    ladepunkteGesamt: 840,
-    hpcLadepunkte: 150,
-    acLadepunkte: 690,
-    avgKw: 47.3,
-    topBetreiber: ["Stadtwerke Bochum", "EnBW", "Aral pulse"],
-    plzs: ["44787", "44799", "44801"],
-    bnetzaStand: "Aktuell",
-    description: "Universitätsstadt mit hoher Ausbaudynamik an den Campussen und Einkaufszentren entlang des Ruhrschnellwegs (A40)."
-  },
-  {
-    slug: "wuppertal",
-    name: "Wuppertal",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 355000,
-    ladepunkteGesamt: 760,
-    hpcLadepunkte: 130,
-    acLadepunkte: 630,
-    avgKw: 45.0,
-    topBetreiber: ["WSW (Wuppertaler Stadtwerke)", "EnBW", "Fastned"],
-    plzs: ["42103", "42285", "42329"],
-    bnetzaStand: "Aktuell",
-    description: "Topografisch anspruchsvolle Tallage mit Fokus auf zentrale Parkhäuser, P+R-Flächen an der Schwebebahn und A46-Knotenpunkte."
-  },
-  {
-    slug: "bielefeld",
-    name: "Bielefeld",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 338000,
-    ladepunkteGesamt: 790,
-    hpcLadepunkte: 145,
-    acLadepunkte: 645,
-    avgKw: 48.6,
-    topBetreiber: ["Stadtwerke Bielefeld", "EnBW", "Tesla"],
-    plzs: ["33602", "33615", "33647"],
-    bnetzaStand: "Aktuell",
-    description: "Wirtschaftszentrum Ostwestfalen-Lippe mit moderner Ladeinfrastruktur entlang des Ostwestfalendamms und A2-Anschlussstellen."
-  },
-  {
-    slug: "bonn",
-    name: "Bonn",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 336000,
-    ladepunkteGesamt: 890,
-    hpcLadepunkte: 160,
-    acLadepunkte: 730,
-    avgKw: 47.1,
-    topBetreiber: ["Stadtwerke Bonn (SWB)", "TankE", "EnBW"],
-    plzs: ["53111", "53113", "53177"],
-    bnetzaStand: "Aktuell",
-    description: "Die Bundesstadt mit vielen UN-Organisationen setzt auf klimafreundliche Mobilität mit engem Netz im Bundesviertel und an der A565."
-  },
-  {
-    slug: "muenster",
-    name: "Münster",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 320000,
-    ladepunkteGesamt: 880,
-    hpcLadepunkte: 155,
-    acLadepunkte: 725,
-    avgKw: 46.9,
-    topBetreiber: ["Stadtwerke Münster", "EnBW", "EWE Go"],
-    plzs: ["48143", "48149", "48159"],
-    bnetzaStand: "Aktuell",
-    description: "Fahrrad- und Zukunftsstadt mit vorbildlichem innerstädtischem AC-Konzept und schnellen Ladeparks an der Umgehungsstraße B51."
-  },
-  {
-    slug: "karlsruhe",
-    name: "Karlsruhe",
-    bundesland: "Baden-Württemberg",
-    einwohner: 313000,
-    ladepunkteGesamt: 950,
-    hpcLadepunkte: 190,
-    acLadepunkte: 760,
-    avgKw: 53.4,
-    topBetreiber: ["Stadtwerke Karlsruhe", "EnBW", "Aral pulse"],
-    plzs: ["76131", "76133", "76185"],
-    bnetzaStand: "Aktuell",
-    description: "Technologieregion mit direkter Anbindung an das EnBW-Heimatnetzwerk und Hochleistungs-Hubs an der A5 und Südtangente."
-  },
-  {
-    slug: "mannheim",
-    name: "Mannheim",
-    bundesland: "Baden-Württemberg",
-    einwohner: 311000,
-    ladepunkteGesamt: 870,
-    hpcLadepunkte: 175,
-    acLadepunkte: 695,
-    avgKw: 52.0,
-    topBetreiber: ["MVV Energie", "EnBW", "Fastned", "Tesla"],
-    plzs: ["68159", "68161", "68165"],
-    bnetzaStand: "Aktuell",
-    description: "Quadratestadt mit zukunftsfähiger MVV-Ladeinfrastruktur und Mega-Schnellladeparks an den Autobahnkreuzen A6/A656."
-  },
-  {
-    slug: "augsburg",
-    name: "Augsburg",
-    bundesland: "Bayern",
-    einwohner: 301000,
-    ladepunkteGesamt: 760,
-    hpcLadepunkte: 140,
-    acLadepunkte: 620,
-    avgKw: 49.5,
-    topBetreiber: ["Stadtwerke Augsburg (swa)", "EnBW", "Tesla"],
-    plzs: ["86150", "86152", "86159"],
-    bnetzaStand: "Aktuell",
-    description: "Fuggerstadt mit dichtem Netz der swa und strategischer Lage direkt an der Bundesautobahn A8 München-Stuttgart."
-  },
-  {
-    slug: "wiesbaden",
-    name: "Wiesbaden",
-    bundesland: "Hessen",
-    einwohner: 283000,
-    ladepunkteGesamt: 720,
-    hpcLadepunkte: 135,
-    acLadepunkte: 585,
-    avgKw: 48.0,
-    topBetreiber: ["ESWE Versorgung", "EnBW", "Aral pulse"],
-    plzs: ["65183", "65185", "65203"],
-    bnetzaStand: "Aktuell",
-    description: "Hessische Landeshauptstadt mit ESWE-Ladeinfrastruktur und guter Erreichbarkeit über die A66 und A671."
-  },
-  {
-    slug: "kassel",
-    name: "Kassel",
-    bundesland: "Hessen",
-    einwohner: 205000,
-    ladepunkteGesamt: 620,
-    hpcLadepunkte: 130,
-    acLadepunkte: 490,
-    avgKw: 54.2,
-    topBetreiber: ["Städtische Werke Kassel", "EnBW", "Tesla", "IONITY"],
-    plzs: ["34117", "34119", "34125", "34131"],
-    bnetzaStand: "Aktuell",
-    description: "Mittelpunkt Deutschlands mit herausragender Ladeinfrastruktur an den Autobahnknoten A7, A44 und A49 sowie urbanen Schnellladeparks."
-  },
-  {
-    slug: "gelsenkirchen",
-    name: "Gelsenkirchen",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 263000,
-    ladepunkteGesamt: 580,
-    hpcLadepunkte: 110,
-    acLadepunkte: 470,
-    avgKw: 46.8,
-    topBetreiber: ["Elevance", "EnBW", "Aral pulse"],
-    plzs: ["45879", "45888", "45894"],
-    bnetzaStand: "Aktuell",
-    description: "Klassisches Ruhrgebietszentrum mit modernen HPC-Standorten entlang der A42 und A2."
-  },
-  {
-    slug: "moenchengladbach",
-    name: "Mönchengladbach",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 261000,
-    ladepunkteGesamt: 560,
-    hpcLadepunkte: 105,
-    acLadepunkte: 455,
-    avgKw: 45.9,
-    topBetreiber: ["NEW", "EnBW", "Fastned"],
-    plzs: ["41061", "41065", "41236"],
-    bnetzaStand: "Aktuell",
-    description: "Die größte Stadt am linken Niederrhein setzt auf die Kooperation mit NEW und Schnellladeparks am Nordpark und A61."
-  },
-  {
-    slug: "braunschweig",
-    name: "Braunschweig",
-    bundesland: "Niedersachsen",
-    einwohner: 250000,
-    ladepunkteGesamt: 690,
-    hpcLadepunkte: 140,
-    acLadepunkte: 550,
-    avgKw: 51.5,
-    topBetreiber: ["BS|ENERGY", "EnBW", "Tesla", "EWE Go"],
-    plzs: ["38100", "38102", "38114"],
-    bnetzaStand: "Aktuell",
-    description: "Forschungsstadt im Zulieferergürtel der E-Mobilität mit hoher Konzentration moderner Lader an der A2 und A39."
-  },
-  {
-    slug: "chemnitz",
-    name: "Chemnitz",
-    bundesland: "Sachsen",
-    einwohner: 248000,
-    ladepunkteGesamt: 540,
-    hpcLadepunkte: 100,
-    acLadepunkte: 440,
-    avgKw: 48.7,
-    topBetreiber: ["eins energie in sachsen", "EnBW", "Aral pulse"],
-    plzs: ["09111", "09112", "09126"],
-    bnetzaStand: "Aktuell",
-    description: "Kulturhauptstadt Europas mit erweiterter Ladeinfrastruktur an der A4/A72 und im Stadtgebiet."
-  },
-  {
-    slug: "kiel",
-    name: "Kiel",
-    bundesland: "Schleswig-Holstein",
-    einwohner: 247000,
-    ladepunkteGesamt: 610,
-    hpcLadepunkte: 115,
-    acLadepunkte: 495,
-    avgKw: 47.8,
-    topBetreiber: ["Stadtwerke Kiel", "EnBW", "EWE Go"],
-    plzs: ["24103", "24105", "24118"],
-    bnetzaStand: "Aktuell",
-    description: "Landeshauptstadt an der Förde mit starker Ladeanbindung an den Fährhäfen und am Zubringer A215."
-  },
-  {
-    slug: "aachen",
-    name: "Aachen",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 249000,
-    ladepunkteGesamt: 680,
-    hpcLadepunkte: 130,
-    acLadepunkte: 550,
-    avgKw: 50.2,
-    topBetreiber: ["STAWAG", "EnBW", "Fastned", "Tesla"],
-    plzs: ["52062", "52064", "52074"],
-    bnetzaStand: "Aktuell",
-    description: "RWTH-Innovationsstandort und Dreiländereck mit grenzüberschreitenden Ladekorridoren an der A4/A44."
-  },
-  {
-    slug: "halle",
-    name: "Halle (Saale)",
-    bundesland: "Sachsen-Anhalt",
-    einwohner: 239000,
-    ladepunkteGesamt: 510,
-    hpcLadepunkte: 95,
-    acLadepunkte: 415,
-    avgKw: 47.0,
-    topBetreiber: ["EVH (Stadtwerke Halle)", "EnBW", "Aral pulse"],
-    plzs: ["06108", "06110", "06120"],
-    bnetzaStand: "Aktuell",
-    description: "Kultur- und Universitätsstadt an der Saale mit schnellem Anschluss an den Autobahnring Mitteldeutschland (A14/A9)."
-  },
-  {
-    slug: "magdeburg",
-    name: "Magdeburg",
-    bundesland: "Sachsen-Anhalt",
-    einwohner: 238000,
-    ladepunkteGesamt: 530,
-    hpcLadepunkte: 105,
-    acLadepunkte: 425,
-    avgKw: 48.9,
-    topBetreiber: ["SWM Magdeburg", "EnBW", "Tesla", "Allego"],
-    plzs: ["39104", "39108", "39124"],
-    bnetzaStand: "Aktuell",
-    description: "Zukunftsträchtiger Hochtechnologie-Standort mit expandierendem Ladenetz entlang der A2 und A14."
-  },
-  {
-    slug: "freiburg",
-    name: "Freiburg im Breisgau",
-    bundesland: "Baden-Württemberg",
-    einwohner: 235000,
-    ladepunkteGesamt: 650,
-    hpcLadepunkte: 125,
-    acLadepunkte: 525,
-    avgKw: 51.1,
-    topBetreiber: ["badenova", "EnBW", "IONITY", "Tesla"],
-    plzs: ["79098", "79100", "79110"],
-    bnetzaStand: "Aktuell",
-    description: "Ökohauptstadt mit dichtem Ökostrom-Ladenetz der badenova und High-Speed-Hubs an der Rheintalautobahn A5."
-  },
-  {
-    slug: "krefeld",
-    name: "Krefeld",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 228000,
-    ladepunkteGesamt: 490,
-    hpcLadepunkte: 85,
-    acLadepunkte: 405,
-    avgKw: 44.9,
-    topBetreiber: ["SWK Stadtwerke Krefeld", "EnBW", "Aral pulse"],
-    plzs: ["47798", "47803", "47829"],
-    bnetzaStand: "Aktuell",
-    description: "Niederrheinisches Zentrum mit Ladeclustern an der A57 und Gewerbegebieten."
-  },
-  {
-    slug: "mainz",
-    name: "Mainz",
-    bundesland: "Rheinland-Pfalz",
-    einwohner: 218000,
-    ladepunkteGesamt: 580,
-    hpcLadepunkte: 115,
-    acLadepunkte: 465,
-    avgKw: 49.8,
-    topBetreiber: ["Mainzer Stadtwerke", "EnBW", "Tesla"],
-    plzs: ["55116", "55122", "55128"],
-    bnetzaStand: "Aktuell",
-    description: "Landeshauptstadt von Rheinland-Pfalz mit strategischem Ladeausbau im Rhein-Main-Verbund an der A60/A63."
-  },
-  {
-    slug: "luebeck",
-    name: "Lübeck",
-    bundesland: "Schleswig-Holstein",
-    einwohner: 217000,
-    ladepunkteGesamt: 520,
-    hpcLadepunkte: 95,
-    acLadepunkte: 425,
-    avgKw: 48.1,
-    topBetreiber: ["Stadtwerke Lübeck", "EnBW", "Fastned"],
-    plzs: ["23552", "23556", "23570"],
-    bnetzaStand: "Aktuell",
-    description: "Tor zum Norden und Skandinavienverkehr mit Schnellladeparks an der A1 und Travemünde-Fähren."
-  },
-  {
-    slug: "erfurt",
-    name: "Erfurt",
-    bundesland: "Thüringen",
-    einwohner: 215000,
-    ladepunkteGesamt: 540,
-    hpcLadepunkte: 110,
-    acLadepunkte: 430,
-    avgKw: 52.3,
-    topBetreiber: ["SWE Energie", "EnBW", "Tesla", "IONITY"],
-    plzs: ["99084", "99086", "99099"],
-    bnetzaStand: "Aktuell",
-    description: "Thüringens Landeshauptstadt am Erfurter Kreuz (A4/A71) bietet modernste HPC-Knotenpunkte."
-  },
-  {
-    slug: "oberhausen",
-    name: "Oberhausen",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 210000,
-    ladepunkteGesamt: 480,
-    hpcLadepunkte: 90,
-    acLadepunkte: 390,
-    avgKw: 46.4,
-    topBetreiber: ["evo Energie", "EnBW", "Aral pulse"],
-    plzs: ["46045", "46047", "46145"],
-    bnetzaStand: "Aktuell",
-    description: "Einkaufs- und Freizeitzentrum rund um das CentrO mit großflächigen Schnellladestationen."
-  },
-  {
-    slug: "rostock",
-    name: "Rostock",
-    bundesland: "Mecklenburg-Vorpommern",
-    einwohner: 209000,
-    ladepunkteGesamt: 490,
-    hpcLadepunkte: 90,
-    acLadepunkte: 400,
-    avgKw: 47.5,
-    topBetreiber: ["Stadtwerke Rostock", "EnBW", "EWE Go"],
-    plzs: ["18055", "18057", "18119"],
-    bnetzaStand: "Aktuell",
-    description: "Größte Stadt Mecklenburg-Vorpommerns mit Fokus auf den Seehafen und Zubringer zur Ostseeautobahn A19/A20."
-  },
-  {
-    slug: "hagen",
-    name: "Hagen",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 189000,
-    ladepunkteGesamt: 420,
-    hpcLadepunkte: 75,
-    acLadepunkte: 345,
-    avgKw: 45.7,
-    topBetreiber: ["Enervie", "EnBW", "Fastned"],
-    plzs: ["58095", "58097", "58135"],
-    bnetzaStand: "Aktuell",
-    description: "Tor zum Sauerland mit Knotenpunkten an den Bundesautobahnen A1, A45 und A46."
-  },
-  {
-    slug: "potsdam",
-    name: "Potsdam",
-    bundesland: "Brandenburg",
-    einwohner: 185000,
-    ladepunkteGesamt: 470,
-    hpcLadepunkte: 85,
-    acLadepunkte: 385,
-    avgKw: 49.0,
-    topBetreiber: ["EWP Potsdam", "EnBW", "Tesla"],
-    plzs: ["14467", "14469", "14482"],
-    bnetzaStand: "Aktuell",
-    description: "Historische Kulturstadt mit starkem Wachstum und direkter Anbindung an den Berliner Ring (A10) und A115."
-  },
-  {
-    slug: "saarbruecken",
-    name: "Saarbrücken",
-    bundesland: "Saarland",
-    einwohner: 180000,
-    ladepunkteGesamt: 450,
-    hpcLadepunkte: 80,
-    acLadepunkte: 370,
-    avgKw: 48.3,
-    topBetreiber: ["Stadtwerke Saarbrücken", "EnBW", "TotalEnergies"],
-    plzs: ["66111", "66115", "66121"],
-    bnetzaStand: "Aktuell",
-    description: "Saarländische Landeshauptstadt an der französischen Grenze mit Ladepunkten an der A6 und A620."
-  },
-  {
-    slug: "hamm",
-    name: "Hamm",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 179000,
-    ladepunkteGesamt: 410,
-    hpcLadepunkte: 75,
-    acLadepunkte: 335,
-    avgKw: 47.1,
-    topBetreiber: ["Stadtwerke Hamm", "EnBW", "Aral pulse"],
-    plzs: ["59065", "59071", "59075"],
-    bnetzaStand: "Aktuell",
-    description: "Wichtiger Eisenbahn- und Logistikknoten am östlichen Rand des Ruhrgebiets an der A2."
-  },
-  {
-    slug: "ludwigshafen",
-    name: "Ludwigshafen am Rhein",
-    bundesland: "Rheinland-Pfalz",
-    einwohner: 172000,
-    ladepunkteGesamt: 430,
-    hpcLadepunkte: 85,
-    acLadepunkte: 345,
-    avgKw: 51.0,
-    topBetreiber: ["TWL", "Pfalzwerke", "EnBW"],
-    plzs: ["67059", "67061", "67069"],
-    bnetzaStand: "Aktuell",
-    description: "Industriemetropole mit hoher Dichte an Pfalzwerke- und EnBW-Standorten an der A650 und A6."
-  },
-  {
-    slug: "muelheim",
-    name: "Mülheim an der Ruhr",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 171000,
-    ladepunkteGesamt: 390,
-    hpcLadepunkte: 70,
-    acLadepunkte: 320,
-    avgKw: 46.2,
-    topBetreiber: ["medl", "EnBW", "E.ON Drive"],
-    plzs: ["45468", "45472", "45476"],
-    bnetzaStand: "Aktuell",
-    description: "Stadt am Fluss mit gezieltem Ausbau an den Einkaufszentren Rhein-Ruhr-Zentrum und an der A40."
-  },
-  {
-    slug: "oldenburg",
-    name: "Oldenburg (Oldb)",
-    bundesland: "Niedersachsen",
-    einwohner: 171000,
-    ladepunkteGesamt: 460,
-    hpcLadepunkte: 90,
-    acLadepunkte: 370,
-    avgKw: 49.6,
-    topBetreiber: ["EWE Go", "EnBW", "Tesla"],
-    plzs: ["26121", "26122", "26135"],
-    bnetzaStand: "Aktuell",
-    description: "Hauptsitz von EWE Go mit Vorzeige-Ladeinfrastruktur im gesamten Stadtgebiet und an der A28/A29."
-  },
-  {
-    slug: "osnabrueck",
-    name: "Osnabrück",
-    bundesland: "Niedersachsen",
-    einwohner: 165000,
-    ladepunkteGesamt: 440,
-    hpcLadepunkte: 85,
-    acLadepunkte: 355,
-    avgKw: 48.9,
-    topBetreiber: ["Stadtwerke Osnabrück", "EnBW", "Fastned"],
-    plzs: ["49074", "49076", "49084"],
-    bnetzaStand: "Aktuell",
-    description: "Friedensstadt im Schnittpunkt von A1 und A30 mit hohem Anteil an Ökostrom-Ladepunkten."
-  },
-  {
-    slug: "leverkusen",
-    name: "Leverkusen",
-    bundesland: "Nordrhein-Westfalen",
-    einwohner: 164000,
-    ladepunkteGesamt: 420,
-    hpcLadepunkte: 80,
-    acLadepunkte: 340,
-    avgKw: 48.0,
-    topBetreiber: ["EVL", "EnBW", "Aral pulse"],
-    plzs: ["51373", "51375", "51379"],
-    bnetzaStand: "Aktuell",
-    description: "Chemiestandort am Kreuz Leverkusen (A1/A3) mit exzellenten Autobahn-Schnellladern."
-  },
-  {
-    slug: "heidelberg",
-    name: "Heidelberg",
-    bundesland: "Baden-Württemberg",
-    einwohner: 160000,
-    ladepunkteGesamt: 460,
-    hpcLadepunkte: 95,
-    acLadepunkte: 365,
-    avgKw: 52.8,
-    topBetreiber: ["Stadtwerke Heidelberg", "EnBW", "Tesla", "Pfalzwerke"],
-    plzs: ["69115", "69117", "69120"],
-    bnetzaStand: "Aktuell",
-    description: "Wissenschaftsstadt mit hochmodernem Ladenetz im Neubaugebiet Bahnstadt und an der Autobahn A5/A656."
-  }
-];
+const editorialMap = new Map<string, { plzs: string[]; description: string }>();
+for (const ed of editorialCitiesData) {
+  editorialMap.set(ed.slug, {
+    plzs: ed.plzs,
+    description: ed.description
+  });
+}
 
 export const CITY_MOTORWAYS_MAP: Record<string, string[]> = {
-  berlin: ['a10', 'a2', 'a9', 'a11', 'a12', 'a13', 'a24'],
-  hamburg: ['a1', 'a7', 'a23', 'a24', 'a25'],
-  muenchen: ['a8', 'a9', 'a92', 'a94', 'a95', 'a96', 'a99'],
-  koeln: ['a1', 'a3', 'a4', 'a57', 'a59'],
-  frankfurt: ['a3', 'a5', 'a66', 'a67'],
-  stuttgart: ['a8', 'a81'],
+  berlin: ['a10', 'a111', 'a113', 'a115'],
+  hamburg: ['a1', 'a7', 'a23', 'a24', 'a25', 'a26', 'a255', 'a261'],
+  muenchen: ['a8', 'a9', 'a94', 'a95', 'a96', 'a99', 'a995'],
+  koeln: ['a1', 'a3', 'a4', 'a57', 'a59', 'a555', 'a559'],
+  frankfurt: ['a3', 'a5', 'a66', 'a648', 'a661'],
+  stuttgart: ['a8', 'a81', 'a831'],
   duesseldorf: ['a3', 'a44', 'a46', 'a52', 'a57', 'a59'],
   leipzig: ['a9', 'a14', 'a38'],
-  dortmund: ['a1', 'a2', 'a40', 'a44', 'a45'],
+  dortmund: ['a1', 'a2', 'a40', 'a42', 'a44', 'a45'],
   essen: ['a40', 'a42', 'a52'],
-  bremen: ['a1', 'a27', 'a28'],
-  dresden: ['a4', 'a13', 'a14', 'a17'],
-  hannover: ['a2', 'a7'],
+  bremen: ['a1', 'a27', 'a281'],
+  dresden: ['a4', 'a13', 'a17'],
+  hannover: ['a2', 'a7', 'a37'],
   nuernberg: ['a3', 'a6', 'a9', 'a73'],
   duisburg: ['a3', 'a40', 'a42', 'a59'],
-  bochum: ['a40', 'a43', 'a44'],
-  wuppertal: ['a1', 'a46'],
+  bochum: ['a40', 'a43', 'a448'],
+  wuppertal: ['a1', 'a46', 'a535'],
   bielefeld: ['a2', 'a33'],
-  bonn: ['a3', 'a59', 'a61'],
+  bonn: ['a59', 'a555', 'a562', 'a565'],
   muenster: ['a1', 'a43'],
   karlsruhe: ['a5', 'a8'],
-  mannheim: ['a6', 'a67'],
+  mannheim: ['a6', 'a656', 'a659'],
   augsburg: ['a8'],
-  wiesbaden: ['a3', 'a66'],
+  wiesbaden: ['a66', 'a643', 'a671'],
   kassel: ['a7', 'a44', 'a49'],
   gelsenkirchen: ['a2', 'a42'],
-  moenchengladbach: ['a52', 'a61'],
-  braunschweig: ['a2', 'a39'],
+  moenchengladbach: ['a44', 'a46', 'a52', 'a61'],
+  braunschweig: ['a2', 'a36', 'a39', 'a391', 'a392'],
   chemnitz: ['a4', 'a72'],
   kiel: ['a7', 'a21'],
   aachen: ['a4', 'a44'],
@@ -774,3 +126,26 @@ export function getCityMotorwaySlugs(citySlug: string): string[] {
   return CITY_MOTORWAYS_MAP[citySlug] || [];
 }
 
+export const CITIES_DATA: CityData[] = (generatedCitiesData as any[]).map((gen) => {
+  const editorial = editorialMap.get(gen.slug);
+  return {
+    slug: gen.slug,
+    name: gen.name,
+    bundesland: gen.bundesland,
+    ags: gen.ags,
+    ars: gen.ars,
+    einwohner: gen.population.value,
+    population: gen.population,
+    ladepunkteGesamt: gen.bnetza.ladepunkteGesamt,
+    hpcLadepunkte: gen.bnetza.hpcLadepunkte,
+    powerClasses: gen.bnetza.powerClasses,
+    pointsPer1000Pop: gen.bnetza.pointsPer1000Pop,
+    hpcPer1000Pop: gen.bnetza.hpcPer1000Pop,
+    avgKw: gen.bnetza.avgKw,
+    topBetreiber: gen.bnetza.topBetreiber,
+    plzs: editorial?.plzs || [],
+    description: editorial?.description || `Öffentliche Ladeinfrastruktur in ${gen.name} (${gen.bundesland}) laut amtlichem BNetzA-Ladesäulenregister.`,
+    bnetza: gen.bnetza,
+    connectedMotorways: CITY_MOTORWAYS_MAP[gen.slug] || []
+  };
+});

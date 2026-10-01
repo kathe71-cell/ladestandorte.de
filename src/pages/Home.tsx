@@ -222,11 +222,11 @@ export const Home: React.FC = () => {
                     <strong className="text-slate-900 font-mono">{city.ladepunkteGesamt.toLocaleString('de-DE')}</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span>HPC-Anteil (≥150 kW):</span>
-                    <strong className="text-emerald-700 font-mono">{city.hpcLadepunkte} Hubs</strong>
+                    <span>Ladepunkte (≥150 kW):</span>
+                    <strong className="text-emerald-700 font-mono">{city.hpcLadepunkte.toLocaleString('de-DE')}</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span>Top-Betreiber:</span>
+                    <span>Häufigste Betreiber:</span>
                     <span className="text-slate-800 truncate max-w-[140px]">{city.topBetreiber[0]}</span>
                   </div>
                 </div>

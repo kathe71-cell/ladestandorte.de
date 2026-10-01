@@ -95,7 +95,7 @@ try {
       continue;
     }
     const html = fs.readFileSync(filePath, 'utf8');
-    if (!html.includes('Datengrundlage:') || !html.includes('Stadtkennzahlen') || !html.includes('HPC-Quote')) {
+    if (!html.includes('Datengrundlage &amp; Transparenz') || !html.includes('Bundesnetzagentur') || !html.includes('Statistisches Bundesamt')) {
       console.error(`[FAIL] /staedte/${c.slug} missing Datengrundlage note!`);
       failures++;
     }

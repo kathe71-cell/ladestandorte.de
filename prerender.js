@@ -36,8 +36,8 @@ const staticRoutes = [
 
 const cityRoutes = (CITIES_DATA || []).map((c) => ({
   url: `/staedte/${c.slug}`,
-  title: `Ladesäulen in ${c.name}: ${c.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte & HPC-Ladenetz 2026`,
-  desc: `Öffentliche Ladesäulen & HPC-Schnelllader in ${c.name} (${c.bundesland}): ${c.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte, ${c.hpcLadepunkte} HPC-Schnelllader. BNetzA Daten & Standorte 2026.`,
+  title: `Ladestationen ${c.name}: Ladepunkte & HPC-Daten | ladestandorte.de`,
+  desc: `Aktuelle Auswertung veröffentlichter BNetzA-Registerdaten für ${c.name}: ${c.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte, ${c.hpcLadepunkte} Ladepunkte ≥150 kW und Ladepunktdichte.`,
 }));
 
 const motorwayRoutes = (MOTORWAYS_DATA || []).map((m) => ({

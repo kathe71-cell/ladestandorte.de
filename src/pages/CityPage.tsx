@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { MapPin, Zap, ShieldCheck, ArrowLeft, ArrowRight, Database, ExternalLink, Navigation, HelpCircle } from 'lucide-react';
+import { MapPin, Zap, ShieldCheck, ArrowLeft, ArrowRight, Database, ExternalLink, Navigation, HelpCircle, Activity } from 'lucide-react';
 import { CITIES_DATA, getCityMotorwaySlugs } from '../data/cities';
 import { MOTORWAYS_DATA } from '../data/motorways';
 import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
@@ -9,7 +9,6 @@ import { StationDetailModal } from '../components/StationDetailModal';
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
-import { FloatingCTABar } from '../components/FloatingCTABar';
 import { PageHero } from '../components/PageHero';
 
 export const CityPage: React.FC = () => {
@@ -28,18 +27,25 @@ export const CityPage: React.FC = () => {
     .map(slug => MOTORWAYS_DATA.find(m => m.slug === slug))
     .filter(Boolean) as typeof MOTORWAYS_DATA;
 
+  const bnetzaSnapshotDate = city.bnetza?.provenance?.retrievedAt
+    ? new Date(city.bnetza.provenance.retrievedAt).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    : '01.10.2026';
+  const destatisDate = city.population?.referenceDate
+    ? new Date(city.population.referenceDate).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    : '31.12.2024';
+
   const faqs = [
     {
-      q: `Wie viele öffentliche Ladesäulen gibt es in ${city.name}?`,
-      a: `In ${city.name} stehen laut offiziellem Ladesäulenregister der Bundesnetzagentur aktuell ${city.ladepunkteGesamt.toLocaleString('de-DE')} öffentliche Ladepunkte zur Verfügung. Davon entfallen ${city.hpcLadepunkte.toLocaleString('de-DE')} auf High-Power-Charger (HPC) mit mindestens 150 kW Leistung und ${city.acLadepunkte.toLocaleString('de-DE')} auf AC-Normalladepunkte im Stadtgebiet.`
+      q: `Wie viele öffentliche Ladepunkte sind in ${city.name} registriert?`,
+      a: `In ${city.name} sind laut Registerdaten der Bundesnetzagentur aktuell ${city.ladepunkteGesamt.toLocaleString('de-DE')} öffentliche Ladepunkte erfasst. Davon entfallen ${city.hpcLadepunkte.toLocaleString('de-DE')} auf Ladepunkte der HPC-Klasse mit mindestens 150 kW Nennleistung.`
     },
     {
-      q: `Welche maximale Ladeleistung bieten die Schnelllader in ${city.name}?`,
-      a: `Die Schnellladeparks an den Hauptverkehrsachsen und Autobahnzubringern rund um ${city.name} erreichen Spitzenleistungen von bis zu 300 bis 400 kW (u. a. an Hubs von ${city.topBetreiber.slice(0, 3).join(', ')}). Im gesamten Stadtgebiet liegt die rechnerische Durchschnittsleistung bei ${city.avgKw} kW pro Ladepunkt.`
+      q: `Wie verteilt sich die Ladeleistung in ${city.name}?`,
+      a: `Die Ladeinfrastruktur in ${city.name} gliedert sich in ${city.powerClasses.upTo22Kw.toLocaleString('de-DE')} Ladepunkte bis 22 kW, ${city.powerClasses.between22And150Kw.toLocaleString('de-DE')} Ladepunkte zwischen >22 kW und <150 kW sowie ${city.powerClasses.hpc150PlusKw.toLocaleString('de-DE')} Ladepunkte mit mindestens 150 kW Nennleistung.`
     },
     {
-      q: `Kann man in ${city.name} spontan ohne Ladekarte laden?`,
-      a: `Ja. Alle öffentlichen Ladepunkte in ${city.name} unterstützen spontanes Ad-hoc-Laden. Schnellladepunkte (ab 50 kW) bieten gemäß europäischer AFIR-Richtlinie kontaktlose Kartenzahlung mit Debit- oder Kreditkarte direkt am Terminal. Für regelmäßiges Laden empfiehlt sich jedoch ein günstiger Ladekarten-Tarif.`
+      q: `Wie viele Ladepunkte gibt es in ${city.name} pro 1.000 Einwohner?`,
+      a: `Bezogen auf die amtliche Einwohnerzahl von ${city.einwohner.toLocaleString('de-DE')} (Statistisches Bundesamt, Stand ${destatisDate}) stehen in ${city.name} rechnerisch ${city.pointsPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })} Ladepunkte pro 1.000 Einwohner zur Verfügung (davon ${city.hpcPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })} mit ≥150 kW).`
     }
   ];
 
@@ -58,7 +64,7 @@ export const CityPage: React.FC = () => {
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Großstädte",
+            "name": "Städte",
             "item": "https://www.ladestandorte.de/staedte"
           },
           {
@@ -97,105 +103,198 @@ export const CityPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
-        title={`Ladesäulen in ${city.name}: ${city.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte & HPC-Ladenetz 2026`}
-        description={`Öffentliche Ladesäulen & HPC-Schnelllader in ${city.name} (${city.bundesland}): ${city.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte, ${city.hpcLadepunkte} HPC-Schnelllader. BNetzA Daten & Standorte 2026.`}
+        title={`Ladestationen ${city.name}: Ladepunkte & HPC-Daten | ladestandorte.de`}
+        description={`Aktuelle Auswertung veröffentlichter BNetzA-Registerdaten für ${city.name}: ${city.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte, ${city.hpcLadepunkte} Ladepunkte ≥150 kW und Ladepunktdichte.`}
         canonicalPath={`/staedte/${city.slug}`}
         schema={citySchema}
       />
-      
+
       <PageHero
         level={3}
         breadcrumbs={[
           { label: 'Startseite', href: '/' },
-          { label: 'Großstädte', href: '/staedte' },
+          { label: 'Städte', href: '/staedte' },
           { label: city.name, isCurrent: true }
         ]}
         eyebrow={
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-50 text-emerald-800 text-xs font-mono font-bold">
             <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-            <span>BUNDESLAND: {city.bundesland.toUpperCase()} · QUELLE: BNETZA OPEN DATA</span>
+            <span>BUNDESLAND: {city.bundesland.toUpperCase()} · BNETZA &amp; DESTATIS AUSWERTUNG</span>
           </div>
         }
-        title={`Ladesäulen & Schnellladeparks in ${city.name}`}
+        title={`Ladeinfrastruktur & Schnellladeparks in ${city.name}`}
         description={city.description}
       />
 
-      {/* City Statistics Bento Grid */}
+      {/* City Primary KPI Bento Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
           <span className="text-xs font-mono text-slate-500 uppercase block">Ladepunkte gesamt</span>
           <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
             {city.ladepunkteGesamt.toLocaleString('de-DE')}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">Öffentlich registriert</span>
-        </div>
-
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">HPC-Schnelllader (≥150 kW)</span>
-          <span className="text-2xl sm:text-4xl font-black text-emerald-600 font-mono tracking-tight mt-1 block">
-            {city.hpcLadepunkte}
-          </span>
-          <span className="text-[11px] text-emerald-700 font-semibold mt-1 block">
-            {((city.hpcLadepunkte / city.ladepunkteGesamt) * 100).toFixed(1)} % HPC-Quote
+          <span className="text-[11px] text-slate-500 mt-1 block font-mono">
+            {city.bnetza.ladestationen.toLocaleString('de-DE')} Stationen
           </span>
         </div>
 
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">AC-Normallader (&le;22 kW)</span>
+          <span className="text-xs font-mono text-slate-500 uppercase block">Ladepunkte ≥150 kW</span>
+          <span className="text-2xl sm:text-4xl font-black text-emerald-700 font-mono tracking-tight mt-1 block">
+            {city.hpcLadepunkte.toLocaleString('de-DE')}
+          </span>
+          <span className="text-[11px] text-emerald-800 font-semibold mt-1 block">
+            {((city.hpcLadepunkte / city.ladepunkteGesamt) * 100).toFixed(1)} % HPC-Klasse
+          </span>
+        </div>
+
+        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
+          <span className="text-xs font-mono text-slate-500 uppercase block">LP / 1.000 Einwohner</span>
           <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
-            {city.acLadepunkte.toLocaleString('de-DE')}
+            {city.pointsPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">Städtisches Laternen- &amp; Parknetz</span>
+          <span className="text-[11px] text-slate-500 mt-1 block font-mono">
+            {city.einwohner.toLocaleString('de-DE')} Einw.
+          </span>
         </div>
 
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Durchschnittsleistung</span>
+          <span className="text-xs font-mono text-slate-500 uppercase block">≥150 kW / 1.000 Einw.</span>
           <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
-            {city.avgKw} kW
+            {city.hpcPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">Pro Ladepunkt</span>
+          <span className="text-[11px] text-slate-500 mt-1 block">
+            HPC-Dichte
+          </span>
         </div>
       </div>
 
-      {/* Datengrundlage / Registerdaten-Klarstellung */}
-      <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-600 flex items-start gap-2.5">
-        <Database className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-        <p className="leading-relaxed">
-          <strong className="text-slate-900 font-semibold">Datengrundlage:</strong> Die hinterlegten Stadtkennzahlen für {city.name} basieren auf BNetzA-/Registerdaten. Die HPC-Quote ({((city.hpcLadepunkte / city.ladepunkteGesamt) * 100).toFixed(1)} %) wird aus den hinterlegten Werten berechnet. Die Daten werden manuell gepflegt und stellen keine Echtzeitdaten dar. Details in der <Link to="/methodik" className="text-emerald-700 hover:text-emerald-800 font-semibold underline">Methodik</Link>.
-        </p>
+      {/* Leistungsklassen Aufteilung */}
+      <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+          <div>
+            <h3 className="font-bold text-slate-950 text-base">
+              Verteilung nach Leistungsklassen in {city.name}
+            </h3>
+            <p className="text-xs text-slate-500">
+              Dokumentierte Nennleistung der Ladepunkte im BNetzA-Registerbestand (keine Inferenz der Stromart).
+            </p>
+          </div>
+          <Link to="/methodik" className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 underline">
+            Klassifikation in der Methodik
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span className="text-xs text-slate-500 block font-sans">bis 22 kW</span>
+            <span className="text-xl sm:text-2xl font-black text-slate-950 block mt-1">
+              {city.powerClasses.upTo22Kw.toLocaleString('de-DE')}
+            </span>
+            <span className="text-[11px] text-slate-500 block mt-0.5">
+              {((city.powerClasses.upTo22Kw / city.ladepunkteGesamt) * 100).toFixed(1)} % aller Ladepunkte
+            </span>
+          </div>
+
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span className="text-xs text-slate-500 block font-sans">&gt;22 bis &lt;150 kW</span>
+            <span className="text-xl sm:text-2xl font-black text-slate-950 block mt-1">
+              {city.powerClasses.between22And150Kw.toLocaleString('de-DE')}
+            </span>
+            <span className="text-[11px] text-slate-500 block mt-0.5">
+              {((city.powerClasses.between22And150Kw / city.ladepunkteGesamt) * 100).toFixed(1)} % aller Ladepunkte
+            </span>
+          </div>
+
+          <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-200">
+            <span className="text-xs text-emerald-900 block font-sans font-semibold">≥150 kW (HPC-Klasse)</span>
+            <span className="text-xl sm:text-2xl font-black text-emerald-950 block mt-1">
+              {city.powerClasses.hpc150PlusKw.toLocaleString('de-DE')}
+            </span>
+            <span className="text-[11px] text-emerald-800 block mt-0.5">
+              {((city.powerClasses.hpc150PlusKw / city.ladepunkteGesamt) * 100).toFixed(1)} % aller Ladepunkte
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Provenance Box directly on page */}
+      <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
+        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-800 font-bold">
+          <Database className="w-4 h-4" />
+          <span>Datengrundlage &amp; Transparenz</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs leading-relaxed">
+          <div className="space-y-1">
+            <div className="font-bold text-slate-950 uppercase font-mono">Ladeinfrastruktur</div>
+            <div className="text-slate-700">Bundesnetzagentur (Ladesäulenregister)</div>
+            <div className="text-slate-500">API-Snapshot: {bnetzaSnapshotDate}</div>
+            <div className="text-slate-500">Lizenz: CC BY 4.0 (Namensnennung: Bundesnetzagentur.de)</div>
+          </div>
+
+          <div className="space-y-1">
+            <div className="font-bold text-slate-950 uppercase font-mono">Bevölkerung</div>
+            <div className="text-slate-700">Statistisches Bundesamt (Destatis)</div>
+            <div className="text-slate-500">Stand: {destatisDate} (Zensus 2022 Fortschreibung)</div>
+            <div className="text-slate-500">Lizenz: dl-de/by-2-0 (GV-ISys)</div>
+          </div>
+
+          <div className="space-y-1">
+            <div className="font-bold text-slate-950 uppercase font-mono">Kennzahlen</div>
+            <div className="text-slate-700">Eigene Berechnung von ladestandorte.de</div>
+            <div className="text-slate-500">Dichtewerte pro 1.000 Einw. auf Basis dieser Stände</div>
+            <div>
+              <Link to="/methodik" className="text-emerald-700 hover:text-emerald-800 font-bold underline inline-flex items-center gap-1">
+                <span>Methodik ansehen</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="pt-3 border-t border-slate-200 text-[11px] text-slate-500 leading-normal">
+          <strong>Vollständigkeitshinweis:</strong> Die Auswertung basiert auf den im verwendeten Register/API-Datenbestand veröffentlichten Ladeeinrichtungen. Der Datenbestand stellt keine zwingend vollständige Erfassung der gesamten öffentlich zugänglichen Ladeinfrastruktur dar. Weder die Bundesnetzagentur noch Destatis haben die redaktionellen Auswertungen geprüft.
+        </div>
       </div>
 
       {/* Top Operators in this City with Semantic Internal Links */}
-      <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
-        <h3 className="text-sm font-mono uppercase tracking-wider text-slate-600 font-bold">
-          Führende Betreiber (CPOs) in {city.name}
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {city.topBetreiber.map((op) => {
-            const opSlug = getOperatorSlugByName(op);
-            if (opSlug) {
+      {city.topBetreiber && city.topBetreiber.length > 0 && (
+        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
+          <h3 className="text-sm font-mono uppercase tracking-wider text-slate-700 font-bold">
+            Häufigste Betreiber im ausgewerteten Registerbestand ({city.name})
+          </h3>
+          <p className="text-xs text-slate-500">
+            Häufigste gewerbliche und kommunale Betreiber nach dokumentierten Ladestationen im Stadtgebiet (keine Marktanteilsbehauptung):
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {city.topBetreiber.map((opStr) => {
+              const cleanedName = opStr.replace(/\s\(\d+\)$/, '').trim();
+              const opSlug = getOperatorSlugByName(cleanedName);
+              if (opSlug) {
+                return (
+                  <Link
+                    key={opStr}
+                    to={`/betreiber/${opSlug}`}
+                    className="px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 font-semibold text-xs text-slate-800 hover:border-emerald-300 hover:text-emerald-800 transition-colors inline-flex items-center gap-1.5"
+                  >
+                    <span>{opStr}</span>
+                    <ArrowRight className="w-3 h-3 text-slate-400" />
+                  </Link>
+                );
+              }
               return (
-                <Link
-                  key={op}
-                  to={`/betreiber/${opSlug}`}
-                  className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 font-bold text-sm text-slate-800 shadow-xs hover:border-emerald-300 hover:text-emerald-700 transition-colors inline-flex items-center gap-1.5"
+                <span
+                  key={opStr}
+                  className="px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 font-semibold text-xs text-slate-700"
                 >
-                  <span>{op}</span>
-                  <ArrowRight className="w-3 h-3 text-slate-400" />
-                </Link>
+                  {opStr}
+                </span>
               );
-            }
-            return (
-              <span
-                key={op}
-                className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 font-bold text-sm text-slate-800 shadow-xs"
-              >
-                {op}
-              </span>
-            );
-          })}
+            })}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Connected Motorways Corridor Links */}
       {connectedMotorways.length > 0 && (
@@ -245,7 +344,7 @@ export const CityPage: React.FC = () => {
         </div>
       )}
 
-      {/* Verifizierte Ladestationen in dieser Stadt */}
+      {/* Hervorgehobene Ladestationen in dieser Stadt */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -253,7 +352,7 @@ export const CityPage: React.FC = () => {
               Hervorgehobene Schnellladestandorte in {city.name}
             </h2>
             <p className="text-xs sm:text-sm text-slate-500">
-              Verifizierte Standorte aus dem BNetzA-Register mit Ladeleistung und Bezahlmethoden.
+              Dokumentierte Standorte aus dem BNetzA-Register mit Ladeleistung und Ausstattung.
             </p>
           </div>
           <Link
@@ -296,7 +395,7 @@ export const CityPage: React.FC = () => {
                   <p className="text-xs text-slate-500 mb-3">
                     {st.street}, {st.plz} {st.city} · {st.operator}
                   </p>
-                  
+
                   <div className="flex flex-wrap gap-1.5 text-[11px] font-mono">
                     {st.connectorTypes.map(c => (
                       <span key={c} className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
@@ -328,7 +427,7 @@ export const CityPage: React.FC = () => {
         <h2 className="text-2xl font-bold text-slate-950">
           Ladeinfrastruktur in {city.name}: Häufige Fragen
         </h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {faqs.map((faq, i) => (
             <div key={i} className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-2">
@@ -360,7 +459,6 @@ export const CityPage: React.FC = () => {
         station={selectedStation}
         onClose={() => setSelectedStation(null)}
       />
-
     </div>
   );
 };
