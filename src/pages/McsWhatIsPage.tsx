@@ -13,10 +13,61 @@ import {
   Gauge
 } from 'lucide-react';
 import { PageHero } from '../components/PageHero';
+import { SEO } from '../components/SEO';
 
 export const McsWhatIsPage: React.FC = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Startseite",
+            "item": "https://www.ladestandorte.de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "MCS & E-Lkw",
+            "item": "https://www.ladestandorte.de/mcs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Was ist MCS?",
+            "item": "https://www.ladestandorte.de/mcs/was-ist-mcs"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://www.ladestandorte.de/mcs/was-ist-mcs#article",
+        "headline": "Was ist das Megawatt Charging System (MCS)?",
+        "description": "Technischer Standard von CharIN für schwere Nutzfahrzeuge: bis zu 1.250 V DC, 3.000 A DC und bis zu 3,75 MW Höchstleistung. Spezifikationen, Kühlung und Normung.",
+        "url": "https://www.ladestandorte.de/mcs/was-ist-mcs",
+        "inLanguage": "de-DE",
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://www.ladestandorte.de/#org",
+          "name": "ladestandorte.de",
+          "url": "https://www.ladestandorte.de/"
+        },
+        "mainEntityOfPage": "https://www.ladestandorte.de/mcs/was-ist-mcs"
+      }
+    ]
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
+      <SEO
+        title="Was ist MCS? Das Megawatt Charging System technisch erklärt"
+        description="Alles zum MCS-Ladestandard für schwere Nutzfahrzeuge: CharIN-Norm, bis zu 3.750 kW Ladeleistung, flüssigkeitsgekühlte Stecker & ISO 15118-20."
+        canonicalPath="/mcs/was-ist-mcs"
+        schema={schema}
+      />
       <PageHero
         level={3}
         breadcrumbs={[

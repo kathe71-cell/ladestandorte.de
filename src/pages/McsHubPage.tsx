@@ -17,6 +17,7 @@ import {
 import { STATIONS_DATA, getMcsStations, getStationUrl } from '../data/stations';
 
 import { Breadcrumb } from '../components/Breadcrumb';
+import { SEO } from '../components/SEO';
 
 export const McsHubPage: React.FC = () => {
   const mcsStations = useMemo(() => getMcsStations(STATIONS_DATA), []);
@@ -25,8 +26,51 @@ export const McsHubPage: React.FC = () => {
   const underConstructionCount = mcsStations.filter((s) => s.truckCharging?.mcsStatus === 'under-construction').length;
   const plannedCount = mcsStations.filter((s) => s.truckCharging?.mcsStatus === 'planned').length;
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Startseite",
+            "item": "https://www.ladestandorte.de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "MCS & E-Lkw Ladehubs",
+            "item": "https://www.ladestandorte.de/mcs"
+          }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.ladestandorte.de/mcs#webpage",
+        "url": "https://www.ladestandorte.de/mcs",
+        "name": "Megawatt Charging System (MCS): E-Lkw Ladehubs in Deutschland 2026",
+        "description": "Übersicht und verifizierte Dossiers öffentlich zugänglicher MCS- und Schwerlast-Ladeparks für schwere Nutzfahrzeuge entlang der Bundesautobahnen. Ladeleistungen von 400 kW bis 1.200 kW.",
+        "inLanguage": "de-DE",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://www.ladestandorte.de/#website",
+          "name": "ladestandorte.de",
+          "url": "https://www.ladestandorte.de/"
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-white min-h-screen">
+      <SEO
+        title="Megawatt Charging System (MCS): E-Lkw Ladehubs in Deutschland 2026"
+        description="Megawatt-Schnellladen für schwere E-Lkw in Deutschland: Verifizierte MCS- und Lkw-Ladeparks bis 1.200 kW, Standorte, Normung & Korridore."
+        canonicalPath="/mcs"
+        schema={schema}
+      />
       {/* Breadcrumb */}
       <div className="border-b border-slate-200 bg-slate-50 py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

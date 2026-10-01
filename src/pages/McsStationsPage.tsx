@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { STATIONS_DATA, getMcsStations, getStationUrl, McsStatus } from '../data/stations';
 import { PageHero } from '../components/PageHero';
+import { SEO } from '../components/SEO';
 
 export const McsStationsPage: React.FC = () => {
   const allMcsStations = useMemo(() => getMcsStations(STATIONS_DATA), []);
@@ -39,8 +40,83 @@ export const McsStationsPage: React.FC = () => {
     });
   }, [allMcsStations, statusFilter, operatorFilter]);
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Startseite",
+            "item": "https://www.ladestandorte.de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "MCS & E-Lkw",
+            "item": "https://www.ladestandorte.de/mcs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Standortverzeichnis",
+            "item": "https://www.ladestandorte.de/mcs/ladestationen"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "MCS- & E-Lkw-Ladestationen in Deutschland",
+        "description": "Verzeichnis aller verifizierten Megawatt- und Schwerlast-Ladeparks für Elektro-Lkw entlang deutscher Bundesautobahnen.",
+        "numberOfItems": allMcsStations.length,
+        "itemListElement": allMcsStations.map((station, index) => {
+          const isMcsActive = station.truckCharging?.mcsStatus === 'operational';
+          const descriptionText = isMcsActive
+            ? `E-Lkw Megawatt-Hub mit bis zu ${station.kwMax} kW Ladeleistung in ${station.city}. Betreiber: ${station.operator}.`
+            : `Schwerlast-Ladepark für E-Lkw (400 kW CCS aktiv, MCS-Erweiterung geplant) in ${station.city}. Betreiber: ${station.operator}.`;
+
+          return {
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+              "@type": "ChargingStation",
+              "name": station.name,
+              "url": `https://www.ladestandorte.de${getStationUrl(station)}`,
+              "description": descriptionText,
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": station.street,
+                "postalCode": station.plz,
+                "addressLocality": station.city,
+                "addressCountry": "DE"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": station.lat,
+                "longitude": station.lng
+              },
+              "provider": {
+                "@type": "Organization",
+                "name": station.operator,
+                "url": `https://www.ladestandorte.de/betreiber/${station.operatorSlug}`
+              }
+            }
+          };
+        })
+      }
+    ]
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
+      <SEO
+        title="MCS- & E-Lkw-Ladestationen in Deutschland (2026)"
+        description="Geprüfte Dossiers aller Pilotstandorte für Megawatt- und Hochleistungs-Schwerlastladen entlang deutscher Bundesautobahnen."
+        canonicalPath="/mcs/ladestationen"
+        schema={schema}
+      />
       <PageHero
         level={2}
         breadcrumbs={[

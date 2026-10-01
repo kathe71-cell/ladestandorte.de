@@ -11,10 +11,61 @@ import {
   Scale
 } from 'lucide-react';
 import { PageHero } from '../components/PageHero';
+import { SEO } from '../components/SEO';
 
 export const McsVsCcsPage: React.FC = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Startseite",
+            "item": "https://www.ladestandorte.de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "MCS & E-Lkw",
+            "item": "https://www.ladestandorte.de/mcs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "MCS vs. CCS",
+            "item": "https://www.ladestandorte.de/mcs/mcs-vs-ccs"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://www.ladestandorte.de/mcs/mcs-vs-ccs#article",
+        "headline": "MCS vs. CCS: Unterschiede, Leistung & Einsatzzwecke",
+        "description": "Technischer Kennzahlen-Vergleich zwischen Combined Charging System (CCS Combo 2) und Megawatt Charging System (MCS) für Pkw- und Nutzfahrzeug-Ladeinfrastruktur.",
+        "url": "https://www.ladestandorte.de/mcs/mcs-vs-ccs",
+        "inLanguage": "de-DE",
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://www.ladestandorte.de/#org",
+          "name": "ladestandorte.de",
+          "url": "https://www.ladestandorte.de/"
+        },
+        "mainEntityOfPage": "https://www.ladestandorte.de/mcs/mcs-vs-ccs"
+      }
+    ]
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
+      <SEO
+        title="MCS vs. CCS im Vergleich: Unterschiede, Leistung & Ladezeiten"
+        description="Megawatt Charging System vs. Combined Charging System im direkten Vergleich: Steckergeometrie, Dauerstrom, Ladedauer und Einsatzbereiche."
+        canonicalPath="/mcs/mcs-vs-ccs"
+        schema={schema}
+      />
       <PageHero
         level={3}
         breadcrumbs={[

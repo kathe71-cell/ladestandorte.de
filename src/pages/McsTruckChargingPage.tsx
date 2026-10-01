@@ -12,10 +12,61 @@ import {
   Compass
 } from 'lucide-react';
 import { PageHero } from '../components/PageHero';
+import { SEO } from '../components/SEO';
 
 export const McsTruckChargingPage: React.FC = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Startseite",
+            "item": "https://www.ladestandorte.de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "MCS & E-Lkw",
+            "item": "https://www.ladestandorte.de/mcs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Lkw-Laden & Lenkzeiten",
+            "item": "https://www.ladestandorte.de/mcs/lkw-laden"
+          }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "https://www.ladestandorte.de/mcs/lkw-laden#article",
+        "headline": "Lkw-Laden im Fernverkehr: Die 45-Minuten-Pause optimal nutzen",
+        "description": "Logistische und verkehrsrechtliche Analyse: Wie E-Lkw-Laden mit den gesetzlichen Lenk- und Ruhezeiten nach EG 561/2006 harmoniert. Nachlademengen und Drive-Through-Infrastruktur.",
+        "url": "https://www.ladestandorte.de/mcs/lkw-laden",
+        "inLanguage": "de-DE",
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://www.ladestandorte.de/#org",
+          "name": "ladestandorte.de",
+          "url": "https://www.ladestandorte.de/"
+        },
+        "mainEntityOfPage": "https://www.ladestandorte.de/mcs/lkw-laden"
+      }
+    ]
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
+      <SEO
+        title="Lkw-Laden & 45-Minuten-Pause: Logistik im Fernverkehr"
+        description="Wie E-Lkw-Laden mit den gesetzlichen Lenk- und Ruhezeiten nach EG 561/2006 harmoniert. Nachlademengen, Drive-Through-Buchten und Depot vs. Highway."
+        canonicalPath="/mcs/lkw-laden"
+        schema={schema}
+      />
       <PageHero
         level={3}
         breadcrumbs={[
