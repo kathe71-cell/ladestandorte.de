@@ -20,6 +20,12 @@ function parseNum(val: string | null, fallback: number, min?: number, max?: numb
 export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   const [searchParams] = useSearchParams();
 
+  // Mode: 'estimate' (Praxis-Schätzung, default) or 'theoretical' (Theoretisch)
+  const [calcMode, setCalcMode] = useState<'estimate' | 'theoretical'>(() => {
+    const m = searchParams.get('mode');
+    return m === 'theoretical' ? 'theoretical' : 'estimate';
+  });
+
   // State defaults or safely parsed from URL query
   const [batteryCapacity, setBatteryCapacity] = useState<number>(() => {
     return parseNum(searchParams.get('capacity'), 75, 20, 130);
@@ -81,12 +87,15 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
       params.set('start', String(startSoc));
       params.set('end', String(endSoc));
       params.set('price', String(pricePerKwh));
+      if (calcMode === 'theoretical') {
+        params.set('mode', 'theoretical');
+      }
       const newUrl = `${window.location.pathname}?${params.toString()}`;
       window.history.replaceState(null, '', newUrl);
     } else if (location.pathname === '/' && window.location.search.includes('capacity')) {
       window.history.replaceState(null, '', '/');
     }
-  }, [batteryCapacity, chargePower, startSoc, endSoc, pricePerKwh, isEmbed, isRechnerPage, location.pathname]);
+  }, [batteryCapacity, chargePower, startSoc, endSoc, pricePerKwh, calcMode, isEmbed, isRechnerPage, location.pathname]);
 
   // Adjust loss percentage when switching between AC and HPC
   useEffect(() => {
@@ -108,7 +117,18 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   // Validation: startSoc must be strictly less than endSoc
   const isInvalidSoc = startSoc >= endSoc;
 
-  // Effective charging power calculation
+  // === MATHEMATISCHE BERECHNUNGEN ===
+
+  // 1. Gemeinsame Nettoenergie (im Akku gespeicherte Energie)
+  const socDeltaPercent = isInvalidSoc ? 0 : endSoc - startSoc;
+  const netEnergyKwh = isInvalidSoc ? 0 : (batteryCapacity * socDeltaPercent) / 100;
+
+  // 2. THEORETISCHER MODUS (Reine mathematische Idealwerte)
+  const theoreticalCostEur = isInvalidSoc ? 0 : netEnergyKwh * pricePerKwh;
+  const theoreticalDurationHours = isInvalidSoc || chargePower <= 0 ? 0 : netEnergyKwh / chargePower;
+  const theoreticalDurationMinutes = isInvalidSoc ? 0 : Math.round(theoreticalDurationHours * 60);
+
+  // 3. PRAXIS-SCHÄTZUNG (Vereinfachte Modellannahmen: Ladekurve + Ladeverlust)
   const vehicleAcLimit = selectedVehicle?.maxKwAc ?? 11;
   const vehicleDcLimit = selectedVehicle?.maxKwDc ?? chargePower;
 
@@ -117,45 +137,45 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   let isDcCapped = false;
 
   if (chargePower <= 22) {
-    // AC charging: strictly capped by vehicle's on-board AC converter
     effectiveAverageKw = Math.min(chargePower, vehicleAcLimit);
     if (chargePower > vehicleAcLimit) {
       isAcCapped = true;
     }
   } else {
-    // DC fast charging (HPC): capped by vehicle DC peak & realistic curve factor
     const peakDc = Math.min(chargePower, vehicleDcLimit);
     if (chargePower > vehicleDcLimit) {
       isDcCapped = true;
     }
-    // 800V architectures (Taycan, Ioniq 5, EV6) hold higher average charging curve (~82%)
-    // 400V architectures drop to ~76% average power over 10-80% SoC
     const curveFactor = selectedVehicle?.systemVoltage === 800 ? 0.82 : (peakDc > 150 ? 0.76 : 0.82);
     effectiveAverageKw = Math.max(1, peakDc * curveFactor);
   }
 
-  // Net and gross energy calculation (Loss definition: markup on net energy stored)
-  const socDeltaPercent = isInvalidSoc ? 0 : endSoc - startSoc;
-  const netEnergyKwh = isInvalidSoc ? 0 : (batteryCapacity * socDeltaPercent) / 100;
   const grossEnergyKwh = isInvalidSoc ? 0 : netEnergyKwh * (1 + currentLossPercent / 100);
   const lossKwh = isInvalidSoc ? 0 : grossEnergyKwh - netEnergyKwh;
-  const totalCostEur = isInvalidSoc ? 0 : grossEnergyKwh * pricePerKwh;
+  const estimateCostEur = isInvalidSoc ? 0 : grossEnergyKwh * pricePerKwh;
+  const estimateDurationHours = isInvalidSoc || effectiveAverageKw <= 0 ? 0 : grossEnergyKwh / effectiveAverageKw;
+  const estimateDurationMinutes = isInvalidSoc ? 0 : Math.round(estimateDurationHours * 60);
 
-  const durationHours = isInvalidSoc || effectiveAverageKw <= 0 ? 0 : grossEnergyKwh / effectiveAverageKw;
-  const durationMinutes = isInvalidSoc ? 0 : Math.round(durationHours * 60);
+  // Aktive Werte abhängig vom gewählten Modus
+  const isTheoretical = calcMode === 'theoretical';
+  const displayCostEur = isTheoretical ? theoreticalCostEur : estimateCostEur;
+  const displayMinutes = isTheoretical ? theoreticalDurationMinutes : estimateDurationMinutes;
+  const displayEnergyBilledKwh = isTheoretical ? netEnergyKwh : grossEnergyKwh;
 
   const vehicleConsumption = selectedVehicle?.consumptionKwhPer100Km ?? 17.5;
   const rangeGainKm = isInvalidSoc ? 0 : Math.round((netEnergyKwh / vehicleConsumption) * 100);
 
   const handleCopyLink = () => {
-    const url = `${window.location.origin}/rechner?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}`;
+    const modeParam = isTheoretical ? '&mode=theoretical' : '';
+    const url = `${window.location.origin}/rechner?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}${modeParam}`;
     navigator.clipboard.writeText(url);
     setLinkCopied(true);
     setTimeout(() => setLinkCopied(false), 2500);
   };
 
   const handleCopyEmbed = () => {
-    const iframeCode = `<iframe src="https://www.ladestandorte.de/rechner-embed?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}" width="100%" height="680" style="border:1px solid #e2e8f0;border-radius:16px;max-width:720px;display:block;margin:auto;" title="Ladezeit- & Ladekostenrechner ladestandorte.de"></iframe><p style="font-size:12px;text-align:center;color:#64748b;margin-top:8px;">Bereitgestellt von <a href="https://www.ladestandorte.de" target="_blank" style="color:#059669;font-weight:bold;">ladestandorte.de</a></p>`;
+    const modeParam = isTheoretical ? '&mode=theoretical' : '';
+    const iframeCode = `<iframe src="https://www.ladestandorte.de/rechner-embed?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}${modeParam}" width="100%" height="680" style="border:1px solid #e2e8f0;border-radius:16px;max-width:720px;display:block;margin:auto;" title="Ladezeit- & Ladekostenrechner ladestandorte.de"></iframe><p style="font-size:12px;text-align:center;color:#64748b;margin-top:8px;">Bereitgestellt von <a href="https://www.ladestandorte.de" target="_blank" style="color:#059669;font-weight:bold;">ladestandorte.de</a></p>`;
     navigator.clipboard.writeText(iframeCode);
     setEmbedCopied(true);
     setTimeout(() => setEmbedCopied(false), 2500);
@@ -185,7 +205,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             <button
               type="button"
               onClick={handleCopyLink}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors min-h-[40px] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors min-h-[44px] cursor-pointer"
               aria-label="Link mit Konfiguration kopieren"
             >
               {linkCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
@@ -195,7 +215,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             <button
               type="button"
               onClick={handleCopyEmbed}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors min-h-[40px] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors min-h-[44px] cursor-pointer"
               aria-label="Widget Einbettungscode kopieren"
             >
               {embedCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Code className="w-4 h-4" />}
@@ -203,6 +223,40 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             </button>
           </div>
         )}
+      </div>
+
+      {/* Berechnungsmodus-Umschaltung: Theoretisch vs. Praxis-Schätzung */}
+      <div className="mb-6 p-1.5 bg-slate-100 rounded-2xl flex items-center gap-1.5 border border-slate-200/80 max-w-md">
+        <button
+          type="button"
+          onClick={() => setCalcMode('estimate')}
+          className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all min-h-[44px] flex items-center justify-center gap-1.5 cursor-pointer ${
+            calcMode === 'estimate'
+              ? 'bg-white text-slate-950 shadow-sm border border-slate-200/80'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+          }`}
+          aria-pressed={calcMode === 'estimate'}
+        >
+          <span>Praxis-Schätzung</span>
+          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold hidden sm:inline">
+            Standard
+          </span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setCalcMode('theoretical')}
+          className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all min-h-[44px] flex items-center justify-center gap-1.5 cursor-pointer ${
+            calcMode === 'theoretical'
+              ? 'bg-white text-slate-950 shadow-sm border border-slate-200/80'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+          }`}
+          aria-pressed={calcMode === 'theoretical'}
+        >
+          <span>Theoretisch</span>
+          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-200 text-slate-700 font-bold hidden sm:inline">
+            Idealwert
+          </span>
+        </button>
       </div>
 
       {/* Validation Banner if Start SoC >= End SoC */}
@@ -449,14 +503,25 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
         <div className="lg:col-span-5 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between space-y-6">
           
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold block mb-1">
-              Modellrechnung Ergebnis
-            </span>
-            <div className="text-3xl sm:text-4xl font-black tracking-tight text-white font-mono">
-              {totalCostEur.toFixed(2).replace('.', ',')} €
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold block">
+                {isTheoretical ? 'Theoretischer Idealwert' : 'Praxis-Schätzung'}
+              </span>
+              <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                isTheoretical ? 'bg-slate-800 text-slate-300 border border-slate-700' : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+              }`}>
+                {isTheoretical ? 'Mathematisches Ideal' : 'Modellannahmen'}
+              </span>
             </div>
+
+            <div className="text-3xl sm:text-4xl font-black tracking-tight text-white font-mono">
+              {displayCostEur.toFixed(2).replace('.', ',')} €
+            </div>
+            
             <p className="text-xs text-slate-400 mt-1">
-              Gesamtkosten für {grossEnergyKwh.toFixed(1).replace('.', ',')} kWh brutto (ab Ladesäule)
+              {isTheoretical
+                ? `Reine Netto-Energiekosten für ${netEnergyKwh.toFixed(1).replace('.', ',')} kWh (ohne Verluste)`
+                : `Geschätzte Gesamtkosten für ${grossEnergyKwh.toFixed(1).replace('.', ',')} kWh brutto (ab Ladesäule)`}
             </p>
           </div>
 
@@ -466,20 +531,24 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-slate-300 text-sm">
                 <Clock className="w-4 h-4 text-emerald-400" />
-                <span>Geschätzte Ladedauer:</span>
+                <span>{isTheoretical ? 'Theoretische Mindest-Ladezeit:' : 'Geschätzte Ladedauer:'}</span>
               </div>
               <span className="text-lg font-black text-white font-mono">
-                {isInvalidSoc ? '0 min' : durationMinutes >= 60 ? `${Math.floor(durationMinutes / 60)}h ${durationMinutes % 60}m` : `${durationMinutes} min`}
+                {isInvalidSoc ? '0 min' : displayMinutes >= 60 ? `${Math.floor(displayMinutes / 60)}h ${displayMinutes % 60}m` : `${displayMinutes} min`}
               </span>
             </div>
 
-            {/* Effektive Ø Leistung */}
+            {/* Effektive Ø Leistung / Modellannahme */}
             <div className="flex items-center justify-between text-xs">
-              <span className="text-slate-400">Effektive Ø Leistung:</span>
+              <span className="text-slate-400">{isTheoretical ? 'Angenommene Ladeleistung:' : 'Effektive Ø Leistung (Modell):'}</span>
               <span className="font-mono text-slate-200 font-bold">
-                {isInvalidSoc ? '0 kW' : `~ ${effectiveAverageKw.toFixed(0)} kW`}
-                {isAcCapped && ` (AC-Limit ${vehicleAcLimit} kW)`}
-                {isDcCapped && ` (DC-Limit ${vehicleDcLimit} kW)`}
+                {isInvalidSoc
+                  ? '0 kW'
+                  : isTheoretical
+                    ? `${chargePower} kW konstant`
+                    : `~ ${effectiveAverageKw.toFixed(0)} kW`}
+                {!isTheoretical && isAcCapped && ` (AC-Limit ${vehicleAcLimit} kW)`}
+                {!isTheoretical && isDcCapped && ` (DC-Limit ${vehicleDcLimit} kW)`}
               </span>
             </div>
 
@@ -494,14 +563,14 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               </span>
             </div>
 
-            {/* Ladeverluste (Eindeutige Definition als Aufschlag) */}
+            {/* Ladeverluste */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-slate-300 text-sm">
                 <Zap className="w-4 h-4 text-amber-400" />
-                <span>Ladeverlust (+{currentLossPercent} %):</span>
+                <span>{isTheoretical ? 'Ladeverluste im Modell:' : `Ladeverlust (+${currentLossPercent} %):`}</span>
               </div>
-              <span className="text-sm font-bold text-amber-400 font-mono">
-                + {lossKwh.toFixed(1).replace('.', ',')} kWh
+              <span className={`text-sm font-mono ${isTheoretical ? 'text-slate-400 font-normal' : 'font-bold text-amber-400'}`}>
+                {isTheoretical ? '0,0 kWh (Idealwert)' : `+ ${lossKwh.toFixed(1).replace('.', ',')} kWh`}
               </span>
             </div>
 
@@ -518,21 +587,93 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
 
           </div>
 
-          {/* Legal Note & Loss equation definition */}
+          {/* Vergleichszusammenfassung / Fußnote */}
           <div className="pt-3 border-t border-slate-800 text-[11px] text-slate-400 leading-normal space-y-1.5">
-            <p>
-              * Unverbindliche Modellrechnung. Die geschätzte Ladezeit und reale Ladeleistung hängen maßgeblich vom individuellen Fahrzeugmodell, der herstellerspezifischen Ladekurve, Akkutemperatur, Vorkonditionierung und der tatsächlich vom Ladepunkt bereitgestellten Leistung ab.
-            </p>
+            {!isTheoretical ? (
+              <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-[11px] text-slate-300 space-y-1">
+                <span className="font-semibold text-emerald-400 block">Praxis-Schätzung auf Basis vereinfachter Modellannahmen.</span>
+                <p className="text-slate-400">
+                  Theoretischer Idealwert: <strong>{theoreticalDurationMinutes} Min.</strong> · <strong>{theoreticalCostEur.toFixed(2).replace('.', ',')} €</strong>
+                </p>
+              </div>
+            ) : (
+              <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-[11px] text-slate-300 space-y-1">
+                <span className="font-semibold text-amber-300 block">Idealwert bei konstant verfügbarer eingestellter Ladeleistung.</span>
+                <p className="text-slate-400">
+                  Reale Ladevorgänge dauern in der Regel länger (Ladekurve, Akkutemperatur &amp; Ladeverluste).
+                </p>
+              </div>
+            )}
+
             <p className="text-[10px] text-slate-500">
-              Modellannahme Ladekurve: Die durchschnittliche Ladeleistung wird im Modell vereinfacht über einen Ladekurvenfaktor geschätzt (ca. 76 % bis 82 % der Spitzenleistung im Bereich 10–80 % SoC).
-            </p>
-            <p className="text-[10px] text-slate-500">
-              Modellannahme Ladeverluste: Rechnerischer Aufschlag auf die Nettoenergie von 6 % (DC-Schnellladen) bzw. 12 % (AC-Normalladen). Reale Verluste können je nach Außentemperatur, Bordlader-Wirkungsgrad und Ladekabelkühlung abweichen.
+              * Die tatsächliche Ladedauer und Kosten hängen maßgeblich vom Fahrzeugmodell, der realen Ladekurve, Batterietemperatur, Vorkonditionierung und dem individuellen CPO-Tarif ab.
             </p>
           </div>
 
         </div>
 
+      </div>
+
+      {/* Aufklappbarer Bereich: Wie wird gerechnet? */}
+      <div className="mt-8 pt-6 border-t border-slate-200/80">
+        <details className="group rounded-2xl bg-slate-50 border border-slate-200/90 overflow-hidden transition-all">
+          <summary className="p-4 sm:p-5 font-bold text-slate-900 cursor-pointer list-none flex items-center justify-between select-none">
+            <div className="flex items-center gap-2 text-sm sm:text-base">
+              <Info className="w-4 h-4 text-emerald-600" />
+              <span>Wie wird gerechnet? (Berechnungsmodelle erklärt)</span>
+            </div>
+            <span className="text-xs font-mono font-bold text-slate-500 group-open:rotate-180 transition-transform">
+              ▼
+            </span>
+          </summary>
+          
+          <div className="p-4 sm:p-6 pt-0 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 space-y-4 leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 bg-white rounded-xl border border-slate-200 space-y-2">
+                <h4 className="font-bold text-slate-950 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-slate-400" />
+                  <span>1. Modus: Theoretisch</span>
+                </h4>
+                <p className="text-xs text-slate-600">
+                  Reine mathematische Idealrechnung ohne Ladeverluste oder Ladekurvendrosselung:
+                </p>
+                <ul className="text-xs font-mono text-slate-700 space-y-1 list-disc pl-4">
+                  <li>Nettoenergie = Kapazität × (Ziel-SoC − Start-SoC)</li>
+                  <li>Kosten = Nettoenergie × Strompreis</li>
+                  <li>Mindest-Ladezeit = Nettoenergie ÷ Nennleistung</li>
+                </ul>
+                <p className="text-[11px] text-slate-500 italic">
+                  Idealwert bei 100 % konstanter Leistungsabgabe ohne jegliche Wandlungsverluste.
+                </p>
+              </div>
+
+              <div className="p-4 bg-white rounded-xl border border-slate-200 space-y-2">
+                <h4 className="font-bold text-slate-950 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span>2. Modus: Praxis-Schätzung</span>
+                </h4>
+                <p className="text-xs text-slate-600">
+                  Vereinfachtes Modell unter Berücksichtigung typischer Praxisaufschläge:
+                </p>
+                <ul className="text-xs text-slate-700 space-y-1.5 list-disc pl-4">
+                  <li>
+                    <strong>Modellannahme Ladeverluste:</strong> Rechnerischer Aufschlag von 6 % (HPC Gleichstrom) bzw. 12 % (AC Wechselstrom).
+                  </li>
+                  <li>
+                    <strong>Modellannahme Ladekurve:</strong> Durchschnittliche Leistung ca. 76 % bis 82 % der Spitzenleistung im Bereich 10–80 % SoC.
+                  </li>
+                </ul>
+                <p className="text-[11px] text-slate-500 italic">
+                  Reale Werte variieren je nach Fahrzeug, Batterietemperatur, Vorkonditionierung und Ladesäule.
+                </p>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-500 border-t border-slate-200 pt-3">
+              Hinweis: Die tatsächliche Ladezeit und Ladeleistung hängen insbesondere von Fahrzeugmodell, Ladekurve, Akkutemperatur, Ladezustand, Vorkonditionierung und verfügbarer Ladeleistung ab.
+            </p>
+          </div>
+        </details>
       </div>
 
     </div>
