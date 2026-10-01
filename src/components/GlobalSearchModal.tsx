@@ -97,21 +97,21 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
   const getCategoryIcon = (category: SearchCategory) => {
     switch (category) {
       case 'motorways':
-        return <Navigation className="w-4 h-4 text-amber-600" />;
+        return <Navigation className="w-4 h-4 text-[#171917]" />;
       case 'cities':
-        return <MapPin className="w-4 h-4 text-emerald-600" />;
+        return <MapPin className="w-4 h-4 text-[#2F5E73]" />;
       case 'stations':
-        return <Zap className="w-4 h-4 text-blue-600" />;
+        return <Zap className="w-4 h-4 text-[#171917]" />;
       case 'mcs':
-        return <Truck className="w-4 h-4 text-purple-600" />;
+        return <Truck className="w-4 h-4 text-[#2F5E73]" />;
       case 'operators':
-        return <ShieldCheck className="w-4 h-4 text-indigo-600" />;
+        return <ShieldCheck className="w-4 h-4 text-[#171917]" />;
       case 'tools':
-        return <Calculator className="w-4 h-4 text-emerald-600" />;
+        return <Calculator className="w-4 h-4 text-[#2F5E73]" />;
       case 'knowledge':
-        return <BookOpen className="w-4 h-4 text-slate-600" />;
+        return <BookOpen className="w-4 h-4 text-[#6C716B]" />;
       default:
-        return <Search className="w-4 h-4 text-slate-500" />;
+        return <Search className="w-4 h-4 text-[#6C716B]" />;
     }
   };
 
@@ -204,7 +204,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                   onClick={() => setSelectedCategory(g.category)}
                   className={`px-2.5 py-1 rounded-lg font-semibold whitespace-nowrap transition-colors cursor-pointer min-h-[32px] flex items-center gap-1 ${
                     selectedCategory === g.category
-                      ? 'bg-emerald-700 text-white'
+                      ? 'bg-[#171917] text-white'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
                 >
@@ -246,7 +246,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                       key={s.label}
                       type="button"
                       onClick={() => setQuery(s.q)}
-                      className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-emerald-50 hover:text-emerald-900 border border-slate-200/80 text-xs font-medium text-slate-700 transition-colors cursor-pointer min-h-[36px]"
+                      className="px-3 py-1.5 rounded-xl bg-[#F7F7F2] hover:bg-white hover:text-[#171917] border border-[#DFE3DC] text-xs font-medium text-[#171917] transition-colors cursor-pointer min-h-[36px]"
                     >
                       {s.label}
                     </button>
@@ -254,9 +254,9 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
-                <div className="flex items-center gap-1.5 font-bold text-slate-800">
-                  <Sparkles className="w-4 h-4 text-emerald-600" />
+              <div className="p-4 rounded-xl bg-[#F7F7F2] border border-[#DFE3DC] text-xs text-[#6C716B] space-y-1">
+                <div className="flex items-center gap-1.5 font-bold text-[#171917]">
+                  <Sparkles className="w-4 h-4 text-[#2F5E73]" />
                   <span>Direktes Navigieren in Echtzeit</span>
                 </div>
                 <p>
@@ -302,11 +302,11 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                         key={doc.id}
                         type="button"
                         onClick={() => handleSelectResult(doc.url)}
-                        className="w-full text-left p-3 sm:p-3.5 hover:bg-slate-50 transition-colors flex items-center justify-between gap-3 group cursor-pointer min-h-[48px]"
+                        className="w-full text-left p-3 sm:p-3.5 hover:bg-[#F7F7F2] transition-colors flex items-center justify-between gap-3 group cursor-pointer min-h-[48px]"
                       >
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-2 mb-0.5">
-                            <span className="font-bold text-slate-900 text-sm sm:text-base group-hover:text-emerald-700 transition-colors truncate">
+                            <span className="font-bold text-slate-900 text-sm sm:text-base group-hover:text-[#2F5E73] transition-colors truncate">
                               {doc.title}
                             </span>
                             {doc.badge && (
@@ -320,7 +320,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                           </p>
                         </div>
 
-                        <div className="flex items-center gap-1 text-xs font-semibold text-slate-400 group-hover:text-emerald-600 shrink-0">
+                        <div className="flex items-center gap-1 text-xs font-semibold text-slate-400 group-hover:text-[#171917] shrink-0">
                           <ArrowRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" />
                         </div>
                       </button>
@@ -333,11 +333,11 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
         </div>
 
         {/* Footer info (Desktop keyboard hint, Mobile dismiss) */}
-        <div className="p-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500 shrink-0">
+        <div className="p-3 bg-[#F7F7F2] border-t border-[#DFE3DC] flex items-center justify-between text-xs text-[#6C716B] shrink-0">
           <div className="flex items-center gap-2">
             <span className="font-mono text-[11px]">240 Entitäten im Index</span>
             <span>·</span>
-            <span className="text-emerald-700 font-medium">BNetzA &amp; Redaktion</span>
+            <span className="text-[#171917] font-medium">BNetzA &amp; Redaktion</span>
           </div>
 
           <div className="hidden sm:flex items-center gap-2 text-[11px] font-mono text-slate-400">

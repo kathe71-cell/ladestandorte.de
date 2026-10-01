@@ -122,7 +122,7 @@ export const WallboxVergleichPage: React.FC = () => {
       {/* ── Filter & Sort Bar ─────────────────────────────── */}
       <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 space-y-4">
         <div className="flex items-center gap-2 text-sm font-bold text-slate-800">
-          <SlidersHorizontal className="w-4 h-4 text-emerald-700" />
+          <SlidersHorizontal className="w-4 h-4 text-slate-800" />
           <span>Filter &amp; Sortierung</span>
           {activeFilterCount > 0 && (
             <button
@@ -142,8 +142,8 @@ export const WallboxVergleichPage: React.FC = () => {
               onClick={() => setFilters((f) => ({ ...f, kw }))}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${
                 filters.kw === kw
-                  ? 'bg-emerald-700 text-white border-emerald-700'
-                  : 'bg-white text-slate-700 border-slate-300 hover:border-emerald-500'
+                  ? 'bg-slate-900 text-white border-slate-900'
+                  : 'bg-white text-slate-700 border-slate-300 hover:border-slate-500'
               }`}
             >
               {kw === 0 ? 'Alle Leistungen' : `${kw} kW`}
@@ -165,8 +165,8 @@ export const WallboxVergleichPage: React.FC = () => {
               onClick={() => toggle(key)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold border flex items-center gap-1.5 transition-colors ${
                 filters[key]
-                  ? 'bg-emerald-700 text-white border-emerald-700'
-                  : 'bg-white text-slate-700 border-slate-300 hover:border-emerald-500'
+                  ? 'bg-slate-900 text-white border-slate-900'
+                  : 'bg-white text-slate-700 border-slate-300 hover:border-slate-500'
               }`}
             >
               {icon}
@@ -181,7 +181,7 @@ export const WallboxVergleichPage: React.FC = () => {
             <select
               value={filters.brand}
               onChange={(e) => setFilters((f) => ({ ...f, brand: e.target.value }))}
-              className="text-xs border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white text-slate-700 focus:outline-none focus:border-emerald-500"
+              className="text-xs border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white text-slate-700 focus:outline-none focus:border-slate-500"
             >
               <option value="">Alle Marken</option>
               {BRANDS.map((b) => (
@@ -196,7 +196,7 @@ export const WallboxVergleichPage: React.FC = () => {
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SortKey)}
-              className="text-xs border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white text-slate-700 focus:outline-none focus:border-emerald-500"
+              className="text-xs border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white text-slate-700 focus:outline-none focus:border-slate-500"
             >
               {SORT_OPTIONS.map((o) => (
                 <option key={o.value} value={o.value}>{o.label}</option>
@@ -218,7 +218,7 @@ export const WallboxVergleichPage: React.FC = () => {
         <div className="text-center py-16 text-slate-400 text-sm">
           <SlidersHorizontal className="w-8 h-8 mx-auto mb-3 opacity-40" />
           <p>Keine Wallboxen für diese Filterkombi gefunden.</p>
-          <button onClick={resetFilters} className="mt-3 text-emerald-700 font-semibold underline text-xs">
+          <button onClick={resetFilters} className="mt-3 text-slate-900 font-semibold underline text-xs">
             Alle Filter zurücksetzen
           </button>
         </div>
@@ -231,7 +231,7 @@ export const WallboxVergleichPage: React.FC = () => {
             >
               {/* Kachel-Kopf */}
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-lg">
+                <span className="text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] px-2.5 py-1 rounded-lg">
                   {wb.maxKw} kW
                 </span>
                 <span className="text-lg font-black text-slate-950 font-mono">
@@ -274,7 +274,7 @@ export const WallboxVergleichPage: React.FC = () => {
                   </span>
                 )}
                 {wb.fundingEligible && (
-                  <span className="inline-flex items-center gap-1 bg-green-50 text-green-900 border border-green-200 px-2 py-0.5 rounded-md font-medium" title={wb.fundingNote}>
+                  <span className="inline-flex items-center gap-1 bg-[#F7F7F2] text-slate-900 border border-[#DFE3DC] px-2 py-0.5 rounded-md font-medium" title={wb.fundingNote}>
                     Förderung mögl.
                   </span>
                 )}
@@ -284,7 +284,7 @@ export const WallboxVergleichPage: React.FC = () => {
               <div className="space-y-1.5 text-xs text-slate-600 pt-3 border-t border-slate-100 flex-1">
                 {wb.features.map((f) => (
                   <div key={f} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#2F5E73] shrink-0 mt-0.5" />
                     <span>{f}</span>
                   </div>
                 ))}
@@ -322,7 +322,7 @@ export const WallboxVergleichPage: React.FC = () => {
           Wie viel Solarenergie wird für das Laden zu Hause benötigt?
         </h3>
         <p>
-          Um ein Elektroauto an sonnigen Tagen ganz oder teilweise mit eigenem Dachstrom zu versorgen, wird in der Praxis meist eine Photovoltaikanlage ab etwa 6–10 kWp in Kombination mit einer steuerbaren Wallbox empfohlen. Den voraussichtlichen Jahresertrag für verschiedene Dachausrichtungen können Sie mit dem herstellerneutralen <a href="https://www.wattpeak.de/ertragsrechner" target="_blank" rel="noopener" className="font-bold text-emerald-800 underline hover:text-emerald-600">PV-Ertragsrechner auf wattpeak.de</a> berechnen.
+          Um ein Elektroauto an sonnigen Tagen ganz oder teilweise mit eigenem Dachstrom zu versorgen, wird in der Praxis meist eine Photovoltaikanlage ab etwa 6–10 kWp in Kombination mit einer steuerbaren Wallbox empfohlen. Den voraussichtlichen Jahresertrag für verschiedene Dachausrichtungen können Sie mit dem herstellerneutralen <a href="https://www.wattpeak.de/ertragsrechner" target="_blank" rel="noopener" className="font-bold text-slate-900 underline hover:text-black">PV-Ertragsrechner auf wattpeak.de</a> berechnen.
         </p>
       </div>
 

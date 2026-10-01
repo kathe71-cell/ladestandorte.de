@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Zap, ExternalLink, ShieldCheck, Database } from 'lucide-react';
 import { AmazonPartnerSentence } from '@plattform/core';
+import { BrandLogo } from './BrandLogo';
 
 export const Footer: React.FC = () => {
   return (
@@ -13,22 +14,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 1 & 2: Brand & Portal mission */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#171917] p-1.5">
-                <svg viewBox="0 0 32 32" className="w-full h-full" fill="none">
-                  <path d="M9 7V23H21" stroke="#171917" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="23" cy="9" r="3" fill="#C7F000" />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-black tracking-tight text-white leading-none">
-                  ladestandorte<span className="text-slate-400 font-semibold">.de</span>
-                </span>
-                <span className="text-[9px] font-mono uppercase tracking-widest text-[#C7F000] font-bold mt-1">
-                  Ladeinfrastruktur · Datenbasiert
-                </span>
-              </div>
-            </div>
+            <BrandLogo variant="footer" />
 
             <p className="text-sm text-slate-400 leading-relaxed pr-4">
               Unabhängige Daten- und Informationsplattform für öffentliche Ladeinfrastruktur in Deutschland. Regelmäßig aktualisierte Auswertungen auf Basis veröffentlichter Registerdaten der Bundesnetzagentur (BNetzA Open Data, CC BY 4.0) und amtlicher Bevölkerungszahlen des Statistischen Bundesamtes (Destatis).

@@ -97,44 +97,44 @@ export const McsVsCcsPage: React.FC = () => {
                 <tr>
                   <th className="p-4 font-bold">Merkmal</th>
                   <th className="p-4 font-bold text-slate-700 bg-slate-50">CCS Combo 2</th>
-                  <th className="p-4 font-bold text-emerald-800 bg-emerald-50/50">MCS (Megawatt Charging)</th>
+                  <th className="p-4 font-bold text-[#171917] bg-[#F7F7F2]">MCS (Megawatt Charging)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 bg-white">
                 <tr>
                   <td className="p-4 font-semibold text-slate-900">Hauptzielgruppe</td>
                   <td className="p-4 text-slate-700 bg-slate-50">Pkw, Vans, leichte Lkw</td>
-                  <td className="p-4 font-semibold text-emerald-800 bg-emerald-50/50">Schwere Fernverkehr-Lkw (Klasse N3), Busse, Fähren</td>
+                  <td className="p-4 font-semibold text-[#171917] bg-[#F7F7F2]">Schwere Fernverkehr-Lkw (Klasse N3), Busse, Fähren</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-semibold text-slate-900">Max. Ladeleistung</td>
                   <td className="p-4 font-mono text-slate-700 bg-slate-50">350 – 400 kW</td>
-                  <td className="p-4 font-mono font-bold text-emerald-800 bg-emerald-50/50">bis 3.750 kW (3,75 MW)</td>
+                  <td className="p-4 font-mono font-bold text-[#171917] bg-[#F7F7F2]">bis 3.750 kW (3,75 MW)</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-semibold text-slate-900">Max. Dauerstrom</td>
                   <td className="p-4 font-mono text-slate-700 bg-slate-50">500 A (mit Kühlung)</td>
-                  <td className="p-4 font-mono font-bold text-emerald-800 bg-emerald-50/50">bis 3.000 A</td>
+                  <td className="p-4 font-mono font-bold text-[#171917] bg-[#F7F7F2]">bis 3.000 A</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-semibold text-slate-900">Max. Spannungsebene</td>
                   <td className="p-4 font-mono text-slate-700 bg-slate-50">1.000 V DC</td>
-                  <td className="p-4 font-mono font-bold text-emerald-800 bg-emerald-50/50">1.250 V DC</td>
+                  <td className="p-4 font-mono font-bold text-[#171917] bg-[#F7F7F2]">1.250 V DC</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-semibold text-slate-900">Stecker-Geometrie</td>
                   <td className="p-4 text-slate-700 bg-slate-50">Typ 2 Oberteil + 2 DC-Pins</td>
-                  <td className="p-4 text-slate-900 bg-emerald-50/50">Kompakte Dreiecksanordnung, verriegelbar</td>
+                  <td className="p-4 text-slate-900 bg-[#F7F7F2]">Kompakte Dreiecksanordnung, verriegelbar</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-semibold text-slate-900">Kühlung</td>
                   <td className="p-4 text-slate-700 bg-slate-50">Kabelgekühlt (ab 200 A)</td>
-                  <td className="p-4 font-semibold text-slate-900 bg-emerald-50/50">Zweiweg (Kabel + Pin-Kühlung)</td>
+                  <td className="p-4 font-semibold text-slate-900 bg-[#F7F7F2]">Zweiweg (Kabel + Pin-Kühlung)</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-semibold text-slate-900">Kommunikationsprotokoll</td>
                   <td className="p-4 font-mono text-slate-700 bg-slate-50">DIN 70121 / ISO 15118-2</td>
-                  <td className="p-4 font-mono font-bold text-slate-900 bg-emerald-50/50">ISO 15118-20 (Ethernet-basiert)</td>
+                  <td className="p-4 font-mono font-bold text-slate-900 bg-[#F7F7F2]">ISO 15118-20 (Ethernet-basiert)</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-semibold text-slate-950">
@@ -142,7 +142,7 @@ export const McsVsCcsPage: React.FC = () => {
                     <span className="block text-[10px] text-slate-500 font-normal mt-0.5">Modellrechnung basierend auf durchschnittlicher Nettoleistung</span>
                   </td>
                   <td className="p-4 font-mono text-slate-700 bg-slate-50">ca. 70 – 90 Minuten</td>
-                  <td className="p-4 font-mono font-bold text-emerald-800 bg-emerald-50/50">ca. 25 – 35 Minuten</td>
+                  <td className="p-4 font-mono font-bold text-[#171917] bg-[#F7F7F2]">ca. 25 – 35 Minuten</td>
                 </tr>
               </tbody>
             </table>
@@ -168,8 +168,8 @@ export const McsVsCcsPage: React.FC = () => {
                 Im Betriebshof (Depot) oder bei nächtlichen 9- bis 11-Stunden-Pausen reicht CCS mit 50 bis 150 kW vollkommen aus, um den Akku schonend und netzfreundlich zu füllen.
               </p>
             </div>
-            <div className="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-200 space-y-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-emerald-800 font-bold block">MCS am Lkw</span>
+            <div className="p-5 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] space-y-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#171917] font-bold block">MCS am Lkw</span>
               <h3 className="font-bold text-slate-950 text-base">Unterwegs-Schnellladen (Opportunity)</h3>
               <p className="text-xs text-slate-600">
                 Auf der Autobahnraststätte während der 45-minütigen Fahrerpause. Hier zählt jede Minute, um die Einsatzzeit des Lkw zu maximieren.
@@ -198,7 +198,7 @@ export const McsVsCcsPage: React.FC = () => {
         <section className="border-t border-slate-200 pt-8 flex flex-wrap gap-4">
           <Link
             to="/mcs/lkw-laden"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#171917] hover:bg-black text-white font-bold text-sm shadow-md transition-all"
           >
             <span>Lkw-Laden &amp; Lenkzeiten verstehen</span>
             <ArrowRight className="w-4 h-4" />

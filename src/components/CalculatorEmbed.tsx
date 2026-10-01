@@ -202,7 +202,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   const handleCopyEmbed = () => {
     const modeParam = isTheoretical ? '&mode=theoretical' : '';
     const vehicleParam = selectedVehicleId ? `&vehicle=${encodeURIComponent(selectedVehicleId)}` : '';
-    const iframeCode = `<iframe src="https://www.ladestandorte.de/rechner-embed?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}${vehicleParam}${modeParam}" width="100%" height="680" style="border:1px solid #e2e8f0;border-radius:16px;max-width:720px;display:block;margin:auto;" title="Ladezeit- & Ladekostenrechner ladestandorte.de"></iframe><p style="font-size:12px;text-align:center;color:#64748b;margin-top:8px;">Bereitgestellt von <a href="https://www.ladestandorte.de" target="_blank" style="color:#059669;font-weight:bold;">ladestandorte.de</a></p>`;
+    const iframeCode = `<iframe src="https://www.ladestandorte.de/rechner-embed?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}${vehicleParam}${modeParam}" width="100%" height="680" style="border:1px solid #e2e8f0;border-radius:16px;max-width:720px;display:block;margin:auto;" title="Ladezeit- & Ladekostenrechner ladestandorte.de"></iframe><p style="font-size:12px;text-align:center;color:#64748b;margin-top:8px;">Bereitgestellt von <a href="https://www.ladestandorte.de" target="_blank" style="color:#171917;font-weight:bold;">ladestandorte.de</a></p>`;
     navigator.clipboard.writeText(iframeCode);
     setEmbedCopied(true);
     setTimeout(() => setEmbedCopied(false), 2500);

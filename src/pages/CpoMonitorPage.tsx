@@ -333,7 +333,7 @@ export const CpoMonitorPage: React.FC = () => {
                   </td>
                   <td className="py-3.5 px-4 text-right font-mono">
                     <span className={`inline-block px-2 py-0.5 rounded text-xs font-semibold ${
-                      op.share150PlusKwPercent >= 70 ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' :
+                      op.share150PlusKwPercent >= 70 ? 'bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]' :
                       op.share150PlusKwPercent >= 40 ? 'bg-purple-50 text-purple-800 border border-purple-200' :
                       'bg-slate-100 text-slate-700'
                     }`}>

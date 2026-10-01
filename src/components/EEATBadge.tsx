@@ -24,8 +24,8 @@ export const EEATBadge: React.FC<Props> = ({
     <div className={`p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs space-y-3 ${className}`}>
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
-            <Award className="w-4 h-4 text-emerald-700" />
+          <div className="w-8 h-8 rounded-lg bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] flex items-center justify-center shrink-0">
+            <Award className="w-4 h-4 text-[#171917]" />
           </div>
           <div>
             <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold block">
@@ -45,14 +45,14 @@ export const EEATBadge: React.FC<Props> = ({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600">
         <div className="flex items-start gap-2">
-          <Database className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+          <Database className="w-4 h-4 text-[#2F5E73] shrink-0 mt-0.5" />
           <div>
             <strong className="text-slate-800">{source1Title}:</strong> {source1Text}
           </div>
         </div>
 
         <div className="flex items-start gap-2">
-          <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+          <ShieldCheck className="w-4 h-4 text-[#2F5E73] shrink-0 mt-0.5" />
           <div>
             <strong className="text-slate-800">{source2Title}:</strong> {source2Text}
           </div>

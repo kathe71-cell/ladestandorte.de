@@ -18,7 +18,7 @@ export const NotFoundPage: React.FC = () => {
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-amber-100 text-amber-900 border border-amber-300 mx-auto">
           <AlertCircle className="w-8 h-8" />
         </div>
-        <div className="font-mono text-sm font-bold text-emerald-800 tracking-wider uppercase">
+        <div className="font-mono text-sm font-bold text-slate-700 tracking-wider uppercase">
           Fehler 404
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight">
@@ -37,13 +37,13 @@ export const NotFoundPage: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Link
             to="/"
-            className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-200 hover:border-emerald-300 hover:bg-slate-50 transition-all group"
+            className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-200 hover:border-slate-400 hover:bg-slate-50 transition-all group"
           >
-            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800 group-hover:bg-emerald-600 group-hover:text-white transition-colors shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800 group-hover:bg-[#171917] group-hover:text-white transition-colors shrink-0">
               <Home className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-950 group-hover:text-emerald-900 transition-colors">
+              <div className="font-bold text-slate-950 group-hover:text-black transition-colors">
                 Startseite
               </div>
               <div className="text-xs text-slate-500 mt-0.5">
@@ -54,13 +54,13 @@ export const NotFoundPage: React.FC = () => {
 
           <Link
             to="/staedte"
-            className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-200 hover:border-emerald-300 hover:bg-slate-50 transition-all group"
+            className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-200 hover:border-slate-400 hover:bg-slate-50 transition-all group"
           >
-            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800 group-hover:bg-emerald-600 group-hover:text-white transition-colors shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800 group-hover:bg-[#171917] group-hover:text-white transition-colors shrink-0">
               <MapPin className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-950 group-hover:text-emerald-900 transition-colors">
+              <div className="font-bold text-slate-950 group-hover:text-black transition-colors">
                 Städte-Verzeichnis
               </div>
               <div className="text-xs text-slate-500 mt-0.5">
@@ -71,13 +71,13 @@ export const NotFoundPage: React.FC = () => {
 
           <Link
             to="/autobahnen"
-            className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-200 hover:border-emerald-300 hover:bg-slate-50 transition-all group"
+            className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-200 hover:border-slate-400 hover:bg-slate-50 transition-all group"
           >
-            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800 group-hover:bg-emerald-600 group-hover:text-white transition-colors shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800 group-hover:bg-[#171917] group-hover:text-white transition-colors shrink-0">
               <Navigation className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-950 group-hover:text-emerald-900 transition-colors">
+              <div className="font-bold text-slate-950 group-hover:text-black transition-colors">
                 Autobahn-Schnelllader
               </div>
               <div className="text-xs text-slate-500 mt-0.5">
@@ -88,13 +88,13 @@ export const NotFoundPage: React.FC = () => {
 
           <Link
             to="/mcs"
-            className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-200 hover:border-emerald-300 hover:bg-slate-50 transition-all group"
+            className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-200 hover:border-slate-400 hover:bg-slate-50 transition-all group"
           >
-            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800 group-hover:bg-emerald-600 group-hover:text-white transition-colors shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800 group-hover:bg-[#171917] group-hover:text-white transition-colors shrink-0">
               <Truck className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-950 group-hover:text-emerald-900 transition-colors">
+              <div className="font-bold text-slate-950 group-hover:text-black transition-colors">
                 MCS &amp; E-Lkw Hubs
               </div>
               <div className="text-xs text-slate-500 mt-0.5">
@@ -105,13 +105,13 @@ export const NotFoundPage: React.FC = () => {
 
           <Link
             to="/rechner"
-            className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-200 hover:border-emerald-300 hover:bg-slate-50 transition-all group sm:col-span-2"
+            className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-200 hover:border-slate-400 hover:bg-slate-50 transition-all group sm:col-span-2"
           >
-            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800 group-hover:bg-emerald-600 group-hover:text-white transition-colors shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800 group-hover:bg-[#171917] group-hover:text-white transition-colors shrink-0">
               <Calculator className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-950 group-hover:text-emerald-900 transition-colors">
+              <div className="font-bold text-slate-950 group-hover:text-black transition-colors">
                 Ladezeit- &amp; Kostenrechner
               </div>
               <div className="text-xs text-slate-500 mt-0.5">

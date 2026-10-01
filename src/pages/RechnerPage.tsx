@@ -103,7 +103,7 @@ export const RechnerPage: React.FC = () => {
       {/* Methodik & Modellannahmen Link-Box */}
       <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-600">
         <div className="flex items-start gap-2.5">
-          <BookOpen className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+          <BookOpen className="w-4 h-4 text-slate-800 shrink-0 mt-0.5" />
           <div>
             <strong className="text-slate-900 font-semibold block sm:inline">Transparente Modellierung: </strong>
             <span>Alle Formeln, Wirkungsgrade (AC 88 % / DC 94 %) und Ladekurven-Plateaufaktoren (0,76 / 0,82) sind in unserer Methodik offengelegt.</span>
@@ -111,7 +111,7 @@ export const RechnerPage: React.FC = () => {
         </div>
         <Link
           to="/methodik#laderechner"
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 text-emerald-800 font-bold border border-slate-200 shadow-xs transition-colors shrink-0"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-900 font-bold border border-slate-200 shadow-xs transition-colors shrink-0"
         >
           <span>Methodik &amp; Modellannahmen</span>
           <ArrowRight className="w-3.5 h-3.5" />

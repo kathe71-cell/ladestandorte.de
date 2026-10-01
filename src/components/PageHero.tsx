@@ -25,17 +25,17 @@ export interface PageHeroProps {
 }
 
 const EYEBROW_STYLES: Record<NonNullable<PageHeroProps['eyebrowVariant']>, string> = {
-  emerald: 'bg-emerald-50 text-emerald-800 border-emerald-200/80',
-  amber: 'bg-amber-50 text-amber-900 border-amber-200/80',
-  purple: 'bg-purple-50 text-purple-900 border-purple-200/80',
-  slate: 'bg-slate-100 text-slate-800 border-slate-200',
-  blue: 'bg-blue-50 text-blue-900 border-blue-200/80'
+  emerald: 'bg-[#F7F7F2] text-[#171917] border-[#DFE3DC]',
+  amber: 'bg-amber-50 text-amber-950 border-amber-300',
+  purple: 'bg-slate-100 text-[#171917] border-slate-200',
+  slate: 'bg-[#F7F7F2] text-[#171917] border-[#DFE3DC]',
+  blue: 'bg-slate-100 text-[#2F5E73] border-slate-200'
 };
 
 export const PageHero: React.FC<PageHeroProps> = ({
   level = 2,
   eyebrow,
-  eyebrowVariant = 'emerald',
+  eyebrowVariant = 'slate',
   title,
   description,
   subtitle,

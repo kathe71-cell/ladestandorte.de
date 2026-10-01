@@ -252,7 +252,7 @@ export const CityPage: React.FC = () => {
             <div className="text-slate-700">Eigene Berechnung von ladestandorte.de</div>
             <div className="text-slate-500">Dichtewerte pro 1.000 Einw. auf Basis dieser Stände</div>
             <div>
-              <Link to="/methodik" className="text-emerald-700 hover:text-emerald-800 font-bold underline inline-flex items-center gap-1">
+              <Link to="/methodik" className="text-slate-900 hover:underline font-bold inline-flex items-center gap-1">
                 <span>Methodik ansehen</span>
                 <ArrowRight className="w-3 h-3" />
               </Link>
@@ -283,7 +283,7 @@ export const CityPage: React.FC = () => {
                   <Link
                     key={opStr}
                     to={`/betreiber/${opSlug}`}
-                    className="px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 font-semibold text-xs text-slate-800 hover:border-emerald-300 hover:text-emerald-800 transition-colors inline-flex items-center gap-1.5"
+                    className="px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 font-semibold text-xs text-slate-800 hover:border-slate-400 hover:text-black transition-colors inline-flex items-center gap-1.5"
                   >
                     <span>{opStr}</span>
                     <ArrowRight className="w-3 h-3 text-slate-400" />
@@ -364,7 +364,7 @@ export const CityPage: React.FC = () => {
           </div>
           <Link
             to={`/suche?q=${encodeURIComponent(city.name)}`}
-            className="text-xs font-bold text-emerald-700 hover:text-emerald-800 inline-flex items-center gap-1"
+            className="text-xs font-bold text-slate-900 hover:underline inline-flex items-center gap-1"
           >
             <span>Alle in der Suche filtern</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -376,7 +376,7 @@ export const CityPage: React.FC = () => {
             <p>In der Schnellansicht sind für {city.name} alle Ladepunkte im Volltext-Finder verfügbar.</p>
             <Link
               to={`/suche?q=${encodeURIComponent(city.name)}`}
-              className="mt-3 inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-600 text-white rounded-xl font-bold text-xs"
+              className="mt-3 inline-flex items-center gap-1.5 px-4 py-2 bg-[#171917] hover:bg-black text-white rounded-xl font-bold text-xs"
             >
               <span>Instant-Finder für {city.name} starten</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -388,14 +388,14 @@ export const CityPage: React.FC = () => {
               <Link
                 key={st.id}
                 to={getStationUrl(st)}
-                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all flex flex-col justify-between group"
+                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-400 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-extrabold text-slate-950 group-hover:text-emerald-700 transition-colors">
+                    <span className="font-extrabold text-slate-950 group-hover:text-black transition-colors">
                       {st.name}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 shrink-0">
+                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] shrink-0">
                       {st.kwMax} kW {st.isHpc ? 'HPC' : 'AC'}
                     </span>
                   </div>
@@ -415,7 +415,7 @@ export const CityPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-900 group-hover:underline">
                   <span>Standort ansehen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -427,7 +427,7 @@ export const CityPage: React.FC = () => {
 
       {/* Local City FAQs */}
       <div className="space-y-4">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
+        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-800 font-bold">
           <HelpCircle className="w-4 h-4" />
           <span>Häufig gestellte Fragen (FAQ)</span>
         </div>
@@ -439,7 +439,7 @@ export const CityPage: React.FC = () => {
           {faqs.map((faq, i) => (
             <div key={i} className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-2">
               <h3 className="font-bold text-slate-950 text-sm sm:text-base flex items-start gap-2">
-                <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-xs flex items-center justify-center shrink-0 mt-0.5">
+                <span className="w-5 h-5 rounded-full bg-slate-100 text-slate-800 font-mono text-xs flex items-center justify-center shrink-0 mt-0.5">
                   {i + 1}
                 </span>
                 <span>{faq.q}</span>

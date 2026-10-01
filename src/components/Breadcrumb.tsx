@@ -28,7 +28,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' })
             {item.href && !isLast ? (
               <Link
                 to={item.href}
-                className="hover:text-emerald-700 transition-colors truncate max-w-[200px] sm:max-w-none"
+                className="hover:text-[#171917] transition-colors truncate max-w-[200px] sm:max-w-none"
               >
                 {item.label}
               </Link>

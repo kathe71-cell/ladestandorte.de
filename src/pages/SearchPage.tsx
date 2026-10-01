@@ -38,7 +38,7 @@ export const SearchPage: React.FC = () => {
       <PageHero
         level={2}
         eyebrow="High-Speed Datenfilter"
-        eyebrowVariant="emerald"
+        eyebrowVariant="slate"
         title="Ladesäulen Instant-Finder"
         description="Geben Sie eine Postleitzahl, eine Stadt, einen Betreiber (z. B. EnBW, IONITY, Tesla) oder eine Autobahnnummer (z. B. A3, A7) ein. Ergebnisse erscheinen verzögerungsfrei in unter 5 Millisekunden."
       />

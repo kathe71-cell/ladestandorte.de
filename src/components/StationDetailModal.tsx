@@ -57,7 +57,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
             <X className="w-6 h-6" />
           </button>
           <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-emerald-500 text-slate-950">
+            <span className="px-2.5 py-1 rounded-md text-xs font-mono font-extrabold bg-[#C7F000] text-slate-950">
               {station.kwMax} kW max. Standortleistung
             </span>
             <span className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-slate-800 text-slate-300">
@@ -73,7 +73,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
             {station.name}
           </h2>
           <p className="text-slate-300 text-sm mt-1 flex items-center gap-1.5">
-            <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
+            <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
             <span>{station.street}, {station.plz} {station.city}</span>
           </p>
         </div>
@@ -108,10 +108,10 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
             </h3>
             <div className="flex flex-wrap gap-2.5">
               {connectors.map((conn) => (
-                <div key={conn.type} className="inline-flex items-center gap-2 px-3 py-2 bg-emerald-50 text-emerald-950 border border-emerald-200 rounded-xl font-bold text-sm">
-                  <Zap className="w-4 h-4 text-emerald-600 shrink-0" />
+                <div key={conn.type} className="inline-flex items-center gap-2 px-3 py-2 bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] rounded-xl font-bold text-sm">
+                  <Zap className="w-4 h-4 text-slate-800 shrink-0" />
                   <span>{conn.type}</span>
-                  <span className="text-xs font-semibold text-emerald-800 font-mono bg-emerald-100/80 px-2 py-0.5 rounded">
+                  <span className="text-xs font-semibold text-slate-800 font-mono bg-white px-2 py-0.5 rounded border border-[#DFE3DC]">
                     bis {conn.maxKw} kW {conn.type === 'Typ 2' ? '(AC)' : '(DC)'}
                   </span>
                 </div>
@@ -159,7 +159,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
               {station.truckCharging && (
                 <div className="flex items-center gap-2 text-slate-800">
                   <span className="text-base">🚛</span>
-                  <span>E-Lkw Eignung: <strong className="text-emerald-800">
+                  <span>E-Lkw Eignung: <strong className="text-slate-900">
                     {station.truckCharging.mcsStatus === 'operational' ? 'MCS Megawatt-Laden aktiv' : 'Schwerlast-Ladehub (400 kW CCS)'}
                   </strong></span>
                 </div>
@@ -167,7 +167,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
               {station.isCovered === true && (
                 <div className="flex items-center gap-2 text-slate-800">
                   <span className="text-base">☔</span>
-                  <span>Überdachung: <strong className="text-emerald-800">Ja (Wetterschutz)</strong></span>
+                  <span>Überdachung: <strong className="text-slate-900">Ja (Wetterschutz)</strong></span>
                 </div>
               )}
             </div>
@@ -177,7 +177,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
           <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-2 font-mono">
             <div className="flex flex-wrap items-center justify-between gap-1 border-b border-slate-200/80 pb-2">
               <div className="flex items-center gap-2 text-slate-800 font-bold">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <ShieldCheck className="w-4 h-4 text-[#2F5E73]" />
                 <span>Amtliche Registerdaten (Bundesnetzagentur)</span>
               </div>
               <span className="text-[10px] font-bold text-amber-900 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded">
@@ -195,7 +195,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
                 href="https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.html" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-emerald-700 hover:text-emerald-800 underline font-bold inline-flex items-center gap-1 font-sans"
+                className="text-[#2F5E73] hover:text-[#171917] underline font-bold inline-flex items-center gap-1 font-sans"
               >
                 <span>BNetzA Ladesäulenregister (Offizielles Datenportal &amp; Excel-Download)</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -228,9 +228,9 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
               href={googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-sm text-xs sm:text-sm transition-all min-h-[48px]"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-[#171917] hover:bg-black text-white font-bold py-3 px-4 rounded-xl shadow-sm text-xs sm:text-sm transition-all min-h-[48px]"
             >
-              <Navigation className="w-4 h-4" />
+              <Navigation className="w-4 h-4 text-[#C7F000]" />
               <span>Google Maps</span>
               <ExternalLink className="w-3.5 h-3.5 opacity-80" />
             </a>
@@ -239,7 +239,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
               href={`https://maps.apple.com/?daddr=${station.lat},${station.lng}&dirflg=d`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl shadow-sm text-xs sm:text-sm transition-all min-h-[48px]"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-750 text-white font-bold py-3 px-4 rounded-xl shadow-sm text-xs sm:text-sm transition-all min-h-[48px]"
             >
               <Navigation className="w-4 h-4" />
               <span>Apple Maps</span>
@@ -251,7 +251,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
               onClick={handleShare}
               className="inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-4 rounded-xl text-xs sm:text-sm transition-colors min-h-[48px] cursor-pointer"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
+              {copied ? <Check className="w-4 h-4 text-[#2F5E73]" /> : <Share2 className="w-4 h-4 text-slate-700" />}
               <span>{copied ? 'Kopiert!' : 'Teilen'}</span>
             </button>
           </div>

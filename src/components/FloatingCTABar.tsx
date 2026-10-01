@@ -37,7 +37,7 @@ export const FloatingCTABar: React.FC<Props> = ({
   return (
     <div
       className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-xl
-        bg-emerald-700 text-white rounded-2xl shadow-2xl shadow-emerald-900/30
+        bg-[#171917] text-white rounded-2xl shadow-2xl border border-[#DFE3DC]/20
         flex items-center justify-between gap-3 px-4 py-3 sm:px-5 sm:py-4
         animate-[slideUp_0.35s_ease-out]"
       style={{ animation: 'slideUp 0.35s ease-out' }}
@@ -49,19 +49,19 @@ export const FloatingCTABar: React.FC<Props> = ({
         }
       `}</style>
       <div className="flex items-center gap-2.5 min-w-0">
-        <div className="bg-white/15 rounded-lg p-1.5 shrink-0">
+        <div className="bg-white/10 rounded-lg p-1.5 shrink-0 text-[#C7F000]">
           <Zap className="w-4 h-4" />
         </div>
         <div className="min-w-0">
           <p className="text-sm font-bold leading-tight truncate">{title}</p>
-          <p className="text-xs text-emerald-200 leading-tight truncate">{subtitle}</p>
+          <p className="text-xs text-slate-400 leading-tight truncate">{subtitle}</p>
         </div>
       </div>
       <div className="flex items-center gap-2 shrink-0">
         <Link
           to={link}
-          className="flex items-center gap-1 bg-white text-emerald-800 text-xs font-bold
-            px-3 py-1.5 rounded-lg hover:bg-emerald-50 transition-colors whitespace-nowrap"
+          className="flex items-center gap-1 bg-[#C7F000] text-[#171917] text-xs font-black
+            px-3.5 py-2 rounded-xl hover:bg-[#b5dc00] transition-colors whitespace-nowrap shadow-xs"
         >
           {linkLabel}
           <ArrowRight className="w-3.5 h-3.5" />

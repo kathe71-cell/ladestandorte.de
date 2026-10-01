@@ -101,7 +101,7 @@ export const McsWhatIsPage: React.FC = () => {
             </div>
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
               <span className="text-xs font-mono text-slate-500 block uppercase">Max. Stromstärke</span>
-              <span className="text-2xl font-black text-emerald-800 font-mono mt-1 block">bis 3.000 A</span>
+              <span className="text-2xl font-black text-[#171917] font-mono mt-1 block">bis 3.000 A</span>
               <span className="text-[11px] text-slate-500">Aktiv flüssigkeitsgekühlt</span>
             </div>
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
@@ -128,9 +128,9 @@ export const McsWhatIsPage: React.FC = () => {
           <p>
             Nach den gesetzlichen EU-Lenk- und Ruhezeitenvorschriften (Verordnung EG Nr. 561/2006) müssen Lkw-Fahrer nach spätestens 4,5 Stunden reiner Lenkzeit eine ununterbrochene Pause von mindestens 45 Minuten einlegen.
           </p>
-          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-sm space-y-1">
+          <div className="p-4 rounded-xl bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-sm space-y-1">
             <p><strong>Das Kernziel von MCS:</strong> Ein vollständiger Ladehub für ca. 350 bis 400 km reale Lkw-Reichweite innerhalb der vorgeschriebenen 45-Minuten-Lenkzeitpause. Dafür sind reale Dauerladeleistungen von 750 bis 1.000+ kW erforderlich.</p>
-            <p className="text-[11px] text-emerald-800 font-mono">* Modellrechnung. Die tatsächliche Ladedauer hängt vom individuellen Fahrzeugmodell, der Batteriekapazität, der fahrzeugseitigen Ladekurve, dem Ausgangs-SoC und der Netzanschlussleistung ab.</p>
+            <p className="text-[11px] text-[#6C716B] font-mono">* Modellrechnung. Die tatsächliche Ladedauer hängt vom individuellen Fahrzeugmodell, der Batteriekapazität, der fahrzeugseitigen Ladekurve, dem Ausgangs-SoC und der Netzanschlussleistung ab.</p>
           </div>
         </section>
 
@@ -169,29 +169,29 @@ export const McsWhatIsPage: React.FC = () => {
         </section>
 
         {/* Weiterführende Links */}
-        <section className="border-t border-slate-200 pt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <section className="border-t border-[#DFE3DC] pt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Link
             to="/mcs/mcs-vs-ccs"
-            className="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-emerald-300 hover:bg-white transition-all group"
+            className="p-5 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] hover:border-[#171917] hover:bg-white transition-all group"
           >
-            <span className="text-xs font-mono uppercase text-slate-500 font-bold block mb-1">Direkter Vergleich</span>
-            <span className="text-base font-bold text-slate-950 group-hover:text-emerald-800 transition-colors block">
+            <span className="text-xs font-mono uppercase text-[#6C716B] font-bold block mb-1">Direkter Vergleich</span>
+            <span className="text-base font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors block">
               MCS vs. CCS im Detailvergleich →
             </span>
-            <span className="text-xs text-slate-600 mt-1 block">
+            <span className="text-xs text-[#6C716B] mt-1 block">
               Technische Daten, Steckermaße und Ladezeiten gegenübergestellt.
             </span>
           </Link>
 
           <Link
             to="/mcs/ladestationen"
-            className="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-emerald-300 hover:bg-white transition-all group"
+            className="p-5 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] hover:border-[#171917] hover:bg-white transition-all group"
           >
-            <span className="text-xs font-mono uppercase text-slate-500 font-bold block mb-1">Standorte in Deutschland</span>
-            <span className="text-base font-bold text-slate-950 group-hover:text-emerald-800 transition-colors block">
+            <span className="text-xs font-mono uppercase text-[#6C716B] font-bold block mb-1">Standorte in Deutschland</span>
+            <span className="text-base font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors block">
               MCS-Ladeparks Verzeichnis →
             </span>
-            <span className="text-xs text-slate-600 mt-1 block">
+            <span className="text-xs text-[#6C716B] mt-1 block">
               Alle aktiven und im Bau befindlichen Megawatt-Hubs an den Autobahnen.
             </span>
           </Link>

@@ -157,8 +157,8 @@ export const McsStationsPage: React.FC = () => {
       {/* DATA STATUS BAR */}
       <div className="p-3.5 sm:p-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs flex flex-wrap items-center justify-between gap-3 shadow-xs">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-black/60 border border-slate-700 text-[#C7F000] font-mono font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C7F000] animate-pulse"></span>
             Monitor-Status
           </span>
           <span className="text-slate-200">
@@ -175,7 +175,7 @@ export const McsStationsPage: React.FC = () => {
         </div>
         <Link
           to="/methodik#mcs"
-          className="text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center gap-1 transition-colors"
+          className="text-[#C7F000] hover:underline font-semibold inline-flex items-center gap-1 transition-colors"
         >
           <span>Methodik &amp; Kriterien</span>
           <ChevronRight className="w-3.5 h-3.5" />
@@ -198,11 +198,11 @@ export const McsStationsPage: React.FC = () => {
           </div>
 
           <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-xs space-y-1">
-            <div className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-800 flex items-center justify-between">
+            <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900 flex items-center justify-between">
               <span>MCS aktiv</span>
-              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span className="w-2 h-2 rounded-full bg-[#C7F000] border border-black/20"></span>
             </div>
-            <div className="text-3xl sm:text-4xl font-black text-emerald-700 tracking-tight">
+            <div className="text-3xl sm:text-4xl font-black text-[#171917] tracking-tight">
               {metrics.mcsOperational}
             </div>
             <div className="text-xs text-slate-500 leading-snug">
@@ -240,7 +240,7 @@ export const McsStationsPage: React.FC = () => {
       {/* MCS ≠ CCS EXPLAINER & TECHNISCHER HINTERGRUND */}
       <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xs space-y-4">
         <div className="flex items-center gap-2">
-          <Scale className="w-5 h-5 text-emerald-700 shrink-0" />
+          <Scale className="w-5 h-5 text-slate-800 shrink-0" />
           <h2 className="text-lg sm:text-xl font-bold text-slate-950">
             MCS und CCS getrennt betrachten
           </h2>
@@ -257,11 +257,11 @@ export const McsStationsPage: React.FC = () => {
               Alle {metrics.totalDocumented} dokumentierten Hubs sind physisch für Lkw geöffnet und speisen mit bis zu 400 kW CCS Ladestrom ein.
             </p>
           </div>
-          <div className="p-3.5 rounded-xl bg-emerald-50/60 border border-emerald-200 text-xs space-y-1">
-            <div className="font-bold text-emerald-950 font-mono">
+          <div className="p-3.5 rounded-xl bg-[#F7F7F2] border border-[#DFE3DC] text-xs space-y-1">
+            <div className="font-bold text-slate-950 font-mono">
               MCS operativ: {metrics.mcsOperational} von {metrics.totalDocumented} Standorten
             </div>
-            <p className="text-emerald-900 leading-relaxed">
+            <p className="text-slate-700 leading-relaxed">
               {metrics.mcsOperational} Standorte verfügen über funktionsfähige MCS-Megawatt-Ladeeinrichtungen mit realem Betrieb (Aral pulse &amp; HoLa-Reallabor).
             </p>
           </div>
@@ -282,7 +282,7 @@ export const McsStationsPage: React.FC = () => {
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-5 flex flex-col justify-between">
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-emerald-600" />
+              <Zap className="w-5 h-5 text-slate-800" />
               <h3 className="text-base font-bold text-slate-950">
                 Leistung der operativen MCS-Standorte
               </h3>
@@ -323,12 +323,12 @@ export const McsStationsPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-3.5 bg-emerald-50/60 rounded-xl border border-emerald-200 text-xs text-emerald-950 space-y-1">
+          <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] text-xs text-slate-900 space-y-1">
             <div className="font-bold flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+              <CheckCircle2 className="w-4 h-4 text-[#2F5E73]" />
               <span>CCS bei den dokumentierten E-Lkw-Standorten</span>
             </div>
-            <p className="text-emerald-900 leading-relaxed">
+            <p className="text-slate-600 leading-relaxed">
               {metrics.allDocumentedHave400KwCcs
                 ? `${metrics.totalDocumented} von ${metrics.totalDocumented} dokumentierten E-Lkw-Standorten verfügen über bis zu 400 kW CCS-Ladeleistung.`
                 : 'Unterschiedliche CCS-Leistungsstufen im Datensatz dokumentiert.'}
@@ -339,7 +339,7 @@ export const McsStationsPage: React.FC = () => {
         {/* BETREIBERVERTEILUNG DER DOKUMENTIERTEN HUBS */}
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
           <div className="flex items-center gap-2">
-            <Building2 className="w-5 h-5 text-emerald-600" />
+            <Building2 className="w-5 h-5 text-slate-800" />
             <h3 className="text-base font-bold text-slate-950">
               Verteilung der dokumentierten Standorte nach Betreiber
             </h3>
@@ -359,7 +359,7 @@ export const McsStationsPage: React.FC = () => {
                 </div>
                 <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
                   <div
-                    className="h-full bg-emerald-600 rounded-full transition-all duration-300"
+                    className="h-full bg-slate-900 rounded-full transition-all duration-300"
                     style={{ width: `${(op.count / metrics.totalDocumented) * 100}%` }}
                   ></div>
                 </div>
@@ -407,7 +407,7 @@ export const McsStationsPage: React.FC = () => {
           {(statusFilter !== 'all' || operatorFilter !== 'all') && (
             <button
               onClick={() => { setStatusFilter('all'); setOperatorFilter('all'); }}
-              className="text-xs text-emerald-800 font-semibold hover:underline"
+              className="text-xs text-slate-800 font-semibold hover:underline"
             >
               Filter zurücksetzen
             </button>
@@ -464,7 +464,7 @@ export const McsStationsPage: React.FC = () => {
                     <td className="py-3.5 px-3">
                       <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-bold border ${
                         isMcsActive
-                          ? 'bg-emerald-50 text-emerald-900 border-emerald-300'
+                          ? 'bg-[#F7F7F2] text-[#171917] border-[#DFE3DC]'
                           : 'bg-amber-50 text-amber-950 border-amber-300'
                       }`}>
                         {isMcsActive ? '● MCS aktiv' : '○ MCS geplant'}
@@ -488,7 +488,7 @@ export const McsStationsPage: React.FC = () => {
                           href={st.truckCharging.sourceUrl}
                           target="_blank"
                           rel="nofollow noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-emerald-700 hover:text-emerald-900 underline font-medium"
+                          className="inline-flex items-center gap-1 text-[#2F5E73] hover:text-[#171917] underline font-medium"
                           title={st.truckCharging.source}
                         >
                           <span>{st.truckCharging.provenance === 'official-operator' ? 'Betreiber' : 'HoLa-Projekt'}</span>
@@ -504,7 +504,7 @@ export const McsStationsPage: React.FC = () => {
                     <td className="py-3.5 px-4 text-right">
                       <Link
                         to={getStationUrl(st)}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-100 text-slate-900 hover:text-emerald-950 text-xs font-bold transition-colors font-mono"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-[#171917] text-slate-900 hover:text-white text-xs font-bold transition-colors font-mono"
                       >
                         <span>Dossier</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -544,7 +544,7 @@ export const McsStationsPage: React.FC = () => {
                   </div>
                   <span className={`px-2 py-0.5 rounded text-[11px] font-mono font-bold shrink-0 border ${
                     isMcsActive
-                      ? 'bg-emerald-50 text-emerald-900 border-emerald-300'
+                      ? 'bg-[#F7F7F2] text-[#171917] border-[#DFE3DC]'
                       : 'bg-amber-50 text-amber-950 border-amber-300'
                   }`}>
                     {isMcsActive ? '● MCS aktiv' : '○ MCS geplant'}
@@ -578,7 +578,7 @@ export const McsStationsPage: React.FC = () => {
                   </div>
                   <Link
                     to={getStationUrl(st)}
-                    className="inline-flex items-center gap-1 font-bold text-emerald-800 hover:text-emerald-950"
+                    className="inline-flex items-center gap-1 font-bold text-[#171917] hover:underline"
                   >
                     <span>Standort-Dossier</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -594,7 +594,7 @@ export const McsStationsPage: React.FC = () => {
       <section className="bg-slate-50 rounded-2xl border border-slate-200 p-6 space-y-3">
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-emerald-700" />
+            <Layers className="w-4 h-4 text-slate-800" />
             <h3 className="text-sm font-bold text-slate-950">
               Diesen Datensatz zitieren
             </h3>
@@ -605,7 +605,7 @@ export const McsStationsPage: React.FC = () => {
           >
             {copiedCitation ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <Check className="w-3.5 h-3.5 text-[#2F5E73]" />
                 <span>Zitiervorschlag kopiert</span>
               </>
             ) : (
@@ -627,11 +627,11 @@ export const McsStationsPage: React.FC = () => {
       {/* METHODIK & KANONISCHE DATENFÜHRUNG */}
       <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
         <div className="flex items-center gap-1.5 font-bold text-slate-900">
-          <ShieldCheck className="w-4 h-4 text-emerald-600" />
+          <ShieldCheck className="w-4 h-4 text-[#2F5E73]" />
           <span>Kanonische Datenführung &amp; Aufnahmekriterien</span>
         </div>
         <p>
-          Dieses Datenprodukt listet von ladestandorte.de dokumentierte Pilotstandorte mit E-Lkw- und MCS-Infrastruktur auf. Die verlinkten Standortdossiers liegen auf den kanonischen URLs <code>/ladestation/[ort]/[slug]</code> und bündeln die BNetzA-Registerbasisdaten mit den dokumentierten Betreiber- und Projektangaben zur Schwerlast-Ladeinfrastruktur. Details zu Kriterien, Statusunterscheidung und Leistungsberechnung in der <Link to="/methodik#mcs" className="text-emerald-700 hover:text-emerald-800 font-semibold underline">Methodik</Link>.
+          Dieses Datenprodukt listet von ladestandorte.de dokumentierte Pilotstandorte mit E-Lkw- und MCS-Infrastruktur auf. Die verlinkten Standortdossiers liegen auf den kanonischen URLs <code>/ladestation/[ort]/[slug]</code> und bündeln die BNetzA-Registerbasisdaten mit den dokumentierten Betreiber- und Projektangaben zur Schwerlast-Ladeinfrastruktur. Details zu Kriterien, Statusunterscheidung und Leistungsberechnung in der <Link to="/methodik#mcs" className="text-[#171917] hover:underline font-semibold underline">Methodik</Link>.
         </p>
       </div>
     </div>

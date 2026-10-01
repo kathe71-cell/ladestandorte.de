@@ -89,7 +89,7 @@ export const McsTruckChargingPage: React.FC = () => {
         
         {/* Lenkzeit-Harmonie Highlight */}
         <section className="bg-gradient-to-br from-slate-900 to-slate-950 text-white p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-4">
-          <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase font-bold">
+          <div className="flex items-center gap-2 text-[#C7F000] font-mono text-xs uppercase font-bold">
             <Clock className="w-4 h-4" />
             <span>EU-Verordnung (EG) Nr. 561/2006</span>
           </div>
@@ -106,9 +106,9 @@ export const McsTruckChargingPage: React.FC = () => {
               <span className="text-[11px] text-slate-400">Verbrauch ca. 420 kWh</span>
             </div>
             <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-              <span className="text-emerald-400 block font-semibold">Pause &amp; MCS-Ladung</span>
-              <span className="text-lg font-bold text-emerald-300 block mt-0.5">45 Minuten</span>
-              <span className="text-[11px] text-emerald-400">+400 bis 500 kWh nachgeladen</span>
+              <span className="text-slate-200 block font-semibold">Pause &amp; MCS-Ladung</span>
+              <span className="text-lg font-bold text-white block mt-0.5">45 Minuten</span>
+              <span className="text-[11px] text-slate-300">+400 bis 500 kWh nachgeladen</span>
             </div>
             <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
               <span className="text-slate-400 block">Fahrstrecke Turn 2</span>
@@ -135,8 +135,8 @@ export const McsTruckChargingPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-200 space-y-1.5">
-              <span className="text-xs font-mono font-bold text-emerald-800 uppercase">2. Schnellladen an Fernstraßen (MCS)</span>
+            <div className="p-5 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] space-y-1.5">
+              <span className="text-xs font-mono font-bold text-[#171917] uppercase">2. Schnellladen an Fernstraßen (MCS)</span>
               <h3 className="font-bold text-slate-950 text-base">Megawatt-Laden während der 45-Minuten-Fahrerpause</h3>
               <p className="text-xs text-slate-600">
                 Ziel des Megawatt-Ladestandards ist es, hohe Energiemengen innerhalb der gesetzlich vorgeschriebenen 45-Minuten-Fahrpause nachzuladen (Modellrechnung des HoLa-Forschungsprojekts: ca. 300 bis 400 km Weiterfahrt bei einem angenommenen Durchschnittsverbrauch von ca. 120 kWh/100 km).
@@ -175,7 +175,7 @@ export const McsTruckChargingPage: React.FC = () => {
         <section className="border-t border-slate-200 pt-8 flex flex-wrap gap-4">
           <Link
             to="/mcs/ladestationen"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#171917] hover:bg-black text-white font-bold text-sm shadow-md transition-all"
           >
             <span>Verifizierte MCS-Ladeparks finden</span>
             <ArrowRight className="w-4 h-4" />

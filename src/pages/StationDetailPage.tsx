@@ -170,7 +170,7 @@ export const StationDetailPage: React.FC = () => {
         subtitle={
           <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm sm:text-base text-slate-600">
             <div className="flex items-center gap-1.5 font-medium">
-              <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
+              <MapPin className="w-4 h-4 text-slate-700 shrink-0" />
               <span>{station.street}, {station.plz} {station.city}</span>
             </div>
             <span className="hidden sm:inline text-slate-300">•</span>
@@ -178,7 +178,7 @@ export const StationDetailPage: React.FC = () => {
               <span className="text-slate-500">Betreiber:</span>
               <Link 
                 to={`/betreiber/${station.operatorSlug}`} 
-                className="font-bold text-slate-900 hover:text-emerald-700 underline decoration-slate-300 hover:decoration-emerald-500 transition-colors"
+                className="font-bold text-slate-900 hover:underline decoration-slate-300 transition-colors"
               >
                 {station.operator}
               </Link>
@@ -192,7 +192,7 @@ export const StationDetailPage: React.FC = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
           <span className="text-xs font-mono text-slate-500 uppercase block">Max. Ladeleistung</span>
-          <span className="text-3xl font-black text-emerald-600 font-mono mt-1 block">
+          <span className="text-3xl font-black text-slate-950 font-mono mt-1 block">
             {station.kwMax} kW
           </span>
           <span className="text-[11px] text-slate-500 mt-1 block">High Power Charging (HPC)</span>
@@ -212,12 +212,12 @@ export const StationDetailPage: React.FC = () => {
             <>
               <Link 
                 to={`/betreiber/${station.operatorSlug}`} 
-                className="text-base font-extrabold text-slate-900 hover:text-emerald-700 mt-2 block truncate"
+                className="text-base font-extrabold text-slate-900 hover:underline mt-2 block truncate"
                 title={station.operator}
               >
                 {station.operator}
               </Link>
-              <span className="text-[11px] text-emerald-700 font-semibold mt-1 block">Betreiberprofil ansehen →</span>
+              <span className="text-[11px] text-[#2F5E73] font-semibold mt-1 block">Betreiberprofil ansehen →</span>
             </>
           ) : (
             <>
@@ -247,7 +247,7 @@ export const StationDetailPage: React.FC = () => {
           {/* Steckertypen & Ladeleistung */}
           <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
             <h2 className="text-lg font-bold text-slate-950 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-emerald-600" />
+              <Zap className="w-5 h-5 text-slate-800" />
               <span>Verfügbare Steckertypen &amp; Ladeleistung</span>
             </h2>
 
@@ -256,7 +256,7 @@ export const StationDetailPage: React.FC = () => {
                 <div key={conn.type} className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
                   <div className="flex items-center justify-between">
                     <span className="font-extrabold text-slate-900 text-base">{conn.type}</span>
-                    <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-emerald-100 text-emerald-950 border border-emerald-200">
+                    <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]">
                       bis {conn.maxKw} kW {conn.type === 'Typ 2' ? '(AC)' : '(DC)'}
                     </span>
                   </div>
@@ -277,13 +277,13 @@ export const StationDetailPage: React.FC = () => {
           {/* Zugang & Bezahlung */}
           <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
             <h2 className="text-lg font-bold text-slate-950 flex items-center gap-2">
-              <CreditCard className="w-5 h-5 text-emerald-600" />
+              <CreditCard className="w-5 h-5 text-slate-800" />
               <span>Zugang &amp; Bezahlung</span>
             </h2>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs text-slate-700 leading-relaxed">
               <div className="flex items-center gap-2 font-bold text-slate-900 text-sm">
-                <Info className="w-4 h-4 text-emerald-600" />
+                <Info className="w-4 h-4 text-[#2F5E73]" />
                 <span>Öffentliche Zugänglichkeit &amp; Abrechnung</span>
               </div>
               <p>
@@ -306,7 +306,7 @@ export const StationDetailPage: React.FC = () => {
           {/* Standort- & Netzanbindung (nur belegte Daten) */}
           <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
             <h2 className="text-lg font-bold text-slate-950 flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-emerald-600" />
+              <ShieldCheck className="w-5 h-5 text-slate-800" />
               <span>Standort- &amp; Netzanbindung</span>
             </h2>
 
@@ -357,16 +357,16 @@ export const StationDetailPage: React.FC = () => {
 
           {/* MCS & E-Lkw Schwerlast-Laden (Additive Erweiterung) */}
           {station.truckCharging && (
-            <div className="bg-white rounded-2xl p-6 border-2 border-blue-200 shadow-xs space-y-4">
+            <div className="bg-white rounded-2xl p-6 border-2 border-slate-200 shadow-xs space-y-4">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <h2 className="text-lg font-bold text-slate-950 flex items-center gap-2">
-                  <Truck className="w-5 h-5 text-blue-600" />
+                  <Truck className="w-5 h-5 text-slate-800" />
                   <span>MCS &amp; E-Lkw Schwerlast-Ladeinfrastruktur</span>
                 </h2>
                 <div className="flex items-center gap-1.5">
                   <span className={`px-2.5 py-1 rounded-full text-xs font-mono font-bold ${
                     station.truckCharging.locationStatus === 'operational'
-                      ? 'bg-emerald-100 text-emerald-950 border border-emerald-300'
+                      ? 'bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]'
                       : 'bg-amber-100 text-amber-950 border border-amber-300'
                   }`}>
                     Ladepark: {station.truckCharging.locationStatus === 'operational' ? 'Geöffnet' : 'Im Bau'}
@@ -459,7 +459,7 @@ export const StationDetailPage: React.FC = () => {
           <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-700 font-bold">
-                <Compass className="w-4 h-4 text-emerald-600" />
+                <Compass className="w-4 h-4 text-slate-800" />
                 <span>Geografische Lage</span>
               </div>
               <span className="text-[11px] font-mono text-slate-500">
@@ -493,7 +493,7 @@ export const StationDetailPage: React.FC = () => {
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors shadow-2xs"
               >
-                <Navigation className="w-3.5 h-3.5 text-emerald-400" />
+                <Navigation className="w-3.5 h-3.5 text-[#C7F000]" />
                 <span>Google Maps Navigation starten</span>
                 <ExternalLink className="w-3 h-3 text-slate-400" />
               </a>
@@ -532,24 +532,24 @@ export const StationDetailPage: React.FC = () => {
               {hasCityPage ? (
                 <Link
                   to={`/staedte/${station.citySlug}`}
-                  className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200 hover:border-emerald-300 transition-colors group"
+                  className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-400 transition-colors group"
                 >
                   <div>
                     <span className="text-slate-500 block text-[11px]">Stadtdossier:</span>
-                    <strong className="text-slate-900 group-hover:text-emerald-700">{station.city}</strong>
+                    <strong className="text-slate-900 group-hover:text-black">{station.city}</strong>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition-transform group-hover:translate-x-0.5" />
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-black transition-transform group-hover:translate-x-0.5" />
                 </Link>
               ) : (
                 <Link
                   to="/staedte"
-                  className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200 hover:border-emerald-300 transition-colors group"
+                  className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-400 transition-colors group"
                 >
                   <div>
                     <span className="text-slate-500 block text-[11px]">Regionalübersicht:</span>
-                    <strong className="text-slate-900 group-hover:text-emerald-700">Ladeorte in Deutschland</strong>
+                    <strong className="text-slate-900 group-hover:text-black">Ladeorte in Deutschland</strong>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition-transform group-hover:translate-x-0.5" />
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-black transition-transform group-hover:translate-x-0.5" />
                 </Link>
               )}
 
@@ -569,13 +569,13 @@ export const StationDetailPage: React.FC = () => {
               {operatorProfile && (
                 <Link
                   to={`/betreiber/${station.operatorSlug}`}
-                  className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200 hover:border-purple-300 transition-colors group"
+                  className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-400 transition-colors group"
                 >
                   <div>
                     <span className="text-slate-500 block text-[11px]">Betreiber-Profil:</span>
-                    <strong className="text-slate-900 group-hover:text-purple-700">{operatorProfile.name}</strong>
+                    <strong className="text-slate-900 group-hover:text-black">{operatorProfile.name}</strong>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-purple-600 transition-transform group-hover:translate-x-0.5" />
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-black transition-transform group-hover:translate-x-0.5" />
                 </Link>
               )}
             </div>
@@ -584,7 +584,7 @@ export const StationDetailPage: React.FC = () => {
           {/* Datenstand & CC BY 4.0 Lizenzhinweis */}
           <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 text-xs text-slate-500 font-mono">
             <div className="flex items-center gap-1.5 text-slate-700 font-bold">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#2F5E73]" />
               <span>Amtliche Datenbasis &amp; Herkunft</span>
             </div>
             <p>
@@ -607,7 +607,7 @@ export const StationDetailPage: React.FC = () => {
         <div className="space-y-4 pt-4 border-t border-slate-200">
           <div className="flex items-center justify-between">
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold mb-1">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-800 font-bold mb-1">
                 <Navigation className="w-4 h-4" />
                 <span>Geografischer Umkreis (Haversine-Distanz)</span>
               </div>
@@ -618,7 +618,7 @@ export const StationDetailPage: React.FC = () => {
             {hasCityPage ? (
               <Link
                 to={`/staedte/${station.citySlug}`}
-                className="text-xs font-bold text-emerald-700 hover:text-emerald-800 inline-flex items-center gap-1"
+                className="text-xs font-bold text-slate-900 hover:underline inline-flex items-center gap-1"
               >
                 <span>Alle in {station.city}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -626,7 +626,7 @@ export const StationDetailPage: React.FC = () => {
             ) : (
               <Link
                 to="/staedte"
-                className="text-xs font-bold text-emerald-700 hover:text-emerald-800 inline-flex items-center gap-1"
+                className="text-xs font-bold text-slate-900 hover:underline inline-flex items-center gap-1"
               >
                 <span>Alle Ladeorte</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -639,14 +639,14 @@ export const StationDetailPage: React.FC = () => {
               <Link
                 key={nearSt.id}
                 to={getStationUrl(nearSt)}
-                className="group p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all flex flex-col justify-between"
+                className="group p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-400 transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-extrabold text-slate-950 group-hover:text-emerald-700 transition-colors line-clamp-1">
+                    <span className="font-extrabold text-slate-950 group-hover:text-black transition-colors line-clamp-1">
                       {nearSt.name}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-emerald-50 text-emerald-900 border border-emerald-200 shrink-0">
+                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] shrink-0">
                       {nearSt.kwMax} kW
                     </span>
                   </div>
@@ -663,7 +663,7 @@ export const StationDetailPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-900 group-hover:underline">
                   <span>Standort ansehen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
