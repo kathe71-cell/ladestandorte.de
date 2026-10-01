@@ -1,0 +1,1802 @@
+[
+  {
+    "slug": "berlin",
+    "name": "Berlin",
+    "bundesland": "Berlin",
+    "ags": "11000000",
+    "ars": "110000000000",
+    "population": {
+      "value": 3782202,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 4984,
+      "ladepunkteGesamt": 7617,
+      "hpcLadepunkte": 988,
+      "dcMidLadepunkte": 256,
+      "acLadepunkte": 6373,
+      "avgKw": 43.9,
+      "topBetreiber": [
+        "ubitricity Gesellschaft für verteilte Energiesysteme (1094)",
+        "Berliner Stadtwerke KommunalPartner (920)",
+        "Qwello Deutschland (606)",
+        "eze.network (181)",
+        "E.ON Drive Germany (180)"
+      ],
+      "pointsPer1000Pop": 2.01,
+      "hpcPer1000Pop": 0.26,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "hamburg",
+    "name": "Hamburg",
+    "bundesland": "Hamburg",
+    "ags": "02000000",
+    "ars": "020000000000",
+    "population": {
+      "value": 1910160,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 3377,
+      "ladepunkteGesamt": 6058,
+      "hpcLadepunkte": 830,
+      "dcMidLadepunkte": 111,
+      "acLadepunkte": 5117,
+      "avgKw": 51.6,
+      "topBetreiber": [
+        "Hamburger Energiewerke Mobil (1182)",
+        "eze.network (257)",
+        "Qwello Deutschland (168)",
+        "Servipark Deutschland (122)",
+        "E.ON Drive Germany (122)"
+      ],
+      "pointsPer1000Pop": 3.17,
+      "hpcPer1000Pop": 0.43,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "muenchen",
+    "name": "München",
+    "bundesland": "Bayern",
+    "ags": "09162000",
+    "ars": "091620000000",
+    "population": {
+      "value": 1510378,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 2390,
+      "ladepunkteGesamt": 3667,
+      "hpcLadepunkte": 265,
+      "dcMidLadepunkte": 184,
+      "acLadepunkte": 3218,
+      "avgKw": 34.5,
+      "topBetreiber": [
+        "E.ON Drive Germany (761)",
+        "SWM Versorgungs (752)",
+        "Wirelane Public 1 (72)",
+        "Tesla Germany (68)",
+        "Capgemini Deutschland (59)"
+      ],
+      "pointsPer1000Pop": 2.43,
+      "hpcPer1000Pop": 0.18,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "koeln",
+    "name": "Köln",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05315000",
+    "ars": "053150000000",
+    "population": {
+      "value": 1087353,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 1477,
+      "ladepunkteGesamt": 2711,
+      "hpcLadepunkte": 321,
+      "dcMidLadepunkte": 272,
+      "acLadepunkte": 2118,
+      "avgKw": 49.3,
+      "topBetreiber": [
+        "TankE (689)",
+        "Servipark Deutschland (86)",
+        "STAWAG - Stadt- und Städteregionswerke Aachen (57)",
+        "Flughafen Köln/Bonn (50)",
+        "EnBW mobility+ (41)"
+      ],
+      "pointsPer1000Pop": 2.49,
+      "hpcPer1000Pop": 0.3,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "frankfurt",
+    "name": "Frankfurt am Main",
+    "bundesland": "Hessen",
+    "ags": "06412000",
+    "ars": "064120000000",
+    "population": {
+      "value": 775790,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 1319,
+      "ladepunkteGesamt": 2161,
+      "hpcLadepunkte": 198,
+      "dcMidLadepunkte": 50,
+      "acLadepunkte": 1913,
+      "avgKw": 39.3,
+      "topBetreiber": [
+        "Mainova (279)",
+        "Fraport (158)",
+        "Qwello Deutschland (105)",
+        "Wirelane Public 1 (61)",
+        "TankE (55)"
+      ],
+      "pointsPer1000Pop": 2.79,
+      "hpcPer1000Pop": 0.26,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "stuttgart",
+    "name": "Stuttgart",
+    "bundesland": "Baden-Württemberg",
+    "ags": "08111000",
+    "ars": "081110000000",
+    "population": {
+      "value": 633484,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 2324,
+      "ladepunkteGesamt": 4231,
+      "hpcLadepunkte": 150,
+      "dcMidLadepunkte": 58,
+      "acLadepunkte": 4023,
+      "avgKw": 28.5,
+      "topBetreiber": [
+        "Stadtwerke Stuttgart (663)",
+        "Mercedes-Benz (624)",
+        "eze.network (174)",
+        "EnBW mobility+ (148)",
+        "Robert Bosch (140)"
+      ],
+      "pointsPer1000Pop": 6.68,
+      "hpcPer1000Pop": 0.24,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "duesseldorf",
+    "name": "Düsseldorf",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05111000",
+    "ars": "051110000000",
+    "population": {
+      "value": 631217,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 1444,
+      "ladepunkteGesamt": 2532,
+      "hpcLadepunkte": 181,
+      "dcMidLadepunkte": 49,
+      "acLadepunkte": 2302,
+      "avgKw": 37.6,
+      "topBetreiber": [
+        "Stadtwerke Düsseldorf (730)",
+        "Servipark Deutschland (75)",
+        "Elektromobilität (72)",
+        "E.ON Drive Germany (64)",
+        "Wirelane Public 1 (52)"
+      ],
+      "pointsPer1000Pop": 4.01,
+      "hpcPer1000Pop": 0.29,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "leipzig",
+    "name": "Leipzig",
+    "bundesland": "Sachsen",
+    "ags": "14713000",
+    "ars": "147130000000",
+    "population": {
+      "value": 619879,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 734,
+      "ladepunkteGesamt": 1377,
+      "hpcLadepunkte": 209,
+      "dcMidLadepunkte": 71,
+      "acLadepunkte": 1097,
+      "avgKw": 56.7,
+      "topBetreiber": [
+        "Stadtwerke Leipzig (393)",
+        "E.ON Drive Germany (46)",
+        "LPZ Parken & Energie (30)",
+        "Qwello Deutschland (24)",
+        "EnBW mobility+ (16)"
+      ],
+      "pointsPer1000Pop": 2.22,
+      "hpcPer1000Pop": 0.34,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "dortmund",
+    "name": "Dortmund",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05913000",
+    "ars": "059130000000",
+    "population": {
+      "value": 595471,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 911,
+      "ladepunkteGesamt": 1368,
+      "hpcLadepunkte": 243,
+      "dcMidLadepunkte": 119,
+      "acLadepunkte": 1006,
+      "avgKw": 61.5,
+      "topBetreiber": [
+        "Dortmunder Energie- und Wasserversorgung (444)",
+        "Servipark Deutschland (55)",
+        "EnBW mobility+ (50)",
+        "E.ON Drive Infrastructure (38)",
+        "OMS Prüfservice (21)"
+      ],
+      "pointsPer1000Pop": 2.3,
+      "hpcPer1000Pop": 0.41,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "essen",
+    "name": "Essen",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05113000",
+    "ars": "051130000000",
+    "population": {
+      "value": 586608,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 673,
+      "ladepunkteGesamt": 1203,
+      "hpcLadepunkte": 190,
+      "dcMidLadepunkte": 61,
+      "acLadepunkte": 952,
+      "avgKw": 54.6,
+      "topBetreiber": [
+        "E.ON Drive Germany (111)",
+        "Westenergie Metering (93)",
+        "Allego (80)",
+        "Qwello Deutschland (62)",
+        "EnBW mobility+ (45)"
+      ],
+      "pointsPer1000Pop": 2.05,
+      "hpcPer1000Pop": 0.32,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "bremen",
+    "name": "Bremen",
+    "bundesland": "Bremen",
+    "ags": "04011000",
+    "ars": "040110000000",
+    "population": {
+      "value": 577026,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 808,
+      "ladepunkteGesamt": 1431,
+      "hpcLadepunkte": 181,
+      "dcMidLadepunkte": 100,
+      "acLadepunkte": 1150,
+      "avgKw": 52.4,
+      "topBetreiber": [
+        "BREPARK (148)",
+        "Mercedes-Benz (101)",
+        "Eulektro (79)",
+        "swb Vertrieb Bremen (60)",
+        "EWE Go (55)"
+      ],
+      "pointsPer1000Pop": 2.48,
+      "hpcPer1000Pop": 0.31,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "dresden",
+    "name": "Dresden",
+    "bundesland": "Sachsen",
+    "ags": "14612000",
+    "ars": "146120000000",
+    "population": {
+      "value": 566222,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 573,
+      "ladepunkteGesamt": 1137,
+      "hpcLadepunkte": 286,
+      "dcMidLadepunkte": 70,
+      "acLadepunkte": 781,
+      "avgKw": 74.5,
+      "topBetreiber": [
+        "SachsenEnergie (207)",
+        "Q-Park Recharge Germany (23)",
+        "Fraunhofer-Gesellschaft (22)",
+        "EnBW mobility+ (22)",
+        "Tesla Germany (16)"
+      ],
+      "pointsPer1000Pop": 2.01,
+      "hpcPer1000Pop": 0.51,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "hannover",
+    "name": "Hannover",
+    "bundesland": "Niedersachsen",
+    "ags": "03241001",
+    "ars": "032410001001",
+    "population": {
+      "value": 548186,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 1110,
+      "ladepunkteGesamt": 2015,
+      "hpcLadepunkte": 175,
+      "dcMidLadepunkte": 121,
+      "acLadepunkte": 1719,
+      "avgKw": 44.4,
+      "topBetreiber": [
+        "enercity (687)",
+        "Volkswagen Werk Hannover (142)",
+        "TUI (42)",
+        "Mercedes- Benz- Niederlassung Hannover (22)",
+        "BP Europa (18)"
+      ],
+      "pointsPer1000Pop": 3.68,
+      "hpcPer1000Pop": 0.32,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "nuernberg",
+    "name": "Nürnberg",
+    "bundesland": "Bayern",
+    "ags": "09564000",
+    "ars": "095640000000",
+    "population": {
+      "value": 526091,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 844,
+      "ladepunkteGesamt": 1712,
+      "hpcLadepunkte": 200,
+      "dcMidLadepunkte": 28,
+      "acLadepunkte": 1484,
+      "avgKw": 45.1,
+      "topBetreiber": [
+        "N-ERGIE (407)",
+        "NürnbergMesse (94)",
+        "HomE of Mobility (45)",
+        "Mercedes- Benz- Niederlassung Nürnberg (24)",
+        "Martha-Maria Krankenhaus (22)"
+      ],
+      "pointsPer1000Pop": 3.25,
+      "hpcPer1000Pop": 0.38,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "duisburg",
+    "name": "Duisburg",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05112000",
+    "ars": "051120000000",
+    "population": {
+      "value": 503707,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 644,
+      "ladepunkteGesamt": 1145,
+      "hpcLadepunkte": 113,
+      "dcMidLadepunkte": 111,
+      "acLadepunkte": 921,
+      "avgKw": 42.7,
+      "topBetreiber": [
+        "Stadtwerke Duisburg (259)",
+        "Qwello Deutschland (47)",
+        "Servipark Deutschland (32)",
+        "Regh Holding (29)",
+        "Swarco Traffic Systems (25)"
+      ],
+      "pointsPer1000Pop": 2.27,
+      "hpcPer1000Pop": 0.22,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "bochum",
+    "name": "Bochum",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05911000",
+    "ars": "059110000000",
+    "population": {
+      "value": 366385,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 601,
+      "ladepunkteGesamt": 981,
+      "hpcLadepunkte": 224,
+      "dcMidLadepunkte": 73,
+      "acLadepunkte": 684,
+      "avgKw": 73.2,
+      "topBetreiber": [
+        "Stadtwerke Bochum (233)",
+        "Harpen Immobilien (53)",
+        "EnBW mobility+ (27)",
+        "Tesla Germany (24)",
+        "eze.network (24)"
+      ],
+      "pointsPer1000Pop": 2.68,
+      "hpcPer1000Pop": 0.61,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "wuppertal",
+    "name": "Wuppertal",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05124000",
+    "ars": "051240000000",
+    "population": {
+      "value": 358876,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 265,
+      "ladepunkteGesamt": 483,
+      "hpcLadepunkte": 100,
+      "dcMidLadepunkte": 23,
+      "acLadepunkte": 360,
+      "avgKw": 66.1,
+      "topBetreiber": [
+        "WSW Energie & Wasser (87)",
+        "Servipark Deutschland (20)",
+        "Tesla Germany (20)",
+        "EnBW mobility+ (19)",
+        "Barmenia Krankenversicherung (19)"
+      ],
+      "pointsPer1000Pop": 1.35,
+      "hpcPer1000Pop": 0.28,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "bielefeld",
+    "name": "Bielefeld",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05711000",
+    "ars": "057110000000",
+    "population": {
+      "value": 338410,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 396,
+      "ladepunkteGesamt": 721,
+      "hpcLadepunkte": 133,
+      "dcMidLadepunkte": 104,
+      "acLadepunkte": 484,
+      "avgKw": 68,
+      "topBetreiber": [
+        "Stadtwerke Bielefeld (101)",
+        "Tesla Germany (23)",
+        "Allego (22)",
+        "HomE of Mobility (19)",
+        "EnBW mobility+ (17)"
+      ],
+      "pointsPer1000Pop": 2.13,
+      "hpcPer1000Pop": 0.39,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "bonn",
+    "name": "Bonn",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05314000",
+    "ars": "053140000000",
+    "population": {
+      "value": 335789,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 621,
+      "ladepunkteGesamt": 1232,
+      "hpcLadepunkte": 137,
+      "dcMidLadepunkte": 49,
+      "acLadepunkte": 1046,
+      "avgKw": 40.9,
+      "topBetreiber": [
+        "Energie- und Wasserversorgung Bonn/Rhein-Sieg (365)",
+        "Union Investment Real Estate Digital (33)",
+        "eze.network (30)",
+        "Team-Emobility (30)",
+        "CUBOS Service (25)"
+      ],
+      "pointsPer1000Pop": 3.67,
+      "hpcPer1000Pop": 0.41,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "muenster",
+    "name": "Münster",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05515000",
+    "ars": "055150000000",
+    "population": {
+      "value": 322904,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 404,
+      "ladepunkteGesamt": 772,
+      "hpcLadepunkte": 104,
+      "dcMidLadepunkte": 48,
+      "acLadepunkte": 620,
+      "avgKw": 52.7,
+      "topBetreiber": [
+        "Stadtwerke Münster (117)",
+        "Westfalen (53)",
+        "L. Stroetmann Unternehmensgruppe (34)",
+        "Reload-Solution (11)",
+        "EnBW mobility+ (10)"
+      ],
+      "pointsPer1000Pop": 2.39,
+      "hpcPer1000Pop": 0.32,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "karlsruhe",
+    "name": "Karlsruhe",
+    "bundesland": "Baden-Württemberg",
+    "ags": "08212000",
+    "ars": "082120000000",
+    "population": {
+      "value": 309936,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 340,
+      "ladepunkteGesamt": 655,
+      "hpcLadepunkte": 173,
+      "dcMidLadepunkte": 33,
+      "acLadepunkte": 449,
+      "avgKw": 83.9,
+      "topBetreiber": [
+        "EnBW mobility+ (53)",
+        "Parkraumgesellschaft Baden-Württemberg (31)",
+        "CUBOS Service (22)",
+        "Tesla Germany (19)",
+        "Holl (18)"
+      ],
+      "pointsPer1000Pop": 2.11,
+      "hpcPer1000Pop": 0.56,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "mannheim",
+    "name": "Mannheim",
+    "bundesland": "Baden-Württemberg",
+    "ags": "08222000",
+    "ars": "082220000000",
+    "population": {
+      "value": 316877,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 468,
+      "ladepunkteGesamt": 824,
+      "hpcLadepunkte": 176,
+      "dcMidLadepunkte": 49,
+      "acLadepunkte": 599,
+      "avgKw": 68.6,
+      "topBetreiber": [
+        "MVV Energie (191)",
+        "SI Energy (77)",
+        "Aurelis Energie (38)",
+        "eze.network (18)",
+        "Mercedes-Benz- Niederlassung Mannheim-Heidelberg-Landau (14)"
+      ],
+      "pointsPer1000Pop": 2.6,
+      "hpcPer1000Pop": 0.56,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "augsburg",
+    "name": "Augsburg",
+    "bundesland": "Bayern",
+    "ags": "09761000",
+    "ars": "097610000000",
+    "population": {
+      "value": 303150,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 324,
+      "ladepunkteGesamt": 578,
+      "hpcLadepunkte": 110,
+      "dcMidLadepunkte": 42,
+      "acLadepunkte": 426,
+      "avgKw": 59.9,
+      "topBetreiber": [
+        "Stadtwerke Augsburg Energie (45)",
+        "Wirelane Public 1 (22)",
+        "Servipark Deutschland (18)",
+        "E.ON Drive Germany (18)",
+        "LEW Natur (17)"
+      ],
+      "pointsPer1000Pop": 1.91,
+      "hpcPer1000Pop": 0.36,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "wiesbaden",
+    "name": "Wiesbaden",
+    "bundesland": "Hessen",
+    "ags": "06414000",
+    "ars": "064140000000",
+    "population": {
+      "value": 285522,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 744,
+      "ladepunkteGesamt": 1370,
+      "hpcLadepunkte": 142,
+      "dcMidLadepunkte": 69,
+      "acLadepunkte": 1159,
+      "avgKw": 43.4,
+      "topBetreiber": [
+        "ESWE Versorgungs (500)",
+        "Servipark Deutschland (60)",
+        "Q-Park Recharge Germany (30)",
+        "Tesla Germany (20)",
+        "Pfalzwerke (18)"
+      ],
+      "pointsPer1000Pop": 4.8,
+      "hpcPer1000Pop": 0.5,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "kassel",
+    "name": "Kassel",
+    "bundesland": "Hessen",
+    "ags": "06611000",
+    "ars": "066110000000",
+    "population": {
+      "value": 204698,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 304,
+      "ladepunkteGesamt": 648,
+      "hpcLadepunkte": 94,
+      "dcMidLadepunkte": 50,
+      "acLadepunkte": 504,
+      "avgKw": 54.2,
+      "topBetreiber": [
+        "Städtische Werke (108)",
+        "Qwello Deutschland (25)",
+        "Glinicke Energie+Service (22)",
+        "Tesla Germany (20)",
+        "BPHK Betriebsgesellschaft (12)"
+      ],
+      "pointsPer1000Pop": 3.17,
+      "hpcPer1000Pop": 0.46,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "gelsenkirchen",
+    "name": "Gelsenkirchen",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05513000",
+    "ars": "055130000000",
+    "population": {
+      "value": 266624,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 238,
+      "ladepunkteGesamt": 474,
+      "hpcLadepunkte": 118,
+      "dcMidLadepunkte": 27,
+      "acLadepunkte": 329,
+      "avgKw": 83.5,
+      "topBetreiber": [
+        "Emscher Lippe Energie (74)",
+        "HOCHTIEF Ladepartner (42)",
+        "EnBW mobility+ (22)",
+        "FC Schalke 04 (10)",
+        "Tesla Germany (8)"
+      ],
+      "pointsPer1000Pop": 1.78,
+      "hpcPer1000Pop": 0.44,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "moenchengladbach",
+    "name": "Mönchengladbach",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05116000",
+    "ars": "051160000000",
+    "population": {
+      "value": 268465,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 387,
+      "ladepunkteGesamt": 777,
+      "hpcLadepunkte": 146,
+      "dcMidLadepunkte": 51,
+      "acLadepunkte": 580,
+      "avgKw": 70.2,
+      "topBetreiber": [
+        "NEW Niederrhein Energie und Wasser (160)",
+        "HOCHTIEF Ladepartner (62)",
+        "D+W Parkhaus (20)",
+        "Wirelane Public 1 (18)",
+        "BP Europa (16)"
+      ],
+      "pointsPer1000Pop": 2.89,
+      "hpcPer1000Pop": 0.54,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "braunschweig",
+    "name": "Braunschweig",
+    "bundesland": "Niedersachsen",
+    "ags": "03101000",
+    "ars": "031010000000",
+    "population": {
+      "value": 252066,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 675,
+      "ladepunkteGesamt": 1206,
+      "hpcLadepunkte": 152,
+      "dcMidLadepunkte": 86,
+      "acLadepunkte": 968,
+      "avgKw": 51,
+      "topBetreiber": [
+        "BS|ENERGY, Braunschweiger Versorgungs (295)",
+        "Volkswagen Standort Braunschweig (69)",
+        "Wattif Europe (56)",
+        "Servipark Deutschland (40)",
+        "EnBW mobility+ (25)"
+      ],
+      "pointsPer1000Pop": 4.78,
+      "hpcPer1000Pop": 0.6,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "chemnitz",
+    "name": "Chemnitz",
+    "bundesland": "Sachsen",
+    "ags": "14511000",
+    "ars": "145110000000",
+    "population": {
+      "value": 250681,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 309,
+      "ladepunkteGesamt": 544,
+      "hpcLadepunkte": 150,
+      "dcMidLadepunkte": 54,
+      "acLadepunkte": 340,
+      "avgKw": 85.2,
+      "topBetreiber": [
+        "eins energie in sachsen (71)",
+        "HEOS Object (33)",
+        "EnBW mobility+ (19)",
+        "Tesla Germany (12)",
+        "BP Europa (11)"
+      ],
+      "pointsPer1000Pop": 2.17,
+      "hpcPer1000Pop": 0.6,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "kiel",
+    "name": "Kiel",
+    "bundesland": "Schleswig-Holstein",
+    "ags": "01002000",
+    "ars": "010020000000",
+    "population": {
+      "value": 248792,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 312,
+      "ladepunkteGesamt": 580,
+      "hpcLadepunkte": 108,
+      "dcMidLadepunkte": 32,
+      "acLadepunkte": 440,
+      "avgKw": 66.7,
+      "topBetreiber": [
+        "Stadtwerke Kiel (66)",
+        "Wissenschaftspark Kiel (47)",
+        "KIWI Tower (31)",
+        "Stadtwerke Lübeck Energie (19)",
+        "GP Joule Connect (16)"
+      ],
+      "pointsPer1000Pop": 2.33,
+      "hpcPer1000Pop": 0.43,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "aachen",
+    "name": "Aachen",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05334002",
+    "ars": "053340002002",
+    "population": {
+      "value": 252769,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 601,
+      "ladepunkteGesamt": 1074,
+      "hpcLadepunkte": 124,
+      "dcMidLadepunkte": 82,
+      "acLadepunkte": 868,
+      "avgKw": 48.8,
+      "topBetreiber": [
+        "STAWAG - Stadt- und Städteregionswerke Aachen (203)",
+        "Servipark Deutschland (96)",
+        "Aachener Parkhaus (80)",
+        "Wirelane Public 1 (24)",
+        "Rheinisch-Westfälische Technische Hochschule (RWTH) Aachen (24)"
+      ],
+      "pointsPer1000Pop": 4.25,
+      "hpcPer1000Pop": 0.49,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "halle",
+    "name": "Halle (Saale)",
+    "bundesland": "Sachsen-Anhalt",
+    "ags": "15002000",
+    "ars": "150020000000",
+    "population": {
+      "value": 242083,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 174,
+      "ladepunkteGesamt": 349,
+      "hpcLadepunkte": 107,
+      "dcMidLadepunkte": 24,
+      "acLadepunkte": 218,
+      "avgKw": 82.9,
+      "topBetreiber": [
+        "GISA (21)",
+        "amba operations (21)",
+        "EVH (17)",
+        "EnBW mobility+ (16)",
+        "BP Europa (15)"
+      ],
+      "pointsPer1000Pop": 1.44,
+      "hpcPer1000Pop": 0.44,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "magdeburg",
+    "name": "Magdeburg",
+    "bundesland": "Sachsen-Anhalt",
+    "ags": "15003000",
+    "ars": "150030000000",
+    "population": {
+      "value": 240114,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 274,
+      "ladepunkteGesamt": 561,
+      "hpcLadepunkte": 190,
+      "dcMidLadepunkte": 46,
+      "acLadepunkte": 325,
+      "avgKw": 101.3,
+      "topBetreiber": [
+        "Team-Emobility (34)",
+        "BRAWO GE Solution LIS (19)",
+        "Städtische Werke Magdeburg (19)",
+        "Tesla Germany (16)",
+        "BP Europa (14)"
+      ],
+      "pointsPer1000Pop": 2.34,
+      "hpcPer1000Pop": 0.79,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "freiburg",
+    "name": "Freiburg im Breisgau",
+    "bundesland": "Baden-Württemberg",
+    "ags": "08311000",
+    "ars": "083110000000",
+    "population": {
+      "value": 237244,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 477,
+      "ladepunkteGesamt": 852,
+      "hpcLadepunkte": 101,
+      "dcMidLadepunkte": 54,
+      "acLadepunkte": 697,
+      "avgKw": 49.7,
+      "topBetreiber": [
+        "StromSpeicherMarkt (85)",
+        "Abfallwirtschaft und Stadtreinigung Freiburg (68)",
+        "badenova (62)",
+        "Fraunhofer-Gesellschaft (58)",
+        "Streck Transportges (25)"
+      ],
+      "pointsPer1000Pop": 3.59,
+      "hpcPer1000Pop": 0.43,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "krefeld",
+    "name": "Krefeld",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05114000",
+    "ars": "051140000000",
+    "population": {
+      "value": 231083,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 151,
+      "ladepunkteGesamt": 279,
+      "hpcLadepunkte": 76,
+      "dcMidLadepunkte": 31,
+      "acLadepunkte": 172,
+      "avgKw": 87.6,
+      "topBetreiber": [
+        "SWK ENERGIE (24)",
+        "Green Energy Hüls (19)",
+        "EnBW mobility+ (14)",
+        "E.ON Drive Germany (9)",
+        "Tesla Germany (8)"
+      ],
+      "pointsPer1000Pop": 1.21,
+      "hpcPer1000Pop": 0.33,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "mainz",
+    "name": "Mainz",
+    "bundesland": "Rheinland-Pfalz",
+    "ags": "07315000",
+    "ars": "073150000000",
+    "population": {
+      "value": 222889,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 329,
+      "ladepunkteGesamt": 571,
+      "hpcLadepunkte": 80,
+      "dcMidLadepunkte": 22,
+      "acLadepunkte": 469,
+      "avgKw": 54.4,
+      "topBetreiber": [
+        "Mainzer Stadtwerke (77)",
+        "eze.network (39)",
+        "MAG Gebäudetechnik (36)",
+        "SCAPO mobility (22)",
+        "EnBW mobility+ (12)"
+      ],
+      "pointsPer1000Pop": 2.56,
+      "hpcPer1000Pop": 0.36,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "luebeck",
+    "name": "Lübeck",
+    "bundesland": "Schleswig-Holstein",
+    "ags": "01003000",
+    "ars": "010030000000",
+    "population": {
+      "value": 219044,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 395,
+      "ladepunkteGesamt": 758,
+      "hpcLadepunkte": 152,
+      "dcMidLadepunkte": 68,
+      "acLadepunkte": 538,
+      "avgKw": 76.3,
+      "topBetreiber": [
+        "Stadtwerke Lübeck Energie (246)",
+        "Tesla Germany (20)",
+        "EnBW mobility+ (20)",
+        "Allego (16)",
+        "Wattif Europe (10)"
+      ],
+      "pointsPer1000Pop": 3.46,
+      "hpcPer1000Pop": 0.69,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "erfurt",
+    "name": "Erfurt",
+    "bundesland": "Thüringen",
+    "ags": "16051000",
+    "ars": "160510000000",
+    "population": {
+      "value": 215675,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 268,
+      "ladepunkteGesamt": 486,
+      "hpcLadepunkte": 109,
+      "dcMidLadepunkte": 37,
+      "acLadepunkte": 340,
+      "avgKw": 70,
+      "topBetreiber": [
+        "SWE Energie (75)",
+        "TEAG Mobil (53)",
+        "AreaCharge (23)",
+        "EnBW mobility+ (10)",
+        "Tesla Germany (8)"
+      ],
+      "pointsPer1000Pop": 2.25,
+      "hpcPer1000Pop": 0.51,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "oberhausen",
+    "name": "Oberhausen",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05119000",
+    "ars": "051190000000",
+    "population": {
+      "value": 211099,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 396,
+      "ladepunkteGesamt": 677,
+      "hpcLadepunkte": 114,
+      "dcMidLadepunkte": 9,
+      "acLadepunkte": 554,
+      "avgKw": 63.1,
+      "topBetreiber": [
+        "Energieversorgung Oberhausen (182)",
+        "HOCHTIEF Ladepartner (54)",
+        "Wirelane Public 1 (29)",
+        "Autohaus Bernds (23)",
+        "Tesla Germany (20)"
+      ],
+      "pointsPer1000Pop": 3.21,
+      "hpcPer1000Pop": 0.54,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "rostock",
+    "name": "Rostock",
+    "bundesland": "Mecklenburg-Vorpommern",
+    "ags": "13003000",
+    "ars": "130030000000",
+    "population": {
+      "value": 210795,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 214,
+      "ladepunkteGesamt": 410,
+      "hpcLadepunkte": 119,
+      "dcMidLadepunkte": 39,
+      "acLadepunkte": 252,
+      "avgKw": 97.8,
+      "topBetreiber": [
+        "Stadtwerke Rostock (51)",
+        "WIR Wärme in Rostocker Wohnanlagen (18)",
+        "Vattenfall Smarter Living (14)",
+        "eze.network (14)",
+        "Allego (11)"
+      ],
+      "pointsPer1000Pop": 1.95,
+      "hpcPer1000Pop": 0.56,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "hagen",
+    "name": "Hagen",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05914000",
+    "ars": "059140000000",
+    "population": {
+      "value": 190490,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 172,
+      "ladepunkteGesamt": 311,
+      "hpcLadepunkte": 81,
+      "dcMidLadepunkte": 17,
+      "acLadepunkte": 213,
+      "avgKw": 75.1,
+      "topBetreiber": [
+        "Mark-E (67)",
+        "EnBW mobility+ (24)",
+        "Wirelane Public 1 (10)",
+        "Q-Park Recharge Germany (10)",
+        "SolarLoader+ (10)"
+      ],
+      "pointsPer1000Pop": 1.63,
+      "hpcPer1000Pop": 0.43,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "potsdam",
+    "name": "Potsdam",
+    "bundesland": "Brandenburg",
+    "ags": "12054000",
+    "ars": "120540000000",
+    "population": {
+      "value": 187119,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 158,
+      "ladepunkteGesamt": 293,
+      "hpcLadepunkte": 33,
+      "dcMidLadepunkte": 21,
+      "acLadepunkte": 239,
+      "avgKw": 44.1,
+      "topBetreiber": [
+        "Energie und Wasser Potsdam (54)",
+        "Servipark Deutschland (20)",
+        "Qwello Deutschland (14)",
+        "Shell Deutschland (5)",
+        "Schlausch&Nicolaides (5)"
+      ],
+      "pointsPer1000Pop": 1.57,
+      "hpcPer1000Pop": 0.18,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "saarbruecken",
+    "name": "Saarbrücken",
+    "bundesland": "Saarland",
+    "ags": "10041100",
+    "ars": "100410100100",
+    "population": {
+      "value": 183509,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 164,
+      "ladepunkteGesamt": 275,
+      "hpcLadepunkte": 73,
+      "dcMidLadepunkte": 15,
+      "acLadepunkte": 187,
+      "avgKw": 81.5,
+      "topBetreiber": [
+        "Energie SaarLorLux (50)",
+        "Pfalzwerke (13)",
+        "EnBW mobility+ (13)",
+        "H.G. Dreher (10)",
+        "Tesla Germany (8)"
+      ],
+      "pointsPer1000Pop": 1.5,
+      "hpcPer1000Pop": 0.4,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "hamm",
+    "name": "Hamm",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05915000",
+    "ars": "059150000000",
+    "population": {
+      "value": 181368,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 209,
+      "ladepunkteGesamt": 403,
+      "hpcLadepunkte": 54,
+      "dcMidLadepunkte": 24,
+      "acLadepunkte": 325,
+      "avgKw": 52.9,
+      "topBetreiber": [
+        "Stadtwerke Hamm (55)",
+        "Reload-Solution (42)",
+        "HOCHTIEF Ladepartner (35)",
+        "EnBW mobility+ (11)",
+        "Julius Franken (7)"
+      ],
+      "pointsPer1000Pop": 2.22,
+      "hpcPer1000Pop": 0.3,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "ludwigshafen",
+    "name": "Ludwigshafen am Rhein",
+    "bundesland": "Rheinland-Pfalz",
+    "ags": "07314000",
+    "ars": "073140000000",
+    "population": {
+      "value": 176110,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 211,
+      "ladepunkteGesamt": 343,
+      "hpcLadepunkte": 91,
+      "dcMidLadepunkte": 40,
+      "acLadepunkte": 212,
+      "avgKw": 78.8,
+      "topBetreiber": [
+        "Servipark Deutschland (46)",
+        "Technische Werke Ludwigshafen am Rhein (29)",
+        "amperio (28)",
+        "Pfalzwerke (28)",
+        "EnBW mobility+ (16)"
+      ],
+      "pointsPer1000Pop": 1.95,
+      "hpcPer1000Pop": 0.52,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "muelheim",
+    "name": "Mülheim an der Ruhr",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05117000",
+    "ars": "051170000000",
+    "population": {
+      "value": 173255,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 215,
+      "ladepunkteGesamt": 405,
+      "hpcLadepunkte": 74,
+      "dcMidLadepunkte": 19,
+      "acLadepunkte": 312,
+      "avgKw": 60.3,
+      "topBetreiber": [
+        "medl (52)",
+        "HOCHTIEF Ladepartner (34)",
+        "eze.network (15)",
+        "EnBW mobility+ (14)",
+        "Wirelane Public 1 (12)"
+      ],
+      "pointsPer1000Pop": 2.34,
+      "hpcPer1000Pop": 0.43,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "oldenburg",
+    "name": "Oldenburg (Oldb)",
+    "bundesland": "Niedersachsen",
+    "ags": "03403000",
+    "ars": "034030000000",
+    "population": {
+      "value": 174629,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 217,
+      "ladepunkteGesamt": 364,
+      "hpcLadepunkte": 137,
+      "dcMidLadepunkte": 36,
+      "acLadepunkte": 191,
+      "avgKw": 108.9,
+      "topBetreiber": [
+        "EWE Go (73)",
+        "Servipark Deutschland (20)",
+        "Mer Germany (12)",
+        "Vattenfall Smarter Living (12)",
+        "EnBW mobility+ (11)"
+      ],
+      "pointsPer1000Pop": 2.08,
+      "hpcPer1000Pop": 0.78,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "osnabrueck",
+    "name": "Osnabrück",
+    "bundesland": "Niedersachsen",
+    "ags": "03404000",
+    "ars": "034040000000",
+    "population": {
+      "value": 167366,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 303,
+      "ladepunkteGesamt": 574,
+      "hpcLadepunkte": 120,
+      "dcMidLadepunkte": 49,
+      "acLadepunkte": 405,
+      "avgKw": 74,
+      "topBetreiber": [
+        "Osnabrücker Parkstätten-Betriebsgesellschaft (155)",
+        "EnBW mobility+ (22)",
+        "Q1 Energie (16)",
+        "Citywatt (7)",
+        "Depenbrock Holding (6)"
+      ],
+      "pointsPer1000Pop": 3.43,
+      "hpcPer1000Pop": 0.72,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "leverkusen",
+    "name": "Leverkusen",
+    "bundesland": "Nordrhein-Westfalen",
+    "ags": "05316000",
+    "ars": "053160000000",
+    "population": {
+      "value": 166414,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 199,
+      "ladepunkteGesamt": 333,
+      "hpcLadepunkte": 36,
+      "dcMidLadepunkte": 10,
+      "acLadepunkte": 287,
+      "avgKw": 45.5,
+      "topBetreiber": [
+        "Qwello Deutschland (52)",
+        "eze.network (32)",
+        "Energieversorgung Leverkusen (31)",
+        "HOCHTIEF Ladepartner (17)",
+        "ALDI SÜD ImmobilienverwaltungsoHG (8)"
+      ],
+      "pointsPer1000Pop": 2,
+      "hpcPer1000Pop": 0.22,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  },
+  {
+    "slug": "heidelberg",
+    "name": "Heidelberg",
+    "bundesland": "Baden-Württemberg",
+    "ags": "08221000",
+    "ars": "082210000000",
+    "population": {
+      "value": 162960,
+      "referenceDate": "2023-12-31",
+      "source": "Statistisches Bundesamt (Destatis) / GV-ISys",
+      "license": "dl-de/by-2-0"
+    },
+    "bnetza": {
+      "ladestationen": 411,
+      "ladepunkteGesamt": 784,
+      "hpcLadepunkte": 46,
+      "dcMidLadepunkte": 14,
+      "acLadepunkte": 724,
+      "avgKw": 29.5,
+      "topBetreiber": [
+        "Stadtwerke Heidelberg Energie (211)",
+        "Universitätsklinikum Heidelberg Anstalt öffentlichen Rechts (66)",
+        "Wattif Europe (19)",
+        "TankE (10)",
+        "HEG Heidelberger Energiegenossenschaft (10)"
+      ],
+      "pointsPer1000Pop": 4.81,
+      "hpcPer1000Pop": 0.28,
+      "sourcePublisher": "Bundesnetzagentur / NOW GmbH / Mobilithek",
+      "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+      "attribution": "Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)",
+      "snapshotDate": "2026-10-01",
+      "snapshotMaxDatenstand": "2026-09-22",
+      "rawSnapshotSha256": "31da754d8b51209bbb8352acb60863bfd1302134c9bf1a0b168a25f8ec17a8ca"
+    }
+  }
+]

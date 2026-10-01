@@ -6,3 +6,6 @@ dist-ssr
 *.local
 
 .env*
+
+# Private raw dataset snapshots (never exposed to public web bundles)
+data/raw/
