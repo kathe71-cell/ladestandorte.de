@@ -116,7 +116,7 @@ export const Home: React.FC = () => {
           {/* Eyebrow Tag */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold uppercase tracking-wider mb-6">
             <span className="w-2 h-2 rounded-full bg-[#C7F000] border border-[#171917]/20"></span>
-            <span>INFRASTRUCTURE INTELLIGENCE · DATA / 01.10.2026</span>
+            <span>MARKT-MONITOR · DATA / 01.10.2026</span>
           </div>
 
           {/* Display Headline & Subline */}

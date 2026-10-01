@@ -91,10 +91,14 @@ export const WallboxVergleichPage: React.FC = () => {
 
       <PageHero
         level={2}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Wallbox-Vergleich', isCurrent: true }
+        ]}
         eyebrow={
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
-            <Zap className="w-4 h-4" />
-            <span>Heimladestationen &amp; Photovoltaik</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
+            <span>COMPARISON · WALLBOXEN</span>
           </div>
         }
         title="Wallbox-Vergleich: 11-kW- & 22-kW-Heimladestationen im Überblick"

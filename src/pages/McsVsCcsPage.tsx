@@ -74,9 +74,9 @@ export const McsVsCcsPage: React.FC = () => {
           { label: 'MCS vs. CCS', isCurrent: true }
         ]}
         eyebrow={
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-mono font-bold">
-            <Scale className="w-4 h-4 text-emerald-800" />
-            <span>Technologie-Vergleich</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
+            <span>REFERENCE · TECHNOLOGIE-VERGLEICH</span>
           </div>
         }
         title="MCS vs. CCS: Unterschiede, Leistung & Einsatzzwecke"

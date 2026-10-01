@@ -119,29 +119,30 @@ export const StationDetailPage: React.FC = () => {
         ]}
         eyebrow={
           <div className="flex flex-wrap items-center gap-2">
-            <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-emerald-100 text-emerald-900 border border-emerald-200">
-              {station.kwMax} kW HPC-Spitzenleistung
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2F5E73]"></span>
+              SITE DATA · {station.kwMax} kW HPC
             </span>
-            <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-slate-100 text-slate-800 border border-slate-200">
+            <span className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-[#F7F7F2] text-[#6C716B] border border-[#DFE3DC]">
               {station.pointsCount} Ladepunkte
             </span>
             {station.project && (
-              <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-blue-50 text-blue-900 border border-blue-200">
+              <span className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]">
                 Projekt: {station.project}
               </span>
             )}
             {station.hardwareProvider && (
-              <span className="px-3 py-1 rounded-md text-xs font-mono font-medium bg-slate-50 text-slate-700 border border-slate-200">
+              <span className="px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-[#F7F7F2] text-[#6C716B] border border-[#DFE3DC]">
                 Hardware: {station.hardwareProvider}
               </span>
             )}
             {station.truckCharging && (
               <Link
                 to="/mcs/ladestationen"
-                className={`px-3 py-1 rounded-md text-xs font-mono font-bold inline-flex items-center gap-1.5 shadow-2xs ${
+                className={`px-2.5 py-1 rounded-md text-xs font-mono font-bold inline-flex items-center gap-1.5 border transition-colors ${
                   station.truckCharging.mcsStatus === 'operational'
-                    ? 'bg-blue-600 text-white hover:bg-blue-700'
-                    : 'bg-amber-100 text-amber-950 border border-amber-300 hover:bg-amber-200'
+                    ? 'bg-[#171917] text-white border-[#171917] hover:bg-[#2F5E73]'
+                    : 'bg-amber-50 text-amber-950 border-amber-300 hover:bg-amber-100'
                 }`}
               >
                 <Truck className="w-3.5 h-3.5" />
@@ -157,10 +158,10 @@ export const StationDetailPage: React.FC = () => {
             {station.motorway && (
               <Link
                 to={`/autobahnen/${station.motorway}`}
-                className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-amber-400 text-slate-950 hover:bg-amber-500 transition-colors inline-flex items-center gap-1 shadow-2xs"
+                className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] hover:bg-[#DFE3DC] border border-[#DFE3DC] transition-colors inline-flex items-center gap-1"
               >
                 <span>BAB {station.motorway.toUpperCase()}</span>
-                <ArrowRight className="w-3 h-3" />
+                <ArrowRight className="w-3 h-3 text-[#6C716B]" />
               </Link>
             )}
           </div>
@@ -310,46 +311,46 @@ export const StationDetailPage: React.FC = () => {
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2.5">
-                <span className="text-xl">📍</span>
+              <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-center justify-between">
                 <div>
-                  <span className="text-slate-500 block">Lage / Anbindung:</span>
-                  <strong className="text-slate-900 truncate block">
+                  <span className="text-[#6C716B] block text-[11px] font-mono">Lage / Anbindung</span>
+                  <strong className="text-[#171917] truncate block mt-0.5">
                     {station.motorway ? `Fernverkehrskorridor BAB ${station.motorway.toUpperCase()}` : `Stadtgebiet ${station.city}`}
                   </strong>
                 </div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#171917]">LOKATION</span>
               </div>
 
               {station.exitDistance && (
-                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2.5">
-                  <span className="text-xl">🛣️</span>
+                <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-center justify-between">
                   <div>
-                    <span className="text-slate-500 block">Autobahnanbindung:</span>
-                    <strong className="text-slate-900 truncate block">
+                    <span className="text-[#6C716B] block text-[11px] font-mono">Autobahnanbindung</span>
+                    <strong className="text-[#171917] truncate block mt-0.5">
                       {station.exitDistance}
                     </strong>
                   </div>
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#171917]">TRASSE</span>
                 </div>
               )}
 
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2.5">
-                <span className="text-xl">⚡</span>
+              <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-center justify-between">
                 <div>
-                  <span className="text-slate-500 block">Netzkategorie:</span>
-                  <strong className="text-emerald-700 block">
+                  <span className="text-[#6C716B] block text-[11px] font-mono">Netzkategorie</span>
+                  <strong className="text-[#2F5E73] block mt-0.5">
                     {station.isHpc ? 'High-Power-Charging (HPC)' : 'Schnelllader'}
                   </strong>
                 </div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#2F5E73]">NETZ</span>
               </div>
 
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2.5">
-                <span className="text-xl">🏛️</span>
+              <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-center justify-between">
                 <div>
-                  <span className="text-slate-500 block">Datenquelle:</span>
-                  <strong className="text-slate-900 text-xs block">
+                  <span className="text-[#6C716B] block text-[11px] font-mono">Datenquelle</span>
+                  <strong className="text-[#171917] text-xs block mt-0.5">
                     BNetzA-Ladesäulenregister (Open Data)
                   </strong>
                 </div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#171917]">QUELLE</span>
               </div>
             </div>
           </div>

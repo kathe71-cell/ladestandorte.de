@@ -75,20 +75,20 @@ export const Header: React.FC = () => {
                 ladestandorte<span className="text-[#6C716B] font-semibold">.de</span>
               </span>
               <span className="hidden sm:block text-[9px] font-mono uppercase tracking-widest text-[#6C716B] font-bold mt-1">
-                Infrastructure Intelligence
+                LADEINFRASTRUKTUR · DATENBASIERT
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Hauptnavigation">
+          <nav className="hidden lg:flex items-center flex-nowrap gap-1 xl:gap-2 shrink-0" aria-label="Hauptnavigation">
             
             {/* 1. Standorte & Monitore Dropdown */}
             <div className="relative" ref={standorteRef}>
               <button
                 type="button"
                 onClick={() => { setStandorteOpen(!standorteOpen); setWissenOpen(false); }}
-                className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                   isStandorteActive || location.pathname === '/hpc-city-monitor' || location.pathname === '/cpo-monitor'
                     ? 'bg-[#171917] text-white'
                     : 'text-[#171917] hover:bg-[#F7F7F2]'
@@ -154,7 +154,7 @@ export const Header: React.FC = () => {
             {/* 2. Autobahnen (Direktlink) */}
             <Link
               to="/autobahnen"
-              className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+              className={`px-2.5 xl:px-3 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
                 isAutobahnenActive
                   ? 'bg-[#171917] text-white'
                   : 'text-[#171917] hover:bg-[#F7F7F2]'
@@ -166,7 +166,7 @@ export const Header: React.FC = () => {
             {/* 3. MCS & Lkw (Direktlink) */}
             <Link
               to="/mcs"
-              className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+              className={`inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
                 isMcsActive
                   ? 'bg-[#171917] text-white'
                   : 'text-[#171917] hover:bg-[#F7F7F2]'
@@ -179,7 +179,7 @@ export const Header: React.FC = () => {
             {/* 4. Rechner (Direktlink) */}
             <Link
               to="/rechner"
-              className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+              className={`px-2.5 xl:px-3 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
                 isRechnerActive
                   ? 'bg-[#171917] text-white'
                   : 'text-[#171917] hover:bg-[#F7F7F2]'
@@ -193,7 +193,7 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={() => { setWissenOpen(!wissenOpen); setStandorteOpen(false); }}
-                className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
+                className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                   isWissenActive || location.pathname === '/methodik'
                     ? 'bg-[#171917] text-white'
                     : 'text-[#171917] hover:bg-[#F7F7F2]'

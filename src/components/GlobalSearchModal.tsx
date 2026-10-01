@@ -135,46 +135,51 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Header Bar */}
-        <div className="p-3 sm:p-4 border-b border-slate-200 bg-white shrink-0">
-          <div className="flex items-center gap-2.5 bg-slate-100 rounded-xl px-3.5 py-2.5 border border-slate-200 focus-within:border-emerald-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-emerald-100 transition-all">
-            <Search className="w-5 h-5 text-slate-400 shrink-0" />
-            
-            <input
-              ref={inputRef}
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Suchen nach A3, Kassel, IONITY, MCS, 400 kW, Rechner..."
-              className="w-full bg-transparent text-base sm:text-lg font-medium text-slate-900 placeholder:text-slate-400 focus:outline-hidden min-h-[36px]"
-              autoComplete="off"
-              autoCorrect="off"
-              spellCheck="false"
-            />
+        <div className="p-3 sm:p-4 border-b border-[#DFE3DC] bg-white shrink-0">
+          <div className="flex items-center gap-2">
+            <div className="flex-1 flex items-center gap-2.5 bg-[#F7F7F2] rounded-xl px-3.5 py-2.5 border border-[#DFE3DC] focus-within:border-[#171917] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#171917]/10 transition-all">
+              <Search className="w-5 h-5 text-[#6C716B] shrink-0" />
+              
+              <input
+                ref={inputRef}
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Suchen nach A3, Kassel, IONITY, MCS, 400 kW, Rechner..."
+                className="w-full bg-transparent text-base sm:text-lg font-medium text-[#171917] placeholder:text-[#6C716B] focus:outline-hidden min-h-[36px]"
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck="false"
+              />
 
-            {isLoading && (
-              <Loader2 className="w-5 h-5 text-emerald-600 animate-spin shrink-0" />
-            )}
+              {isLoading && (
+                <Loader2 className="w-5 h-5 text-[#2F5E73] animate-spin shrink-0" />
+              )}
 
-            {query && !isLoading && (
-              <button
-                type="button"
-                onClick={() => {
-                  setQuery('');
-                  if (inputRef.current) inputRef.current.focus();
-                }}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200 min-h-[36px] min-w-[36px] flex items-center justify-center cursor-pointer"
-                aria-label="Sucheingabe leeren"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
+              {query && !isLoading && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setQuery('');
+                    if (inputRef.current) inputRef.current.focus();
+                  }}
+                  className="p-1 rounded-lg text-[#6C716B] hover:text-[#171917] hover:bg-[#EAECE6] min-h-[36px] min-w-[36px] flex items-center justify-center cursor-pointer"
+                  aria-label="Sucheingabe leeren"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
 
+            {/* Prominent Global Close Button (Desktop & Mobile, min 44x44px) */}
             <button
               type="button"
               onClick={onClose}
-              className="sm:hidden text-xs font-bold text-slate-700 px-2 py-1 bg-slate-200/80 rounded-lg shrink-0 min-h-[36px] flex items-center justify-center"
+              className="w-11 h-11 shrink-0 rounded-xl bg-[#F7F7F2] hover:bg-[#EAECE6] text-[#171917] border border-[#DFE3DC] flex items-center justify-center transition-colors cursor-pointer"
+              aria-label="Suche schließen"
+              title="Suche schließen (Esc)"
             >
-              Schließen
+              <X className="w-5 h-5" />
             </button>
           </div>
 

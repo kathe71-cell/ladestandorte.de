@@ -24,8 +24,8 @@ export const Footer: React.FC = () => {
                 <span className="text-xl font-black tracking-tight text-white leading-none">
                   ladestandorte<span className="text-slate-400 font-semibold">.de</span>
                 </span>
-                <span className="text-[9px] font-mono uppercase tracking-widest text-slate-400 font-bold mt-1">
-                  Infrastructure Intelligence
+                <span className="text-[9px] font-mono uppercase tracking-widest text-[#C7F000] font-bold mt-1">
+                  Ladeinfrastruktur · Datenbasiert
                 </span>
               </div>
             </div>
@@ -128,7 +128,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Facts Strip */}
         <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-300">
           <div>
-            © {new Date().getFullYear()} ladestandorte.de · Infrastructure Intelligence
+            © {new Date().getFullYear()} ladestandorte.de · Ladeinfrastruktur. Datenbasiert.
           </div>
           <div className="flex flex-wrap items-center gap-3 text-slate-300">
             <span>BNetzA Open Data (CC BY 4.0)</span>

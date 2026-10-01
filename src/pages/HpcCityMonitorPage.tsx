@@ -167,7 +167,7 @@ export const HpcCityMonitorPage: React.FC = () => {
         eyebrow={
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
             <span className="w-2 h-2 rounded-full bg-[#C7F000] border border-[#171917]/20"></span>
-            <span>MONITOR / 01 · INFRASTRUCTURE INTELLIGENCE</span>
+            <span>MONITOR / 01 · HPC CITY MONITOR</span>
           </div>
         }
         title="HPC City Monitor: ≥150-kW-Ladepunkte in 50 deutschen Städten"
