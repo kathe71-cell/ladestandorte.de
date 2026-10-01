@@ -318,7 +318,7 @@ export const HpcCityMonitorPage: React.FC = () => {
           <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
             <strong className="text-slate-950 block font-mono text-sm">2. Bevölkerungsbezogene Dichte</strong>
             <p className="text-slate-600">
-              <em>„Wo gibt es relativ zur Einwohnerzahl besonders viele ≥150-kW-Ladepunkte?“</em> — Normalisiert nach Destatis-Einwohnerzahl (je 1.000 bzw. 100.000 Einwohner), zeigt regionale Versorgungsintensität unabhängig von der Stadtgröße.
+              <em>„Wo gibt es relativ zur Einwohnerzahl besonders viele ≥150-kW-Ladepunkte?“</em> — Normalisiert nach Destatis-Einwohnerzahl (je 1.000 bzw. 100.000 Einwohner), ermöglicht einen bevölkerungsbezogenen Vergleich zwischen unterschiedlich großen Städten.
             </p>
           </div>
           <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
