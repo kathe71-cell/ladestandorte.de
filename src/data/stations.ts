@@ -140,6 +140,14 @@ export function getMcsStations(stations: StationData[]): StationData[] {
   return stations.filter(s => isIndexableMcsLocation(s));
 }
 
+export function getDossierCount(): number {
+  return STATIONS_DATA.filter(isIndexableLocation).length;
+}
+
+export function getMotorwayDossiers(motorwaySlug: string): StationData[] {
+  return STATIONS_DATA.filter(s => s.motorway === motorwaySlug && isIndexableLocation(s));
+}
+
 
 export const STATIONS_DATA: StationData[] = [
   {

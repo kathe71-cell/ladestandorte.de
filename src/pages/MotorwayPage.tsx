@@ -7,7 +7,7 @@ import { getOperatorSlugByName } from '../utils/operatorHelper';
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
-import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
+import { StationData, getStationUrl, getMotorwayDossiers } from '../data/stations';
 import { StationDetailModal } from '../components/StationDetailModal';
 import { FloatingCTABar } from '../components/FloatingCTABar';
 import { PageHero } from '../components/PageHero';
@@ -21,7 +21,7 @@ export const MotorwayPage: React.FC = () => {
     return <Navigate to="/autobahnen" replace />;
   }
 
-  const motorwayStations = STATIONS_DATA.filter(s => s.motorway === motorway.slug);
+  const motorwayStations = getMotorwayDossiers(motorway.slug);
 
   const citySlugs = getMotorwayCitySlugs(motorway.slug);
   const connectedCities = citySlugs
@@ -115,7 +115,7 @@ export const MotorwayPage: React.FC = () => {
       />
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className={`grid grid-cols-2 ${motorwayStations.length > 0 ? 'md:grid-cols-4' : 'md:grid-cols-3'} gap-4`}>
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
           <span className="text-xs font-mono text-slate-500 uppercase block">Streckenlänge</span>
           <span className="text-3xl font-black text-slate-950 font-mono mt-1 block">
@@ -155,22 +155,24 @@ export const MotorwayPage: React.FC = () => {
           <span className="text-[11px] text-slate-500 mt-1 block">Direkt an Rastanlagen</span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Verifizierte Ladeparks</span>
-          <span className="text-3xl font-black text-emerald-600 font-mono mt-1 block">
-            {motorwayStations.length} Dossiers
-          </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">
-            BNetzA-geprüfte Großhubs
-          </span>
-        </div>
+        {motorwayStations.length > 0 && (
+          <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
+            <span className="text-xs font-mono text-slate-500 uppercase block">Verifizierte Ladeparks</span>
+            <span className="text-3xl font-black text-emerald-600 font-mono mt-1 block">
+              {motorwayStations.length} Dossiers
+            </span>
+            <span className="text-[11px] text-slate-500 mt-1 block">
+              Quellenbasiert dokumentiert
+            </span>
+          </div>
+        )}
       </div>
 
 
       {motorwayStations.length > 0 && (
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-slate-950">
-            Verifizierte BNetzA-Ladeparks entlang der {motorway.name}
+            Verifizierte Ladeparks entlang der {motorway.name}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {motorwayStations.map((st) => (

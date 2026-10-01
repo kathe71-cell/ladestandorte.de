@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Zap, MapPin, Navigation, ShieldCheck, CreditCard, Share2, Check, ExternalLink, AlertTriangle, Info } from 'lucide-react';
-import { StationData, getStationConnectors } from '../data/stations';
+import { StationData, getStationConnectors, getDossierCount } from '../data/stations';
 
 interface Props {
   station: StationData | null;
@@ -207,7 +207,7 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
             <p>Zugänglichkeit: <strong className="text-slate-900">{station.accessType}</strong></p>
 
             <div className="pt-2 border-t border-slate-200/80 text-[11px] font-sans text-slate-500 leading-relaxed">
-              <strong>Hinweis zur Datenherkunft:</strong> Dieser Standort entstammt unserer redaktionell verifizierten Auswahl von 44 Ladeparks in Deutschland. Die Basisdaten zu Ladeleistung, Steckern und Geokoordinaten basieren auf den amtlichen Veröffentlichungen der Bundesnetzagentur.
+              <strong>Hinweis zur Datenherkunft:</strong> Dieser Standort entstammt unserer redaktionell verifizierten Auswahl von {getDossierCount()} Ladeparks in Deutschland. Die Basisdaten zu Ladeleistung, Steckern und Geokoordinaten basieren auf den amtlichen Veröffentlichungen der Bundesnetzagentur.
             </div>
           </div>
 

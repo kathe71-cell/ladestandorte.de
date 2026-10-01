@@ -9,9 +9,11 @@ import { CITIES_DATA } from '../data/cities';
 import { MOTORWAYS_DATA } from '../data/motorways';
 import { OPERATORS_DATA } from '../data/operators';
 import { GLOSSARY_DATA } from '../data/glossary';
+import { getDossierCount } from '../data/stations';
 import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const Home: React.FC = () => {
+  const dossierCount = getDossierCount();
   const topCities = CITIES_DATA.slice(0, 12);
   const topMotorways = MOTORWAYS_DATA.slice(0, 8);
   const topOperators = OPERATORS_DATA.slice(0, 6);
@@ -130,7 +132,7 @@ export const Home: React.FC = () => {
           {/* Instant-Finder Component (data-svsearch) */}
           <div className="max-w-4xl mb-12 space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-500 px-1">
-              <span>⚡ Schnellsuche: Verifizierte Ladeparks (44 Dossiers) &amp; BNetzA-Verzeichnisse</span>
+              <span>⚡ Schnellsuche: Verifizierte Ladeparks ({dossierCount} Dossiers) &amp; BNetzA-Verzeichnisse</span>
               <span className="text-emerald-700 font-semibold">Bundesweit: &gt; 100.000 BNetzA-Ladepunkte</span>
             </div>
             <InstantFinder autoFocus={false} showFilters={true} />
