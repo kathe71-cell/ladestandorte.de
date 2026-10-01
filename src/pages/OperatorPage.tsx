@@ -27,7 +27,12 @@ export const OperatorPage: React.FC = () => {
   }
 
   // Lookup verified BNetzA CPO entry
-  const verifiedCpo = cpoDataset.operators.find(c => c.slug === operator.slug || c.id === operator.slug);
+  const verifiedCpo = cpoDataset.operators.find(c => 
+    c.slug === operator.slug || 
+    c.id === operator.slug ||
+    (operator.slug === 'tesla-supercharger' && (c.id === 'tesla' || c.slug === 'tesla')) ||
+    (operator.slug === 'enbw' && (c.id === 'enbw' || c.slug === 'enbw-mobility-plus'))
+  );
 
   // Match stations strictly by operator slug
   const operatorStations = STATIONS_DATA.filter(s => 
