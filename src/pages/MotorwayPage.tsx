@@ -99,16 +99,7 @@ export const MotorwayPage: React.FC = () => {
           { label: 'Autobahnen', href: '/autobahnen' },
           { label: motorway.name, isCurrent: true }
         ]}
-        eyebrow={
-          <div className="flex items-center gap-3">
-            <div className="w-16 h-10 rounded-xl bg-amber-400 text-slate-950 font-black font-mono flex items-center justify-center text-xl shadow-xs">
-              {motorway.name}
-            </div>
-            <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-bold">
-              BUNDESAUTOBAHN {motorway.name} · {motorway.lengthKm} KM GESAMTLÄNGE
-            </span>
-          </div>
-        }
+        eyebrow={`CORRIDOR DATA · ${motorway.name}`}
         title={`Schnelllader & Raststätten an der ${motorway.name}`}
         subtitle={`Streckenführung: ${motorway.route}`}
         description={motorway.description}
@@ -116,24 +107,24 @@ export const MotorwayPage: React.FC = () => {
 
       {/* Key Metrics */}
       <div className={`grid grid-cols-2 ${motorwayStations.length > 0 ? 'md:grid-cols-4' : 'md:grid-cols-3'} gap-4`}>
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Streckenlänge</span>
-          <span className="text-3xl font-black text-slate-950 font-mono mt-1 block">
+        <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-[11px] font-mono text-[#6C716B] uppercase tracking-wider block">Streckenlänge</span>
+          <span className="text-3xl font-black text-[#171917] font-mono mt-1 block">
             {motorway.lengthKm} km
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">Gesamter Trassenverlauf</span>
+          <span className="text-[11px] text-[#6C716B] mt-1 block">Gesamter Trassenverlauf</span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Max. Ladeleistung</span>
-          <span className="text-3xl font-black text-amber-600 font-mono mt-1 block">
+        <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-[11px] font-mono text-[#6C716B] uppercase tracking-wider block">Max. Ladeleistung</span>
+          <span className="text-3xl font-black text-[#2F5E73] font-mono mt-1 block">
             bis {motorway.maxKw} kW
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">High Power Charging (HPC)</span>
+          <span className="text-[11px] text-[#6C716B] mt-1 block">High Power Charging (HPC)</span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Führende Netze</span>
+        <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-[11px] font-mono text-[#6C716B] uppercase tracking-wider block">Führende Netze</span>
           <div className="flex flex-wrap gap-1 mt-1.5">
             {motorway.mainCPOs.map((cpo, i) => {
               const slug = getOperatorSlugByName(cpo);
@@ -141,27 +132,27 @@ export const MotorwayPage: React.FC = () => {
                 <Link
                   key={cpo}
                   to={`/betreiber/${slug}`}
-                  className="text-xs font-bold text-amber-900 hover:text-amber-700 hover:underline"
+                  className="text-xs font-bold text-[#171917] hover:text-[#2F5E73] hover:underline"
                 >
                   {cpo}{i < motorway.mainCPOs.length - 1 ? ',' : ''}
                 </Link>
               ) : (
-                <span key={cpo} className="text-xs font-bold text-slate-900">
+                <span key={cpo} className="text-xs font-bold text-[#171917]">
                   {cpo}{i < motorway.mainCPOs.length - 1 ? ',' : ''}
                 </span>
               );
             })}
           </div>
-          <span className="text-[11px] text-slate-500 mt-1 block">Direkt an Rastanlagen</span>
+          <span className="text-[11px] text-[#6C716B] mt-1 block">Direkt an Rastanlagen</span>
         </div>
 
         {motorwayStations.length > 0 && (
-          <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-            <span className="text-xs font-mono text-slate-500 uppercase block">Verifizierte Ladeparks</span>
-            <span className="text-3xl font-black text-emerald-600 font-mono mt-1 block">
+          <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
+            <span className="text-[11px] font-mono text-[#6C716B] uppercase tracking-wider block">Verifizierte Ladeparks</span>
+            <span className="text-3xl font-black text-[#171917] font-mono mt-1 block">
               {motorwayStations.length} Dossiers
             </span>
-            <span className="text-[11px] text-slate-500 mt-1 block">
+            <span className="text-[11px] text-[#6C716B] mt-1 block">
               Quellenbasiert dokumentiert
             </span>
           </div>
@@ -169,17 +160,17 @@ export const MotorwayPage: React.FC = () => {
       </div>
 
       {/* Datengrundlage / Denominator-Klarstellung */}
-      <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-600 flex items-start gap-2.5">
-        <Info className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+      <div className="p-3.5 bg-white rounded-xl border border-[#DFE3DC] text-xs text-[#6C716B] flex items-start gap-2.5">
+        <Info className="w-4 h-4 text-[#2F5E73] shrink-0 mt-0.5" />
         <p className="leading-relaxed">
-          <strong className="text-slate-900 font-semibold">Datengrundlage:</strong> Die Dossier-Zahl bezeichnet die auf ladestandorte.de redaktionell dokumentierten Ladeparks entlang der {motorway.name}. Sie stellt keine Vollerhebung aller öffentlich registrierten Ladestationen dar (siehe amtliches BNetzA-Register). Details zur Erhebung in der <Link to="/methodik" className="text-emerald-700 hover:text-emerald-800 font-semibold underline">Methodik</Link>.
+          <strong className="text-[#171917] font-semibold">Datengrundlage:</strong> Die Dossier-Zahl bezeichnet die auf ladestandorte.de redaktionell dokumentierten Ladeparks entlang der {motorway.name}. Sie stellt keine Vollerhebung aller öffentlich registrierten Ladestationen dar (siehe amtliches BNetzA-Register). Details zur Erhebung in der <Link to="/methodik" className="text-[#2F5E73] hover:underline font-semibold">Methodik</Link>.
         </p>
       </div>
 
 
       {motorwayStations.length > 0 && (
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-slate-950">
+          <h2 className="text-2xl font-bold text-[#171917]">
             Verifizierte Ladeparks entlang der {motorway.name}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -187,29 +178,29 @@ export const MotorwayPage: React.FC = () => {
               <Link
                 key={st.id}
                 to={getStationUrl(st)}
-                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-amber-300 transition-all flex flex-col justify-between group"
+                className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-extrabold text-slate-950 group-hover:text-amber-800 transition-colors">
+                    <span className="font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors">
                       {st.name}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200 shrink-0">
+                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-[#171917] text-[#C7F000] border border-[#171917] shrink-0">
                       {st.kwMax} kW HPC
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500 mb-2">
+                  <p className="text-xs text-[#6C716B] mb-2">
                     {st.street}, {st.plz} {st.city} · {st.operator}
                   </p>
                   
                   {st.exitDistance && (
-                    <span className="text-[10px] font-mono text-slate-600 block w-full mt-1">
+                    <span className="text-[10px] font-mono text-[#6C716B] block w-full mt-1">
                       📍 {st.exitDistance}
                     </span>
                   )}
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-800">
+                <div className="mt-4 pt-3 border-t border-[#DFE3DC] flex items-center justify-between text-xs font-bold text-[#2F5E73]">
                   <span>Standort ansehen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -221,15 +212,15 @@ export const MotorwayPage: React.FC = () => {
 
       {/* MCS & E-Lkw Schwerlast-Laden an der Autobahn (falls vorhanden) */}
       {motorwayStations.some((s) => s.truckCharging?.supported) && (
-        <div className="p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 space-y-4">
+        <div className="p-6 bg-[#171917] text-white rounded-2xl border border-[#171917] space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-2">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-emerald-400">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#C7F000]">
+              <span className="w-2 h-2 rounded-full bg-[#C7F000] animate-pulse" />
               <span>Megawatt Charging System (MCS) &amp; E-Lkw Korridor</span>
             </div>
             <Link
               to="/mcs"
-              className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold underline"
+              className="text-xs text-[#C7F000] hover:underline font-semibold"
             >
               Zum MCS-Hub-Portal →
             </Link>
@@ -238,7 +229,7 @@ export const MotorwayPage: React.FC = () => {
             <h2 className="text-xl font-bold text-white">
               E-Lkw &amp; Megawatt-Ladeinfrastruktur an der {motorway.name}
             </h2>
-            <p className="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            <p className="text-xs text-[#DFE3DC] mt-1 max-w-2xl leading-relaxed">
               Für schwere Nutzfahrzeuge stehen an der {motorway.name} dedizierte Schwerlast-Ladeparks mit Durchfahrtsspuren (Drive-Through) und Leistungen bis 1.000+ kW zur Verfügung.
             </p>
           </div>
@@ -250,26 +241,26 @@ export const MotorwayPage: React.FC = () => {
                 <Link
                   key={`truck-${st.id}`}
                   to={getStationUrl(st)}
-                  className="p-4 bg-slate-800/80 hover:bg-slate-800 rounded-xl border border-slate-700 transition-all flex flex-col justify-between group"
+                  className="p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 transition-all flex flex-col justify-between group"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-1">
-                      <span className="font-bold text-white text-sm group-hover:text-emerald-300 transition-colors line-clamp-1">
+                      <span className="font-bold text-white text-sm group-hover:text-[#C7F000] transition-colors line-clamp-1">
                         {st.name}
                       </span>
                       <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
                         st.truckCharging?.mcsStatus === 'operational'
-                          ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                          : 'bg-blue-950 text-blue-300 border border-blue-800'
+                          ? 'bg-[#C7F000] text-[#171917]'
+                          : 'bg-white/10 text-white border border-white/20'
                       }`}>
                         {st.truckCharging?.mcsStatus === 'operational' ? 'MCS Aktiv' : '400 kW CCS (MCS im Bau)'}
                       </span>
                     </div>
-                    <p className="text-[11px] text-slate-400">
+                    <p className="text-[11px] text-[#DFE3DC]">
                       {st.city} · {st.operator} · {st.truckCharging?.mcsMaxKw || st.kwMax} kW
                     </p>
                   </div>
-                  <div className="mt-3 pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] font-mono text-emerald-400 font-semibold">
+                  <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-[#C7F000] font-semibold">
                     <span>{st.truckCharging?.mcsPointsCount || st.pointsCount} Lkw-Buchten {st.truckCharging?.driveThrough ? '· Drive-Through' : ''}</span>
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -281,12 +272,12 @@ export const MotorwayPage: React.FC = () => {
 
       {/* Städte entlang der Strecke */}
       {connectedCities.length > 0 && (
-        <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
+        <div className="bg-white rounded-2xl p-6 border border-[#DFE3DC] space-y-4">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#2F5E73] font-bold">
             <MapPin className="w-4 h-4" />
             <span>Städte &amp; Ballungsräume entlang der {motorway.name}</span>
           </div>
-          <h2 className="text-xl font-bold text-slate-950">
+          <h2 className="text-xl font-bold text-[#171917]">
             Urbane Ladeinfrastruktur an der {motorway.name}-Trasse
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -294,12 +285,12 @@ export const MotorwayPage: React.FC = () => {
               <Link
                 key={city.slug}
                 to={`/staedte/${city.slug}`}
-                className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs hover:border-emerald-300 hover:shadow-sm transition-all group flex flex-col justify-between"
+                className="p-3 bg-white rounded-xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all group flex flex-col justify-between"
               >
-                <span className="font-bold text-sm text-slate-900 group-hover:text-emerald-700 transition-colors">
+                <span className="font-bold text-sm text-[#171917] group-hover:text-[#2F5E73] transition-colors">
                   {city.name}
                 </span>
-                <span className="text-[11px] font-mono text-slate-500 mt-1">
+                <span className="text-[11px] font-mono text-[#6C716B] mt-1">
                   {city.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte
                 </span>
               </Link>
@@ -310,12 +301,12 @@ export const MotorwayPage: React.FC = () => {
 
       {/* Anschluss-Autobahnen & Autobahnkreuze */}
       {crossingMotorways.length > 0 && (
-        <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-700 font-bold">
+        <div className="bg-white rounded-2xl p-6 border border-[#DFE3DC] space-y-4">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#2F5E73] font-bold">
             <Navigation className="w-4 h-4" />
             <span>Autobahnkreuze &amp; Anschluss-Strecken</span>
           </div>
-          <h2 className="text-xl font-bold text-slate-950">
+          <h2 className="text-xl font-bold text-[#171917]">
             Kreuzende Autobahnkorridore ab {motorway.name}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -323,17 +314,17 @@ export const MotorwayPage: React.FC = () => {
               <Link
                 key={mw.slug}
                 to={`/autobahnen/${mw.slug}`}
-                className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs hover:border-amber-300 hover:shadow-sm transition-all group flex items-center justify-between"
+                className="p-3 bg-white rounded-xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all group flex items-center justify-between"
               >
                 <div className="flex items-center gap-2">
-                  <span className="w-10 h-7 rounded bg-amber-400 text-slate-950 font-black font-mono flex items-center justify-center text-xs">
+                  <span className="w-10 h-7 rounded bg-[#171917] text-[#C7F000] font-black font-mono flex items-center justify-center text-xs">
                     {mw.name}
                   </span>
-                  <span className="text-xs font-medium text-slate-700 truncate max-w-[120px]">
+                  <span className="text-xs font-medium text-[#171917] truncate max-w-[120px]">
                     {mw.route}
                   </span>
                 </div>
-                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-amber-700 shrink-0" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#6C716B] group-hover:text-[#2F5E73] shrink-0" />
               </Link>
             ))}
           </div>

@@ -55,12 +55,11 @@ export const RechnerPage: React.FC = () => {
       
       <PageHero
         level={2}
-        eyebrow={
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
-            <Calculator className="w-4 h-4" />
-            <span>Interaktives Analyse-Tool</span>
-          </div>
-        }
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Ladezeit-Rechner', isCurrent: true }
+        ]}
+        eyebrow="CALCULATOR · MODEL ENGINE"
         title="Ladezeit- & Ladekosten-Rechner"
         description="Ermitteln Sie im Rahmen einer beispielhaften Modellrechnung die geschätzte Ladedauer (10 % bis 80 % SoC), typische Ladeverluste und ungefähre Kosten je Ladevorgang."
       />
@@ -70,32 +69,32 @@ export const RechnerPage: React.FC = () => {
 
       {/* Technical FAQ & Explanations */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-        <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-2">
-          <h3 className="font-bold text-slate-950 text-base flex items-center gap-2">
-            <Zap className="w-4 h-4 text-emerald-600" />
+        <div className="p-6 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs space-y-2">
+          <h3 className="font-bold text-[#171917] text-base flex items-center gap-2">
+            <Zap className="w-4 h-4 text-[#2F5E73]" />
             <span>Warum 10 % bis 80 %?</span>
           </h3>
-          <p className="text-xs text-slate-600 leading-relaxed">
+          <p className="text-xs text-[#6C716B] leading-relaxed">
             Elektroauto-Batterien erreichen zwischen 10 % und 50 % SoC ihre maximale Ladeleistung (Peak). Ab ca. 80 % drosselt das Batteriemanagementsystem (BMS) den Stromfluss drastisch, um eine Überhitzung und Degradation der Lithium-Ionen-Zellen zu verhindern.
           </p>
         </div>
 
-        <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-2">
-          <h3 className="font-bold text-slate-950 text-base flex items-center gap-2">
-            <Clock className="w-4 h-4 text-emerald-600" />
+        <div className="p-6 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs space-y-2">
+          <h3 className="font-bold text-[#171917] text-base flex items-center gap-2">
+            <Clock className="w-4 h-4 text-[#2F5E73]" />
             <span>AC vs. DC Ladeverluste</span>
           </h3>
-          <p className="text-xs text-slate-600 leading-relaxed">
+          <p className="text-xs text-[#6C716B] leading-relaxed">
             Beim Wechselstromladen (AC) wandelt der fahrzeugeigene Onboard-Charger den Strom in Gleichstrom um – hierbei entstehen 8 % bis 15 % Wandlungs- und Abwärmeverluste. Beim DC-Schnellladen (HPC) fließt der Gleichstrom direkt in die Batterie (Verluste ca. 4 % bis 8 %).
           </p>
         </div>
 
-        <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-2">
-          <h3 className="font-bold text-slate-950 text-base flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+        <div className="p-6 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs space-y-2">
+          <h3 className="font-bold text-[#171917] text-base flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-[#2F5E73]" />
             <span>Vorkonditionierung (Akkuheizung)</span>
           </h3>
-          <p className="text-xs text-slate-600 leading-relaxed">
+          <p className="text-xs text-[#6C716B] leading-relaxed">
             Bei kalten Außentemperaturen im Winter sinkt die chemische Reaktionsfähigkeit im Akku. Eine aktive Vorkonditionierung vor Ankunft am HPC-Lader erwärmt das Paket auf optimale 25–35 °C und verkürzt die Ladedauer um bis zu 50 %.
           </p>
         </div>

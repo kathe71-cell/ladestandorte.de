@@ -42,31 +42,30 @@ export const OperatorsIndexPage: React.FC = () => {
       
       <PageHero
         level={2}
-        eyebrow={
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-purple-700 font-bold">
-            <ShieldCheck className="w-4 h-4" />
-            <span>Charge Point Operators (CPOs)</span>
-          </div>
-        }
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Betreiber', isCurrent: true }
+        ]}
+        eyebrow="OPERATOR DATA · ÜBERSICHT"
         title="Ladenetz-Betreiber in Deutschland im Vergleich"
         description="Vergleichen Sie die führenden Ladeinfrastruktur-Betreiber nach Gesamtzahl der Ladepunkte, High-Power-Charging-Leistung bis 400 kW, AutoCharge-Unterstützung und Roaming-Netzwerkgröße."
       />
 
       {/* CPO Monitor Banner */}
-      <div className="p-6 bg-gradient-to-r from-purple-900 to-slate-900 rounded-2xl text-white shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="p-6 bg-[#171917] rounded-2xl text-white border border-[#171917] shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-1">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-xs font-mono font-bold">
-            <Zap className="w-3.5 h-3.5 text-purple-400" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white/10 text-[#C7F000] text-xs font-mono font-bold">
+            <Zap className="w-3.5 h-3.5 text-[#C7F000]" />
             <span>NEUES DATENPRODUKT</span>
           </div>
           <h2 className="text-xl font-bold">CPO Monitor: Amtliche BNetzA-Registerdaten</h2>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#DFE3DC] max-w-2xl leading-relaxed">
             Detaillierte Auswertung der Top 30 Betreiberunternehmen nach dokumentierten Register-Ladepunkten (≥150 kW), HPC-Ausbauquoten und städtischer Präsenz.
           </p>
         </div>
         <Link
           to="/cpo-monitor"
-          className="px-5 py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-slate-950 font-bold text-xs uppercase tracking-wider shrink-0 transition-all flex items-center gap-2"
+          className="px-5 py-2.5 rounded-xl bg-[#C7F000] hover:bg-[#b0d500] text-[#171917] font-bold text-xs uppercase tracking-wider shrink-0 transition-all flex items-center gap-2"
         >
           <span>Zum CPO Monitor</span>
           <ArrowRight className="w-4 h-4" />
@@ -79,37 +78,37 @@ export const OperatorsIndexPage: React.FC = () => {
           <Link
             key={op.slug}
             to={`/betreiber/${op.slug}`}
-            className="group p-6 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-lg hover:border-purple-300 transition-all flex flex-col justify-between"
+            className="group p-6 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-xl font-extrabold text-slate-950 group-hover:text-purple-700 transition-colors">
+                <h2 className="text-xl font-extrabold text-[#171917] group-hover:text-[#2F5E73] transition-colors">
                   {op.name}
                 </h2>
-                <span className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-purple-50 text-purple-800 border border-purple-200">
+                <span className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-[#171917] text-[#C7F000] border border-[#171917]">
                   bis {op.maxKw} kW
                 </span>
               </div>
 
-              <p className="text-xs text-slate-500 mb-3">{op.headquarters}</p>
+              <p className="text-xs text-[#6C716B] mb-3">{op.headquarters}</p>
               
-              <p className="text-xs text-slate-600 leading-relaxed line-clamp-3 mb-5">
+              <p className="text-xs text-[#6C716B] leading-relaxed line-clamp-3 mb-5">
                 {op.description}
               </p>
 
-              <div className="grid grid-cols-2 gap-2 text-xs font-mono bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <div className="grid grid-cols-2 gap-2 text-xs font-mono bg-[#F7F7F2] p-3 rounded-xl border border-[#DFE3DC]">
                 <div>
-                  <span className="text-slate-400 block text-[10px]">LADEPUNKTE DE</span>
-                  <strong className="text-slate-900 text-sm">{op.totalPointsDE.toLocaleString('de-DE')}</strong>
+                  <span className="text-[#6C716B] block text-[10px]">LADEPUNKTE DE</span>
+                  <strong className="text-[#171917] text-sm">{op.totalPointsDE.toLocaleString('de-DE')}</strong>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px]">HPC-QUOTE</span>
-                  <strong className="text-emerald-700 text-sm">{op.hpcShare} %</strong>
+                  <span className="text-[#6C716B] block text-[10px]">HPC-QUOTE</span>
+                  <strong className="text-[#2F5E73] text-sm">{op.hpcShare} %</strong>
                 </div>
               </div>
             </div>
 
-            <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-700">
+            <div className="mt-5 pt-3 border-t border-[#DFE3DC] flex items-center justify-between text-xs font-bold text-[#2F5E73]">
               <span>Betreiber-Profil ansehen</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </div>

@@ -63,14 +63,18 @@ export const Header: React.FC = () => {
           
           {/* Logo & Category Sub-label */}
           <Link to="/" className="flex items-center gap-3 group shrink-0" onClick={() => setMobileMenuOpen(false)}>
-            <div className="w-9 h-9 rounded-lg bg-[#171917] flex items-center justify-center text-[#C7F000] border border-[#171917] group-hover:bg-[#C7F000] group-hover:text-[#171917] transition-colors">
-              <Zap className="w-5 h-5 fill-current stroke-current" />
+            <div className="w-9 h-9 rounded-lg bg-[#171917] flex items-center justify-center border border-[#171917] group-hover:border-[#C7F000] transition-colors relative overflow-hidden">
+              {/* Minimalist L-Mark with Signal Lime Data Node */}
+              <svg viewBox="0 0 32 32" className="w-5 h-5" fill="none">
+                <path d="M9 7V23H21" stroke="#FFFFFF" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="23" cy="9" r="3" fill="#C7F000" />
+              </svg>
             </div>
             <div className="flex flex-col">
               <span className="text-xl sm:text-2xl font-black tracking-tight text-[#171917] flex items-center leading-none">
-                ladestandorte<span className="text-[#2F5E73]">.de</span>
+                ladestandorte<span className="text-[#6C716B] font-semibold">.de</span>
               </span>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#6C716B] font-bold mt-1">
+              <span className="hidden sm:block text-[9px] font-mono uppercase tracking-widest text-[#6C716B] font-bold mt-1">
                 Infrastructure Intelligence
               </span>
             </div>

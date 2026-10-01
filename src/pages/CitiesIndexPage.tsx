@@ -126,42 +126,37 @@ export const CitiesIndexPage: React.FC = () => {
           { label: 'Startseite', href: '/' },
           { label: 'Städte', isCurrent: true }
         ]}
-        eyebrow={
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-mono font-bold">
-            <Activity className="w-4 h-4 text-emerald-800" />
-            <span>Kommunale Auswertung · BNetzA &amp; Destatis</span>
-          </div>
-        }
+        eyebrow="CITY DATA · KOMMUNALE ANALYSE"
         title="Ladeinfrastruktur in deutschen Städten"
         description="Auswertung von 50 Städten auf Basis veröffentlichter Registerdaten der Bundesnetzagentur und amtlicher Einwohnerzahlen von Destatis."
       />
 
       {/* DATA STATUS BAR */}
-      <div className="p-3.5 sm:p-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs flex flex-wrap items-center justify-between gap-3 shadow-xs">
+      <div className="p-3.5 sm:p-4 rounded-xl bg-[#171917] border border-[#171917] text-[#DFE3DC] text-xs flex flex-wrap items-center justify-between gap-3 shadow-xs">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/10 border border-white/20 text-[#C7F000] font-mono font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C7F000]"></span>
             50 Städte ausgewertet
           </span>
-          <span className="text-slate-400">·</span>
+          <span className="text-[#6C716B]">·</span>
           <span>BNetzA API-Snapshot: <strong className="text-white font-mono">{bnetzaSnapshotDate}</strong></span>
-          <span className="text-slate-400">·</span>
+          <span className="text-[#6C716B]">·</span>
           <span>Bevölkerung: <strong className="text-white">Destatis, Stand {destatisDate}</strong></span>
         </div>
         <div className="flex items-center gap-2">
           <Link
             to="/hpc-city-monitor"
-            className="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1"
+            className="text-[#C7F000] hover:underline font-semibold flex items-center gap-1"
           >
             <Activity className="w-3.5 h-3.5" />
             <span>HPC City Monitor (≥150 kW)</span>
           </Link>
-          <span className="text-slate-600">|</span>
-          <span className="text-slate-400">Eigene Auswertung: ladestandorte.de</span>
-          <span className="text-slate-600">|</span>
+          <span className="text-white/20">|</span>
+          <span className="text-[#DFE3DC]">Eigene Auswertung: ladestandorte.de</span>
+          <span className="text-white/20">|</span>
           <Link
             to="/methodik"
-            className="text-slate-400 hover:text-slate-200 underline font-medium flex items-center gap-1"
+            className="text-[#DFE3DC] hover:text-white underline font-medium flex items-center gap-1"
           >
             <span>Methodik</span>
             <ArrowRight className="w-3 h-3" />
@@ -170,23 +165,23 @@ export const CitiesIndexPage: React.FC = () => {
       </div>
 
       {/* Search, Filter & Sort Info Bar */}
-      <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div className="bg-white p-4 rounded-2xl border border-[#DFE3DC] shadow-xs flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div className="flex-1 flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#6C716B] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
               placeholder="Stadt filtern..."
-              className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 font-medium"
+              className="w-full pl-9 pr-4 py-2 text-sm bg-[#F7F7F2] border border-[#DFE3DC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#171917] font-medium"
             />
           </div>
 
           <select
             value={selectedBundesland}
             onChange={(e) => setSelectedBundesland(e.target.value)}
-            className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="px-3 py-2 bg-[#F7F7F2] border border-[#DFE3DC] rounded-xl text-sm font-semibold text-[#171917] focus:outline-none focus:ring-2 focus:ring-[#171917]"
           >
             {bundeslaender.map(b => (
               <option key={b} value={b}>{b}</option>
@@ -194,25 +189,25 @@ export const CitiesIndexPage: React.FC = () => {
           </select>
         </div>
 
-        <div className="text-xs text-slate-500 font-mono self-end sm:self-center">
-          Sortiert nach: <strong className="text-slate-900">{sortLabel}</strong> ({sortDirection === 'desc' ? 'absteigend' : 'aufsteigend'})
+        <div className="text-xs text-[#6C716B] font-mono self-end sm:self-center">
+          Sortiert nach: <strong className="text-[#171917]">{sortLabel}</strong> ({sortDirection === 'desc' ? 'absteigend' : 'aufsteigend'})
         </div>
       </div>
 
       {/* Responsive Data Table (Desktop View) */}
-      <div className="hidden md:block bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+      <div className="hidden md:block bg-white rounded-2xl border border-[#DFE3DC] shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 border-b border-slate-200 text-xs font-mono uppercase text-slate-700">
+            <thead className="bg-[#F7F7F2] border-b border-[#DFE3DC] text-xs font-mono uppercase text-[#171917]">
               <tr>
                 <th className="py-3.5 px-4 font-bold">
                   <button
                     type="button"
                     onClick={() => handleSort('name')}
-                    className="flex items-center gap-1 hover:text-emerald-700 transition-colors"
+                    className="flex items-center gap-1 hover:text-[#2F5E73] transition-colors"
                   >
                     <span>Stadt</span>
-                    <ArrowUpDown className="w-3 h-3 text-slate-400" />
+                    <ArrowUpDown className="w-3 h-3 text-[#6C716B]" />
                   </button>
                 </th>
                 <th className="py-3.5 px-3 font-bold">Bundesland</th>
@@ -220,85 +215,85 @@ export const CitiesIndexPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => handleSort('population')}
-                    className="inline-flex items-center gap-1 hover:text-emerald-700 transition-colors"
+                    className="inline-flex items-center gap-1 hover:text-[#2F5E73] transition-colors"
                   >
                     <span>Einwohner</span>
-                    <ArrowUpDown className="w-3 h-3 text-slate-400" />
+                    <ArrowUpDown className="w-3 h-3 text-[#6C716B]" />
                   </button>
                 </th>
                 <th className="py-3.5 px-3 font-bold text-right">
                   <button
                     type="button"
                     onClick={() => handleSort('ladepunkte')}
-                    className="inline-flex items-center gap-1 hover:text-emerald-700 transition-colors"
+                    className="inline-flex items-center gap-1 hover:text-[#2F5E73] transition-colors"
                   >
                     <span>Ladepunkte</span>
-                    <ArrowUpDown className="w-3 h-3 text-slate-400" />
+                    <ArrowUpDown className="w-3 h-3 text-[#6C716B]" />
                   </button>
                 </th>
                 <th className="py-3.5 px-3 font-bold text-right">
                   <button
                     type="button"
                     onClick={() => handleSort('hpc')}
-                    className="inline-flex items-center gap-1 hover:text-emerald-700 transition-colors"
+                    className="inline-flex items-center gap-1 hover:text-[#2F5E73] transition-colors"
                   >
                     <span>≥150 kW</span>
-                    <ArrowUpDown className="w-3 h-3 text-slate-400" />
+                    <ArrowUpDown className="w-3 h-3 text-[#6C716B]" />
                   </button>
                 </th>
                 <th className="py-3.5 px-3 font-bold text-right">
                   <button
                     type="button"
                     onClick={() => handleSort('pointsPer1k')}
-                    className="inline-flex items-center gap-1 hover:text-emerald-700 transition-colors"
+                    className="inline-flex items-center gap-1 hover:text-[#2F5E73] transition-colors"
                   >
                     <span>LP / 1.000 Einw.</span>
-                    <ArrowUpDown className="w-3 h-3 text-slate-400" />
+                    <ArrowUpDown className="w-3 h-3 text-[#6C716B]" />
                   </button>
                 </th>
                 <th className="py-3.5 px-3 font-bold text-right">
                   <button
                     type="button"
                     onClick={() => handleSort('hpcPer1k')}
-                    className="inline-flex items-center gap-1 hover:text-emerald-700 transition-colors"
+                    className="inline-flex items-center gap-1 hover:text-[#2F5E73] transition-colors"
                   >
                     <span>≥150 kW / 1.000 Einw.</span>
-                    <ArrowUpDown className="w-3 h-3 text-slate-400" />
+                    <ArrowUpDown className="w-3 h-3 text-[#6C716B]" />
                   </button>
                 </th>
                 <th className="py-3.5 px-4 text-right font-bold">Dossier</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-[#DFE3DC]">
               {filteredAndSortedCities.map((city) => (
-                <tr key={city.slug} className="hover:bg-slate-50/70 transition-colors">
-                  <td className="py-3 px-4 font-bold text-slate-950">
-                    <Link to={`/staedte/${city.slug}`} className="hover:text-emerald-700 transition-colors">
+                <tr key={city.slug} className="hover:bg-[#F7F7F2]/70 transition-colors">
+                  <td className="py-3 px-4 font-bold text-[#171917]">
+                    <Link to={`/staedte/${city.slug}`} className="hover:text-[#2F5E73] transition-colors">
                       {city.name}
                     </Link>
                   </td>
-                  <td className="py-3 px-3 text-slate-600 text-xs">
+                  <td className="py-3 px-3 text-[#6C716B] text-xs">
                     {city.bundesland}
                   </td>
-                  <td className="py-3 px-3 text-right font-mono text-slate-700">
+                  <td className="py-3 px-3 text-right font-mono text-[#171917]">
                     {city.einwohner.toLocaleString('de-DE')}
                   </td>
-                  <td className="py-3 px-3 text-right font-mono font-bold text-slate-950">
+                  <td className="py-3 px-3 text-right font-mono font-bold text-[#171917]">
                     {city.ladepunkteGesamt.toLocaleString('de-DE')}
                   </td>
-                  <td className="py-3 px-3 text-right font-mono font-bold text-emerald-800">
+                  <td className="py-3 px-3 text-right font-mono font-bold text-[#2F5E73]">
                     {city.hpcLadepunkte.toLocaleString('de-DE')}
                   </td>
-                  <td className="py-3 px-3 text-right font-mono text-slate-800">
+                  <td className="py-3 px-3 text-right font-mono text-[#171917]">
                     {city.pointsPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </td>
-                  <td className="py-3 px-3 text-right font-mono text-slate-800">
+                  <td className="py-3 px-3 text-right font-mono text-[#171917]">
                     {city.hpcPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </td>
                   <td className="py-3 px-4 text-right">
                     <Link
                       to={`/staedte/${city.slug}`}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-100 text-slate-900 hover:text-emerald-950 text-xs font-bold transition-colors font-mono"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#F7F7F2] hover:bg-[#171917] text-[#171917] hover:text-[#C7F000] border border-[#DFE3DC] text-xs font-bold transition-colors font-mono"
                     >
                       <span>Details</span>
                       <ArrowRight className="w-3 h-3" />
@@ -317,43 +312,43 @@ export const CitiesIndexPage: React.FC = () => {
           <Link
             key={city.slug}
             to={`/staedte/${city.slug}`}
-            className="group p-5 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all flex flex-col justify-between"
+            className="group p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="font-extrabold text-slate-950 group-hover:text-emerald-700 text-lg transition-colors">
+                <span className="font-extrabold text-[#171917] group-hover:text-[#2F5E73] text-lg transition-colors">
                   {city.name}
                 </span>
-                <span className="text-xs font-mono font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+                <span className="text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] px-2 py-0.5 rounded">
                   {city.bundesland}
                 </span>
               </div>
 
-              <div className="space-y-1.5 text-xs text-slate-600 mt-3 font-mono">
+              <div className="space-y-1.5 text-xs text-[#6C716B] mt-3 font-mono">
                 <div className="flex justify-between">
-                  <span className="font-sans text-slate-500">Einwohner (Destatis):</span>
-                  <strong className="text-slate-900">{city.einwohner.toLocaleString('de-DE')}</strong>
+                  <span className="font-sans text-[#6C716B]">Einwohner (Destatis):</span>
+                  <strong className="text-[#171917]">{city.einwohner.toLocaleString('de-DE')}</strong>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-sans text-slate-500">Ladepunkte gesamt:</span>
-                  <strong className="text-slate-950">{city.ladepunkteGesamt.toLocaleString('de-DE')}</strong>
+                  <span className="font-sans text-[#6C716B]">Ladepunkte gesamt:</span>
+                  <strong className="text-[#171917]">{city.ladepunkteGesamt.toLocaleString('de-DE')}</strong>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-sans text-slate-500">Ladepunkte ≥150 kW:</span>
-                  <strong className="text-emerald-700">{city.hpcLadepunkte.toLocaleString('de-DE')}</strong>
+                  <span className="font-sans text-[#6C716B]">Ladepunkte ≥150 kW:</span>
+                  <strong className="text-[#2F5E73]">{city.hpcLadepunkte.toLocaleString('de-DE')}</strong>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-sans text-slate-500">LP / 1.000 Einw.:</span>
-                  <span className="text-slate-800 font-bold">{city.pointsPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })}</span>
+                  <span className="font-sans text-[#6C716B]">LP / 1.000 Einw.:</span>
+                  <span className="text-[#171917] font-bold">{city.pointsPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-sans text-slate-500">≥150 kW / 1.000 Einw.:</span>
-                  <span className="text-slate-800 font-bold">{city.hpcPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })}</span>
+                  <span className="font-sans text-[#6C716B]">≥150 kW / 1.000 Einw.:</span>
+                  <span className="text-[#171917] font-bold">{city.hpcPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })}</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
+            <div className="mt-4 pt-3 border-t border-[#DFE3DC] flex items-center justify-between text-xs font-bold text-[#2F5E73]">
               <span>Stadt-Dossier öffnen</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </div>
@@ -362,8 +357,8 @@ export const CitiesIndexPage: React.FC = () => {
       </div>
 
       {/* Completeness Disclaimer */}
-      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 leading-relaxed">
-        <strong>Vollständigkeitshinweis:</strong> Die Auswertung basiert auf den im verwendeten Register/API-Datenbestand veröffentlichten Ladeeinrichtungen. Der Datenbestand stellt keine zwingend vollständige Erfassung der gesamten öffentlich zugänglichen Ladeinfrastruktur dar.
+      <div className="p-4 rounded-xl bg-white border border-[#DFE3DC] text-xs text-[#6C716B] leading-relaxed">
+        <strong className="text-[#171917]">Vollständigkeitshinweis:</strong> Die Auswertung basiert auf den im verwendeten Register/API-Datenbestand veröffentlichten Ladeeinrichtungen. Der Datenbestand stellt keine zwingend vollständige Erfassung der gesamten öffentlich zugänglichen Ladeinfrastruktur dar.
       </div>
 
       {/* Trust & E-E-A-T */}

@@ -121,113 +121,113 @@ export const OperatorPage: React.FC = () => {
           { label: operator.name, isCurrent: true }
         ]}
         eyebrow={
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-purple-50 text-purple-800 text-xs font-mono font-bold">
-            <ShieldCheck className="w-3.5 h-3.5 text-purple-600" />
-            <span>CHARGE POINT OPERATOR · {operator.headquarters.toUpperCase()}</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
+            <span>OPERATOR DATA · {operator.headquarters.toUpperCase()}</span>
           </div>
         }
-        title={`${operator.name}: Ladenetz, Ladeleistung & Tarife`}
+        title={operator.name}
         description={operator.description}
       />
 
-      {/* Operator Metrics Bento Grid */}
+      {/* Operator Metrics KPI Strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Ladepunkte in DE</span>
-          <span className="text-3xl font-black text-slate-950 font-mono mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte in DE</span>
+          <span className="text-3xl font-black text-[#171917] font-mono mt-1 block tabular-nums">
             {operator.totalPointsDE.toLocaleString('de-DE')}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">BNetzA registriert</span>
+          <span className="text-[11px] text-[#6C716B] mt-1 block">BNetzA registriert</span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Spitzenleistung (HPC)</span>
-          <span className="text-3xl font-black text-purple-600 font-mono mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Spitzenleistung (HPC)</span>
+          <span className="text-3xl font-black text-[#171917] font-mono mt-1 block tabular-nums">
             bis {operator.maxKw} kW
           </span>
-          <span className="text-[11px] text-purple-700 font-semibold mt-1 block">
+          <span className="text-[11px] text-[#2F5E73] font-mono font-semibold mt-1 block">
             {operator.hpcShare} % HPC-Anteil
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Roaming-Punkte</span>
-          <span className="text-2xl font-black text-slate-950 font-mono mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Roaming-Punkte</span>
+          <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono mt-1 block tabular-nums">
             {operator.roamingPartnersCount.toLocaleString('de-DE')}+
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">In ganz Europa</span>
+          <span className="text-[11px] text-[#6C716B] mt-1 block">In ganz Europa</span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Authentifizierung</span>
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Authentifizierung</span>
           <div className="flex items-center gap-1.5 mt-1">
-            <span className="text-xl font-black text-slate-950 font-mono">
+            <span className="text-xl font-black text-[#171917] font-mono">
               {operator.plugAndCharge ? 'ISO 15118' : (operator.autocharge ? 'AutoCharge' : 'RFID / App')}
             </span>
           </div>
-          <span className="text-[11px] text-slate-500 mt-1 block">
+          <span className="text-[11px] text-[#6C716B] mt-1 block">
             {operator.plugAndCharge ? 'Plug & Charge aktiv' : (operator.autocharge ? 'AutoCharge unterstützt' : 'RFID- & App-Autorisierung')}
           </span>
         </div>
       </div>
 
       {/* Quellenkontext & Transparenz-Hinweis */}
-      <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-600 flex items-start gap-2.5">
-        <ShieldCheck className="w-4 h-4 text-purple-600 shrink-0 mt-0.5" />
+      <div className="p-3.5 bg-white rounded-xl border border-[#DFE3DC] text-xs text-[#6C716B] flex items-start gap-2.5">
+        <ShieldCheck className="w-4 h-4 text-[#2F5E73] shrink-0 mt-0.5" />
         <p className="leading-relaxed">
-          <strong className="text-slate-900 font-semibold">Quellenkontext:</strong> Die Kennzahlen zum Ladenetz von {operator.name} basieren auf Betreiberangaben sowie amtlichen Registerdaten. Sie bilden statische Netzkapazitäten ab und stellen keine Echtzeit-Verfügbarkeitsdaten dar. Details in der <Link to="/methodik" className="text-purple-800 hover:text-purple-950 font-semibold underline">Methodik</Link>.
+          <strong className="text-[#171917] font-semibold">Quellenkontext:</strong> Die Kennzahlen zum Ladenetz von {operator.name} basieren auf Betreiberangaben sowie amtlichen Registerdaten. Sie bilden statische Netzkapazitäten ab und stellen keine Echtzeit-Verfügbarkeitsdaten dar. Details in der <Link to="/methodik" className="text-[#2F5E73] hover:underline font-semibold">Methodik</Link>.
         </p>
       </div>
 
       {/* Verified CPO Register Data Card (from BNetzA Pipeline) */}
       {verifiedCpo && (
-        <div className="p-5 bg-purple-50/50 rounded-2xl border border-purple-200/80 shadow-xs space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-mono uppercase tracking-wider text-purple-900 font-bold flex items-center gap-1.5">
-              <Zap className="w-4 h-4 text-purple-700" />
+        <div className="p-6 bg-white rounded-xl border border-[#DFE3DC] shadow-xs space-y-4">
+          <div className="flex items-center justify-between border-b border-[#DFE3DC] pb-3">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#171917] font-bold flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
               <span>Amtlicher BNetzA-Registerauszug (Stand {cpoDataset.snapshotDate})</span>
             </span>
             <Link
               to="/cpo-monitor"
-              className="text-xs font-bold text-purple-800 hover:text-purple-950 underline inline-flex items-center gap-1"
+              className="text-xs font-bold text-[#2F5E73] hover:text-[#171917] underline inline-flex items-center gap-1"
             >
               <span>Im CPO Monitor ansehen</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-            <div className="p-3 bg-white rounded-xl border border-purple-100">
-              <span className="text-slate-500 block uppercase font-mono text-[10px]">Dokumentierte Ladestationen</span>
-              <strong className="text-slate-950 text-base font-mono block mt-0.5">{verifiedCpo.stationsTotal.toLocaleString('de-DE')}</strong>
+            <div className="p-3.5 bg-[#F7F7F2] rounded-lg border border-[#DFE3DC]">
+              <span className="text-[#6C716B] block uppercase font-mono text-[10px]">Dokumentierte Ladestationen</span>
+              <strong className="text-[#171917] text-base font-mono block mt-0.5 tabular-nums">{verifiedCpo.stationsTotal.toLocaleString('de-DE')}</strong>
             </div>
-            <div className="p-3 bg-white rounded-xl border border-purple-100">
-              <span className="text-slate-500 block uppercase font-mono text-[10px]">Ladepunkte ≥150 kW</span>
-              <strong className="text-purple-900 text-base font-mono block mt-0.5">{verifiedCpo.chargingPoints150PlusKw.toLocaleString('de-DE')}</strong>
+            <div className="p-3.5 bg-[#F7F7F2] rounded-lg border border-[#DFE3DC]">
+              <span className="text-[#6C716B] block uppercase font-mono text-[10px]">Ladepunkte ≥150 kW</span>
+              <strong className="text-[#171917] text-base font-mono block mt-0.5 tabular-nums">{verifiedCpo.chargingPoints150PlusKw.toLocaleString('de-DE')}</strong>
             </div>
-            <div className="p-3 bg-white rounded-xl border border-purple-100">
-              <span className="text-slate-500 block uppercase font-mono text-[10px]">HPC-Quote im Bestand</span>
-              <strong className="text-slate-950 text-base font-mono block mt-0.5">{verifiedCpo.share150PlusKwPercent.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %</strong>
+            <div className="p-3.5 bg-[#F7F7F2] rounded-lg border border-[#DFE3DC]">
+              <span className="text-[#6C716B] block uppercase font-mono text-[10px]">HPC-Quote im Bestand</span>
+              <strong className="text-[#2F5E73] text-base font-mono block mt-0.5 tabular-nums">{verifiedCpo.share150PlusKwPercent.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %</strong>
             </div>
-            <div className="p-3 bg-white rounded-xl border border-purple-100">
-              <span className="text-slate-500 block uppercase font-mono text-[10px]">Anteil an BNetzA-HPC *</span>
-              <strong className="text-slate-950 text-base font-mono block mt-0.5">{verifiedCpo.shareOfRegisterHpcPercent.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %</strong>
+            <div className="p-3.5 bg-[#F7F7F2] rounded-lg border border-[#DFE3DC]">
+              <span className="text-[#6C716B] block uppercase font-mono text-[10px]">Anteil an BNetzA-HPC *</span>
+              <strong className="text-[#171917] text-base font-mono block mt-0.5 tabular-nums">{verifiedCpo.shareOfRegisterHpcPercent.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %</strong>
             </div>
           </div>
-          <p className="text-[11px] text-slate-500 leading-normal">
+          <p className="text-[11px] text-[#6C716B] leading-normal">
             * <strong>Hinweis:</strong> Anteil an den im amtlichen BNetzA-Snapshot erfassten HPC-Ladepunkten bundesweit ({cpoDataset.totalRegisterHpcPointsDE.toLocaleString('de-DE')} Ladepunkte).
           </p>
         </div>
       )}
 
       {/* Features & Technologie */}
-      <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
-        <h2 className="text-base font-mono uppercase tracking-wider text-slate-800 font-bold">
+      <div className="bg-white rounded-xl p-6 border border-[#DFE3DC] space-y-4">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-[#6C716B] font-bold">
           Technologische Merkmale von {operator.name}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {operator.features.map((feat) => (
-            <div key={feat} className="flex items-center gap-2.5 bg-white p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-800">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            <div key={feat} className="flex items-center gap-2.5 bg-[#F7F7F2] p-3 rounded-lg border border-[#DFE3DC] text-xs font-medium text-[#171917]">
+              <CheckCircle2 className="w-4 h-4 text-[#2F5E73] shrink-0" />
               <span>{feat}</span>
             </div>
           ))}
@@ -248,7 +248,7 @@ export const OperatorPage: React.FC = () => {
             </div>
             <Link
               to={`/suche?q=${encodeURIComponent(operator.name)}`}
-              className="text-xs font-bold text-purple-700 hover:text-purple-800 inline-flex items-center gap-1 shrink-0"
+              className="text-xs font-bold text-[#2F5E73] hover:text-[#171917] inline-flex items-center gap-1 shrink-0"
             >
               <span>Alle in der Suche filtern</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -260,35 +260,35 @@ export const OperatorPage: React.FC = () => {
               <Link
                 key={st.id}
                 to={getStationUrl(st)}
-                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-purple-300 transition-all flex flex-col justify-between group"
+                className="p-5 bg-white rounded-xl border border-[#DFE3DC] hover:border-[#171917] transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-extrabold text-slate-950 group-hover:text-purple-700 transition-colors line-clamp-1">
+                    <span className="font-extrabold text-[#171917] group-hover:text-[#2F5E73] transition-colors line-clamp-1">
                       {st.name}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-purple-50 text-purple-900 border border-purple-200 shrink-0">
+                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] shrink-0">
                       {st.kwMax} kW HPC
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500 mb-2">
+                  <p className="text-xs text-[#6C716B] mb-2">
                     {st.street}, {st.plz} {st.city}
                   </p>
                   
                   {st.motorway && (
-                    <div className="text-[11px] font-mono text-amber-800 font-bold bg-amber-50 px-2 py-0.5 rounded inline-block mb-2">
+                    <div className="text-[11px] font-mono text-[#171917] font-bold bg-[#F7F7F2] border border-[#DFE3DC] px-2 py-0.5 rounded inline-block mb-2">
                       Autobahn: {st.motorway.toUpperCase()}
                     </div>
                   )}
 
                   {st.exitDistance && (
-                    <span className="text-[10px] font-mono text-slate-600 block w-full mt-1">
+                    <span className="text-[10px] font-mono text-[#6C716B] block w-full mt-1">
                       📍 {st.exitDistance}
                     </span>
                   )}
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-700">
+                <div className="mt-4 pt-3 border-t border-[#DFE3DC] flex items-center justify-between text-xs font-bold text-[#171917] group-hover:text-[#2F5E73]">
                   <span>Standort ansehen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -300,24 +300,24 @@ export const OperatorPage: React.FC = () => {
 
       {/* Operator FAQ Accordion / Cards */}
       <div className="space-y-4">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-purple-700 font-bold">
+        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#2F5E73] font-bold">
           <HelpCircle className="w-4 h-4" />
           <span>Häufig gestellte Fragen (FAQ)</span>
         </div>
-        <h2 className="text-2xl font-bold text-slate-950">
+        <h2 className="text-2xl font-bold text-[#171917]">
           Wissenswertes zum Laden bei {operator.name}
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-2">
-              <h3 className="font-bold text-slate-950 text-sm sm:text-base flex items-start gap-2">
-                <span className="w-5 h-5 rounded-full bg-purple-100 text-purple-800 font-mono text-xs flex items-center justify-center shrink-0 mt-0.5">
+            <div key={i} className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs space-y-2">
+              <h3 className="font-bold text-[#171917] text-sm sm:text-base flex items-start gap-2">
+                <span className="w-5 h-5 rounded-md bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] font-mono text-xs flex items-center justify-center shrink-0 mt-0.5 font-bold">
                   {i + 1}
                 </span>
                 <span>{faq.q}</span>
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-7">
+              <p className="text-xs sm:text-sm text-[#6C716B] leading-relaxed pl-7">
                 {faq.a}
               </p>
             </div>
@@ -326,8 +326,8 @@ export const OperatorPage: React.FC = () => {
       </div>
 
       {/* Preishinweis */}
-      <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-800 leading-relaxed">
-        <strong>Hinweis zu Tarifen:</strong> Alle Preisangaben (AC/DC €/kWh) basieren auf öffentlich zugänglichen Standard-Preisblättern des Betreibers (Ad-hoc ohne Vertrag). Reale Preise können durch Ladekarten-Tarife, Roaming-Partner und dynamische Preismodelle deutlich abweichen. Bitte prüfe die aktuellen Preise direkt beim Betreiber oder in der jeweiligen Lade-App.
+      <div className="p-4 rounded-xl bg-white border border-[#DFE3DC] text-xs text-[#6C716B] leading-relaxed">
+        <strong className="text-[#171917]">Hinweis zu Tarifen:</strong> Alle Preisangaben (AC/DC €/kWh) basieren auf öffentlich zugänglichen Standard-Preisblättern des Betreibers (Ad-hoc ohne Vertrag). Reale Preise können durch Ladekarten-Tarife, Roaming-Partner und dynamische Preismodelle deutlich abweichen. Bitte prüfe die aktuellen Preise direkt beim Betreiber oder in der jeweiligen Lade-App.
       </div>
 
       {/* Citation Box */}

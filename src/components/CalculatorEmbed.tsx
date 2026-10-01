@@ -209,20 +209,20 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   };
 
   return (
-    <div className={`bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-lg overflow-hidden ${isEmbed ? 'p-4 sm:p-6' : 'p-6 sm:p-8'}`}>
+    <div className={`bg-white rounded-2xl sm:rounded-3xl border border-[#DFE3DC] shadow-sm overflow-hidden ${isEmbed ? 'p-4 sm:p-6' : 'p-6 sm:p-8'}`}>
       
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-5 mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#DFE3DC] pb-5 mb-6">
         <div>
           <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
-              <Calculator className="w-5 h-5 text-emerald-600" />
+            <div className="w-9 h-9 rounded-xl bg-[#171917] text-[#C7F000] flex items-center justify-center font-bold">
+              <Calculator className="w-5 h-5 text-[#C7F000]" />
             </div>
-            <h2 className="text-xl sm:text-2xl font-black tracking-tight text-slate-950">
+            <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#171917]">
               Ladezeit- &amp; Kostenrechner
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <p className="text-xs sm:text-sm text-[#6C716B] mt-1">
             Beispielhafte Modellrechnung für Ladedauer, Ladeverluste und Ladekosten für Elektrofahrzeuge.
           </p>
         </div>
@@ -232,20 +232,20 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             <button
               type="button"
               onClick={handleCopyLink}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors min-h-[44px] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-[#F7F7F2] hover:bg-[#DFE3DC] text-[#171917] border border-[#DFE3DC] transition-colors min-h-[44px] cursor-pointer"
               aria-label="Link mit Konfiguration kopieren"
             >
-              {linkCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
+              {linkCopied ? <Check className="w-4 h-4 text-[#2F5E73]" /> : <Share2 className="w-4 h-4" />}
               <span>{linkCopied ? 'Kopiert!' : 'Konfiguration teilen'}</span>
             </button>
 
             <button
               type="button"
               onClick={handleCopyEmbed}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors min-h-[44px] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-[#171917] hover:bg-[#2F5E73] text-[#C7F000] border border-[#171917] transition-colors min-h-[44px] cursor-pointer"
               aria-label="Widget Einbettungscode kopieren"
             >
-              {embedCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Code className="w-4 h-4" />}
+              {embedCopied ? <Check className="w-4 h-4 text-[#C7F000]" /> : <Code className="w-4 h-4" />}
               <span>{embedCopied ? 'Code kopiert!' : 'Embed Widget'}</span>
             </button>
           </div>
@@ -253,19 +253,21 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
       </div>
 
       {/* Berechnungsmodus-Umschaltung: Theoretisch vs. Praxis-Schätzung */}
-      <div className="mb-6 p-1.5 bg-slate-100 rounded-2xl flex items-center gap-1.5 border border-slate-200/80 max-w-md">
+      <div className="mb-6 p-1.5 bg-[#F7F7F2] rounded-2xl flex items-center gap-1.5 border border-[#DFE3DC] max-w-md">
         <button
           type="button"
           onClick={() => setCalcMode('estimate')}
           className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all min-h-[44px] flex items-center justify-center gap-1.5 cursor-pointer ${
             calcMode === 'estimate'
-              ? 'bg-white text-slate-950 shadow-sm border border-slate-200/80'
-              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+              ? 'bg-[#171917] text-[#C7F000] shadow-sm border border-[#171917]'
+              : 'text-[#6C716B] hover:text-[#171917] hover:bg-[#DFE3DC]/60'
           }`}
           aria-pressed={calcMode === 'estimate'}
         >
           <span>Praxis-Schätzung</span>
-          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold hidden sm:inline">
+          <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold hidden sm:inline ${
+            calcMode === 'estimate' ? 'bg-[#C7F000] text-[#171917]' : 'bg-[#DFE3DC] text-[#171917]'
+          }`}>
             Standard
           </span>
         </button>
@@ -274,13 +276,15 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           onClick={() => setCalcMode('theoretical')}
           className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all min-h-[44px] flex items-center justify-center gap-1.5 cursor-pointer ${
             calcMode === 'theoretical'
-              ? 'bg-white text-slate-950 shadow-sm border border-slate-200/80'
-              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+              ? 'bg-[#171917] text-[#C7F000] shadow-sm border border-[#171917]'
+              : 'text-[#6C716B] hover:text-[#171917] hover:bg-[#DFE3DC]/60'
           }`}
           aria-pressed={calcMode === 'theoretical'}
         >
           <span>Theoretisch</span>
-          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-200 text-slate-700 font-bold hidden sm:inline">
+          <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold hidden sm:inline ${
+            calcMode === 'theoretical' ? 'bg-[#C7F000] text-[#171917]' : 'bg-[#DFE3DC] text-[#171917]'
+          }`}>
             Idealwert
           </span>
         </button>
@@ -306,19 +310,19 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
         <div className="lg:col-span-7 space-y-6">
           
           {/* Fahrzeug-Schnellwähler */}
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3">
+          <div className="p-4 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] space-y-3">
             <div className="flex items-center justify-between">
-              <label htmlFor="vehicle-select" className="text-xs font-mono uppercase tracking-wider text-slate-700 font-bold flex items-center gap-1.5">
-                <Car className="w-4 h-4 text-emerald-600" />
+              <label htmlFor="vehicle-select" className="text-xs font-mono uppercase tracking-wider text-[#171917] font-bold flex items-center gap-1.5">
+                <Car className="w-4 h-4 text-[#2F5E73]" />
                 <span>Fahrzeug-Schnellwähler:</span>
               </label>
               {selectedVehicle && selectedVehicle.systemVoltage === 800 ? (
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold font-mono bg-purple-100 text-purple-900 border border-purple-300 flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-purple-600" />
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold font-mono bg-[#171917] text-[#C7F000] border border-[#171917] flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-[#C7F000]" />
                   <span>800V System (Sehr flache Ladekurve)</span>
                 </span>
               ) : selectedVehicle ? (
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono bg-slate-200 text-slate-700">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono bg-[#DFE3DC] text-[#171917]">
                   400V System
                 </span>
               ) : null}
@@ -328,7 +332,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               id="vehicle-select"
               value={selectedVehicleId}
               onChange={(e) => handleVehicleSelect(e.target.value)}
-              className="w-full px-3 py-2.5 text-sm bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 font-semibold text-slate-900 shadow-xs cursor-pointer"
+              className="w-full px-3 py-2.5 text-sm bg-white border border-[#DFE3DC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#171917] font-semibold text-[#171917] shadow-xs cursor-pointer"
             >
               <option value="">-- Individuelles Fahrzeug (Manuelle Eingabe) --</option>
               {VEHICLES_DATA.map((v) => (
@@ -339,14 +343,14 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             </select>
 
             {selectedVehicle && (
-              <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-xs text-slate-600 pt-1 border-t border-slate-200/60 font-medium">
-                <span>Ø Verbrauch: <strong>{selectedVehicle.consumptionKwhPer100Km} kWh/100km</strong></span>
+              <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-xs text-[#6C716B] pt-1 border-t border-[#DFE3DC] font-medium">
+                <span>Ø Verbrauch: <strong className="text-[#171917]">{selectedVehicle.consumptionKwhPer100Km} kWh/100km</strong></span>
                 <span>·</span>
-                <span>Max. DC-Peak: <strong>{selectedVehicle.maxKwDc} kW</strong></span>
+                <span>Max. DC-Peak: <strong className="text-[#171917]">{selectedVehicle.maxKwDc} kW</strong></span>
                 <span>·</span>
-                <span>Max. AC-Lader: <strong>{selectedVehicle.maxKwAc} kW</strong></span>
+                <span>Max. AC-Lader: <strong className="text-[#171917]">{selectedVehicle.maxKwAc} kW</strong></span>
                 <span>·</span>
-                <span>Werksangabe 10–80 %: <strong className="text-emerald-700">~{selectedVehicle.typical10to80Min} Min.</strong></span>
+                <span>Werksangabe 10–80 %: <strong className="text-[#2F5E73]">~{selectedVehicle.typical10to80Min} Min.</strong></span>
               </div>
             )}
           </div>
@@ -354,15 +358,15 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* Battery Capacity */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
-              <label htmlFor="capacity-range" className="font-bold text-slate-800 flex items-center gap-1.5">
+              <label htmlFor="capacity-range" className="font-bold text-[#171917] flex items-center gap-1.5">
                 <span>Akkukapazität (netto nutzbar):</span>
                 {isCustomCapacity && (
-                  <span className="text-[10px] font-mono text-amber-900 bg-amber-100 border border-amber-300 px-1.5 py-0.2 rounded font-semibold">
+                  <span className="text-[10px] font-mono text-[#171917] bg-[#F7F7F2] border border-[#DFE3DC] px-1.5 py-0.2 rounded font-semibold">
                     (manuell angepasst)
                   </span>
                 )}
               </label>
-              <span className="font-mono font-black text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md text-base">
+              <span className="font-mono font-black text-[#171917] bg-[#F7F7F2] border border-[#DFE3DC] px-2.5 py-0.5 rounded-md text-base">
                 {batteryCapacity} kWh netto
               </span>
             </div>
@@ -374,9 +378,9 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               step="1"
               value={batteryCapacity}
               onChange={(e) => handleCapacityChange(Number(e.target.value))}
-              className="w-full accent-emerald-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
+              className="w-full accent-[#171917] h-2 bg-[#DFE3DC] rounded-lg cursor-pointer"
             />
-            <div className="flex justify-between text-[11px] font-mono text-slate-400">
+            <div className="flex justify-between text-[11px] font-mono text-[#6C716B]">
               <span>20 kWh (Kleinwagen)</span>
               <span>75–77 kWh (Mittelklasse)</span>
               <span>130 kWh (Oberklasse)</span>
@@ -386,15 +390,15 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* Ladeleistung in kW */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
-              <label htmlFor="kw-range" className="font-bold text-slate-800 flex items-center gap-1.5">
+              <label htmlFor="kw-range" className="font-bold text-[#171917] flex items-center gap-1.5">
                 <span>Ladesäulen-Nennleistung:</span>
                 {isCustomKw && (
-                  <span className="text-[10px] font-mono text-amber-900 bg-amber-100 border border-amber-300 px-1.5 py-0.2 rounded font-semibold">
+                  <span className="text-[10px] font-mono text-[#171917] bg-[#F7F7F2] border border-[#DFE3DC] px-1.5 py-0.2 rounded font-semibold">
                     (manuell angepasst)
                   </span>
                 )}
               </label>
-              <span className="font-mono font-black text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md text-base">
+              <span className="font-mono font-black text-[#171917] bg-[#F7F7F2] border border-[#DFE3DC] px-2.5 py-0.5 rounded-md text-base">
                 {chargePower} kW {chargePower > 22 ? '(DC Schnelllader)' : '(AC Normallader)'}
               </span>
             </div>
@@ -406,7 +410,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               step={chargePower > 50 ? 10 : 1}
               value={chargePower}
               onChange={(e) => handlePowerChange(Number(e.target.value))}
-              className="w-full accent-emerald-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
+              className="w-full accent-[#171917] h-2 bg-[#DFE3DC] rounded-lg cursor-pointer"
             />
             <div className="flex flex-wrap gap-1.5 pt-1">
               {[11, 22, 50, 150, 300, 400].map((kw) => (
@@ -416,8 +420,8 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                   onClick={() => handlePowerChange(kw)}
                   className={`px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-colors cursor-pointer ${
                     chargePower === kw
-                      ? 'bg-slate-900 text-white'
-                      : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                      ? 'bg-[#171917] text-[#C7F000]'
+                      : 'bg-[#F7F7F2] hover:bg-[#DFE3DC] text-[#171917] border border-[#DFE3DC]'
                   }`}
                 >
                   {kw} kW {kw <= 22 ? 'AC' : 'HPC'}
@@ -447,8 +451,8 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* State of Charge (SoC) Slider Range */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label htmlFor="start-soc" className="text-xs font-bold text-slate-700 block">
-                Start-Ladestand (SoC): <span className="font-mono font-black text-slate-900">{startSoc} %</span>
+              <label htmlFor="start-soc" className="text-xs font-bold text-[#171917] block">
+                Start-Ladestand (SoC): <span className="font-mono font-black text-[#171917]">{startSoc} %</span>
               </label>
               <input
                 id="start-soc"
@@ -458,12 +462,12 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                 step="5"
                 value={startSoc}
                 onChange={(e) => setStartSoc(Number(e.target.value))}
-                className="w-full accent-emerald-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
+                className="w-full accent-[#171917] h-2 bg-[#DFE3DC] rounded-lg cursor-pointer"
               />
             </div>
             <div className="space-y-1.5">
-              <label htmlFor="end-soc" className="text-xs font-bold text-slate-700 block">
-                Ziel-Ladestand (SoC): <span className="font-mono font-black text-slate-900">{endSoc} %</span>
+              <label htmlFor="end-soc" className="text-xs font-bold text-[#171917] block">
+                Ziel-Ladestand (SoC): <span className="font-mono font-black text-[#171917]">{endSoc} %</span>
               </label>
               <input
                 id="end-soc"
@@ -473,7 +477,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                 step="5"
                 value={endSoc}
                 onChange={(e) => setEndSoc(Number(e.target.value))}
-                className="w-full accent-emerald-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
+                className="w-full accent-[#171917] h-2 bg-[#DFE3DC] rounded-lg cursor-pointer"
               />
             </div>
           </div>
@@ -481,10 +485,10 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* Strompreis je kWh */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
-              <label htmlFor="price-range" className="font-bold text-slate-800">
+              <label htmlFor="price-range" className="font-bold text-[#171917]">
                 Strompreis je Kilowattstunde:
               </label>
-              <span className="font-mono font-black text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md text-base">
+              <span className="font-mono font-black text-[#171917] bg-[#F7F7F2] border border-[#DFE3DC] px-2.5 py-0.5 rounded-md text-base">
                 {pricePerKwh.toFixed(2).replace('.', ',')} € / kWh
               </span>
             </div>
@@ -496,7 +500,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               step="0.01"
               value={pricePerKwh}
               onChange={(e) => setPricePerKwh(Number(e.target.value))}
-              className="w-full accent-emerald-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
+              className="w-full accent-[#171917] h-2 bg-[#DFE3DC] rounded-lg cursor-pointer"
             />
             <div className="flex flex-wrap gap-1.5 pt-1">
               {[
@@ -511,15 +515,15 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                   onClick={() => setPricePerKwh(item.p)}
                   className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                     Math.abs(pricePerKwh - item.p) < 0.005
-                      ? 'bg-emerald-700 text-white'
-                      : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                      ? 'bg-[#171917] text-[#C7F000]'
+                      : 'bg-[#F7F7F2] hover:bg-[#DFE3DC] text-[#171917] border border-[#DFE3DC]'
                   }`}
                 >
                   {item.label}
                 </button>
               ))}
             </div>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-[11px] text-[#6C716B]">
               Modellannahmen (Stand: September 2026). Reale Preise variieren je nach Ladekarte, Roaming-Aufschlag und Blockiergebühren.
             </p>
           </div>
@@ -527,15 +531,15 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
         </div>
 
         {/* Results Panel (5 Cols) */}
-        <div className="lg:col-span-5 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between space-y-6">
+        <div className="lg:col-span-5 bg-[#171917] text-white rounded-2xl p-6 flex flex-col justify-between space-y-6 border border-[#171917]">
           
           <div>
             <div className="flex items-center justify-between gap-2 mb-1">
-              <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold block">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#C7F000] font-bold block">
                 {isTheoretical ? 'Theoretischer Idealwert' : 'Praxis-Schätzung'}
               </span>
               <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
-                isTheoretical ? 'bg-slate-800 text-slate-300 border border-slate-700' : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                isTheoretical ? 'bg-white/10 text-white border border-white/20' : 'bg-[#C7F000] text-[#171917]'
               }`}>
                 {isTheoretical ? 'Mathematisches Ideal' : 'Modellannahmen'}
               </span>
@@ -545,19 +549,19 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               {displayCostEur.toFixed(2).replace('.', ',')} €
             </div>
             
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-[#DFE3DC] mt-1">
               {isTheoretical
                 ? `Reine Netto-Energiekosten für ${netEnergyKwh.toFixed(1).replace('.', ',')} kWh (ohne Verluste)`
                 : `Geschätzte Gesamtkosten für ${grossEnergyKwh.toFixed(1).replace('.', ',')} kWh brutto (ab Ladesäule)`}
             </p>
           </div>
 
-          <div className="space-y-3.5 border-t border-slate-800 pt-4">
+          <div className="space-y-3.5 border-t border-white/10 pt-4">
             
             {/* Ladedauer */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-slate-300 text-sm">
-                <Clock className="w-4 h-4 text-emerald-400" />
+              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm">
+                <Clock className="w-4 h-4 text-[#C7F000]" />
                 <span>{isTheoretical ? 'Theoretische Mindest-Ladezeit:' : 'Geschätzte Ladedauer:'}</span>
               </div>
               <span className="text-lg font-black text-white font-mono">
@@ -567,8 +571,8 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
 
             {/* Effektive Ø Leistung / Modellannahme */}
             <div className="flex items-center justify-between text-xs">
-              <span className="text-slate-400">{isTheoretical ? 'Angenommene Ladeleistung:' : 'Effektive Ø Leistung (Modell):'}</span>
-              <span className="font-mono text-slate-200 font-bold">
+              <span className="text-[#6C716B]">{isTheoretical ? 'Angenommene Ladeleistung:' : 'Effektive Ø Leistung (Modell):'}</span>
+              <span className="font-mono text-[#DFE3DC] font-bold">
                 {isInvalidSoc
                   ? '0 kW'
                   : isTheoretical
@@ -581,8 +585,8 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
 
             {/* Geladene Netto-Energie */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-slate-300 text-sm">
-                <Zap className="w-4 h-4 text-emerald-400" />
+              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm">
+                <Zap className="w-4 h-4 text-[#C7F000]" />
                 <span>Netto im Akku ({socDeltaPercent} %):</span>
               </div>
               <span className="text-sm font-bold text-white font-mono">
@@ -592,22 +596,22 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
 
             {/* Ladeverluste */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-slate-300 text-sm">
-                <Zap className="w-4 h-4 text-amber-400" />
+              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm">
+                <Zap className="w-4 h-4 text-[#C7F000]" />
                 <span>{isTheoretical ? 'Ladeverluste im Modell:' : `Ladeverlust (+${currentLossPercent} %):`}</span>
               </div>
-              <span className={`text-sm font-mono ${isTheoretical ? 'text-slate-400 font-normal' : 'font-bold text-amber-400'}`}>
+              <span className={`text-sm font-mono ${isTheoretical ? 'text-[#6C716B] font-normal' : 'font-bold text-[#C7F000]'}`}>
                 {isTheoretical ? '0,0 kWh (Idealwert)' : `+ ${lossKwh.toFixed(1).replace('.', ',')} kWh`}
               </span>
             </div>
 
             {/* Reichweitengewinn */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-slate-300 text-sm">
-                <Euro className="w-4 h-4 text-emerald-400" />
+              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm">
+                <Euro className="w-4 h-4 text-[#C7F000]" />
                 <span>Ca. Reichweitengewinn:</span>
               </div>
-              <span className="text-sm font-bold text-emerald-400 font-mono">
+              <span className="text-sm font-bold text-[#C7F000] font-mono">
                 + {rangeGainKm} km (bei Ø {vehicleConsumption.toFixed(1).replace('.', ',')} kWh/100km)
               </span>
             </div>
@@ -615,24 +619,24 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           </div>
 
           {/* Vergleichszusammenfassung / Fußnote */}
-          <div className="pt-3 border-t border-slate-800 text-[11px] text-slate-400 leading-normal space-y-1.5">
+          <div className="pt-3 border-t border-white/10 text-[11px] text-[#6C716B] leading-normal space-y-1.5">
             {!isTheoretical ? (
-              <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-[11px] text-slate-300 space-y-1">
-                <span className="font-semibold text-emerald-400 block">Praxis-Schätzung auf Basis vereinfachter Modellannahmen.</span>
-                <p className="text-slate-400">
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-[11px] text-[#DFE3DC] space-y-1">
+                <span className="font-semibold text-[#C7F000] block">Praxis-Schätzung auf Basis vereinfachter Modellannahmen.</span>
+                <p className="text-[#6C716B]">
                   Theoretischer Idealwert: <strong>{theoreticalDurationMinutes} Min.</strong> · <strong>{theoreticalCostEur.toFixed(2).replace('.', ',')} €</strong>
                 </p>
               </div>
             ) : (
-              <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-[11px] text-slate-300 space-y-1">
-                <span className="font-semibold text-amber-300 block">Idealwert bei konstant verfügbarer eingestellter Ladeleistung.</span>
-                <p className="text-slate-400">
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-[11px] text-[#DFE3DC] space-y-1">
+                <span className="font-semibold text-[#C7F000] block">Idealwert bei konstant verfügbarer eingestellter Ladeleistung.</span>
+                <p className="text-[#6C716B]">
                   Reale Ladevorgänge dauern in der Regel länger (Ladekurve, Akkutemperatur &amp; Ladeverluste).
                 </p>
               </div>
             )}
 
-            <p className="text-[10px] text-slate-500">
+            <p className="text-[10px] text-[#6C716B]">
               * Die tatsächliche Ladedauer und Kosten hängen maßgeblich vom Fahrzeugmodell, der realen Ladekurve, Batterietemperatur, Vorkonditionierung und dem individuellen CPO-Tarif ab.
             </p>
           </div>
@@ -642,47 +646,47 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
       </div>
 
       {/* Aufklappbarer Bereich: Wie wird gerechnet? */}
-      <div className="mt-8 pt-6 border-t border-slate-200/80">
-        <details className="group rounded-2xl bg-slate-50 border border-slate-200/90 overflow-hidden transition-all">
-          <summary className="p-4 sm:p-5 font-bold text-slate-900 cursor-pointer list-none flex items-center justify-between select-none">
+      <div className="mt-8 pt-6 border-t border-[#DFE3DC]">
+        <details className="group rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] overflow-hidden transition-all">
+          <summary className="p-4 sm:p-5 font-bold text-[#171917] cursor-pointer list-none flex items-center justify-between select-none">
             <div className="flex items-center gap-2 text-sm sm:text-base">
-              <Info className="w-4 h-4 text-emerald-600" />
+              <Info className="w-4 h-4 text-[#2F5E73]" />
               <span>Wie wird gerechnet? (Berechnungsmodelle erklärt)</span>
             </div>
-            <span className="text-xs font-mono font-bold text-slate-500 group-open:rotate-180 transition-transform">
+            <span className="text-xs font-mono font-bold text-[#6C716B] group-open:rotate-180 transition-transform">
               ▼
             </span>
           </summary>
           
-          <div className="p-4 sm:p-6 pt-0 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 space-y-4 leading-relaxed">
+          <div className="p-4 sm:p-6 pt-0 border-t border-[#DFE3DC] text-xs sm:text-sm text-[#6C716B] space-y-4 leading-relaxed">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-white rounded-xl border border-slate-200 space-y-2">
-                <h4 className="font-bold text-slate-950 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-slate-400" />
+              <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-2">
+                <h4 className="font-bold text-[#171917] flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#6C716B]" />
                   <span>1. Modus: Theoretisch</span>
                 </h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-[#6C716B]">
                   Reine mathematische Idealrechnung ohne Ladeverluste oder Ladekurvendrosselung:
                 </p>
-                <ul className="text-xs font-mono text-slate-700 space-y-1 list-disc pl-4">
+                <ul className="text-xs font-mono text-[#171917] space-y-1 list-disc pl-4">
                   <li>Nettoenergie = Kapazität × (Ziel-SoC − Start-SoC)</li>
                   <li>Kosten = Nettoenergie × Strompreis</li>
                   <li>Mindest-Ladezeit = Nettoenergie ÷ Nennleistung</li>
                 </ul>
-                <p className="text-[11px] text-slate-500 italic">
+                <p className="text-[11px] text-[#6C716B] italic">
                   Idealwert bei 100 % konstanter Leistungsabgabe ohne jegliche Wandlungsverluste.
                 </p>
               </div>
 
-              <div className="p-4 bg-white rounded-xl border border-slate-200 space-y-2">
-                <h4 className="font-bold text-slate-950 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-2">
+                <h4 className="font-bold text-[#171917] flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#C7F000]" />
                   <span>2. Modus: Praxis-Schätzung</span>
                 </h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-[#6C716B]">
                   Vereinfachtes Modell unter Berücksichtigung typischer Praxisaufschläge:
                 </p>
-                <ul className="text-xs text-slate-700 space-y-1.5 list-disc pl-4">
+                <ul className="text-xs text-[#171917] space-y-1.5 list-disc pl-4">
                   <li>
                     <strong>Modellannahme Ladeverluste:</strong> Rechnerischer Aufschlag von 6 % (HPC Gleichstrom) bzw. 12 % (AC Wechselstrom).
                   </li>
@@ -690,13 +694,13 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                     <strong>Modellannahme Ladekurve:</strong> Durchschnittliche Leistung ca. 76 % der Spitzenleistung im Bereich 10–80 % SoC (bei 800V-Fahrzeugarchitektur ca. 82 %).
                   </li>
                 </ul>
-                <p className="text-[11px] text-slate-500 italic">
+                <p className="text-[11px] text-[#6C716B] italic">
                   Reale Werte variieren je nach Fahrzeug, Batterietemperatur, Vorkonditionierung und Ladesäule.
                 </p>
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 border-t border-slate-200 pt-3">
+            <p className="text-xs text-[#6C716B] border-t border-[#DFE3DC] pt-3">
               Hinweis: Die tatsächliche Ladezeit und Ladeleistung hängen insbesondere von Fahrzeugmodell, Ladekurve, Akkutemperatur, Ladezustand, Vorkonditionierung und verfügbarer Ladeleistung ab.
             </p>
           </div>

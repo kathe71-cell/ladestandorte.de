@@ -20,22 +20,22 @@ export const DatenschutzPage: React.FC = () => {
           { label: 'Startseite', href: '/' },
           { label: 'Datenschutz', isCurrent: true }
         ]}
-        eyebrow="Datenschutz nach DSGVO & TDDDG"
+        eyebrow="LEGAL · DATENSCHUTZ (DSGVO)"
         eyebrowVariant="slate"
         title="Datenschutzerklärung"
         description="Informationen über die Art, den Umfang und den Zweck der Verarbeitung personenbezogener Daten auf ladestandorte.de."
       />
 
-      <div className="p-6 sm:p-8 bg-white rounded-3xl border border-slate-200 shadow-sm space-y-6 text-sm text-slate-700 leading-relaxed">
+      <div className="p-6 sm:p-8 bg-white rounded-3xl border border-[#DFE3DC] shadow-xs space-y-6 text-sm text-[#171917] leading-relaxed">
 
         <div>
-          <h2 className="text-lg font-bold text-slate-950 mb-2">1. Verantwortlicher</h2>
+          <h2 className="text-lg font-bold text-[#171917] mb-2">1. Verantwortlicher</h2>
           <p>
-            Verantwortlich für die Datenverarbeitung auf dieser Website ist der Diensteanbieter. Vollständige Kontaktdaten entnehmen Sie bitte unserem <Link to="/impressum" className="text-emerald-700 font-bold underline">Impressum</Link>.
+            Verantwortlich für die Datenverarbeitung auf dieser Website ist der Diensteanbieter. Vollständige Kontaktdaten entnehmen Sie bitte unserem <Link to="/impressum" className="text-[#2F5E73] font-bold underline">Impressum</Link>.
           </p>
         </div>
 
-        <div className="pt-4 border-t border-slate-100">
+        <div className="pt-4 border-t border-[#DFE3DC]">
           <h2 className="text-lg font-bold text-slate-950 mb-2">2. Webhosting &amp; Server-Logfiles (Vercel Inc.)</h2>
           <p>
             Diese Website wird gehostet bei <strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133, Walnut, CA 91789, USA.

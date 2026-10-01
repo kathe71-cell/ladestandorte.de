@@ -61,26 +61,25 @@ export const GlossarPage: React.FC = () => {
       
       <PageHero
         level={2}
-        eyebrow={
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
-            <BookOpen className="w-4 h-4" />
-            <span>Nachschlagewerk &amp; Begriffsdefinitionen</span>
-          </div>
-        }
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Glossar', isCurrent: true }
+        ]}
+        eyebrow="REFERENCE · TERMINOLOGIE & NORMEN"
         title="E-Mobilitäts- & Ladeinfrastruktur Glossar"
         description="Von CCS Combo 2 über die AFIR-Verordnung bis zu Roaming und Eichrecht: Alle maßgeblichen Fachbegriffe, physikalischen Formeln und gesetzlichen Normen verständlich und rechtssicher erklärt."
       />
 
       {/* Filter and Search Bar */}
-      <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row gap-3">
+      <div className="bg-white p-4 rounded-2xl border border-[#DFE3DC] shadow-xs flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-5 h-5 text-[#6C716B] absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Fachbegriff oder Norm suchen (z. B. CCS, AFIR, kW vs. kWh)..."
-            className="w-full pl-10 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 font-medium"
+            className="w-full pl-10 pr-4 py-2 text-sm bg-[#F7F7F2] border border-[#DFE3DC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#171917] font-medium"
           />
         </div>
 
@@ -90,10 +89,10 @@ export const GlossarPage: React.FC = () => {
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-slate-900 text-white'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                  ? 'bg-[#171917] text-[#C7F000]'
+                  : 'bg-[#F7F7F2] hover:bg-[#DFE3DC] text-[#171917] border border-[#DFE3DC]'
               }`}
             >
               {cat}
@@ -108,15 +107,15 @@ export const GlossarPage: React.FC = () => {
           <div
             key={entry.slug}
             id={entry.slug}
-            className="p-6 sm:p-8 bg-white rounded-3xl border border-slate-200 shadow-sm space-y-4 scroll-mt-24"
+            className="p-6 sm:p-8 bg-white rounded-3xl border border-[#DFE3DC] shadow-xs space-y-4 scroll-mt-24"
           >
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#DFE3DC] pb-3">
               <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 text-slate-700 uppercase">
+                <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] uppercase">
                   {entry.category}
                 </span>
                 {entry.standardNorm && (
-                  <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-[#171917] text-[#C7F000]">
                     {entry.standardNorm}
                   </span>
                 )}
@@ -124,23 +123,23 @@ export const GlossarPage: React.FC = () => {
             </div>
 
             <div>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-black text-[#171917] tracking-tight">
                 {entry.term}
               </h2>
-              <p className="text-sm font-bold text-slate-700 mt-1">
+              <p className="text-sm font-bold text-[#2F5E73] mt-1">
                 {entry.shortDef}
               </p>
             </div>
 
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm text-[#6C716B] leading-relaxed">
               {entry.fullExplanation}
             </p>
 
             {entry.practicalTip && (
-              <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 text-xs text-emerald-950 flex items-start gap-2.5">
-                <Info className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] text-xs text-[#171917] flex items-start gap-2.5">
+                <Info className="w-4 h-4 text-[#2F5E73] shrink-0 mt-0.5" />
                 <div>
-                  <strong>Praxis-Tipp für Fahrer:</strong> {entry.practicalTip}
+                  <strong className="text-[#171917]">Praxis-Tipp für Fahrer:</strong> {entry.practicalTip}
                 </div>
               </div>
             )}

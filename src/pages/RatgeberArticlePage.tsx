@@ -98,19 +98,13 @@ export const RatgeberArticlePage: React.FC = () => {
             { label: 'Ratgeber', href: '/ratgeber' },
             { label: 'Ladekarten-Dschungel', isCurrent: true }
           ]}
-          eyebrow={
-            <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500">
-              <span className="px-2.5 py-1 rounded bg-emerald-100 text-emerald-900 font-bold uppercase">Marktanalyse</span>
-              <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Stand: Redaktionell geprüft</span>
-              <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 7 Minuten Lesezeit</span>
-            </div>
-          }
+          eyebrow="GUIDE · MARKTANALYSE"
           title="Ladekarten-Dschungel: Roaming-Preise, monatliche Grundgebühren & wer wirklich spart"
           description="Mit der rasanten Expansion von Schnellladeparks ist auch der Tarif- und Roaming-Markt komplexer geworden. Dieser Leitfaden entschlüsselt das Zusammenspiel von CPOs, EMPs und zeigt auf, welche Tarifkombination für Ihr individuelles Fahrprofil die günstigste ist."
         />
 
-        <div className="prose prose-slate max-w-none text-slate-800 text-base sm:text-lg leading-relaxed space-y-6">
-          <h2 className="text-2xl font-bold text-slate-950 mt-8 mb-4">1. Die Trennung von CPO und EMP verstehen</h2>
+        <div className="prose prose-slate max-w-none text-[#171917] text-base sm:text-lg leading-relaxed space-y-6">
+          <h2 className="text-2xl font-bold text-[#171917] mt-8 mb-4">1. Die Trennung von CPO und EMP verstehen</h2>
           <p>
             Um günstige Ladekosten zu erzielen, ist das Verständnis der Rollenteilung im Elektromobilitätsmarkt elementar:
           </p>
@@ -122,63 +116,63 @@ export const RatgeberArticlePage: React.FC = () => {
             Wenn Sie mit der Ladekarte von Anbieter A an einer Säule von Anbieter B laden, spricht man von <em>Roaming</em>. Hierfür verlangen viele EMPs erhebliche Aufschläge von 10 bis 30 Cent pro Kilowattstunde gegenüber dem Laden an eigenen Säulen.
           </p>
 
-          <div className="p-5 rounded-2xl bg-amber-50 border border-amber-200 text-sm text-amber-950 my-6">
+          <div className="p-5 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] text-sm text-[#171917] my-6">
             <strong className="block font-bold mb-1 flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-amber-700" />
+              <AlertTriangle className="w-4 h-4 text-[#2F5E73]" />
               Achtung vor intransparenten Roaming-Preisen
             </strong>
             Prüfen Sie vor jedem Ladevorgang in der App Ihres Ladekartenanbieters den tagesaktuellen Tarif für den ausgewählten Standort. An manchen Roaming-Stationen können Kilowattstundenpreise bis zu 0,89 €/kWh betragen, wenn keine Preisdeckelung vereinbart ist.
           </div>
 
-          <h2 className="text-2xl font-bold text-slate-950 mt-8 mb-4">2. Die 3 Fahrerprofile: Welcher Tarif passt zu Ihnen?</h2>
+          <h2 className="text-2xl font-bold text-[#171917] mt-8 mb-4">2. Die 3 Fahrerprofile: Welcher Tarif passt zu Ihnen?</h2>
           
           <div className="space-y-4 not-prose my-6">
-            <div className="p-5 bg-white rounded-2xl border border-slate-200">
-              <h3 className="text-lg font-bold text-slate-950">Profil A: Der Heimlader (Gelegenheitsnutzer öffentlich)</h3>
-              <p className="text-sm text-slate-600 mt-1">
+            <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC]">
+              <h3 className="text-lg font-bold text-[#171917]">Profil A: Der Heimlader (Gelegenheitsnutzer öffentlich)</h3>
+              <p className="text-sm text-[#6C716B] mt-1">
                 Lädt zu 90 % an der eigenen Wallbox für ca. 0,30–0,33 €/kWh. Öffentliche Ladesäulen werden nur 1- bis 2-mal monatlich auf Ausflügen genutzt.
               </p>
-              <div className="mt-3 text-xs font-mono font-bold text-emerald-700">
+              <div className="mt-3 text-xs font-mono font-bold text-[#2F5E73]">
                 Empfehlung: MAINGAU Autostrom oder DKV Card (0,00 € Grundgebühr, kein Kostenrisiko).
               </div>
             </div>
 
-            <div className="p-5 bg-white rounded-2xl border border-slate-200">
-              <h3 className="text-lg font-bold text-slate-950">Profil B: Der Laternenparker (Keine eigene Wallbox)</h3>
-              <p className="text-sm text-slate-600 mt-1">
+            <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC]">
+              <h3 className="text-lg font-bold text-[#171917]">Profil B: Der Laternenparker (Keine eigene Wallbox)</h3>
+              <p className="text-sm text-[#6C716B] mt-1">
                 Ist auf innerstädtische AC-Säulen und gelegentliche Schnelllader beim Wocheneinkauf angewiesen (Monatsbedarf: ca. 150–250 kWh).
               </p>
-              <div className="mt-3 text-xs font-mono font-bold text-emerald-700">
+              <div className="mt-3 text-xs font-mono font-bold text-[#2F5E73]">
                 Empfehlung: Lokale Stadtwerke-Ladekarte für AC kombiniert mit EnBW mobility+ Tarif M für DC.
               </div>
             </div>
 
-            <div className="p-5 bg-white rounded-2xl border border-slate-200">
-              <h3 className="text-lg font-bold text-slate-950">Profil C: Der Langstrecken-Pendler &amp; Vielfahrer</h3>
-              <p className="text-sm text-slate-600 mt-1">
+            <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC]">
+              <h3 className="text-lg font-bold text-[#171917]">Profil C: Der Langstrecken-Pendler &amp; Vielfahrer</h3>
+              <p className="text-sm text-[#6C716B] mt-1">
                 Fährt über 25.000 km pro Jahr und lädt wöchentlich mehrfach an Autobahn-HPC-Stationen.
               </p>
-              <div className="mt-3 text-xs font-mono font-bold text-emerald-700">
+              <div className="mt-3 text-xs font-mono font-bold text-[#2F5E73]">
                 Empfehlung: IONITY Passport Power (11,99 €/Mo.) oder EnBW mobility+ Tarif L mit rabattierten kWh-Preisen ab 0,39 €/kWh. Die monatliche Grundgebühr amortisiert sich bereits ab der zweiten Ladung.
               </div>
             </div>
           </div>
 
-          <h2 className="text-2xl font-bold text-slate-950 mt-8 mb-4">3. Der Einfluss der AFIR-Verordnung (EU 2023/1804)</h2>
+          <h2 className="text-2xl font-bold text-[#171917] mt-8 mb-4">3. Der Einfluss der AFIR-Verordnung (EU 2023/1804)</h2>
           <p>
             Seit April 2024 müssen alle neu errichteten Schnellladepunkte in der EU mit kontaktlosen Kartenterminals (NFC für Girocard und Kreditkarten) ausgerüstet sein. Dies bedeutet das Ende der zwingenden Ladekartenpflicht: Jeder Fahrer kann ohne Voranmeldung spontan via Ad-hoc-Zahlung laden. Allerdings liegen die Ad-hoc-Preise meist über den konditionierten Ladekarten-Tarifen.
           </p>
         </div>
 
         {/* Direktlink zum interaktiven Ladekarten-Vergleich */}
-        <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 my-8">
+        <div className="p-6 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] flex flex-col sm:flex-row sm:items-center justify-between gap-4 my-8">
           <div>
-            <h3 className="font-bold text-slate-950 text-base">Tarifrechner &amp; Ladekarten-Vergleich 2026</h3>
-            <p className="text-sm text-slate-600 mt-1">Vergleichen Sie 18 aktuelle Ladekarten und berechnen Sie Ihre monatlichen Ladekosten für Ihr Fahrprofil.</p>
+            <h3 className="font-bold text-[#171917] text-base">Tarifrechner &amp; Ladekarten-Vergleich 2026</h3>
+            <p className="text-sm text-[#6C716B] mt-1">Vergleichen Sie 18 aktuelle Ladekarten und berechnen Sie Ihre monatlichen Ladekosten für Ihr Fahrprofil.</p>
           </div>
           <Link
             to="/ladekarten"
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shrink-0 transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#171917] hover:bg-[#2F5E73] text-[#C7F000] font-bold text-xs shrink-0 transition-colors"
           >
             <span>Zum Ladekarten-Vergleich</span>
             <ArrowRight className="w-4 h-4" />
@@ -229,19 +223,13 @@ export const RatgeberArticlePage: React.FC = () => {
             { label: 'Ratgeber', href: '/ratgeber' },
             { label: 'AC vs. DC Ladeverluste', isCurrent: true }
           ]}
-          eyebrow={
-            <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500">
-              <span className="px-2.5 py-1 rounded bg-blue-100 text-blue-900 font-bold uppercase">Elektrotechnik</span>
-              <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Stand: Redaktionell geprüft</span>
-              <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 9 Minuten Lesezeit</span>
-            </div>
-          }
+          eyebrow="GUIDE · ELEKTROTECHNIK"
           title="AC vs. DC Ladeverluste im Praxis-Vergleich: Technische Wirkungsgrade & Sparpotenziale"
           description="Nicht jede Kilowattstunde, die der Stromzähler misst, kommt auch in den Batteriezellen an. In diesem Leitfaden analysieren wir die physikalischen Ursachen von Ladeverlusten beim AC- und DC-Laden anhand von ADAC-Messungen und Laborwerten."
         />
 
-        <div className="prose prose-slate max-w-none text-slate-800 text-base sm:text-lg leading-relaxed space-y-6">
-          <h2 className="text-2xl font-bold text-slate-950 mt-8 mb-4">1. Physikalische Ursachen: Wo bleibt der Strom?</h2>
+        <div className="prose prose-slate max-w-none text-[#171917] text-base sm:text-lg leading-relaxed space-y-6">
+          <h2 className="text-2xl font-bold text-[#171917] mt-8 mb-4">1. Physikalische Ursachen: Wo bleibt der Strom?</h2>
           <p>
             Beim Laden eines Elektrofahrzeugs treten Verluste an verschiedenen Stellen der Kette auf:
           </p>
@@ -251,30 +239,30 @@ export const RatgeberArticlePage: React.FC = () => {
             <li><strong>Bordnetz-Grundverbrauch während des Ladens:</strong> Während des Ladevorgangs sind Steuergeräte, Batteriemanagement (BMS) und Kühlwasserpumpen aktiv. Dieser Standby-Verbrauch von 200 bis 400 Watt fällt bei langsamen Ladevorgängen (z.B. an der Schuko-Steckdose mit 2,3 kW) zeitlich extrem stark ins Gewicht.</li>
           </ul>
 
-          <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 not-prose my-6">
-            <h3 className="text-sm font-mono uppercase tracking-wider text-slate-600 font-bold mb-3">
+          <div className="p-5 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] not-prose my-6">
+            <h3 className="text-sm font-mono uppercase tracking-wider text-[#6C716B] font-bold mb-3">
               Typische Verlustquoten nach Ladeart (Messwerte)
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="p-3.5 bg-white rounded-xl border border-slate-200">
-                <span className="text-xs text-slate-500 font-mono block">SCHUKO (2,3 kW)</span>
-                <span className="text-2xl font-black text-rose-600 font-mono">15 % – 22 %</span>
-                <span className="text-[11px] text-slate-500 block mt-1">Sehr ineffizient durch lange Laufzeit</span>
+              <div className="p-3.5 bg-white rounded-xl border border-[#DFE3DC]">
+                <span className="text-xs text-[#6C716B] font-mono block">SCHUKO (2,3 kW)</span>
+                <span className="text-2xl font-black text-[#171917] font-mono">15 % – 22 %</span>
+                <span className="text-[11px] text-[#6C716B] block mt-1">Sehr ineffizient durch lange Laufzeit</span>
               </div>
-              <div className="p-3.5 bg-white rounded-xl border border-slate-200">
-                <span className="text-xs text-slate-500 font-mono block">WALLBOX (11 kW)</span>
-                <span className="text-2xl font-black text-emerald-600 font-mono">6 % – 10 %</span>
-                <span className="text-[11px] text-slate-500 block mt-1">Optimaler Bereich für Heimlader</span>
+              <div className="p-3.5 bg-white rounded-xl border border-[#DFE3DC]">
+                <span className="text-xs text-[#6C716B] font-mono block">WALLBOX (11 kW)</span>
+                <span className="text-2xl font-black text-[#2F5E73] font-mono">6 % – 10 %</span>
+                <span className="text-[11px] text-[#6C716B] block mt-1">Optimaler Bereich für Heimlader</span>
               </div>
-              <div className="p-3.5 bg-white rounded-xl border border-slate-200">
-                <span className="text-xs text-slate-500 font-mono block">HPC DC (150–300 kW)</span>
-                <span className="text-2xl font-black text-blue-600 font-mono">4 % – 8 %</span>
-                <span className="text-[11px] text-slate-500 block mt-1">Wandlung erfolgt in der Säule</span>
+              <div className="p-3.5 bg-white rounded-xl border border-[#DFE3DC]">
+                <span className="text-xs text-[#6C716B] font-mono block">HPC DC (150–300 kW)</span>
+                <span className="text-2xl font-black text-[#171917] font-mono">4 % – 8 %</span>
+                <span className="text-[11px] text-[#6C716B] block mt-1">Wandlung erfolgt in der Säule</span>
               </div>
             </div>
           </div>
 
-          <h2 className="text-2xl font-bold text-slate-950 mt-8 mb-4">2. Warum 11 kW an der Wallbox das Optimum darstellt</h2>
+          <h2 className="text-2xl font-bold text-[#171917] mt-8 mb-4">2. Warum 11 kW an der Wallbox das Optimum darstellt</h2>
           <p>
             Viele Besitzer fragen sich, ob sich die Anschaffung einer 22-kW-Wallbox lohnt. Aus Effizienzgründen ist für über 90 % der Fahrzeuge eine 11-kW-Wallbox die beste Wahl:
           </p>
@@ -283,24 +271,24 @@ export const RatgeberArticlePage: React.FC = () => {
             <li>Bei 11 kW Ladeleistung (3 Phasen à 16 Ampere) arbeitet der fahrzeugeigene Inverter in seinem optimalen Wirkungsgradfenster, während die thermische Belastung von Hausanschluss und Kabel moderat bleibt.</li>
           </ul>
 
-          <h2 className="text-2xl font-bold text-slate-950 mt-8 mb-4">3. Drei Praxis-Tipps zur Minimierung von Ladeverlusten</h2>
+          <h2 className="text-2xl font-bold text-[#171917] mt-8 mb-4">3. Drei Praxis-Tipps zur Minimierung von Ladeverlusten</h2>
           <div className="space-y-3 not-prose my-6">
-            <div className="flex items-start gap-3 p-4 bg-emerald-50/60 rounded-xl border border-emerald-200 text-sm">
-              <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-4 bg-white rounded-xl border border-[#DFE3DC] text-sm">
+              <CheckCircle2 className="w-5 h-5 text-[#2F5E73] shrink-0 mt-0.5" />
               <div>
-                <strong>Niemals dauerhaft über Schuko-Steckdosen laden:</strong> Neben dem Sicherheitsrisiko von Überhitzungen zahlen Sie durch die 15–20 % Ladeverluste bei 5.000 kWh Jahresbedarf über 250 € zusätzlich an ungenutzter Abwärme.
+                <strong className="text-[#171917]">Niemals dauerhaft über Schuko-Steckdosen laden:</strong> Neben dem Sicherheitsrisiko von Überhitzungen zahlen Sie durch die 15–20 % Ladeverluste bei 5.000 kWh Jahresbedarf über 250 € zusätzlich an ungenutzter Abwärme.
               </div>
             </div>
-            <div className="flex items-start gap-3 p-4 bg-emerald-50/60 rounded-xl border border-emerald-200 text-sm">
-              <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-4 bg-white rounded-xl border border-[#DFE3DC] text-sm">
+              <CheckCircle2 className="w-5 h-5 text-[#2F5E73] shrink-0 mt-0.5" />
               <div>
-                <strong>Direkt nach der Fahrt laden:</strong> Wenn die Batterie vom Fahren noch betriebswarm ist (20–30 °C), muss vor dem Laden keine Energie für die Batterieheizung aufgewendet werden.
+                <strong className="text-[#171917]">Direkt nach der Fahrt laden:</strong> Wenn die Batterie vom Fahren noch betriebswarm ist (20–30 °C), muss vor dem Laden keine Energie für die Batterieheizung aufgewendet werden.
               </div>
             </div>
-            <div className="flex items-start gap-3 p-4 bg-emerald-50/60 rounded-xl border border-emerald-200 text-sm">
-              <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-4 bg-white rounded-xl border border-[#DFE3DC] text-sm">
+              <CheckCircle2 className="w-5 h-5 text-[#2F5E73] shrink-0 mt-0.5" />
               <div>
-                <strong>Ladekabel-Querschnitt beachten:</strong> Nutzen Sie für Typ-2-Ladevorgänge hochwertige Kabel mit mindestens 6 mm² Aderquerschnitt, um Spannungsabfälle über 5 bis 7 Meter Leitungslänge zu minimieren.
+                <strong className="text-[#171917]">Ladekabel-Querschnitt beachten:</strong> Nutzen Sie für Typ-2-Ladevorgänge hochwertige Kabel mit mindestens 6 mm² Aderquerschnitt, um Spannungsabfälle über 5 bis 7 Meter Leitungslänge zu minimieren.
               </div>
             </div>
           </div>
@@ -343,31 +331,25 @@ export const RatgeberArticlePage: React.FC = () => {
           { label: 'Ratgeber', href: '/ratgeber' },
           { label: 'Blockiergebühren vermeiden', isCurrent: true }
         ]}
-        eyebrow={
-          <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500">
-            <span className="px-2.5 py-1 rounded bg-amber-100 text-amber-900 font-bold uppercase">Verbraucherrecht</span>
-            <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Stand: Redaktionell geprüft</span>
-            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 6 Minuten Lesezeit</span>
-          </div>
-        }
+        eyebrow="GUIDE · VERBRAUCHERRECHT"
         title="Blockiergebühren an Ladesäulen vermeiden: Karenzzeiten, Kostenfallen ab 240 Min. & CPO-Übersicht"
         description="Wer sein Elektroauto nach Abschluss des Ladevorgangs an der Säule stehen lässt, riskiert empfindliche Standzeitgebühren. Dieser Leitfaden klärt über Karenzzeiten, Minutenpreise und Nachtregelungen bei allen relevanten Betreibern auf."
       />
 
-      <div className="prose prose-slate max-w-none text-slate-800 text-base sm:text-lg leading-relaxed space-y-6">
-        <h2 className="text-2xl font-bold text-slate-950 mt-8 mb-4">1. Was ist die Blockiergebühr und warum gibt es sie?</h2>
+      <div className="prose prose-slate max-w-none text-[#171917] text-base sm:text-lg leading-relaxed space-y-6">
+        <h2 className="text-2xl font-bold text-[#171917] mt-8 mb-4">1. Was ist die Blockiergebühr und warum gibt es sie?</h2>
         <p>
           Die Blockiergebühr (offiziell Standzeitgebühr genannt) ist ein Zeittarif, der nach Überschreitung einer vertraglich vereinbarten Höchststandzeit (Karenzzeit) pro Minute berechnet wird. Ziel ist es, Ladesäulen als Umschlagplätze für Energie und nicht als Dauerparkplätze zu nutzen, damit andere Fahrer Zugang zur Ladeinfrastruktur erhalten.
         </p>
 
-        <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 not-prose my-6">
-          <h3 className="text-sm font-mono uppercase tracking-wider text-slate-600 font-bold mb-3">
+        <div className="p-5 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] not-prose my-6">
+          <h3 className="text-sm font-mono uppercase tracking-wider text-[#6C716B] font-bold mb-3">
             Übersicht der Blockiergebühren bei führenden Anbietern
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-mono">
               <thead>
-                <tr className="border-b border-slate-200 text-slate-400">
+                <tr className="border-b border-[#DFE3DC] text-[#6C716B]">
                   <th className="pb-2">ANBIETER</th>
                   <th className="pb-2">AC-KARENZZEIT</th>
                   <th className="pb-2">DC-KARENZZEIT</th>
@@ -375,7 +357,7 @@ export const RatgeberArticlePage: React.FC = () => {
                   <th className="pb-2">MAX. DECKEL</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-800">
+              <tbody className="divide-y divide-[#DFE3DC] text-[#171917]">
                 <tr>
                   <td className="py-2.5 font-bold">EnBW mobility+</td>
                   <td>240 Minuten</td>

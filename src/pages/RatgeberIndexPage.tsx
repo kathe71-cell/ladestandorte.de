@@ -68,12 +68,11 @@ export const RatgeberIndexPage: React.FC = () => {
       
       <PageHero
         level={2}
-        eyebrow={
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
-            <BookOpen className="w-4 h-4" />
-            <span>Wissen &amp; Verbraucherleitfäden</span>
-          </div>
-        }
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Ratgeber', isCurrent: true }
+        ]}
+        eyebrow="GUIDE · VERBRAUCHER & RECHT"
         title="Ratgeber & Marktanalysen zur E-Mobilität"
         description="Fundierte Fachbeiträge der Redaktion ladestandorte.de zu Ladetarifen, technischen Wirkungsgraden und rechtlichen Vorgaben im deutschen Ladesäulenmarkt."
       />
@@ -83,29 +82,29 @@ export const RatgeberIndexPage: React.FC = () => {
         {articles.map((art) => (
           <article
             key={art.slug}
-            className="p-6 sm:p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group"
+            className="p-6 sm:p-8 bg-white rounded-3xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all flex flex-col justify-between group"
           >
             <div>
-              <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
-                <span className="font-bold text-emerald-700 uppercase">{art.category}</span>
+              <div className="flex items-center justify-between text-xs font-mono text-[#6C716B] mb-3">
+                <span className="font-bold text-[#2F5E73] uppercase">{art.category}</span>
                 <span className="flex items-center gap-1">
                   <Clock className="w-3.5 h-3.5" />
                   <span>{art.readTime}</span>
                 </span>
               </div>
 
-              <h2 className="text-xl font-black text-slate-950 group-hover:text-emerald-700 transition-colors leading-snug mb-3">
+              <h2 className="text-xl font-black text-[#171917] group-hover:text-[#2F5E73] transition-colors leading-snug mb-3">
                 <Link to={`/ratgeber/${art.slug}`}>
                   {art.title}
                 </Link>
               </h2>
 
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#6C716B] leading-relaxed">
                 {art.excerpt}
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
+            <div className="mt-6 pt-4 border-t border-[#DFE3DC] flex items-center justify-between text-xs font-bold text-[#2F5E73]">
               <span>Vollständigen Artikel lesen</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </div>

@@ -71,12 +71,11 @@ export const MotorwaysIndexPage: React.FC = () => {
       
       <PageHero
         level={2}
-        eyebrow={
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-700 font-bold">
-            <Navigation className="w-4 h-4" />
-            <span>Fernstraßen &amp; Ladekorridore</span>
-          </div>
-        }
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Autobahnen', isCurrent: true }
+        ]}
+        eyebrow="CORRIDOR DATA · AUTOBAHNEN"
         title="Schnellladen auf Bundesautobahnen (A1 bis A99)"
         description="Reisen ohne Reichweitenangst: Übersicht aller Raststätten, Autohöfe und High-Power-Charging-Parks (bis zu 400 kW) entlang des deutschen Autobahnnetzes."
       />
@@ -87,39 +86,39 @@ export const MotorwaysIndexPage: React.FC = () => {
           <Link
             key={mw.slug}
             to={`/autobahnen/${mw.slug}`}
-            className="group p-6 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-lg hover:border-amber-300 transition-all flex flex-col justify-between"
+            className="group p-6 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-4">
-                <div className="w-14 h-9 rounded-xl bg-amber-400 text-slate-950 font-black font-mono flex items-center justify-center text-base shadow-xs">
+                <div className="w-14 h-9 rounded-xl bg-[#171917] text-[#C7F000] font-black font-mono flex items-center justify-center text-base shadow-xs">
                   {mw.name}
                 </div>
-                <span className="text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200 px-2.5 py-1 rounded-lg">
+                <span className="text-xs font-mono font-bold bg-[#171917] text-[#C7F000] border border-[#171917] px-2.5 py-1 rounded-lg">
                   bis {mw.maxKw} kW HPC
                 </span>
               </div>
 
-              <h2 className="text-lg font-bold text-slate-950 group-hover:text-amber-700 transition-colors mb-2 line-clamp-2 leading-snug">
+              <h2 className="text-lg font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors mb-2 line-clamp-2 leading-snug">
                 {mw.route}
               </h2>
 
-              <p className="text-xs text-slate-600 leading-relaxed line-clamp-2 mb-4">
+              <p className="text-xs text-[#6C716B] leading-relaxed line-clamp-2 mb-4">
                 {mw.description}
               </p>
 
-              <div className="grid grid-cols-2 gap-2 text-xs font-mono bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div className="grid grid-cols-2 gap-2 text-xs font-mono bg-[#F7F7F2] p-2.5 rounded-xl border border-[#DFE3DC]">
                 <div>
-                  <span className="text-slate-400 block text-[10px]">STRECKENLÄNGE</span>
-                  <strong className="text-slate-900">{mw.lengthKm} km</strong>
+                  <span className="text-[#6C716B] block text-[10px]">STRECKENLÄNGE</span>
+                  <strong className="text-[#171917]">{mw.lengthKm} km</strong>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px]">MAX. LEISTUNG</span>
-                  <strong className="text-amber-700">{mw.maxKw} kW HPC</strong>
+                  <span className="text-[#6C716B] block text-[10px]">MAX. LEISTUNG</span>
+                  <strong className="text-[#2F5E73]">{mw.maxKw} kW HPC</strong>
                 </div>
               </div>
             </div>
 
-            <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-700">
+            <div className="mt-5 pt-3 border-t border-[#DFE3DC] flex items-center justify-between text-xs font-bold text-[#2F5E73]">
               <span>Ladekorridor analysieren</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </div>

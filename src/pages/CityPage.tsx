@@ -117,108 +117,108 @@ export const CityPage: React.FC = () => {
           { label: city.name, isCurrent: true }
         ]}
         eyebrow={
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-50 text-emerald-800 text-xs font-mono font-bold">
-            <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-            <span>BUNDESLAND: {city.bundesland.toUpperCase()} · BNETZA &amp; DESTATIS AUSWERTUNG</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
+            <span>CITY DATA · {city.bundesland.toUpperCase()}</span>
           </div>
         }
-        title={`Ladeinfrastruktur & Schnellladeparks in ${city.name}`}
+        title={`Ladeinfrastruktur ${city.name}`}
         description={city.description}
       />
 
-      {/* City Primary KPI Bento Grid */}
+      {/* City Primary KPI Strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Ladepunkte gesamt</span>
-          <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte gesamt</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {city.ladepunkteGesamt.toLocaleString('de-DE')}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block font-mono">
+          <span className="text-[11px] text-[#6C716B] mt-1 block font-mono">
             {city.bnetza.ladestationen.toLocaleString('de-DE')} Stationen
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Ladepunkte ≥150 kW</span>
-          <span className="text-2xl sm:text-4xl font-black text-emerald-700 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte ≥150 kW</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {city.hpcLadepunkte.toLocaleString('de-DE')}
           </span>
-          <span className="text-[11px] text-emerald-800 font-semibold mt-1 block">
+          <span className="text-[11px] text-[#2F5E73] font-mono font-semibold mt-1 block">
             {((city.hpcLadepunkte / city.ladepunkteGesamt) * 100).toFixed(1)} % HPC-Klasse
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">LP / 1.000 Einwohner</span>
-          <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">LP / 1.000 Einwohner</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {city.pointsPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block font-mono">
+          <span className="text-[11px] text-[#6C716B] mt-1 block font-mono">
             {city.einwohner.toLocaleString('de-DE')} Einw.
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">≥150 kW / 1.000 Einw.</span>
-          <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">≥150 kW / 1.000 Einw.</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {city.hpcPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">
+          <span className="text-[11px] text-[#6C716B] mt-1 block">
             HPC-Dichte
           </span>
         </div>
       </div>
 
       {/* Leistungsklassen Aufteilung */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+      <div className="bg-white rounded-xl p-6 border border-[#DFE3DC] shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#DFE3DC] pb-3">
           <div>
-            <h3 className="font-bold text-slate-950 text-base">
+            <h3 className="font-bold text-[#171917] text-base">
               Verteilung nach Leistungsklassen in {city.name}
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-[#6C716B]">
               Dokumentierte Nennleistung der Ladepunkte im BNetzA-Registerbestand (keine Inferenz der Stromart).
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <Link to="/hpc-city-monitor" className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 underline flex items-center gap-1">
+            <Link to="/hpc-city-monitor" className="text-xs font-semibold text-[#2F5E73] hover:text-[#171917] underline flex items-center gap-1">
               <Activity className="w-3 h-3" />
               <span>Im HPC City Monitor vergleichen</span>
             </Link>
-            <span className="text-slate-300">·</span>
-            <Link to="/methodik" className="text-xs font-semibold text-slate-500 hover:text-slate-800 underline">
+            <span className="text-[#DFE3DC]">·</span>
+            <Link to="/methodik" className="text-xs font-semibold text-[#6C716B] hover:text-[#171917] underline">
               Methodik
             </Link>
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-            <span className="text-xs text-slate-500 block font-sans">bis 22 kW</span>
-            <span className="text-xl sm:text-2xl font-black text-slate-950 block mt-1">
+          <div className="p-4 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC]">
+            <span className="text-xs text-[#6C716B] block font-sans">bis 22 kW</span>
+            <span className="text-xl sm:text-2xl font-black text-[#171917] block mt-1 tabular-nums">
               {city.powerClasses.upTo22Kw.toLocaleString('de-DE')}
             </span>
-            <span className="text-[11px] text-slate-500 block mt-0.5">
+            <span className="text-[11px] text-[#6C716B] block mt-0.5">
               {((city.powerClasses.upTo22Kw / city.ladepunkteGesamt) * 100).toFixed(1)} % aller Ladepunkte
             </span>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-            <span className="text-xs text-slate-500 block font-sans">&gt;22 bis &lt;150 kW</span>
-            <span className="text-xl sm:text-2xl font-black text-slate-950 block mt-1">
+          <div className="p-4 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC]">
+            <span className="text-xs text-[#6C716B] block font-sans">&gt;22 bis &lt;150 kW</span>
+            <span className="text-xl sm:text-2xl font-black text-[#171917] block mt-1 tabular-nums">
               {city.powerClasses.between22And150Kw.toLocaleString('de-DE')}
             </span>
-            <span className="text-[11px] text-slate-500 block mt-0.5">
+            <span className="text-[11px] text-[#6C716B] block mt-0.5">
               {((city.powerClasses.between22And150Kw / city.ladepunkteGesamt) * 100).toFixed(1)} % aller Ladepunkte
             </span>
           </div>
 
-          <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-200">
-            <span className="text-xs text-emerald-900 block font-sans font-semibold">≥150 kW (HPC-Klasse)</span>
-            <span className="text-xl sm:text-2xl font-black text-emerald-950 block mt-1">
+          <div className="p-4 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC]">
+            <span className="text-xs text-[#171917] block font-sans font-bold">≥150 kW (HPC-Klasse)</span>
+            <span className="text-xl sm:text-2xl font-black text-[#171917] block mt-1 tabular-nums">
               {city.powerClasses.hpc150PlusKw.toLocaleString('de-DE')}
             </span>
-            <span className="text-[11px] text-emerald-800 block mt-0.5">
+            <span className="text-[11px] text-[#2F5E73] font-mono font-semibold block mt-0.5">
               {((city.powerClasses.hpc150PlusKw / city.ladepunkteGesamt) * 100).toFixed(1)} % aller Ladepunkte
             </span>
           </div>
@@ -226,25 +226,25 @@ export const CityPage: React.FC = () => {
       </div>
 
       {/* Provenance Box directly on page */}
-      <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-800 font-bold">
+      <div className="bg-white rounded-xl p-6 border border-[#DFE3DC] space-y-4">
+        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#2F5E73] font-bold">
           <Database className="w-4 h-4" />
           <span>Datengrundlage &amp; Transparenz</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs leading-relaxed">
           <div className="space-y-1">
-            <div className="font-bold text-slate-950 uppercase font-mono">Ladeinfrastruktur</div>
-            <div className="text-slate-700">Bundesnetzagentur (Ladesäulenregister)</div>
-            <div className="text-slate-500">API-Snapshot: {bnetzaSnapshotDate}</div>
-            <div className="text-slate-500">Lizenz: CC BY 4.0 (Namensnennung: Bundesnetzagentur.de)</div>
+            <div className="font-bold text-[#171917] uppercase font-mono">Ladeinfrastruktur</div>
+            <div className="text-[#6C716B]">Bundesnetzagentur (Ladesäulenregister)</div>
+            <div className="text-[#6C716B]">API-Snapshot: {bnetzaSnapshotDate}</div>
+            <div className="text-[#6C716B]">Lizenz: CC BY 4.0 (Namensnennung: Bundesnetzagentur.de)</div>
           </div>
 
           <div className="space-y-1">
-            <div className="font-bold text-slate-950 uppercase font-mono">Bevölkerung</div>
-            <div className="text-slate-700">Statistisches Bundesamt (Destatis)</div>
-            <div className="text-slate-500">Stand: {destatisDate} (Zensus 2022 Fortschreibung)</div>
-            <div className="text-slate-500">Lizenz: dl-de/by-2-0 (GV-ISys)</div>
+            <div className="font-bold text-[#171917] uppercase font-mono">Bevölkerung</div>
+            <div className="text-[#6C716B]">Statistisches Bundesamt (Destatis)</div>
+            <div className="text-[#6C716B]">Stand: {destatisDate} (Zensus 2022 Fortschreibung)</div>
+            <div className="text-[#6C716B]">Lizenz: dl-de/by-2-0 (GV-ISys)</div>
           </div>
 
           <div className="space-y-1">
