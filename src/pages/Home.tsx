@@ -368,9 +368,9 @@ export const Home: React.FC = () => {
                     <span>Ladepunkte (≥150 kW):</span>
                     <strong className="text-[#171917] font-mono tabular-nums">{city.hpcLadepunkte.toLocaleString('de-DE')}</strong>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Häufigste Betreiber:</span>
-                    <span className="text-[#171917] truncate max-w-[140px]">{city.topBetreiber[0]}</span>
+                  <div className="flex justify-between items-center gap-2">
+                    <span className="shrink-0">Häufigste Betreiber:</span>
+                    <span className="text-[#171917] font-semibold truncate text-right min-w-0">{city.topBetreiber[0]}</span>
                   </div>
                 </div>
               </div>

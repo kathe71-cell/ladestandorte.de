@@ -149,9 +149,9 @@ export const StationDetailModal: React.FC<Props> = ({ station, onClose }) => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               {station.exitDistance && (
-                <div className="flex items-center gap-2 text-slate-800">
-                  <span className="text-base">📍</span>
-                  <span>Autobahnanbindung: <strong className="text-slate-900">
+                <div className="flex items-start gap-2 text-slate-800 min-w-0">
+                  <span className="text-base shrink-0">📍</span>
+                  <span className="min-w-0 break-words">Autobahnanbindung: <strong className="text-slate-900 font-bold">
                     {station.exitDistance}
                   </strong></span>
                 </div>

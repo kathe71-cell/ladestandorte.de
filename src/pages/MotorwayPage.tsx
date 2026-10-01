@@ -319,17 +319,17 @@ export const MotorwayPage: React.FC = () => {
               <Link
                 key={mw.slug}
                 to={`/autobahnen/${mw.slug}`}
-                className="p-3 bg-white rounded-xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all group flex items-center justify-between"
+                className="p-3 bg-white rounded-xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all group flex items-center justify-between min-w-0"
               >
-                <div className="flex items-center gap-2">
-                  <span className="w-10 h-7 rounded bg-[#171917] text-[#C7F000] font-black font-mono flex items-center justify-center text-xs">
+                <div className="flex items-center gap-2 min-w-0 flex-1">
+                  <span className="w-10 h-7 rounded bg-[#171917] text-[#C7F000] font-black font-mono flex items-center justify-center text-xs shrink-0">
                     {mw.name}
                   </span>
-                  <span className="text-xs font-medium text-[#171917] truncate max-w-[120px]">
+                  <span className="text-xs font-medium text-[#171917] truncate min-w-0">
                     {mw.route}
                   </span>
                 </div>
-                <ArrowRight className="w-3.5 h-3.5 text-[#6C716B] group-hover:text-[#2F5E73] shrink-0" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#6C716B] group-hover:text-[#2F5E73] shrink-0 ml-1" />
               </Link>
             ))}
           </div>

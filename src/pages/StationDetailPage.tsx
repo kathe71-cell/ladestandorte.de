@@ -212,7 +212,7 @@ export const StationDetailPage: React.FC = () => {
             <>
               <Link 
                 to={`/betreiber/${station.operatorSlug}`} 
-                className="text-base font-extrabold text-slate-900 hover:underline mt-2 block truncate"
+                className="text-base font-extrabold text-slate-900 hover:underline mt-2 block break-words"
                 title={station.operator}
               >
                 {station.operator}
@@ -221,7 +221,7 @@ export const StationDetailPage: React.FC = () => {
             </>
           ) : (
             <>
-              <span className="text-base font-extrabold text-slate-900 mt-2 block truncate" title={station.operator}>
+              <span className="text-base font-extrabold text-slate-900 mt-2 block break-words" title={station.operator}>
                 {station.operator}
               </span>
               <span className="text-[11px] text-slate-500 font-mono mt-1 block">Betreiber / Konsortium</span>
@@ -311,46 +311,46 @@ export const StationDetailPage: React.FC = () => {
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-center justify-between">
-                <div>
+              <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-start justify-between gap-2 min-w-0">
+                <div className="min-w-0 flex-1">
                   <span className="text-[#6C716B] block text-[11px] font-mono">Lage / Anbindung</span>
-                  <strong className="text-[#171917] truncate block mt-0.5">
+                  <strong className="text-[#171917] block mt-0.5 break-words">
                     {station.motorway ? `Fernverkehrskorridor BAB ${station.motorway.toUpperCase()}` : `Stadtgebiet ${station.city}`}
                   </strong>
                 </div>
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#171917]">LOKATION</span>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#171917] shrink-0">LOKATION</span>
               </div>
 
               {station.exitDistance && (
-                <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-center justify-between">
-                  <div>
+                <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-start justify-between gap-2 min-w-0">
+                  <div className="min-w-0 flex-1">
                     <span className="text-[#6C716B] block text-[11px] font-mono">Autobahnanbindung</span>
-                    <strong className="text-[#171917] truncate block mt-0.5">
+                    <strong className="text-[#171917] block mt-0.5 break-words leading-snug">
                       {station.exitDistance}
                     </strong>
                   </div>
-                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#171917]">TRASSE</span>
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#171917] shrink-0">TRASSE</span>
                 </div>
               )}
 
-              <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-center justify-between">
-                <div>
+              <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-start justify-between gap-2 min-w-0">
+                <div className="min-w-0 flex-1">
                   <span className="text-[#6C716B] block text-[11px] font-mono">Netzkategorie</span>
-                  <strong className="text-[#2F5E73] block mt-0.5">
+                  <strong className="text-[#2F5E73] block mt-0.5 break-words">
                     {station.isHpc ? 'High-Power-Charging (HPC)' : 'Schnelllader'}
                   </strong>
                 </div>
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#2F5E73]">NETZ</span>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#2F5E73] shrink-0">NETZ</span>
               </div>
 
-              <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-center justify-between">
-                <div>
+              <div className="p-3.5 bg-[#F7F7F2] rounded-xl border border-[#DFE3DC] flex items-start justify-between gap-2 min-w-0">
+                <div className="min-w-0 flex-1">
                   <span className="text-[#6C716B] block text-[11px] font-mono">Datenquelle</span>
-                  <strong className="text-[#171917] text-xs block mt-0.5">
+                  <strong className="text-[#171917] text-xs block mt-0.5 break-words">
                     BNetzA-Ladesäulenregister (Open Data)
                   </strong>
                 </div>
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#171917]">QUELLE</span>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#DFE3DC] text-[#171917] shrink-0">QUELLE</span>
               </div>
             </div>
           </div>
