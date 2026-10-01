@@ -285,9 +285,21 @@ export const MethodikPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-xs text-slate-600 leading-relaxed pt-2 border-t border-slate-100 space-y-1">
+          <div className="text-xs text-slate-600 leading-relaxed pt-2 border-t border-slate-100 space-y-2">
             <p>
               <strong>Hinweis zum Datenbestand:</strong> Aktuell dokumentiert ladestandorte.de 8 Standorte mit E-Lkw-Infrastruktur. Dies stellt die der Redaktion bekannten Pilot- und Förderstandorte dar und keine behördliche Vollerhebung (die Bundesnetzagentur differenziert MCS-Stecker im Register derzeit noch nicht gesondert).
+            </p>
+            <p>
+              <strong>Status-Trennung (locationStatus ≠ mcsStatus):</strong> Ein Ladepark kann als Standort für schwere Nutzfahrzeuge mit 400 kW CCS bereits vollständig geöffnet sein (<code>locationStatus: operational</code>), während die Megawatt-Kupplung erst für Phase 2 angekündigt oder in Vorbereitung ist (<code>mcsStatus: planned</code>). Beide Statuswerte werden strikt getrennt geführt.
+            </p>
+            <p>
+              <strong>Leistungsstatistik:</strong> Die ausgewiesene MCS-Leistungsstatistik (Bandbreite, Durchschnitt, Median) umfasst ausschließlich Standorte mit operativ freigegebenem MCS (<code>mcsStatus: operational</code>). Unbekannte oder noch unbestätigte MCS-Leistungen werden nicht als 0 kW gewertet, sondern aus der Berechnung ausgeschlossen. Geplante Leistungen fließen nicht in die operative Statistik ein.
+            </p>
+            <p>
+              <strong>Betreiberverteilung &amp; Denominator:</strong> Häufigkeiten von Betreibern beziehen sich rein auf den von ladestandorte.de dokumentierten Datensatz und dürfen nicht als bundesweiter Gesamtmarktanteil zitiert werden.
+            </p>
+            <p>
+              <strong>Keine Aggregation uneinheitlicher Steckerfelder:</strong> Da Betreiberangaben zwischen Ladebuchten, Durchfahrtsspuren und einzelnen Steckern variieren, aggregiert ladestandorte.de keine uneinheitlichen Stecker- oder Buchtenzahlen.
             </p>
             <p>
               <strong>Redaktionelles Prüfdatum:</strong> <code>lastVerifiedAt</code> bezeichnet das Datum der letzten dokumentierten redaktionellen Quellenprüfung durch ladestandorte.de.
