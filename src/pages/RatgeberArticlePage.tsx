@@ -5,6 +5,7 @@ import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 const getArticleSchema = (headline: string, description: string, slug: string, faqs?: { q: string; a: string }[]) => ({
   "@context": "https://schema.org",
@@ -90,26 +91,23 @@ export const RatgeberArticlePage: React.FC = () => {
             ladekartenFaqs
           )}
         />
-        <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
-          <Link to="/ratgeber" className="hover:text-emerald-700 flex items-center gap-1">
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Zurück zu allen Ratgebern</span>
-          </Link>
-        </div>
-
-        <header className="space-y-4 border-b border-slate-200 pb-8">
-          <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500">
-            <span className="px-2.5 py-1 rounded bg-emerald-100 text-emerald-900 font-bold uppercase">Marktanalyse</span>
-            <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Stand: Redaktionell geprüft</span>
-            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 7 Minuten Lesezeit</span>
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-            Ladekarten-Dschungel: Roaming-Preise, monatliche Grundgebühren &amp; wer wirklich spart
-          </h1>
-          <p className="text-lg text-slate-600 leading-relaxed font-serif">
-            Mit der rasanten Expansion von Schnellladeparks ist auch der Tarif- und Roaming-Markt komplexer geworden. Dieser Leitfaden entschlüsselt das Zusammenspiel von CPOs, EMPs und zeigt auf, welche Tarifkombination für Ihr individuelles Fahrprofil die günstigste ist.
-          </p>
-        </header>
+        <PageHero
+          level={3}
+          breadcrumbs={[
+            { label: 'Startseite', href: '/' },
+            { label: 'Ratgeber', href: '/ratgeber' },
+            { label: 'Ladekarten-Dschungel', isCurrent: true }
+          ]}
+          eyebrow={
+            <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500">
+              <span className="px-2.5 py-1 rounded bg-emerald-100 text-emerald-900 font-bold uppercase">Marktanalyse</span>
+              <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Stand: Redaktionell geprüft</span>
+              <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 7 Minuten Lesezeit</span>
+            </div>
+          }
+          title="Ladekarten-Dschungel: Roaming-Preise, monatliche Grundgebühren & wer wirklich spart"
+          description="Mit der rasanten Expansion von Schnellladeparks ist auch der Tarif- und Roaming-Markt komplexer geworden. Dieser Leitfaden entschlüsselt das Zusammenspiel von CPOs, EMPs und zeigt auf, welche Tarifkombination für Ihr individuelles Fahrprofil die günstigste ist."
+        />
 
         <div className="prose prose-slate max-w-none text-slate-800 text-base sm:text-lg leading-relaxed space-y-6">
           <h2 className="text-2xl font-bold text-slate-950 mt-8 mb-4">1. Die Trennung von CPO und EMP verstehen</h2>
@@ -224,26 +222,23 @@ export const RatgeberArticlePage: React.FC = () => {
             "ac-vs-dc-ladeverluste"
           )}
         />
-        <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
-          <Link to="/ratgeber" className="hover:text-emerald-700 flex items-center gap-1">
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Zurück zu allen Ratgebern</span>
-          </Link>
-        </div>
-
-        <header className="space-y-4 border-b border-slate-200 pb-8">
-          <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500">
-            <span className="px-2.5 py-1 rounded bg-blue-100 text-blue-900 font-bold uppercase">Elektrotechnik</span>
-            <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Stand: Redaktionell geprüft</span>
-            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 9 Minuten Lesezeit</span>
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-            AC vs. DC Ladeverluste im Praxis-Vergleich: Technische Wirkungsgrade &amp; Sparpotenziale
-          </h1>
-          <p className="text-lg text-slate-600 leading-relaxed font-serif">
-            Nicht jede Kilowattstunde, die der Stromzähler misst, kommt auch in den Batteriezellen an. In diesem Leitfaden analysieren wir die physikalischen Ursachen von Ladeverlusten beim AC- und DC-Laden anhand von ADAC-Messungen und Laborwerten.
-          </p>
-        </header>
+        <PageHero
+          level={3}
+          breadcrumbs={[
+            { label: 'Startseite', href: '/' },
+            { label: 'Ratgeber', href: '/ratgeber' },
+            { label: 'AC vs. DC Ladeverluste', isCurrent: true }
+          ]}
+          eyebrow={
+            <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500">
+              <span className="px-2.5 py-1 rounded bg-blue-100 text-blue-900 font-bold uppercase">Elektrotechnik</span>
+              <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Stand: Redaktionell geprüft</span>
+              <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 9 Minuten Lesezeit</span>
+            </div>
+          }
+          title="AC vs. DC Ladeverluste im Praxis-Vergleich: Technische Wirkungsgrade & Sparpotenziale"
+          description="Nicht jede Kilowattstunde, die der Stromzähler misst, kommt auch in den Batteriezellen an. In diesem Leitfaden analysieren wir die physikalischen Ursachen von Ladeverlusten beim AC- und DC-Laden anhand von ADAC-Messungen und Laborwerten."
+        />
 
         <div className="prose prose-slate max-w-none text-slate-800 text-base sm:text-lg leading-relaxed space-y-6">
           <h2 className="text-2xl font-bold text-slate-950 mt-8 mb-4">1. Physikalische Ursachen: Wo bleibt der Strom?</h2>
@@ -341,26 +336,23 @@ export const RatgeberArticlePage: React.FC = () => {
           "blockiergebuehren-vermeiden"
         )}
       />
-      <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
-        <Link to="/ratgeber" className="hover:text-emerald-700 flex items-center gap-1">
-          <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Zurück zu allen Ratgebern</span>
-        </Link>
-      </div>
-
-      <header className="space-y-4 border-b border-slate-200 pb-8">
-        <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500">
-          <span className="px-2.5 py-1 rounded bg-amber-100 text-amber-900 font-bold uppercase">Verbraucherrecht</span>
-          <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Stand: Redaktionell geprüft</span>
-          <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 6 Minuten Lesezeit</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-          Blockiergebühren an Ladesäulen vermeiden: Karenzzeiten, Kostenfallen ab 240 Min. &amp; CPO-Übersicht
-        </h1>
-        <p className="text-lg text-slate-600 leading-relaxed font-serif">
-          Wer sein Elektroauto nach Abschluss des Ladevorgangs an der Säule stehen lässt, riskiert empfindliche Standzeitgebühren. Dieser Leitfaden klärt über Karenzzeiten, Minutenpreise und Nachtregelungen bei allen relevanten Betreibern auf.
-        </p>
-      </header>
+      <PageHero
+        level={3}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Ratgeber', href: '/ratgeber' },
+          { label: 'Blockiergebühren vermeiden', isCurrent: true }
+        ]}
+        eyebrow={
+          <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500">
+            <span className="px-2.5 py-1 rounded bg-amber-100 text-amber-900 font-bold uppercase">Verbraucherrecht</span>
+            <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Stand: Redaktionell geprüft</span>
+            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 6 Minuten Lesezeit</span>
+          </div>
+        }
+        title="Blockiergebühren an Ladesäulen vermeiden: Karenzzeiten, Kostenfallen ab 240 Min. & CPO-Übersicht"
+        description="Wer sein Elektroauto nach Abschluss des Ladevorgangs an der Säule stehen lässt, riskiert empfindliche Standzeitgebühren. Dieser Leitfaden klärt über Karenzzeiten, Minutenpreise und Nachtregelungen bei allen relevanten Betreibern auf."
+      />
 
       <div className="prose prose-slate max-w-none text-slate-800 text-base sm:text-lg leading-relaxed space-y-6">
         <h2 className="text-2xl font-bold text-slate-950 mt-8 mb-4">1. Was ist die Blockiergebühr und warum gibt es sie?</h2>

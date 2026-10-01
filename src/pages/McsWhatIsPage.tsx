@@ -12,41 +12,30 @@ import {
   Thermometer,
   Gauge
 } from 'lucide-react';
+import { PageHero } from '../components/PageHero';
 
 export const McsWhatIsPage: React.FC = () => {
   return (
-    <div className="bg-white min-h-screen">
-      {/* Breadcrumb */}
-      <nav className="border-b border-slate-200 bg-slate-50 py-3" aria-label="Breadcrumb">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-slate-500">
-          <Link to="/" className="hover:text-emerald-700 transition-colors">Startseite</Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <Link to="/mcs" className="hover:text-emerald-700 transition-colors">MCS &amp; E-Lkw</Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-semibold">Was ist MCS?</span>
-        </div>
-      </nav>
-
-      {/* Header */}
-      <header className="bg-slate-50 border-b border-slate-200 py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
+      <PageHero
+        level={3}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'MCS & E-Lkw', href: '/mcs' },
+          { label: 'Was ist MCS?', isCurrent: true }
+        ]}
+        eyebrow={
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-mono font-bold">
             <Cpu className="w-4 h-4 text-emerald-800" />
             <span>Technologie-Standard · CharIN &amp; ISO 15118-20</span>
           </div>
-
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-            Was ist das Megawatt Charging System (MCS)?
-          </h1>
-
-          <p className="text-lg text-slate-700 leading-relaxed font-normal">
-            Das Megawatt Charging System (MCS) ist der weltweite Standard von CharIN für schwere Nutzfahrzeuge, Fernverkehr-Lkw, Busse, Fähren und Arbeitsmaschinen. CharIN nennt für MCS bis zu 1.250 V DC und 3.000 A DC; daraus ergibt sich rechnerisch eine theoretische Höchstleistung von bis zu 3,75 MW (3.750 kW). Erste Pilot- und Serien-Stationen in Deutschland stellen heute praxisgerechte 1.000 bis 1.200 kW bereit.
-          </p>
-        </div>
-      </header>
+        }
+        title="Was ist das Megawatt Charging System (MCS)?"
+        description="Das Megawatt Charging System (MCS) ist der weltweite Standard von CharIN für schwere Nutzfahrzeuge, Fernverkehr-Lkw, Busse, Fähren und Arbeitsmaschinen. CharIN nennt für MCS bis zu 1.250 V DC und 3.000 A DC; daraus ergibt sich rechnerisch eine theoretische Höchstleistung von bis zu 3,75 MW (3.750 kW). Erste Pilot- und Serien-Stationen in Deutschland stellen heute praxisgerechte 1.000 bis 1.200 kW bereit."
+      />
 
       {/* Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+      <div className="space-y-12">
         
         {/* Key Specs Matrix */}
         <section className="space-y-4">
@@ -157,7 +146,7 @@ export const McsWhatIsPage: React.FC = () => {
           </Link>
         </section>
 
-      </main>
+      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { MOTORWAYS_DATA } from '../data/motorways';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const MotorwaysIndexPage: React.FC = () => {
   const schema = {
@@ -68,19 +69,17 @@ export const MotorwaysIndexPage: React.FC = () => {
         schema={schema}
       />
       
-      {/* Header */}
-      <div className="max-w-3xl space-y-3">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-700 font-bold">
-          <Navigation className="w-4 h-4" />
-          <span>Fernstraßen &amp; Ladekorridore</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          Schnellladen auf Bundesautobahnen (A1 bis A99)
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Reisen ohne Reichweitenangst: Übersicht aller Raststätten, Autohöfe und High-Power-Charging-Parks (bis zu 400 kW) entlang des deutschen Autobahnnetzes.
-        </p>
-      </div>
+      <PageHero
+        level={2}
+        eyebrow={
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-700 font-bold">
+            <Navigation className="w-4 h-4" />
+            <span>Fernstraßen &amp; Ladekorridore</span>
+          </div>
+        }
+        title="Schnellladen auf Bundesautobahnen (A1 bis A99)"
+        description="Reisen ohne Reichweitenangst: Übersicht aller Raststätten, Autohöfe und High-Power-Charging-Parks (bis zu 400 kW) entlang des deutschen Autobahnnetzes."
+      />
 
       {/* Grid of Motorways */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

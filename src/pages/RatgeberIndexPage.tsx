@@ -4,6 +4,7 @@ import { BookOpen, ArrowRight, Clock } from 'lucide-react';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const RatgeberIndexPage: React.FC = () => {
   const schema = {
@@ -65,19 +66,17 @@ export const RatgeberIndexPage: React.FC = () => {
         schema={schema}
       />
       
-      {/* Header */}
-      <div className="max-w-3xl space-y-3">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
-          <BookOpen className="w-4 h-4" />
-          <span>Wissen &amp; Verbraucherleitfäden</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          Ratgeber &amp; Marktanalysen zur E-Mobilität
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Fundierte Fachbeiträge der Redaktion ladestandorte.de zu Ladetarifen, technischen Wirkungsgraden und rechtlichen Vorgaben im deutschen Ladesäulenmarkt.
-        </p>
-      </div>
+      <PageHero
+        level={2}
+        eyebrow={
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
+            <BookOpen className="w-4 h-4" />
+            <span>Wissen &amp; Verbraucherleitfäden</span>
+          </div>
+        }
+        title="Ratgeber & Marktanalysen zur E-Mobilität"
+        description="Fundierte Fachbeiträge der Redaktion ladestandorte.de zu Ladetarifen, technischen Wirkungsgraden und rechtlichen Vorgaben im deutschen Ladesäulenmarkt."
+      />
 
       {/* Articles Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -6,6 +6,7 @@ import { STATIONS_DATA } from '../data/stations';
 import { StationDetailModal } from '../components/StationDetailModal';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -34,18 +35,13 @@ export const SearchPage: React.FC = () => {
         canonicalPath="/suche"
       />
       
-      {/* Search Header */}
-      <div className="max-w-3xl space-y-3">
-        <span className="text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold block">
-          High-Speed Datenfilter
-        </span>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          Ladesäulen Instant-Finder
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Geben Sie eine Postleitzahl, eine Stadt, einen Betreiber (z. B. EnBW, IONITY, Tesla) oder eine Autobahnnummer (z. B. A3, A7) ein. Ergebnisse erscheinen verzögerungsfrei in unter 5 Millisekunden.
-        </p>
-      </div>
+      <PageHero
+        level={2}
+        eyebrow="High-Speed Datenfilter"
+        eyebrowVariant="emerald"
+        title="Ladesäulen Instant-Finder"
+        description="Geben Sie eine Postleitzahl, eine Stadt, einen Betreiber (z. B. EnBW, IONITY, Tesla) oder eine Autobahnnummer (z. B. A3, A7) ein. Ergebnisse erscheinen verzögerungsfrei in unter 5 Millisekunden."
+      />
 
       {/* Instant Search Bar */}
       <div className="max-w-4xl">

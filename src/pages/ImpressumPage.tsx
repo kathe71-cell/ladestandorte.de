@@ -2,6 +2,7 @@ import React from 'react';
 import { ShieldCheck, Mail, Phone } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { AmazonPartnerSentence } from '@plattform/core';
+import { PageHero } from '../components/PageHero';
 
 export const ImpressumPage: React.FC = () => {
   return (
@@ -12,17 +13,17 @@ export const ImpressumPage: React.FC = () => {
         canonicalPath="/impressum"
       />
 
-      <header className="space-y-3 border-b border-slate-200 pb-6">
-        <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-bold block">
-          Rechtliche Pflichtangaben
-        </span>
-        <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight">
-          Impressum (§ 5 DDG)
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base">
-          Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG) und § 18 Abs. 2 Medienstaatsvertrag (MStV).
-        </p>
-      </header>
+      <PageHero
+        level={2}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Impressum', isCurrent: true }
+        ]}
+        eyebrow="Rechtliche Pflichtangaben"
+        eyebrowVariant="slate"
+        title="Impressum (§ 5 DDG)"
+        description="Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG) und § 18 Abs. 2 Medienstaatsvertrag (MStV)."
+      />
 
       {/* Betreiberdaten */}
       <div className="p-6 sm:p-8 bg-white rounded-3xl border border-slate-200 shadow-sm space-y-6">

@@ -10,41 +10,30 @@ import {
   ShieldCheck,
   Scale
 } from 'lucide-react';
+import { PageHero } from '../components/PageHero';
 
 export const McsVsCcsPage: React.FC = () => {
   return (
-    <div className="bg-white min-h-screen">
-      {/* Breadcrumb */}
-      <nav className="border-b border-slate-200 bg-slate-50 py-3" aria-label="Breadcrumb">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-slate-500">
-          <Link to="/" className="hover:text-emerald-700 transition-colors">Startseite</Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <Link to="/mcs" className="hover:text-emerald-700 transition-colors">MCS &amp; E-Lkw</Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-semibold">MCS vs. CCS</span>
-        </div>
-      </nav>
-
-      {/* Header */}
-      <header className="bg-slate-50 border-b border-slate-200 py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
+      <PageHero
+        level={3}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'MCS & E-Lkw', href: '/mcs' },
+          { label: 'MCS vs. CCS', isCurrent: true }
+        ]}
+        eyebrow={
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-mono font-bold">
             <Scale className="w-4 h-4 text-emerald-800" />
             <span>Technologie-Vergleich</span>
           </div>
-
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-            MCS vs. CCS: Unterschiede, Leistung &amp; Einsatzzwecke
-          </h1>
-
-          <p className="text-lg text-slate-700 leading-relaxed font-normal">
-            Combined Charging System (CCS Combo 2) und Megawatt Charging System (MCS) im direkten Vergleich. Warum beide Systeme in der E-Mobilität koexistieren und welche Ladegeschwindigkeiten in der Praxis erreicht werden.
-          </p>
-        </div>
-      </header>
+        }
+        title="MCS vs. CCS: Unterschiede, Leistung & Einsatzzwecke"
+        description="Combined Charging System (CCS Combo 2) und Megawatt Charging System (MCS) im direkten Vergleich. Warum beide Systeme in der E-Mobilität koexistieren und welche Ladegeschwindigkeiten in der Praxis erreicht werden."
+      />
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+      <div className="space-y-12">
         
         {/* Vergleichstabelle */}
         <section className="space-y-4">
@@ -171,7 +160,7 @@ export const McsVsCcsPage: React.FC = () => {
           </Link>
         </section>
 
-      </main>
+      </div>
     </div>
   );
 };

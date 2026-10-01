@@ -12,6 +12,7 @@ import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const StationDetailPage: React.FC = () => {
   const { citySlug, stationSlug } = useParams<{ citySlug: string; stationSlug: string }>();
@@ -108,97 +109,83 @@ export const StationDetailPage: React.FC = () => {
         noIndex={!isIndexable}
       />
 
-      {/* Breadcrumb Navigation */}
-      <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-500">
-        <Link to="/" className="hover:text-emerald-700">Startseite</Link>
-        <span>/</span>
-        <Link to="/staedte" className="hover:text-emerald-700">Ladeorte</Link>
-        <span>/</span>
-        {hasCityPage ? (
-          <Link to={`/staedte/${station.citySlug}`} className="hover:text-emerald-700">{station.city}</Link>
-        ) : (
-          <span className="text-slate-600">{station.city}</span>
-        )}
-        <span>/</span>
-        <span className="text-slate-900 font-bold truncate max-w-[240px] sm:max-w-md">{station.name}</span>
-      </div>
-
-      {/* Hero Header */}
-      <div className="space-y-4 max-w-4xl">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-emerald-100 text-emerald-900 border border-emerald-200">
-            {station.kwMax} kW HPC-Spitzenleistung
-          </span>
-          <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-slate-100 text-slate-800 border border-slate-200">
-            {station.pointsCount} Ladepunkte
-          </span>
-          {station.project && (
-            <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-blue-50 text-blue-900 border border-blue-200">
-              Projekt: {station.project}
+      <PageHero
+        level={3}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Ladeorte', href: '/staedte' },
+          ...(hasCityPage ? [{ label: station.city, href: `/staedte/${station.citySlug}` }] : [{ label: station.city }]),
+          { label: station.name, isCurrent: true }
+        ]}
+        eyebrow={
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-emerald-100 text-emerald-900 border border-emerald-200">
+              {station.kwMax} kW HPC-Spitzenleistung
             </span>
-          )}
-          {station.hardwareProvider && (
-            <span className="px-3 py-1 rounded-md text-xs font-mono font-medium bg-slate-50 text-slate-700 border border-slate-200">
-              Hardware: {station.hardwareProvider}
+            <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-slate-100 text-slate-800 border border-slate-200">
+              {station.pointsCount} Ladepunkte
             </span>
-          )}
-          {station.truckCharging && (
-            <Link
-              to="/mcs/ladestationen"
-              className={`px-3 py-1 rounded-md text-xs font-mono font-bold inline-flex items-center gap-1.5 shadow-2xs ${
-                station.truckCharging.mcsStatus === 'operational'
-                  ? 'bg-blue-600 text-white hover:bg-blue-700'
-                  : 'bg-amber-100 text-amber-950 border border-amber-300 hover:bg-amber-200'
-              }`}
-            >
-              <Truck className="w-3.5 h-3.5" />
-              <span>
-                {station.truckCharging.mcsStatus === 'operational' 
-                  ? 'MCS Megawatt-Hub (Aktiv)' 
-                  : station.truckCharging.locationStatus === 'operational' 
-                    ? (station.truckCharging.mcsStatus === 'planned' ? 'E-Lkw Hub (400 kW CCS aktiv · MCS geplant)' : 'E-Lkw Hub (400 kW CCS aktiv · MCS im Ausbau)')
-                    : 'MCS Lkw-Hub (Geplant / Im Bau)'}
+            {station.project && (
+              <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-blue-50 text-blue-900 border border-blue-200">
+                Projekt: {station.project}
               </span>
-            </Link>
-          )}
-          {station.motorway && (
-            <Link
-              to={`/autobahnen/${station.motorway}`}
-              className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-amber-400 text-slate-950 hover:bg-amber-500 transition-colors inline-flex items-center gap-1 shadow-2xs"
-            >
-              <span>BAB {station.motorway.toUpperCase()}</span>
-              <ArrowRight className="w-3 h-3" />
-            </Link>
-          )}
-        </div>
-
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight">
-          {station.name}
-        </h1>
-
-        <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm sm:text-base text-slate-600">
-          <div className="flex items-center gap-1.5 font-medium">
-            <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span>{station.street}, {station.plz} {station.city}</span>
+            )}
+            {station.hardwareProvider && (
+              <span className="px-3 py-1 rounded-md text-xs font-mono font-medium bg-slate-50 text-slate-700 border border-slate-200">
+                Hardware: {station.hardwareProvider}
+              </span>
+            )}
+            {station.truckCharging && (
+              <Link
+                to="/mcs/ladestationen"
+                className={`px-3 py-1 rounded-md text-xs font-mono font-bold inline-flex items-center gap-1.5 shadow-2xs ${
+                  station.truckCharging.mcsStatus === 'operational'
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-amber-100 text-amber-950 border border-amber-300 hover:bg-amber-200'
+                }`}
+              >
+                <Truck className="w-3.5 h-3.5" />
+                <span>
+                  {station.truckCharging.mcsStatus === 'operational' 
+                    ? 'MCS Megawatt-Hub (Aktiv)' 
+                    : station.truckCharging.locationStatus === 'operational' 
+                      ? (station.truckCharging.mcsStatus === 'planned' ? 'E-Lkw Hub (400 kW CCS aktiv · MCS geplant)' : 'E-Lkw Hub (400 kW CCS aktiv · MCS im Ausbau)')
+                      : 'MCS Lkw-Hub (Geplant / Im Bau)'}
+                </span>
+              </Link>
+            )}
+            {station.motorway && (
+              <Link
+                to={`/autobahnen/${station.motorway}`}
+                className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-amber-400 text-slate-950 hover:bg-amber-500 transition-colors inline-flex items-center gap-1 shadow-2xs"
+              >
+                <span>BAB {station.motorway.toUpperCase()}</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            )}
           </div>
-          <span className="hidden sm:inline text-slate-300">•</span>
-          <div className="flex items-center gap-1.5">
-            <span className="text-slate-500">Betreiber:</span>
-            <Link 
-              to={`/betreiber/${station.operatorSlug}`} 
-              className="font-bold text-slate-900 hover:text-emerald-700 underline decoration-slate-300 hover:decoration-emerald-500 transition-colors"
-            >
-              {station.operator}
-            </Link>
+        }
+        title={station.name}
+        subtitle={
+          <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm sm:text-base text-slate-600">
+            <div className="flex items-center gap-1.5 font-medium">
+              <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>{station.street}, {station.plz} {station.city}</span>
+            </div>
+            <span className="hidden sm:inline text-slate-300">•</span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-slate-500">Betreiber:</span>
+              <Link 
+                to={`/betreiber/${station.operatorSlug}`} 
+                className="font-bold text-slate-900 hover:text-emerald-700 underline decoration-slate-300 hover:decoration-emerald-500 transition-colors"
+              >
+                {station.operator}
+              </Link>
+            </div>
           </div>
-        </div>
-
-        {station.description && (
-          <p className="text-base text-slate-700 leading-relaxed pt-1">
-            {station.description}
-          </p>
-        )}
-      </div>
+        }
+        description={station.description}
+      />
 
       {/* Bento Grid: Technische Kennzahlen */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

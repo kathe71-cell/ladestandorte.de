@@ -4,6 +4,7 @@ import { EEATBadge } from '../components/EEATBadge';
 import { CitationBox } from '../components/CitationBox';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const LadekartenVergleichPage: React.FC = () => {
   const schema = {
@@ -38,19 +39,17 @@ export const LadekartenVergleichPage: React.FC = () => {
         schema={schema}
       />
       
-      {/* Header */}
-      <div className="max-w-3xl space-y-3">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
-          <Zap className="w-4 h-4" />
-          <span>Marktübersicht &amp; Tarifvergleich</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          Ladekarten-Vergleich: Tarife &amp; Roaming im Überblick
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Welche Ladekarte spart im Alltag wirklich? Wir vergleichen monatliche Grundgebühren, Kilowattstunden-Preise für AC und DC sowie Roaming-Konditionen bei über 700.000 europäischen Ladepunkten neutral und herstellerunabhängig.
-        </p>
-      </div>
+      <PageHero
+        level={2}
+        eyebrow={
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
+            <Zap className="w-4 h-4" />
+            <span>Marktübersicht &amp; Tarifvergleich</span>
+          </div>
+        }
+        title="Ladekarten-Vergleich: Tarife & Roaming im Überblick"
+        description="Welche Ladekarte spart im Alltag wirklich? Wir vergleichen monatliche Grundgebühren, Kilowattstunden-Preise für AC und DC sowie Roaming-Konditionen bei über 700.000 europäischen Ladepunkten neutral und herstellerunabhängig."
+      />
 
       {/* Info notice */}
       <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 leading-relaxed">

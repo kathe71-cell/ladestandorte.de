@@ -5,6 +5,7 @@ import { OPERATORS_DATA } from '../data/operators';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const OperatorsIndexPage: React.FC = () => {
   const schema = {
@@ -39,19 +40,17 @@ export const OperatorsIndexPage: React.FC = () => {
         schema={schema}
       />
       
-      {/* Header */}
-      <div className="max-w-3xl space-y-3">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-purple-700 font-bold">
-          <ShieldCheck className="w-4 h-4" />
-          <span>Charge Point Operators (CPOs)</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          Ladenetz-Betreiber in Deutschland im Vergleich
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Vergleichen Sie die führenden Ladeinfrastruktur-Betreiber nach Gesamtzahl der Ladepunkte, High-Power-Charging-Leistung bis 400 kW, AutoCharge-Unterstützung und Roaming-Netzwerkgröße.
-        </p>
-      </div>
+      <PageHero
+        level={2}
+        eyebrow={
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-purple-700 font-bold">
+            <ShieldCheck className="w-4 h-4" />
+            <span>Charge Point Operators (CPOs)</span>
+          </div>
+        }
+        title="Ladenetz-Betreiber in Deutschland im Vergleich"
+        description="Vergleichen Sie die führenden Ladeinfrastruktur-Betreiber nach Gesamtzahl der Ladepunkte, High-Power-Charging-Leistung bis 400 kW, AutoCharge-Unterstützung und Roaming-Netzwerkgröße."
+      />
 
       {/* Grid of Operators */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

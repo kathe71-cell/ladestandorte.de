@@ -10,6 +10,7 @@ import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const CityPage: React.FC = () => {
   const { citySlug } = useParams<{ citySlug: string }>();
@@ -102,30 +103,22 @@ export const CityPage: React.FC = () => {
         schema={citySchema}
       />
       
-      {/* Breadcrumb Navigation */}
-      <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
-        <Link to="/" className="hover:text-emerald-700">Startseite</Link>
-        <span>/</span>
-        <Link to="/staedte" className="hover:text-emerald-700">Großstädte</Link>
-        <span>/</span>
-        <span className="text-slate-900 font-bold">{city.name}</span>
-      </div>
-
-      {/* Header */}
-      <div className="space-y-4 max-w-4xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-50 text-emerald-800 text-xs font-mono font-bold">
-          <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-          <span>BUNDESLAND: {city.bundesland.toUpperCase()} · QUELLE: BNETZA OPEN DATA</span>
-        </div>
-        
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          Ladesäulen &amp; Schnellladeparks in {city.name}
-        </h1>
-
-        <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-          {city.description}
-        </p>
-      </div>
+      <PageHero
+        level={3}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Großstädte', href: '/staedte' },
+          { label: city.name, isCurrent: true }
+        ]}
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-50 text-emerald-800 text-xs font-mono font-bold">
+            <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+            <span>BUNDESLAND: {city.bundesland.toUpperCase()} · QUELLE: BNETZA OPEN DATA</span>
+          </div>
+        }
+        title={`Ladesäulen & Schnellladeparks in ${city.name}`}
+        description={city.description}
+      />
 
       {/* City Statistics Bento Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">

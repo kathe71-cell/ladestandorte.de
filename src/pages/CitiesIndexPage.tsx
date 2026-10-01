@@ -5,6 +5,7 @@ import { CITIES_DATA } from '../data/cities';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const CitiesIndexPage: React.FC = () => {
   const [filter, setFilter] = useState('');
@@ -57,19 +58,17 @@ export const CitiesIndexPage: React.FC = () => {
         schema={schema}
       />
       
-      {/* Header */}
-      <div className="max-w-3xl space-y-3">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
-          <MapPin className="w-4 h-4" />
-          <span>Kommunale Ladeinfrastruktur</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          Ladesäulen in den Top 50 Großstädten Deutschlands
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Offizielle Daten des Ladesäulenregisters der Bundesnetzagentur (BNetzA). Vergleichen Sie Ladepunktdichte, High-Power-Charging-Quote (HPC) und führende Betreiber in allen 50 größten Städten.
-        </p>
-      </div>
+      <PageHero
+        level={2}
+        eyebrow={
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
+            <MapPin className="w-4 h-4" />
+            <span>Kommunale Ladeinfrastruktur</span>
+          </div>
+        }
+        title="Ladesäulen in den Top 50 Großstädten Deutschlands"
+        description="Offizielle Daten des Ladesäulenregisters der Bundesnetzagentur (BNetzA). Vergleichen Sie Ladepunktdichte, High-Power-Charging-Quote (HPC) und führende Betreiber in allen 50 größten Städten."
+      />
 
       {/* Search & Filter Bar */}
       <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row gap-3">

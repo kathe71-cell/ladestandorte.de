@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ShieldCheck, Lock, Server } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { PrivacyAmazonSection } from '@plattform/core';
+import { PageHero } from '../components/PageHero';
 
 export const DatenschutzPage: React.FC = () => {
   return (
@@ -13,17 +14,17 @@ export const DatenschutzPage: React.FC = () => {
         canonicalPath="/datenschutz"
       />
 
-      <header className="space-y-3 border-b border-slate-200 pb-6">
-        <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-bold block">
-          Datenschutz nach DSGVO &amp; TDDDG
-        </span>
-        <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight">
-          Datenschutzerklärung
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base">
-          Informationen über die Art, den Umfang und den Zweck der Verarbeitung personenbezogener Daten auf ladestandorte.de.
-        </p>
-      </header>
+      <PageHero
+        level={2}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Datenschutz', isCurrent: true }
+        ]}
+        eyebrow="Datenschutz nach DSGVO & TDDDG"
+        eyebrowVariant="slate"
+        title="Datenschutzerklärung"
+        description="Informationen über die Art, den Umfang und den Zweck der Verarbeitung personenbezogener Daten auf ladestandorte.de."
+      />
 
       <div className="p-6 sm:p-8 bg-white rounded-3xl border border-slate-200 shadow-sm space-y-6 text-sm text-slate-700 leading-relaxed">
 

@@ -8,6 +8,7 @@ import { FloatingCTABar } from '../components/FloatingCTABar';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { StationDetailModal } from '../components/StationDetailModal';
+import { PageHero } from '../components/PageHero';
 
 export const OperatorPage: React.FC = () => {
   const { operatorSlug } = useParams<{ operatorSlug: string }>();
@@ -103,30 +104,22 @@ export const OperatorPage: React.FC = () => {
         schema={schema}
       />
       
-      {/* Breadcrumb Navigation */}
-      <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
-        <Link to="/" className="hover:text-purple-700">Startseite</Link>
-        <span>/</span>
-        <Link to="/betreiber" className="hover:text-purple-700">Betreiber</Link>
-        <span>/</span>
-        <span className="text-slate-900 font-bold">{operator.name}</span>
-      </div>
-
-      {/* Header */}
-      <div className="space-y-4 max-w-4xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-purple-50 text-purple-800 text-xs font-mono font-bold">
-          <ShieldCheck className="w-3.5 h-3.5 text-purple-600" />
-          <span>CHARGE POINT OPERATOR · {operator.headquarters.toUpperCase()}</span>
-        </div>
-        
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          {operator.name}: Ladenetz, Ladeleistung &amp; Tarife
-        </h1>
-
-        <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-          {operator.description}
-        </p>
-      </div>
+      <PageHero
+        level={3}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Betreiber', href: '/betreiber' },
+          { label: operator.name, isCurrent: true }
+        ]}
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-purple-50 text-purple-800 text-xs font-mono font-bold">
+            <ShieldCheck className="w-3.5 h-3.5 text-purple-600" />
+            <span>CHARGE POINT OPERATOR · {operator.headquarters.toUpperCase()}</span>
+          </div>
+        }
+        title={`${operator.name}: Ladenetz, Ladeleistung & Tarife`}
+        description={operator.description}
+      />
 
       {/* Operator Metrics Bento Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

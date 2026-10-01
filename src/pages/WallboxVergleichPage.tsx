@@ -6,6 +6,7 @@ import { EEATBadge } from '../components/EEATBadge';
 import { CitationBox } from '../components/CitationBox';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 type SortKey = 'priceAsc' | 'priceDesc' | 'kwAsc' | 'kwDesc';
 
@@ -88,19 +89,17 @@ export const WallboxVergleichPage: React.FC = () => {
         schema={schema}
       />
 
-      {/* Header */}
-      <div className="max-w-3xl space-y-3">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
-          <Zap className="w-4 h-4" />
-          <span>Heimladestationen &amp; Photovoltaik</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          Wallbox-Vergleich: 11-kW- &amp; 22-kW-Heimladestationen im Überblick
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Über 20 Wallboxen im redaktionell unabhängigen Vergleich – filterbar nach Leistung, PV-Überschussladen, App-Steuerung, RFID und Marke. Alle Preise sind unverbindliche Richtwerte.
-        </p>
-      </div>
+      <PageHero
+        level={2}
+        eyebrow={
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
+            <Zap className="w-4 h-4" />
+            <span>Heimladestationen &amp; Photovoltaik</span>
+          </div>
+        }
+        title="Wallbox-Vergleich: 11-kW- & 22-kW-Heimladestationen im Überblick"
+        description="Über 20 Wallboxen im redaktionell unabhängigen Vergleich – filterbar nach Leistung, PV-Überschussladen, App-Steuerung, RFID und Marke. Alle Preise sind unverbindliche Richtwerte."
+      />
 
       {/* Förderhinweis */}
       <div className="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 text-xs text-amber-950 leading-relaxed space-y-1.5">

@@ -16,6 +16,8 @@ import {
 } from 'lucide-react';
 import { STATIONS_DATA, getMcsStations, getStationUrl } from '../data/stations';
 
+import { Breadcrumb } from '../components/Breadcrumb';
+
 export const McsHubPage: React.FC = () => {
   const mcsStations = useMemo(() => getMcsStations(STATIONS_DATA), []);
 
@@ -26,13 +28,16 @@ export const McsHubPage: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Breadcrumb */}
-      <nav className="border-b border-slate-200 bg-slate-50 py-3" aria-label="Breadcrumb">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-slate-500">
-          <Link to="/" className="hover:text-emerald-700 transition-colors">Startseite</Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-semibold">MCS &amp; E-Lkw Ladehubs</span>
+      <div className="border-b border-slate-200 bg-slate-50 py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumb
+            items={[
+              { label: 'Startseite', href: '/' },
+              { label: 'MCS & E-Lkw Ladehubs', isCurrent: true }
+            ]}
+          />
         </div>
-      </nav>
+      </div>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-slate-900 to-slate-950 text-white py-14 sm:py-20 border-b border-slate-800">
@@ -43,11 +48,11 @@ export const McsHubPage: React.FC = () => {
               <span>Megawatt Charging System (MCS) · CharIN Standard</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15]">
               Megawatt-Laden für E-Lkw in Deutschland
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               Übersicht und verifizierte Dossiers öffentlich zugänglicher MCS- und Schwerlast-Ladeparks für schwere Nutzfahrzeuge (Klasse N3) entlang der Bundesautobahnen. Ladeleistungen von 400 kW bis 1.200 kW.
             </p>
 

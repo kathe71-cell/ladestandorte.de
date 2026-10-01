@@ -5,6 +5,7 @@ import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const RechnerPage: React.FC = () => {
   const schema = {
@@ -51,19 +52,17 @@ export const RechnerPage: React.FC = () => {
         schema={schema}
       />
       
-      {/* Header */}
-      <div className="max-w-3xl space-y-3">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
-          <Calculator className="w-4 h-4" />
-          <span>Interaktives Analyse-Tool</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          Ladezeit- &amp; Ladekosten-Rechner
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Ermitteln Sie im Rahmen einer beispielhaften Modellrechnung die geschätzte Ladedauer (10 % bis 80 % SoC), typische Ladeverluste und ungefähre Kosten je Ladevorgang.
-        </p>
-      </div>
+      <PageHero
+        level={2}
+        eyebrow={
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
+            <Calculator className="w-4 h-4" />
+            <span>Interaktives Analyse-Tool</span>
+          </div>
+        }
+        title="Ladezeit- & Ladekosten-Rechner"
+        description="Ermitteln Sie im Rahmen einer beispielhaften Modellrechnung die geschätzte Ladedauer (10 % bis 80 % SoC), typische Ladeverluste und ungefähre Kosten je Ladevorgang."
+      />
 
       {/* Main Interactive Tool */}
       <CalculatorEmbed isEmbed={false} />

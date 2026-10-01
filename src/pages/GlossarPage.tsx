@@ -5,6 +5,7 @@ import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const GlossarPage: React.FC = () => {
   const [query, setQuery] = useState('');
@@ -58,19 +59,17 @@ export const GlossarPage: React.FC = () => {
         schema={schema}
       />
       
-      {/* Header */}
-      <div className="max-w-3xl space-y-3">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
-          <BookOpen className="w-4 h-4" />
-          <span>Nachschlagewerk &amp; Begriffsdefinitionen</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          E-Mobilitäts- &amp; Ladeinfrastruktur Glossar
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Von CCS Combo 2 über die AFIR-Verordnung bis zu Roaming und Eichrecht: Alle maßgeblichen Fachbegriffe, physikalischen Formeln und gesetzlichen Normen verständlich und rechtssicher erklärt.
-        </p>
-      </div>
+      <PageHero
+        level={2}
+        eyebrow={
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
+            <BookOpen className="w-4 h-4" />
+            <span>Nachschlagewerk &amp; Begriffsdefinitionen</span>
+          </div>
+        }
+        title="E-Mobilitäts- & Ladeinfrastruktur Glossar"
+        description="Von CCS Combo 2 über die AFIR-Verordnung bis zu Roaming und Eichrecht: Alle maßgeblichen Fachbegriffe, physikalischen Formeln und gesetzlichen Normen verständlich und rechtssicher erklärt."
+      />
 
       {/* Filter and Search Bar */}
       <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row gap-3">

@@ -10,6 +10,7 @@ import { SEO } from '../components/SEO';
 import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
 import { StationDetailModal } from '../components/StationDetailModal';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { PageHero } from '../components/PageHero';
 
 export const MotorwayPage: React.FC = () => {
   const { autobahnSlug } = useParams<{ autobahnSlug: string }>();
@@ -91,37 +92,27 @@ export const MotorwayPage: React.FC = () => {
         schema={schema}
       />
       
-      {/* Breadcrumb Navigation */}
-      <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
-        <Link to="/" className="hover:text-amber-700">Startseite</Link>
-        <span>/</span>
-        <Link to="/autobahnen" className="hover:text-amber-700">Autobahnen</Link>
-        <span>/</span>
-        <span className="text-slate-900 font-bold">{motorway.name}</span>
-      </div>
-
-      {/* Header */}
-      <div className="space-y-4 max-w-4xl">
-        <div className="flex items-center gap-3">
-          <div className="w-16 h-10 rounded-xl bg-amber-400 text-slate-950 font-black font-mono flex items-center justify-center text-xl shadow-xs">
-            {motorway.name}
+      <PageHero
+        level={3}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'Autobahnen', href: '/autobahnen' },
+          { label: motorway.name, isCurrent: true }
+        ]}
+        eyebrow={
+          <div className="flex items-center gap-3">
+            <div className="w-16 h-10 rounded-xl bg-amber-400 text-slate-950 font-black font-mono flex items-center justify-center text-xl shadow-xs">
+              {motorway.name}
+            </div>
+            <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-bold">
+              BUNDESAUTOBAHN {motorway.name} · {motorway.lengthKm} KM GESAMTLÄNGE
+            </span>
           </div>
-          <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-bold">
-            BUNDESAUTOBAHN {motorway.name} · {motorway.lengthKm} KM GESAMTLÄNGE
-          </span>
-        </div>
-        
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
-          Schnelllader &amp; Raststätten an der {motorway.name}
-        </h1>
-
-        <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
-          Streckenführung: {motorway.route}
-        </p>
-        <p className="text-sm text-slate-600 leading-relaxed">
-          {motorway.description}
-        </p>
-      </div>
+        }
+        title={`Schnelllader & Raststätten an der ${motorway.name}`}
+        subtitle={`Streckenführung: ${motorway.route}`}
+        description={motorway.description}
+      />
 
       {/* Key Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

@@ -13,6 +13,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { STATIONS_DATA, getMcsStations, getStationUrl, McsStatus } from '../data/stations';
+import { PageHero } from '../components/PageHero';
 
 export const McsStationsPage: React.FC = () => {
   const allMcsStations = useMemo(() => getMcsStations(STATIONS_DATA), []);
@@ -39,36 +40,26 @@ export const McsStationsPage: React.FC = () => {
   }, [allMcsStations, statusFilter, operatorFilter]);
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Breadcrumb */}
-      <nav className="border-b border-slate-200 bg-slate-50 py-3" aria-label="Breadcrumb">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-slate-500">
-          <Link to="/" className="hover:text-emerald-700 transition-colors">Startseite</Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <Link to="/mcs" className="hover:text-emerald-700 transition-colors">MCS &amp; E-Lkw</Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-semibold">Standortverzeichnis</span>
-        </div>
-      </nav>
-
-      {/* Header */}
-      <header className="bg-slate-50 border-b border-slate-200 py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
+      <PageHero
+        level={2}
+        breadcrumbs={[
+          { label: 'Startseite', href: '/' },
+          { label: 'MCS & E-Lkw', href: '/mcs' },
+          { label: 'Standortverzeichnis', isCurrent: true }
+        ]}
+        eyebrow={
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-mono font-bold">
             <Truck className="w-4 h-4 text-emerald-800" />
             <span>Verifiziertes Standortverzeichnis</span>
           </div>
+        }
+        title="MCS- & E-Lkw-Ladestationen in Deutschland"
+        description="Geprüfte Dossiers aller Pilotstandorte für Megawatt- und Hochleistungs-Schwerlastladen. Jeder Standort führt zum detaillierten Hauptdossier mit technischen Kennzahlen, Geodaten und Provenance-Nachweis."
+      />
 
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight">
-            MCS- &amp; E-Lkw-Ladestationen in Deutschland
-          </h1>
-
-          <p className="text-base text-slate-600 max-w-3xl leading-relaxed">
-            Geprüfte Dossiers aller Pilotstandorte für Megawatt- und Hochleistungs-Schwerlastladen. Jeder Standort führt zum detaillierten Hauptdossier mit technischen Kennzahlen, Geodaten und Provenance-Nachweis.
-          </p>
-
-          {/* Filters */}
-          <div className="pt-4 flex flex-wrap items-center gap-3">
+      {/* Filters */}
+      <div className="flex flex-wrap items-center gap-3">
             <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-slate-200 text-xs shadow-2xs">
               <Filter className="w-3.5 h-3.5 text-slate-400" />
               <span className="font-semibold text-slate-700">MCS-Status:</span>
@@ -107,11 +98,9 @@ export const McsStationsPage: React.FC = () => {
               </button>
             )}
           </div>
-        </div>
-      </header>
 
-      {/* Main List */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
+        {/* Main List */}
+        <div className="space-y-6">
         <div className="text-xs font-mono text-slate-500">
           Gefunden: <span className="font-bold text-slate-950">{filteredStations.length}</span> Ladestandorte
         </div>
@@ -216,7 +205,7 @@ export const McsStationsPage: React.FC = () => {
             Dieses Verzeichnis listet gezielt Standorte mit E-Lkw- und MCS-Infrastruktur auf. Die verlinkten Standortdossiers liegen auf den kanonischen URLs <code>/ladestation/[ort]/[slug]</code> und bündeln die vollständigen BNetzA-Registerdaten mit den verifizierten Betreiberangaben zur Schwerlast-Ladeinfrastruktur.
           </p>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
