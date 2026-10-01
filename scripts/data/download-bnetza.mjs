@@ -103,7 +103,21 @@ async function main() {
     };
   }
 
+  // Idempotency: If existing metadata has identical hashes, preserve retrievedAt
   const metaPath = path.join(targetDir, 'metadata.json');
+  if (fs.existsSync(metaPath)) {
+    try {
+      const existingMeta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+      const stationShaMatch = existingMeta.files?.ladestationen?.sha256 === metadata.files.ladestationen.sha256;
+      const pointShaMatch = existingMeta.files?.ladepunkte?.sha256 === metadata.files.ladepunkte.sha256;
+      if (stationShaMatch && pointShaMatch && existingMeta.retrievedAt) {
+        metadata.retrievedAt = existingMeta.retrievedAt;
+      }
+    } catch {
+      // ignore
+    }
+  }
+
   fs.writeFileSync(metaPath, JSON.stringify(metadata, null, 2), 'utf-8');
   console.log(`[BNetzA Pipeline] Metadata written to ${metaPath}`);
 

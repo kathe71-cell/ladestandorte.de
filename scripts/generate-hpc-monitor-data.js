@@ -26,33 +26,20 @@ if (!fs.existsSync(outDir)) {
 const bnetzaSnapshot = generatedCities[0]?.bnetza?.provenance?.retrievedAt || '2026-10-01';
 const destatisDate = generatedCities[0]?.population?.referenceDate || '2024-12-31';
 
-const monitorData = {
-  name: 'HPC City Monitor',
-  publisher: 'ladestandorte.de',
-  canonicalUrl: 'https://www.ladestandorte.de/hpc-city-monitor',
-  scope: {
-    country: 'DE',
-    citiesCount: generatedCities.length
-  },
-  definition: {
-    hpcClass: 'Ladepunkte mit einer dokumentierten Nennleistung von >=150 kW',
-    methodologyUrl: 'https://www.ladestandorte.de/methodik'
-  },
-  sources: {
-    chargingInfrastructure: {
-      provider: 'Bundesnetzagentur (Ladesäulenregister)',
-      retrievedAt: bnetzaSnapshot,
-      license: 'CC BY 4.0',
-      attribution: 'Bundesnetzagentur.de'
-    },
-    population: {
-      provider: 'Statistisches Bundesamt (Destatis)',
-      referenceDate: destatisDate,
-      license: 'dl-de/by-2-0'
+  const existingJsonPath = path.join(outDir, 'hpc-city-monitor.json');
+  let generatedAt = bnetzaSnapshot;
+  if (fs.existsSync(existingJsonPath)) {
+    try {
+      const existingData = JSON.parse(fs.readFileSync(existingJsonPath, 'utf8'));
+      if (existingData.generatedAt) {
+        generatedAt = existingData.generatedAt;
+      }
+    } catch {
+      // ignore
     }
-  },
-  generatedAt: new Date().toISOString(),
-  cities: generatedCities.map((c) => {
+  }
+
+  const citiesPayload = generatedCities.map((c) => {
     const total = c.bnetza.ladepunkteGesamt;
     const hpc = c.bnetza.hpcLadepunkte;
     const pop = c.population.value;
@@ -67,10 +54,52 @@ const monitorData = {
       points150PlusKwPer1000Pop: pop > 0 ? Number(((hpc / pop) * 1000).toFixed(2)) : 0,
       chargingPointsPer1000Pop: pop > 0 ? Number(((total / pop) * 1000).toFixed(2)) : 0
     };
-  })
-};
+  });
 
-fs.writeFileSync(path.join(outDir, 'hpc-city-monitor.json'), JSON.stringify(monitorData, null, 2) + '\n', 'utf8');
+  // Check if content has changed compared to existing file (excluding generatedAt)
+  if (fs.existsSync(existingJsonPath)) {
+    try {
+      const existingData = JSON.parse(fs.readFileSync(existingJsonPath, 'utf8'));
+      const existingCities = JSON.stringify(existingData.cities);
+      const newCities = JSON.stringify(citiesPayload);
+      if (existingCities !== newCities) {
+        generatedAt = new Date().toISOString();
+      }
+    } catch {
+      generatedAt = new Date().toISOString();
+    }
+  }
+
+  const monitorData = {
+    name: 'HPC City Monitor',
+    publisher: 'ladestandorte.de',
+    canonicalUrl: 'https://www.ladestandorte.de/hpc-city-monitor',
+    scope: {
+      country: 'DE',
+      citiesCount: generatedCities.length
+    },
+    definition: {
+      hpcClass: 'Ladepunkte mit einer dokumentierten Nennleistung von >=150 kW',
+      methodologyUrl: 'https://www.ladestandorte.de/methodik'
+    },
+    sources: {
+      chargingInfrastructure: {
+        provider: 'Bundesnetzagentur (Ladesäulenregister)',
+        retrievedAt: bnetzaSnapshot,
+        license: 'CC BY 4.0',
+        attribution: 'Bundesnetzagentur.de'
+      },
+      population: {
+        provider: 'Statistisches Bundesamt (Destatis)',
+        referenceDate: destatisDate,
+        license: 'dl-de/by-2-0'
+      }
+    },
+    generatedAt,
+    cities: citiesPayload
+  };
+
+  fs.writeFileSync(path.join(outDir, 'hpc-city-monitor.json'), JSON.stringify(monitorData, null, 2) + '\n', 'utf8');
 
 const csvHeaders = [
   'city',

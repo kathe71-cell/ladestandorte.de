@@ -280,6 +280,10 @@ async function main() {
 
   // 7. Write Markdown Report
   const reportPath = path.join(ROOT_DIR, `reports/data/cities/${snapshotDate}.md`);
+  if (fs.existsSync(reportPath)) {
+    console.log(`[Aggregate Cities] Difference report already exists at ${reportPath}, skipping overwrite.`);
+    return;
+  }
   let md = `# BNetzA City Data Verification & Difference Report
 
 - **Snapshot-Abruf (retrievedAt):** ${metadata.retrievedAt}
