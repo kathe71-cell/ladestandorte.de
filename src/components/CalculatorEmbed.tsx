@@ -53,7 +53,15 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
 
   const [linkCopied, setLinkCopied] = useState(false);
   const [embedCopied, setEmbedCopied] = useState(false);
-  const [selectedVehicleId, setSelectedVehicleId] = useState<string>('tesla-model-y-lr');
+
+  // Vehicle preset: neutral/manual mode by default (no vehicle selected unless explicitly set in URL)
+  const [selectedVehicleId, setSelectedVehicleId] = useState<string>(() => {
+    const vParam = searchParams.get('vehicle');
+    if (vParam && VEHICLES_DATA.some(v => v.id === vParam)) {
+      return vParam;
+    }
+    return '';
+  });
 
   const selectedVehicle = VEHICLES_DATA.find(v => v.id === selectedVehicleId);
 
@@ -72,6 +80,16 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
     }
   };
 
+  const handleCapacityChange = (val: number) => {
+    setBatteryCapacity(val);
+    if (selectedVehicleId) setSelectedVehicleId('');
+  };
+
+  const handlePowerChange = (val: number) => {
+    setChargePower(val);
+    if (selectedVehicleId) setSelectedVehicleId('');
+  };
+
   const location = useLocation();
   const isRechnerPage = location.pathname === '/rechner';
 
@@ -87,6 +105,9 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
       params.set('start', String(startSoc));
       params.set('end', String(endSoc));
       params.set('price', String(pricePerKwh));
+      if (selectedVehicleId) {
+        params.set('vehicle', selectedVehicleId);
+      }
       if (calcMode === 'theoretical') {
         params.set('mode', 'theoretical');
       }
@@ -95,7 +116,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
     } else if (location.pathname === '/' && window.location.search.includes('capacity')) {
       window.history.replaceState(null, '', '/');
     }
-  }, [batteryCapacity, chargePower, startSoc, endSoc, pricePerKwh, calcMode, isEmbed, isRechnerPage, location.pathname]);
+  }, [batteryCapacity, chargePower, startSoc, endSoc, pricePerKwh, selectedVehicleId, calcMode, isEmbed, isRechnerPage, location.pathname]);
 
   // Adjust loss percentage when switching between AC and HPC
   useEffect(() => {
@@ -129,7 +150,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   const theoreticalDurationMinutes = isInvalidSoc ? 0 : Math.round(theoreticalDurationHours * 60);
 
   // 3. PRAXIS-SCHÄTZUNG (Vereinfachte Modellannahmen: Ladekurve + Ladeverlust)
-  const vehicleAcLimit = selectedVehicle?.maxKwAc ?? 11;
+  const vehicleAcLimit = selectedVehicle?.maxKwAc ?? (chargePower <= 22 ? chargePower : 11);
   const vehicleDcLimit = selectedVehicle?.maxKwDc ?? chargePower;
 
   let effectiveAverageKw = 11;
@@ -146,7 +167,11 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
     if (chargePower > vehicleDcLimit) {
       isDcCapped = true;
     }
-    const curveFactor = selectedVehicle?.systemVoltage === 800 ? 0.82 : (peakDc > 150 ? 0.76 : 0.82);
+    // Ladekurvenfaktor:
+    // Im manuellen Standardmodus sowie bei 400V-Fahrzeugen gilt ein transparenter Faktor von 0,76 (10–80 % SoC).
+    // Nur bei explizit gewähltem 800V-Fahrzeugprofil mit flacherer Plateaukurve wird 0,82 angesetzt.
+    // Keine künstliche Unstetigkeit / Stufenfunktion bei 150 kW mehr vorhanden.
+    const curveFactor = selectedVehicle?.systemVoltage === 800 ? 0.82 : 0.76;
     effectiveAverageKw = Math.max(1, peakDc * curveFactor);
   }
 
@@ -167,7 +192,8 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
 
   const handleCopyLink = () => {
     const modeParam = isTheoretical ? '&mode=theoretical' : '';
-    const url = `${window.location.origin}/rechner?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}${modeParam}`;
+    const vehicleParam = selectedVehicleId ? `&vehicle=${encodeURIComponent(selectedVehicleId)}` : '';
+    const url = `${window.location.origin}/rechner?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}${vehicleParam}${modeParam}`;
     navigator.clipboard.writeText(url);
     setLinkCopied(true);
     setTimeout(() => setLinkCopied(false), 2500);
@@ -175,7 +201,8 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
 
   const handleCopyEmbed = () => {
     const modeParam = isTheoretical ? '&mode=theoretical' : '';
-    const iframeCode = `<iframe src="https://www.ladestandorte.de/rechner-embed?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}${modeParam}" width="100%" height="680" style="border:1px solid #e2e8f0;border-radius:16px;max-width:720px;display:block;margin:auto;" title="Ladezeit- & Ladekostenrechner ladestandorte.de"></iframe><p style="font-size:12px;text-align:center;color:#64748b;margin-top:8px;">Bereitgestellt von <a href="https://www.ladestandorte.de" target="_blank" style="color:#059669;font-weight:bold;">ladestandorte.de</a></p>`;
+    const vehicleParam = selectedVehicleId ? `&vehicle=${encodeURIComponent(selectedVehicleId)}` : '';
+    const iframeCode = `<iframe src="https://www.ladestandorte.de/rechner-embed?capacity=${batteryCapacity}&kw=${chargePower}&start=${startSoc}&end=${endSoc}&price=${pricePerKwh}${vehicleParam}${modeParam}" width="100%" height="680" style="border:1px solid #e2e8f0;border-radius:16px;max-width:720px;display:block;margin:auto;" title="Ladezeit- & Ladekostenrechner ladestandorte.de"></iframe><p style="font-size:12px;text-align:center;color:#64748b;margin-top:8px;">Bereitgestellt von <a href="https://www.ladestandorte.de" target="_blank" style="color:#059669;font-weight:bold;">ladestandorte.de</a></p>`;
     navigator.clipboard.writeText(iframeCode);
     setEmbedCopied(true);
     setTimeout(() => setEmbedCopied(false), 2500);
@@ -303,7 +330,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               onChange={(e) => handleVehicleSelect(e.target.value)}
               className="w-full px-3 py-2.5 text-sm bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 font-semibold text-slate-900 shadow-xs cursor-pointer"
             >
-              <option value="">-- Individuelles Fahrzeug (Manuell anpassen) --</option>
+              <option value="">-- Individuelles Fahrzeug (Manuelle Eingabe) --</option>
               {VEHICLES_DATA.map((v) => (
                 <option key={v.id} value={v.id}>
                   {v.brand} {v.model} – {v.variant} (Peak {v.maxKwDc} kW DC / {v.maxKwAc} kW AC)
@@ -346,7 +373,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               max="130"
               step="1"
               value={batteryCapacity}
-              onChange={(e) => setBatteryCapacity(Number(e.target.value))}
+              onChange={(e) => handleCapacityChange(Number(e.target.value))}
               className="w-full accent-emerald-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
             />
             <div className="flex justify-between text-[11px] font-mono text-slate-400">
@@ -378,7 +405,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               max="400"
               step={chargePower > 50 ? 10 : 1}
               value={chargePower}
-              onChange={(e) => setChargePower(Number(e.target.value))}
+              onChange={(e) => handlePowerChange(Number(e.target.value))}
               className="w-full accent-emerald-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
             />
             <div className="flex flex-wrap gap-1.5 pt-1">
@@ -386,7 +413,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                 <button
                   key={kw}
                   type="button"
-                  onClick={() => setChargePower(kw)}
+                  onClick={() => handlePowerChange(kw)}
                   className={`px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-colors cursor-pointer ${
                     chargePower === kw
                       ? 'bg-slate-900 text-white'
@@ -660,7 +687,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                     <strong>Modellannahme Ladeverluste:</strong> Rechnerischer Aufschlag von 6 % (HPC Gleichstrom) bzw. 12 % (AC Wechselstrom).
                   </li>
                   <li>
-                    <strong>Modellannahme Ladekurve:</strong> Durchschnittliche Leistung ca. 76 % bis 82 % der Spitzenleistung im Bereich 10–80 % SoC.
+                    <strong>Modellannahme Ladekurve:</strong> Durchschnittliche Leistung ca. 76 % der Spitzenleistung im Bereich 10–80 % SoC (bei 800V-Fahrzeugarchitektur ca. 82 %).
                   </li>
                 </ul>
                 <p className="text-[11px] text-slate-500 italic">
