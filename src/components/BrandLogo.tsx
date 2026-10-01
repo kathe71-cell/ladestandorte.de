@@ -33,17 +33,14 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     >
       {/* Bildmarke: Weißer Container mit Border #DFE3DC, geometrisches Graphit-L (#171917), Signal-Lime Datenknoten (#C7F000) */}
       <div className="w-10 h-10 rounded-[13px] bg-white flex items-center justify-center border border-[#DFE3DC] group-hover:border-[#171917] transition-colors relative shadow-2xs shrink-0">
-        <svg viewBox="0 0 32 32" className="w-5 h-5" fill="none" aria-hidden="true">
-          {/* Geometrisches L */}
+        <svg viewBox="0 0 40 40" className="w-6 h-6" fill="none" aria-hidden="true">
+          {/* Geometrisches starkes L in Graphit #171917 */}
           <path
-            d="M9 7V23H21"
-            stroke="#171917"
-            strokeWidth="3.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            d="M12 9.5H16.2V26H25.5V30.5H12V9.5Z"
+            fill="#171917"
           />
           {/* Signal Lime Datenknoten oben rechts */}
-          <circle cx="23" cy="9" r="3" fill="#C7F000" />
+          <circle cx="28.5" cy="14" r="5" fill="#C7F000" />
         </svg>
       </div>
 
