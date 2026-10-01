@@ -291,10 +291,10 @@ export const McsStationsPage: React.FC = () => {
               Berechnet ausschließlich aus den Standorten mit aktivem Megawatt-Ladebetrieb. Nicht mit geplanten Ausbauleistungen vermischt.
             </p>
 
-            <div className="grid grid-cols-3 gap-3 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/80 text-center">
                 <div className="text-[11px] font-mono text-slate-500 uppercase">Bandbreite</div>
-                <div className="text-base font-bold text-slate-950 font-mono mt-0.5">
+                <div className="text-base font-bold text-slate-950 font-mono mt-0.5 break-words">
                   {metrics.operationalMcsPowerMin && metrics.operationalMcsPowerMax
                     ? `${metrics.operationalMcsPowerMin.toLocaleString('de-DE')}–${metrics.operationalMcsPowerMax.toLocaleString('de-DE')} kW`
                     : '—'}
@@ -302,7 +302,7 @@ export const McsStationsPage: React.FC = () => {
               </div>
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/80 text-center">
                 <div className="text-[11px] font-mono text-slate-500 uppercase">Durchschnitt</div>
-                <div className="text-base font-bold text-slate-950 font-mono mt-0.5">
+                <div className="text-base font-bold text-slate-950 font-mono mt-0.5 break-words">
                   {metrics.operationalMcsPowerAverage
                     ? `${metrics.operationalMcsPowerAverage.toLocaleString('de-DE')} kW`
                     : '—'}
@@ -310,7 +310,7 @@ export const McsStationsPage: React.FC = () => {
               </div>
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/80 text-center">
                 <div className="text-[11px] font-mono text-slate-500 uppercase">Median</div>
-                <div className="text-base font-bold text-slate-950 font-mono mt-0.5">
+                <div className="text-base font-bold text-slate-950 font-mono mt-0.5 break-words">
                   {metrics.operationalMcsPowerMedian
                     ? `${metrics.operationalMcsPowerMedian.toLocaleString('de-DE')} kW`
                     : '—'}
@@ -616,7 +616,7 @@ export const McsStationsPage: React.FC = () => {
             )}
           </button>
         </div>
-        <div className="p-3 bg-white rounded-xl border border-slate-200/80 font-mono text-xs text-slate-800 leading-relaxed select-all">
+        <div className="p-3 bg-white rounded-xl border border-slate-200/80 font-mono text-xs text-slate-800 leading-relaxed select-all break-words [overflow-wrap:anywhere]">
           {citationText}
         </div>
         <p className="text-[11px] text-slate-500 leading-relaxed">

@@ -86,317 +86,333 @@ export const Header: React.FC = () => {
           {/* Global Central Brand Logo */}
           <BrandLogo onClick={() => setMobileMenuOpen(false)} />
 
-          {/* Desktop Navigation (>= 1200px / xl) */}
-          <nav className="hidden xl:flex items-center flex-nowrap gap-1 2xl:gap-1.5 shrink-0" aria-label="Hauptnavigation">
-            
-            {/* 1. Monitore */}
-            <div className="relative" ref={monitoreRef}>
-              <button
-                type="button"
-                onClick={() => {
-                  setMonitoreOpen(!monitoreOpen);
-                  setStandorteOpen(false);
-                  setMcsOpen(false);
-                  setToolsOpen(false);
-                  setWissenOpen(false);
-                }}
-                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                  isMonitoreActive
-                    ? 'bg-[#C7F000] text-[#171917]'
-                    : 'text-[#171917] hover:bg-[#F7F7F2]'
-                }`}
-                aria-expanded={monitoreOpen}
-              >
-                <span>Monitore</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${monitoreOpen ? 'rotate-180' : ''}`} />
-              </button>
+          {/* Desktop Navigation + Search Group (>= 1200px / xl) */}
+          <div className="hidden xl:flex items-center shrink-0">
+            {/* 1. Kompakte Navigationseinheit (ca. 4–8px Abstand zwischen Items) */}
+            <nav className="flex items-center flex-nowrap gap-1.5 shrink-0" aria-label="Hauptnavigation">
+              
+              {/* 1. Monitore */}
+              <div className="relative" ref={monitoreRef}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMonitoreOpen(!monitoreOpen);
+                    setStandorteOpen(false);
+                    setMcsOpen(false);
+                    setToolsOpen(false);
+                    setWissenOpen(false);
+                  }}
+                  className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                    isMonitoreActive
+                      ? 'bg-[#C7F000] text-[#171917]'
+                      : 'text-[#171917] hover:bg-[#F7F7F2]'
+                  }`}
+                  aria-expanded={monitoreOpen}
+                >
+                  <span>Monitore</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${monitoreOpen ? 'rotate-180' : ''}`} />
+                </button>
 
-              {monitoreOpen && (
-                <div className="absolute top-full left-0 mt-1.5 w-64 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
-                  <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-[#6C716B] font-bold">
-                    Marktmonitore
+                {monitoreOpen && (
+                  <div className="absolute top-full left-0 mt-1.5 w-64 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+                    <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-[#6C716B] font-bold">
+                      Marktmonitore
+                    </div>
+                    <Link
+                      to="/hpc-city-monitor"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                    >
+                      <span className="w-5 h-5 rounded bg-[#C7F000] text-[#171917] font-mono text-[10px] font-black flex items-center justify-center shrink-0">
+                        01
+                      </span>
+                      <div>
+                        <div className="leading-tight">HPC City Monitor</div>
+                        <div className="text-[11px] text-[#6C716B] font-normal">≥150 kW in 50 Städten</div>
+                      </div>
+                    </Link>
+                    <Link
+                      to="/cpo-monitor"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                    >
+                      <span className="w-5 h-5 rounded bg-[#171917] text-[#C7F000] font-mono text-[10px] font-black flex items-center justify-center shrink-0">
+                        02
+                      </span>
+                      <div>
+                        <div className="leading-tight">CPO Monitor</div>
+                        <div className="text-[11px] text-[#6C716B] font-normal">Betreiber &amp; Registeranteile</div>
+                      </div>
+                    </Link>
+                    <Link
+                      to="/mcs"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                    >
+                      <span className="w-5 h-5 rounded bg-[#2F5E73] text-white font-mono text-[10px] font-black flex items-center justify-center shrink-0">
+                        03
+                      </span>
+                      <div>
+                        <div className="leading-tight">MCS Monitor</div>
+                        <div className="text-[11px] text-[#6C716B] font-normal">Megawatt Charging System</div>
+                      </div>
+                    </Link>
                   </div>
-                  <Link
-                    to="/hpc-city-monitor"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
-                  >
-                    <span className="w-5 h-5 rounded bg-[#C7F000] text-[#171917] font-mono text-[10px] font-black flex items-center justify-center shrink-0">
-                      01
-                    </span>
-                    <div>
-                      <div className="leading-tight">HPC City Monitor</div>
-                      <div className="text-[11px] text-[#6C716B] font-normal">≥150 kW in 50 Städten</div>
-                    </div>
-                  </Link>
-                  <Link
-                    to="/cpo-monitor"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
-                  >
-                    <span className="w-5 h-5 rounded bg-[#171917] text-[#C7F000] font-mono text-[10px] font-black flex items-center justify-center shrink-0">
-                      02
-                    </span>
-                    <div>
-                      <div className="leading-tight">CPO Monitor</div>
-                      <div className="text-[11px] text-[#6C716B] font-normal">Betreiber &amp; Registeranteile</div>
-                    </div>
-                  </Link>
-                  <Link
-                    to="/mcs"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
-                  >
-                    <span className="w-5 h-5 rounded bg-[#2F5E73] text-white font-mono text-[10px] font-black flex items-center justify-center shrink-0">
-                      03
-                    </span>
-                    <div>
-                      <div className="leading-tight">MCS Monitor</div>
-                      <div className="text-[11px] text-[#6C716B] font-normal">Megawatt Charging System</div>
-                    </div>
-                  </Link>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
 
-            {/* 2. Standorte */}
-            <div className="relative" ref={standorteRef}>
-              <button
-                type="button"
-                onClick={() => {
-                  setStandorteOpen(!standorteOpen);
-                  setMonitoreOpen(false);
-                  setMcsOpen(false);
-                  setToolsOpen(false);
-                  setWissenOpen(false);
-                }}
-                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                  isStandorteActive
+              {/* 2. Standorte */}
+              <div className="relative" ref={standorteRef}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStandorteOpen(!standorteOpen);
+                    setMonitoreOpen(false);
+                    setMcsOpen(false);
+                    setToolsOpen(false);
+                    setWissenOpen(false);
+                  }}
+                  className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                    isStandorteActive
+                      ? 'bg-[#C7F000] text-[#171917]'
+                      : 'text-[#171917] hover:bg-[#F7F7F2]'
+                  }`}
+                  aria-expanded={standorteOpen}
+                >
+                  <span>Standorte</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${standorteOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {standorteOpen && (
+                  <div className="absolute top-full left-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+                    <Link
+                      to="/staedte"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                    >
+                      <MapPin className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                      <span>Top 50 Städte</span>
+                    </Link>
+                    <Link
+                      to="/autobahnen"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                    >
+                      <Navigation className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                      <span>Autobahnen (A1–A99)</span>
+                    </Link>
+                    <Link
+                      to="/suche"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    >
+                      <Search className="w-4 h-4 text-[#6C716B] shrink-0" />
+                      <span>Standort-Finder</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* 3. Betreiber */}
+              <Link
+                to="/betreiber"
+                className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
+                  isBetreiberActive
                     ? 'bg-[#C7F000] text-[#171917]'
                     : 'text-[#171917] hover:bg-[#F7F7F2]'
                 }`}
-                aria-expanded={standorteOpen}
               >
-                <span>Standorte</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${standorteOpen ? 'rotate-180' : ''}`} />
-              </button>
+                Betreiber
+              </Link>
 
-              {standorteOpen && (
-                <div className="absolute top-full left-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
-                  <Link
-                    to="/staedte"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
-                  >
-                    <MapPin className="w-4 h-4 text-[#2F5E73] shrink-0" />
-                    <span>Top 50 Städte</span>
-                  </Link>
-                  <Link
-                    to="/autobahnen"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
-                  >
-                    <Navigation className="w-4 h-4 text-[#2F5E73] shrink-0" />
-                    <span>Autobahnen (A1–A99)</span>
-                  </Link>
-                  <Link
-                    to="/suche"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <Search className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>Standort-Finder</span>
-                  </Link>
-                </div>
-              )}
-            </div>
+              {/* 4. MCS */}
+              <div className="relative" ref={mcsRef}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMcsOpen(!mcsOpen);
+                    setMonitoreOpen(false);
+                    setStandorteOpen(false);
+                    setToolsOpen(false);
+                    setWissenOpen(false);
+                  }}
+                  className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                    isMcsActive
+                      ? 'bg-[#C7F000] text-[#171917]'
+                      : 'text-[#171917] hover:bg-[#F7F7F2]'
+                  }`}
+                  aria-expanded={mcsOpen}
+                >
+                  <span>MCS</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${mcsOpen ? 'rotate-180' : ''}`} />
+                </button>
 
-            {/* 3. Betreiber (Direktlink mit CPO-Fokus) */}
-            <Link
-              to="/betreiber"
-              className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
-                isBetreiberActive
-                  ? 'bg-[#C7F000] text-[#171917]'
-                  : 'text-[#171917] hover:bg-[#F7F7F2]'
-              }`}
-            >
-              Betreiber
-            </Link>
+                {mcsOpen && (
+                  <div className="absolute top-full left-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+                    <Link
+                      to="/mcs"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                    >
+                      <Truck className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                      <span>MCS Hub Übersicht</span>
+                    </Link>
+                    <Link
+                      to="/mcs/ladestationen"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    >
+                      <MapPin className="w-4 h-4 text-[#6C716B] shrink-0" />
+                      <span>MCS Standorte</span>
+                    </Link>
+                    <Link
+                      to="/mcs/was-ist-mcs"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    >
+                      <BookOpen className="w-4 h-4 text-[#6C716B] shrink-0" />
+                      <span>Was ist MCS?</span>
+                    </Link>
+                    <Link
+                      to="/mcs/mcs-vs-ccs"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    >
+                      <Activity className="w-4 h-4 text-[#6C716B] shrink-0" />
+                      <span>MCS vs. CCS</span>
+                    </Link>
+                    <Link
+                      to="/mcs/lkw-laden"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    >
+                      <Truck className="w-4 h-4 text-[#6C716B] shrink-0" />
+                      <span>E-Lkw Laden</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
 
-            {/* 4. MCS */}
-            <div className="relative" ref={mcsRef}>
-              <button
-                type="button"
-                onClick={() => {
-                  setMcsOpen(!mcsOpen);
-                  setMonitoreOpen(false);
-                  setStandorteOpen(false);
-                  setToolsOpen(false);
-                  setWissenOpen(false);
-                }}
-                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                  isMcsActive
-                    ? 'bg-[#C7F000] text-[#171917]'
-                    : 'text-[#171917] hover:bg-[#F7F7F2]'
-                }`}
-                aria-expanded={mcsOpen}
-              >
-                <span>MCS</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${mcsOpen ? 'rotate-180' : ''}`} />
-              </button>
+              {/* 5. Tools */}
+              <div className="relative" ref={toolsRef}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setToolsOpen(!toolsOpen);
+                    setMonitoreOpen(false);
+                    setStandorteOpen(false);
+                    setMcsOpen(false);
+                    setWissenOpen(false);
+                  }}
+                  className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                    isToolsActive
+                      ? 'bg-[#C7F000] text-[#171917]'
+                      : 'text-[#171917] hover:bg-[#F7F7F2]'
+                  }`}
+                  aria-expanded={toolsOpen}
+                >
+                  <span>Tools</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${toolsOpen ? 'rotate-180' : ''}`} />
+                </button>
 
-              {mcsOpen && (
-                <div className="absolute top-full left-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
-                  <Link
-                    to="/mcs"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
-                  >
-                    <Truck className="w-4 h-4 text-[#2F5E73] shrink-0" />
-                    <span>MCS Hub Übersicht</span>
-                  </Link>
-                  <Link
-                    to="/mcs/ladestationen"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <MapPin className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>MCS Standorte</span>
-                  </Link>
-                  <Link
-                    to="/mcs/was-ist-mcs"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <BookOpen className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>Was ist MCS?</span>
-                  </Link>
-                  <Link
-                    to="/mcs/mcs-vs-ccs"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <Activity className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>MCS vs. CCS</span>
-                  </Link>
-                  <Link
-                    to="/mcs/lkw-laden"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <Truck className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>E-Lkw Laden</span>
-                  </Link>
-                </div>
-              )}
-            </div>
+                {toolsOpen && (
+                  <div className="absolute top-full left-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+                    <Link
+                      to="/rechner"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                    >
+                      <Calculator className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                      <span>Ladekosten- &amp; Zeitrechner</span>
+                    </Link>
+                    <Link
+                      to="/ladekarten"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    >
+                      <CreditCard className="w-4 h-4 text-[#6C716B] shrink-0" />
+                      <span>Ladekarten-Vergleich</span>
+                    </Link>
+                    <Link
+                      to="/wallbox-vergleich"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    >
+                      <HomeIcon className="w-4 h-4 text-[#6C716B] shrink-0" />
+                      <span>Wallbox-Vergleich</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
 
-            {/* 5. Tools */}
-            <div className="relative" ref={toolsRef}>
-              <button
-                type="button"
-                onClick={() => {
-                  setToolsOpen(!toolsOpen);
-                  setMonitoreOpen(false);
-                  setStandorteOpen(false);
-                  setMcsOpen(false);
-                  setWissenOpen(false);
-                }}
-                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                  isToolsActive
-                    ? 'bg-[#C7F000] text-[#171917]'
-                    : 'text-[#171917] hover:bg-[#F7F7F2]'
-                }`}
-                aria-expanded={toolsOpen}
-              >
-                <span>Tools</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${toolsOpen ? 'rotate-180' : ''}`} />
-              </button>
+              {/* 6. Wissen */}
+              <div className="relative" ref={wissenRef}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setWissenOpen(!wissenOpen);
+                    setMonitoreOpen(false);
+                    setStandorteOpen(false);
+                    setMcsOpen(false);
+                    setToolsOpen(false);
+                  }}
+                  className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                    isWissenActive
+                      ? 'bg-[#C7F000] text-[#171917]'
+                      : 'text-[#171917] hover:bg-[#F7F7F2]'
+                  }`}
+                  aria-expanded={wissenOpen}
+                >
+                  <span>Wissen</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${wissenOpen ? 'rotate-180' : ''}`} />
+                </button>
 
-              {toolsOpen && (
-                <div className="absolute top-full left-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
-                  <Link
-                    to="/rechner"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
-                  >
-                    <Calculator className="w-4 h-4 text-[#2F5E73] shrink-0" />
-                    <span>Ladekosten- &amp; Zeitrechner</span>
-                  </Link>
-                  <Link
-                    to="/ladekarten"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <CreditCard className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>Ladekarten-Vergleich</span>
-                  </Link>
-                  <Link
-                    to="/wallbox-vergleich"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <HomeIcon className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>Wallbox-Vergleich</span>
-                  </Link>
-                </div>
-              )}
-            </div>
+                {wissenOpen && (
+                  <div className="absolute top-full right-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+                    <Link
+                      to="/ratgeber"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                    >
+                      <BookOpen className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                      <span>Ratgeber &amp; Leitfäden</span>
+                    </Link>
+                    <Link
+                      to="/glossar"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    >
+                      <HelpCircle className="w-4 h-4 text-[#6C716B] shrink-0" />
+                      <span>E-Mobilität Glossar</span>
+                    </Link>
+                    <Link
+                      to="/methodik"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    >
+                      <Activity className="w-4 h-4 text-[#6C716B] shrink-0" />
+                      <span>Datenbasis &amp; Methodik</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
 
-            {/* 6. Wissen */}
-            <div className="relative" ref={wissenRef}>
-              <button
-                type="button"
-                onClick={() => {
-                  setWissenOpen(!wissenOpen);
-                  setMonitoreOpen(false);
-                  setStandorteOpen(false);
-                  setMcsOpen(false);
-                  setToolsOpen(false);
-                }}
-                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                  isWissenActive
-                    ? 'bg-[#C7F000] text-[#171917]'
-                    : 'text-[#171917] hover:bg-[#F7F7F2]'
-                }`}
-                aria-expanded={wissenOpen}
-              >
-                <span>Wissen</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${wissenOpen ? 'rotate-180' : ''}`} />
-              </button>
+            </nav>
 
-              {wissenOpen && (
-                <div className="absolute top-full right-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
-                  <Link
-                    to="/ratgeber"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
-                  >
-                    <BookOpen className="w-4 h-4 text-[#2F5E73] shrink-0" />
-                    <span>Ratgeber &amp; Leitfäden</span>
-                  </Link>
-                  <Link
-                    to="/glossar"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <HelpCircle className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>E-Mobilität Glossar</span>
-                  </Link>
-                  <Link
-                    to="/methodik"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <Activity className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>Datenbasis &amp; Methodik</span>
-                  </Link>
-                </div>
-              )}
-            </div>
+            {/* 2. Dezente vertikale Trennlinie zwischen Navigation & Search */}
+            <div className="h-6 w-px bg-[#DFE3DC] ml-4 mr-3" aria-hidden="true" />
 
-          </nav>
-
-          {/* Action Area: Compact Search Button (Mockup-Style) */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Desktop / Tablet Search Trigger Button (Mockup: Square rounded button with search icon) */}
+            {/* 3. Kompakt angebundener Desktop Search Trigger Button */}
             <button
               type="button"
               onClick={() => setSearchModalOpen(true)}
-              className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-[#F7F7F2] hover:bg-[#EAECE6] text-[#171917] transition-all border border-[#DFE3DC] cursor-pointer"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white hover:bg-[#F7F7F2] text-[#171917] transition-all border border-[#DFE3DC] cursor-pointer shadow-2xs"
+              aria-label="Globale Suche öffnen"
+            >
+              <Search className="w-4 h-4 text-[#171917]" />
+            </button>
+          </div>
+
+          {/* Action Area Mobile (< 1200px): Search + Hamburger */}
+          <div className="flex xl:hidden items-center gap-2 shrink-0">
+            {/* Mobile Search Trigger Button */}
+            <button
+              type="button"
+              onClick={() => setSearchModalOpen(true)}
+              className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white hover:bg-[#F7F7F2] text-[#171917] transition-all border border-[#DFE3DC] cursor-pointer"
               aria-label="Globale Suche öffnen"
             >
               <Search className="w-4 h-4 text-[#171917]" />
             </button>
 
-            {/* Mobile menu trigger button */}
+            {/* Mobile Hamburger menu trigger button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-[#171917] hover:bg-[#F7F7F2] cursor-pointer border border-[#DFE3DC]"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-lg text-[#171917] hover:bg-[#F7F7F2] cursor-pointer border border-[#DFE3DC]"
               aria-label={mobileMenuOpen ? 'Menü schließen' : 'Hauptmenü öffnen'}
               aria-expanded={mobileMenuOpen}
             >
