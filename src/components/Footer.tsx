@@ -78,6 +78,7 @@ export const Footer: React.FC = () => {
               Transparenz &amp; Recht
             </h3>
             <ul className="space-y-2 text-sm text-slate-400">
+              <li><Link to="/methodik" className="hover:text-emerald-400 transition-colors font-medium">Daten &amp; Methodik</Link></li>
               <li><Link to="/impressum" className="hover:text-emerald-400 transition-colors font-medium">→ Impressum (§ 5 DDG)</Link></li>
               <li><Link to="/datenschutz" className="hover:text-emerald-400 transition-colors">Datenschutzerklärung</Link></li>
               <li>

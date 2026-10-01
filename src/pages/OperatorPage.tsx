@@ -162,6 +162,14 @@ export const OperatorPage: React.FC = () => {
         </div>
       </div>
 
+      {/* Quellenkontext & Transparenz-Hinweis */}
+      <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-600 flex items-start gap-2.5">
+        <ShieldCheck className="w-4 h-4 text-purple-600 shrink-0 mt-0.5" />
+        <p className="leading-relaxed">
+          <strong className="text-slate-900 font-semibold">Quellenkontext:</strong> Die Kennzahlen zum Ladenetz von {operator.name} basieren auf Betreiberangaben sowie amtlichen Registerdaten. Sie bilden statische Netzkapazitäten ab und stellen keine Echtzeit-Verfügbarkeitsdaten dar. Details in der <Link to="/methodik" className="text-purple-800 hover:text-purple-950 font-semibold underline">Methodik</Link>.
+        </p>
+      </div>
+
       {/* Features & Technologie */}
       <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
         <h2 className="text-base font-mono uppercase tracking-wider text-slate-800 font-bold">

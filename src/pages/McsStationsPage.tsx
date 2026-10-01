@@ -275,10 +275,10 @@ export const McsStationsPage: React.FC = () => {
         <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
           <div className="flex items-center gap-1.5 font-bold text-slate-900">
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>Kanonische Datenführung</span>
+            <span>Kanonische Datenführung &amp; Aufnahmekriterien</span>
           </div>
           <p>
-            Dieses Verzeichnis listet gezielt Standorte mit E-Lkw- und MCS-Infrastruktur auf. Die verlinkten Standortdossiers liegen auf den kanonischen URLs <code>/ladestation/[ort]/[slug]</code> und bündeln die vollständigen BNetzA-Registerdaten mit den verifizierten Betreiberangaben zur Schwerlast-Ladeinfrastruktur.
+            Dieses Verzeichnis listet von ladestandorte.de dokumentierte Pilotstandorte mit E-Lkw- und MCS-Infrastruktur auf. Die verlinkten Standortdossiers liegen auf den kanonischen URLs <code>/ladestation/[ort]/[slug]</code> und bündeln die BNetzA-Registerbasisdaten mit den dokumentierten Betreiber- und Projektangaben zur Schwerlast-Ladeinfrastruktur. Details zu Kriterien und Status in der <Link to="/methodik#mcs" className="text-emerald-700 hover:text-emerald-800 font-semibold underline">Methodik</Link>.
           </p>
         </div>
       </div>

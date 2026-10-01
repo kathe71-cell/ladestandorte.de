@@ -157,6 +157,14 @@ export const CityPage: React.FC = () => {
         </div>
       </div>
 
+      {/* Datengrundlage / Registerdaten-Klarstellung */}
+      <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-600 flex items-start gap-2.5">
+        <Database className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+        <p className="leading-relaxed">
+          <strong className="text-slate-900 font-semibold">Datengrundlage:</strong> Die hinterlegten Stadtkennzahlen für {city.name} basieren auf BNetzA-/Registerdaten. Die HPC-Quote ({((city.hpcLadepunkte / city.ladepunkteGesamt) * 100).toFixed(1)} %) wird aus den hinterlegten Werten berechnet. Die Daten werden manuell gepflegt und stellen keine Echtzeitdaten dar. Details in der <Link to="/methodik" className="text-emerald-700 hover:text-emerald-800 font-semibold underline">Methodik</Link>.
+        </p>
+      </div>
+
       {/* Top Operators in this City with Semantic Internal Links */}
       <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
         <h3 className="text-sm font-mono uppercase tracking-wider text-slate-600 font-bold">

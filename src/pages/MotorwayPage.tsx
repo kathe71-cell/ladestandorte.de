@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { Navigation, Zap, MapPin, ArrowRight, ShieldCheck, ExternalLink } from 'lucide-react';
+import { Navigation, Zap, MapPin, ArrowRight, ShieldCheck, ExternalLink, Info } from 'lucide-react';
 import { MOTORWAYS_DATA, getMotorwayCitySlugs, getMotorwayCrossingSlugs } from '../data/motorways';
 import { CITIES_DATA } from '../data/cities';
 import { getOperatorSlugByName } from '../utils/operatorHelper';
@@ -166,6 +166,14 @@ export const MotorwayPage: React.FC = () => {
             </span>
           </div>
         )}
+      </div>
+
+      {/* Datengrundlage / Denominator-Klarstellung */}
+      <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-600 flex items-start gap-2.5">
+        <Info className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+        <p className="leading-relaxed">
+          <strong className="text-slate-900 font-semibold">Datengrundlage:</strong> Die Dossier-Zahl bezeichnet die auf ladestandorte.de redaktionell dokumentierten Ladeparks entlang der {motorway.name}. Sie stellt keine Vollerhebung aller öffentlich registrierten Ladestationen dar (siehe amtliches BNetzA-Register). Details zur Erhebung in der <Link to="/methodik" className="text-emerald-700 hover:text-emerald-800 font-semibold underline">Methodik</Link>.
+        </p>
       </div>
 
 

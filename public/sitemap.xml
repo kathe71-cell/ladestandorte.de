@@ -79,6 +79,12 @@
     <lastmod>2026-10-01</lastmod>
   </url>
   <url>
+    <loc>https://www.ladestandorte.de/methodik</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
     <loc>https://www.ladestandorte.de/mcs</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>

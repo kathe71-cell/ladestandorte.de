@@ -21,6 +21,7 @@ import WallboxVergleichPage from './pages/WallboxVergleichPage';
 import RatgeberIndexPage from './pages/RatgeberIndexPage';
 import RatgeberArticlePage from './pages/RatgeberArticlePage';
 import GlossarPage from './pages/GlossarPage';
+import MethodikPage from './pages/MethodikPage';
 import ImpressumPage from './pages/ImpressumPage';
 import DatenschutzPage from './pages/DatenschutzPage';
 import StationDetailPage from './pages/StationDetailPage';
@@ -71,6 +72,7 @@ export function AppContent() {
         <Route path="/ratgeber" element={<RatgeberIndexPage />} />
         <Route path="/ratgeber/:articleSlug" element={<RatgeberArticlePage />} />
         <Route path="/glossar" element={<GlossarPage />} />
+        <Route path="/methodik" element={<MethodikPage />} />
         <Route path="/impressum" element={<ImpressumPage />} />
         <Route path="/datenschutz" element={<DatenschutzPage />} />
         <Route path="/mcs" element={<McsHubPage />} />

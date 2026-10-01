@@ -425,7 +425,7 @@ export const StationDetailPage: React.FC = () => {
               <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1 font-mono">
                 <div className="flex items-center justify-between text-slate-700 font-bold">
                   <span>Datenherkunft (Provenance): {station.truckCharging.provenance}</span>
-                  <span>Verifiziert: {station.truckCharging.lastVerifiedAt}</span>
+                  <span>Redaktionell geprüft am: {station.truckCharging.lastVerifiedAt}</span>
                 </div>
                 <p className="text-[11px] text-slate-500">
                   Quelle: {station.truckCharging.source} {station.truckCharging.sourceUrl && `(${station.truckCharging.sourceUrl})`}

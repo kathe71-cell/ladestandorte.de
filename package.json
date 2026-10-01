@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && npm run build:client && npm run build:server && node scripts/lint-provenance.js && node scripts/test-calculator-dual-mode.js && node prerender.js && node scripts/test-schema-isolation.js && node scripts/test-dossier-claims.js && plattform-check",
+    "build": "tsc -b && npm run build:client && npm run build:server && node scripts/lint-provenance.js && node scripts/test-calculator-dual-mode.js && node prerender.js && node scripts/test-schema-isolation.js && node scripts/test-dossier-claims.js && node scripts/test-methodology-integrity.js && plattform-check",
     "build:client": "vite build",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist-ssr",
     "lint:provenance": "node scripts/lint-provenance.js",
-    "test": "node scripts/test-calculator-dual-mode.js && node scripts/test-schema-isolation.js && node scripts/test-dossier-claims.js",
+    "test": "node scripts/test-calculator-dual-mode.js && node scripts/test-schema-isolation.js && node scripts/test-dossier-claims.js && node scripts/test-methodology-integrity.js",
     "check": "plattform-check",
     "preview": "vite preview"
   },

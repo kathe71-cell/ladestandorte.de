@@ -350,10 +350,10 @@ export const McsHubPage: React.FC = () => {
         <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
           <div className="flex items-center gap-1.5 font-bold text-slate-900">
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>Datenquellen &amp; Datenherkunft</span>
+            <span>Datengrundlage &amp; Kriterien</span>
           </div>
           <p>
-            Alle Angaben zu Ladeleistung, MCS-Standard und Lkw-Stellplätzen stammen aus offiziellen Betreibermitteilungen (Aral pulse, Milence) oder wissenschaftlich begleiteten Förderprojekten des Bundes (z. B. HoLa Hochleistungsladen im Lkw-Fernverkehr). Das amtliche BNetzA-Register führt MCS-Anschlüsse aktuell noch ohne gesonderte Steckertyp-Differenzierung.
+            Dieses Verzeichnis erfasst von ladestandorte.de dokumentierte Pilotstandorte für Megawatt- und Hochleistungs-Schwerlastladen. Alle Angaben zu Ladeleistung, MCS-Standard und Lkw-Stellplätzen stammen aus offiziellen Betreibermitteilungen (Aral pulse, Milence) oder wissenschaftlich begleiteten Förderprojekten des Bundes (z. B. HoLa Hochleistungsladen im Lkw-Fernverkehr). Das amtliche BNetzA-Register führt MCS-Anschlüsse aktuell noch ohne gesonderte Steckertyp-Differenzierung. Details in der <Link to="/methodik#mcs" className="text-emerald-700 hover:text-emerald-800 font-semibold underline">Methodik</Link>.
           </p>
         </div>
       </main>
