@@ -54,6 +54,7 @@ function downloadFile(url, destPath) {
         resolve({
           sha256,
           byteSize: stats.size,
+          httpStatus: response.statusCode,
           lastModifiedHeader: response.headers['last-modified'] || null,
           etagHeader: response.headers['etag'] || null
         });
@@ -74,11 +75,14 @@ async function main() {
   fs.mkdirSync(targetDir, { recursive: true });
 
   const metadata = {
+    retrievedAt: new Date().toISOString(),
     snapshotDate: today,
-    downloadTimestamp: new Date().toISOString(),
-    sourcePublisher: 'Bundesnetzagentur / NOW GmbH / Mobilithek',
+    dataSource: 'Bundesnetzagentur (Ladesäulenregister)',
+    technicalDistributor: 'NOW GmbH (Nationale Leitstelle Ladeinfrastruktur) / Mobilithek Daten-API',
     license: 'Creative Commons Namensnennung 4.0 International (CC BY 4.0)',
-    attribution: 'Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)',
+    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/deed.de',
+    attributionRequired: 'Bundesnetzagentur.de',
+    sourceDatasetDate: null, // API does not publish a formal dataset date parameter
     files: {}
   };
 
@@ -91,9 +95,10 @@ async function main() {
     metadata.files[item.name] = {
       filename: item.filename,
       url: item.url,
+      httpStatus: result.httpStatus,
       byteSize: result.byteSize,
       sha256: result.sha256,
-      lastModified: result.lastModifiedHeader,
+      sourcePublishedAt: result.lastModifiedHeader,
       etag: result.etagHeader
     };
   }
@@ -102,7 +107,7 @@ async function main() {
   fs.writeFileSync(metaPath, JSON.stringify(metadata, null, 2), 'utf-8');
   console.log(`[BNetzA Pipeline] Metadata written to ${metaPath}`);
 
-  // Create latest symlink or pointer
+  // Create latest pointer
   const latestMetaPath = path.join(ROOT_DIR, 'data/raw/bnetza/latest.json');
   fs.writeFileSync(latestMetaPath, JSON.stringify({
     latestSnapshotDate: today,

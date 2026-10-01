@@ -2,8 +2,15 @@
 /**
  * scripts/data/aggregate-cities.mjs
  * Aggregates raw BNetzA snapshot CSVs for the 50 German cities in ladestandorte.de.
- * Calculates exact total charging points, HPC points (>= 150 kW), AC vs DC, average kW,
- * top CPOs, population density per 1,000 residents, and creates a comprehensive difference report.
+ *
+ * Methodological Principles:
+ * 1. Strictly power-based classification: upTo22Kw (<=22 kW), between22And150Kw (>22 kW and <150 kW), points150PlusKw (>=150 kW).
+ *    No inference of AC vs DC from power alone!
+ * 2. HPC Definition ladestandorte.de: "points150PlusKw" (Ladepunkte mit einer Nennleistung von mindestens 150 kW).
+ *    In text/methodology clearly framed as: "Ladepunkte >=150 kW" without asserting unverified DC/connector status or legal norms.
+ * 3. Exact source date semantics: retrievedAt, sourcePublishedAt, sourceDatasetDate (null), maxRecordTimestamp.
+ * 4. Attribution: Bundesnetzagentur.de (CC BY 4.0).
+ * 5. Completeness disclaimer.
  */
 
 import fs from 'node:fs';
@@ -56,7 +63,7 @@ async function main() {
   }
 
   let totalRawStations = 0;
-  let maxStationDate = '';
+  let maxStationTimestamp = '';
 
   for await (const line of rlStation) {
     if (!headerStation) {
@@ -70,8 +77,8 @@ async function main() {
     const ars = parts[12]?.trim();
     const rowDate = parts[parts.length - 1]?.trim();
 
-    if (rowDate && rowDate > maxStationDate) {
-      maxStationDate = rowDate;
+    if (rowDate && rowDate > maxStationTimestamp) {
+      maxStationTimestamp = rowDate;
     }
 
     const city = arsToCity.get(ars);
@@ -85,7 +92,7 @@ async function main() {
   }
 
   console.log(`[Aggregate Cities] Total raw stations: ${totalRawStations}. Mapped stations: ${stationMap.size}.`);
-  console.log(`[Aggregate Cities] Max station datenstand in snapshot: ${maxStationDate}`);
+  console.log(`[Aggregate Cities] Max station record timestamp: ${maxStationTimestamp}`);
 
   // 3. Stream Ladepunkte CSV
   const ladepunktPath = path.join(snapshotDir, 'bnetza_api_ladepunkt000.csv');
@@ -98,15 +105,15 @@ async function main() {
   for (const c of cityMappings) {
     cityMetrics.set(c.slug, {
       ladepunkteGesamt: 0,
-      hpcLadepunkte: 0, // >= 150 kW
-      dcMidLadepunkte: 0, // > 22 kW & < 150 kW
-      acLadepunkte: 0, // <= 22 kW (NLP)
+      points150PlusKw: 0, // >= 150 kW (HPC according to ladestandorte.de classification)
+      pointsBetween22And150Kw: 0, // > 22 kW & < 150 kW
+      pointsUpTo22Kw: 0, // <= 22 kW
       powerSumKw: 0
     });
   }
 
   let totalRawPoints = 0;
-  let maxPointDate = '';
+  let maxPointTimestamp = '';
   let mappedPointsCount = 0;
 
   for await (const line of rlPoint) {
@@ -120,8 +127,8 @@ async function main() {
     const power = parseFloat(parts[4]) || 0;
     const rowDate = parts[parts.length - 1]?.trim();
 
-    if (rowDate && rowDate > maxPointDate) {
-      maxPointDate = rowDate;
+    if (rowDate && rowDate > maxPointTimestamp) {
+      maxPointTimestamp = rowDate;
     }
 
     const stInfo = stationMap.get(stId);
@@ -133,16 +140,16 @@ async function main() {
     m.powerSumKw += power;
 
     if (power >= 150) {
-      m.hpcLadepunkte++;
+      m.points150PlusKw++;
     } else if (power > 22) {
-      m.dcMidLadepunkte++;
+      m.pointsBetween22And150Kw++;
     } else {
-      m.acLadepunkte++;
+      m.pointsUpTo22Kw++;
     }
   }
 
   console.log(`[Aggregate Cities] Total raw points: ${totalRawPoints}. Mapped points: ${mappedPointsCount}.`);
-  console.log(`[Aggregate Cities] Max point datenstand in snapshot: ${maxPointDate}`);
+  console.log(`[Aggregate Cities] Max point record timestamp: ${maxPointTimestamp}`);
 
   // 4. Construct Generated Dataset
   const generatedCities = [];
@@ -163,8 +170,8 @@ async function main() {
       ? Number(((m.ladepunkteGesamt / c.officialPopulation) * 1000).toFixed(2))
       : 0;
 
-    const hpcPer1k = c.officialPopulation > 0
-      ? Number(((m.hpcLadepunkte / c.officialPopulation) * 1000).toFixed(2))
+    const points150PlusPer1k = c.officialPopulation > 0
+      ? Number(((m.points150PlusKw / c.officialPopulation) * 1000).toFixed(2))
       : 0;
 
     generatedCities.push({
@@ -182,19 +189,32 @@ async function main() {
       bnetza: {
         ladestationen: stationCount,
         ladepunkteGesamt: m.ladepunkteGesamt,
-        hpcLadepunkte: m.hpcLadepunkte,
-        dcMidLadepunkte: m.dcMidLadepunkte,
-        acLadepunkte: m.acLadepunkte,
+        // Neutral power-bracket classification (no unverified AC/DC inference)
+        powerClasses: {
+          upTo22Kw: m.pointsUpTo22Kw,
+          between22And150Kw: m.pointsBetween22And150Kw,
+          hpc150PlusKw: m.points150PlusKw
+        },
+        // Alias for compatibility with existing codebase
+        hpcLadepunkte: m.points150PlusKw,
         avgKw: avgKw,
         topBetreiber: topBetreiber,
         pointsPer1000Pop: pointsPer1k,
-        hpcPer1000Pop: hpcPer1k,
-        sourcePublisher: metadata.sourcePublisher,
-        license: metadata.license,
-        attribution: metadata.attribution,
-        snapshotDate: snapshotDate,
-        snapshotMaxDatenstand: maxStationDate.slice(0, 10),
-        rawSnapshotSha256: metadata.files.ladestationen.sha256
+        hpcPer1000Pop: points150PlusPer1k,
+        // Precise Provenance Semantics
+        provenance: {
+          dataSource: metadata.dataSource,
+          technicalDistributor: metadata.technicalDistributor,
+          license: metadata.license,
+          licenseUrl: metadata.licenseUrl,
+          attribution: metadata.attributionRequired,
+          retrievedAt: metadata.retrievedAt,
+          sourcePublishedAt: metadata.files.ladestationen.sourcePublishedAt,
+          sourceDatasetDate: null, // API does not publish an official dataset date
+          maxRecordTimestamp: maxStationTimestamp,
+          rawSnapshotSha256: metadata.files.ladestationen.sha256,
+          completenessDisclaimer: 'Die Auswertung basiert auf den im verwendeten Register/API-Datenbestand veröffentlichten Ladeeinrichtungen. Der Datenbestand stellt keine zwingend vollständige Erfassung der gesamten öffentlich zugänglichen Ladeinfrastruktur dar.'
+        }
       }
     });
   }
@@ -262,14 +282,18 @@ async function main() {
   const reportPath = path.join(ROOT_DIR, `reports/data/cities/${snapshotDate}.md`);
   let md = `# BNetzA City Data Verification & Difference Report
 
-- **Stichtag Snapshot:** ${snapshotDate}
-- **Amtliche Datenquelle:** Bundesnetzagentur / NOW GmbH / Mobilithek
+- **Snapshot-Abruf (retrievedAt):** ${metadata.retrievedAt}
+- **Server HTTP Last-Modified (sourcePublishedAt):** \`${metadata.files.ladestationen.sourcePublishedAt}\`
+- **Amtliches Dataset-Datum (sourceDatasetDate):** *null* (von der API nicht als eigenständiger Parameter bereitgestellt)
+- **Maximaler Datensatz-Zeitstempel (maxRecordTimestamp):** \`${maxStationTimestamp}\`
+- **Datenquelle:** ${metadata.dataSource}
+- **Technischer Distributor:** ${metadata.technicalDistributor}
 - **Rohdaten-Hash (Ladestationen):** \`${metadata.files.ladestationen.sha256}\`
 - **Rohdaten-Hash (Ladepunkte):** \`${metadata.files.ladepunkte.sha256}\`
-- **Maximaler Datenstand im Snapshot:** \`${maxStationDate}\`
-- **Lizenz:** Creative Commons Namensnennung 4.0 International (CC BY 4.0)
-- **Attribution:** \`Bundesnetzagentur.de / NOW GmbH (Nationale Leitstelle Ladeinfrastruktur)\`
+- **Lizenz:** ${metadata.license} (\`${metadata.licenseUrl}\`)
+- **Namensnennung / Attribution:** \`${metadata.attributionRequired}\`
 - **Einwohnerquelle:** Statistisches Bundesamt (Destatis) GV-ISys (Zensus 2022 Fortschreibung, 31.12.2023) (\`dl-de/by-2-0\`)
+- **Vollständigkeitshinweis:** Die Auswertung basiert auf den im verwendeten Register/API-Datenbestand veröffentlichten Ladeeinrichtungen. Der Datenbestand stellt keine zwingend vollständige Erfassung der gesamten öffentlich zugänglichen Ladeinfrastruktur dar.
 
 ---
 
@@ -278,14 +302,14 @@ async function main() {
 | Metrik | Altbestand (CITIES_DATA) | Neu berechnet (BNetzA Snapshot) | Absolute Differenz | Relative Differenz |
 | :--- | :--- | :--- | :--- | :--- |
 | **Ladepunkte Gesamt** | ${totalLegacyPoints.toLocaleString('de-DE')} | ${totalNewPoints.toLocaleString('de-DE')} | ${totalNewPoints >= totalLegacyPoints ? '+' : ''}${(totalNewPoints - totalLegacyPoints).toLocaleString('de-DE')} | ${(((totalNewPoints - totalLegacyPoints) / totalLegacyPoints) * 100).toFixed(1)}% |
-| **HPC-Ladepunkte (>=150 kW)** | ${totalLegacyHpc.toLocaleString('de-DE')} | ${totalNewHpc.toLocaleString('de-DE')} | ${totalNewHpc >= totalLegacyHpc ? '+' : ''}${(totalNewHpc - totalLegacyHpc).toLocaleString('de-DE')} | ${(((totalNewHpc - totalLegacyHpc) / totalLegacyHpc) * 100).toFixed(1)}% |
+| **Ladepunkte ≥150 kW (HPC ladestandorte.de)** | ${totalLegacyHpc.toLocaleString('de-DE')} | ${totalNewHpc.toLocaleString('de-DE')} | ${totalNewHpc >= totalLegacyHpc ? '+' : ''}${(totalNewHpc - totalLegacyHpc).toLocaleString('de-DE')} | ${(((totalNewHpc - totalLegacyHpc) / totalLegacyHpc) * 100).toFixed(1)}% |
 | **Dokumentierte Ladestationen** | *Keine Angabe* | ${stationMap.size.toLocaleString('de-DE')} | - | - |
 
 ---
 
 ## 2. Detaillierter Städtevergleich (Alle 50 Städte)
 
-| Stadt | Einwohner (Destatis) | Ladepunkte alt | Ladepunkte BNetzA | Delta LP | HPC alt | HPC BNetzA (>=150kW) | Delta HPC |
+| Stadt | Einwohner (Destatis) | Ladepunkte alt | Ladepunkte BNetzA | Delta LP | LP ≥150kW alt | LP ≥150kW BNetzA | Delta ≥150kW |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 `;
 
@@ -298,20 +322,27 @@ async function main() {
   md += `
 ---
 
-## 3. Methodische Anmerkungen & Diskrepanzerklärung
+## 3. Methodische Anmerkungen & Klassifikation
 
-1. **Diskrepanzen bei Ladepunkte Gesamt:**
-   - Der historische Altbestand in \`CITIES_DATA\` basierte auf älteren Schätzungen/Zahlen ohne revisionssicheren Snapshot.
-   - Der BNetzA-Snapshot erfasst alle gemeldeten öffentlichen Ladepunkte mit amtlichem Regionalschlüssel (ARS).
-   - In Wachstumsmetropolen wie Berlin (von 5.420 auf 7.617) oder Hamburg (von 3.840 auf 6.058) zeigt sich der reale historische Zubau der letzten Quartale.
+1. **Leistungsklassen statt technischer Stromart (Keine unzulässige AC/DC-Inferenz):**
+   - Da im Ladepunkt-Rohdatensatz keine direkte Stromart (AC/DC) übergeben wird, unterteilt ladestandorte.de rein nach Nennleistungsklassen:
+     - \`upTo22Kw\`: Ladepunkte mit Nennleistung $\\le 22\\text{ kW}$
+     - \`between22And150Kw\`: Ladepunkte mit Nennleistung $> 22\\text{ kW}$ und $< 150\\text{ kW}$
+     - \`hpc150PlusKw\`: Ladepunkte mit Nennleistung $\\ge 150\\text{ kW}$
+   - Es wird ausdrücklich **nicht** behauptet, dass $\\le 22\\text{ kW}$ zwingend technisch AC oder $> 22\\text{ kW}$ zwingend technisch DC entspricht.
 
-2. **Diskrepanzen bei HPC-Ladepunkten:**
-   - In manchen Städten (z.B. München von 610 auf 265, Stuttgart von 450 auf 150) waren im Altbestand vermutlich alle DC-Ladepunkte (auch 50 kW Triple-Charger) fälschlicherweise als HPC (>=150 kW) deklariert.
-   - Die BNetzA-Pipeline filtert strikt nach \`ladepunkt_nennleistung >= 150\`.
+2. **Definition HPC auf ladestandorte.de:**
+   - Als **HPC** werden auf ladestandorte.de redaktionell Ladepunkte mit einer Nennleistung von mindestens $150\\text{ kW}$ klassifiziert (\`points150PlusKw\`).
+   - Die irreführende Bezeichnung „gesetzliche HPC-Schwelle“ wurde gestrichen.
 
-3. **Geografische Zuordnung (ARS):**
+3. **Zeitstempel- und Datumssemantik:**
+   - \`retrievedAt\`: Tatsächlicher Download-Zeitstempel des Snapshots (${metadata.retrievedAt}).
+   - \`sourcePublishedAt\`: Vom Server übermittelter HTTP Last-Modified-Header (\`${metadata.files.ladestationen.sourcePublishedAt}\`).
+   - \`sourceDatasetDate\`: \`null\` (die API liefert kein offizielles Datensatzdatum).
+   - \`maxRecordTimestamp\`: Maximaler im Datenbestand gefundener Datensatz-Zeitstempel (\`${maxStationTimestamp}\`).
+
+4. **Geografische Zuordnung (ARS):**
    - Jede Ladestation ist eindeutig über ihren 12-stelligen ARS (Amtlicher Regionalschlüssel) der Kernstadt zugeordnet.
-   - Umliegende Gemeinden (z.B. Flughafen Stuttgart in Leinfelden-Echterdingen oder Umlandgemeinden) fließen nicht irrtümlich in die Kernstadt ein.
 `;
 
   fs.writeFileSync(reportPath, md, 'utf-8');

@@ -5,10 +5,11 @@
  * 1. Exactly 50 cities present.
  * 2. Every city has valid slug, name, bundesland, 8-digit AGS, 12-digit ARS.
  * 3. Population > 100,000 for all 50 cities.
- * 4. Ladepunkte Gesamt >= HPC Ladepunkte.
+ * 4. Ladepunkte Gesamt >= HPC Ladepunkte (hpc150PlusKw).
  * 5. Ladestationen > 0, Ladepunkte Gesamt > 0, HPC Ladepunkte > 0 for all 50 cities.
- * 6. Valid SHA-256 and BNetzA license/attribution metadata.
- * 7. Snapshot date matches YYYY-MM-DD.
+ * 6. Power brackets sum equals Ladepunkte Gesamt.
+ * 7. Valid SHA-256 and BNetzA license/attribution metadata.
+ * 8. Provenance semantics complete (retrievedAt, maxRecordTimestamp, completenessDisclaimer).
  */
 
 import fs from 'node:fs';
@@ -66,7 +67,7 @@ data.forEach((city, idx) => {
     errors.push(`${prefix} Population unexpectedly low: ${city.population.value}`);
   }
 
-  // 4. BNetzA counts
+  // 4. BNetzA counts & power classes
   const b = city.bnetza;
   if (!b) {
     errors.push(`${prefix} Missing bnetza node`);
@@ -83,11 +84,38 @@ data.forEach((city, idx) => {
     if (b.hpcLadepunkte > b.ladepunkteGesamt) {
       errors.push(`${prefix} HPC points (${b.hpcLadepunkte}) exceed total points (${b.ladepunkteGesamt})`);
     }
-    if (!/^[a-f0-9]{64}$/.test(b.rawSnapshotSha256)) {
-      errors.push(`${prefix} Invalid SHA-256 hash: ${b.rawSnapshotSha256}`);
+
+    // Check power classes sum
+    const pc = b.powerClasses;
+    if (!pc) {
+      errors.push(`${prefix} Missing powerClasses`);
+    } else {
+      const sum = pc.upTo22Kw + pc.between22And150Kw + pc.hpc150PlusKw;
+      if (sum !== b.ladepunkteGesamt) {
+        errors.push(`${prefix} Power classes sum (${sum}) does not match ladepunkteGesamt (${b.ladepunkteGesamt})`);
+      }
+      if (pc.hpc150PlusKw !== b.hpcLadepunkte) {
+        errors.push(`${prefix} hpc150PlusKw (${pc.hpc150PlusKw}) does not match hpcLadepunkte (${b.hpcLadepunkte})`);
+      }
     }
-    if (!b.license || !b.attribution) {
-      errors.push(`${prefix} Missing license or attribution`);
+
+    // Provenance node validation
+    const prov = b.provenance;
+    if (!prov) {
+      errors.push(`${prefix} Missing provenance node`);
+    } else {
+      if (!/^[a-f0-9]{64}$/.test(prov.rawSnapshotSha256)) {
+        errors.push(`${prefix} Invalid SHA-256 hash: ${prov.rawSnapshotSha256}`);
+      }
+      if (!prov.license || !prov.attribution) {
+        errors.push(`${prefix} Missing license or attribution`);
+      }
+      if (!prov.retrievedAt || !prov.maxRecordTimestamp) {
+        errors.push(`${prefix} Missing timestamp semantics`);
+      }
+      if (!prov.completenessDisclaimer) {
+        errors.push(`${prefix} Missing completeness disclaimer`);
+      }
     }
   }
 });
