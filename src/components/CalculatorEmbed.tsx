@@ -519,12 +519,15 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           </div>
 
           {/* Legal Note & Loss equation definition */}
-          <div className="pt-3 border-t border-slate-800 text-[11px] text-slate-400 leading-normal space-y-1">
+          <div className="pt-3 border-t border-slate-800 text-[11px] text-slate-400 leading-normal space-y-1.5">
             <p>
-              * Unverbindliche Modellrechnung. Die tatsächliche Ladezeit und Ladeleistung hängen von Akkutemperatur, Vorkonditionierung, Batteriemanagementsystem (BMS) und Ladekurve ab.
+              * Unverbindliche Modellrechnung. Die geschätzte Ladezeit und reale Ladeleistung hängen maßgeblich vom individuellen Fahrzeugmodell, der herstellerspezifischen Ladekurve, Akkutemperatur, Vorkonditionierung und der tatsächlich vom Ladepunkt bereitgestellten Leistung ab.
             </p>
             <p className="text-[10px] text-slate-500">
-              Verlustleistungs-Definition: Brutto-Bezug ab Säule = Nettoenergie × (1 + {currentLossPercent} %). Verluste entstehen durch AC/DC-Wandlung im bordeigenen Lader (AC ca. 10–15 %) bzw. Leitungen und Kühlung (DC ca. 5–8 %).
+              Modellannahme Ladekurve: Die durchschnittliche Ladeleistung wird im Modell vereinfacht über einen Ladekurvenfaktor geschätzt (ca. 76 % bis 82 % der Spitzenleistung im Bereich 10–80 % SoC).
+            </p>
+            <p className="text-[10px] text-slate-500">
+              Modellannahme Ladeverluste: Rechnerischer Aufschlag auf die Nettoenergie von 6 % (DC-Schnellladen) bzw. 12 % (AC-Normalladen). Reale Verluste können je nach Außentemperatur, Bordlader-Wirkungsgrad und Ladekabelkühlung abweichen.
             </p>
           </div>
 
