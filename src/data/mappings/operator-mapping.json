@@ -1,0 +1,395 @@
+[
+  {
+    "id": "enbw",
+    "name": "EnBW mobility+",
+    "slug": "enbw",
+    "brandName": "EnBW mobility+",
+    "parentCompany": "EnBW Energie Baden-Württemberg AG",
+    "headquarters": "Karlsruhe, Deutschland",
+    "bnetzaMatchPatterns": [
+      "EnBW mobility+"
+    ],
+    "description": "EnBW mobility+ ist einer der führenden Ladeinfrastrukturbetreiber in Deutschland mit einem dichten bundesweiten Schnellladenetz an Fernstraßen und im urbanen Raum.",
+    "website": "https://www.enbw.com/elektromobilitaet"
+  },
+  {
+    "id": "tesla",
+    "name": "Tesla Supercharger",
+    "slug": "tesla",
+    "brandName": "Tesla Supercharger",
+    "parentCompany": "Tesla, Inc.",
+    "headquarters": "Austin, USA / Berlin, Deutschland",
+    "bnetzaMatchPatterns": [
+      "Tesla Germany"
+    ],
+    "description": "Tesla betreibt mit dem Supercharger-Netzwerk eine der größten High-Power-Charging-Infrastrukturen in Deutschland, die sukzessive auch für Fremdmarken (CCS) geöffnet wurde.",
+    "website": "https://www.tesla.com/de_de/supercharger"
+  },
+  {
+    "id": "aral-pulse",
+    "name": "Aral pulse (BP)",
+    "slug": "aral-pulse",
+    "brandName": "Aral pulse",
+    "parentCompany": "BP Europa SE",
+    "headquarters": "Bochum, Deutschland / London, UK",
+    "bnetzaMatchPatterns": [
+      "BP Europa"
+    ],
+    "description": "Aral pulse bündelt die Ladeaktivitäten von BP in Deutschland an Tankstellenstandorten sowie designierten Ladehubs, einschließlich neuer Megawatt-Ladeinfrastruktur für E-Lkw.",
+    "website": "https://www.aral.de/de/global/retail/elektromobilitaet.html"
+  },
+  {
+    "id": "shell-recharge",
+    "name": "Shell Recharge",
+    "slug": "shell-recharge",
+    "brandName": "Shell Recharge",
+    "parentCompany": "Shell Deutschland GmbH",
+    "headquarters": "Hamburg, Deutschland / Den Haag, Niederlande",
+    "bnetzaMatchPatterns": [
+      "Shell Deutschland"
+    ],
+    "description": "Shell Recharge baut Schnellladeinfrastruktur an Tankstellen sowie Einzelhandelsstandorten aus und integriert diese in globale Mobilitätsdienstleistungen.",
+    "website": "https://www.shell.de/autofahrer/shell-recharge.html"
+  },
+  {
+    "id": "ewe-go",
+    "name": "EWE Go",
+    "slug": "ewe-go",
+    "brandName": "EWE Go",
+    "parentCompany": "EWE AG",
+    "headquarters": "Oldenburg, Deutschland",
+    "bnetzaMatchPatterns": [
+      "EWE Go",
+      "EWE Go HOCHTIEF Ladepartner"
+    ],
+    "description": "EWE Go ist der Mobilitätsdienstleister der EWE AG mit starker Verankerung in Norddeutschland sowie bundesweiten Partnerschaften im Einzelhandel und Deutschlandnetz.",
+    "website": "https://www.ewe-go.de"
+  },
+  {
+    "id": "allego",
+    "name": "Allego",
+    "slug": "allego",
+    "brandName": "Allego",
+    "parentCompany": "Allego N.V.",
+    "headquarters": "Arnhem, Niederlande / Berlin, Deutschland",
+    "bnetzaMatchPatterns": [
+      "Allego"
+    ],
+    "description": "Allego betreibt paneuropäische Schnellladeinfrastruktur an Verkehrsachsen und im Einzelhandel mit einem Fokus auf zuverlässige B2B- und B2C-Ladelösungen.",
+    "website": "https://www.allego.eu/de-de"
+  },
+  {
+    "id": "ionity",
+    "name": "IONITY",
+    "slug": "ionity",
+    "brandName": "IONITY",
+    "parentCompany": "IONITY GmbH",
+    "headquarters": "München, Deutschland",
+    "bnetzaMatchPatterns": [
+      "IONITY"
+    ],
+    "description": "IONITY ist ein von mehreren Automobilherstellern gegründetes High-Power-Charging-Netzwerk mit Fokus auf 350-kW-Standorte entlang europäischer Autobahnkorridore.",
+    "website": "https://ionity.eu/de"
+  },
+  {
+    "id": "pfalzwerke",
+    "name": "Pfalzwerke ePunkt",
+    "slug": "pfalzwerke",
+    "brandName": "Pfalzwerke",
+    "parentCompany": "Pfalzwerke Aktiengesellschaft",
+    "headquarters": "Ludwigshafen, Deutschland",
+    "bnetzaMatchPatterns": [
+      "Pfalzwerke"
+    ],
+    "description": "Die Pfalzwerke betreiben ein bundesweit wachsendes Schnellladenetz, vor allem an Einzelhandels- und Baumarkt-Standorten (u. a. Hornbach).",
+    "website": "https://www.pfalzwerke.de"
+  },
+  {
+    "id": "vattenfall",
+    "name": "Vattenfall InCharge",
+    "slug": "vattenfall-incharge",
+    "brandName": "Vattenfall InCharge",
+    "parentCompany": "Vattenfall AB",
+    "headquarters": "Berlin, Deutschland / Stockholm, Schweden",
+    "bnetzaMatchPatterns": [
+      "Vattenfall Smarter Living"
+    ],
+    "description": "Vattenfall InCharge betreibt Ladeinfrastruktur vorwiegend im städtischen Raum und an Handelsstandorten mit Schwerpunkt in Berlin, Hamburg und NRW.",
+    "website": "https://www.vattenfall.de/incharge"
+  },
+  {
+    "id": "eon-drive",
+    "name": "E.ON Drive",
+    "slug": "eon-drive",
+    "brandName": "E.ON Drive",
+    "parentCompany": "E.ON SE",
+    "headquarters": "Essen, Deutschland",
+    "bnetzaMatchPatterns": [
+      "E.ON Drive Germany",
+      "E.ON Drive Infrastructure"
+    ],
+    "description": "E.ON Drive bündelt AC- und HPC-Ladeinfrastruktur für Privatkunden, Flotten und den öffentlichen Raum unter dem Dach des E.ON-Konzerns.",
+    "website": "https://www.eon.de/de/e-mobility.html"
+  },
+  {
+    "id": "mer",
+    "name": "Mer Germany",
+    "slug": "mer-charge",
+    "brandName": "Mer",
+    "parentCompany": "Statkraft AS",
+    "headquarters": "München, Deutschland / Oslo, Norwegen",
+    "bnetzaMatchPatterns": [
+      "Mer Germany"
+    ],
+    "description": "Mer (vormals u. a. E-Wald) ist Teil des norwegischen Statkraft-Konzerns und betreibt bundesweit Ladeinfrastruktur an Gewerbestandorten, Hotels und im kommunalen Raum.",
+    "website": "https://de.mer.eco"
+  },
+  {
+    "id": "teag-mobil",
+    "name": "TEAG Mobil",
+    "slug": "teag-mobil",
+    "brandName": "TEAG Mobil",
+    "parentCompany": "Thüringer Energie AG",
+    "headquarters": "Erfurt, Deutschland",
+    "bnetzaMatchPatterns": [
+      "TEAG Mobil"
+    ],
+    "description": "TEAG Mobil ist einer der führenden Ladeinfrastrukturanbieter in Mitteldeutschland mit stark ausgebautem HPC-Netz in Thüringen, Sachsen und Sachsen-Anhalt.",
+    "website": "https://www.teag-mobil.de"
+  },
+  {
+    "id": "citywatt",
+    "name": "Citywatt",
+    "slug": "citywatt",
+    "brandName": "Citywatt",
+    "parentCompany": "Citywatt GmbH",
+    "headquarters": "Ruderting, Deutschland",
+    "bnetzaMatchPatterns": [
+      "Citywatt"
+    ],
+    "description": "Citywatt entwickelt und betreibt Schnellladeparks an Fachmarktzentren und Verkehrsachsen mit Fokus auf schlüsselfertige HPC-Infrastruktur.",
+    "website": "https://www.citywatt.de"
+  },
+  {
+    "id": "circle-k",
+    "name": "Circle K",
+    "slug": "circle-k",
+    "brandName": "Circle K",
+    "parentCompany": "Alimentation Couche-Tard",
+    "headquarters": "Hamburg, Deutschland / Laval, Kanada",
+    "bnetzaMatchPatterns": [
+      "Circle K Deutschland"
+    ],
+    "description": "Circle K baut nach der Übernahme des TotalEnergies-Tankstellennetzes ein dediziertes High-Power-Charging-Netzwerk an Tankstellen auf.",
+    "website": "https://www.circlek.de"
+  },
+  {
+    "id": "aldi-sued",
+    "name": "ALDI SÜD",
+    "slug": "aldi-sued-charge",
+    "brandName": "ALDI SÜD",
+    "parentCompany": "ALDI SÜD Dienstleistungs-SE & Co. oHG",
+    "headquarters": "Mülheim an der Ruhr, Deutschland",
+    "bnetzaMatchPatterns": [
+      "ALDI SÜD ImmobilienverwaltungsoHG"
+    ],
+    "description": "ALDI SÜD rüstet Filialparkplätze mit eigener Ladeinfrastruktur aus, darunter eine wachsende Anzahl an DC- und HPC-Ladepunkten für Kunden während des Einkaufs.",
+    "website": "https://www.aldi-sued.de"
+  },
+  {
+    "id": "totalenergies",
+    "name": "TotalEnergies",
+    "slug": "totalenergies-charge",
+    "brandName": "TotalEnergies",
+    "parentCompany": "TotalEnergies SE",
+    "headquarters": "Berlin, Deutschland / Paris, Frankreich",
+    "bnetzaMatchPatterns": [
+      "TotalEnergies Charging Solutions Deutschland",
+      "TotalEnergies Marketing Deutschland"
+    ],
+    "description": "TotalEnergies errichtet High-Power-Charging-Hubs im städtischen Raum, an Verkehrsknotenpunkten und an ausgewählten Gewerbestandorten.",
+    "website": "https://totalenergies.de"
+  },
+  {
+    "id": "fastned",
+    "name": "Fastned",
+    "slug": "fastned",
+    "brandName": "Fastned",
+    "parentCompany": "Fastned B.V.",
+    "headquarters": "Köln, Deutschland / Amsterdam, Niederlande",
+    "bnetzaMatchPatterns": [
+      "Fastned Deutschland"
+    ],
+    "description": "Fastned errichtet reine High-Power-Charging-Stationen mit Solardächern entlang von Autobahnen und städtischen Einfallstraßen.",
+    "website": "https://fastnedcharging.com/de"
+  },
+  {
+    "id": "electra",
+    "name": "Electra",
+    "slug": "electra",
+    "brandName": "Electra",
+    "parentCompany": "Electra SAS",
+    "headquarters": "München, Deutschland / Paris, Frankreich",
+    "bnetzaMatchPatterns": [
+      "Electra Germany"
+    ],
+    "description": "Electra ist ein europäischer Schnellladespezialist mit Fokus auf ultraschnelles Laden im städtischen Umfeld und an Handelsstandorten.",
+    "website": "https://www.go-electra.com/de/"
+  },
+  {
+    "id": "comfortcharge",
+    "name": "Comfortcharge",
+    "slug": "comfortcharge",
+    "brandName": "Comfortcharge",
+    "parentCompany": "Deutsche Telekom AG",
+    "headquarters": "Bonn, Deutschland",
+    "bnetzaMatchPatterns": [
+      "Comfortcharge"
+    ],
+    "description": "Comfortcharge nutzt Standorte und Netzinfrastruktur der Deutschen Telekom zur Errichtung öffentlicher Schnellladestationen.",
+    "website": "https://www.comfortcharge.de"
+  },
+  {
+    "id": "aldi-nord",
+    "name": "ALDI Nord",
+    "slug": "aldi-nord",
+    "brandName": "ALDI Nord",
+    "parentCompany": "ALDI Einkauf SE & Co. oHG",
+    "headquarters": "Essen, Deutschland",
+    "bnetzaMatchPatterns": [
+      "ALDI Nord Deutschland"
+    ],
+    "description": "ALDI Nord betreibt Ladeeinrichtungen an Filialstandorten in Nord- und Ostdeutschland mit zunehmendem Schnelllade-Fokus.",
+    "website": "https://www.aldi-nord.de"
+  },
+  {
+    "id": "jet",
+    "name": "JET Tankstellen",
+    "slug": "jet",
+    "brandName": "JET",
+    "parentCompany": "Phillips 66 Continental Holding GmbH",
+    "headquarters": "Hamburg, Deutschland",
+    "bnetzaMatchPatterns": [
+      "JET Tankstellen Deutschland"
+    ],
+    "description": "JET stattet ausgewählte Tankstellen mit markeneigenen High-Power-Charging-Säulen aus.",
+    "website": "https://www.jet.de"
+  },
+  {
+    "id": "qwello",
+    "name": "Qwello",
+    "slug": "qwello",
+    "brandName": "Qwello",
+    "parentCompany": "Qwello GmbH",
+    "headquarters": "München, Deutschland",
+    "bnetzaMatchPatterns": [
+      "Qwello Deutschland"
+    ],
+    "description": "Qwello konzentriert sich auf nutzerfreundliche, barrierefreie AC-Ladeinfrastruktur im öffentlichen Straßenraum deutscher Großstädte.",
+    "website": "https://www.qwello.eu"
+  },
+  {
+    "id": "wirelane",
+    "name": "Wirelane",
+    "slug": "wirelane",
+    "brandName": "Wirelane",
+    "parentCompany": "Wirelane GmbH",
+    "headquarters": "München, Deutschland",
+    "bnetzaMatchPatterns": [
+      "Wirelane Public 1"
+    ],
+    "description": "Wirelane entwickelt und betreibt Ladeinfrastruktur an Hotels, Wohnquartieren und im urbanen öffentlichen Raum.",
+    "website": "https://www.wirelane.com"
+  },
+  {
+    "id": "hamburger-energiewerke",
+    "name": "Hamburger Energiewerke Mobil",
+    "slug": "hamburger-energiewerke-mobil",
+    "brandName": "Hamburger Energiewerke Mobil",
+    "parentCompany": "Hamburger Energiewerke GmbH",
+    "headquarters": "Hamburg, Deutschland",
+    "bnetzaMatchPatterns": [
+      "Hamburger Energiewerke Mobil"
+    ],
+    "description": "Städtischer Betreiber der öffentlichen Ladeinfrastruktur in der Freien und Hansestadt Hamburg.",
+    "website": "https://www.hamburger-energiewerke.de"
+  },
+  {
+    "id": "enercity",
+    "name": "enercity",
+    "slug": "enercity",
+    "brandName": "enercity",
+    "parentCompany": "enercity AG",
+    "headquarters": "Hannover, Deutschland",
+    "bnetzaMatchPatterns": [
+      "enercity"
+    ],
+    "description": "Kommunales Energieunternehmen mit starkem Ladenetz in der Region Hannover und bundesweiten Schnellladepartnerschaften.",
+    "website": "https://www.enercity.de"
+  },
+  {
+    "id": "tanke",
+    "name": "TankE",
+    "slug": "tanke-aachener-sw",
+    "brandName": "TankE",
+    "parentCompany": "STAWAG / Rheinische NETZGesellschaft",
+    "headquarters": "Köln / Aachen, Deutschland",
+    "bnetzaMatchPatterns": [
+      "TankE"
+    ],
+    "description": "TankE ist ein Verbund regionaler Stadtwerke im Rheinland mit Schwerpunkt im Großraum Köln, Bonn und Aachen.",
+    "website": "https://www.tanke.info"
+  },
+  {
+    "id": "berliner-stadtwerke",
+    "name": "Berliner Stadtwerke",
+    "slug": "berliner-stadtwerke",
+    "brandName": "Berliner Stadtwerke",
+    "parentCompany": "Berliner Stadtwerke GmbH",
+    "headquarters": "Berlin, Deutschland",
+    "bnetzaMatchPatterns": [
+      "Berliner Stadtwerke KommunalPartner"
+    ],
+    "description": "Kommunaler Betreiber für dezentrale Energielösungen und öffentliche Ladeinfrastruktur in Berlin.",
+    "website": "https://berlinerstadtwerke.de"
+  },
+  {
+    "id": "n-ergie",
+    "name": "N-ERGIE",
+    "slug": "n-ergie",
+    "brandName": "N-ERGIE",
+    "parentCompany": "N-ERGIE Aktiengesellschaft",
+    "headquarters": "Nürnberg, Deutschland",
+    "bnetzaMatchPatterns": [
+      "N-ERGIE"
+    ],
+    "description": "Regionaler Energieversorger in Nordbayern mit flächendeckendem Ladenetz in der Metropolregion Nürnberg.",
+    "website": "https://www.n-ergie.de"
+  },
+  {
+    "id": "swm",
+    "name": "SWM (Stadtwerke München)",
+    "slug": "swm-muenchen",
+    "brandName": "SWM",
+    "parentCompany": "Stadtwerke München GmbH",
+    "headquarters": "München, Deutschland",
+    "bnetzaMatchPatterns": [
+      "SWM Versorgungs"
+    ],
+    "description": "Die Stadtwerke München betreiben das flächendeckende kommunale Ladenetz in der bayerischen Landeshauptstadt.",
+    "website": "https://www.swm.de"
+  },
+  {
+    "id": "stadtwerke-duesseldorf",
+    "name": "Stadtwerke Düsseldorf",
+    "slug": "stadtwerke-duesseldorf",
+    "brandName": "Stadtwerke Düsseldorf",
+    "parentCompany": "Stadtwerke Düsseldorf AG",
+    "headquarters": "Düsseldorf, Deutschland",
+    "bnetzaMatchPatterns": [
+      "Stadtwerke Düsseldorf"
+    ],
+    "description": "Kommunaler Betreiber der öffentlichen Ladeinfrastruktur in der nordrhein-westfälischen Landeshauptstadt Düsseldorf.",
+    "website": "https://www.swd-ag.de"
+  }
+]

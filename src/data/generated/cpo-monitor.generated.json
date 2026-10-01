@@ -1,0 +1,1588 @@
+{
+  "publisher": "ladestandorte.de",
+  "canonicalUrl": "https://www.ladestandorte.de/cpo-monitor",
+  "snapshotDate": "2026-10-01",
+  "retrievedAt": "2026-10-01T13:54:01.311Z",
+  "totalRegisterPointsDE": 210185,
+  "totalRegisterHpcPointsDE": 40654,
+  "cposCount": 30,
+  "methodologyUrl": "https://www.ladestandorte.de/methodik",
+  "definition": {
+    "hpcClass": "Ladepunkte mit einer dokumentierten Nennleistung von >=150 kW",
+    "aggregationScope": "Verifizierte Betreiberunternehmen (aggregiert über eindeutige Entity-Patterns im amtlichen Register)",
+    "disclaimer": "Auswertung der im amtlichen Register der Bundesnetzagentur erfassten Ladeinfrastruktur. Marktanteilsangaben beziehen sich ausschließlich auf die erfassten Registerpunkte, nicht auf Roaming- oder Umsatzanteile."
+  },
+  "generatedAt": "2026-10-01T13:54:01.311Z",
+  "operators": [
+    {
+      "id": "enbw",
+      "slug": "enbw",
+      "name": "EnBW mobility+",
+      "brandName": "EnBW mobility+",
+      "parentCompany": "EnBW Energie Baden-Württemberg AG",
+      "headquarters": "Karlsruhe, Deutschland",
+      "website": "https://www.enbw.com/elektromobilitaet",
+      "description": "EnBW mobility+ ist einer der führenden Ladeinfrastrukturbetreiber in Deutschland mit einem dichten bundesweiten Schnellladenetz an Fernstraßen und im urbanen Raum.",
+      "stationsTotal": 5436,
+      "chargingPointsTotal": 11334,
+      "chargingPoints150PlusKw": 8338,
+      "share150PlusKwPercent": 73.6,
+      "shareOfRegisterHpcPercent": 20.51,
+      "shareOfRegisterTotalPercent": 5.39,
+      "citiesWithPresenceCount": 50,
+      "topCities": [
+        {
+          "citySlug": "stuttgart",
+          "cityName": "Stuttgart",
+          "stationsCount": 148
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 68
+        },
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 58
+        },
+        {
+          "citySlug": "karlsruhe",
+          "cityName": "Karlsruhe",
+          "stationsCount": 53
+        },
+        {
+          "citySlug": "dortmund",
+          "cityName": "Dortmund",
+          "stationsCount": 50
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 1949,
+        "between22And150Kw": 1047,
+        "points150PlusKw": 8338
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "tesla",
+      "slug": "tesla",
+      "name": "Tesla Supercharger",
+      "brandName": "Tesla Supercharger",
+      "parentCompany": "Tesla, Inc.",
+      "headquarters": "Austin, USA / Berlin, Deutschland",
+      "website": "https://www.tesla.com/de_de/supercharger",
+      "description": "Tesla betreibt mit dem Supercharger-Netzwerk eine der größten High-Power-Charging-Infrastrukturen in Deutschland, die sukzessive auch für Fremdmarken (CCS) geöffnet wurde.",
+      "stationsTotal": 3950,
+      "chargingPointsTotal": 3950,
+      "chargingPoints150PlusKw": 3950,
+      "share150PlusKwPercent": 100,
+      "shareOfRegisterHpcPercent": 9.72,
+      "shareOfRegisterTotalPercent": 1.88,
+      "citiesWithPresenceCount": 36,
+      "topCities": [
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 82
+        },
+        {
+          "citySlug": "muenchen",
+          "cityName": "München",
+          "stationsCount": 68
+        },
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 60
+        },
+        {
+          "citySlug": "bochum",
+          "cityName": "Bochum",
+          "stationsCount": 24
+        },
+        {
+          "citySlug": "bielefeld",
+          "cityName": "Bielefeld",
+          "stationsCount": 23
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 0,
+        "between22And150Kw": 0,
+        "points150PlusKw": 3950
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "aral-pulse",
+      "slug": "aral-pulse",
+      "name": "Aral pulse (BP)",
+      "brandName": "Aral pulse",
+      "parentCompany": "BP Europa SE",
+      "headquarters": "Bochum, Deutschland / London, UK",
+      "website": "https://www.aral.de/de/global/retail/elektromobilitaet.html",
+      "description": "Aral pulse bündelt die Ladeaktivitäten von BP in Deutschland an Tankstellenstandorten sowie designierten Ladehubs, einschließlich neuer Megawatt-Ladeinfrastruktur für E-Lkw.",
+      "stationsTotal": 1579,
+      "chargingPointsTotal": 3131,
+      "chargingPoints150PlusKw": 3119,
+      "share150PlusKwPercent": 99.6,
+      "shareOfRegisterHpcPercent": 7.67,
+      "shareOfRegisterTotalPercent": 1.49,
+      "citiesWithPresenceCount": 45,
+      "topCities": [
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 69
+        },
+        {
+          "citySlug": "koeln",
+          "cityName": "Köln",
+          "stationsCount": 31
+        },
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 24
+        },
+        {
+          "citySlug": "hannover",
+          "cityName": "Hannover",
+          "stationsCount": 18
+        },
+        {
+          "citySlug": "dortmund",
+          "cityName": "Dortmund",
+          "stationsCount": 18
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 10,
+        "between22And150Kw": 2,
+        "points150PlusKw": 3119
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "ewe-go",
+      "slug": "ewe-go",
+      "name": "EWE Go",
+      "brandName": "EWE Go",
+      "parentCompany": "EWE AG",
+      "headquarters": "Oldenburg, Deutschland",
+      "website": "https://www.ewe-go.de",
+      "description": "EWE Go ist der Mobilitätsdienstleister der EWE AG mit starker Verankerung in Norddeutschland sowie bundesweiten Partnerschaften im Einzelhandel und Deutschlandnetz.",
+      "stationsTotal": 1876,
+      "chargingPointsTotal": 3568,
+      "chargingPoints150PlusKw": 2431,
+      "share150PlusKwPercent": 68.1,
+      "shareOfRegisterHpcPercent": 5.98,
+      "shareOfRegisterTotalPercent": 1.7,
+      "citiesWithPresenceCount": 39,
+      "topCities": [
+        {
+          "citySlug": "oldenburg",
+          "cityName": "Oldenburg (Oldb)",
+          "stationsCount": 79
+        },
+        {
+          "citySlug": "bremen",
+          "cityName": "Bremen",
+          "stationsCount": 55
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 18
+        },
+        {
+          "citySlug": "koeln",
+          "cityName": "Köln",
+          "stationsCount": 11
+        },
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 10
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 838,
+        "between22And150Kw": 299,
+        "points150PlusKw": 2431
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "shell-recharge",
+      "slug": "shell-recharge",
+      "name": "Shell Recharge",
+      "brandName": "Shell Recharge",
+      "parentCompany": "Shell Deutschland GmbH",
+      "headquarters": "Hamburg, Deutschland / Den Haag, Niederlande",
+      "website": "https://www.shell.de/autofahrer/shell-recharge.html",
+      "description": "Shell Recharge baut Schnellladeinfrastruktur an Tankstellen sowie Einzelhandelsstandorten aus und integriert diese in globale Mobilitätsdienstleistungen.",
+      "stationsTotal": 1271,
+      "chargingPointsTotal": 2434,
+      "chargingPoints150PlusKw": 2356,
+      "share150PlusKwPercent": 96.8,
+      "shareOfRegisterHpcPercent": 5.8,
+      "shareOfRegisterTotalPercent": 1.16,
+      "citiesWithPresenceCount": 44,
+      "topCities": [
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 118
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 45
+        },
+        {
+          "citySlug": "duesseldorf",
+          "cityName": "Düsseldorf",
+          "stationsCount": 11
+        },
+        {
+          "citySlug": "magdeburg",
+          "cityName": "Magdeburg",
+          "stationsCount": 11
+        },
+        {
+          "citySlug": "nuernberg",
+          "cityName": "Nürnberg",
+          "stationsCount": 11
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 6,
+        "between22And150Kw": 72,
+        "points150PlusKw": 2356
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "allego",
+      "slug": "allego",
+      "name": "Allego",
+      "brandName": "Allego",
+      "parentCompany": "Allego N.V.",
+      "headquarters": "Arnhem, Niederlande / Berlin, Deutschland",
+      "website": "https://www.allego.eu/de-de",
+      "description": "Allego betreibt paneuropäische Schnellladeinfrastruktur an Verkehrsachsen und im Einzelhandel mit einem Fokus auf zuverlässige B2B- und B2C-Ladelösungen.",
+      "stationsTotal": 1383,
+      "chargingPointsTotal": 2729,
+      "chargingPoints150PlusKw": 1810,
+      "share150PlusKwPercent": 66.3,
+      "shareOfRegisterHpcPercent": 4.45,
+      "shareOfRegisterTotalPercent": 1.3,
+      "citiesWithPresenceCount": 47,
+      "topCities": [
+        {
+          "citySlug": "essen",
+          "cityName": "Essen",
+          "stationsCount": 80
+        },
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 74
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 35
+        },
+        {
+          "citySlug": "koeln",
+          "cityName": "Köln",
+          "stationsCount": 30
+        },
+        {
+          "citySlug": "bielefeld",
+          "cityName": "Bielefeld",
+          "stationsCount": 22
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 434,
+        "between22And150Kw": 485,
+        "points150PlusKw": 1810
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "ionity",
+      "slug": "ionity",
+      "name": "IONITY",
+      "brandName": "IONITY",
+      "parentCompany": "IONITY GmbH",
+      "headquarters": "München, Deutschland",
+      "website": "https://ionity.eu/de",
+      "description": "IONITY ist ein von mehreren Automobilherstellern gegründetes High-Power-Charging-Netzwerk mit Fokus auf 350-kW-Standorte entlang europäischer Autobahnkorridore.",
+      "stationsTotal": 1311,
+      "chargingPointsTotal": 1510,
+      "chargingPoints150PlusKw": 1510,
+      "share150PlusKwPercent": 100,
+      "shareOfRegisterHpcPercent": 3.71,
+      "shareOfRegisterTotalPercent": 0.72,
+      "citiesWithPresenceCount": 9,
+      "topCities": [
+        {
+          "citySlug": "braunschweig",
+          "cityName": "Braunschweig",
+          "stationsCount": 9
+        },
+        {
+          "citySlug": "rostock",
+          "cityName": "Rostock",
+          "stationsCount": 7
+        },
+        {
+          "citySlug": "dortmund",
+          "cityName": "Dortmund",
+          "stationsCount": 6
+        },
+        {
+          "citySlug": "augsburg",
+          "cityName": "Augsburg",
+          "stationsCount": 6
+        },
+        {
+          "citySlug": "bochum",
+          "cityName": "Bochum",
+          "stationsCount": 6
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 0,
+        "between22And150Kw": 0,
+        "points150PlusKw": 1510
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "pfalzwerke",
+      "slug": "pfalzwerke",
+      "name": "Pfalzwerke ePunkt",
+      "brandName": "Pfalzwerke",
+      "parentCompany": "Pfalzwerke Aktiengesellschaft",
+      "headquarters": "Ludwigshafen, Deutschland",
+      "website": "https://www.pfalzwerke.de",
+      "description": "Die Pfalzwerke betreiben ein bundesweit wachsendes Schnellladenetz, vor allem an Einzelhandels- und Baumarkt-Standorten (u. a. Hornbach).",
+      "stationsTotal": 1194,
+      "chargingPointsTotal": 2400,
+      "chargingPoints150PlusKw": 1496,
+      "share150PlusKwPercent": 62.3,
+      "shareOfRegisterHpcPercent": 3.68,
+      "shareOfRegisterTotalPercent": 1.14,
+      "citiesWithPresenceCount": 40,
+      "topCities": [
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 39
+        },
+        {
+          "citySlug": "ludwigshafen",
+          "cityName": "Ludwigshafen am Rhein",
+          "stationsCount": 28
+        },
+        {
+          "citySlug": "wiesbaden",
+          "cityName": "Wiesbaden",
+          "stationsCount": 18
+        },
+        {
+          "citySlug": "karlsruhe",
+          "cityName": "Karlsruhe",
+          "stationsCount": 15
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 15
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 556,
+        "between22And150Kw": 348,
+        "points150PlusKw": 1496
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "vattenfall",
+      "slug": "vattenfall-incharge",
+      "name": "Vattenfall InCharge",
+      "brandName": "Vattenfall InCharge",
+      "parentCompany": "Vattenfall AB",
+      "headquarters": "Berlin, Deutschland / Stockholm, Schweden",
+      "website": "https://www.vattenfall.de/incharge",
+      "description": "Vattenfall InCharge betreibt Ladeinfrastruktur vorwiegend im städtischen Raum und an Handelsstandorten mit Schwerpunkt in Berlin, Hamburg und NRW.",
+      "stationsTotal": 685,
+      "chargingPointsTotal": 1234,
+      "chargingPoints150PlusKw": 957,
+      "share150PlusKwPercent": 77.6,
+      "shareOfRegisterHpcPercent": 2.35,
+      "shareOfRegisterTotalPercent": 0.59,
+      "citiesWithPresenceCount": 19,
+      "topCities": [
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 112
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 78
+        },
+        {
+          "citySlug": "muenchen",
+          "cityName": "München",
+          "stationsCount": 15
+        },
+        {
+          "citySlug": "rostock",
+          "cityName": "Rostock",
+          "stationsCount": 14
+        },
+        {
+          "citySlug": "oldenburg",
+          "cityName": "Oldenburg (Oldb)",
+          "stationsCount": 12
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 189,
+        "between22And150Kw": 88,
+        "points150PlusKw": 957
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "eon-drive",
+      "slug": "eon-drive",
+      "name": "E.ON Drive",
+      "brandName": "E.ON Drive",
+      "parentCompany": "E.ON SE",
+      "headquarters": "Essen, Deutschland",
+      "website": "https://www.eon.de/de/e-mobility.html",
+      "description": "E.ON Drive bündelt AC- und HPC-Ladeinfrastruktur für Privatkunden, Flotten und den öffentlichen Raum unter dem Dach des E.ON-Konzerns.",
+      "stationsTotal": 3981,
+      "chargingPointsTotal": 5447,
+      "chargingPoints150PlusKw": 727,
+      "share150PlusKwPercent": 13.3,
+      "shareOfRegisterHpcPercent": 1.79,
+      "shareOfRegisterTotalPercent": 2.59,
+      "citiesWithPresenceCount": 43,
+      "topCities": [
+        {
+          "citySlug": "muenchen",
+          "cityName": "München",
+          "stationsCount": 761
+        },
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 303
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 141
+        },
+        {
+          "citySlug": "essen",
+          "cityName": "Essen",
+          "stationsCount": 137
+        },
+        {
+          "citySlug": "duesseldorf",
+          "cityName": "Düsseldorf",
+          "stationsCount": 64
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 3981,
+        "between22And150Kw": 739,
+        "points150PlusKw": 727
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "mer",
+      "slug": "mer-charge",
+      "name": "Mer Germany",
+      "brandName": "Mer",
+      "parentCompany": "Statkraft AS",
+      "headquarters": "München, Deutschland / Oslo, Norwegen",
+      "website": "https://de.mer.eco",
+      "description": "Mer (vormals u. a. E-Wald) ist Teil des norwegischen Statkraft-Konzerns und betreibt bundesweit Ladeinfrastruktur an Gewerbestandorten, Hotels und im kommunalen Raum.",
+      "stationsTotal": 982,
+      "chargingPointsTotal": 1997,
+      "chargingPoints150PlusKw": 679,
+      "share150PlusKwPercent": 34,
+      "shareOfRegisterHpcPercent": 1.67,
+      "shareOfRegisterTotalPercent": 0.95,
+      "citiesWithPresenceCount": 16,
+      "topCities": [
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 22
+        },
+        {
+          "citySlug": "freiburg",
+          "cityName": "Freiburg im Breisgau",
+          "stationsCount": 18
+        },
+        {
+          "citySlug": "bielefeld",
+          "cityName": "Bielefeld",
+          "stationsCount": 12
+        },
+        {
+          "citySlug": "oldenburg",
+          "cityName": "Oldenburg (Oldb)",
+          "stationsCount": 12
+        },
+        {
+          "citySlug": "chemnitz",
+          "cityName": "Chemnitz",
+          "stationsCount": 10
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 973,
+        "between22And150Kw": 345,
+        "points150PlusKw": 679
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "teag-mobil",
+      "slug": "teag-mobil",
+      "name": "TEAG Mobil",
+      "brandName": "TEAG Mobil",
+      "parentCompany": "Thüringer Energie AG",
+      "headquarters": "Erfurt, Deutschland",
+      "website": "https://www.teag-mobil.de",
+      "description": "TEAG Mobil ist einer der führenden Ladeinfrastrukturanbieter in Mitteldeutschland mit stark ausgebautem HPC-Netz in Thüringen, Sachsen und Sachsen-Anhalt.",
+      "stationsTotal": 614,
+      "chargingPointsTotal": 1229,
+      "chargingPoints150PlusKw": 659,
+      "share150PlusKwPercent": 53.6,
+      "shareOfRegisterHpcPercent": 1.62,
+      "shareOfRegisterTotalPercent": 0.58,
+      "citiesWithPresenceCount": 4,
+      "topCities": [
+        {
+          "citySlug": "erfurt",
+          "cityName": "Erfurt",
+          "stationsCount": 53
+        },
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 4
+        },
+        {
+          "citySlug": "kassel",
+          "cityName": "Kassel",
+          "stationsCount": 3
+        },
+        {
+          "citySlug": "leipzig",
+          "cityName": "Leipzig",
+          "stationsCount": 1
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 418,
+        "between22And150Kw": 152,
+        "points150PlusKw": 659
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "citywatt",
+      "slug": "citywatt",
+      "name": "Citywatt",
+      "brandName": "Citywatt",
+      "parentCompany": "Citywatt GmbH",
+      "headquarters": "Ruderting, Deutschland",
+      "website": "https://www.citywatt.de",
+      "description": "Citywatt entwickelt und betreibt Schnellladeparks an Fachmarktzentren und Verkehrsachsen mit Fokus auf schlüsselfertige HPC-Infrastruktur.",
+      "stationsTotal": 641,
+      "chargingPointsTotal": 1240,
+      "chargingPoints150PlusKw": 528,
+      "share150PlusKwPercent": 42.6,
+      "shareOfRegisterHpcPercent": 1.3,
+      "shareOfRegisterTotalPercent": 0.59,
+      "citiesWithPresenceCount": 9,
+      "topCities": [
+        {
+          "citySlug": "magdeburg",
+          "cityName": "Magdeburg",
+          "stationsCount": 10
+        },
+        {
+          "citySlug": "osnabrueck",
+          "cityName": "Osnabrück",
+          "stationsCount": 7
+        },
+        {
+          "citySlug": "karlsruhe",
+          "cityName": "Karlsruhe",
+          "stationsCount": 5
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 5
+        },
+        {
+          "citySlug": "muenster",
+          "cityName": "Münster",
+          "stationsCount": 5
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 678,
+        "between22And150Kw": 34,
+        "points150PlusKw": 528
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "circle-k",
+      "slug": "circle-k",
+      "name": "Circle K",
+      "brandName": "Circle K",
+      "parentCompany": "Alimentation Couche-Tard",
+      "headquarters": "Hamburg, Deutschland / Laval, Kanada",
+      "website": "https://www.circlek.de",
+      "description": "Circle K baut nach der Übernahme des TotalEnergies-Tankstellennetzes ein dediziertes High-Power-Charging-Netzwerk an Tankstellen auf.",
+      "stationsTotal": 339,
+      "chargingPointsTotal": 507,
+      "chargingPoints150PlusKw": 494,
+      "share150PlusKwPercent": 97.4,
+      "shareOfRegisterHpcPercent": 1.22,
+      "shareOfRegisterTotalPercent": 0.24,
+      "citiesWithPresenceCount": 14,
+      "topCities": [
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 17
+        },
+        {
+          "citySlug": "karlsruhe",
+          "cityName": "Karlsruhe",
+          "stationsCount": 5
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 4
+        },
+        {
+          "citySlug": "magdeburg",
+          "cityName": "Magdeburg",
+          "stationsCount": 4
+        },
+        {
+          "citySlug": "krefeld",
+          "cityName": "Krefeld",
+          "stationsCount": 4
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 11,
+        "between22And150Kw": 2,
+        "points150PlusKw": 494
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "aldi-sued",
+      "slug": "aldi-sued-charge",
+      "name": "ALDI SÜD",
+      "brandName": "ALDI SÜD",
+      "parentCompany": "ALDI SÜD Dienstleistungs-SE & Co. oHG",
+      "headquarters": "Mülheim an der Ruhr, Deutschland",
+      "website": "https://www.aldi-sued.de",
+      "description": "ALDI SÜD rüstet Filialparkplätze mit eigener Ladeinfrastruktur aus, darunter eine wachsende Anzahl an DC- und HPC-Ladepunkten für Kunden während des Einkaufs.",
+      "stationsTotal": 794,
+      "chargingPointsTotal": 1789,
+      "chargingPoints150PlusKw": 474,
+      "share150PlusKwPercent": 26.5,
+      "shareOfRegisterHpcPercent": 1.17,
+      "shareOfRegisterTotalPercent": 0.85,
+      "citiesWithPresenceCount": 22,
+      "topCities": [
+        {
+          "citySlug": "koeln",
+          "cityName": "Köln",
+          "stationsCount": 28
+        },
+        {
+          "citySlug": "muenchen",
+          "cityName": "München",
+          "stationsCount": 16
+        },
+        {
+          "citySlug": "duisburg",
+          "cityName": "Duisburg",
+          "stationsCount": 13
+        },
+        {
+          "citySlug": "duesseldorf",
+          "cityName": "Düsseldorf",
+          "stationsCount": 12
+        },
+        {
+          "citySlug": "frankfurt",
+          "cityName": "Frankfurt am Main",
+          "stationsCount": 10
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 943,
+        "between22And150Kw": 372,
+        "points150PlusKw": 474
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "totalenergies",
+      "slug": "totalenergies-charge",
+      "name": "TotalEnergies",
+      "brandName": "TotalEnergies",
+      "parentCompany": "TotalEnergies SE",
+      "headquarters": "Berlin, Deutschland / Paris, Frankreich",
+      "website": "https://totalenergies.de",
+      "description": "TotalEnergies errichtet High-Power-Charging-Hubs im städtischen Raum, an Verkehrsknotenpunkten und an ausgewählten Gewerbestandorten.",
+      "stationsTotal": 629,
+      "chargingPointsTotal": 1239,
+      "chargingPoints150PlusKw": 449,
+      "share150PlusKwPercent": 36.2,
+      "shareOfRegisterHpcPercent": 1.1,
+      "shareOfRegisterTotalPercent": 0.59,
+      "citiesWithPresenceCount": 17,
+      "topCities": [
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 140
+        },
+        {
+          "citySlug": "muenster",
+          "cityName": "Münster",
+          "stationsCount": 9
+        },
+        {
+          "citySlug": "frankfurt",
+          "cityName": "Frankfurt am Main",
+          "stationsCount": 8
+        },
+        {
+          "citySlug": "muenchen",
+          "cityName": "München",
+          "stationsCount": 7
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 6
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 609,
+        "between22And150Kw": 181,
+        "points150PlusKw": 449
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "fastned",
+      "slug": "fastned",
+      "name": "Fastned",
+      "brandName": "Fastned",
+      "parentCompany": "Fastned B.V.",
+      "headquarters": "Köln, Deutschland / Amsterdam, Niederlande",
+      "website": "https://fastnedcharging.com/de",
+      "description": "Fastned errichtet reine High-Power-Charging-Stationen mit Solardächern entlang von Autobahnen und städtischen Einfallstraßen.",
+      "stationsTotal": 204,
+      "chargingPointsTotal": 404,
+      "chargingPoints150PlusKw": 404,
+      "share150PlusKwPercent": 100,
+      "shareOfRegisterHpcPercent": 0.99,
+      "shareOfRegisterTotalPercent": 0.19,
+      "citiesWithPresenceCount": 3,
+      "topCities": [
+        {
+          "citySlug": "gelsenkirchen",
+          "cityName": "Gelsenkirchen",
+          "stationsCount": 6
+        },
+        {
+          "citySlug": "bochum",
+          "cityName": "Bochum",
+          "stationsCount": 5
+        },
+        {
+          "citySlug": "frankfurt",
+          "cityName": "Frankfurt am Main",
+          "stationsCount": 2
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 0,
+        "between22And150Kw": 0,
+        "points150PlusKw": 404
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "comfortcharge",
+      "slug": "comfortcharge",
+      "name": "Comfortcharge",
+      "brandName": "Comfortcharge",
+      "parentCompany": "Deutsche Telekom AG",
+      "headquarters": "Bonn, Deutschland",
+      "website": "https://www.comfortcharge.de",
+      "description": "Comfortcharge nutzt Standorte und Netzinfrastruktur der Deutschen Telekom zur Errichtung öffentlicher Schnellladestationen.",
+      "stationsTotal": 230,
+      "chargingPointsTotal": 603,
+      "chargingPoints150PlusKw": 293,
+      "share150PlusKwPercent": 48.6,
+      "shareOfRegisterHpcPercent": 0.72,
+      "shareOfRegisterTotalPercent": 0.29,
+      "citiesWithPresenceCount": 25,
+      "topCities": [
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 17
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 12
+        },
+        {
+          "citySlug": "bonn",
+          "cityName": "Bonn",
+          "stationsCount": 7
+        },
+        {
+          "citySlug": "dresden",
+          "cityName": "Dresden",
+          "stationsCount": 5
+        },
+        {
+          "citySlug": "muenchen",
+          "cityName": "München",
+          "stationsCount": 4
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 214,
+        "between22And150Kw": 96,
+        "points150PlusKw": 293
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "aldi-nord",
+      "slug": "aldi-nord",
+      "name": "ALDI Nord",
+      "brandName": "ALDI Nord",
+      "parentCompany": "ALDI Einkauf SE & Co. oHG",
+      "headquarters": "Essen, Deutschland",
+      "website": "https://www.aldi-nord.de",
+      "description": "ALDI Nord betreibt Ladeeinrichtungen an Filialstandorten in Nord- und Ostdeutschland mit zunehmendem Schnelllade-Fokus.",
+      "stationsTotal": 276,
+      "chargingPointsTotal": 565,
+      "chargingPoints150PlusKw": 246,
+      "share150PlusKwPercent": 43.5,
+      "shareOfRegisterHpcPercent": 0.61,
+      "shareOfRegisterTotalPercent": 0.27,
+      "citiesWithPresenceCount": 18,
+      "topCities": [
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 12
+        },
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 7
+        },
+        {
+          "citySlug": "essen",
+          "cityName": "Essen",
+          "stationsCount": 6
+        },
+        {
+          "citySlug": "dresden",
+          "cityName": "Dresden",
+          "stationsCount": 6
+        },
+        {
+          "citySlug": "bochum",
+          "cityName": "Bochum",
+          "stationsCount": 6
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 13,
+        "between22And150Kw": 306,
+        "points150PlusKw": 246
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "electra",
+      "slug": "electra",
+      "name": "Electra",
+      "brandName": "Electra",
+      "parentCompany": "Electra SAS",
+      "headquarters": "München, Deutschland / Paris, Frankreich",
+      "website": "https://www.go-electra.com/de/",
+      "description": "Electra ist ein europäischer Schnellladespezialist mit Fokus auf ultraschnelles Laden im städtischen Umfeld und an Handelsstandorten.",
+      "stationsTotal": 126,
+      "chargingPointsTotal": 250,
+      "chargingPoints150PlusKw": 246,
+      "share150PlusKwPercent": 98.4,
+      "shareOfRegisterHpcPercent": 0.61,
+      "shareOfRegisterTotalPercent": 0.12,
+      "citiesWithPresenceCount": 15,
+      "topCities": [
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 7
+        },
+        {
+          "citySlug": "hannover",
+          "cityName": "Hannover",
+          "stationsCount": 7
+        },
+        {
+          "citySlug": "leipzig",
+          "cityName": "Leipzig",
+          "stationsCount": 6
+        },
+        {
+          "citySlug": "dresden",
+          "cityName": "Dresden",
+          "stationsCount": 5
+        },
+        {
+          "citySlug": "oberhausen",
+          "cityName": "Oberhausen",
+          "stationsCount": 4
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 0,
+        "between22And150Kw": 4,
+        "points150PlusKw": 246
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "jet",
+      "slug": "jet",
+      "name": "JET Tankstellen",
+      "brandName": "JET",
+      "parentCompany": "Phillips 66 Continental Holding GmbH",
+      "headquarters": "Hamburg, Deutschland",
+      "website": "https://www.jet.de",
+      "description": "JET stattet ausgewählte Tankstellen mit markeneigenen High-Power-Charging-Säulen aus.",
+      "stationsTotal": 103,
+      "chargingPointsTotal": 204,
+      "chargingPoints150PlusKw": 200,
+      "share150PlusKwPercent": 98,
+      "shareOfRegisterHpcPercent": 0.49,
+      "shareOfRegisterTotalPercent": 0.1,
+      "citiesWithPresenceCount": 11,
+      "topCities": [
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 6
+        },
+        {
+          "citySlug": "mainz",
+          "cityName": "Mainz",
+          "stationsCount": 4
+        },
+        {
+          "citySlug": "luebeck",
+          "cityName": "Lübeck",
+          "stationsCount": 4
+        },
+        {
+          "citySlug": "wuppertal",
+          "cityName": "Wuppertal",
+          "stationsCount": 4
+        },
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 4
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 4,
+        "between22And150Kw": 0,
+        "points150PlusKw": 200
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "hamburger-energiewerke",
+      "slug": "hamburger-energiewerke-mobil",
+      "name": "Hamburger Energiewerke Mobil",
+      "brandName": "Hamburger Energiewerke Mobil",
+      "parentCompany": "Hamburger Energiewerke GmbH",
+      "headquarters": "Hamburg, Deutschland",
+      "website": "https://www.hamburger-energiewerke.de",
+      "description": "Städtischer Betreiber der öffentlichen Ladeinfrastruktur in der Freien und Hansestadt Hamburg.",
+      "stationsTotal": 1182,
+      "chargingPointsTotal": 2366,
+      "chargingPoints150PlusKw": 146,
+      "share150PlusKwPercent": 6.2,
+      "shareOfRegisterHpcPercent": 0.36,
+      "shareOfRegisterTotalPercent": 1.13,
+      "citiesWithPresenceCount": 1,
+      "topCities": [
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 1182
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 2208,
+        "between22And150Kw": 12,
+        "points150PlusKw": 146
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "enercity",
+      "slug": "enercity",
+      "name": "enercity",
+      "brandName": "enercity",
+      "parentCompany": "enercity AG",
+      "headquarters": "Hannover, Deutschland",
+      "website": "https://www.enercity.de",
+      "description": "Kommunales Energieunternehmen mit starkem Ladenetz in der Region Hannover und bundesweiten Schnellladepartnerschaften.",
+      "stationsTotal": 1084,
+      "chargingPointsTotal": 1999,
+      "chargingPoints150PlusKw": 94,
+      "share150PlusKwPercent": 4.7,
+      "shareOfRegisterHpcPercent": 0.23,
+      "shareOfRegisterTotalPercent": 0.95,
+      "citiesWithPresenceCount": 11,
+      "topCities": [
+        {
+          "citySlug": "hannover",
+          "cityName": "Hannover",
+          "stationsCount": 687
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 69
+        },
+        {
+          "citySlug": "karlsruhe",
+          "cityName": "Karlsruhe",
+          "stationsCount": 17
+        },
+        {
+          "citySlug": "muenchen",
+          "cityName": "München",
+          "stationsCount": 10
+        },
+        {
+          "citySlug": "muenster",
+          "cityName": "Münster",
+          "stationsCount": 9
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 1771,
+        "between22And150Kw": 134,
+        "points150PlusKw": 94
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "stadtwerke-duesseldorf",
+      "slug": "stadtwerke-duesseldorf",
+      "name": "Stadtwerke Düsseldorf",
+      "brandName": "Stadtwerke Düsseldorf",
+      "parentCompany": "Stadtwerke Düsseldorf AG",
+      "headquarters": "Düsseldorf, Deutschland",
+      "website": "https://www.swd-ag.de",
+      "description": "Kommunaler Betreiber der öffentlichen Ladeinfrastruktur in der nordrhein-westfälischen Landeshauptstadt Düsseldorf.",
+      "stationsTotal": 753,
+      "chargingPointsTotal": 1465,
+      "chargingPoints150PlusKw": 62,
+      "share150PlusKwPercent": 4.2,
+      "shareOfRegisterHpcPercent": 0.15,
+      "shareOfRegisterTotalPercent": 0.7,
+      "citiesWithPresenceCount": 2,
+      "topCities": [
+        {
+          "citySlug": "duesseldorf",
+          "cityName": "Düsseldorf",
+          "stationsCount": 730
+        },
+        {
+          "citySlug": "krefeld",
+          "cityName": "Krefeld",
+          "stationsCount": 1
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 1393,
+        "between22And150Kw": 10,
+        "points150PlusKw": 62
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "berliner-stadtwerke",
+      "slug": "berliner-stadtwerke",
+      "name": "Berliner Stadtwerke",
+      "brandName": "Berliner Stadtwerke",
+      "parentCompany": "Berliner Stadtwerke GmbH",
+      "headquarters": "Berlin, Deutschland",
+      "website": "https://berlinerstadtwerke.de",
+      "description": "Kommunaler Betreiber für dezentrale Energielösungen und öffentliche Ladeinfrastruktur in Berlin.",
+      "stationsTotal": 920,
+      "chargingPointsTotal": 1787,
+      "chargingPoints150PlusKw": 46,
+      "share150PlusKwPercent": 2.6,
+      "shareOfRegisterHpcPercent": 0.11,
+      "shareOfRegisterTotalPercent": 0.85,
+      "citiesWithPresenceCount": 1,
+      "topCities": [
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 920
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 1731,
+        "between22And150Kw": 10,
+        "points150PlusKw": 46
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "n-ergie",
+      "slug": "n-ergie",
+      "name": "N-ERGIE",
+      "brandName": "N-ERGIE",
+      "parentCompany": "N-ERGIE Aktiengesellschaft",
+      "headquarters": "Nürnberg, Deutschland",
+      "website": "https://www.n-ergie.de",
+      "description": "Regionaler Energieversorger in Nordbayern mit flächendeckendem Ladenetz in der Metropolregion Nürnberg.",
+      "stationsTotal": 916,
+      "chargingPointsTotal": 1830,
+      "chargingPoints150PlusKw": 30,
+      "share150PlusKwPercent": 1.6,
+      "shareOfRegisterHpcPercent": 0.07,
+      "shareOfRegisterTotalPercent": 0.87,
+      "citiesWithPresenceCount": 1,
+      "topCities": [
+        {
+          "citySlug": "nuernberg",
+          "cityName": "Nürnberg",
+          "stationsCount": 407
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 1778,
+        "between22And150Kw": 22,
+        "points150PlusKw": 30
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "tanke",
+      "slug": "tanke-aachener-sw",
+      "name": "TankE",
+      "brandName": "TankE",
+      "parentCompany": "STAWAG / Rheinische NETZGesellschaft",
+      "headquarters": "Köln / Aachen, Deutschland",
+      "website": "https://www.tanke.info",
+      "description": "TankE ist ein Verbund regionaler Stadtwerke im Rheinland mit Schwerpunkt im Großraum Köln, Bonn und Aachen.",
+      "stationsTotal": 1054,
+      "chargingPointsTotal": 1922,
+      "chargingPoints150PlusKw": 16,
+      "share150PlusKwPercent": 0.8,
+      "shareOfRegisterHpcPercent": 0.04,
+      "shareOfRegisterTotalPercent": 0.91,
+      "citiesWithPresenceCount": 10,
+      "topCities": [
+        {
+          "citySlug": "koeln",
+          "cityName": "Köln",
+          "stationsCount": 689
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 78
+        },
+        {
+          "citySlug": "frankfurt",
+          "cityName": "Frankfurt am Main",
+          "stationsCount": 55
+        },
+        {
+          "citySlug": "heidelberg",
+          "cityName": "Heidelberg",
+          "stationsCount": 10
+        },
+        {
+          "citySlug": "essen",
+          "cityName": "Essen",
+          "stationsCount": 3
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 1732,
+        "between22And150Kw": 174,
+        "points150PlusKw": 16
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "swm",
+      "slug": "swm-muenchen",
+      "name": "SWM (Stadtwerke München)",
+      "brandName": "SWM",
+      "parentCompany": "Stadtwerke München GmbH",
+      "headquarters": "München, Deutschland",
+      "website": "https://www.swm.de",
+      "description": "Die Stadtwerke München betreiben das flächendeckende kommunale Ladenetz in der bayerischen Landeshauptstadt.",
+      "stationsTotal": 759,
+      "chargingPointsTotal": 1491,
+      "chargingPoints150PlusKw": 10,
+      "share150PlusKwPercent": 0.7,
+      "shareOfRegisterHpcPercent": 0.02,
+      "shareOfRegisterTotalPercent": 0.71,
+      "citiesWithPresenceCount": 1,
+      "topCities": [
+        {
+          "citySlug": "muenchen",
+          "cityName": "München",
+          "stationsCount": 752
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 1389,
+        "between22And150Kw": 92,
+        "points150PlusKw": 10
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "wirelane",
+      "slug": "wirelane",
+      "name": "Wirelane",
+      "brandName": "Wirelane",
+      "parentCompany": "Wirelane GmbH",
+      "headquarters": "München, Deutschland",
+      "website": "https://www.wirelane.com",
+      "description": "Wirelane entwickelt und betreibt Ladeinfrastruktur an Hotels, Wohnquartieren und im urbanen öffentlichen Raum.",
+      "stationsTotal": 1518,
+      "chargingPointsTotal": 2959,
+      "chargingPoints150PlusKw": 0,
+      "share150PlusKwPercent": 0,
+      "shareOfRegisterHpcPercent": 0,
+      "shareOfRegisterTotalPercent": 1.41,
+      "citiesWithPresenceCount": 46,
+      "topCities": [
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 104
+        },
+        {
+          "citySlug": "muenchen",
+          "cityName": "München",
+          "stationsCount": 72
+        },
+        {
+          "citySlug": "frankfurt",
+          "cityName": "Frankfurt am Main",
+          "stationsCount": 61
+        },
+        {
+          "citySlug": "duesseldorf",
+          "cityName": "Düsseldorf",
+          "stationsCount": 52
+        },
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 32
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 2895,
+        "between22And150Kw": 64,
+        "points150PlusKw": 0
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    },
+    {
+      "id": "qwello",
+      "slug": "qwello",
+      "name": "Qwello",
+      "brandName": "Qwello",
+      "parentCompany": "Qwello GmbH",
+      "headquarters": "München, Deutschland",
+      "website": "https://www.qwello.eu",
+      "description": "Qwello konzentriert sich auf nutzerfreundliche, barrierefreie AC-Ladeinfrastruktur im öffentlichen Straßenraum deutscher Großstädte.",
+      "stationsTotal": 1654,
+      "chargingPointsTotal": 1948,
+      "chargingPoints150PlusKw": 0,
+      "share150PlusKwPercent": 0,
+      "shareOfRegisterHpcPercent": 0,
+      "shareOfRegisterTotalPercent": 0.93,
+      "citiesWithPresenceCount": 15,
+      "topCities": [
+        {
+          "citySlug": "berlin",
+          "cityName": "Berlin",
+          "stationsCount": 606
+        },
+        {
+          "citySlug": "hamburg",
+          "cityName": "Hamburg",
+          "stationsCount": 168
+        },
+        {
+          "citySlug": "frankfurt",
+          "cityName": "Frankfurt am Main",
+          "stationsCount": 105
+        },
+        {
+          "citySlug": "essen",
+          "cityName": "Essen",
+          "stationsCount": 62
+        },
+        {
+          "citySlug": "leverkusen",
+          "cityName": "Leverkusen",
+          "stationsCount": 52
+        }
+      ],
+      "powerBrackets": {
+        "upTo22Kw": 1948,
+        "between22And150Kw": 0,
+        "points150PlusKw": 0
+      },
+      "provenance": {
+        "source": "Bundesnetzagentur (Ladesäulenregister)",
+        "snapshotDate": "2026-10-01",
+        "license": "Creative Commons Namensnennung 4.0 International (CC BY 4.0)",
+        "attribution": "Bundesnetzagentur.de",
+        "datasetDisclaimer": "Basis: Aus dem amtlichen BNetzA-Registerauszug zugeordnete Ladeeinrichtungen. Keine Aussage über roamingbasierten Gesamtmarktanteil."
+      }
+    }
+  ]
+}

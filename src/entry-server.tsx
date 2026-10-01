@@ -13,6 +13,7 @@ export { getMcsMonitorMetrics } from './data/mcsMetrics';
 export { GLOSSARY_DATA } from './data/glossary';
 export { CHARGING_CARDS } from './data/cards';
 export { WALLBOXES_DATA } from './data/wallboxes';
+export { computeSafePercentChange, computeCityHistoricalTrend } from './lib/hpcHistory';
 
 export function render(url: string) {
   const html = renderToString(

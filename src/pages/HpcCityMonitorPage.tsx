@@ -427,7 +427,7 @@ export const HpcCityMonitorPage: React.FC = () => {
           </div>
 
           {/* Machine data links */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <a
               href="/data/hpc-city-monitor.json"
               target="_blank"
@@ -435,7 +435,7 @@ export const HpcCityMonitorPage: React.FC = () => {
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-mono font-semibold transition-colors"
             >
               <FileText className="w-3.5 h-3.5 text-slate-500" />
-              <span>JSON-Export</span>
+              <span>JSON</span>
             </a>
             <a
               href="/data/hpc-city-monitor.csv"
@@ -444,7 +444,16 @@ export const HpcCityMonitorPage: React.FC = () => {
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-mono font-semibold transition-colors"
             >
               <FileSpreadsheet className="w-3.5 h-3.5 text-slate-500" />
-              <span>CSV-Export</span>
+              <span>CSV</span>
+            </a>
+            <a
+              href="/data/hpc-history.json"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-mono font-semibold transition-colors"
+            >
+              <Database className="w-3.5 h-3.5 text-slate-500" />
+              <span>Historie</span>
             </a>
           </div>
         </div>
@@ -599,6 +608,40 @@ export const HpcCityMonitorPage: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* HISTORICAL TRENDS & SNAPSHOT TRACKING */}
+      <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
+        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-800 font-bold">
+          <Activity className="w-4 h-4" />
+          <span>Zeitreihen &amp; Monatsvergleiche</span>
+        </div>
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-950">
+          Entwicklung &amp; Historische Monatsvergleiche
+        </h2>
+        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs sm:text-sm text-slate-700 leading-relaxed">
+          <p>
+            <strong>Aktueller Status: Initialer amtlicher Referenz-Snapshot ({summary.bnetzaSnapshotDate}).</strong>
+          </p>
+          <p>
+            ladestandorte.de speichert jeden monatlichen BNetzA-Snapshot unveränderlich als Rohdatei (unter <code>data/raw/bnetza/YYYY-MM-DD/</code>). Sobald der nächste monatliche Registerabruf erfolgt, berechnet die Datenpipeline automatisch die Netto-Zubauzahlen und prozentualen Veränderungen auf Stadtebene.
+          </p>
+          <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-mono">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white border border-slate-200 text-slate-700">
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Aktiver Snapshot: {summary.bnetzaSnapshotDate}
+            </span>
+            <a
+              href="/data/hpc-history.json"
+              className="inline-flex items-center gap-1 text-emerald-700 hover:text-emerald-800 font-bold underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Maschinenlesbare Zeitreihendaten (/data/hpc-history.json)</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { ShieldCheck, Zap, CheckCircle2, ArrowRight, CreditCard, HelpCircle, MapPin } from 'lucide-react';
 import { OPERATORS_DATA } from '../data/operators';
 import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
+import cpoDataset from '../data/generated/cpo-monitor.generated.json';
 import { CitationBox } from '../components/CitationBox';
 import { FloatingCTABar } from '../components/FloatingCTABar';
 import { EEATBadge } from '../components/EEATBadge';
@@ -24,6 +25,9 @@ export const OperatorPage: React.FC = () => {
   if (!operator) {
     return <Navigate to="/betreiber" replace />;
   }
+
+  // Lookup verified BNetzA CPO entry
+  const verifiedCpo = cpoDataset.operators.find(c => c.slug === operator.slug || c.id === operator.slug);
 
   // Match stations strictly by operator slug
   const operatorStations = STATIONS_DATA.filter(s => 
@@ -169,6 +173,46 @@ export const OperatorPage: React.FC = () => {
           <strong className="text-slate-900 font-semibold">Quellenkontext:</strong> Die Kennzahlen zum Ladenetz von {operator.name} basieren auf Betreiberangaben sowie amtlichen Registerdaten. Sie bilden statische Netzkapazitäten ab und stellen keine Echtzeit-Verfügbarkeitsdaten dar. Details in der <Link to="/methodik" className="text-purple-800 hover:text-purple-950 font-semibold underline">Methodik</Link>.
         </p>
       </div>
+
+      {/* Verified CPO Register Data Card (from BNetzA Pipeline) */}
+      {verifiedCpo && (
+        <div className="p-5 bg-purple-50/50 rounded-2xl border border-purple-200/80 shadow-xs space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-mono uppercase tracking-wider text-purple-900 font-bold flex items-center gap-1.5">
+              <Zap className="w-4 h-4 text-purple-700" />
+              <span>Amtlicher BNetzA-Registerauszug (Stand {cpoDataset.snapshotDate})</span>
+            </span>
+            <Link
+              to="/cpo-monitor"
+              className="text-xs font-bold text-purple-800 hover:text-purple-950 underline inline-flex items-center gap-1"
+            >
+              <span>Im CPO Monitor ansehen</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+            <div className="p-3 bg-white rounded-xl border border-purple-100">
+              <span className="text-slate-500 block uppercase font-mono text-[10px]">Dokumentierte Ladestationen</span>
+              <strong className="text-slate-950 text-base font-mono block mt-0.5">{verifiedCpo.stationsTotal.toLocaleString('de-DE')}</strong>
+            </div>
+            <div className="p-3 bg-white rounded-xl border border-purple-100">
+              <span className="text-slate-500 block uppercase font-mono text-[10px]">Ladepunkte ≥150 kW</span>
+              <strong className="text-purple-900 text-base font-mono block mt-0.5">{verifiedCpo.chargingPoints150PlusKw.toLocaleString('de-DE')}</strong>
+            </div>
+            <div className="p-3 bg-white rounded-xl border border-purple-100">
+              <span className="text-slate-500 block uppercase font-mono text-[10px]">HPC-Quote im Bestand</span>
+              <strong className="text-slate-950 text-base font-mono block mt-0.5">{verifiedCpo.share150PlusKwPercent.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %</strong>
+            </div>
+            <div className="p-3 bg-white rounded-xl border border-purple-100">
+              <span className="text-slate-500 block uppercase font-mono text-[10px]">Anteil an BNetzA-HPC *</span>
+              <strong className="text-slate-950 text-base font-mono block mt-0.5">{verifiedCpo.shareOfRegisterHpcPercent.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %</strong>
+            </div>
+          </div>
+          <p className="text-[11px] text-slate-500 leading-normal">
+            * <strong>Hinweis:</strong> Anteil an den im amtlichen BNetzA-Snapshot erfassten HPC-Ladepunkten bundesweit ({cpoDataset.totalRegisterHpcPointsDE.toLocaleString('de-DE')} Ladepunkte).
+          </p>
+        </div>
+      )}
 
       {/* Features & Technologie */}
       <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">

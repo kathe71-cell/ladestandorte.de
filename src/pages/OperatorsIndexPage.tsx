@@ -52,6 +52,27 @@ export const OperatorsIndexPage: React.FC = () => {
         description="Vergleichen Sie die führenden Ladeinfrastruktur-Betreiber nach Gesamtzahl der Ladepunkte, High-Power-Charging-Leistung bis 400 kW, AutoCharge-Unterstützung und Roaming-Netzwerkgröße."
       />
 
+      {/* CPO Monitor Banner */}
+      <div className="p-6 bg-gradient-to-r from-purple-900 to-slate-900 rounded-2xl text-white shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-xs font-mono font-bold">
+            <Zap className="w-3.5 h-3.5 text-purple-400" />
+            <span>NEUES DATENPRODUKT</span>
+          </div>
+          <h2 className="text-xl font-bold">CPO Monitor: Amtliche BNetzA-Registerdaten</h2>
+          <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+            Detaillierte Auswertung der Top 30 Betreiberunternehmen nach dokumentierten Register-Ladepunkten (≥150 kW), HPC-Ausbauquoten und städtischer Präsenz.
+          </p>
+        </div>
+        <Link
+          to="/cpo-monitor"
+          className="px-5 py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-slate-950 font-bold text-xs uppercase tracking-wider shrink-0 transition-all flex items-center gap-2"
+        >
+          <span>Zum CPO Monitor</span>
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
+
       {/* Grid of Operators */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {OPERATORS_DATA.map((op) => (

@@ -115,6 +115,13 @@ export const Header: React.FC = () => {
                     <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>CPO-Betreiber</span>
                   </Link>
+                  <Link
+                    to="/cpo-monitor"
+                    className="flex items-center gap-2.5 px-3.5 py-2 text-sm text-purple-800 hover:text-purple-950 hover:bg-purple-50/70 font-semibold"
+                  >
+                    <Zap className="w-4 h-4 text-purple-700 shrink-0" />
+                    <span>CPO Monitor</span>
+                  </Link>
                 </div>
               )}
             </div>
@@ -353,11 +360,22 @@ export const Header: React.FC = () => {
               to="/betreiber"
               onClick={() => setMobileMenuOpen(false)}
               className={`flex items-center gap-3 px-3 py-3 rounded-xl text-base font-semibold min-h-[48px] ${
-                location.pathname.startsWith('/betreiber') ? 'bg-emerald-50 text-emerald-900 font-bold' : 'text-slate-800 hover:bg-slate-100'
+                location.pathname === '/betreiber' ? 'bg-emerald-50 text-emerald-900 font-bold' : 'text-slate-800 hover:bg-slate-100'
               }`}
             >
               <ShieldCheck className="w-5 h-5 text-emerald-600" />
               <span>Betreiber (CPOs)</span>
+            </Link>
+
+            <Link
+              to="/cpo-monitor"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center gap-3 px-3 py-3 rounded-xl text-base font-semibold min-h-[48px] ${
+                location.pathname === '/cpo-monitor' ? 'bg-purple-50 text-purple-900 font-bold' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <Zap className="w-5 h-5 text-purple-600" />
+              <span>CPO Monitor (BNetzA)</span>
             </Link>
           </div>
 

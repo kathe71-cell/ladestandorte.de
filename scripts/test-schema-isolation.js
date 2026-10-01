@@ -104,6 +104,25 @@ try {
   failures++;
 }
 
+// 5. CPO Monitor isolation check
+try {
+  const cpoSchemas = extractSchemas('dist/cpo-monitor/index.html');
+  const rawCpo = JSON.stringify(cpoSchemas);
+
+  if (rawCpo.includes('FAQPage') || rawCpo.includes('ChargingStation') || rawCpo.includes('TechArticle')) {
+    console.error('[FAIL] /cpo-monitor LEAKS unauthorized schema (FAQPage/ChargingStation/TechArticle)!');
+    failures++;
+  } else if (!rawCpo.includes('WebPage') || !rawCpo.includes('BreadcrumbList')) {
+    console.error('[FAIL] /cpo-monitor is missing WebPage or BreadcrumbList schema!');
+    failures++;
+  } else {
+    console.log('[PASS] /cpo-monitor isolated: NO schema leaks, contains WebPage & BreadcrumbList.');
+  }
+} catch (e) {
+  console.error('[CRASH] /cpo-monitor schema check failed:', e.message);
+  failures++;
+}
+
 if (failures > 0) {
   console.error(`\n=> SCHEMA ISOLATION TEST FAILED WITH ${failures} ERROR(S)`);
   process.exit(1);

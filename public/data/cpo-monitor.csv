@@ -1,0 +1,31 @@
+cpo_id,slug,name,parent_company,headquarters,stations_total,charging_points_total,points_150kw_plus,share_150kw_plus_percent,share_of_register_hpc_percent,share_of_register_total_percent,presence_in_cities_count,bnetza_snapshot
+enbw,enbw,"EnBW mobility+","EnBW Energie Baden-Württemberg AG","Karlsruhe, Deutschland",5436,11334,8338,73.6,20.51,5.39,50,2026-10-01
+tesla,tesla,"Tesla Supercharger","Tesla, Inc.","Austin, USA / Berlin, Deutschland",3950,3950,3950,100,9.72,1.88,36,2026-10-01
+aral-pulse,aral-pulse,"Aral pulse (BP)","BP Europa SE","Bochum, Deutschland / London, UK",1579,3131,3119,99.6,7.67,1.49,45,2026-10-01
+ewe-go,ewe-go,"EWE Go","EWE AG","Oldenburg, Deutschland",1876,3568,2431,68.1,5.98,1.7,39,2026-10-01
+shell-recharge,shell-recharge,"Shell Recharge","Shell Deutschland GmbH","Hamburg, Deutschland / Den Haag, Niederlande",1271,2434,2356,96.8,5.8,1.16,44,2026-10-01
+allego,allego,"Allego","Allego N.V.","Arnhem, Niederlande / Berlin, Deutschland",1383,2729,1810,66.3,4.45,1.3,47,2026-10-01
+ionity,ionity,"IONITY","IONITY GmbH","München, Deutschland",1311,1510,1510,100,3.71,0.72,9,2026-10-01
+pfalzwerke,pfalzwerke,"Pfalzwerke ePunkt","Pfalzwerke Aktiengesellschaft","Ludwigshafen, Deutschland",1194,2400,1496,62.3,3.68,1.14,40,2026-10-01
+vattenfall,vattenfall-incharge,"Vattenfall InCharge","Vattenfall AB","Berlin, Deutschland / Stockholm, Schweden",685,1234,957,77.6,2.35,0.59,19,2026-10-01
+eon-drive,eon-drive,"E.ON Drive","E.ON SE","Essen, Deutschland",3981,5447,727,13.3,1.79,2.59,43,2026-10-01
+mer,mer-charge,"Mer Germany","Statkraft AS","München, Deutschland / Oslo, Norwegen",982,1997,679,34,1.67,0.95,16,2026-10-01
+teag-mobil,teag-mobil,"TEAG Mobil","Thüringer Energie AG","Erfurt, Deutschland",614,1229,659,53.6,1.62,0.58,4,2026-10-01
+citywatt,citywatt,"Citywatt","Citywatt GmbH","Ruderting, Deutschland",641,1240,528,42.6,1.3,0.59,9,2026-10-01
+circle-k,circle-k,"Circle K","Alimentation Couche-Tard","Hamburg, Deutschland / Laval, Kanada",339,507,494,97.4,1.22,0.24,14,2026-10-01
+aldi-sued,aldi-sued-charge,"ALDI SÜD","ALDI SÜD Dienstleistungs-SE & Co. oHG","Mülheim an der Ruhr, Deutschland",794,1789,474,26.5,1.17,0.85,22,2026-10-01
+totalenergies,totalenergies-charge,"TotalEnergies","TotalEnergies SE","Berlin, Deutschland / Paris, Frankreich",629,1239,449,36.2,1.1,0.59,17,2026-10-01
+fastned,fastned,"Fastned","Fastned B.V.","Köln, Deutschland / Amsterdam, Niederlande",204,404,404,100,0.99,0.19,3,2026-10-01
+comfortcharge,comfortcharge,"Comfortcharge","Deutsche Telekom AG","Bonn, Deutschland",230,603,293,48.6,0.72,0.29,25,2026-10-01
+aldi-nord,aldi-nord,"ALDI Nord","ALDI Einkauf SE & Co. oHG","Essen, Deutschland",276,565,246,43.5,0.61,0.27,18,2026-10-01
+electra,electra,"Electra","Electra SAS","München, Deutschland / Paris, Frankreich",126,250,246,98.4,0.61,0.12,15,2026-10-01
+jet,jet,"JET Tankstellen","Phillips 66 Continental Holding GmbH","Hamburg, Deutschland",103,204,200,98,0.49,0.1,11,2026-10-01
+hamburger-energiewerke,hamburger-energiewerke-mobil,"Hamburger Energiewerke Mobil","Hamburger Energiewerke GmbH","Hamburg, Deutschland",1182,2366,146,6.2,0.36,1.13,1,2026-10-01
+enercity,enercity,"enercity","enercity AG","Hannover, Deutschland",1084,1999,94,4.7,0.23,0.95,11,2026-10-01
+stadtwerke-duesseldorf,stadtwerke-duesseldorf,"Stadtwerke Düsseldorf","Stadtwerke Düsseldorf AG","Düsseldorf, Deutschland",753,1465,62,4.2,0.15,0.7,2,2026-10-01
+berliner-stadtwerke,berliner-stadtwerke,"Berliner Stadtwerke","Berliner Stadtwerke GmbH","Berlin, Deutschland",920,1787,46,2.6,0.11,0.85,1,2026-10-01
+n-ergie,n-ergie,"N-ERGIE","N-ERGIE Aktiengesellschaft","Nürnberg, Deutschland",916,1830,30,1.6,0.07,0.87,1,2026-10-01
+tanke,tanke-aachener-sw,"TankE","STAWAG / Rheinische NETZGesellschaft","Köln / Aachen, Deutschland",1054,1922,16,0.8,0.04,0.91,10,2026-10-01
+swm,swm-muenchen,"SWM (Stadtwerke München)","Stadtwerke München GmbH","München, Deutschland",759,1491,10,0.7,0.02,0.71,1,2026-10-01
+wirelane,wirelane,"Wirelane","Wirelane GmbH","München, Deutschland",1518,2959,0,0,0,1.41,46,2026-10-01
+qwello,qwello,"Qwello","Qwello GmbH","München, Deutschland",1654,1948,0,0,0,0.93,15,2026-10-01

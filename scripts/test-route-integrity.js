@@ -22,6 +22,7 @@ const MUST_RESOLVE_ROUTES = [
   '/',
   '/staedte',
   '/hpc-city-monitor',
+  '/cpo-monitor',
   '/mcs',
   '/mcs/was-ist-mcs',
   '/mcs/mcs-vs-ccs',

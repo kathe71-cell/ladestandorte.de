@@ -31,6 +31,7 @@ import McsWhatIsPage from './pages/McsWhatIsPage';
 import McsVsCcsPage from './pages/McsVsCcsPage';
 import McsTruckChargingPage from './pages/McsTruckChargingPage';
 import HpcCityMonitorPage from './pages/HpcCityMonitorPage';
+import CpoMonitorPage from './pages/CpoMonitorPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 import ScrollToTop from './components/ScrollToTop';
@@ -68,6 +69,7 @@ export function AppContent() {
         <Route path="/autobahnen/:autobahnSlug" element={<MotorwayPage />} />
         <Route path="/betreiber" element={<OperatorsIndexPage />} />
         <Route path="/betreiber/:operatorSlug" element={<OperatorPage />} />
+        <Route path="/cpo-monitor" element={<CpoMonitorPage />} />
         <Route path="/rechner" element={<RechnerPage />} />
         <Route path="/rechner-embed" element={<RechnerEmbedPage />} />
         <Route path="/ladekarten" element={<LadekartenVergleichPage />} />
