@@ -209,7 +209,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   };
 
   return (
-    <div className={`bg-white rounded-2xl sm:rounded-3xl border border-[#DFE3DC] shadow-sm overflow-hidden ${isEmbed ? 'p-4 sm:p-6' : 'p-6 sm:p-8'}`}>
+    <div className={`bg-white rounded-2xl sm:rounded-3xl border border-[#DFE3DC] shadow-sm overflow-hidden min-w-0 ${isEmbed ? 'p-3 sm:p-6' : 'p-4 sm:p-6 md:p-8'}`}>
       
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#DFE3DC] pb-5 mb-6">
@@ -531,7 +531,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
         </div>
 
         {/* Results Panel (5 Cols) */}
-        <div className="lg:col-span-5 bg-[#171917] text-white rounded-2xl p-6 flex flex-col justify-between space-y-6 border border-[#171917]">
+        <div className="lg:col-span-5 bg-[#171917] text-white rounded-2xl p-4 sm:p-6 flex flex-col justify-between space-y-6 border border-[#171917] min-w-0">
           
           <div>
             <div className="flex items-center justify-between gap-2 mb-1">
