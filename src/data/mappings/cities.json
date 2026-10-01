@@ -5,8 +5,8 @@
     "bundesland": "Berlin",
     "ags": "11000000",
     "ars": "110000000000",
-    "officialPopulation": 3782202,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 3685265,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "hamburg",
@@ -14,8 +14,8 @@
     "bundesland": "Hamburg",
     "ags": "02000000",
     "ars": "020000000000",
-    "officialPopulation": 1910160,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 1862565,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "muenchen",
@@ -23,8 +23,8 @@
     "bundesland": "Bayern",
     "ags": "09162000",
     "ars": "091620000000",
-    "officialPopulation": 1510378,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 1505005,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "koeln",
@@ -32,8 +32,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05315000",
     "ars": "053150000000",
-    "officialPopulation": 1087353,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 1024621,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "frankfurt",
@@ -41,8 +41,8 @@
     "bundesland": "Hessen",
     "ags": "06412000",
     "ars": "064120000000",
-    "officialPopulation": 775790,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 756021,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "stuttgart",
@@ -50,8 +50,8 @@
     "bundesland": "Baden-Württemberg",
     "ags": "08111000",
     "ars": "081110000000",
-    "officialPopulation": 633484,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 612663,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "duesseldorf",
@@ -59,8 +59,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05111000",
     "ars": "051110000000",
-    "officialPopulation": 631217,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 618685,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "leipzig",
@@ -68,8 +68,8 @@
     "bundesland": "Sachsen",
     "ags": "14713000",
     "ars": "147130000000",
-    "officialPopulation": 619879,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 611850,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "dortmund",
@@ -77,8 +77,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05913000",
     "ars": "059130000000",
-    "officialPopulation": 595471,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 603462,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "essen",
@@ -86,8 +86,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05113000",
     "ars": "051130000000",
-    "officialPopulation": 586608,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 574682,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "bremen",
@@ -95,8 +95,8 @@
     "bundesland": "Bremen",
     "ags": "04011000",
     "ars": "040110000000",
-    "officialPopulation": 577026,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 586271,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "dresden",
@@ -104,8 +104,8 @@
     "bundesland": "Sachsen",
     "ags": "14612000",
     "ars": "146120000000",
-    "officialPopulation": 566222,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 564904,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "hannover",
@@ -113,8 +113,8 @@
     "bundesland": "Niedersachsen",
     "ags": "03241001",
     "ars": "032410001001",
-    "officialPopulation": 548186,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 522131,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "nuernberg",
@@ -122,8 +122,8 @@
     "bundesland": "Bayern",
     "ags": "09564000",
     "ars": "095640000000",
-    "officialPopulation": 526091,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 529508,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "duisburg",
@@ -131,8 +131,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05112000",
     "ars": "051120000000",
-    "officialPopulation": 503707,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 502270,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "bochum",
@@ -140,8 +140,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05911000",
     "ars": "059110000000",
-    "officialPopulation": 366385,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 358676,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "wuppertal",
@@ -149,8 +149,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05124000",
     "ars": "051240000000",
-    "officialPopulation": 358876,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 358193,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "bielefeld",
@@ -158,8 +158,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05711000",
     "ars": "057110000000",
-    "officialPopulation": 338410,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 331605,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "bonn",
@@ -167,8 +167,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05314000",
     "ars": "053140000000",
-    "officialPopulation": 335789,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 323336,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "muenster",
@@ -176,8 +176,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05515000",
     "ars": "055150000000",
-    "officialPopulation": 322904,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 308258,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "karlsruhe",
@@ -185,8 +185,8 @@
     "bundesland": "Baden-Württemberg",
     "ags": "08212000",
     "ars": "082120000000",
-    "officialPopulation": 309936,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 309050,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "mannheim",
@@ -194,8 +194,8 @@
     "bundesland": "Baden-Württemberg",
     "ags": "08222000",
     "ars": "082220000000",
-    "officialPopulation": 316877,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 318035,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "augsburg",
@@ -203,8 +203,8 @@
     "bundesland": "Bayern",
     "ags": "09761000",
     "ars": "097610000000",
-    "officialPopulation": 303150,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 301105,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "wiesbaden",
@@ -212,8 +212,8 @@
     "bundesland": "Hessen",
     "ags": "06414000",
     "ars": "064140000000",
-    "officialPopulation": 285522,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 288850,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "kassel",
@@ -221,8 +221,8 @@
     "bundesland": "Hessen",
     "ags": "06611000",
     "ars": "066110000000",
-    "officialPopulation": 204698,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 197230,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "gelsenkirchen",
@@ -230,8 +230,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05513000",
     "ars": "055130000000",
-    "officialPopulation": 266624,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 267930,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "moenchengladbach",
@@ -239,8 +239,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05116000",
     "ars": "051160000000",
-    "officialPopulation": 268465,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 267213,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "braunschweig",
@@ -248,8 +248,8 @@
     "bundesland": "Niedersachsen",
     "ags": "03101000",
     "ars": "031010000000",
-    "officialPopulation": 252066,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 252962,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "chemnitz",
@@ -257,8 +257,8 @@
     "bundesland": "Sachsen",
     "ags": "14511000",
     "ars": "145110000000",
-    "officialPopulation": 250681,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 245618,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "kiel",
@@ -266,8 +266,8 @@
     "bundesland": "Schleswig-Holstein",
     "ags": "01002000",
     "ars": "010020000000",
-    "officialPopulation": 248792,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 252668,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "aachen",
@@ -275,8 +275,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05334002",
     "ars": "053340002002",
-    "officialPopulation": 252769,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 262670,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "halle",
@@ -284,8 +284,8 @@
     "bundesland": "Sachsen-Anhalt",
     "ags": "15002000",
     "ars": "150020000000",
-    "officialPopulation": 242083,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 226767,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "magdeburg",
@@ -293,8 +293,8 @@
     "bundesland": "Sachsen-Anhalt",
     "ags": "15003000",
     "ars": "150030000000",
-    "officialPopulation": 240114,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 244329,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "freiburg",
@@ -302,8 +302,8 @@
     "bundesland": "Baden-Württemberg",
     "ags": "08311000",
     "ars": "083110000000",
-    "officialPopulation": 237244,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 237460,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "krefeld",
@@ -311,8 +311,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05114000",
     "ars": "051140000000",
-    "officialPopulation": 231083,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 231406,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "mainz",
@@ -320,8 +320,8 @@
     "bundesland": "Rheinland-Pfalz",
     "ags": "07315000",
     "ars": "073150000000",
-    "officialPopulation": 222889,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 224684,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "luebeck",
@@ -329,8 +329,8 @@
     "bundesland": "Schleswig-Holstein",
     "ags": "01003000",
     "ars": "010030000000",
-    "officialPopulation": 219044,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 216889,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "erfurt",
@@ -338,8 +338,8 @@
     "bundesland": "Thüringen",
     "ags": "16051000",
     "ars": "160510000000",
-    "officialPopulation": 215675,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 218793,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "oberhausen",
@@ -347,8 +347,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05119000",
     "ars": "051190000000",
-    "officialPopulation": 211099,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 213646,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "rostock",
@@ -356,8 +356,8 @@
     "bundesland": "Mecklenburg-Vorpommern",
     "ags": "13003000",
     "ars": "130030000000",
-    "officialPopulation": 210795,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 205307,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "hagen",
@@ -365,8 +365,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05914000",
     "ars": "059140000000",
-    "officialPopulation": 190490,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 190384,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "potsdam",
@@ -374,8 +374,8 @@
     "bundesland": "Brandenburg",
     "ags": "12054000",
     "ars": "120540000000",
-    "officialPopulation": 187119,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 184754,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "saarbruecken",
@@ -383,8 +383,8 @@
     "bundesland": "Saarland",
     "ags": "10041100",
     "ars": "100410100100",
-    "officialPopulation": 183509,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 182971,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "hamm",
@@ -392,8 +392,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05915000",
     "ars": "059150000000",
-    "officialPopulation": 181368,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 179968,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "ludwigshafen",
@@ -401,8 +401,8 @@
     "bundesland": "Rheinland-Pfalz",
     "ags": "07314000",
     "ars": "073140000000",
-    "officialPopulation": 176110,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 177222,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "muelheim",
@@ -410,8 +410,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05117000",
     "ars": "051170000000",
-    "officialPopulation": 173255,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 173050,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "oldenburg",
@@ -419,8 +419,8 @@
     "bundesland": "Niedersachsen",
     "ags": "03403000",
     "ars": "034030000000",
-    "officialPopulation": 174629,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 176614,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "osnabrueck",
@@ -428,8 +428,8 @@
     "bundesland": "Niedersachsen",
     "ags": "03404000",
     "ars": "034040000000",
-    "officialPopulation": 167366,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 166057,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "leverkusen",
@@ -437,8 +437,8 @@
     "bundesland": "Nordrhein-Westfalen",
     "ags": "05316000",
     "ars": "053160000000",
-    "officialPopulation": 166414,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 168581,
+    "populationReferenceDate": "2024-12-31"
   },
   {
     "slug": "heidelberg",
@@ -446,7 +446,7 @@
     "bundesland": "Baden-Württemberg",
     "ags": "08221000",
     "ars": "082210000000",
-    "officialPopulation": 162960,
-    "populationReferenceDate": "2023-12-31"
+    "officialPopulation": 155756,
+    "populationReferenceDate": "2024-12-31"
   }
 ]

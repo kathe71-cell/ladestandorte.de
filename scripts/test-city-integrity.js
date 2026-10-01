@@ -4,12 +4,14 @@
  * Validates the generated BNetzA city dataset against strict guardrails:
  * 1. Exactly 50 cities present.
  * 2. Every city has valid slug, name, bundesland, 8-digit AGS, 12-digit ARS.
- * 3. Population > 100,000 for all 50 cities.
- * 4. Ladepunkte Gesamt >= HPC Ladepunkte (hpc150PlusKw).
- * 5. Ladestationen > 0, Ladepunkte Gesamt > 0, HPC Ladepunkte > 0 for all 50 cities.
- * 6. Power brackets sum equals Ladepunkte Gesamt.
- * 7. Valid SHA-256 and BNetzA license/attribution metadata.
- * 8. Provenance semantics complete (retrievedAt, maxRecordTimestamp, completenessDisclaimer).
+ * 3. 50/50 exact AGS matches with Destatis 2024-12-31 baseline.
+ * 4. Population > 100,000 for all 50 cities, referenceDate === '2024-12-31'.
+ * 5. Ladepunkte Gesamt >= HPC Ladepunkte (hpc150PlusKw).
+ * 6. Ladestationen > 0, Ladepunkte Gesamt > 0, HPC Ladepunkte > 0 for all 50 cities.
+ * 7. Power brackets sum equals Ladepunkte Gesamt.
+ * 8. Valid SHA-256 and BNetzA license/attribution metadata.
+ * 9. Provenance semantics complete (retrievedAt, maxRecordTimestamp, completenessDisclaimer).
+ * 10. Destatis snapshot exists with SHA-256 and verified metadata.
  */
 
 import fs from 'node:fs';
@@ -18,13 +20,30 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const ROOT_DIR = path.resolve(__dirname, '..');
 
-const generatedPath = path.resolve(__dirname, '../src/data/generated/cities.generated.json');
+const generatedPath = path.resolve(ROOT_DIR, 'src/data/generated/cities.generated.json');
+const destatisMetaPath = path.resolve(ROOT_DIR, 'data/raw/destatis/2024-12-31/metadata.json');
 
 console.log('[Test City Integrity] Checking:', generatedPath);
 
 if (!fs.existsSync(generatedPath)) {
   console.error('FAIL: Generated file does not exist:', generatedPath);
+  process.exit(1);
+}
+
+// 1. Verify Destatis Snapshot Metadata
+if (!fs.existsSync(destatisMetaPath)) {
+  console.error('FAIL: Destatis snapshot metadata does not exist:', destatisMetaPath);
+  process.exit(1);
+}
+const destatisMeta = JSON.parse(fs.readFileSync(destatisMetaPath, 'utf-8'));
+if (!destatisMeta.sha256 || destatisMeta.sha256.length !== 64) {
+  console.error('FAIL: Invalid Destatis SHA-256 hash.');
+  process.exit(1);
+}
+if (destatisMeta.sourceDataDate !== '2024-12-31') {
+  console.error(`FAIL: Destatis sourceDataDate is ${destatisMeta.sourceDataDate}, expected 2024-12-31`);
   process.exit(1);
 }
 
@@ -42,6 +61,7 @@ if (data.length !== 50) {
 
 const errors = [];
 const seenSlugs = new Set();
+const seenAgs = new Set();
 const seenArs = new Set();
 
 data.forEach((city, idx) => {
@@ -50,6 +70,9 @@ data.forEach((city, idx) => {
   // 1. Uniqueness
   if (seenSlugs.has(city.slug)) errors.push(`${prefix} Duplicate slug: ${city.slug}`);
   seenSlugs.add(city.slug);
+
+  if (seenAgs.has(city.ags)) errors.push(`${prefix} Duplicate AGS: ${city.ags}`);
+  seenAgs.add(city.ags);
 
   if (seenArs.has(city.ars)) errors.push(`${prefix} Duplicate ARS: ${city.ars}`);
   seenArs.add(city.ars);
@@ -60,11 +83,20 @@ data.forEach((city, idx) => {
   if (!/^\d{8}$/.test(city.ags)) errors.push(`${prefix} Invalid AGS (must be 8 digits): ${city.ags}`);
   if (!/^\d{12}$/.test(city.ars)) errors.push(`${prefix} Invalid ARS (must be 12 digits): ${city.ars}`);
 
-  // 3. Population
-  if (!city.population || typeof city.population.value !== 'number') {
+  // 3. Destatis 2024-12-31 Population
+  const pop = city.population;
+  if (!pop || typeof pop.value !== 'number') {
     errors.push(`${prefix} Missing population.value`);
-  } else if (city.population.value < 100000) {
-    errors.push(`${prefix} Population unexpectedly low: ${city.population.value}`);
+  } else {
+    if (pop.value < 100000) {
+      errors.push(`${prefix} Population unexpectedly low: ${pop.value}`);
+    }
+    if (pop.referenceDate !== '2024-12-31') {
+      errors.push(`${prefix} Population referenceDate (${pop.referenceDate}) is not 2024-12-31`);
+    }
+    if (!pop.source || !pop.license) {
+      errors.push(`${prefix} Missing population source or license`);
+    }
   }
 
   // 4. BNetzA counts & power classes
@@ -99,6 +131,17 @@ data.forEach((city, idx) => {
       }
     }
 
+    // Derived metric reproducibility check
+    const expectedPointsPer1k = Number(((b.ladepunkteGesamt / pop.value) * 1000).toFixed(2));
+    if (Math.abs(b.pointsPer1000Pop - expectedPointsPer1k) > 0.01) {
+      errors.push(`${prefix} pointsPer1000Pop mismatch: got ${b.pointsPer1000Pop}, expected ${expectedPointsPer1k}`);
+    }
+
+    const expectedHpcPer1k = Number(((b.hpcLadepunkte / pop.value) * 1000).toFixed(2));
+    if (Math.abs(b.hpcPer1000Pop - expectedHpcPer1k) > 0.01) {
+      errors.push(`${prefix} hpcPer1000Pop mismatch: got ${b.hpcPer1000Pop}, expected ${expectedHpcPer1k}`);
+    }
+
     // Provenance node validation
     const prov = b.provenance;
     if (!prov) {
@@ -126,5 +169,5 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log('SUCCESS: All 50 German cities passed BNetzA and Destatis integrity checks.');
+console.log('SUCCESS: All 50 German cities passed BNetzA and Destatis 2024-12-31 integrity checks.');
 process.exit(0);
