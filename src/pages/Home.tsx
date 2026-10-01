@@ -113,122 +113,197 @@ export const Home: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           
-          {/* Eyebrow Tag */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold uppercase tracking-wider mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#C7F000] border border-[#171917]/20"></span>
-            <span>MARKT-MONITOR · DATA / 01.10.2026</span>
+          {/* Eyebrow Tag (Mockup: Lime Pill) */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold uppercase tracking-wider mb-6">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
+            <span>MARKTMONITOR · DATA / 01.10.2026</span>
           </div>
 
           {/* Display Headline & Subline */}
           <div className="max-w-4xl space-y-4 mb-8">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#171917] leading-[1.06]">
-              Ladeinfrastruktur. <span className="underline decoration-[#C7F000] decoration-4 underline-offset-8">Datenbasiert.</span>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.06]">
+              <span className="text-[#171917] block">Ladeinfrastruktur.</span>
+              <span className="text-[#6C716B] block">Datenbasiert.</span>
             </h1>
             <p className="text-lg sm:text-xl text-[#6C716B] leading-relaxed max-w-3xl">
               Standorte, Betreiber und HPC-Ausbau in Deutschland – transparent aufbereitet auf Basis amtlicher Registerdaten der Bundesnetzagentur.
             </p>
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <Link
+                to="/hpc-city-monitor"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C7F000] hover:bg-[#d4fa00] text-[#171917] font-bold text-sm transition-all shadow-sm active:scale-95"
+              >
+                <span>HPC City Monitor</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/cpo-monitor"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] font-bold text-sm transition-all shadow-sm active:scale-95"
+              >
+                <span>CPO Monitor</span>
+              </Link>
+            </div>
           </div>
 
-          {/* 4-Column KPI Strip directly beneath Hero */}
+          {/* 4-Column KPI Strip directly beneath Hero (Mockup-Style: White cards with subtle border, 1 Lime Accent Line) */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10">
-            <div className="p-4 rounded-xl bg-[#F7F7F2] border border-[#DFE3DC]">
+            <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] shadow-sm">
               <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte gesamt</span>
-              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-0.5 block tabular-nums">210.185</span>
+              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">210.185</span>
               <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">BNetzA-Registerbestand</span>
             </div>
-            <div className="p-4 rounded-xl bg-[#F7F7F2] border border-[#DFE3DC]">
+            <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-sm">
               <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">HPC ≥ 150 kW</span>
-              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-0.5 block tabular-nums">40.654</span>
+              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">40.654</span>
               <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">19,34 % Registeranteil</span>
             </div>
-            <div className="p-4 rounded-xl bg-[#F7F7F2] border border-[#DFE3DC]">
+            <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] shadow-sm">
               <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Ladestationen</span>
-              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-0.5 block tabular-nums">117.043</span>
+              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">117.043</span>
               <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">Physische Standorte</span>
             </div>
-            <div className="p-4 rounded-xl bg-[#F7F7F2] border border-[#DFE3DC]">
+            <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] shadow-sm">
               <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Verifizierte CPOs</span>
-              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-0.5 block tabular-nums">30</span>
+              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">30</span>
               <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">Institutionelle Betreiber</span>
             </div>
           </div>
 
+          {/* Core Product Family: Monitor 01 & Monitor 02 (Mockup visual layout) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+            {/* Card 1: MONITOR / 01 - HPC City Monitor */}
+            <div className="p-6 sm:p-7 rounded-2xl bg-white border border-[#DFE3DC] shadow-sm hover:border-[#171917] transition-all flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold text-[#6C716B] uppercase tracking-wider">
+                    MONITOR / 01
+                  </span>
+                  <Link
+                    to="/hpc-city-monitor"
+                    aria-label="HPC City Monitor aufrufen"
+                    className="w-9 h-9 rounded-full bg-[#C7F000] text-[#171917] flex items-center justify-center transition-transform group-hover:scale-105 active:scale-95 shadow-sm"
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black text-[#171917] tracking-tight group-hover:text-[#2F5E73] transition-colors">
+                    HPC City Monitor
+                  </h3>
+                  <p className="text-sm text-[#6C716B] leading-relaxed mt-1">
+                    Schnelllade-Infrastruktur deutscher Großstädte im Vergleich.
+                  </p>
+                </div>
+
+                {/* Data Preview / Mini Bar Chart (Mockup) */}
+                <div className="pt-2 space-y-2.5">
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-xs font-mono">
+                      <span className="text-[#171917] font-semibold">Berlin</span>
+                      <span className="text-[#171917] font-bold tabular-nums">988</span>
+                    </div>
+                    <div className="h-2 w-full bg-[#F7F7F2] rounded-full overflow-hidden">
+                      <div className="h-full bg-[#C7F000] rounded-full" style={{ width: '85%' }}></div>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-xs font-mono">
+                      <span className="text-[#171917] font-semibold">Hamburg</span>
+                      <span className="text-[#6C716B] tabular-nums">—</span>
+                    </div>
+                    <div className="h-2 w-full bg-[#F7F7F2] rounded-full overflow-hidden">
+                      <div className="h-full bg-[#171917] rounded-full" style={{ width: '65%' }}></div>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-xs font-mono">
+                      <span className="text-[#171917] font-semibold">München</span>
+                      <span className="text-[#6C716B] tabular-nums">—</span>
+                    </div>
+                    <div className="h-2 w-full bg-[#F7F7F2] rounded-full overflow-hidden">
+                      <div className="h-full bg-[#171917] rounded-full" style={{ width: '58%' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tag Pills (Mockup) */}
+              <div className="pt-6 mt-6 border-t border-[#DFE3DC] flex flex-wrap items-center gap-2">
+                <span className="px-2.5 py-1 rounded bg-[#C7F000] text-[#171917] text-[10px] font-mono font-bold uppercase tracking-wider">
+                  50 STÄDTE
+                </span>
+                <span className="px-2.5 py-1 rounded bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] text-[10px] font-mono font-semibold uppercase tracking-wider">
+                  BNETZA
+                </span>
+                <span className="px-2.5 py-1 rounded bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] text-[10px] font-mono font-semibold uppercase tracking-wider">
+                  MONATLICH
+                </span>
+              </div>
+            </div>
+
+            {/* Card 2: MONITOR / 02 - CPO Monitor */}
+            <div className="p-6 sm:p-7 rounded-2xl bg-white border border-[#DFE3DC] shadow-sm hover:border-[#171917] transition-all flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold text-[#6C716B] uppercase tracking-wider">
+                    MONITOR / 02
+                  </span>
+                  <Link
+                    to="/cpo-monitor"
+                    aria-label="CPO Monitor aufrufen"
+                    className="w-9 h-9 rounded-full bg-white border border-[#DFE3DC] text-[#171917] flex items-center justify-center transition-transform group-hover:scale-105 active:scale-95 shadow-sm hover:bg-[#F7F7F2]"
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black text-[#171917] tracking-tight group-hover:text-[#2F5E73] transition-colors">
+                    CPO Monitor
+                  </h3>
+                  <p className="text-sm text-[#6C716B] leading-relaxed mt-1">
+                    Betreiberstrukturen und HPC-Bestand im BNetzA-Register.
+                  </p>
+                </div>
+
+                {/* Operator List Data Preview (Mockup) */}
+                <div className="pt-2 space-y-2 font-mono text-xs">
+                  <div className="flex items-center justify-between p-2 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC]">
+                    <span className="font-semibold text-[#171917]">EnBW mobility+</span>
+                    <span className="font-bold text-[#171917] tabular-nums">8.338</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC]">
+                    <span className="font-semibold text-[#171917]">Tesla Supercharger</span>
+                    <span className="font-bold text-[#171917] tabular-nums">3.950</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC]">
+                    <span className="font-semibold text-[#171917]">Aral pulse</span>
+                    <span className="font-bold text-[#171917] tabular-nums">3.119</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tag Pills (Mockup) */}
+              <div className="pt-6 mt-6 border-t border-[#DFE3DC] flex flex-wrap items-center gap-2">
+                <span className="px-2.5 py-1 rounded bg-[#C7F000] text-[#171917] text-[10px] font-mono font-bold uppercase tracking-wider">
+                  HPC ≥150 KW
+                </span>
+                <span className="px-2.5 py-1 rounded bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] text-[10px] font-mono font-semibold uppercase tracking-wider">
+                  30 CPOS
+                </span>
+                <span className="px-2.5 py-1 rounded bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] text-[10px] font-mono font-semibold uppercase tracking-wider">
+                  REGISTERANTEILE
+                </span>
+              </div>
+            </div>
+          </div>
+
           {/* Instant-Finder Component (data-svsearch) */}
-          <div className="max-w-4xl mb-10 space-y-2">
+          <div className="max-w-4xl space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-[#6C716B] px-1">
               <span>⚡ Schnellsuche: Verifizierte Ladeparks ({dossierCount} Dossiers) &amp; BNetzA-Verzeichnisse</span>
               <span className="text-[#171917] font-bold">50 Städte · Autobahnen A1–A99 · CPOs</span>
             </div>
             <InstantFinder autoFocus={false} showFilters={true} />
-          </div>
-
-          {/* Core Product Family: Monitor 01 & Monitor 02 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-4 border-t border-[#DFE3DC]">
-            {/* Card 1: MONITOR / 01 - HPC City Monitor */}
-            <div className="p-6 rounded-2xl bg-white border border-[#DFE3DC] hover:border-[#171917] transition-all flex flex-col justify-between group">
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#F7F7F2] border border-[#DFE3DC] text-[10px] font-mono font-bold text-[#171917]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C7F000]"></span>
-                    <span>MONITOR / 01</span>
-                  </div>
-                  <span className="text-xs font-mono text-[#6C716B]">50 Großstädte</span>
-                </div>
-                <h3 className="text-xl font-extrabold text-[#171917] tracking-tight group-hover:text-[#2F5E73] transition-colors">
-                  HPC City Monitor
-                </h3>
-                <p className="text-xs sm:text-sm text-[#6C716B] leading-relaxed">
-                  Auswertung der Verteilung von Schnellladepunkten (≥150 kW) in 50 deutschen Städten. Absolute Bestände, Bevölkerungsdichten und Registeranteile im reproduzierbaren Vergleich.
-                </p>
-                <div className="pt-2 flex flex-wrap gap-2 text-[11px] font-mono text-[#171917]">
-                  <span className="px-2 py-0.5 rounded bg-[#F7F7F2] border border-[#DFE3DC]">8.514 HPC in 50 Städten</span>
-                  <span className="px-2 py-0.5 rounded bg-[#F7F7F2] border border-[#DFE3DC]">13,7 % HPC-Quote</span>
-                </div>
-              </div>
-              <div className="pt-6 mt-4 border-t border-[#DFE3DC] flex items-center justify-between">
-                <Link
-                  to="/hpc-city-monitor"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#171917] group-hover:text-[#2F5E73]"
-                >
-                  <span>Monitor öffnen</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <span className="text-[10px] font-mono text-[#6C716B]">JSON / CSV verfügbar</span>
-              </div>
-            </div>
-
-            {/* Card 2: MONITOR / 02 - CPO Monitor */}
-            <div className="p-6 rounded-2xl bg-white border border-[#DFE3DC] hover:border-[#171917] transition-all flex flex-col justify-between group">
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#F7F7F2] border border-[#DFE3DC] text-[10px] font-mono font-bold text-[#171917]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#2F5E73]"></span>
-                    <span>MONITOR / 02</span>
-                  </div>
-                  <span className="text-xs font-mono text-[#6C716B]">30 Betreiber</span>
-                </div>
-                <h3 className="text-xl font-extrabold text-[#171917] tracking-tight group-hover:text-[#2F5E73] transition-colors">
-                  CPO Monitor
-                </h3>
-                <p className="text-xs sm:text-sm text-[#6C716B] leading-relaxed">
-                  Marktstruktur-Analyse der führenden Charge Point Operators in Deutschland auf Basis veröffentlichter Registerdaten der Bundesnetzagentur.
-                </p>
-                <div className="pt-2 flex flex-wrap gap-2 text-[11px] font-mono text-[#171917]">
-                  <span className="px-2 py-0.5 rounded bg-[#F7F7F2] border border-[#DFE3DC]">31.879 HPC Top-30</span>
-                  <span className="px-2 py-0.5 rounded bg-[#F7F7F2] border border-[#DFE3DC]">EnBW, Tesla, Aral, EWE</span>
-                </div>
-              </div>
-              <div className="pt-6 mt-4 border-t border-[#DFE3DC] flex items-center justify-between">
-                <Link
-                  to="/cpo-monitor"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#171917] group-hover:text-[#2F5E73]"
-                >
-                  <span>CPO Monitor öffnen</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <span className="text-[10px] font-mono text-[#6C716B]">JSON / CSV verfügbar</span>
-              </div>
-            </div>
           </div>
 
         </div>

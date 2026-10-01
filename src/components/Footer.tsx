@@ -111,19 +111,17 @@ export const Footer: React.FC = () => {
           <AmazonPartnerSentence />
         </div>
 
-        {/* Bottom Facts Strip */}
-        <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-300">
+        {/* Bottom Facts Strip (Mockup-Style) */}
+        <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
           <div>
             © {new Date().getFullYear()} ladestandorte.de · Ladeinfrastruktur. Datenbasiert.
           </div>
-          <div className="flex flex-wrap items-center gap-3 text-slate-300">
-            <span>BNetzA Open Data (CC BY 4.0)</span>
+          <div className="flex flex-wrap items-center gap-3 text-slate-400 text-[11px]">
+            <span>QUELLE / BUNDESNETZAGENTUR (CC BY 4.0)</span>
             <span>·</span>
-            <span>Snapshot: 01.10.2026</span>
+            <span className="text-[#C7F000] font-bold">STAND / 01.10.2026</span>
             <span>·</span>
-            <span>Lokale System-Fonts</span>
-            <span>·</span>
-            <span>Barrierearmes Design (WCAG 2.1)</span>
+            <span>WCAG AAA KONFORM</span>
           </div>
         </div>
 

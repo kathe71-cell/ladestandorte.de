@@ -23,25 +23,43 @@ import { BrandLogo } from './BrandLogo';
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const [monitoreOpen, setMonitoreOpen] = useState(false);
   const [standorteOpen, setStandorteOpen] = useState(false);
+  const [mcsOpen, setMcsOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
   const [wissenOpen, setWissenOpen] = useState(false);
   const location = useLocation();
 
+  const monitoreRef = useRef<HTMLDivElement>(null);
   const standorteRef = useRef<HTMLDivElement>(null);
+  const mcsRef = useRef<HTMLDivElement>(null);
+  const toolsRef = useRef<HTMLDivElement>(null);
   const wissenRef = useRef<HTMLDivElement>(null);
 
   // Close mobile drawer and dropdowns on route change
   useEffect(() => {
     setMobileMenuOpen(false);
+    setMonitoreOpen(false);
     setStandorteOpen(false);
+    setMcsOpen(false);
+    setToolsOpen(false);
     setWissenOpen(false);
   }, [location.pathname]);
 
   // Click outside to close desktop dropdowns
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      if (monitoreRef.current && !monitoreRef.current.contains(event.target as Node)) {
+        setMonitoreOpen(false);
+      }
       if (standorteRef.current && !standorteRef.current.contains(event.target as Node)) {
         setStandorteOpen(false);
+      }
+      if (mcsRef.current && !mcsRef.current.contains(event.target as Node)) {
+        setMcsOpen(false);
+      }
+      if (toolsRef.current && !toolsRef.current.contains(event.target as Node)) {
+        setToolsOpen(false);
       }
       if (wissenRef.current && !wissenRef.current.contains(event.target as Node)) {
         setWissenOpen(false);
@@ -51,11 +69,14 @@ export const Header: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const isStandorteActive = location.pathname.startsWith('/staedte') || location.pathname.startsWith('/betreiber') || location.pathname.startsWith('/ladestation');
+  const isMonitoreActive = location.pathname.startsWith('/hpc-city-monitor') || location.pathname.startsWith('/cpo-monitor');
+  const isStandorteActive = location.pathname.startsWith('/staedte') || location.pathname.startsWith('/autobahnen') || location.pathname.startsWith('/ladestation') || location.pathname === '/suche';
   const isAutobahnenActive = location.pathname.startsWith('/autobahnen');
+  const isBetreiberActive = location.pathname.startsWith('/betreiber');
   const isMcsActive = location.pathname.startsWith('/mcs');
+  const isToolsActive = location.pathname.startsWith('/rechner');
   const isRechnerActive = location.pathname.startsWith('/rechner');
-  const isWissenActive = location.pathname.startsWith('/ratgeber') || location.pathname.startsWith('/ladekarten') || location.pathname.startsWith('/glossar') || location.pathname.startsWith('/wallbox-vergleich');
+  const isWissenActive = location.pathname.startsWith('/ratgeber') || location.pathname.startsWith('/ladekarten') || location.pathname.startsWith('/glossar') || location.pathname.startsWith('/wallbox-vergleich') || location.pathname.startsWith('/methodik');
 
   return (
     <header className="bg-white/95 backdrop-blur-md border-b border-[#DFE3DC] sticky top-0 z-40">
@@ -65,26 +86,32 @@ export const Header: React.FC = () => {
           {/* Global Central Brand Logo */}
           <BrandLogo onClick={() => setMobileMenuOpen(false)} />
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center flex-nowrap gap-1 xl:gap-2 shrink-0" aria-label="Hauptnavigation">
+          {/* Desktop Navigation (>= 1200px / xl) */}
+          <nav className="hidden xl:flex items-center flex-nowrap gap-1 2xl:gap-1.5 shrink-0" aria-label="Hauptnavigation">
             
-            {/* 1. Standorte & Monitore Dropdown */}
-            <div className="relative" ref={standorteRef}>
+            {/* 1. Monitore */}
+            <div className="relative" ref={monitoreRef}>
               <button
                 type="button"
-                onClick={() => { setStandorteOpen(!standorteOpen); setWissenOpen(false); }}
-                className={`inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                  isStandorteActive || location.pathname === '/hpc-city-monitor' || location.pathname === '/cpo-monitor'
-                    ? 'bg-[#171917] text-white'
+                onClick={() => {
+                  setMonitoreOpen(!monitoreOpen);
+                  setStandorteOpen(false);
+                  setMcsOpen(false);
+                  setToolsOpen(false);
+                  setWissenOpen(false);
+                }}
+                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                  isMonitoreActive
+                    ? 'bg-[#C7F000] text-[#171917]'
                     : 'text-[#171917] hover:bg-[#F7F7F2]'
                 }`}
-                aria-expanded={standorteOpen}
+                aria-expanded={monitoreOpen}
               >
-                <span>Monitore &amp; Standorte</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${standorteOpen ? 'rotate-180' : ''}`} />
+                <span>Monitore</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${monitoreOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {standorteOpen && (
+              {monitoreOpen && (
                 <div className="absolute top-full left-0 mt-1.5 w-64 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
                   <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-[#6C716B] font-bold">
                     Marktmonitore
@@ -105,7 +132,7 @@ export const Header: React.FC = () => {
                     to="/cpo-monitor"
                     className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
                   >
-                    <span className="w-5 h-5 rounded bg-[#2F5E73] text-white font-mono text-[10px] font-black flex items-center justify-center shrink-0">
+                    <span className="w-5 h-5 rounded bg-[#171917] text-[#C7F000] font-mono text-[10px] font-black flex items-center justify-center shrink-0">
                       02
                     </span>
                     <div>
@@ -113,97 +140,176 @@ export const Header: React.FC = () => {
                       <div className="text-[11px] text-[#6C716B] font-normal">Betreiber &amp; Registeranteile</div>
                     </div>
                   </Link>
-
-                  <div className="my-1 border-t border-[#DFE3DC]"></div>
-                  <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-[#6C716B] font-bold">
-                    Verzeichnisse
-                  </div>
                   <Link
-                    to="/staedte"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    to="/mcs"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
                   >
-                    <MapPin className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>Top 50 Städte</span>
-                  </Link>
-                  <Link
-                    to="/betreiber"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <ShieldCheck className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>Betreiber-Dossiers (CPOs)</span>
+                    <span className="w-5 h-5 rounded bg-[#2F5E73] text-white font-mono text-[10px] font-black flex items-center justify-center shrink-0">
+                      03
+                    </span>
+                    <div>
+                      <div className="leading-tight">MCS Monitor</div>
+                      <div className="text-[11px] text-[#6C716B] font-normal">Megawatt Charging System</div>
+                    </div>
                   </Link>
                 </div>
               )}
             </div>
 
-            {/* 2. Autobahnen (Direktlink) */}
-            <Link
-              to="/autobahnen"
-              className={`px-2.5 xl:px-3 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
-                isAutobahnenActive
-                  ? 'bg-[#171917] text-white'
-                  : 'text-[#171917] hover:bg-[#F7F7F2]'
-              }`}
-            >
-              Autobahnen
-            </Link>
-
-            {/* 3. MCS & Lkw (Direktlink) */}
-            <Link
-              to="/mcs"
-              className={`inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
-                isMcsActive
-                  ? 'bg-[#171917] text-white'
-                  : 'text-[#171917] hover:bg-[#F7F7F2]'
-              }`}
-            >
-              <Truck className="w-4 h-4 text-[#6C716B]" />
-              <span>MCS &amp; Lkw</span>
-            </Link>
-
-            {/* 4. Rechner (Direktlink) */}
-            <Link
-              to="/rechner"
-              className={`px-2.5 xl:px-3 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
-                isRechnerActive
-                  ? 'bg-[#171917] text-white'
-                  : 'text-[#171917] hover:bg-[#F7F7F2]'
-              }`}
-            >
-              Rechner
-            </Link>
-
-            {/* 5. Wissen & Methodik Dropdown */}
-            <div className="relative" ref={wissenRef}>
+            {/* 2. Standorte */}
+            <div className="relative" ref={standorteRef}>
               <button
                 type="button"
-                onClick={() => { setWissenOpen(!wissenOpen); setStandorteOpen(false); }}
-                className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                  isWissenActive || location.pathname === '/methodik'
-                    ? 'bg-[#171917] text-white'
+                onClick={() => {
+                  setStandorteOpen(!standorteOpen);
+                  setMonitoreOpen(false);
+                  setMcsOpen(false);
+                  setToolsOpen(false);
+                  setWissenOpen(false);
+                }}
+                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                  isStandorteActive
+                    ? 'bg-[#C7F000] text-[#171917]'
                     : 'text-[#171917] hover:bg-[#F7F7F2]'
                 }`}
-                aria-expanded={wissenOpen}
+                aria-expanded={standorteOpen}
               >
-                <span>Wissen &amp; Methodik</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${wissenOpen ? 'rotate-180' : ''}`} />
+                <span>Standorte</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${standorteOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {wissenOpen && (
-                <div className="absolute top-full right-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+              {standorteOpen && (
+                <div className="absolute top-full left-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
                   <Link
-                    to="/methodik"
+                    to="/staedte"
                     className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
                   >
-                    <Activity className="w-4 h-4 text-[#2F5E73] shrink-0" />
-                    <span>Datenbasis &amp; Methodik</span>
+                    <MapPin className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                    <span>Top 50 Städte</span>
                   </Link>
                   <Link
-                    to="/ratgeber"
+                    to="/autobahnen"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                  >
+                    <Navigation className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                    <span>Autobahnen (A1–A99)</span>
+                  </Link>
+                  <Link
+                    to="/suche"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                  >
+                    <Search className="w-4 h-4 text-[#6C716B] shrink-0" />
+                    <span>Standort-Finder</span>
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* 3. Betreiber (Direktlink mit CPO-Fokus) */}
+            <Link
+              to="/betreiber"
+              className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
+                isBetreiberActive
+                  ? 'bg-[#C7F000] text-[#171917]'
+                  : 'text-[#171917] hover:bg-[#F7F7F2]'
+              }`}
+            >
+              Betreiber
+            </Link>
+
+            {/* 4. MCS */}
+            <div className="relative" ref={mcsRef}>
+              <button
+                type="button"
+                onClick={() => {
+                  setMcsOpen(!mcsOpen);
+                  setMonitoreOpen(false);
+                  setStandorteOpen(false);
+                  setToolsOpen(false);
+                  setWissenOpen(false);
+                }}
+                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                  isMcsActive
+                    ? 'bg-[#C7F000] text-[#171917]'
+                    : 'text-[#171917] hover:bg-[#F7F7F2]'
+                }`}
+                aria-expanded={mcsOpen}
+              >
+                <span>MCS</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${mcsOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {mcsOpen && (
+                <div className="absolute top-full left-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+                  <Link
+                    to="/mcs"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                  >
+                    <Truck className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                    <span>MCS Hub Übersicht</span>
+                  </Link>
+                  <Link
+                    to="/mcs/ladestationen"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                  >
+                    <MapPin className="w-4 h-4 text-[#6C716B] shrink-0" />
+                    <span>MCS Standorte</span>
+                  </Link>
+                  <Link
+                    to="/mcs/was-ist-mcs"
                     className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
                   >
                     <BookOpen className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>Ratgeber &amp; Leitfäden</span>
+                    <span>Was ist MCS?</span>
+                  </Link>
+                  <Link
+                    to="/mcs/mcs-vs-ccs"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                  >
+                    <Activity className="w-4 h-4 text-[#6C716B] shrink-0" />
+                    <span>MCS vs. CCS</span>
+                  </Link>
+                  <Link
+                    to="/mcs/lkw-laden"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                  >
+                    <Truck className="w-4 h-4 text-[#6C716B] shrink-0" />
+                    <span>E-Lkw Laden</span>
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* 5. Tools */}
+            <div className="relative" ref={toolsRef}>
+              <button
+                type="button"
+                onClick={() => {
+                  setToolsOpen(!toolsOpen);
+                  setMonitoreOpen(false);
+                  setStandorteOpen(false);
+                  setMcsOpen(false);
+                  setWissenOpen(false);
+                }}
+                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                  isToolsActive
+                    ? 'bg-[#C7F000] text-[#171917]'
+                    : 'text-[#171917] hover:bg-[#F7F7F2]'
+                }`}
+                aria-expanded={toolsOpen}
+              >
+                <span>Tools</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${toolsOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {toolsOpen && (
+                <div className="absolute top-full left-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+                  <Link
+                    to="/rechner"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                  >
+                    <Calculator className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                    <span>Ladekosten- &amp; Zeitrechner</span>
                   </Link>
                   <Link
                     to="/ladekarten"
@@ -211,13 +317,6 @@ export const Header: React.FC = () => {
                   >
                     <CreditCard className="w-4 h-4 text-[#6C716B] shrink-0" />
                     <span>Ladekarten-Vergleich</span>
-                  </Link>
-                  <Link
-                    to="/glossar"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
-                  >
-                    <HelpCircle className="w-4 h-4 text-[#6C716B] shrink-0" />
-                    <span>E-Mobilität Glossar</span>
                   </Link>
                   <Link
                     to="/wallbox-vergleich"
@@ -230,67 +329,84 @@ export const Header: React.FC = () => {
               )}
             </div>
 
+            {/* 6. Wissen */}
+            <div className="relative" ref={wissenRef}>
+              <button
+                type="button"
+                onClick={() => {
+                  setWissenOpen(!wissenOpen);
+                  setMonitoreOpen(false);
+                  setStandorteOpen(false);
+                  setMcsOpen(false);
+                  setToolsOpen(false);
+                }}
+                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                  isWissenActive
+                    ? 'bg-[#C7F000] text-[#171917]'
+                    : 'text-[#171917] hover:bg-[#F7F7F2]'
+                }`}
+                aria-expanded={wissenOpen}
+              >
+                <span>Wissen</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${wissenOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {wissenOpen && (
+                <div className="absolute top-full right-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+                  <Link
+                    to="/ratgeber"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                  >
+                    <BookOpen className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                    <span>Ratgeber &amp; Leitfäden</span>
+                  </Link>
+                  <Link
+                    to="/glossar"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                  >
+                    <HelpCircle className="w-4 h-4 text-[#6C716B] shrink-0" />
+                    <span>E-Mobilität Glossar</span>
+                  </Link>
+                  <Link
+                    to="/methodik"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                  >
+                    <Activity className="w-4 h-4 text-[#6C716B] shrink-0" />
+                    <span>Datenbasis &amp; Methodik</span>
+                  </Link>
+                </div>
+              )}
+            </div>
+
           </nav>
 
-          {/* Action Buttons: Data Status Tag, Search Trigger & Finder */}
+          {/* Action Area: DATA Status Badge & Compact Search Button (Mockup-Style) */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Status indicator badge (Infrastructure Intelligence Data Badge) */}
-            <div className="hidden xl:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[11px] font-mono font-bold text-[#171917]">
+            {/* Status indicator badge (Mockup: DATA / 01.10.2026) */}
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[11px] font-mono font-bold text-[#171917]">
               <span className="w-2 h-2 rounded-full bg-[#C7F000] border border-[#171917]/20"></span>
               <span>DATA / 01.10.2026</span>
             </div>
 
-            {/* Desktop Search Button */}
+            {/* Desktop / Tablet Search Trigger Button (Mockup: Square rounded button with search icon) */}
             <button
               type="button"
               onClick={() => setSearchModalOpen(true)}
-              className="hidden sm:inline-flex items-center gap-2 text-sm font-medium px-3.5 py-2 rounded-lg bg-[#F7F7F2] hover:bg-[#EAECE6] text-[#171917] transition-all border border-[#DFE3DC] cursor-pointer min-h-[40px]"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-[#F7F7F2] hover:bg-[#EAECE6] text-[#171917] transition-all border border-[#DFE3DC] cursor-pointer"
               aria-label="Globale Suche öffnen"
             >
-              <Search className="w-4 h-4 text-[#6C716B]" />
-              <span>Suche...</span>
-              <kbd className="hidden md:inline-flex text-[10px] font-mono px-1.5 py-0.5 rounded bg-white text-[#6C716B] border border-[#DFE3DC]">
-                ⌘K
-              </kbd>
+              <Search className="w-4 h-4 text-[#171917]" />
             </button>
 
-            {/* Desktop Direct Finder Link */}
-            <div className="hidden sm:flex items-center">
-              <Link
-                to="/suche"
-                className={`inline-flex items-center gap-1.5 text-sm font-bold px-3.5 py-2 rounded-lg transition-all active:scale-95 ${
-                  location.pathname === '/suche'
-                    ? 'bg-[#171917] text-[#C7F000]'
-                    : 'bg-[#C7F000] text-[#171917] hover:bg-[#d4fa00] border border-[#171917]'
-                }`}
-              >
-                <Zap className="w-4 h-4 fill-current stroke-current" />
-                <span>Finder</span>
-              </Link>
-            </div>
-
-            {/* Mobile Search Button */}
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setSearchModalOpen(true);
-              }}
-              className="lg:hidden inline-flex items-center justify-center p-2 rounded-lg text-[#171917] hover:bg-[#F7F7F2] min-w-[44px] min-h-[44px] cursor-pointer border border-[#DFE3DC]"
-              aria-label="Suche öffnen"
-            >
-              <Search className="w-5 h-5 text-[#171917]" />
-            </button>
-
-            {/* Mobile menu button */}
+            {/* Mobile menu trigger button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden inline-flex items-center justify-center p-2 rounded-lg text-[#171917] hover:bg-[#F7F7F2] min-w-[44px] min-h-[44px] cursor-pointer border border-[#DFE3DC]"
+              className="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-[#171917] hover:bg-[#F7F7F2] cursor-pointer border border-[#DFE3DC]"
               aria-label={mobileMenuOpen ? 'Menü schließen' : 'Hauptmenü öffnen'}
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -304,7 +420,7 @@ export const Header: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-[#DFE3DC] px-4 pt-3 pb-6 space-y-4 shadow-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="xl:hidden bg-white border-b border-[#DFE3DC] px-4 pt-3 pb-6 space-y-4 shadow-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
           
           {/* Quick Actions */}
           <div className="grid grid-cols-2 gap-2">
