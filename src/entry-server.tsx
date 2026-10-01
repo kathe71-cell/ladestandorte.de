@@ -8,6 +8,7 @@ import { products } from './products';
 export { CITIES_DATA } from './data/cities';
 export { MOTORWAYS_DATA } from './data/motorways';
 export { OPERATORS_DATA } from './data/operators';
+export { STATIONS_DATA, getStationUrl, isIndexableLocation } from './data/stations';
 
 export function render(url: string) {
   const html = renderToString(

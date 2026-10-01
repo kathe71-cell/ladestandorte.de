@@ -3,8 +3,18 @@ export interface StationConnector {
   maxKw: number;
 }
 
+export interface StationPricing {
+  standardAdHocDc?: number;
+  standardAdHocAc?: number;
+  blockingFeeStartMin?: number;
+  blockingFeePerMin?: number;
+  source?: string;
+  updatedAt?: string;
+}
+
 export interface StationData {
   id: string;
+  slug: string;
   name: string;
   city: string;
   citySlug: string;
@@ -25,7 +35,6 @@ export interface StationData {
   isHpc: boolean;
   openingYear: number;
   // Redaktionelle Zusatzattribute (nicht Bestandteil des amtlichen BNetzA-Registers)
-  // null oder undefined bedeutet: "Nicht bekannt"
   isCovered?: boolean | null;
   hasRestrooms?: boolean | null;
   hasDining?: boolean | null;
@@ -34,6 +43,15 @@ export interface StationData {
   exitDistance?: string | null;
   dataSource?: string;
   importDate?: string;
+  // Pilot- und Standortebenen-Attribute (Single Source of Truth)
+  isPilot?: boolean;
+  description?: string;
+  openingHours?: string;
+  source?: string;
+  sourceUrl?: string;
+  sourceUpdatedAt?: string;
+  lastVerifiedAt?: string;
+  pricing?: StationPricing;
 }
 
 export function getStationConnectors(station: StationData): StationConnector[] {
@@ -54,13 +72,62 @@ export function getStationConnectors(station: StationData): StationConnector[] {
   });
 }
 
+export function getStationUrl(station: StationData): string {
+  return `/ladestation/${station.citySlug}/${station.slug}`;
+}
+
+export function isIndexableLocation(station: StationData): boolean {
+  if (!station.id || !station.name || !station.city || !station.citySlug || !station.street || !station.plz) {
+    return false;
+  }
+  if (!station.lat || !station.lng || station.lat === 0 || station.lng === 0) {
+    return false;
+  }
+  if (!station.kwMax || station.kwMax < 50 || !station.connectorTypes || station.connectorTypes.length === 0) {
+    return false;
+  }
+  if (!station.operator || !station.operatorSlug || !station.bnetzaId) {
+    return false;
+  }
+  return !!station.isPilot;
+}
+
+
 export const STATIONS_DATA: StationData[] = [
+  {
+    id: "mot-009",
+    slug: "ionity-raststaette-spessart-sued",
+    name: "IONITY Raststätte Spessart Süd (A3)",
+    isPilot: true,
+    city: "Rohrbrunn",
+    citySlug: "rohrbrunn",
+    plz: "63879",
+    street: "Raststätte Spessart Süd, BAB 3",
+    motorway: "a3",
+    operator: "IONITY",
+    operatorSlug: "ionity",
+    kwMax: 350,
+    pointsCount: 16,
+    connectorTypes: ["CCS"],
+    accessType: "24/7 Öffentlich",
+    paymentMethods: ["Kreditkarte / Girocard (AFIR)", "Plug & Charge (ISO 15118)", "Lade-App", "RFID-Karte"],
+    lat: 49.8972,
+    lng: 9.3982,
+    bnetzaId: "DE*IOY*E6387901",
+    isHpc: true,
+    openingYear: 2022,
+    exitDistance: "Direkt an Raststätte Spessart Süd (A3, km 234)",
+    description: "Der IONITY-Ladepark an der Raststätte Spessart Süd (A3 zwischen Frankfurt und Würzburg) ist einer der meistfrequentierten HPC-Hubs Deutschlands mit 16 High-Power-Ladepunkten und bis zu 350 kW Ladeleistung."
+  },
+
   // Flagship Innovationsparks & Groß-Hubs
   {
     id: "hub-001",
+    slug: "sortimo-innovationspark-zusmarshausen",
     name: "Sortimo Innovationspark Zusmarshausen (A8)",
+    isPilot: true,
     city: "Zusmarshausen",
-    citySlug: "augsburg",
+    citySlug: "zusmarshausen",
     plz: "86441",
     street: "Innovationspark 1",
     motorway: "a8",
@@ -76,18 +143,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*BNE*E8644101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "Direkt an Ausfahrt AS Zusmarshausen (A8)"
   },
   {
     id: "hub-002",
+    slug: "enbw-hyperhub-rutesheim",
     name: "EnBW HyperHub Rutesheim (A8)",
+    isPilot: true,
     city: "Rutesheim",
-    citySlug: "stuttgart",
+    citySlug: "rutesheim",
     plz: "71277",
     street: "Dresdner Str. 16",
     motorway: "a8",
@@ -103,18 +167,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E7127701",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt 47 Rutesheim (A8)"
   },
   {
     id: "hub-003",
+    slug: "seed-und-greet-ladepark-kreuz-hilden",
     name: "Seed & Greet Ladepark Kreuz Hilden (A3 / A46)",
+    isPilot: true,
     city: "Hilden",
-    citySlug: "duesseldorf",
+    citySlug: "hilden",
     plz: "40721",
     street: "Nordpark 2",
     motorway: "a3",
@@ -130,18 +191,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E4072101",
     isHpc: true,
     openingYear: 2022,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "250 m von Autobahnkreuz Hilden (A3/A46)"
   },
   {
     id: "hub-004",
+    slug: "enbw-hyperhub-kamener-kreuz",
     name: "EnBW HyperHub Kamener Kreuz (A1 / A2)",
+    isPilot: true,
     city: "Kamen",
-    citySlug: "dortmund",
+    citySlug: "kamen",
     plz: "59174",
     street: "Kamen Karree 2",
     motorway: "a1",
@@ -157,16 +215,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E5917401",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "400 m von Ausfahrt Kamen-Zentrum (A1/A2)"
   },
   {
     id: "hub-005",
+    slug: "aral-pulse-flagship-hub-moenchengladbach",
     name: "Aral pulse Flagship Hub Mönchengladbach (A61)",
+    isPilot: true,
     city: "Mönchengladbach",
     citySlug: "moenchengladbach",
     plz: "41069",
@@ -184,18 +239,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ARA*E4106901",
     isHpc: true,
     openingYear: 2024,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "200 m von Ausfahrt MG-Nordpark (A61)"
   },
   {
     id: "hub-006",
+    slug: "enbw-hyperhub-meerane",
     name: "EnBW HyperHub Meerane (A4)",
+    isPilot: true,
     city: "Meerane",
-    citySlug: "chemnitz",
+    citySlug: "meerane",
     plz: "08393",
     street: "Guteborner Allee 4",
     motorway: "a4",
@@ -211,18 +263,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E0839301",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt Meerane (A4)"
   },
 
   // Berlin
   {
     id: "ber-001",
+    slug: "enbw-schnellladepark-berlin-schoeneberg",
     name: "EnBW Schnellladepark Berlin Schöneberg",
+    isPilot: true,
     city: "Berlin",
     citySlug: "berlin",
     plz: "10829",
@@ -239,15 +288,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E1082901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true
   },
   {
     id: "ber-002",
+    slug: "berliner-stadtwerke-hub-alexanderplatz",
     name: "Berliner Stadtwerke Hub Alexanderplatz",
+    isPilot: true,
     city: "Berlin",
     citySlug: "berlin",
     plz: "10178",
@@ -264,15 +310,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*BSW*E1017801",
     isHpc: true,
     openingYear: 2022,
-    isCovered: false,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
   {
     id: "ber-003",
+    slug: "tesla-supercharger-berlin-gleisdreieck",
     name: "Tesla Supercharger Berlin Gleisdreieck",
+    isPilot: true,
     city: "Berlin",
     citySlug: "berlin",
     plz: "10963",
@@ -289,15 +332,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*TSL*E1096301",
     isHpc: true,
     openingYear: 2023,
-    isCovered: false,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: false,
-    hasAutoCharge: true
   },
   {
     id: "ber-004",
+    slug: "aral-pulse-schnellladestation-berlin-hauptbahnhof",
     name: "Aral pulse Schnellladestation Berlin Hauptbahnhof",
+    isPilot: true,
     city: "Berlin",
     citySlug: "berlin",
     plz: "10557",
@@ -314,17 +354,14 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ARA*E1055701",
     isHpc: true,
     openingYear: 2024,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
 
   // Hamburg
   {
     id: "ham-001",
+    slug: "stromnetz-hamburg-hpc-hub-elbbruecken",
     name: "Stromnetz Hamburg HPC Hub Elbbrücken",
+    isPilot: true,
     city: "Hamburg",
     citySlug: "hamburg",
     plz: "20539",
@@ -341,15 +378,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SNH*E2053901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
   {
     id: "ham-002",
+    slug: "fastned-ladepark-hamburg-horner-rennbahn",
     name: "Fastned Ladepark Hamburg Horner Rennbahn",
+    isPilot: true,
     city: "Hamburg",
     citySlug: "hamburg",
     plz: "22111",
@@ -366,15 +400,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E2211101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: false,
-    hasAfirTerminal: true,
-    hasAutoCharge: true
   },
   {
     id: "ham-003",
+    slug: "enbw-schnellladepark-hamburg-altona",
     name: "EnBW Schnellladepark Hamburg Altona",
+    isPilot: true,
     city: "Hamburg",
     citySlug: "hamburg",
     plz: "22767",
@@ -391,15 +422,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E2276701",
     isHpc: true,
     openingYear: 2023,
-    isCovered: false,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true
   },
   {
     id: "ham-004",
+    slug: "shell-recharge-hamburg-hafencity",
     name: "Shell Recharge Hamburg HafenCity",
+    isPilot: true,
     city: "Hamburg",
     citySlug: "hamburg",
     plz: "20457",
@@ -416,17 +444,14 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SHL*E2045701",
     isHpc: true,
     openingYear: 2024,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
 
   // München
   {
     id: "muc-001",
+    slug: "swm-lade-campus-olympiapark",
     name: "SWM Lade-Campus Olympiapark",
+    isPilot: true,
     city: "München",
     citySlug: "muenchen",
     plz: "80809",
@@ -443,15 +468,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SWM*E8080901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
   {
     id: "muc-002",
+    slug: "enbw-hyperhub-muenchen-neuperlach",
     name: "EnBW HyperHub München Neuperlach",
+    isPilot: true,
     city: "München",
     citySlug: "muenchen",
     plz: "81737",
@@ -468,15 +490,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E8173701",
     isHpc: true,
     openingYear: 2024,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true
   },
   {
     id: "muc-003",
+    slug: "aral-pulse-muenchen-frankfurter-ring",
     name: "Aral pulse München Frankfurter Ring",
+    isPilot: true,
     city: "München",
     citySlug: "muenchen",
     plz: "80807",
@@ -493,17 +512,14 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ARA*E8080701",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
 
   // Köln
   {
     id: "cgn-001",
+    slug: "rheinenergie-tanke-ladepark-butzweilerhof",
     name: "RheinEnergie TankE Ladepark Butzweilerhof",
+    isPilot: true,
     city: "Köln",
     citySlug: "koeln",
     plz: "50829",
@@ -520,15 +536,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*RHE*E5082901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
   {
     id: "cgn-002",
+    slug: "enbw-schnellladepark-koeln-rodenkirchen",
     name: "EnBW Schnellladepark Köln Rodenkirchen (A4)",
+    isPilot: true,
     city: "Köln",
     citySlug: "koeln",
     plz: "50996",
@@ -546,18 +559,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E5099601",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "400 m von Ausfahrt Köln-Klettenberg (A4)"
   },
 
   // Frankfurt
   {
     id: "fra-001",
+    slug: "mainova-schnelllade-hub-frankfurt-messe",
     name: "Mainova Schnelllade-Hub Frankfurt Messe",
+    isPilot: true,
     city: "Frankfurt am Main",
     citySlug: "frankfurt",
     plz: "60486",
@@ -574,15 +584,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*MAI*E6048601",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
   {
     id: "fra-002",
+    slug: "fastned-frankfurt-borsigallee",
     name: "Fastned Frankfurt Borsigallee",
+    isPilot: true,
     city: "Frankfurt am Main",
     citySlug: "frankfurt",
     plz: "60388",
@@ -599,15 +606,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E6038801",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true
   },
   {
     id: "fra-003",
+    slug: "enbw-hyperhub-frankfurt-flughafen",
     name: "EnBW HyperHub Frankfurt Flughafen (A3 / A5)",
+    isPilot: true,
     city: "Frankfurt am Main",
     citySlug: "frankfurt",
     plz: "60549",
@@ -625,18 +629,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E6054901",
     isHpc: true,
     openingYear: 2024,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "Direkt am Frankfurter Kreuz (A3/A5)"
   },
 
   // Stuttgart
   {
     id: "str-001",
+    slug: "enbw-flagship-hub-stuttgart-pragsattel",
     name: "EnBW Flagship Hub Stuttgart Pragsattel",
+    isPilot: true,
     city: "Stuttgart",
     citySlug: "stuttgart",
     plz: "70469",
@@ -653,15 +654,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E7046901",
     isHpc: true,
     openingYear: 2022,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true
   },
   {
     id: "str-002",
+    slug: "stadtwerke-stuttgart-hub-vaihingen",
     name: "Stadtwerke Stuttgart Hub Vaihingen",
+    isPilot: true,
     city: "Stuttgart",
     citySlug: "stuttgart",
     plz: "70563",
@@ -678,17 +676,14 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SWS*E7056301",
     isHpc: true,
     openingYear: 2023,
-    isCovered: false,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
 
   // Düsseldorf
   {
     id: "dus-001",
+    slug: "stadtwerke-duesseldorf-hub-rheinturm",
     name: "Stadtwerke Düsseldorf Hub Rheinturm",
+    isPilot: true,
     city: "Düsseldorf",
     citySlug: "duesseldorf",
     plz: "40221",
@@ -705,16 +700,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SWD*E4022101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
 
   // Leipzig
   {
     id: "lej-001",
+    slug: "leipziger-stadtwerke-schnellladepark-poststrasse",
     name: "Leipziger Stadtwerke Schnellladepark Poststraße",
     city: "Leipzig",
     citySlug: "leipzig",
@@ -732,14 +723,10 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SWL*E0415801",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
   {
     id: "lej-002",
+    slug: "tesla-supercharger-leipzig-guenthersdorf",
     name: "Tesla Supercharger Leipzig Günthersdorf (A9)",
     city: "Leipzig",
     citySlug: "leipzig",
@@ -758,17 +745,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*TSL*E0623701",
     isHpc: true,
     openingYear: 2023,
-    isCovered: false,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: false,
-    hasAutoCharge: true,
     exitDistance: "200 m von Ausfahrt Leipzig-West (A9)"
   },
 
   // Dortmund
   {
     id: "dtm-001",
+    slug: "dew21-schnellladepark-dortmund-westfalenhallen",
     name: "DEW21 Schnellladepark Dortmund Westfalenhallen (B1 / A40)",
     city: "Dortmund",
     citySlug: "dortmund",
@@ -787,17 +770,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*DEW*E4413901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "Direkt an der B1 / A40 Ausfahrt Westfalenhallen"
   },
 
   // Essen
   {
     id: "ess-001",
+    slug: "stadtwerke-essen-und-aral-pulse-hub-messe-essen",
     name: "Stadtwerke Essen & Aral pulse Hub Messe Essen (A52)",
     city: "Essen",
     citySlug: "essen",
@@ -816,17 +795,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ARA*E4513101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "300 m von Ausfahrt Essen-Rüttenscheid (A52)"
   },
 
   // Bremen
   {
     id: "bre-001",
+    slug: "wesernetz-und-fastned-ladepark-weserpark-bremen",
     name: "wesernetz & Fastned Ladepark Weserpark Bremen (A1 / A27)",
     city: "Bremen",
     citySlug: "bremen",
@@ -845,17 +820,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E2830701",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "350 m von Bremer Kreuz (A1/A27)"
   },
 
   // Dresden
   {
     id: "drs-001",
+    slug: "sachsenenergie-hpc-park-dresden-elbe-park",
     name: "SachsenEnergie HPC-Park Dresden Elbe Park (A4)",
     city: "Dresden",
     citySlug: "dresden",
@@ -874,17 +845,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SEN*E0113901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "200 m von Ausfahrt Dresden-Neustadt (A4)"
   },
 
   // Hannover
   {
     id: "haj-001",
+    slug: "enercity-schnellladepark-hannover-messe",
     name: "enercity Schnellladepark Hannover Messe (A37 / B6)",
     city: "Hannover",
     citySlug: "hannover",
@@ -902,14 +869,10 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ECY*E3052101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
   {
     id: "haj-002",
+    slug: "fastned-hannover-herrenhausen",
     name: "Fastned Hannover Herrenhausen (A2)",
     city: "Hannover",
     citySlug: "hannover",
@@ -928,18 +891,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E3041901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: false,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "500 m von Ausfahrt Hannover-Herrenhausen (A2)"
   },
 
   // Nürnberg
   {
     id: "nue-001",
+    slug: "n-ergie-und-enbw-schnellladepark-nuernberg-hafen",
     name: "N-ERGIE & EnBW Schnellladepark Nürnberg Hafen (A73)",
+    isPilot: true,
     city: "Nürnberg",
     citySlug: "nuernberg",
     plz: "90451",
@@ -957,16 +917,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E9045101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt Nürnberg-Hafen-Ost (A73)"
   },
   {
     id: "nue-002",
+    slug: "aral-pulse-nuernberg-zollhaus",
     name: "Aral pulse Nürnberg Zollhaus (A6 / B8)",
+    isPilot: true,
     city: "Nürnberg",
     citySlug: "nuernberg",
     plz: "90469",
@@ -984,17 +941,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ARA*E9046901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "400 m von Ausfahrt Nürnberg-Zollhaus (A6)"
   },
 
   // Kassel
   {
     id: "ks-001",
+    slug: "enbw-flagship-ladepark-kassel-leipziger-strasse",
     name: "EnBW Flagship Ladepark Kassel Leipziger Straße (A7)",
     city: "Kassel",
     citySlug: "kassel",
@@ -1013,15 +966,11 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E3412301",
     isHpc: true,
     openingYear: 2024,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "500 m von Ausfahrt Kassel-Ost (A7)"
   },
   {
     id: "ks-002",
+    slug: "staedtische-werke-kassel-wilhelmshoehe",
     name: "Städtische Werke Kassel Wilhelmshöhe",
     city: "Kassel",
     citySlug: "kassel",
@@ -1039,17 +988,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SWK*E3413101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: false,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
   {
     id: "ks-003",
+    slug: "tesla-supercharger-lohfelden-kassel",
     name: "Tesla Supercharger Lohfelden / Kassel (A7 / A49)",
     city: "Lohfelden",
-    citySlug: "kassel",
+    citySlug: "lohfelden",
     plz: "34253",
     street: "Alexander-von-Humboldt-Straße 1",
     motorway: "a7",
@@ -1065,17 +1010,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*TSL*E3425301",
     isHpc: true,
     openingYear: 2022,
-    isCovered: false,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: false,
-    hasAutoCharge: true,
     exitDistance: "Autohof direkt an Ausfahrt Kassel-Mitte (A7/A49)"
   },
 
   // Augsburg
   {
     id: "aux-001",
+    slug: "stadtwerke-augsburg-schnellladepark-messe",
     name: "Stadtwerke Augsburg Schnellladepark Messe (B17)",
     city: "Augsburg",
     citySlug: "augsburg",
@@ -1093,16 +1034,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SWA*E8615901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
 
   // Bonn
   {
     id: "bon-001",
+    slug: "stadtwerke-bonn-hub-friedensplatz",
     name: "Stadtwerke Bonn (SWB) Hub Friedensplatz",
     city: "Bonn",
     citySlug: "bonn",
@@ -1120,14 +1057,10 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SWB*E5311101",
     isHpc: true,
     openingYear: 2022,
-    isCovered: false,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false
   },
   {
     id: "bon-002",
+    slug: "enbw-hyperhub-bonn-beuel",
     name: "EnBW HyperHub Bonn Beuel (A59 / A565)",
     city: "Bonn",
     citySlug: "bonn",
@@ -1146,17 +1079,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E5322901",
     isHpc: true,
     openingYear: 2024,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt Bonn-Vilich (A59)"
   },
 
   // Münster
   {
     id: "ms-001",
+    slug: "stadtwerke-muenster-und-enbw-schnellladepark-loddenheide",
     name: "Stadtwerke Münster & EnBW Schnellladepark Loddenheide",
     city: "Münster",
     citySlug: "muenster",
@@ -1174,16 +1103,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*SWM*E4815501",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true
   },
 
   // Aachen
   {
     id: "ac-001",
+    slug: "stawag-und-fastned-ladepark-aachen-tivoli",
     name: "STAWAG & Fastned Ladepark Aachen Tivoli (A4)",
     city: "Aachen",
     citySlug: "aachen",
@@ -1202,17 +1127,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*STW*E5207001",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt Aachen-Zentrum (A4)"
   },
 
   // Freiburg
   {
     id: "fr-001",
+    slug: "badenova-und-enbw-schnellladepark-freiburg-messe",
     name: "badenova & EnBW Schnellladepark Freiburg Messe (A5)",
     city: "Freiburg im Breisgau",
     citySlug: "freiburg",
@@ -1231,17 +1152,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E7910801",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "600 m von Ausfahrt Freiburg-Mitte (A5)"
   },
 
   // Ludwigshafen
   {
     id: "lu-001",
+    slug: "twl-und-aral-pulse-schnellladepark-ludwigshafen-bruchwiesenstrasse",
     name: "TWL & Aral pulse Schnellladepark Ludwigshafen Bruchwiesenstraße (A650)",
     city: "Ludwigshafen am Rhein",
     citySlug: "ludwigshafen",
@@ -1260,17 +1177,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ARA*E6705901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "Direct an Ausfahrt Bruchwiesenstraße (A650)"
   },
 
   // Oldenburg
   {
     id: "ol-001",
+    slug: "ewe-go-flagship-ladepark-oldenburg-ewe-arena",
     name: "EWE Go Flagship Ladepark Oldenburg EWE Arena (A28)",
     city: "Oldenburg (Oldb)",
     citySlug: "oldenburg",
@@ -1289,11 +1202,6 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EWE*E2612301",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "400 m von Ausfahrt Oldenburg-Marschweg (A28)"
   },
 
@@ -1304,6 +1212,7 @@ export const STATIONS_DATA: StationData[] = [
   // Duisburg
   {
     id: "dui-001",
+    slug: "enbw-schnellladepark-duisburg-neudorf",
     name: "EnBW Schnellladepark Duisburg Neudorf (A59)",
     city: "Duisburg",
     citySlug: "duisburg",
@@ -1322,15 +1231,11 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E4705701",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "250 m von Ausfahrt Duisburg-Koloniestraße (A59)"
   },
   {
     id: "dui-002",
+    slug: "fastned-duisburg-meiderich",
     name: "Fastned Duisburg Meiderich (A42)",
     city: "Duisburg",
     citySlug: "duisburg",
@@ -1349,17 +1254,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E4713701",
     isHpc: true,
     openingYear: 2024,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: false,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "400 m von Ausfahrt Duisburg-Neumühl (A42)"
   },
 
   // Bochum
   {
     id: "boc-001",
+    slug: "enbw-hyperhub-ruhr-park-bochum",
     name: "EnBW HyperHub Ruhr Park Bochum (A40)",
     city: "Bochum",
     citySlug: "bochum",
@@ -1378,17 +1279,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E4479101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "Direkt an Ausfahrt Bochum-Harpen (A40)"
   },
 
   // Wuppertal
   {
     id: "wup-001",
+    slug: "aral-pulse-wuppertal-varresbeck",
     name: "Aral pulse Wuppertal Varresbeck (A46)",
     city: "Wuppertal",
     citySlug: "wuppertal",
@@ -1407,17 +1304,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ARA*E4211501",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "300 m von Ausfahrt Wuppertal-Varresbeck (A46)"
   },
 
   // Bielefeld
   {
     id: "bie-001",
+    slug: "ionity-bielefeld-sued",
     name: "IONITY Bielefeld Süd (A2)",
     city: "Bielefeld",
     citySlug: "bielefeld",
@@ -1436,15 +1329,11 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ION*E3368901",
     isHpc: true,
     openingYear: 2022,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "Direkt an Raststätte Lipperland (A2)"
   },
   {
     id: "bie-002",
+    slug: "stadtwerke-bielefeld-und-enbw-radrennbahn",
     name: "Stadtwerke Bielefeld & EnBW Radrennbahn",
     city: "Bielefeld",
     citySlug: "bielefeld",
@@ -1462,16 +1351,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E3360901",
     isHpc: true,
     openingYear: 2024,
-    isCovered: false,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true
   },
 
   // Karlsruhe
   {
     id: "ka-001",
+    slug: "enbw-flagship-ladepark-karlsruhe-durlach",
     name: "EnBW Flagship Ladepark Karlsruhe Durlach (A5)",
     city: "Karlsruhe",
     citySlug: "karlsruhe",
@@ -1490,17 +1375,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E7622701",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "250 m von Ausfahrt Karlsruhe-Durlach (A5)"
   },
 
   // Mannheim
   {
     id: "ma-001",
+    slug: "fastned-mannheim-kaefertal",
     name: "Fastned Mannheim Käfertal (B38 / A6)",
     city: "Mannheim",
     citySlug: "mannheim",
@@ -1519,17 +1400,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E6830901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "400 m von Viernheimer Kreuz (A6/B38)"
   },
 
   // Wiesbaden
   {
     id: "wi-001",
+    slug: "enbw-schnellladepark-wiesbaden-aeppelallee",
     name: "EnBW Schnellladepark Wiesbaden Äppelallee (A66)",
     city: "Wiesbaden",
     citySlug: "wiesbaden",
@@ -1548,17 +1425,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E6520301",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt Wiesbaden-Biebrich (A66)"
   },
 
   // Gelsenkirchen
   {
     id: "ge-001",
+    slug: "ewe-go-gelsenkirchen-buer",
     name: "EWE Go Gelsenkirchen Buer (A42)",
     city: "Gelsenkirchen",
     citySlug: "gelsenkirchen",
@@ -1577,17 +1450,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EWE*E4589101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "350 m von Ausfahrt Gelsenkirchen-Buer-Süd (A42)"
   },
 
   // Braunschweig
   {
     id: "bs-001",
+    slug: "ionity-braunschweig-flughafen",
     name: "IONITY Braunschweig Flughafen (A2)",
     city: "Braunschweig",
     citySlug: "braunschweig",
@@ -1606,17 +1475,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ION*E3811001",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "400 m von Ausfahrt BS-Flughafen (A2)"
   },
 
   // Kiel
   {
     id: "ki-001",
+    slug: "fastned-kiel-wellsee",
     name: "Fastned Kiel Wellsee (B76 / A215)",
     city: "Kiel",
     citySlug: "kiel",
@@ -1634,16 +1499,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E2414501",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true
   },
 
   // Halle (Saale)
   {
     id: "hal-001",
+    slug: "enbw-ladepark-halle-peissen",
     name: "EnBW Ladepark Halle-Peißen (A14)",
     city: "Halle (Saale)",
     citySlug: "halle",
@@ -1662,17 +1523,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E0618801",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt Halle-Peißen (A14)"
   },
 
   // Magdeburg
   {
     id: "mag-001",
+    slug: "ionity-magdeburg-boerde",
     name: "IONITY Magdeburg Börde (A2)",
     city: "Magdeburg",
     citySlug: "magdeburg",
@@ -1691,17 +1548,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ION*E3916701",
     isHpc: true,
     openingYear: 2022,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "Direkt an Raststätte Börde (A2)"
   },
 
   // Krefeld
   {
     id: "kr-001",
+    slug: "aral-pulse-krefeld-diessemer-bruch",
     name: "Aral pulse Krefeld Dießemer Bruch (A57)",
     city: "Krefeld",
     citySlug: "krefeld",
@@ -1720,17 +1573,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ARA*E4780501",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "400 m von Ausfahrt Krefeld-Oppum (A57)"
   },
 
   // Mainz
   {
     id: "mz-001",
+    slug: "enbw-hyperhub-mainz-finthen",
     name: "EnBW HyperHub Mainz-Finthen (A60)",
     city: "Mainz",
     citySlug: "mainz",
@@ -1749,17 +1598,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E5512601",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt Mainz-Finthen (A60)"
   },
 
   // Lübeck
   {
     id: "hl-001",
+    slug: "ionity-luebeck-travemuende",
     name: "IONITY Lübeck Travemünde (A1)",
     city: "Lübeck",
     citySlug: "luebeck",
@@ -1778,17 +1623,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ION*E2355601",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "300 m von Ausfahrt Lübeck-Zentrum (A1)"
   },
 
   // Erfurt
   {
     id: "ef-001",
+    slug: "enbw-schnellladepark-erfurt-b4-a4",
     name: "EnBW Schnellladepark Erfurt B4 / A4",
     city: "Erfurt",
     citySlug: "erfurt",
@@ -1807,17 +1648,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E9909901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "400 m von Ausfahrt Erfurt-Ost (A4)"
   },
 
   // Oberhausen
   {
     id: "ob-001",
+    slug: "fastned-centro-oberhausen",
     name: "Fastned CentrO Oberhausen (A42)",
     city: "Oberhausen",
     citySlug: "oberhausen",
@@ -1836,17 +1673,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E4604701",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt Oberhausen-Zentrum (A42)"
   },
 
   // Rostock
   {
     id: "hro-001",
+    slug: "enbw-schnellladepark-rostock-hanse-center",
     name: "EnBW Schnellladepark Rostock Hanse Center (A19)",
     city: "Rostock",
     citySlug: "rostock",
@@ -1865,17 +1698,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E1818201",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "Direkt an Ausfahrt Rostock-Süd (A19)"
   },
 
   // Hagen
   {
     id: "hag-001",
+    slug: "aral-pulse-hagen-bathey",
     name: "Aral pulse Hagen Bathey (A45)",
     city: "Hagen",
     citySlug: "hagen",
@@ -1894,17 +1723,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ARA*E5809901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "300 m von Ausfahrt Hagen-Nord (A45)"
   },
 
   // Potsdam
   {
     id: "p-001",
+    slug: "enbw-schnellladepark-potsdam-babelsberg",
     name: "EnBW Schnellladepark Potsdam Babelsberg (Nuthestraße)",
     city: "Potsdam",
     citySlug: "potsdam",
@@ -1922,16 +1747,12 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E1448201",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true
   },
 
   // Saarbrücken
   {
     id: "sb-001",
+    slug: "enbw-schnellladepark-saarbruecken-ostspange",
     name: "EnBW Schnellladepark Saarbrücken Ostspange (A620)",
     city: "Saarbrücken",
     citySlug: "saarbruecken",
@@ -1950,17 +1771,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E6612101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "200 m von Ausfahrt Saarbrücken-Ostspange (A620)"
   },
 
   // Hamm
   {
     id: "hamm-001",
+    slug: "fastned-hamm-rhynern",
     name: "Fastned Hamm Rhynern (A2)",
     city: "Hamm",
     citySlug: "hamm",
@@ -1979,17 +1796,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E5906901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "Autohof an Ausfahrt Hamm-Rhynern (A2)"
   },
 
   // Mülheim an der Ruhr
   {
     id: "mh-001",
+    slug: "enbw-schnellladepark-muelheim-duempten",
     name: "EnBW Schnellladepark Mülheim Dümpten (A40)",
     city: "Mülheim an der Ruhr",
     citySlug: "muelheim",
@@ -2008,17 +1821,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E4547301",
     isHpc: true,
     openingYear: 2024,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt Mülheim-Dümpten (A40)"
   },
 
   // Osnabrück
   {
     id: "os-001",
+    slug: "ionity-osnabrueck-atter",
     name: "IONITY Osnabrück Atter (A1)",
     city: "Osnabrück",
     citySlug: "osnabrueck",
@@ -2037,18 +1846,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ION*E4907601",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "350 m von Ausfahrt Osnabrück-Hafen (A1)"
   },
 
   // Leverkusen
   {
     id: "lev-001",
+    slug: "tesla-supercharger-und-enbw-leverkusen-chempark",
     name: "Tesla Supercharger & EnBW Leverkusen Chempark (A3)",
+    isPilot: true,
     city: "Leverkusen",
     citySlug: "leverkusen",
     plz: "51373",
@@ -2066,17 +1872,13 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E5137301",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "400 m von Ausfahrt Leverkusen-Zentrum (A3)"
   },
 
   // Heidelberg
   {
     id: "hd-001",
+    slug: "enbw-schnellladepark-heidelberg-bahnstadt",
     name: "EnBW Schnellladepark Heidelberg Bahnstadt (A656)",
     city: "Heidelberg",
     citySlug: "heidelberg",
@@ -2095,20 +1897,17 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E6911501",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "500 m von Autobahnende A656 Heidelberg"
   },
 
   // Autobahn-Raststätten Hubs
   {
     id: "mot-001",
+    slug: "ionity-raststaette-brohltal-ost",
     name: "IONITY Raststätte Brohltal Ost (A61)",
+    isPilot: true,
     city: "Niederzissen",
-    citySlug: "bonn",
+    citySlug: "niederzissen",
     plz: "56659",
     street: "Raststätte Brohltal Ost",
     motorway: "a61",
@@ -2124,18 +1923,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ION*E5665901",
     isHpc: true,
     openingYear: 2021,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "Direkt an Raststätte Brohltal Ost (A61)"
   },
   {
     id: "mot-002",
+    slug: "fastned-autohof-muecke",
     name: "Fastned Autohof Mücke (A5)",
+    isPilot: true,
     city: "Mücke",
-    citySlug: "kassel",
+    citySlug: "muecke",
     plz: "35325",
     street: "Gewerbeweg 1",
     motorway: "a5",
@@ -2151,18 +1947,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E3532501",
     isHpc: true,
     openingYear: 2022,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "200 m von Ausfahrt Homberg (Ohm) (A5)"
   },
   {
     id: "mot-003",
+    slug: "enbw-hyperhub-geiselwind",
     name: "EnBW HyperHub Geiselwind (A3)",
+    isPilot: true,
     city: "Geiselwind",
-    citySlug: "nuernberg",
+    citySlug: "geiselwind",
     plz: "96160",
     street: "Scheinfelder Str. 23",
     motorway: "a3",
@@ -2178,18 +1971,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E9616001",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "Autohof an Ausfahrt Geiselwind (A3)"
   },
   {
     id: "mot-004",
+    slug: "tesla-supercharger-braak",
     name: "Tesla Supercharger Braak (A1)",
+    isPilot: true,
     city: "Braak",
-    citySlug: "hamburg",
+    citySlug: "braak",
     plz: "22145",
     street: "Braaker Bogen 1",
     motorway: "a1",
@@ -2205,18 +1995,14 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*TSL*E2214501",
     isHpc: true,
     openingYear: 2021,
-    isCovered: false,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: false,
-    hasAutoCharge: true,
     exitDistance: "300 m von Ausfahrt Stapelfeld (A1)"
   },
   {
     id: "mot-005",
+    slug: "aral-pulse-autohof-salzbergen",
     name: "Aral pulse Autohof Salzbergen (A30 / A31)",
     city: "Salzbergen",
-    citySlug: "osnabrueck",
+    citySlug: "salzbergen",
     plz: "48499",
     street: "Holsterfeld 1",
     motorway: "a30",
@@ -2232,18 +2018,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ARA*E4849901",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "Autohof an Kreuz Schüttorf (A30/A31)"
   },
   {
     id: "mot-006",
+    slug: "enbw-hyperhub-woerth-an-der-donau",
     name: "EnBW HyperHub Wörth an der Donau (A3)",
+    isPilot: true,
     city: "Wörth an der Donau",
-    citySlug: "regensburg",
+    citySlug: "woerth-an-der-donau",
     plz: "93086",
     street: "Im Gewerbepark 2",
     motorway: "a3",
@@ -2259,18 +2042,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*EBW*E9308601",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "250 m von Ausfahrt Wörth a.d. Donau-Ost (A3)"
   },
   {
     id: "mot-007",
+    slug: "ionity-raststaette-koeckern-west",
     name: "IONITY Raststätte Köckern West (A9)",
+    isPilot: true,
     city: "Sandersdorf-Brehna",
-    citySlug: "leipzig",
+    citySlug: "sandersdorf-brehna",
     plz: "06796",
     street: "Raststätte Köckern West",
     motorway: "a9",
@@ -2286,18 +2066,15 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*ION*E0679601",
     isHpc: true,
     openingYear: 2022,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: false,
     exitDistance: "Direkt an Raststätte Köckern (A9)"
   },
   {
     id: "mot-008",
+    slug: "fastned-autohof-nempitz",
     name: "Fastned Autohof Nempitz (A9)",
+    isPilot: true,
     city: "Bad Dürrenberg",
-    citySlug: "leipzig",
+    citySlug: "bad-duerrenberg",
     plz: "06231",
     street: "Autohof Nempitz 1",
     motorway: "a9",
@@ -2313,11 +2090,6 @@ export const STATIONS_DATA: StationData[] = [
     bnetzaId: "DE*FST*E0623101",
     isHpc: true,
     openingYear: 2023,
-    isCovered: true,
-    hasRestrooms: true,
-    hasDining: true,
-    hasAfirTerminal: true,
-    hasAutoCharge: true,
     exitDistance: "Autohof an Ausfahrt Bad Dürrenberg (A9)"
   }
 ];

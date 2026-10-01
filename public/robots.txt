@@ -45,4 +45,5 @@ Allow: /
 
 # Sitemap Index
 Sitemap: https://www.ladestandorte.de/sitemap.xml
+Sitemap: https://www.ladestandorte.de/sitemap-ladestationen.xml
 Host: https://www.ladestandorte.de

@@ -3,7 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { MapPin, Zap, ShieldCheck, ArrowLeft, ArrowRight, Database, ExternalLink, Navigation, HelpCircle } from 'lucide-react';
 import { CITIES_DATA, getCityMotorwaySlugs } from '../data/cities';
 import { MOTORWAYS_DATA } from '../data/motorways';
-import { STATIONS_DATA, StationData } from '../data/stations';
+import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
 import { getOperatorSlugByName } from '../utils/operatorHelper';
 import { StationDetailModal } from '../components/StationDetailModal';
 import { CitationBox } from '../components/CitationBox';
@@ -278,10 +278,10 @@ export const CityPage: React.FC = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {cityStations.map((st) => (
-              <div
+              <Link
                 key={st.id}
-                onClick={() => setSelectedStation(st)}
-                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all cursor-pointer flex flex-col justify-between group"
+                to={getStationUrl(st)}
+                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
@@ -333,10 +333,10 @@ export const CityPage: React.FC = () => {
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
-                  <span>Technische Spezifikation öffnen</span>
+                  <span>Standort-Dossier öffnen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}

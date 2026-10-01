@@ -3,13 +3,12 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { Navigation, Zap, MapPin, ArrowRight, ShieldCheck, ExternalLink } from 'lucide-react';
 import { MOTORWAYS_DATA, getMotorwayCitySlugs, getMotorwayCrossingSlugs } from '../data/motorways';
 import { CITIES_DATA } from '../data/cities';
-import { STATIONS_DATA } from '../data/stations';
 import { getOperatorSlugByName } from '../utils/operatorHelper';
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
+import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
 import { StationDetailModal } from '../components/StationDetailModal';
-import { StationData } from '../data/stations';
 import { FloatingCTABar } from '../components/FloatingCTABar';
 
 export const MotorwayPage: React.FC = () => {
@@ -204,10 +203,10 @@ export const MotorwayPage: React.FC = () => {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {motorwayStations.map((st) => (
-              <div
+              <Link
                 key={st.id}
-                onClick={() => setSelectedStation(st)}
-                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-amber-300 transition-all cursor-pointer flex flex-col justify-between group"
+                to={getStationUrl(st)}
+                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-amber-300 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
@@ -253,10 +252,10 @@ export const MotorwayPage: React.FC = () => {
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-800">
-                  <span>Navigation &amp; Details</span>
+                  <span>Standort-Dossier öffnen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

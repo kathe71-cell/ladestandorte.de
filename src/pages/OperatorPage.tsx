@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ShieldCheck, Zap, CheckCircle2, ArrowRight, Star, CreditCard, HelpCircle, MapPin } from 'lucide-react';
 import { OPERATORS_DATA } from '../data/operators';
-import { STATIONS_DATA, StationData } from '../data/stations';
+import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
 import { CitationBox } from '../components/CitationBox';
 import { FloatingCTABar } from '../components/FloatingCTABar';
 import { EEATBadge } from '../components/EEATBadge';
@@ -205,10 +205,10 @@ export const OperatorPage: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {operatorStations.map((st) => (
-              <div
+              <Link
                 key={st.id}
-                onClick={() => setSelectedStation(st)}
-                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-purple-300 transition-all cursor-pointer flex flex-col justify-between group"
+                to={getStationUrl(st)}
+                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-purple-300 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
@@ -255,10 +255,10 @@ export const OperatorPage: React.FC = () => {
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-700">
-                  <span>Standort-Details &amp; Stecker</span>
+                  <span>Standort-Dossier öffnen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

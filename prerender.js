@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const toAbsolute = (p) => path.resolve(__dirname, p);
 
 const template = fs.readFileSync(toAbsolute('dist/index.html'), 'utf-8');
-const { render, CITIES_DATA, MOTORWAYS_DATA, OPERATORS_DATA } = await import('./dist-ssr/entry-server.js');
+const { render, CITIES_DATA, MOTORWAYS_DATA, OPERATORS_DATA, STATIONS_DATA, getStationUrl, isIndexableLocation } = await import('./dist-ssr/entry-server.js');
 
 const staticRoutes = [
   { url: '/', title: 'Ladestandorte.de: Ladesäulen & Schnellladeparks in Deutschland', desc: 'Finde über 130.000 öffentlich zugängliche Ladesäulen, HPC-Schnelllader und Ladeparks in Deutschland. Bundesnetzagentur-Daten, Filter & Ladezeit-Rechner.' },
@@ -45,6 +45,15 @@ const operatorRoutes = (OPERATORS_DATA || []).map((o) => ({
   desc: `${o.name} im Faktencheck: ${o.totalPointsDE.toLocaleString('de-DE')} Ladepunkte, bis zu ${o.maxKw} kW HPC, ${o.hpcShare}% HPC-Anteil. Preise, Roaming, Plug & Charge & BNetzA-Daten 2026.`,
 }));
 
+// Pilot station dossier routes (Strict indexable check)
+const stationRoutes = (STATIONS_DATA || [])
+  .filter((s) => isIndexableLocation ? isIndexableLocation(s) : s.isPilot)
+  .map((s) => ({
+    url: getStationUrl(s),
+    title: `${s.name} (${s.operator}): Ladestation ${s.city} – ${s.kwMax} kW HPC | ladestandorte.de`,
+    desc: `Ladestation ${s.name} in ${s.city} (${s.street}): ${s.pointsCount} Ladepunkte bis ${s.kwMax} kW HPC (${s.connectorTypes.join(', ')}). Betreiber: ${s.operator}. Anfahrt, Stecker & Ausstattung.`,
+  }));
+
 // Legacy alias route for enbw-mobility-plus
 const aliasRoutes = [
   {
@@ -59,6 +68,7 @@ const allRoutes = [
   ...cityRoutes,
   ...motorwayRoutes,
   ...operatorRoutes,
+  ...stationRoutes,
   ...aliasRoutes,
 ];
 
