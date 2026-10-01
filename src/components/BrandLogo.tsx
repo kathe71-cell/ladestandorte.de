@@ -31,23 +31,23 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
       className={`flex items-center gap-3 group shrink-0 ${className}`}
       aria-label="ladestandorte.de Startseite"
     >
-      {/* Bildmarke: Weißer Container mit Border #DFE3DC, geometrisches Graphit-L (#171917), Signal-Lime Datenknoten (#C7F000) */}
-      <div className="w-10 h-10 rounded-[13px] bg-white flex items-center justify-center border border-[#DFE3DC] group-hover:border-[#171917] transition-colors relative shadow-2xs shrink-0">
-        <svg viewBox="0 0 40 40" className="w-6 h-6" fill="none" aria-hidden="true">
+      {/* Bildmarke: Weißer Container mit Border #DFE3DC, Radius 12-14px, L-Geometrie und Lime-Dot */}
+      <div className="w-[42px] h-[42px] sm:w-12 sm:h-12 2xl:w-[50px] 2xl:h-[50px] rounded-[13px] bg-white flex items-center justify-center border border-[#DFE3DC] group-hover:border-[#171917] transition-colors relative shrink-0">
+        <svg viewBox="0 0 40 40" className="w-[28px] h-[28px] sm:w-[32px] sm:h-[32px] 2xl:w-[34px] 2xl:h-[34px]" fill="none" aria-hidden="true">
           {/* Geometrisches starkes L in Graphit #171917 */}
           <path
-            d="M12 9.5H16.2V26H25.5V30.5H12V9.5Z"
+            d="M10 8H15.5V26.5H27V32H10V8Z"
             fill="#171917"
           />
-          {/* Signal Lime Datenknoten oben rechts */}
-          <circle cx="28.5" cy="14" r="5" fill="#C7F000" />
+          {/* Signal Lime Datenknoten oben rechts (#C7F000) */}
+          <circle cx="28" cy="13.5" r="5.5" fill="#C7F000" />
         </svg>
       </div>
 
       {/* Wortmarke & Claim */}
       <div className="flex flex-col">
         <span
-          className={`text-xl sm:text-2xl font-black tracking-tight flex items-center leading-none ${
+          className={`text-[19px] sm:text-[23px] 2xl:text-[24px] font-black tracking-tight flex items-center leading-none ${
             isFooter ? 'text-white' : 'text-[#171917]'
           }`}
         >

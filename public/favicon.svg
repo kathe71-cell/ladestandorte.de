@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
   <rect width="40" height="40" rx="12" fill="#FFFFFF" stroke="#DFE3DC" stroke-width="1.2"/>
   <!-- Bold Geometric L in #171917 and Signal Lime Node #C7F000 -->
-  <path d="M12 9.5H16.2V26H25.5V30.5H12V9.5Z" fill="#171917"/>
-  <circle cx="28.5" cy="14" r="5" fill="#C7F000"/>
+  <path d="M10 8H15.5V26.5H27V32H10V8Z" fill="#171917"/>
+  <circle cx="28" cy="13.5" r="5.5" fill="#C7F000"/>
 </svg>
