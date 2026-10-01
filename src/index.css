@@ -1,2 +1,21 @@
 @import "tailwindcss";
 @source "../node_modules/@plattform/core/src";
+
+@layer base {
+  :root {
+    --color-bg-base: #F7F7F2;
+    --color-surface: #FFFFFF;
+    --color-ink: #171917;
+    --color-muted: #6C716B;
+    --color-border-subtle: #DFE3DC;
+    --color-border-strong: #C4CCC0;
+    --color-lime: #C7F000;
+    --color-petrol: #2F5E73;
+  }
+
+  body {
+    background-color: var(--color-bg-base);
+    color: var(--color-ink);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}

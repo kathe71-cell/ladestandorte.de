@@ -130,9 +130,9 @@ export const CpoMonitorPage: React.FC = () => {
           { label: 'CPO Monitor', isCurrent: true }
         ]}
         eyebrow={
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 border border-purple-300 text-purple-950 text-xs font-mono font-bold">
-            <Building2 className="w-4 h-4 text-purple-800" />
-            <span>LADESTANDORTE DATA · CPO MARKT-MONITOR</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
+            <span>MONITOR / 02 · INFRASTRUCTURE INTELLIGENCE</span>
           </div>
         }
         title="CPO Monitor: Betreiber-Registerdaten der Bundesnetzagentur im Vergleich"
@@ -140,10 +140,10 @@ export const CpoMonitorPage: React.FC = () => {
       />
 
       {/* DATA STATUS BAR */}
-      <div className="p-3.5 sm:p-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs flex flex-wrap items-center justify-between gap-3 shadow-xs">
+      <div className="p-3.5 sm:p-4 rounded-xl bg-[#171917] border border-[#171917] text-slate-300 text-xs flex flex-wrap items-center justify-between gap-3 shadow-xs">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-purple-950/80 border border-purple-500/40 text-purple-300 font-mono font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-[#C7F000] font-mono font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C7F000]"></span>
             {cpoDataset.cposCount} verifizierte CPO-Entities
           </span>
           <span className="text-slate-400">·</span>
@@ -154,7 +154,7 @@ export const CpoMonitorPage: React.FC = () => {
         <div className="flex items-center gap-2">
           <Link
             to="/methodik"
-            className="text-purple-400 hover:text-purple-300 underline font-medium flex items-center gap-1"
+            className="text-[#C7F000] hover:underline font-medium flex items-center gap-1"
           >
             <span>Methodik &amp; Entity-Mapping</span>
             <ArrowRight className="w-3 h-3" />
@@ -164,42 +164,42 @@ export const CpoMonitorPage: React.FC = () => {
 
       {/* TOP KPI ROW */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Ausgewertete CPOs</span>
-          <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ausgewertete CPOs</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {cpoDataset.cposCount}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">
+          <span className="text-[11px] text-[#6C716B] mt-1 block">
             Verifizierte institutionelle Entities
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Top 1 HPC-Betreiber</span>
-          <span className="text-xl sm:text-2xl font-black text-purple-900 font-mono tracking-tight mt-1 block truncate">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Top 1 HPC-Betreiber</span>
+          <span className="text-xl sm:text-2xl font-black text-[#171917] font-mono tracking-tight mt-1 block truncate">
             {topHpcOperator?.name || 'EnBW'}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block font-mono">
+          <span className="text-[11px] text-[#2F5E73] mt-1 block font-mono">
             {topHpcOperator?.chargingPoints150PlusKw.toLocaleString('de-DE')} HPC ({topHpcOperator?.shareOfRegisterHpcPercent} % Registeranteil)
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">HPC-Punkte in Top 30</span>
-          <span className="text-2xl sm:text-4xl font-black text-emerald-700 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">HPC-Punkte in Top 30</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {totalHpcAcrossOperators.toLocaleString('de-DE')}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">
-            {((totalHpcAcrossOperators / cpoDataset.totalRegisterHpcPointsDE) * 100).toFixed(1)} % des gesamten Register-HPC-Bestands
+          <span className="text-[11px] text-[#6C716B] mt-1 block font-mono">
+            {((totalHpcAcrossOperators / cpoDataset.totalRegisterHpcPointsDE) * 100).toFixed(1)} % des Register-HPC-Bestands
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Amtlicher BNetzA HPC-Bestand</span>
-          <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Amtlicher BNetzA HPC-Bestand</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {cpoDataset.totalRegisterHpcPointsDE.toLocaleString('de-DE')}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">
+          <span className="text-[11px] text-[#6C716B] mt-1 block font-mono">
             Ladepunkte mit Nennleistung ≥150 kW
           </span>
         </div>

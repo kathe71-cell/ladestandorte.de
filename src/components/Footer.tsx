@@ -5,7 +5,7 @@ import { AmazonPartnerSentence } from '@plattform/core';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+    <footer className="bg-[#171917] text-slate-300 pt-16 pb-12 border-t border-[#171917]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main Grid */}
@@ -13,47 +13,52 @@ export const Footer: React.FC = () => {
 
           {/* Col 1 & 2: Brand & Portal mission */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
-                <Zap className="w-5 h-5 fill-white stroke-white" />
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#171917]">
+                <Zap className="w-4 h-4 fill-current stroke-current" />
               </div>
-              <span className="text-2xl font-black tracking-tight text-white">
-                ladestandorte<span className="text-emerald-400">.de</span>
-              </span>
+              <div className="flex flex-col">
+                <span className="text-xl font-black tracking-tight text-white leading-none">
+                  ladestandorte<span className="text-[#C7F000]">.de</span>
+                </span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold mt-0.5">
+                  Infrastructure Intelligence
+                </span>
+              </div>
             </div>
 
             <p className="text-sm text-slate-400 leading-relaxed pr-4">
-              Das redaktionell unabhängige Verbraucher- und Datenportal für die öffentliche Ladeinfrastruktur in Deutschland – finanziert über gekennzeichnete Partnerlinks. Regelmäßig gepflegte Datenbasis auf Grundlage des amtlichen Ladesäulenregisters der Bundesnetzagentur (BNetzA Open Data).
+              Unabhängige Daten- und Informationsplattform für öffentliche Ladeinfrastruktur in Deutschland. Regelmäßig aktualisierte Auswertungen auf Basis veröffentlichter Registerdaten der Bundesnetzagentur (BNetzA Open Data, CC BY 4.0) und amtlicher Bevölkerungszahlen des Statistischen Bundesamtes (Destatis).
             </p>
 
             <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400 space-y-1">
-              <div className="flex items-center gap-2 text-emerald-400 font-semibold">
+              <div className="flex items-center gap-2 text-[#C7F000] font-semibold">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Rechtlicher Unabhängigkeitshinweis</span>
               </div>
               <p>
-                ladestandorte.de ist ein redaktionell unabhängiges Informationsportal und steht in keinem gesellschaftsrechtlichen Verhältnis zur Bundesnetzagentur oder den dargestellten Betreibern (CPOs).
+                ladestandorte.de ist ein unabhängiges Analyse- und Informationsportal und steht in keinem gesellschaftsrechtlichen Verhältnis zur Bundesnetzagentur oder den dargestellten Betreibern (CPOs).
               </p>
             </div>
           </div>
 
-          {/* Col 3: Verzeichnisse */}
+          {/* Col 3: Verzeichnisse & Monitore */}
           <div className="space-y-3">
             <h3 className="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold">
-              Verzeichnisse
+              Monitore &amp; Trassen
             </h3>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li><Link to="/staedte" className="hover:text-emerald-400 transition-colors">Top 50 Großstädte</Link></li>
-              <li><Link to="/staedte/berlin" className="hover:text-emerald-400 transition-colors">Berlin Ladesäulen</Link></li>
-              <li><Link to="/staedte/hamburg" className="hover:text-emerald-400 transition-colors">Hamburg Ladesäulen</Link></li>
-              <li><Link to="/staedte/muenchen" className="hover:text-emerald-400 transition-colors">München Ladesäulen</Link></li>
-              <li><Link to="/autobahnen" className="hover:text-emerald-400 transition-colors">Autobahnen A1 bis A99</Link></li>
-              <li><Link to="/autobahnen/a3" className="hover:text-emerald-400 transition-colors">A3 Ladekorridor</Link></li>
-              <li><Link to="/autobahnen/a7" className="hover:text-emerald-400 transition-colors">A7 Schnelllader</Link></li>
-              <li><Link to="/mcs" className="hover:text-emerald-400 transition-colors font-medium text-emerald-300">MCS &amp; E-Lkw Hubs</Link></li>
-              <li><Link to="/hpc-city-monitor" className="hover:text-emerald-400 transition-colors font-medium text-emerald-300">HPC City Monitor</Link></li>
-              <li><Link to="/cpo-monitor" className="hover:text-emerald-400 transition-colors font-medium text-purple-300">CPO Monitor (BNetzA)</Link></li>
-              <li><Link to="/betreiber" className="hover:text-emerald-400 transition-colors">Alle CPOs im Vergleich</Link></li>
+              <li><Link to="/hpc-city-monitor" className="hover:text-[#C7F000] transition-colors font-medium text-white">01 HPC City Monitor (50 Städte)</Link></li>
+              <li><Link to="/cpo-monitor" className="hover:text-[#C7F000] transition-colors font-medium text-white">02 CPO Monitor (BNetzA)</Link></li>
+              <li><Link to="/staedte" className="hover:text-white transition-colors">Top 50 Großstädte</Link></li>
+              <li><Link to="/staedte/berlin" className="hover:text-white transition-colors">Berlin Ladesäulen</Link></li>
+              <li><Link to="/staedte/hamburg" className="hover:text-white transition-colors">Hamburg Ladesäulen</Link></li>
+              <li><Link to="/staedte/muenchen" className="hover:text-white transition-colors">München Ladesäulen</Link></li>
+              <li><Link to="/autobahnen" className="hover:text-white transition-colors">Autobahnen A1 bis A99</Link></li>
+              <li><Link to="/autobahnen/a3" className="hover:text-white transition-colors">A3 Ladekorridor</Link></li>
+              <li><Link to="/autobahnen/a7" className="hover:text-white transition-colors">A7 Schnelllader</Link></li>
+              <li><Link to="/mcs" className="hover:text-white transition-colors">MCS &amp; E-Lkw Hubs</Link></li>
+              <li><Link to="/betreiber" className="hover:text-white transition-colors">Alle CPOs im Vergleich</Link></li>
             </ul>
           </div>
 
@@ -63,41 +68,47 @@ export const Footer: React.FC = () => {
               Tools &amp; Wissen
             </h3>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li><Link to="/rechner" className="hover:text-emerald-400 transition-colors">Ladekosten- &amp; Zeitrechner</Link></li>
-              <li><Link to="/rechner-embed" className="hover:text-emerald-400 transition-colors">Kostenloses Rechner-Widget</Link></li>
-              <li><Link to="/ladekarten" className="hover:text-emerald-400 transition-colors">Ladekarten-Vergleich</Link></li>
-              <li><Link to="/wallbox-vergleich" className="hover:text-emerald-400 transition-colors">Wallboxen für Zuhause</Link></li>
-              <li><Link to="/ratgeber/ladekarten-dschungel" className="hover:text-emerald-400 transition-colors">Ladekarten-Dschungel</Link></li>
-              <li><Link to="/ratgeber/ac-vs-dc-ladeverluste" className="hover:text-emerald-400 transition-colors">AC vs. DC Ladeverluste</Link></li>
-              <li><Link to="/ratgeber/blockiergebuehren-vermeiden" className="hover:text-emerald-400 transition-colors">Blockiergebühren-Guide</Link></li>
-              <li><Link to="/glossar" className="hover:text-emerald-400 transition-colors">E-Mobilitäts Glossar</Link></li>
+              <li><Link to="/rechner" className="hover:text-white transition-colors">Ladekosten- &amp; Zeitrechner</Link></li>
+              <li><Link to="/rechner-embed" className="hover:text-white transition-colors">Kostenloses Rechner-Widget</Link></li>
+              <li><Link to="/ladekarten" className="hover:text-white transition-colors">Ladekarten-Vergleich</Link></li>
+              <li><Link to="/wallbox-vergleich" className="hover:text-white transition-colors">Wallboxen für Zuhause</Link></li>
+              <li><Link to="/ratgeber/ladekarten-dschungel" className="hover:text-white transition-colors">Ladekarten-Dschungel</Link></li>
+              <li><Link to="/ratgeber/ac-vs-dc-ladeverluste" className="hover:text-white transition-colors">AC vs. DC Ladeverluste</Link></li>
+              <li><Link to="/ratgeber/blockiergebuehren-vermeiden" className="hover:text-white transition-colors">Blockiergebühren-Guide</Link></li>
+              <li><Link to="/glossar" className="hover:text-white transition-colors">E-Mobilitäts Glossar</Link></li>
             </ul>
           </div>
 
           {/* Col 5: Rechtliches & Daten */}
           <div className="space-y-3">
             <h3 className="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold">
-              Transparenz &amp; Recht
+              Daten &amp; Recht
             </h3>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li><Link to="/methodik" className="hover:text-emerald-400 transition-colors font-medium">Daten &amp; Methodik</Link></li>
-              <li><Link to="/impressum" className="hover:text-emerald-400 transition-colors font-medium">→ Impressum (§ 5 DDG)</Link></li>
-              <li><Link to="/datenschutz" className="hover:text-emerald-400 transition-colors">Datenschutzerklärung</Link></li>
+              <li><Link to="/methodik" className="hover:text-[#C7F000] transition-colors font-semibold text-white">Daten &amp; Methodik</Link></li>
+              <li><Link to="/impressum" className="hover:text-white transition-colors">→ Impressum (§ 5 DDG)</Link></li>
+              <li><Link to="/datenschutz" className="hover:text-white transition-colors">Datenschutzerklärung</Link></li>
               <li>
-                <a href="/llms.txt" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors inline-flex items-center gap-1">
+                <a href="/data/hpc-city-monitor.json" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1 font-mono text-xs">
+                  <span>hpc-city-monitor.json</span>
+                  <ExternalLink className="w-3 h-3 text-slate-500" />
+                </a>
+              </li>
+              <li>
+                <a href="/data/cpo-monitor.json" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1 font-mono text-xs">
+                  <span>cpo-monitor.json</span>
+                  <ExternalLink className="w-3 h-3 text-slate-500" />
+                </a>
+              </li>
+              <li>
+                <a href="/llms.txt" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1">
                   <span>llms.txt (KI-Spezifikation)</span>
                   <ExternalLink className="w-3 h-3 text-slate-500" />
                 </a>
               </li>
               <li>
-                <a href="/feed.xml" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors inline-flex items-center gap-1">
-                  <span>RSS Feed 2.0</span>
-                  <ExternalLink className="w-3 h-3 text-slate-500" />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.bundesnetzagentur.de" target="_blank" rel="nofollow noopener noreferrer" className="hover:text-emerald-400 transition-colors inline-flex items-center gap-1">
-                  <Database className="w-3 h-3 text-emerald-400" />
+                <a href="https://www.bundesnetzagentur.de" target="_blank" rel="nofollow noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1">
+                  <Database className="w-3 h-3 text-[#C7F000]" />
                   <span>BNetzA Primärquelle</span>
                 </a>
               </li>
@@ -114,14 +125,14 @@ export const Footer: React.FC = () => {
         {/* Bottom Facts Strip */}
         <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-300">
           <div>
-            © {new Date().getFullYear()} ladestandorte.de · Alle Rechte vorbehalten
+            © {new Date().getFullYear()} ladestandorte.de · Infrastructure Intelligence
           </div>
           <div className="flex flex-wrap items-center gap-3 text-slate-300">
             <span>BNetzA Open Data (CC BY 4.0)</span>
             <span>·</span>
-            <span>AFIR Marktübersicht</span>
+            <span>Snapshot: 01.10.2026</span>
             <span>·</span>
-            <span>Lokale System-Fonts (Kein Font-CDN)</span>
+            <span>Lokale System-Fonts</span>
             <span>·</span>
             <span>Barrierearmes Design (WCAG 2.1)</span>
           </div>

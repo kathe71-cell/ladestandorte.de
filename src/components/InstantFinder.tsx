@@ -79,9 +79,9 @@ export const InstantFinder: React.FC<Props> = ({
   return (
     <div className={`w-full ${className}`} data-svsearch="ladestandorte">
       {/* Search Input Container */}
-      <div className="relative bg-white rounded-2xl shadow-lg border border-slate-200/80 p-2 sm:p-2.5 transition-all focus-within:ring-4 focus-within:ring-emerald-500/20 focus-within:border-emerald-500">
-        <div className="flex items-center gap-3 px-3 py-1.5">
-          <Search className="w-6 h-6 text-emerald-600 shrink-0" />
+      <div className="relative bg-white rounded-xl border border-[#DFE3DC] p-2 transition-all focus-within:border-[#171917] focus-within:ring-2 focus-within:ring-[#C7F000]">
+        <div className="flex items-center gap-3 px-3 py-1">
+          <Search className="w-5 h-5 text-[#6C716B] shrink-0" />
           
           <input
             ref={inputRef}
@@ -93,7 +93,7 @@ export const InstantFinder: React.FC<Props> = ({
             }}
             autoFocus={autoFocus}
             placeholder="Stadt, PLZ, Betreiber (EnBW, Ionity, Tesla) oder Autobahn (A3, A7)..."
-            className="w-full text-base sm:text-lg font-medium text-slate-900 placeholder:text-slate-400 bg-transparent border-none outline-none min-h-[44px]"
+            className="w-full text-base font-medium text-[#171917] placeholder:text-[#6C716B] bg-transparent border-none outline-hidden min-h-[44px]"
             aria-label="Ladesäulen und Standorte suchen"
           />
 
@@ -109,23 +109,23 @@ export const InstantFinder: React.FC<Props> = ({
           )}
 
           {/* High-speed counter badge */}
-          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded-lg text-xs font-mono text-emerald-800 shrink-0">
-            <Gauge className="w-3.5 h-3.5 text-emerald-600" />
+          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-[#F7F7F2] border border-[#DFE3DC] rounded-lg text-xs font-mono text-[#171917] shrink-0">
+            <Gauge className="w-3.5 h-3.5 text-[#2F5E73]" />
             <span>{durationMs} ms</span>
           </div>
         </div>
 
         {/* Filters and Sub-Tabs */}
         {showFilters && (
-          <div className="pt-2 pb-1 px-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+          <div className="pt-2 pb-1 px-2 border-t border-[#DFE3DC] flex flex-wrap items-center justify-between gap-2">
             <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
               <button
                 type="button"
                 onClick={() => setActiveTab('all')}
                 className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                   activeTab === 'all'
-                    ? 'bg-slate-900 text-white'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    ? 'bg-[#171917] text-white'
+                    : 'bg-[#F7F7F2] text-[#171917] hover:bg-[#EAECE6]'
                 }`}
               >
                 Alle ({results.length})

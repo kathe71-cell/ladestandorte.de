@@ -47,7 +47,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[#F7F7F2] text-[#171917] selection:bg-[#C7F000] selection:text-[#171917]">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

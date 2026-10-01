@@ -165,9 +165,9 @@ export const HpcCityMonitorPage: React.FC = () => {
           { label: 'HPC City Monitor', isCurrent: true }
         ]}
         eyebrow={
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-mono font-bold">
-            <Activity className="w-4 h-4 text-emerald-800" />
-            <span>LADESTANDORTE DATA · ANALYSEPRODUKT</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#C7F000] border border-[#171917]/20"></span>
+            <span>MONITOR / 01 · INFRASTRUCTURE INTELLIGENCE</span>
           </div>
         }
         title="HPC City Monitor: ≥150-kW-Ladepunkte in 50 deutschen Städten"
@@ -175,10 +175,10 @@ export const HpcCityMonitorPage: React.FC = () => {
       />
 
       {/* DATA STATUS BAR */}
-      <div className="p-3.5 sm:p-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs flex flex-wrap items-center justify-between gap-3 shadow-xs">
+      <div className="p-3.5 sm:p-4 rounded-xl bg-[#171917] border border-[#171917] text-slate-300 text-xs flex flex-wrap items-center justify-between gap-3 shadow-xs">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-[#C7F000] font-mono font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C7F000]"></span>
             {summary.cityCount} Städte ausgewertet
           </span>
           <span className="text-slate-400">·</span>
@@ -191,7 +191,7 @@ export const HpcCityMonitorPage: React.FC = () => {
           <span className="text-slate-600">|</span>
           <Link
             to="/methodik"
-            className="text-emerald-400 hover:text-emerald-300 underline font-medium flex items-center gap-1"
+            className="text-[#C7F000] hover:underline font-medium flex items-center gap-1"
           >
             <span>Methodik</span>
             <ArrowRight className="w-3 h-3" />
@@ -201,42 +201,42 @@ export const HpcCityMonitorPage: React.FC = () => {
 
       {/* TOP KPI ROW (Maximal 4 zentrale KPIs) */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Ausgewertete Städte</span>
-          <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ausgewertete Städte</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {summary.cityCount}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block font-mono">
+          <span className="text-[11px] text-[#6C716B] mt-1 block font-mono">
             {summary.totalPopulation.toLocaleString('de-DE')} Einwohner gesamt
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Ladepunkte ≥150 kW</span>
-          <span className="text-2xl sm:text-4xl font-black text-emerald-700 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte ≥150 kW</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {summary.totalHpc.toLocaleString('de-DE')}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block font-mono">
+          <span className="text-[11px] text-[#2F5E73] mt-1 block font-mono">
             von {summary.totalLadepunkte.toLocaleString('de-DE')} Ladepunkten gesamt
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">Anteil ≥150 kW</span>
-          <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Anteil ≥150 kW</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {summary.overallHpcSharePercent.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">
+          <span className="text-[11px] text-[#6C716B] mt-1 block">
             am ausgewerteten Registerbestand
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
-          <span className="text-xs font-mono text-slate-500 uppercase block">≥150 kW / 100.000 Einw.</span>
-          <span className="text-2xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight mt-1 block">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">≥150 kW / 100.000 Einw.</span>
+          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {summary.overallHpcPer100kPop.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">
+          <span className="text-[11px] text-[#6C716B] mt-1 block">
             Aggregierte Bevölkerungsdichte
           </span>
         </div>
