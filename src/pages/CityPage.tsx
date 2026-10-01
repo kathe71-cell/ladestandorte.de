@@ -37,15 +37,15 @@ export const CityPage: React.FC = () => {
   const faqs = [
     {
       q: `Wie viele öffentliche Ladepunkte sind in ${city.name} registriert?`,
-      a: `In ${city.name} sind laut Registerdaten der Bundesnetzagentur aktuell ${city.ladepunkteGesamt.toLocaleString('de-DE')} öffentliche Ladepunkte erfasst. Davon entfallen ${city.hpcLadepunkte.toLocaleString('de-DE')} auf Ladepunkte der HPC-Klasse mit mindestens 150 kW Nennleistung.`
+      a: `Im ausgewerteten BNetzA-Registersnapshot (Stand ${bnetzaSnapshotDate}) sind für ${city.name} ${city.ladepunkteGesamt.toLocaleString('de-DE')} öffentliche Ladepunkte erfasst. Davon entfallen ${city.hpcLadepunkte.toLocaleString('de-DE')} auf Ladepunkte der HPC-Klasse mit mindestens 150 kW Nennleistung.`
     },
     {
       q: `Wie verteilt sich die Ladeleistung in ${city.name}?`,
-      a: `Die Ladeinfrastruktur in ${city.name} gliedert sich in ${city.powerClasses.upTo22Kw.toLocaleString('de-DE')} Ladepunkte bis 22 kW, ${city.powerClasses.between22And150Kw.toLocaleString('de-DE')} Ladepunkte zwischen >22 kW und <150 kW sowie ${city.powerClasses.hpc150PlusKw.toLocaleString('de-DE')} Ladepunkte mit mindestens 150 kW Nennleistung.`
+      a: `Der erfasste Registerbestand in ${city.name} gliedert sich in ${city.powerClasses.upTo22Kw.toLocaleString('de-DE')} Ladepunkte bis 22 kW, ${city.powerClasses.between22And150Kw.toLocaleString('de-DE')} Ladepunkte zwischen >22 kW und <150 kW sowie ${city.powerClasses.hpc150PlusKw.toLocaleString('de-DE')} Ladepunkte mit mindestens 150 kW Nennleistung.`
     },
     {
       q: `Wie viele Ladepunkte gibt es in ${city.name} pro 1.000 Einwohner?`,
-      a: `Bezogen auf die amtliche Einwohnerzahl von ${city.einwohner.toLocaleString('de-DE')} (Statistisches Bundesamt, Stand ${destatisDate}) stehen in ${city.name} rechnerisch ${city.pointsPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })} Ladepunkte pro 1.000 Einwohner zur Verfügung (davon ${city.hpcPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })} mit ≥150 kW).`
+      a: `Bezogen auf die amtliche Einwohnerzahl von ${city.einwohner.toLocaleString('de-DE')} (Statistisches Bundesamt, Stand ${destatisDate}) weist der Registerbestand für ${city.name} rechnerisch ${city.pointsPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })} Ladepunkte pro 1.000 Einwohner aus (davon ${city.hpcPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })} mit ≥150 kW).`
     }
   ];
 
@@ -104,7 +104,7 @@ export const CityPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
         title={`Ladestationen ${city.name}: Ladepunkte & HPC-Daten | ladestandorte.de`}
-        description={`Aktuelle Auswertung veröffentlichter BNetzA-Registerdaten für ${city.name}: ${city.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte, ${city.hpcLadepunkte} Ladepunkte ≥150 kW und Ladepunktdichte.`}
+        description={`Auswertung veröffentlichter BNetzA-Registerdaten für ${city.name}: ${city.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte, ${city.hpcLadepunkte} Ladepunkte ≥150 kW und rechnerische Ladepunktdichte.`}
         canonicalPath={`/staedte/${city.slug}`}
         schema={citySchema}
       />

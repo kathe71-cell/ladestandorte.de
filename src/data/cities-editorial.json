@@ -12,7 +12,7 @@
       "10785",
       "13353"
     ],
-    "description": "Die Bundeshauptstadt verfügt über das dichteste urbane Ladenetz Deutschlands mit starkem Zuwachs an Schnellladeparks an Hauptverkehrsachsen und Einkaufszentren."
+    "description": "Die Bundeshauptstadt weist den bundesweit umfangreichsten absoluten Registerbestand an öffentlichen Ladepunkten auf, mit Schnellladestandorten entlang von Hauptverkehrsachsen und an Handelsstandorten."
   },
   {
     "slug": "hamburg",
@@ -25,7 +25,7 @@
       "22303",
       "22767"
     ],
-    "description": "Hamburg gilt als Pionierstadt für öffentliche Ladeinfrastruktur mit einheitlichem Masterplan und hoher Dichte an städtischen AC-Säulen sowie Megawatt-Hubs im Hafenbereich."
+    "description": "Hamburg verbindet ein gewachsenes städtisches Ladenetz im Stadtgebiet mit leistungsstarken Schnellladestandorten an Verkehrsachsen und im Hafenumfeld."
   },
   {
     "slug": "muenchen",
@@ -37,7 +37,7 @@
       "80802",
       "81675"
     ],
-    "description": "München bietet durch die SWM und überregionale CPOs eine herausragende HPC-Versorgung entlang des Mittleren Rings und an den Autobahnzubringern A8, A9 und A96."
+    "description": "München verfügt über eine ausgeprägte Ladeinfrastruktur entlang des Mittleren Rings sowie an den Autobahnzubringern A8, A9 und A96, betrieben durch die SWM und überregionale CPOs."
   },
   {
     "slug": "koeln",
@@ -48,7 +48,7 @@
       "50933",
       "51103"
     ],
-    "description": "Köln verbindet historische Stadtviertel über das TankE-Netzwerk mit leistungsstarken Schnellladeparks an den Autobahnringen A1, A3 und A4."
+    "description": "Köln verbindet innerstädtische Ladepunkte unter anderem über das TankE-Netzwerk mit Schnellladestandorten an den Autobahnringen A1, A3 und A4."
   },
   {
     "slug": "frankfurt",
@@ -59,7 +59,7 @@
       "60486",
       "60549"
     ],
-    "description": "Als Finanzmetropole und wichtigster Verkehrsknotenpunkt Hessens punktet Frankfurt mit extrem hoher HPC-Dichte rund um den Flughafen und das Frankfurter Kreuz (A3/A5)."
+    "description": "Als zentraler hessischer Verkehrsknotenpunkt bündelt Frankfurt zahlreiche Schnellladestandorte rund um das Stadtgebiet, den Flughafen und das Frankfurter Kreuz (A3/A5)."
   },
   {
     "slug": "stuttgart",
@@ -70,7 +70,7 @@
       "70372",
       "70565"
     ],
-    "description": "In der Wiege des Automobilbaus betreibt EnBW ihr bundesweit dichtes Ladenetz mit zahlreichen überdachten HyperHubs und bis zu 400 kW Ladeleistung."
+    "description": "In der Landeshauptstadt von Baden-Württemberg betreibt unter anderem EnBW Schnellladestandorte und urbane Schnellladeparks mit bis zu 400 kW Ladeleistung."
   },
   {
     "slug": "duesseldorf",
@@ -81,7 +81,7 @@
       "40477",
       "40549"
     ],
-    "description": "Die nordrhein-westfälische Landeshauptstadt forciert den Ausbau von Schnellladeparks an Ausfallstraßen und Park-and-Ride-Anlagen mit transparenten AFIR-Zahlungsmethoden."
+    "description": "Die nordrhein-westfälische Landeshauptstadt verzeichnet kontinuierlichen Zuwachs an Schnellladestationen an Ausfallstraßen und Park-and-Ride-Anlagen."
   },
   {
     "slug": "leipzig",
@@ -92,7 +92,7 @@
       "04229",
       "04315"
     ],
-    "description": "Leipzig ist der E-Mobilitäts-Spitzenreiter in Ostdeutschland mit rasant wachsendem Ladenetz entlang der Achsen A9, A14 und A38."
+    "description": "Als mitteldeutsche Metropole verfügt Leipzig über ein wachsendes Ladenetz entlang der Verkehrsachsen A9, A14 und A38."
   },
   {
     "slug": "dortmund",
@@ -103,7 +103,7 @@
       "44227",
       "44309"
     ],
-    "description": "Zentraler Ruhrgebiets-Knotenpunkt mit stark ausgebauten Ladezonen an der B1, Westfalenhallen und Anschlussstellen an die A1, A40 und A45."
+    "description": "Zentraler Ruhrgebiets-Knotenpunkt mit dokumentierten Ladezonen an der B1, Westfalenhallen und Anschlussstellen an die A1, A40 und A45."
   },
   {
     "slug": "essen",
@@ -114,7 +114,7 @@
       "45133",
       "45141"
     ],
-    "description": "Herz der Energieregion Rhein-Ruhr: Hohe Dichte an Schnellladestationen von E.ON und Aral pulse entlang der A40 und A52."
+    "description": "Standort im Zentrum des Ruhrgebiets mit dokumentierten Schnellladestationen unter anderem von E.ON und Aral pulse entlang der A40 und A52."
   },
   {
     "slug": "bremen",
@@ -124,7 +124,7 @@
       "28217",
       "28359"
     ],
-    "description": "Hanseatische Ladeinfrastruktur mit enger Verzahnung zwischen swb und EWE Go sowie hervorragender Autobahnanbindung an die A1 und A27."
+    "description": "Hanseatische Ladeinfrastruktur mit regionalen Betreibern wie swb und EWE Go sowie Anbindung an die Bundesautobahnen A1 und A27."
   },
   {
     "slug": "dresden",
@@ -134,7 +134,7 @@
       "01099",
       "01277"
     ],
-    "description": "Sachsens Landeshauptstadt verbindet innerstädtische Ladekorridore mit hochmodernen Ladeparks an der A4 und A17 Richtung Tschechien."
+    "description": "Sachsens Landeshauptstadt verbindet innerstädtische Ladekorridore mit Ladeparks an der A4 und A17 Richtung Tschechien."
   },
   {
     "slug": "hannover",
@@ -144,7 +144,7 @@
       "30175",
       "30521"
     ],
-    "description": "enercity zählt zu den innovativsten Stadtwerken Deutschlands mit flächendeckendem Laternen-Laden und Großladeparks am Messegelände und an der A2/A7."
+    "description": "Die niedersächsische Landeshauptstadt verbindet Straßenladepunkte der Stadtwerke enercity mit Schnellladestandorten am Messegelände und an den Autobahnen A2 und A7."
   },
   {
     "slug": "nuernberg",
@@ -154,7 +154,7 @@
       "90409",
       "90471"
     ],
-    "description": "Frankens Metropole bietet ein starkes Netzwerk aus N-ERGIE Stationen und High-Speed-Ladern an den Autobahnen A3, A6 und A73."
+    "description": "Frankens zweitgrößte Stadt bietet ein Ladenetzwerk mit N-ERGIE Stationen und Schnellladern an den Autobahnen A3, A6 und A73."
   },
   {
     "slug": "duisburg",
@@ -163,7 +163,7 @@
       "47057",
       "47169"
     ],
-    "description": "Wichtiger Logistikknotenpunkt mit speziellem Fokus auf Ladeinfrastruktur im Binnenhafen und an den Autobahnen A40, A59 und A3."
+    "description": "Wichtiger Logistikknotenpunkt mit Ladeinfrastruktur im Binnenhafen und an den Autobahnachsen A40, A59 und A3."
   },
   {
     "slug": "bochum",
@@ -172,7 +172,7 @@
       "44799",
       "44801"
     ],
-    "description": "Universitätsstadt mit hoher Ausbaudynamik an den Campussen und Einkaufszentren entlang des Ruhrschnellwegs (A40)."
+    "description": "Universitätsstadt mit Ladeinfrastruktur an Campussen, Handelsstandorten und entlang des Ruhrschnellwegs (A40)."
   },
   {
     "slug": "wuppertal",
@@ -181,7 +181,7 @@
       "42285",
       "42329"
     ],
-    "description": "Topografisch anspruchsvolle Tallage mit Fokus auf zentrale Parkhäuser, P+R-Flächen an der Schwebebahn und A46-Knotenpunkte."
+    "description": "Topografisch anspruchsvolle Tallage mit Schwerpunkt auf Parkhäusern, P+R-Flächen an der Schwebebahn und A46-Knotenpunkten."
   },
   {
     "slug": "bielefeld",
@@ -190,7 +190,7 @@
       "33615",
       "33647"
     ],
-    "description": "Wirtschaftszentrum Ostwestfalen-Lippe mit moderner Ladeinfrastruktur entlang des Ostwestfalendamms und A2-Anschlussstellen."
+    "description": "Wirtschaftszentrum Ostwestfalen-Lippe mit Ladeinfrastruktur entlang des Ostwestfalendamms und an den A2-Anschlussstellen."
   },
   {
     "slug": "bonn",
@@ -199,7 +199,7 @@
       "53113",
       "53177"
     ],
-    "description": "Die Bundesstadt mit vielen UN-Organisationen setzt auf klimafreundliche Mobilität mit engem Netz im Bundesviertel und an der A565."
+    "description": "Die Bundesstadt setzt auf Ladeangebote im Bundesviertel, im Zentrum sowie entlang der Autobahn A565."
   },
   {
     "slug": "muenster",
@@ -208,7 +208,7 @@
       "48149",
       "48159"
     ],
-    "description": "Fahrrad- und Zukunftsstadt mit vorbildlichem innerstädtischem AC-Konzept und schnellen Ladeparks an der Umgehungsstraße B51."
+    "description": "Westfälische Universitätsstadt mit innerstädtischen Normal- und Schnellladepunkten sowie Ladestationen an der Umgehungsstraße B51."
   },
   {
     "slug": "karlsruhe",
@@ -217,7 +217,7 @@
       "76133",
       "76185"
     ],
-    "description": "Technologieregion mit direkter Anbindung an das EnBW-Heimatnetzwerk und Hochleistungs-Hubs an der A5 und Südtangente."
+    "description": "Technologiestandort mit EnBW-Präsenz und Schnellladestandorten an der Autobahn A5 sowie der Südtangente."
   },
   {
     "slug": "mannheim",
@@ -226,7 +226,7 @@
       "68161",
       "68165"
     ],
-    "description": "Quadratestadt mit zukunftsfähiger MVV-Ladeinfrastruktur und Mega-Schnellladeparks an den Autobahnkreuzen A6/A656."
+    "description": "Quadratestadt mit kommunaler MVV-Ladeinfrastruktur und Schnellladeparks im Umfeld der Autobahnkreuze A6 und A656."
   },
   {
     "slug": "augsburg",
@@ -235,7 +235,7 @@
       "86152",
       "86159"
     ],
-    "description": "Fuggerstadt mit dichtem Netz der swa und strategischer Lage direkt an der Bundesautobahn A8 München-Stuttgart."
+    "description": "Schwäbische Großstadt mit Ladepunkten der swa und strategischer Lage direkt an der Bundesautobahn A8 München-Stuttgart."
   },
   {
     "slug": "wiesbaden",
@@ -244,7 +244,7 @@
       "65185",
       "65203"
     ],
-    "description": "Hessische Landeshauptstadt mit ESWE-Ladeinfrastruktur und guter Erreichbarkeit über die A66 und A671."
+    "description": "Hessische Landeshauptstadt mit ESWE-Ladeinfrastruktur und Anbindung über die Bundesautobahnen A66 und A671."
   },
   {
     "slug": "kassel",
@@ -254,7 +254,7 @@
       "34125",
       "34131"
     ],
-    "description": "Mittelpunkt Deutschlands mit herausragender Ladeinfrastruktur an den Autobahnknoten A7, A44 und A49 sowie urbanen Schnellladeparks."
+    "description": "Nordhessischer Verkehrsknotenpunkt mit Ladeinfrastruktur an den Autobahnachsen A7, A44 und A49 sowie im Stadtgebiet."
   },
   {
     "slug": "gelsenkirchen",
@@ -263,7 +263,7 @@
       "45888",
       "45894"
     ],
-    "description": "Klassisches Ruhrgebietszentrum mit modernen HPC-Standorten entlang der A42 und A2."
+    "description": "Zentraler Ruhrgebietsstandort mit dokumentierten Schnellladestandorten entlang der Autobahnen A42 und A2."
   },
   {
     "slug": "moenchengladbach",
@@ -272,7 +272,7 @@
       "41065",
       "41236"
     ],
-    "description": "Die größte Stadt am linken Niederrhein setzt auf die Kooperation mit NEW und Schnellladeparks am Nordpark und A61."
+    "description": "Großstadt am linken Niederrhein mit Ladestationen in Kooperation mit NEW sowie Schnellladeparks am Nordpark und an der A61."
   },
   {
     "slug": "braunschweig",
@@ -281,7 +281,7 @@
       "38102",
       "38114"
     ],
-    "description": "Forschungsstadt im Zulieferergürtel der E-Mobilität mit hoher Konzentration moderner Lader an der A2 und A39."
+    "description": "Forschungs- und Industriestadt mit dokumentierten Schnellladestationen im Stadtgebiet sowie entlang der A2 und A39."
   },
   {
     "slug": "chemnitz",
@@ -290,7 +290,7 @@
       "09112",
       "09126"
     ],
-    "description": "Kulturhauptstadt Europas mit erweiterter Ladeinfrastruktur an der A4/A72 und im Stadtgebiet."
+    "description": "Sächsisches Industriezentrum mit Ladeinfrastruktur entlang der Autobahnachsen A4 und A72 sowie im Stadtgebiet."
   },
   {
     "slug": "kiel",
@@ -299,7 +299,7 @@
       "24105",
       "24118"
     ],
-    "description": "Landeshauptstadt an der Förde mit starker Ladeanbindung an den Fährhäfen und am Zubringer A215."
+    "description": "Schleswig-holsteinische Landeshauptstadt mit Ladeinfrastruktur an Fährterminals, im Stadtzentrum und am Zubringer A215."
   },
   {
     "slug": "aachen",
@@ -308,7 +308,7 @@
       "52064",
       "52074"
     ],
-    "description": "RWTH-Innovationsstandort und Dreiländereck mit grenzüberschreitenden Ladekorridoren an der A4/A44."
+    "description": "Hochschulstandort im Dreiländereck mit grenzüberschreitenden Ladekorridoren entlang der Bundesautobahnen A4 und A44."
   },
   {
     "slug": "halle",
@@ -317,7 +317,7 @@
       "06110",
       "06120"
     ],
-    "description": "Kultur- und Universitätsstadt an der Saale mit schnellem Anschluss an den Autobahnring Mitteldeutschland (A14/A9)."
+    "description": "Kultur- und Universitätsstadt an der Saale mit Anbindung an den Autobahnring Mitteldeutschland (A14 und A9)."
   },
   {
     "slug": "magdeburg",
@@ -326,7 +326,7 @@
       "39108",
       "39124"
     ],
-    "description": "Zukunftsträchtiger Hochtechnologie-Standort mit expandierendem Ladenetz entlang der A2 und A14."
+    "description": "Sachsen-Anhalts Landeshauptstadt mit wachsendem Ladeinfrastrukturangebot entlang der Verkehrsachsen A2 und A14."
   },
   {
     "slug": "freiburg",
@@ -335,7 +335,7 @@
       "79100",
       "79110"
     ],
-    "description": "Ökohauptstadt mit dichtem Ökostrom-Ladenetz der badenova und High-Speed-Hubs an der Rheintalautobahn A5."
+    "description": "Südbadische Großstadt mit regionaler badenova-Ladeinfrastruktur und Schnellladestandorten an der Rheintalautobahn A5."
   },
   {
     "slug": "krefeld",
@@ -344,7 +344,7 @@
       "47803",
       "47829"
     ],
-    "description": "Niederrheinisches Zentrum mit Ladeclustern an der A57 und Gewerbegebieten."
+    "description": "Niederrheinische Großstadt mit dokumentierten Ladeclustern entlang der A57 und in Gewerbegebieten."
   },
   {
     "slug": "mainz",
@@ -353,7 +353,7 @@
       "55122",
       "55128"
     ],
-    "description": "Landeshauptstadt von Rheinland-Pfalz mit strategischem Ladeausbau im Rhein-Main-Verbund an der A60/A63."
+    "description": "Rheinland-pfälzische Landeshauptstadt mit vernetzter Ladeinfrastruktur im Rhein-Main-Gebiet und an der A60/A63."
   },
   {
     "slug": "luebeck",
@@ -362,7 +362,7 @@
       "23556",
       "23570"
     ],
-    "description": "Tor zum Norden und Skandinavienverkehr mit Schnellladeparks an der A1 und Travemünde-Fähren."
+    "description": "Hansestadt mit Schnellladestandorten entlang der Autobahn A1 und im Umfeld der Fährverbindungen in Travemünde."
   },
   {
     "slug": "erfurt",
@@ -371,7 +371,7 @@
       "99086",
       "99099"
     ],
-    "description": "Thüringens Landeshauptstadt am Erfurter Kreuz (A4/A71) bietet modernste HPC-Knotenpunkte."
+    "description": "Thüringens Landeshauptstadt mit Schnellladeknotenpunkten im Umfeld des Autobahnkreuzes Erfurt (A4 und A71)."
   },
   {
     "slug": "oberhausen",
@@ -380,7 +380,7 @@
       "46047",
       "46145"
     ],
-    "description": "Einkaufs- und Freizeitzentrum rund um das CentrO mit großflächigen Schnellladestationen."
+    "description": "Handels- und Freizeitzentrum im westlichen Ruhrgebiet mit großflächigen Schnellladestationen rund um die Neue Mitte."
   },
   {
     "slug": "rostock",
@@ -389,7 +389,7 @@
       "18057",
       "18119"
     ],
-    "description": "Größte Stadt Mecklenburg-Vorpommerns mit Fokus auf den Seehafen und Zubringer zur Ostseeautobahn A19/A20."
+    "description": "Hanse- und Universitätsstadt an der Ostsee mit Ladeinfrastruktur im Seehafenbereich und an den Zubringern zur A19 und A20."
   },
   {
     "slug": "hagen",
@@ -398,7 +398,7 @@
       "58097",
       "58135"
     ],
-    "description": "Tor zum Sauerland mit Knotenpunkten an den Bundesautobahnen A1, A45 und A46."
+    "description": "Südwestfälische Großstadt mit Ladeinfrastruktur an den Bundesautobahnen A1, A45 und A46."
   },
   {
     "slug": "potsdam",
@@ -407,7 +407,7 @@
       "14469",
       "14482"
     ],
-    "description": "Historische Kulturstadt mit starkem Wachstum und direkter Anbindung an den Berliner Ring (A10) und A115."
+    "description": "Brandenburgische Landeshauptstadt mit Ladeinfrastruktur und direkter Anbindung an den Berliner Ring (A10) sowie die A115."
   },
   {
     "slug": "saarbruecken",
@@ -416,7 +416,7 @@
       "66115",
       "66121"
     ],
-    "description": "Saarländische Landeshauptstadt an der französischen Grenze mit Ladepunkten an der A6 und A620."
+    "description": "Saarländische Landeshauptstadt an der französischen Grenze mit Ladepunkten im Stadtgebiet und entlang der A6 und A620."
   },
   {
     "slug": "hamm",
@@ -425,7 +425,7 @@
       "59071",
       "59075"
     ],
-    "description": "Wichtiger Eisenbahn- und Logistikknoten am östlichen Rand des Ruhrgebiets an der A2."
+    "description": "Logistik- und Verkehrsknoten am östlichen Rand des Ruhrgebiets mit Ladeinfrastruktur an der Autobahn A2."
   },
   {
     "slug": "ludwigshafen",
@@ -434,7 +434,7 @@
       "67061",
       "67069"
     ],
-    "description": "Industriemetropole mit hoher Dichte an Pfalzwerke- und EnBW-Standorten an der A650 und A6."
+    "description": "Rheinland-pfälzische Industriestadt mit dokumentierten Pfalzwerke- und EnBW-Standorten an der A650 und A6."
   },
   {
     "slug": "muelheim",
@@ -443,7 +443,7 @@
       "45472",
       "45476"
     ],
-    "description": "Stadt am Fluss mit gezieltem Ausbau an den Einkaufszentren Rhein-Ruhr-Zentrum und an der A40."
+    "description": "Ruhrgebietsstadt an der Ruhr mit Ladeinfrastruktur an Handelszentren und entlang der Autobahn A40."
   },
   {
     "slug": "oldenburg",
@@ -452,7 +452,7 @@
       "26122",
       "26135"
     ],
-    "description": "Hauptsitz von EWE Go mit Vorzeige-Ladeinfrastruktur im gesamten Stadtgebiet und an der A28/A29."
+    "description": "Niedersächsisches Oberzentrum und Hauptsitz von EWE Go mit breiter Ladeinfrastruktur im Stadtgebiet und an der A28/A29."
   },
   {
     "slug": "osnabrueck",
@@ -461,7 +461,7 @@
       "49076",
       "49084"
     ],
-    "description": "Friedensstadt im Schnittpunkt von A1 und A30 mit hohem Anteil an Ökostrom-Ladepunkten."
+    "description": "Niedersächsische Großstadt im Schnittpunkt von A1 und A30 mit hohem Anteil dokumentierter Normalladepunkte."
   },
   {
     "slug": "leverkusen",
@@ -470,7 +470,7 @@
       "51375",
       "51379"
     ],
-    "description": "Chemiestandort am Kreuz Leverkusen (A1/A3) mit exzellenten Autobahn-Schnellladern."
+    "description": "Stadt am Rhein mit Schnellladestandorten im Umfeld des Autobahnkreuzes Leverkusen (A1 und A3)."
   },
   {
     "slug": "heidelberg",
@@ -479,6 +479,6 @@
       "69117",
       "69120"
     ],
-    "description": "Wissenschaftsstadt mit hochmodernem Ladenetz im Neubaugebiet Bahnstadt und an der Autobahn A5/A656."
+    "description": "Universitätsstadt mit Ladeinfrastruktur im Neubaugebiet Bahnstadt sowie an den Autobahnachsen A5 und A656."
   }
 ]
