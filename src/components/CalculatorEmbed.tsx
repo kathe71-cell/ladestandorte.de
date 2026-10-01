@@ -559,20 +559,20 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           <div className="space-y-3.5 border-t border-white/10 pt-4">
             
             {/* Ladedauer */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm">
+            <div className="flex items-center justify-between gap-2 min-w-0">
+              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm shrink-0">
                 <Clock className="w-4 h-4 text-[#C7F000]" />
                 <span>{isTheoretical ? 'Theoretische Mindest-Ladezeit:' : 'Geschätzte Ladedauer:'}</span>
               </div>
-              <span className="text-lg font-black text-white font-mono">
+              <span className="text-lg font-black text-white font-mono text-right shrink-0">
                 {isInvalidSoc ? '0 min' : displayMinutes >= 60 ? `${Math.floor(displayMinutes / 60)}h ${displayMinutes % 60}m` : `${displayMinutes} min`}
               </span>
             </div>
 
             {/* Effektive Ø Leistung / Modellannahme */}
-            <div className="flex items-center justify-between text-xs">
-              <span className="text-[#6C716B]">{isTheoretical ? 'Angenommene Ladeleistung:' : 'Effektive Ø Leistung (Modell):'}</span>
-              <span className="font-mono text-[#DFE3DC] font-bold">
+            <div className="flex items-center justify-between gap-2 min-w-0 text-xs">
+              <span className="text-[#6C716B] shrink-0">{isTheoretical ? 'Angenommene Ladeleistung:' : 'Effektive Ø Leistung (Modell):'}</span>
+              <span className="font-mono text-[#DFE3DC] font-bold text-right truncate">
                 {isInvalidSoc
                   ? '0 kW'
                   : isTheoretical
@@ -584,36 +584,41 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             </div>
 
             {/* Geladene Netto-Energie */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm">
+            <div className="flex items-center justify-between gap-2 min-w-0">
+              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm shrink-0">
                 <Zap className="w-4 h-4 text-[#C7F000]" />
                 <span>Netto im Akku ({socDeltaPercent} %):</span>
               </div>
-              <span className="text-sm font-bold text-white font-mono">
+              <span className="text-sm font-bold text-white font-mono text-right shrink-0">
                 {netEnergyKwh.toFixed(1).replace('.', ',')} kWh
               </span>
             </div>
 
             {/* Ladeverluste */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm">
+            <div className="flex items-center justify-between gap-2 min-w-0">
+              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm shrink-0">
                 <Zap className="w-4 h-4 text-[#C7F000]" />
                 <span>{isTheoretical ? 'Ladeverluste im Modell:' : `Ladeverlust (+${currentLossPercent} %):`}</span>
               </div>
-              <span className={`text-sm font-mono ${isTheoretical ? 'text-[#6C716B] font-normal' : 'font-bold text-[#C7F000]'}`}>
+              <span className={`text-sm font-mono text-right shrink-0 ${isTheoretical ? 'text-[#6C716B] font-normal' : 'font-bold text-[#C7F000]'}`}>
                 {isTheoretical ? '0,0 kWh (Idealwert)' : `+ ${lossKwh.toFixed(1).replace('.', ',')} kWh`}
               </span>
             </div>
 
             {/* Reichweitengewinn */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm">
+            <div className="flex items-start justify-between gap-3 min-w-0">
+              <div className="flex items-center gap-2 text-[#DFE3DC] text-sm shrink-0">
                 <Euro className="w-4 h-4 text-[#C7F000]" />
-                <span>Ca. Reichweitengewinn:</span>
+                <span>Reichweitengewinn:</span>
               </div>
-              <span className="text-sm font-bold text-[#C7F000] font-mono">
-                + {rangeGainKm} km (bei Ø {vehicleConsumption.toFixed(1).replace('.', ',')} kWh/100km)
-              </span>
+              <div className="text-right min-w-0">
+                <span className="text-base font-black text-[#C7F000] font-mono block leading-tight">
+                  + {rangeGainKm} km
+                </span>
+                <span className="text-[11px] text-[#6C716B] block font-mono mt-0.5 whitespace-nowrap">
+                  bei {vehicleConsumption.toFixed(1).replace('.', ',')} kWh / 100 km
+                </span>
+              </div>
             </div>
 
           </div>

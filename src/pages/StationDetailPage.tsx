@@ -13,6 +13,7 @@ import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
 import { PageHero } from '../components/PageHero';
+import { getSnapshotDateFormatted } from '../lib/datasetDate';
 
 export const StationDetailPage: React.FC = () => {
   const { citySlug, stationSlug } = useParams<{ citySlug: string; stationSlug: string }>();
@@ -588,7 +589,7 @@ export const StationDetailPage: React.FC = () => {
               <span>Amtliche Datenbasis &amp; Herkunft</span>
             </div>
             <p>
-              Quelle der Registerdaten: <a href="https://www.bundesnetzagentur.de" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-800">bundesnetzagentur.de</a> · Datenstand: 01.10.2026
+              Quelle der Registerdaten: <a href="https://www.bundesnetzagentur.de" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-800">bundesnetzagentur.de</a> · Datenstand: {getSnapshotDateFormatted()}
             </p>
             <p className="text-[10px] text-slate-500 pt-0.5">
               Amtliche Registerdaten lizenziert unter <a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-700">Creative Commons Namensnennung 4.0 International (CC BY 4.0)</a>.

@@ -380,14 +380,8 @@ export const Header: React.FC = () => {
 
           </nav>
 
-          {/* Action Area: DATA Status Badge & Compact Search Button (Mockup-Style) */}
+          {/* Action Area: Compact Search Button (Mockup-Style) */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Status indicator badge (Mockup: DATA / 01.10.2026) */}
-            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[11px] font-mono font-bold text-[#171917]">
-              <span className="w-2 h-2 rounded-full bg-[#C7F000] border border-[#171917]/20"></span>
-              <span>DATA / 01.10.2026</span>
-            </div>
-
             {/* Desktop / Tablet Search Trigger Button (Mockup: Square rounded button with search icon) */}
             <button
               type="button"
@@ -600,8 +594,6 @@ export const Header: React.FC = () => {
             <Link to="/datenschutz" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#171917] py-2">
               Datenschutzerklärung
             </Link>
-            <span>·</span>
-            <span className="font-mono text-[10px] text-[#171917] font-bold">BNetzA 01.10.2026</span>
           </div>
 
         </div>

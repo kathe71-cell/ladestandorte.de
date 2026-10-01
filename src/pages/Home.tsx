@@ -11,6 +11,7 @@ import { OPERATORS_DATA } from '../data/operators';
 import { GLOSSARY_DATA } from '../data/glossary';
 import { getDossierCount } from '../data/stations';
 import { FloatingCTABar } from '../components/FloatingCTABar';
+import { getSnapshotDateFormatted } from '../lib/datasetDate';
 
 export const Home: React.FC = () => {
   const dossierCount = getDossierCount();
@@ -116,7 +117,7 @@ export const Home: React.FC = () => {
           {/* Eyebrow Tag (Mockup: Lime Pill) */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold uppercase tracking-wider mb-6">
             <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
-            <span>MARKTMONITOR · DATA / 01.10.2026</span>
+            <span>MARKTMONITOR · DATA / {getSnapshotDateFormatted()}</span>
           </div>
 
           {/* Display Headline & Subline */}
@@ -715,7 +716,7 @@ export const Home: React.FC = () => {
           source1Text="Ladesäulenregister der Bundesnetzagentur (BNetzA) gemäß § 5 LSV (Open Data, CC BY 4.0) für bundesweite Registerstatistiken."
           source2Title="Redaktionelle Kuration &amp; Verifizierte Ladeparks"
           source2Text="Ausgewählte Standorte und Betreiberübersichten redaktionell geprüft. Keine Gewähr für Echtzeit-Belegung oder Live-Betriebsbereitschaft vor Ort."
-          dateText="Stand: BNetzA Open Data 01.10.2026"
+          dateText={`Stand: BNetzA Open Data ${getSnapshotDateFormatted()}`}
         />
       </section>
 

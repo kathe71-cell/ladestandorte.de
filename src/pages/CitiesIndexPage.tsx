@@ -5,6 +5,7 @@ import { CITIES_DATA, CityData } from '../data/cities';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { PageHero } from '../components/PageHero';
+import { getSnapshotDateFormatted } from '../lib/datasetDate';
 
 type SortField = 'name' | 'ladepunkte' | 'hpc' | 'pointsPer1k' | 'hpcPer1k' | 'population';
 type SortDirection = 'asc' | 'desc';
@@ -19,7 +20,7 @@ export const CitiesIndexPage: React.FC = () => {
   const sampleCity = CITIES_DATA[0];
   const bnetzaSnapshotDate = sampleCity?.bnetza?.provenance?.retrievedAt
     ? new Date(sampleCity.bnetza.provenance.retrievedAt).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
-    : '01.10.2026';
+    : getSnapshotDateFormatted();
   const destatisDate = sampleCity?.population?.referenceDate
     ? new Date(sampleCity.population.referenceDate).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
     : '31.12.2024';

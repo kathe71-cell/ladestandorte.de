@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Zap, ExternalLink, ShieldCheck, Database } from 'lucide-react';
 import { AmazonPartnerSentence } from '@plattform/core';
 import { BrandLogo } from './BrandLogo';
+import { getSnapshotDateFormatted } from '../lib/datasetDate';
 
 export const Footer: React.FC = () => {
   return (
@@ -119,7 +120,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-wrap items-center gap-3 text-slate-400 text-[11px]">
             <span>QUELLE / BUNDESNETZAGENTUR (CC BY 4.0)</span>
             <span>·</span>
-            <span className="text-[#C7F000] font-bold">STAND / 01.10.2026</span>
+            <span className="text-[#C7F000] font-bold">STAND / {getSnapshotDateFormatted()}</span>
             <span>·</span>
             <span>WCAG AAA KONFORM</span>
           </div>

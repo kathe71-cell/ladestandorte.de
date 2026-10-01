@@ -111,7 +111,7 @@ export const MotorwayPage: React.FC = () => {
       />
 
       {/* Key Metrics */}
-      <div className={`grid grid-cols-2 ${motorwayStations.length > 0 ? 'md:grid-cols-4' : 'md:grid-cols-3'} gap-4`}>
+      <div className={`grid grid-cols-1 sm:grid-cols-2 ${motorwayStations.length > 0 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-4`}>
         <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
           <span className="text-[11px] font-mono text-[#6C716B] uppercase tracking-wider block">Streckenlänge</span>
           <span className="text-3xl font-black text-[#171917] font-mono mt-1 block">

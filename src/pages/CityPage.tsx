@@ -10,6 +10,7 @@ import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { PageHero } from '../components/PageHero';
+import { getSnapshotDateFormatted } from '../lib/datasetDate';
 
 export const CityPage: React.FC = () => {
   const { citySlug } = useParams<{ citySlug: string }>();
@@ -29,7 +30,7 @@ export const CityPage: React.FC = () => {
 
   const bnetzaSnapshotDate = city.bnetza?.provenance?.retrievedAt
     ? new Date(city.bnetza.provenance.retrievedAt).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
-    : '01.10.2026';
+    : getSnapshotDateFormatted();
   const destatisDate = city.population?.referenceDate
     ? new Date(city.population.referenceDate).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
     : '31.12.2024';

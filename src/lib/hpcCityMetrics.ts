@@ -5,6 +5,7 @@
  */
 
 import { CITIES_DATA, CityData } from '../data/cities';
+import { getSnapshotDateFormatted } from './datasetDate';
 
 export interface HpcCityRow {
   slug: string;
@@ -121,7 +122,7 @@ export function getHpcCityMonitorSummary(cities: CityData[] = CITIES_DATA): HpcC
   const sampleCity = cities[0];
   const bnetzaSnapshotDate = sampleCity?.bnetza?.provenance?.retrievedAt
     ? new Date(sampleCity.bnetza.provenance.retrievedAt).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
-    : '01.10.2026';
+    : getSnapshotDateFormatted();
   const destatisReferenceDate = sampleCity?.population?.referenceDate
     ? new Date(sampleCity.population.referenceDate).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
     : '31.12.2024';

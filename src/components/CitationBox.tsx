@@ -46,7 +46,7 @@ export const CitationBox: React.FC<Props> = ({
         </button>
       </div>
 
-      <blockquote className="text-xs sm:text-sm text-slate-700 italic bg-white p-3.5 rounded-xl border border-slate-200/60 font-serif leading-relaxed">
+      <blockquote className="text-xs sm:text-sm text-slate-700 italic bg-white p-3.5 rounded-xl border border-slate-200/60 font-serif leading-relaxed break-words [overflow-wrap:anywhere]">
         „{citationText}“
       </blockquote>
     </div>
