@@ -165,8 +165,8 @@ export const HpcCityMonitorPage: React.FC = () => {
           { label: 'HPC City Monitor', isCurrent: true }
         ]}
         eyebrow={
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#C7F000] border border-[#171917]/20"></span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
             <span>MONITOR / 01 · HPC CITY MONITOR</span>
           </div>
         }
@@ -199,7 +199,7 @@ export const HpcCityMonitorPage: React.FC = () => {
         </div>
       </div>
 
-      {/* TOP KPI ROW (Maximal 4 zentrale KPIs) */}
+      {/* TOP KPI ROW (Maximal 4 zentrale KPIs mit Lime-Highlight auf HPC-Kennzahl) */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
           <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ausgewertete Städte</span>
@@ -211,7 +211,7 @@ export const HpcCityMonitorPage: React.FC = () => {
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-xs">
           <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte ≥150 kW</span>
           <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {summary.totalHpc.toLocaleString('de-DE')}
@@ -343,13 +343,13 @@ export const HpcCityMonitorPage: React.FC = () => {
             </h2>
           </div>
 
-          {/* Toggle Button */}
+          {/* Toggle Button (Active State in Signal Lime) */}
           <div className="flex items-center p-1 rounded-xl bg-slate-100 border border-slate-200 text-xs font-semibold self-start sm:self-auto">
             <button
               onClick={() => setChartMode('absolute')}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-all font-bold ${
                 chartMode === 'absolute'
-                  ? 'bg-white text-slate-950 shadow-xs'
+                  ? 'bg-[#C7F000] text-[#171917] shadow-xs'
                   : 'text-slate-600 hover:text-slate-950'
               }`}
             >
@@ -357,9 +357,9 @@ export const HpcCityMonitorPage: React.FC = () => {
             </button>
             <button
               onClick={() => setChartMode('density')}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-all font-bold ${
                 chartMode === 'density'
-                  ? 'bg-white text-slate-950 shadow-xs'
+                  ? 'bg-[#C7F000] text-[#171917] shadow-xs'
                   : 'text-slate-600 hover:text-slate-950'
               }`}
             >
@@ -394,7 +394,9 @@ export const HpcCityMonitorPage: React.FC = () => {
                 </div>
                 <div className="w-full bg-slate-100 rounded-full h-3.5 overflow-hidden">
                   <div
-                    className="bg-slate-900 h-full rounded-full transition-all duration-300"
+                    className={`h-full rounded-full transition-all duration-300 ${
+                      idx === 0 ? 'bg-[#C7F000]' : 'bg-slate-900'
+                    }`}
                     style={{ width: `${widthPct}%` }}
                     aria-hidden="true"
                   />

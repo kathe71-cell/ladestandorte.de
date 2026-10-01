@@ -72,7 +72,12 @@ export const RatgeberIndexPage: React.FC = () => {
           { label: 'Startseite', href: '/' },
           { label: 'Ratgeber', isCurrent: true }
         ]}
-        eyebrow="GUIDE · VERBRAUCHER & RECHT"
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
+            <span>GUIDE · VERBRAUCHER &amp; RECHT</span>
+          </div>
+        }
         title="Ratgeber & Marktanalysen zur E-Mobilität"
         description="Fundierte Fachbeiträge der Redaktion ladestandorte.de zu Ladetarifen, technischen Wirkungsgraden und rechtlichen Vorgaben im deutschen Ladesäulenmarkt."
       />

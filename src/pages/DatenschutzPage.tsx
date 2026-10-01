@@ -20,8 +20,12 @@ export const DatenschutzPage: React.FC = () => {
           { label: 'Startseite', href: '/' },
           { label: 'Datenschutz', isCurrent: true }
         ]}
-        eyebrow="LEGAL · DATENSCHUTZ (DSGVO)"
-        eyebrowVariant="slate"
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#C7F000] border border-[#171917]/20"></span>
+            <span>LEGAL · DATENSCHUTZ (DSGVO)</span>
+          </div>
+        }
         title="Datenschutzerklärung"
         description="Informationen über die Art, den Umfang und den Zweck der Verarbeitung personenbezogener Daten auf ladestandorte.de."
       />

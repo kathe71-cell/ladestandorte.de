@@ -65,7 +65,12 @@ export const GlossarPage: React.FC = () => {
           { label: 'Startseite', href: '/' },
           { label: 'Glossar', isCurrent: true }
         ]}
-        eyebrow="REFERENCE · TERMINOLOGIE & NORMEN"
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
+            <span>REFERENCE · TERMINOLOGIE &amp; NORMEN</span>
+          </div>
+        }
         title="E-Mobilitäts- & Ladeinfrastruktur Glossar"
         description="Von CCS Combo 2 über die AFIR-Verordnung bis zu Roaming und Eichrecht: Alle maßgeblichen Fachbegriffe, physikalischen Formeln und gesetzlichen Normen verständlich und rechtssicher erklärt."
       />
@@ -89,9 +94,9 @@ export const GlossarPage: React.FC = () => {
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-[#171917] text-[#C7F000]'
+                  ? 'bg-[#C7F000] text-[#171917] border border-[#171917] shadow-xs'
                   : 'bg-[#F7F7F2] hover:bg-[#DFE3DC] text-[#171917] border border-[#DFE3DC]'
               }`}
             >

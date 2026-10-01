@@ -119,8 +119,8 @@ export const StationDetailPage: React.FC = () => {
         ]}
         eyebrow={
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2F5E73]"></span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-[#C7F000] text-[#171917]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#171917]"></span>
               SITE DATA · {station.kwMax} kW HPC
             </span>
             <span className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-[#F7F7F2] text-[#6C716B] border border-[#DFE3DC]">
@@ -190,12 +190,12 @@ export const StationDetailPage: React.FC = () => {
 
       {/* Bento Grid: Technische Kennzahlen */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">
+        <div className="p-5 bg-white rounded-2xl border border-slate-200 border-t-4 border-t-[#C7F000] shadow-xs">
           <span className="text-xs font-mono text-slate-500 uppercase block">Max. Ladeleistung</span>
           <span className="text-3xl font-black text-slate-950 font-mono mt-1 block">
             {station.kwMax} kW
           </span>
-          <span className="text-[11px] text-slate-500 mt-1 block">High Power Charging (HPC)</span>
+          <span className="text-[11px] text-[#2F5E73] font-mono font-medium mt-1 block">High Power Charging (HPC)</span>
         </div>
 
         <div className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs">

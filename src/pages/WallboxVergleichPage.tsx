@@ -96,8 +96,8 @@ export const WallboxVergleichPage: React.FC = () => {
           { label: 'Wallbox-Vergleich', isCurrent: true }
         ]}
         eyebrow={
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
             <span>COMPARISON · WALLBOXEN</span>
           </div>
         }
@@ -140,9 +140,9 @@ export const WallboxVergleichPage: React.FC = () => {
             <button
               key={kw}
               onClick={() => setFilters((f) => ({ ...f, kw }))}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-colors cursor-pointer ${
                 filters.kw === kw
-                  ? 'bg-slate-900 text-white border-slate-900'
+                  ? 'bg-[#C7F000] text-[#171917] border-[#171917] shadow-xs'
                   : 'bg-white text-slate-700 border-slate-300 hover:border-slate-500'
               }`}
             >

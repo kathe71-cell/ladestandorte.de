@@ -8,7 +8,7 @@ export interface PageHeroProps {
   /** Eyebrow label or custom node (e.g. icon + text badge) */
   eyebrow?: React.ReactNode;
   /** Badge color scheme for standard string eyebrows */
-  eyebrowVariant?: 'emerald' | 'amber' | 'purple' | 'slate' | 'blue';
+  eyebrowVariant?: 'lime' | 'amber' | 'purple' | 'slate' | 'blue';
   /** Main semantic H1 title */
   title: React.ReactNode;
   /** Introductory summary text */
@@ -25,7 +25,7 @@ export interface PageHeroProps {
 }
 
 const EYEBROW_STYLES: Record<NonNullable<PageHeroProps['eyebrowVariant']>, string> = {
-  emerald: 'bg-[#F7F7F2] text-[#171917] border-[#DFE3DC]',
+  lime: 'bg-[#C7F000] text-[#171917] border-[#171917]/10 font-bold',
   amber: 'bg-amber-50 text-amber-950 border-amber-300',
   purple: 'bg-slate-100 text-[#171917] border-slate-200',
   slate: 'bg-[#F7F7F2] text-[#171917] border-[#DFE3DC]',

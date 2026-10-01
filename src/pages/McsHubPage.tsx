@@ -87,9 +87,9 @@ export const McsHubPage: React.FC = () => {
       <section className="relative bg-white pt-10 sm:pt-14 pb-10 sm:pb-14 border-b border-[#DFE3DC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
-              <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
-              <span>MCS DATA · SCHWERLASTINFRASTRUKTUR</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+              <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
+              <span>MONITOR / 03 · MCS DATA · SCHWERLASTINFRASTRUKTUR</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#171917] leading-[1.12]">
@@ -117,17 +117,17 @@ export const McsHubPage: React.FC = () => {
                 <span className="text-2xl font-black font-mono text-[#171917] mt-0.5 block">{underConstructionCount + plannedCount}</span>
                 <span className="text-[11px] text-[#6C716B]">Netzausbau 2026/27</span>
               </div>
-              <div className="bg-white rounded-xl p-4 border border-[#DFE3DC] shadow-xs">
+              <div className="bg-white rounded-xl p-4 border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-xs">
                 <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Spitzenleistung</span>
-                <span className="text-2xl font-black font-mono text-[#2F5E73] mt-0.5 block">1.200 kW</span>
-                <span className="text-[11px] text-[#6C716B]">Flüssigkeitsgekühlt</span>
+                <span className="text-2xl font-black font-mono text-[#171917] mt-0.5 block">1.200 kW</span>
+                <span className="text-[11px] text-[#2F5E73] font-mono font-medium">Flüssigkeitsgekühlt</span>
               </div>
             </div>
 
             <div className="pt-2 flex flex-wrap gap-3">
               <Link
                 to="/mcs/ladestationen"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#171917] hover:bg-[#2F5E73] text-white font-bold text-sm shadow-xs transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C7F000] hover:bg-[#d4fa00] text-[#171917] font-bold text-sm shadow-xs transition-all active:scale-95"
               >
                 <span>Alle MCS-Standorte ansehen</span>
                 <ArrowRight className="w-4 h-4" />

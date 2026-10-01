@@ -59,7 +59,12 @@ export const RechnerPage: React.FC = () => {
           { label: 'Startseite', href: '/' },
           { label: 'Ladezeit-Rechner', isCurrent: true }
         ]}
-        eyebrow="CALCULATOR · MODEL ENGINE"
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
+            <span>CALCULATOR · MODEL ENGINE</span>
+          </div>
+        }
         title="Ladezeit- & Ladekosten-Rechner"
         description="Ermitteln Sie im Rahmen einer beispielhaften Modellrechnung die geschätzte Ladedauer (10 % bis 80 % SoC), typische Ladeverluste und ungefähre Kosten je Ladevorgang."
       />

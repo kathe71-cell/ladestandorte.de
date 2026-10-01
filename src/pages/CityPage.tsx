@@ -117,8 +117,8 @@ export const CityPage: React.FC = () => {
           { label: city.name, isCurrent: true }
         ]}
         eyebrow={
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
             <span>CITY DATA · {city.bundesland.toUpperCase()}</span>
           </div>
         }
@@ -138,7 +138,7 @@ export const CityPage: React.FC = () => {
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-xs">
           <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte ≥150 kW</span>
           <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {city.hpcLadepunkte.toLocaleString('de-DE')}

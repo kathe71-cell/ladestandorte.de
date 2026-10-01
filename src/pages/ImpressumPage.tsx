@@ -19,8 +19,12 @@ export const ImpressumPage: React.FC = () => {
           { label: 'Startseite', href: '/' },
           { label: 'Impressum', isCurrent: true }
         ]}
-        eyebrow="LEGAL · PFLICHTANGABEN"
-        eyebrowVariant="slate"
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#C7F000] border border-[#171917]/20"></span>
+            <span>LEGAL · PFLICHTANGABEN</span>
+          </div>
+        }
         title="Impressum (§ 5 DDG)"
         description="Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG) und § 18 Abs. 2 Medienstaatsvertrag (MStV)."
       />

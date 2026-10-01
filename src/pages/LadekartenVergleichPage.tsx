@@ -46,8 +46,8 @@ export const LadekartenVergleichPage: React.FC = () => {
           { label: 'Ladekarten-Vergleich', isCurrent: true }
         ]}
         eyebrow={
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
             <span>COMPARISON · LADEKARTEN</span>
           </div>
         }
@@ -70,7 +70,7 @@ export const LadekartenVergleichPage: React.FC = () => {
             <div className="space-y-4 max-w-2xl">
               <div className="flex flex-wrap items-center gap-2">
                 {card.badge && (
-                  <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]">
+                  <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-[#C7F000] text-[#171917]">
                     {card.badge}
                   </span>
                 )}

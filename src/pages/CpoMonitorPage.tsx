@@ -130,8 +130,8 @@ export const CpoMonitorPage: React.FC = () => {
           { label: 'CPO Monitor', isCurrent: true }
         ]}
         eyebrow={
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-[#171917] text-xs font-mono font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#2F5E73]"></span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
             <span>MONITOR / 02 · CPO MONITOR</span>
           </div>
         }
@@ -162,7 +162,7 @@ export const CpoMonitorPage: React.FC = () => {
         </div>
       </div>
 
-      {/* TOP KPI ROW */}
+      {/* TOP KPI ROW (Lime Accent auf Top-1 HPC-Betreiber) */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
           <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ausgewertete CPOs</span>
@@ -174,7 +174,7 @@ export const CpoMonitorPage: React.FC = () => {
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-xs">
           <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Top 1 HPC-Betreiber</span>
           <span className="text-xl sm:text-2xl font-black text-[#171917] font-mono tracking-tight mt-1 block truncate">
             {topHpcOperator?.name || 'EnBW'}
@@ -209,7 +209,7 @@ export const CpoMonitorPage: React.FC = () => {
       <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-purple-800 font-bold">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#2F5E73] font-bold">
               <ShieldCheck className="w-4 h-4" />
               <span>Verifizierte Betreiber-Matrix</span>
             </div>
@@ -249,15 +249,15 @@ export const CpoMonitorPage: React.FC = () => {
               placeholder="Betreiber oder Konzernmutter suchen (z. B. EnBW, Tesla, Aral, EWE, E.ON)..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-hidden focus:border-purple-600 focus:bg-white"
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-hidden focus:border-[#171917] focus:bg-white"
             />
           </div>
 
           <button
             onClick={() => setOnlyHpcFocused(!onlyHpcFocused)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border flex items-center justify-center gap-2 shrink-0 ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border flex items-center justify-center gap-2 shrink-0 cursor-pointer ${
               onlyHpcFocused
-                ? 'bg-purple-600 text-white border-purple-600 shadow-xs'
+                ? 'bg-[#C7F000] text-[#171917] border-[#171917] shadow-xs'
                 : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
             }`}
           >

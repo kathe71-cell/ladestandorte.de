@@ -55,7 +55,12 @@ export const MethodikPage: React.FC = () => {
           { label: 'Startseite', href: '/' },
           { label: 'Methodik', isCurrent: true }
         ]}
-        eyebrow="METHODOLOGY · DATENARCHITEKTUR"
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
+            <span>METHODOLOGY · DATENARCHITEKTUR</span>
+          </div>
+        }
         title="Daten &amp; Methodik"
         description="Wie ladestandorte.de Daten erhebt, einordnet und berechnet – Leitlinien für Transparenz und wissenschaftliche Zitierfähigkeit."
       />

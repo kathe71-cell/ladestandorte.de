@@ -99,7 +99,12 @@ export const MotorwayPage: React.FC = () => {
           { label: 'Autobahnen', href: '/autobahnen' },
           { label: motorway.name, isCurrent: true }
         ]}
-        eyebrow={`CORRIDOR DATA · ${motorway.name}`}
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#C7F000] text-[#171917] text-xs font-mono font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#171917]"></span>
+            <span>CORRIDOR DATA · {motorway.name}</span>
+          </div>
+        }
         title={`Schnelllader & Raststätten an der ${motorway.name}`}
         subtitle={`Streckenführung: ${motorway.route}`}
         description={motorway.description}
@@ -115,12 +120,12 @@ export const MotorwayPage: React.FC = () => {
           <span className="text-[11px] text-[#6C716B] mt-1 block">Gesamter Trassenverlauf</span>
         </div>
 
-        <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
+        <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-xs">
           <span className="text-[11px] font-mono text-[#6C716B] uppercase tracking-wider block">Max. Ladeleistung</span>
-          <span className="text-3xl font-black text-[#2F5E73] font-mono mt-1 block">
+          <span className="text-3xl font-black text-[#171917] font-mono mt-1 block">
             bis {motorway.maxKw} kW
           </span>
-          <span className="text-[11px] text-[#6C716B] mt-1 block">High Power Charging (HPC)</span>
+          <span className="text-[11px] text-[#2F5E73] font-mono font-medium mt-1 block">High Power Charging (HPC)</span>
         </div>
 
         <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
