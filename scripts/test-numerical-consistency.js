@@ -1,20 +1,16 @@
 /**
- * Automated Numerical Consistency Test Suite for ladestandorte.de
+ * Relational Numerical Consistency Guard for ladestandorte.de
  *
- * Verifies that all publicly visible figures, KPIs, claims, and data aggregations
- * across all routes and components strictly match the authoritative datasets:
- * - CPO Monitor (cpo-monitor.generated.json & public/data/cpo-monitor.json)
- * - HPC City Monitor (cities.generated.json & public/data/hpc-city-monitor.json)
- * - MCS Dataset (stations.ts -> getMcsStations)
- * - Dossier Selection (stations.ts -> getDossierCount)
- * - Wallbox Dataset (wallboxes.ts -> WALLBOXES)
- * - Ladekarten Dataset (cards.ts -> CHARGING_CARDS)
- * - Motorways Dataset (motorways.ts -> MOTORWAYS_DATA)
- * - Operators Dataset (operators.ts -> OPERATORS_DATA)
+ * Enforces dynamic mathematical and structural consistency across the entire data architecture:
+ * Raw BNetzA Snapshots <-> Generated Datasets <-> Public JSON/CSV Mirrors <-> SSR Pre-rendered HTML & Pages
+ *
+ * NO HARDCODED SNAPSHOT LOCKS:
+ * All checks are fully relational, supporting automated monthly pipeline updates without code alterations.
  */
 
 import fs from 'fs';
 import path from 'path';
+import readline from 'readline';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -36,144 +32,256 @@ function assert(condition, message) {
   }
 }
 
-console.log('=== NUMERICAL CONSISTENCY AUDIT TEST ===');
+console.log('=== RELATIONAL NUMERICAL CONSISTENCY GUARD ===');
 
-// 1. Authoritative Datasets Loading
-const cpoGeneratedPath = path.join(rootDir, 'src/data/generated/cpo-monitor.generated.json');
-const cpoPublicPath = path.join(rootDir, 'public/data/cpo-monitor.json');
-const cpoGenerated = JSON.parse(fs.readFileSync(cpoGeneratedPath, 'utf8'));
-const cpoPublic = JSON.parse(fs.readFileSync(cpoPublicPath, 'utf8'));
+async function runGuard() {
+  // 1. Authoritative Datasets & Pointers
+  const latestPointerPath = path.join(rootDir, 'data/raw/bnetza/latest.json');
+  assert(fs.existsSync(latestPointerPath), 'data/raw/bnetza/latest.json exists');
+  const latestPointer = JSON.parse(fs.readFileSync(latestPointerPath, 'utf8'));
 
-const citiesGeneratedPath = path.join(rootDir, 'src/data/generated/cities.generated.json');
-const citiesPublicPath = path.join(rootDir, 'public/data/hpc-city-monitor.json');
-const citiesGenerated = JSON.parse(fs.readFileSync(citiesGeneratedPath, 'utf8'));
-const citiesPublic = JSON.parse(fs.readFileSync(citiesPublicPath, 'utf8'));
+  const cpoGeneratedPath = path.join(rootDir, 'src/data/generated/cpo-monitor.generated.json');
+  const cpoPublicPath = path.join(rootDir, 'public/data/cpo-monitor.json');
+  assert(fs.existsSync(cpoGeneratedPath), 'cpo-monitor.generated.json exists');
+  assert(fs.existsSync(cpoPublicPath), 'public/data/cpo-monitor.json exists');
+  const cpoGenerated = JSON.parse(fs.readFileSync(cpoGeneratedPath, 'utf8'));
+  const cpoPublic = JSON.parse(fs.readFileSync(cpoPublicPath, 'utf8'));
 
-// Check 1.1: CPO Monitor Authoritative Values
-assert(
-  cpoGenerated.totalRegisterPointsDE === 210185,
-  `CPO Monitor totalRegisterPointsDE === 210185 (actual: ${cpoGenerated.totalRegisterPointsDE})`
-);
-assert(
-  cpoGenerated.totalRegisterHpcPointsDE === 40654,
-  `CPO Monitor totalRegisterHpcPointsDE === 40654 (actual: ${cpoGenerated.totalRegisterHpcPointsDE})`
-);
-assert(
-  cpoGenerated.totalRegisterStationsDE === 117043,
-  `CPO Monitor totalRegisterStationsDE === 117043 (actual: ${cpoGenerated.totalRegisterStationsDE})`
-);
-assert(
-  cpoGenerated.cposCount === 30,
-  `CPO Monitor cposCount === 30 (actual: ${cpoGenerated.cposCount})`
-);
-assert(
-  cpoGenerated.snapshotDate === '2026-10-01',
-  `CPO Monitor snapshotDate === '2026-10-01' (actual: ${cpoGenerated.snapshotDate})`
-);
-assert(
-  cpoPublic.totalRegisterPointsDE === cpoGenerated.totalRegisterPointsDE &&
-  cpoPublic.totalRegisterHpcPointsDE === cpoGenerated.totalRegisterHpcPointsDE &&
-  cpoPublic.totalRegisterStationsDE === cpoGenerated.totalRegisterStationsDE &&
-  cpoPublic.cposCount === cpoGenerated.cposCount,
-  'public/data/cpo-monitor.json strictly mirrors generated data'
-);
+  const citiesGeneratedPath = path.join(rootDir, 'src/data/generated/cities.generated.json');
+  const citiesPublicPath = path.join(rootDir, 'public/data/hpc-city-monitor.json');
+  assert(fs.existsSync(citiesGeneratedPath), 'cities.generated.json exists');
+  assert(fs.existsSync(citiesPublicPath), 'public/data/hpc-city-monitor.json exists');
+  const citiesGenerated = JSON.parse(fs.readFileSync(citiesGeneratedPath, 'utf8'));
+  const citiesPublic = JSON.parse(fs.readFileSync(citiesPublicPath, 'utf8'));
 
-// Check 1.2: HPC City Monitor Authoritative Values
-assert(citiesGenerated.length === 50, `Cities dataset contains exactly 50 cities (actual: ${citiesGenerated.length})`);
-assert(citiesPublic.cities.length === 50, `HPC City public JSON contains exactly 50 cities (actual: ${citiesPublic.cities.length})`);
-
-let citiesTotalPop = 0;
-let citiesTotalPts = 0;
-let citiesTotalHpc = 0;
-for (const c of citiesPublic.cities) {
-  citiesTotalPop += c.population;
-  citiesTotalPts += c.chargingPointsTotal;
-  citiesTotalHpc += c.chargingPoints150PlusKw;
-}
-
-assert(citiesTotalPop === 22977940, `50-cities total population === 22,977,940 (actual: ${citiesTotalPop})`);
-assert(citiesTotalPts === 62312, `50-cities total points === 62,312 (actual: ${citiesTotalPts})`);
-assert(citiesTotalHpc === 8514, `50-cities total HPC points === 8,514 (actual: ${citiesTotalHpc})`);
-
-const hpcShareCalculated = ((citiesTotalHpc / citiesTotalPts) * 100).toFixed(2);
-assert(hpcShareCalculated === '13.66', `50-cities HPC share === 13.66% (actual: ${hpcShareCalculated}%)`);
-
-// Check 2: Dynamic Source Bindings in Operators Dataset
-const operatorsSource = fs.readFileSync(path.join(rootDir, 'src/data/operators.ts'), 'utf8');
-assert(
-  operatorsSource.includes("import cpoDataset from './generated/cpo-monitor.generated.json'") &&
-  operatorsSource.includes('cpoDataset.operators'),
-  'src/data/operators.ts imports and binds to cpo-monitor dataset dynamically'
-);
-
-// Check 3: Home Page KPI Consistency
-const homeSource = fs.readFileSync(path.join(rootDir, 'src/pages/Home.tsx'), 'utf8');
-assert(
-  homeSource.includes('cpoDataset.totalRegisterPointsDE') &&
-  homeSource.includes('cpoDataset.totalRegisterHpcPointsDE') &&
-  homeSource.includes('cpoDataset.totalRegisterStationsDE') &&
-  homeSource.includes('cpoDataset.cposCount'),
-  'Home.tsx binds all 4 hero KPIs directly to cpoDataset'
-);
-assert(
-  !homeSource.includes('29 CPOs'),
-  'Home.tsx no longer contains stale "29 CPOs" claim'
-);
-assert(
-  !homeSource.includes('28.500'),
-  'Home.tsx no longer contains stale "28.500" HPC points claim'
-);
-
-// Check 4: Wallbox and Ladekarten Claims Consistency
-const wallboxSource = fs.readFileSync(path.join(rootDir, 'src/pages/WallboxVergleichPage.tsx'), 'utf8');
-assert(
-  wallboxSource.includes('${WALLBOXES_DATA.length} Wallboxen') || wallboxSource.includes('33 Wallboxen'),
-  'WallboxVergleichPage.tsx specifies accurate wallbox count'
-);
-assert(
-  !wallboxSource.includes('Über 20 Wallboxen im redaktionell'),
-  'WallboxVergleichPage.tsx no longer contains vague "Über 20 Wallboxen" claim'
-);
-
-const ratgeberSource = fs.readFileSync(path.join(rootDir, 'src/pages/RatgeberArticlePage.tsx'), 'utf8');
-assert(
-  ratgeberSource.includes('CHARGING_CARDS.length') || ratgeberSource.includes('25 Ladekarten'),
-  'RatgeberArticlePage.tsx specifies accurate charging cards count'
-);
-assert(
-  !ratgeberSource.includes('18 Ladekarten'),
-  'RatgeberArticlePage.tsx no longer contains stale "18 Ladekarten" claim'
-);
-
-// Check 5: InstantFinder Tab Consistency
-const finderSource = fs.readFileSync(path.join(rootDir, 'src/components/InstantFinder.tsx'), 'utf8');
-assert(
-  !finderSource.includes('Alle ({results.length})'),
-  'InstantFinder.tsx does not display deceptive 25-capped result count on "Alle" tab'
-);
-
-// Check 6: Pre-rendered HTML Scans (if dist exists)
-const distDir = path.join(rootDir, 'dist');
-if (fs.existsSync(distDir)) {
-  const homeHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
+  // 2. Snapshot Date Relational Alignment
   assert(
-    homeHtml.includes('210.185') && homeHtml.includes('40.654') && homeHtml.includes('117.043'),
-    'dist/index.html pre-renders exact formatted BNetzA KPIs (210.185, 40.654, 117.043)'
+    latestPointer.latestSnapshotDate === cpoGenerated.snapshotDate &&
+    cpoGenerated.snapshotDate === cpoPublic.snapshotDate,
+    `Snapshot date relational consistency across raw (${latestPointer.latestSnapshotDate}), generated (${cpoGenerated.snapshotDate}), and public (${cpoPublic.snapshotDate})`
+  );
+
+  // 3. Raw BNetzA Stream Aggregation vs. Generated & Public Mirror
+  const rawStationPath = path.join(rootDir, latestPointer.path, 'bnetza_api_ladestation000.csv');
+  const rawPointPath = path.join(rootDir, latestPointer.path, 'bnetza_api_ladepunkt000.csv');
+
+  let rawStationsCount = 0;
+  if (fs.existsSync(rawStationPath)) {
+    const stationStream = fs.createReadStream(rawStationPath);
+    const rlStation = readline.createInterface({ input: stationStream, crlfDelay: Infinity });
+    let headerSt = null;
+    for await (const line of rlStation) {
+      if (!headerSt) { headerSt = line; continue; }
+      rawStationsCount++;
+    }
+  }
+
+  let rawPointsCount = 0;
+  let rawHpcCount = 0;
+  if (fs.existsSync(rawPointPath)) {
+    const pointStream = fs.createReadStream(rawPointPath);
+    const rlPoint = readline.createInterface({ input: pointStream, crlfDelay: Infinity });
+    let headerPt = null;
+    for await (const line of rlPoint) {
+      if (!headerPt) { headerPt = line; continue; }
+      rawPointsCount++;
+      const parts = line.split(';');
+      const power = parseFloat(parts[4]) || 0;
+      if (power >= 150) {
+        rawHpcCount++;
+      }
+    }
+  }
+
+  assert(
+    rawPointsCount > 0 && rawPointsCount === cpoGenerated.totalRegisterPointsDE,
+    `Relational: Raw BNetzA Points (${rawPointsCount}) === Generated totalRegisterPointsDE (${cpoGenerated.totalRegisterPointsDE})`
   );
   assert(
-    !homeHtml.includes('29 CPOs'),
-    'dist/index.html does not contain stale "29 CPOs"'
+    cpoGenerated.totalRegisterPointsDE === cpoPublic.totalRegisterPointsDE,
+    `Relational: Generated totalRegisterPointsDE === Public totalRegisterPointsDE (${cpoPublic.totalRegisterPointsDE})`
+  );
+
+  assert(
+    rawHpcCount > 0 && rawHpcCount === cpoGenerated.totalRegisterHpcPointsDE,
+    `Relational: Raw BNetzA HPC (${rawHpcCount}) === Generated totalRegisterHpcPointsDE (${cpoGenerated.totalRegisterHpcPointsDE})`
   );
   assert(
-    !homeHtml.includes('28.500'),
-    'dist/index.html does not contain stale "28.500"'
+    cpoGenerated.totalRegisterHpcPointsDE === cpoPublic.totalRegisterHpcPointsDE,
+    `Relational: Generated totalRegisterHpcPointsDE === Public totalRegisterHpcPointsDE (${cpoPublic.totalRegisterHpcPointsDE})`
   );
+
+  assert(
+    rawStationsCount > 0 && rawStationsCount === cpoGenerated.totalRegisterStationsDE,
+    `Relational: Raw BNetzA Stations (${rawStationsCount}) === Generated totalRegisterStationsDE (${cpoGenerated.totalRegisterStationsDE})`
+  );
+  assert(
+    cpoGenerated.totalRegisterStationsDE === cpoPublic.totalRegisterStationsDE,
+    `Relational: Generated totalRegisterStationsDE === Public totalRegisterStationsDE (${cpoPublic.totalRegisterStationsDE})`
+  );
+
+  // 4. Verified CPO Entities Relational Consistency
+  assert(
+    cpoGenerated.cposCount === cpoGenerated.operators.length,
+    `Relational: cposCount (${cpoGenerated.cposCount}) === generated operators array length (${cpoGenerated.operators.length})`
+  );
+  assert(
+    cpoGenerated.cposCount === cpoPublic.cposCount,
+    `Relational: Generated cposCount === Public cposCount (${cpoPublic.cposCount})`
+  );
+
+  // 5. Cities Monitor Relational Math Aggregation
+  assert(
+    citiesGenerated.length === citiesPublic.cities.length,
+    `Relational: cities.generated.json count (${citiesGenerated.length}) === public cities count (${citiesPublic.cities.length})`
+  );
+
+  let sumCityPop = 0;
+  let sumCityPoints = 0;
+  let sumCityHpc = 0;
+  for (const c of citiesPublic.cities) {
+    sumCityPop += c.population;
+    sumCityPoints += c.chargingPointsTotal;
+    sumCityHpc += c.chargingPoints150PlusKw;
+  }
+
+  assert(
+    sumCityPoints > 0 && sumCityHpc > 0 && sumCityPop > 0,
+    `Relational: Cities aggregated metrics are strictly positive (Points: ${sumCityPoints}, HPC: ${sumCityHpc}, Pop: ${sumCityPop})`
+  );
+
+  const calculatedHpcShare = (sumCityHpc / sumCityPoints) * 100;
+  assert(
+    calculatedHpcShare > 0 && calculatedHpcShare < 100,
+    `Relational: Calculated 50-cities HPC share is valid (${calculatedHpcShare.toFixed(2)} %)`
+  );
+
+  // 6. Hard CPO Binding: Check EVERY Operator in OPERATORS_DATA
+  const { OPERATORS_DATA } = await import('../dist-ssr/entry-server.js');
+  let verifiedCpoBoundCount = 0;
+  for (const op of OPERATORS_DATA) {
+    const matchedCpo = cpoGenerated.operators.find(
+      (c) =>
+        c.slug === op.slug ||
+        c.id === op.slug ||
+        (op.slug === 'tesla-supercharger' && (c.id === 'tesla' || c.slug === 'tesla')) ||
+        (op.slug === 'enbw' && (c.id === 'enbw' || c.slug === 'enbw-mobility-plus'))
+    );
+    if (matchedCpo) {
+      verifiedCpoBoundCount++;
+      assert(
+        op.totalPointsDE === matchedCpo.chargingPointsTotal,
+        `Relational CPO Binding for ${op.name}: OPERATORS_DATA points (${op.totalPointsDE}) === CPO Monitor points (${matchedCpo.chargingPointsTotal})`
+      );
+      assert(
+        op.hpcShare === Math.round(matchedCpo.share150PlusKwPercent),
+        `Relational CPO Binding for ${op.name}: OPERATORS_DATA hpcShare (${op.hpcShare}%) === CPO Monitor share (${Math.round(matchedCpo.share150PlusKwPercent)}%)`
+      );
+    }
+  }
+  assert(verifiedCpoBoundCount >= 10, `Relational CPO Binding verified for ${verifiedCpoBoundCount} institutional operators`);
+
+  // 7. Search Index Integrity: Exact Entity Alignment & Zero Orphan/Duplicates
+  const searchIndexPath = path.join(rootDir, 'public/search-index.json');
+  assert(fs.existsSync(searchIndexPath), 'public/search-index.json exists');
+  const searchIndex = JSON.parse(fs.readFileSync(searchIndexPath, 'utf8'));
+
+  const { MOTORWAYS_DATA, CITIES_DATA, STATIONS_DATA, isIndexableLocation } = await import('../dist-ssr/entry-server.js');
+
+  const indexedMotorways = searchIndex.filter((s) => s.category === 'motorways');
+  const indexedCities = searchIndex.filter((s) => s.category === 'cities');
+  const indexedOperators = searchIndex.filter((s) => s.category === 'operators');
+  const indexedStations = searchIndex.filter((s) => s.category === 'stations');
+
+  const enabledStations = STATIONS_DATA.filter((s) => (isIndexableLocation ? isIndexableLocation(s) : s.isPilot));
+
+  assert(
+    indexedMotorways.length === MOTORWAYS_DATA.length,
+    `Search Integrity: indexed motorways (${indexedMotorways.length}) === MOTORWAYS_DATA (${MOTORWAYS_DATA.length})`
+  );
+  assert(
+    indexedCities.length === CITIES_DATA.length,
+    `Search Integrity: indexed cities (${indexedCities.length}) === CITIES_DATA (${CITIES_DATA.length})`
+  );
+  assert(
+    indexedOperators.length === OPERATORS_DATA.length,
+    `Search Integrity: indexed operators (${indexedOperators.length}) === OPERATORS_DATA (${OPERATORS_DATA.length})`
+  );
+  assert(
+    indexedStations.length === enabledStations.length,
+    `Search Integrity: indexed stations (${indexedStations.length}) === enabled dossiers (${enabledStations.length})`
+  );
+
+  // Check unique IDs in search index
+  const idSet = new Set();
+  let duplicateCount = 0;
+  for (const item of searchIndex) {
+    if (idSet.has(item.id)) duplicateCount++;
+    idSet.add(item.id);
+  }
+  assert(duplicateCount === 0, `Search Integrity: Zero duplicate IDs in search index (actual duplicates: ${duplicateCount})`);
+
+  // 8. InstantFinder: No cap in tab button
+  const finderSource = fs.readFileSync(path.join(rootDir, 'src/components/InstantFinder.tsx'), 'utf8');
+  assert(
+    !finderSource.includes('Alle ({results.length})'),
+    'InstantFinder: Tab does not label "Alle" with deceptive search-render cap'
+  );
+
+  // 9. Relational UI Binding for Wallbox and Charging Cards (NO HARDCODED LITERAL LOCKS)
+  const wallboxSource = fs.readFileSync(path.join(rootDir, 'src/pages/WallboxVergleichPage.tsx'), 'utf8');
+  assert(
+    wallboxSource.includes('${WALLBOXES_DATA.length} Wallboxen'),
+    'WallboxVergleichPage: Strictly bound to dynamic ${WALLBOXES_DATA.length} (no hardcoded literal)'
+  );
+  assert(
+    !wallboxSource.includes('Über 20 Wallboxen im redaktionell'),
+    'WallboxVergleichPage: Zero vague outdated claims'
+  );
+
+  const ratgeberSource = fs.readFileSync(path.join(rootDir, 'src/pages/RatgeberArticlePage.tsx'), 'utf8');
+  assert(
+    ratgeberSource.includes('${CHARGING_CARDS.length} Ladekarten'),
+    'RatgeberArticlePage: Strictly bound to dynamic ${CHARGING_CARDS.length} (no hardcoded literal)'
+  );
+  assert(
+    !ratgeberSource.includes('18 Ladekarten'),
+    'RatgeberArticlePage: Zero outdated hardcoded claims'
+  );
+
+  // 10. Home Page KPI Relational Binding
+  const homeSource = fs.readFileSync(path.join(rootDir, 'src/pages/Home.tsx'), 'utf8');
+  assert(
+    homeSource.includes('cpoDataset.totalRegisterPointsDE') &&
+    homeSource.includes('cpoDataset.totalRegisterHpcPointsDE') &&
+    homeSource.includes('cpoDataset.totalRegisterStationsDE') &&
+    homeSource.includes('cpoDataset.cposCount'),
+    'Home.tsx: All 4 Hero KPIs are bound directly to cpoDataset'
+  );
+
+  // 11. Pre-rendered HTML Relational Verification
+  const distDir = path.join(rootDir, 'dist');
+  if (fs.existsSync(distDir)) {
+    const homeHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
+    const formattedPoints = cpoGenerated.totalRegisterPointsDE.toLocaleString('de-DE');
+    const formattedHpc = cpoGenerated.totalRegisterHpcPointsDE.toLocaleString('de-DE');
+    const formattedStations = cpoGenerated.totalRegisterStationsDE.toLocaleString('de-DE');
+
+    assert(
+      homeHtml.includes(formattedPoints) &&
+      homeHtml.includes(formattedHpc) &&
+      homeHtml.includes(formattedStations),
+      `Pre-rendered HTML relational check: index.html contains dynamically formatted numbers (${formattedPoints}, ${formattedHpc}, ${formattedStations})`
+    );
+  }
+
+  console.log(`\nRelational Numerical Consistency Guard completed: ${passedChecks}/${totalChecks} passed (${failedChecks} failed).`);
+
+  if (failedChecks > 0) {
+    process.exit(1);
+  } else {
+    console.log('✅ MONTHLY NUMERICAL CONSISTENCY GUARD VERIFIED.');
+  }
 }
 
-console.log(`\nNumerical Consistency Audit completed: ${passedChecks}/${totalChecks} passed (${failedChecks} failed).`);
-
-if (failedChecks > 0) {
-  process.exit(1);
-} else {
-  console.log('✅ ALL NUMERICAL CONSISTENCY CHECKS PASSED.');
-}
+runGuard();
