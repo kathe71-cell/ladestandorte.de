@@ -3,6 +3,8 @@
 // Quellen: BNetzA-Berichte, Unternehmenswebsites, GoingElectric, electrive.net, ecomento.de
 // Hinweis: Mit * markierte Zahlen sind fundierte Schätzungen auf Basis öffentlicher Daten
 
+import cpoDataset from './generated/cpo-monitor.generated.json';
+
 export interface OperatorData {
   slug: string;
   name: string;
@@ -20,7 +22,7 @@ export interface OperatorData {
   features: string[];
 }
 
-export const OPERATORS_DATA: OperatorData[] = [
+const BASE_OPERATORS_DATA: OperatorData[] = [
   // ── BESTANDSBETREIBER (aktualisiert) ─────────────────────────────────────
 
   {
@@ -671,3 +673,29 @@ export const OPERATORS_DATA: OperatorData[] = [
     ],
   },
 ];
+
+/**
+ * OPERATORS_DATA (Synchronized Single Source of Truth)
+ * Wenn der CPO im amtlichen BNetzA-CPO-Monitor erfasst ist, stammen totalPointsDE und hpcShare
+ * deterministisch und tagesaktuell direkt aus der autoritativen CPO-Pipeline.
+ */
+export const OPERATORS_DATA: OperatorData[] = BASE_OPERATORS_DATA.map((op) => {
+  const verified = cpoDataset.operators.find(
+    (c) =>
+      c.slug === op.slug ||
+      c.id === op.slug ||
+      (op.slug === 'tesla-supercharger' && (c.id === 'tesla' || c.slug === 'tesla')) ||
+      (op.slug === 'enbw' && (c.id === 'enbw' || c.slug === 'enbw-mobility-plus'))
+  );
+
+  if (verified) {
+    return {
+      ...op,
+      totalPointsDE: verified.chargingPointsTotal,
+      hpcShare: Math.round(verified.share150PlusKwPercent)
+    };
+  }
+
+  return op;
+});
+

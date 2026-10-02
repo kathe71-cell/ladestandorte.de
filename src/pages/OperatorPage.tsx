@@ -137,7 +137,9 @@ export const OperatorPage: React.FC = () => {
           <span className="text-3xl font-black text-[#171917] font-mono mt-1 block tabular-nums">
             {operator.totalPointsDE.toLocaleString('de-DE')}
           </span>
-          <span className="text-[11px] text-[#6C716B] mt-1 block">BNetzA registriert</span>
+          <span className="text-[11px] text-[#6C716B] mt-1 block font-medium">
+            {verifiedCpo ? 'BNetzA-Registerbestand' : 'Betreiberangabe'}
+          </span>
         </div>
 
         <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-xs">

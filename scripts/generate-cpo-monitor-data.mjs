@@ -238,6 +238,7 @@ async function main() {
     canonicalUrl: 'https://www.ladestandorte.de/cpo-monitor',
     snapshotDate,
     retrievedAt: metadata.retrievedAt,
+    totalRegisterStationsDE: totalRawStations,
     totalRegisterPointsDE: totalRawPoints,
     totalRegisterHpcPointsDE: totalRawHpcPoints,
     cposCount: operators.length,

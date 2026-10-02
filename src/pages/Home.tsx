@@ -12,6 +12,7 @@ import { GLOSSARY_DATA } from '../data/glossary';
 import { getDossierCount } from '../data/stations';
 import { FloatingCTABar } from '../components/FloatingCTABar';
 import { getSnapshotDateFormatted } from '../lib/datasetDate';
+import cpoDataset from '../data/generated/cpo-monitor.generated.json';
 
 export const Home: React.FC = () => {
   const dossierCount = getDossierCount();
@@ -52,7 +53,7 @@ export const Home: React.FC = () => {
             "name": "Wie viele öffentliche Ladesäulen gibt es in Deutschland?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In Deutschland sind über 100.000 öffentlich zugängliche Ladepunkte im amtlichen Ladesäulenregister der Bundesnetzagentur (BNetzA) erfasst, darunter mehr als 28.500 HPC-Schnellladepunkte mit mindestens 150 kW Leistung."
+              "text": `In Deutschland sind über ${cpoDataset.totalRegisterPointsDE.toLocaleString('de-DE')} öffentlich zugängliche Ladepunkte im amtlichen Ladesäulenregister der Bundesnetzagentur (BNetzA) erfasst, darunter mehr als ${cpoDataset.totalRegisterHpcPointsDE.toLocaleString('de-DE')} HPC-Schnellladepunkte mit mindestens 150 kW Leistung.`
             }
           },
           {
@@ -95,8 +96,8 @@ export const Home: React.FC = () => {
   return (
     <div className="space-y-16 sm:space-y-24 pb-16">
       <SEO
-        title="Ladesäulen Deutschland 2026: 100.000+ Ladepunkte · Finder & Vergleich"
-        description="Über 100.000 öffentliche Ladesäulen in Deutschland: Schnellladeparks an Autobahnen, Betreibervergleich (29 CPOs), Ladekarten-Ranking & kostenloser Instant-Finder. BNetzA Open Data 2026."
+        title={`Ladesäulen Deutschland 2026: ${cpoDataset.totalRegisterPointsDE.toLocaleString('de-DE')} Ladepunkte · Finder & Vergleich`}
+        description={`Über ${Math.floor(cpoDataset.totalRegisterPointsDE / 10000) * 10}.000 registrierte Ladepunkte in Deutschland: Schnellladeparks an Autobahnen, Betreibervergleich (${cpoDataset.cposCount} CPOs), Ladekarten-Ranking & kostenloser Instant-Finder. BNetzA Open Data 2026.`}
         canonicalPath="/"
         schema={homeSchema}
       />
@@ -150,22 +151,32 @@ export const Home: React.FC = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10">
             <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] shadow-sm">
               <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte gesamt</span>
-              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">210.185</span>
+              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
+                {cpoDataset.totalRegisterPointsDE.toLocaleString('de-DE')}
+              </span>
               <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">BNetzA-Registerbestand</span>
             </div>
             <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-sm">
               <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">HPC ≥ 150 kW</span>
-              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">40.654</span>
-              <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">19,34 % Registeranteil</span>
+              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
+                {cpoDataset.totalRegisterHpcPointsDE.toLocaleString('de-DE')}
+              </span>
+              <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">
+                {((cpoDataset.totalRegisterHpcPointsDE / cpoDataset.totalRegisterPointsDE) * 100).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} % Registeranteil
+              </span>
             </div>
             <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] shadow-sm">
               <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Ladestationen</span>
-              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">117.043</span>
-              <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">Physische Standorte</span>
+              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
+                {(cpoDataset.totalRegisterStationsDE || 117043).toLocaleString('de-DE')}
+              </span>
+              <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">Registrierte Ladestationen</span>
             </div>
             <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] shadow-sm">
               <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Verifizierte CPOs</span>
-              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">30</span>
+              <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
+                {cpoDataset.cposCount}
+              </span>
               <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">Institutionelle Betreiber</span>
             </div>
           </div>
@@ -662,7 +673,7 @@ export const Home: React.FC = () => {
               <span className="text-[#6C716B] group-open:rotate-180 transition-transform text-lg">▾</span>
             </summary>
             <p className="text-sm text-[#6C716B] leading-relaxed mt-3 pt-3 border-t border-[#DFE3DC]">
-              In Deutschland sind über 100.000 öffentlich zugängliche Ladepunkte im amtlichen Ladesäulenregister der Bundesnetzagentur (BNetzA) erfasst, darunter mehr als 28.500 HPC-Schnellladepunkte mit mindestens 150 kW Leistung.
+              In Deutschland sind {cpoDataset.totalRegisterPointsDE.toLocaleString('de-DE')} öffentlich zugängliche Ladepunkte im amtlichen Ladesäulenregister der Bundesnetzagentur (BNetzA) erfasst, darunter {cpoDataset.totalRegisterHpcPointsDE.toLocaleString('de-DE')} HPC-Schnellladepunkte mit mindestens 150 kW Leistung.
             </p>
           </details>
 

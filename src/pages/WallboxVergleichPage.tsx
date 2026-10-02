@@ -102,7 +102,7 @@ export const WallboxVergleichPage: React.FC = () => {
           </div>
         }
         title="Wallbox-Vergleich: 11-kW- & 22-kW-Heimladestationen im Überblick"
-        description="Über 20 Wallboxen im redaktionell unabhängigen Vergleich – filterbar nach Leistung, PV-Überschussladen, App-Steuerung, RFID und Marke. Alle Preise sind unverbindliche Richtwerte."
+        description={`${WALLBOXES_DATA.length} Wallboxen im redaktionell unabhängigen Vergleich – filterbar nach Leistung, PV-Überschussladen, App-Steuerung, RFID und Marke. Alle Preise sind unverbindliche Richtwerte.`}
       />
 
       {/* Förderhinweis */}

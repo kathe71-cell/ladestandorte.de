@@ -3,6 +3,7 @@
   "canonicalUrl": "https://www.ladestandorte.de/cpo-monitor",
   "snapshotDate": "2026-10-01",
   "retrievedAt": "2026-10-01T13:54:01.311Z",
+  "totalRegisterStationsDE": 117043,
   "totalRegisterPointsDE": 210185,
   "totalRegisterHpcPointsDE": 40654,
   "cposCount": 30,

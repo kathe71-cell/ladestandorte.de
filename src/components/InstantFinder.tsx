@@ -128,7 +128,7 @@ export const InstantFinder: React.FC<Props> = ({
                     : 'bg-[#F7F7F2] text-[#171917] hover:bg-[#EAECE6]'
                 }`}
               >
-                Alle ({results.length})
+                Alle
               </button>
               <button
                 type="button"

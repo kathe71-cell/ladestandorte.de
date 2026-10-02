@@ -6,6 +6,7 @@ import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { FloatingCTABar } from '../components/FloatingCTABar';
 import { PageHero } from '../components/PageHero';
+import { CHARGING_CARDS } from '../data/cards';
 
 const getArticleSchema = (headline: string, description: string, slug: string, faqs?: { q: string; a: string }[]) => ({
   "@context": "https://schema.org",
@@ -81,8 +82,8 @@ export const RatgeberArticlePage: React.FC = () => {
     return (
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
         <SEO
-          title="18 Ladekarten im Vergleich 2026: Roaming, Tarife & wer wirklich spart"
-          description="Welche Ladekarte lohnt sich 2026? 18 Tarife im Faktencheck: ADAC, EnBW, Tesla, Maingau & Co. – Roaming-Netze, Grundgebühren, AC/DC-Preise & Sparstrategie."
+          title={`${CHARGING_CARDS.length} Ladekarten im Vergleich 2026: Roaming, Tarife & wer wirklich spart`}
+          description={`Welche Ladekarte lohnt sich 2026? ${CHARGING_CARDS.length} Tarife im Faktencheck: ADAC, EnBW, Tesla, Maingau & Co. – Roaming-Netze, Grundgebühren, AC/DC-Preise & Sparstrategie.`}
           canonicalPath="/ratgeber/ladekarten-dschungel"
           schema={getArticleSchema(
             "Ladekarten-Dschungel: Roaming-Preise, monatliche Grundgebühren & wer wirklich spart",
@@ -168,7 +169,7 @@ export const RatgeberArticlePage: React.FC = () => {
         <div className="p-6 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] flex flex-col sm:flex-row sm:items-center justify-between gap-4 my-8">
           <div>
             <h3 className="font-bold text-[#171917] text-base">Tarifrechner &amp; Ladekarten-Vergleich 2026</h3>
-            <p className="text-sm text-[#6C716B] mt-1">Vergleichen Sie 18 aktuelle Ladekarten und berechnen Sie Ihre monatlichen Ladekosten für Ihr Fahrprofil.</p>
+            <p className="text-sm text-[#6C716B] mt-1">Vergleichen Sie {CHARGING_CARDS.length} aktuelle Ladekarten und berechnen Sie Ihre monatlichen Ladekosten für Ihr Fahrprofil.</p>
           </div>
           <Link
             to="/ladekarten"
@@ -194,7 +195,7 @@ export const RatgeberArticlePage: React.FC = () => {
         />
 
         <FloatingCTABar
-          title="18 Ladekarten im Direktvergleich"
+          title={`${CHARGING_CARDS.length} Ladekarten im Direktvergleich`}
           subtitle="Monatliche Kosten nach Fahrprofil berechnen"
           link="/ladekarten"
           linkLabel="Tarife vergleichen"
