@@ -94,7 +94,7 @@ export const MotorwaysIndexPage: React.FC = () => {
                   {mw.name}
                 </div>
                 <span className="text-xs font-mono font-bold bg-[#171917] text-[#C7F000] border border-[#171917] px-2.5 py-1 rounded-lg">
-                  bis {mw.maxKw} kW HPC
+                  {mw.maxKw ? `bis ${mw.maxKw} kW HPC` : 'Korridor'}
                 </span>
               </div>
 
@@ -113,7 +113,7 @@ export const MotorwaysIndexPage: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-[#6C716B] block text-[10px]">MAX. LEISTUNG</span>
-                  <strong className="text-[#2F5E73]">{mw.maxKw} kW HPC</strong>
+                  <strong className="text-[#2F5E73]">{mw.maxKw ? `${mw.maxKw} kW HPC` : 'In Erhebung'}</strong>
                 </div>
               </div>
             </div>

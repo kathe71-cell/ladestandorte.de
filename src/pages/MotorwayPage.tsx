@@ -67,7 +67,9 @@ export const MotorwayPage: React.FC = () => {
             "name": `Welche Schnelllader gibt es an der ${motorway.name}?`,
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": `Entlang der ${motorway.name} (${motorway.route}) stehen moderne Schnellladeparks mit bis zu ${motorway.maxKw} kW Ladeleistung zur Verfügung. Zu den führenden Betreibern zählen ${motorway.mainCPOs.join(', ')} direkt an Rastanlagen und Autohöfen.`
+              "text": motorway.maxKw && motorway.mainCPOs.length > 0
+                ? `Entlang der ${motorway.name} (${motorway.route}) stehen moderne Schnellladeparks mit bis zu ${motorway.maxKw} kW Ladeleistung zur Verfügung. Zu den führenden Betreibern zählen ${motorway.mainCPOs.join(', ')} direkt an Rastanlagen und Autohöfen.`
+                : `Entlang der ${motorway.name} (${motorway.route}) wird die Ladeinfrastruktur fortlaufend ausgebaut. Detaillierte Standort-Dossiers werden nach behördlicher Verifizierung im Trassenkorridor freigeschaltet.`
             }
           },
           {
@@ -87,7 +89,10 @@ export const MotorwayPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
         title={`Schnellladen ${motorway.name}: HPC-Ladeparks an Raststätten & Autobahn 2026`}
-        description={`HPC-Schnellladeparks an der ${motorway.name} (${motorway.route}): ${motorway.mainCPOs.join(', ')} u.v.m. Bis zu ${motorway.maxKw} kW Ladeleistung. Verifizierte Standorte und Anfahrt.`}
+        description={motorway.maxKw && motorway.mainCPOs.length > 0
+          ? `HPC-Schnellladeparks an der ${motorway.name} (${motorway.route}): ${motorway.mainCPOs.join(', ')} u.v.m. Bis zu ${motorway.maxKw} kW Ladeleistung. Verifizierte Standorte und Anfahrt.`
+          : `Ladekorridor ${motorway.name} (${motorway.route}): ${motorway.lengthKm} km Streckenführung, Knotenpunkte und Ladeinfrastruktur im Autobahnnetz.`
+        }
         canonicalPath={`/autobahnen/${motorway.slug}`}
         schema={schema}
       />
@@ -123,32 +128,42 @@ export const MotorwayPage: React.FC = () => {
         <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-xs">
           <span className="text-[11px] font-mono text-[#6C716B] uppercase tracking-wider block">Max. Ladeleistung</span>
           <span className="text-3xl font-black text-[#171917] font-mono mt-1 block">
-            bis {motorway.maxKw} kW
+            {motorway.maxKw ? `bis ${motorway.maxKw} kW` : 'In Erhebung'}
           </span>
-          <span className="text-[11px] text-[#2F5E73] font-mono font-medium mt-1 block">High Power Charging (HPC)</span>
+          <span className="text-[11px] text-[#2F5E73] font-mono font-medium mt-1 block">
+            {motorway.maxKw ? 'High Power Charging (HPC)' : 'Korridor-Monitoring'}
+          </span>
         </div>
 
         <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
           <span className="text-[11px] font-mono text-[#6C716B] uppercase tracking-wider block">Führende Netze</span>
-          <div className="flex flex-wrap gap-1 mt-1.5">
-            {motorway.mainCPOs.map((cpo, i) => {
-              const slug = getOperatorSlugByName(cpo);
-              return slug ? (
-                <Link
-                  key={cpo}
-                  to={`/betreiber/${slug}`}
-                  className="text-xs font-bold text-[#171917] hover:text-[#2F5E73] hover:underline"
-                >
-                  {cpo}{i < motorway.mainCPOs.length - 1 ? ',' : ''}
-                </Link>
-              ) : (
-                <span key={cpo} className="text-xs font-bold text-[#171917]">
-                  {cpo}{i < motorway.mainCPOs.length - 1 ? ',' : ''}
-                </span>
-              );
-            })}
-          </div>
-          <span className="text-[11px] text-[#6C716B] mt-1 block">Direkt an Rastanlagen</span>
+          {motorway.mainCPOs.length > 0 ? (
+            <div className="flex flex-wrap gap-1 mt-1.5">
+              {motorway.mainCPOs.map((cpo, i) => {
+                const slug = getOperatorSlugByName(cpo);
+                return slug ? (
+                  <Link
+                    key={cpo}
+                    to={`/betreiber/${slug}`}
+                    className="text-xs font-bold text-[#171917] hover:text-[#2F5E73] hover:underline"
+                  >
+                    {cpo}{i < motorway.mainCPOs.length - 1 ? ',' : ''}
+                  </Link>
+                ) : (
+                  <span key={cpo} className="text-xs font-bold text-[#171917]">
+                    {cpo}{i < motorway.mainCPOs.length - 1 ? ',' : ''}
+                  </span>
+                );
+              })}
+            </div>
+          ) : (
+            <span className="text-sm font-semibold text-[#6C716B] mt-2 block">
+              Korridor in Prüfung
+            </span>
+          )}
+          <span className="text-[11px] text-[#6C716B] mt-1 block">
+            {motorway.mainCPOs.length > 0 ? 'Direkt an Rastanlagen' : 'Keine Werksannahmen'}
+          </span>
         </div>
 
         {motorwayStations.length > 0 && (
