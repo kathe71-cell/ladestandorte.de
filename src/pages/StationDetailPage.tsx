@@ -383,44 +383,55 @@ export const StationDetailPage: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                <div className="p-3 bg-blue-50/60 rounded-xl border border-blue-100">
-                  <span className="text-slate-500 block font-mono uppercase text-[10px]">Ladeleistung</span>
-                  <strong className="text-base font-black text-blue-900 font-mono block mt-0.5">
-                    {station.truckCharging.mcsAvailable && station.truckCharging.mcsMaxKw 
-                      ? `bis ${station.truckCharging.mcsMaxKw} kW MCS` 
-                      : `${station.truckCharging.ccsMaxKw || station.kwMax} kW CCS`}
-                  </strong>
-                  <span className="text-[11px] text-blue-700">
+                <div className="p-3 bg-blue-50/60 rounded-xl border border-blue-100 min-w-0 overflow-hidden flex flex-col justify-between">
+                  <div>
+                    <span className="text-slate-500 block font-mono uppercase text-[10px] truncate">Ladeleistung</span>
+                    <strong className="text-base sm:text-lg font-black text-blue-900 font-mono block mt-0.5 leading-snug">
+                      {station.truckCharging.mcsAvailable && station.truckCharging.mcsMaxKw 
+                        ? `bis ${station.truckCharging.mcsMaxKw} kW MCS` 
+                        : `${station.truckCharging.ccsMaxKw || station.kwMax} kW CCS`}
+                    </strong>
+                  </div>
+                  <span className="text-[11px] text-blue-700 block mt-1 leading-snug break-words">
                     {station.truckCharging.mcsAvailable 
                       ? 'MCS-Standard verfügbar' 
                       : `CCS aktiv (${station.truckCharging.ccsMaxKw || 400} kW) · MCS geplant`}
                   </span>
                 </div>
 
-                <div className="p-3 bg-blue-50/60 rounded-xl border border-blue-100">
-                  <span className="text-slate-500 block font-mono uppercase text-[10px]">Lkw-Ladeplätze</span>
-                  <strong className="text-base font-black text-slate-950 font-mono block mt-0.5">
-                    {station.truckCharging.mcsPointsCount 
-                      ? `${station.truckCharging.mcsPointsCount} MCS-Punkte` 
-                      : `${station.pointsCount} Durchfahrtsbuchten`}
-                  </strong>
-                  <span className="text-[11px] text-slate-600">Gespanne / Sattelzüge</span>
+                <div className="p-3 bg-blue-50/60 rounded-xl border border-blue-100 min-w-0 overflow-hidden flex flex-col justify-between">
+                  <div>
+                    <span className="text-slate-500 block font-mono uppercase text-[10px] truncate">Lkw-Ladeplätze</span>
+                    <div className="mt-0.5 flex items-baseline gap-1.5 flex-wrap">
+                      <strong className="text-xl sm:text-2xl font-black text-slate-950 font-mono leading-none">
+                        {station.truckCharging.mcsPointsCount ? station.truckCharging.mcsPointsCount : station.pointsCount}
+                      </strong>
+                      <span className="text-xs font-bold text-slate-800 break-words leading-tight">
+                        {station.truckCharging.mcsPointsCount ? 'MCS-Punkte' : 'Durchfahrtsbuchten'}
+                      </span>
+                    </div>
+                  </div>
+                  <span className="text-[11px] text-slate-600 block mt-1 leading-snug">Gespanne / Sattelzüge</span>
                 </div>
 
-                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                  <span className="text-slate-500 block font-mono uppercase text-[10px]">Durchfahrtsbuchten</span>
-                  <strong className="text-sm font-bold text-slate-900 block mt-1">
-                    {station.truckCharging.driveThrough ? '✓ Vorhanden' : 'Nicht belegt'}
-                  </strong>
-                  <span className="text-[10px] text-slate-500">Kein Absatteln nötig</span>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 min-w-0 overflow-hidden flex flex-col justify-between">
+                  <div>
+                    <span className="text-slate-500 block font-mono uppercase text-[10px] truncate">Buchten-Typ</span>
+                    <strong className="text-sm sm:text-base font-bold text-slate-900 block mt-1 leading-tight break-words">
+                      {station.truckCharging.driveThrough ? '✓ Durchfahrt (Drive-Through)' : 'Nicht belegt'}
+                    </strong>
+                  </div>
+                  <span className="text-[10px] text-slate-500 block mt-1">Kein Absatteln nötig</span>
                 </div>
 
-                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                  <span className="text-slate-500 block font-mono uppercase text-[10px]">Auflieger-Zugang</span>
-                  <strong className="text-sm font-bold text-slate-900 block mt-1">
-                    {station.truckCharging.trailerAccessible ? '✓ 40t-geeignet' : 'Nicht belegt'}
-                  </strong>
-                  <span className="text-[10px] text-slate-500">Sattelzug-Geometrie</span>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 min-w-0 overflow-hidden flex flex-col justify-between">
+                  <div>
+                    <span className="text-slate-500 block font-mono uppercase text-[10px] truncate">Auflieger-Zugang</span>
+                    <strong className="text-sm sm:text-base font-bold text-slate-900 block mt-1 leading-tight break-words">
+                      {station.truckCharging.trailerAccessible ? '✓ 40t-geeignet' : 'Nicht belegt'}
+                    </strong>
+                  </div>
+                  <span className="text-[10px] text-slate-500 block mt-1">Sattelzug-Geometrie</span>
                 </div>
               </div>
 

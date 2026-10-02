@@ -48,6 +48,24 @@ export const NationwideDirectoryPage: React.FC = () => {
   const minKw = searchParams.get('minKw') || '0';
   const currentPage = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
 
+  // Immediate local input state for seamless typing without mobile keyboard lag
+  const [localInput, setLocalInput] = useState(searchQuery);
+
+  // Sync localInput when URL search param changes externally (e.g. back/forward or reset)
+  useEffect(() => {
+    setLocalInput(searchQuery);
+  }, [searchQuery]);
+
+  // Debounced sync from localInput to URL search params (300ms)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (localInput !== searchQuery) {
+        updateFilter({ q: localInput });
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [localInput, searchQuery]);
+
   // Helper to update specific param without losing others
   const updateFilter = (updates: Record<string, string | null>) => {
     const nextParams = new URLSearchParams(searchParams);
@@ -247,15 +265,18 @@ export const NationwideDirectoryPage: React.FC = () => {
           <Search className="w-5 h-5 text-[#6C716B] absolute left-4 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            value={searchQuery}
-            onChange={e => updateFilter({ q: e.target.value })}
+            value={localInput}
+            onChange={e => setLocalInput(e.target.value)}
             placeholder="Ort, PLZ, Straße oder Betreiber suchen (z. B. Berlin, 56410, Montabaur, EnBW)..."
             aria-label="Ladestationen bundesweit durchsuchen"
             className="w-full pl-12 pr-10 py-3.5 sm:py-4 rounded-2xl bg-white border border-[#DFE3DC] shadow-xs text-sm sm:text-base text-[#171917] placeholder-[#6C716B] focus:outline-none focus:border-[#171917] focus:ring-1 focus:ring-[#171917] transition-all"
           />
-          {searchQuery && (
+          {localInput && (
             <button
-              onClick={() => updateFilter({ q: '' })}
+              onClick={() => {
+                setLocalInput('');
+                updateFilter({ q: '' });
+              }}
               aria-label="Suchtext löschen"
               className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 text-[#6C716B] hover:text-[#171917]"
             >

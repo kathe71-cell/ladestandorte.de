@@ -122,6 +122,21 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
 
   const totalResultsCount = groupedResults.reduce((acc, g) => acc + g.items.length, 0);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+
+    // If there is an exact or first result, navigate directly to it
+    if (visibleGroups.length > 0 && visibleGroups[0].items.length > 0) {
+      handleSelectResult(visibleGroups[0].items[0].doc.url);
+      return;
+    }
+
+    // Otherwise, route into the full nationwide directory search
+    onClose();
+    navigate(`/ladestationen?q=${encodeURIComponent(query.trim())}`);
+  };
+
   return (
     <div 
       className="fixed inset-0 z-50 flex items-start justify-center p-0 sm:p-4 md:p-6 bg-slate-950/70 backdrop-blur-xs animate-in fade-in duration-150"
@@ -131,12 +146,12 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className="w-full sm:max-w-3xl bg-white sm:rounded-2xl shadow-2xl border-0 sm:border border-slate-200 flex flex-col h-full sm:h-auto sm:max-h-[85vh] overflow-hidden"
+        className="w-full sm:max-w-3xl bg-white sm:rounded-2xl shadow-2xl border-0 sm:border border-slate-200 flex flex-col h-[100dvh] sm:h-auto sm:max-h-[85vh] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Header Bar */}
         <div className="p-3 sm:p-4 border-b border-[#DFE3DC] bg-white shrink-0">
-          <div className="flex items-center gap-2">
+          <form onSubmit={handleSubmit} className="flex items-center gap-2">
             <div className="flex-1 flex items-center gap-2.5 bg-[#F7F7F2] rounded-xl px-3.5 py-2.5 border border-[#DFE3DC] focus-within:border-[#171917] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#171917]/10 transition-all">
               <Search className="w-5 h-5 text-[#6C716B] shrink-0" />
               
@@ -145,7 +160,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Suchen nach A3, Kassel, IONITY, MCS, 400 kW, Rechner..."
+                placeholder="A3, Kassel, IONITY, MCS, 400 kW, Rechner..."
                 className="w-full bg-transparent text-base sm:text-lg font-medium text-[#171917] placeholder:text-[#6C716B] focus:outline-hidden min-h-[36px]"
                 autoComplete="off"
                 autoCorrect="off"
@@ -181,7 +196,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
             >
               <X className="w-5 h-5" />
             </button>
-          </div>
+          </form>
 
           {/* Quick-Filter Chips */}
           {query.trim().length > 0 && groupedResults.length > 0 && (
@@ -268,16 +283,32 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
 
           {/* Case 2: Query active but no results */}
           {query.trim() && totalResultsCount === 0 && !isLoading && (
-            <div className="text-center py-12 px-4 space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mx-auto border border-amber-200">
+            <div className="text-center py-10 px-4 space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-[#F7F7F2] text-[#6C716B] flex items-center justify-center mx-auto border border-[#DFE3DC]">
                 <Search className="w-6 h-6" />
               </div>
-              <h3 className="text-base font-bold text-slate-900">
-                Keine direkten Treffer für „{query}“ gefunden
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto">
-                Prüfen Sie die Schreibweise oder versuchen Sie allgemeine Suchbegriffe wie Autobahnnummer (z. B. A3), Stadt (z. B. Frankfurt) oder Betreiber (z. B. EnBW).
-              </p>
+              <div className="space-y-1">
+                <h3 className="text-base font-bold text-slate-900">
+                  Keine redaktionellen Dossiers für „{query}“
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto">
+                  Suchen Sie direkt im vollständigen BNetzA-Register unter allen 117.043 Ladestationen:
+                </p>
+              </div>
+
+              <div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose();
+                    navigate(`/ladestationen?q=${encodeURIComponent(query.trim())}`);
+                  }}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#171917] hover:bg-black text-[#C7F000] text-xs font-bold transition-colors cursor-pointer min-h-[44px]"
+                >
+                  <Zap className="w-4 h-4 fill-current stroke-current" />
+                  <span>In allen 117.043 Ladestationen suchen →</span>
+                </button>
+              </div>
             </div>
           )}
 
