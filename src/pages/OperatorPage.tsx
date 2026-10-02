@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ShieldCheck, Zap, CheckCircle2, ArrowRight, CreditCard, HelpCircle, MapPin } from 'lucide-react';
+import { ShieldCheck, Zap, CheckCircle2, ArrowRight, CreditCard, HelpCircle, MapPin, Database } from 'lucide-react';
 import { OPERATORS_DATA } from '../data/operators';
 import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
 import cpoDataset from '../data/generated/cpo-monitor.generated.json';
@@ -10,6 +10,7 @@ import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { StationDetailModal } from '../components/StationDetailModal';
 import { PageHero } from '../components/PageHero';
+import { OperatorStationDirectory } from '../components/OperatorStationDirectory';
 
 export const OperatorPage: React.FC = () => {
   const { operatorSlug } = useParams<{ operatorSlug: string }>();
@@ -297,6 +298,25 @@ export const OperatorPage: React.FC = () => {
               </Link>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Ebene B: Vollständiges BNetzA-Registerverzeichnis des Betreibers */}
+      {verifiedCpo ? (
+        <OperatorStationDirectory
+          operatorSlug={operator.slug}
+          operatorName={operator.name}
+          totalRegisterCount={verifiedCpo.stationsTotal}
+        />
+      ) : (
+        <div className="p-6 bg-white rounded-xl border border-[#DFE3DC] space-y-2">
+          <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#6C716B] uppercase">
+            <Database className="w-3.5 h-3.5" />
+            <span>Kein isolierter BNetzA-Registerbestand</span>
+          </div>
+          <p className="text-xs text-[#6C716B] leading-relaxed">
+            Für diesen Anbieter ({operator.name}) liegt kein eigener, eindeutig abgrenzbarer BNetzA-CPO-Registerbestand vor (z. B. E-Mobility Provider, Roaming-Aggregator oder markenübergreifender Verbund). Die genannten Ladedaten spiegeln die partnerschaftliche Netzabdeckung wider.
+          </p>
         </div>
       )}
 

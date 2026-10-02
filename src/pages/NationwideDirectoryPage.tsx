@@ -524,10 +524,10 @@ export const NationwideDirectoryPage: React.FC = () => {
                       : 'border-[#DFE3DC] hover:border-[#171917]'
                   }`}
                 >
-                  <div className="space-y-2">
+                  <div className="space-y-2 min-w-0">
                     {/* Betreiber & Max Power */}
-                    <div className="flex items-start justify-between gap-2">
-                      <span className="text-sm font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors truncate">
+                    <div className="flex items-start justify-between gap-2 min-w-0">
+                      <span className="text-sm font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors break-words min-w-0 flex-1">
                         {st.o}
                       </span>
                       <span className={`px-2 py-0.5 rounded text-[11px] font-mono font-bold shrink-0 ${
@@ -538,13 +538,13 @@ export const NationwideDirectoryPage: React.FC = () => {
                     </div>
 
                     {/* Adresse */}
-                    <div className="text-xs text-[#171917] flex items-center gap-1.5 truncate">
+                    <div className="text-xs text-[#171917] flex items-center gap-1.5 min-w-0">
                       <MapPin className="w-3.5 h-3.5 text-[#6C716B] shrink-0" />
                       <span className="truncate">{st.s ? `${st.s} · ` : ''}{st.p} {st.c}</span>
                     </div>
 
                     {/* Technische Kennzahlen (Scannbar) */}
-                    <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono text-[#6C716B]">
+                    <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-mono text-[#6C716B]">
                       <span className="px-1.5 py-0.5 rounded bg-[#F7F7F2] border border-[#DFE3DC]/60 font-semibold text-[#171917]">
                         {st.n} {st.n === 1 ? 'Ladepunkt' : 'Ladepunkte'}
                       </span>
@@ -553,9 +553,9 @@ export const NationwideDirectoryPage: React.FC = () => {
                           {st.h} HPC
                         </span>
                       )}
-                      <span>{st.st || 'Deutschland'}</span>
+                      <span className="truncate max-w-[120px] sm:max-w-none">{st.st || 'DE'}</span>
                       <span>·</span>
-                      <span>ID: {st.i}</span>
+                      <span className="truncate">ID: {st.i}</span>
                     </div>
                   </div>
 

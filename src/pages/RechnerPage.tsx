@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calculator, Zap, Clock, ShieldCheck, HelpCircle, BookOpen, ArrowRight } from 'lucide-react';
 import { CalculatorEmbed } from '../components/CalculatorEmbed';
+import { EmbedWidgetConfigurator } from '../components/EmbedWidgetConfigurator';
 import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
@@ -71,6 +72,9 @@ export const RechnerPage: React.FC = () => {
 
       {/* Main Interactive Tool */}
       <CalculatorEmbed isEmbed={false} />
+
+      {/* Widget Konfigurator für externe Websites / Redaktionen */}
+      <EmbedWidgetConfigurator />
 
       {/* Technical FAQ & Explanations */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">

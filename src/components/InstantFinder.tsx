@@ -272,14 +272,14 @@ export const InstantFinder: React.FC<Props> = ({
                       {isOperator && <ShieldCheck className="w-5 h-5 text-[#171917]" />}
                     </div>
 
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-bold text-[#171917] text-sm sm:text-base group-hover:text-[#2F5E73] transition-colors truncate">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span className="font-bold text-[#171917] text-xs sm:text-base group-hover:text-[#2F5E73] transition-colors break-words">
                           {item.title}
                         </span>
                         
                         {/* Type badge */}
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${
+                        <span className={`px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-mono font-bold uppercase shrink-0 ${
                           isDossier
                             ? 'bg-[#171917] text-[#C7F000]'
                             : isBnetza
@@ -290,39 +290,34 @@ export const InstantFinder: React.FC<Props> = ({
                             ? 'bg-amber-50 text-amber-800 border border-amber-200'
                             : 'bg-slate-100 text-slate-800 border border-slate-200'
                         }`}>
-                          {isDossier ? 'Redaktionelles Dossier' : isBnetza ? 'BNetzA-Register' : item.type}
+                          {isDossier ? 'Dossier' : isBnetza ? 'Register' : item.type}
                         </span>
 
                         {/* Power / Count badge */}
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]">
+                        <span className="px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-mono font-semibold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] shrink-0">
                           {item.badge}
                         </span>
                       </div>
                       
-                      <p className="text-xs sm:text-sm text-[#6C716B] truncate mt-0.5">
+                      <p className="text-[11px] sm:text-xs text-[#6C716B] line-clamp-1 mt-0.5 break-words">
                         {item.subtitle}
                       </p>
 
                       {isDossier && (
-                        <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
+                        <div className="flex flex-wrap items-center gap-1 mt-1">
                           {((item.data as StationData).connectorTypes || []).map(t => (
-                            <span key={t} className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]">
-                              {t === 'Typ 2' ? 'Typ 2 (22 kW)' : t === 'CCS' ? `CCS (${(item.data as StationData).kwMax} kW)` : t}
+                            <span key={t} className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]">
+                              {t === 'Typ 2' ? 'Typ 2' : t === 'CCS' ? `CCS (${(item.data as StationData).kwMax} kW)` : t}
                             </span>
                           ))}
-                          {(item.data as StationData).truckCharging && (
-                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#F7F7F2] text-[#2F5E73] border border-[#DFE3DC]">
-                              E-Lkw {((item.data as StationData).truckCharging?.mcsStatus === 'operational' ? 'MCS' : 'Hub')}
-                            </span>
-                          )}
                         </div>
                       )}
                     </div>
                   </div>
 
-                  <div className="shrink-0 flex items-center gap-1 text-[#6C716B] group-hover:text-[#171917] transition-colors">
+                  <div className="shrink-0 flex items-center gap-1 text-[#6C716B] group-hover:text-[#171917] transition-colors min-h-[44px] min-w-[32px] justify-end">
                     <span className="hidden sm:inline text-xs font-semibold">
-                      {isDossier ? 'Dossier ansehen' : isBnetza ? 'Registerdetails' : 'Öffnen'}
+                      {isDossier ? 'Dossier ansehen' : isBnetza ? 'Details' : 'Öffnen'}
                     </span>
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" />
                   </div>

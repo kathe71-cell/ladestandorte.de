@@ -249,7 +249,7 @@ async function runGuard() {
     'RatgeberArticlePage: Zero outdated hardcoded claims'
   );
 
-  // 10. Home Page KPI Relational Binding
+  // 10. Home Page KPI Relational Binding & Teaser Integrity
   const homeSource = fs.readFileSync(path.join(rootDir, 'src/pages/Home.tsx'), 'utf8');
   assert(
     homeSource.includes('cpoDataset.totalRegisterPointsDE') &&
@@ -258,6 +258,33 @@ async function runGuard() {
     homeSource.includes('cpoDataset.cposCount'),
     'Home.tsx: All 4 Hero KPIs are bound directly to cpoDataset'
   );
+  assert(
+    !homeSource.includes('Physische Standorte'),
+    'Home.tsx: Hero KPI does not use incorrect "Physische Standorte" label'
+  );
+  assert(
+    homeSource.includes('hCity?.hpcLadepunkte') && homeSource.includes('mCity?.hpcLadepunkte'),
+    'Home.tsx: Monitor Teaser dynamically binds Hamburg and München'
+  );
+
+  // 11. Operators Data: Zero hardcoded volatile figures in descriptions
+  const operatorsSource = fs.readFileSync(path.join(rootDir, 'src/data/operators.ts'), 'utf8');
+  assert(
+    !operatorsSource.includes('11.500 registrierten Ladepunkten') &&
+    !operatorsSource.includes('über 4.000 Ladepunkten') &&
+    !operatorsSource.includes('mehr als 2.400') &&
+    !operatorsSource.includes('1.763 Ladepunkte'),
+    'operators.ts: Zero volatile numbers hardcoded in operator descriptions'
+  );
+
+  // 12. Operator Registry Slices Verification
+  const opSlicesDir = path.join(rootDir, 'public/data/registry/operators');
+  assert(fs.existsSync(opSlicesDir), 'public/data/registry/operators directory exists');
+  const opSlices = fs.readdirSync(opSlicesDir).filter(f => f.endsWith('.json'));
+  assert(opSlices.length >= 15, `Operator Registry Slices: Found ${opSlices.length} operator JSON slices (>= 15 required)`);
+  const enbwSlice = JSON.parse(fs.readFileSync(path.join(opSlicesDir, 'enbw.json'), 'utf8'));
+  const enbwCount = Array.isArray(enbwSlice) ? enbwSlice.length : enbwSlice.stationsCount;
+  assert(enbwCount === 5436, `Operator Slices: enbw.json contains exactly 5436 stations (actual: ${enbwCount})`);
 
   // 11. Pre-rendered HTML Relational Verification
   const distDir = path.join(rootDir, 'dist');

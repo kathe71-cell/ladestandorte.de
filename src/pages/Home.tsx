@@ -166,11 +166,11 @@ export const Home: React.FC = () => {
               </span>
             </div>
             <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] shadow-sm">
-              <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Ladestationen</span>
+              <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Registrierte Ladestationen</span>
               <span className="text-2xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
                 {(cpoDataset.totalRegisterStationsDE || 117043).toLocaleString('de-DE')}
               </span>
-              <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">Registrierte Ladestationen</span>
+              <span className="text-[11px] text-[#2F5E73] font-mono font-medium block mt-1">BNetzA-Ladesäulenregister</span>
             </div>
             <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] shadow-sm">
               <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Verifizierte CPOs</span>
@@ -208,35 +208,59 @@ export const Home: React.FC = () => {
                 </div>
 
                 {/* Data Preview / Mini Bar Chart (Mockup) */}
-                <div className="pt-2 space-y-2.5">
-                  <div className="space-y-1">
-                    <div className="flex justify-between text-xs font-mono">
-                      <span className="text-[#171917] font-semibold">Berlin</span>
-                      <span className="text-[#171917] font-bold tabular-nums">988</span>
+                {(() => {
+                  const bCity = CITIES_DATA.find(c => c.slug === 'berlin');
+                  const hCity = CITIES_DATA.find(c => c.slug === 'hamburg');
+                  const mCity = CITIES_DATA.find(c => c.slug === 'muenchen');
+                  const maxHpc = Math.max(bCity?.hpcLadepunkte || 1, hCity?.hpcLadepunkte || 1, mCity?.hpcLadepunkte || 1);
+
+                  return (
+                    <div className="pt-2 space-y-2.5">
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-xs font-mono">
+                          <span className="text-[#171917] font-semibold">{bCity?.name || 'Berlin'}</span>
+                          <span className="text-[#171917] font-bold tabular-nums">
+                            {bCity?.hpcLadepunkte ? bCity.hpcLadepunkte.toLocaleString('de-DE') : '—'}
+                          </span>
+                        </div>
+                        <div className="h-2 w-full bg-[#F7F7F2] rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-[#C7F000] rounded-full" 
+                            style={{ width: `${Math.round(((bCity?.hpcLadepunkte || 0) / maxHpc) * 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-xs font-mono">
+                          <span className="text-[#171917] font-semibold">{hCity?.name || 'Hamburg'}</span>
+                          <span className="text-[#171917] font-bold tabular-nums">
+                            {hCity?.hpcLadepunkte ? hCity.hpcLadepunkte.toLocaleString('de-DE') : '—'}
+                          </span>
+                        </div>
+                        <div className="h-2 w-full bg-[#F7F7F2] rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-[#171917] rounded-full" 
+                            style={{ width: `${Math.round(((hCity?.hpcLadepunkte || 0) / maxHpc) * 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-xs font-mono">
+                          <span className="text-[#171917] font-semibold">{mCity?.name || 'München'}</span>
+                          <span className="text-[#171917] font-bold tabular-nums">
+                            {mCity?.hpcLadepunkte ? mCity.hpcLadepunkte.toLocaleString('de-DE') : '—'}
+                          </span>
+                        </div>
+                        <div className="h-2 w-full bg-[#F7F7F2] rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-[#171917] rounded-full" 
+                            style={{ width: `${Math.round(((mCity?.hpcLadepunkte || 0) / maxHpc) * 100)}%` }}
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <div className="h-2 w-full bg-[#F7F7F2] rounded-full overflow-hidden">
-                      <div className="h-full bg-[#C7F000] rounded-full" style={{ width: '85%' }}></div>
-                    </div>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex justify-between text-xs font-mono">
-                      <span className="text-[#171917] font-semibold">Hamburg</span>
-                      <span className="text-[#6C716B] tabular-nums">—</span>
-                    </div>
-                    <div className="h-2 w-full bg-[#F7F7F2] rounded-full overflow-hidden">
-                      <div className="h-full bg-[#171917] rounded-full" style={{ width: '65%' }}></div>
-                    </div>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex justify-between text-xs font-mono">
-                      <span className="text-[#171917] font-semibold">München</span>
-                      <span className="text-[#6C716B] tabular-nums">—</span>
-                    </div>
-                    <div className="h-2 w-full bg-[#F7F7F2] rounded-full overflow-hidden">
-                      <div className="h-full bg-[#171917] rounded-full" style={{ width: '58%' }}></div>
-                    </div>
-                  </div>
-                </div>
+                  );
+                })()}
               </div>
 
               {/* Tag Pills (Mockup) */}

@@ -39,7 +39,7 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     standardPriceDc: 0.49, // Tarif Free (ad-hoc); Tarif M: 0,46 €/kWh mit 5,99 € GG
     bnetzaAnteil: "Überregionaler CPO mit breiter Bundesabdeckung",
     description:
-      "EnBW mobility+ ist Einer der führenden überregionalen Ladeinfrastrukturbetreiber in Deutschland mit über 11.500 registrierten Ladepunkten. Das Netz ist besonders dicht entlang von Autobahnen und in Ballungsräumen. Mit dem Tarif M (5,99 €/Monat) sinkt der kWh-Preis auf 0,46 € ohne weitere Unterscheidung zwischen AC und DC.",
+      "EnBW mobility+ ist einer der führenden überregionalen Ladeinfrastrukturbetreiber in Deutschland mit einem engmaschigen bundesweiten Ladenetz. Das Netz ist besonders dicht entlang von Autobahnen und in Ballungsräumen ausgebaut. Mit dem Tarif M (5,99 €/Monat) sinkt der kWh-Preis auf 0,46 € ohne weitere Unterscheidung zwischen AC und DC.",
     features: [
       "Dichtes Schnellladenetz an Autobahnen",
       "AutoCharge (Plug & Charge ohne Karte)",
@@ -108,9 +108,9 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     standardPriceDc: 0.62,
     bnetzaAnteil: "HPC-Netz an Tankstellen und Knotenpunkten",
     description:
-      "Aral pulse (betrieben von bp pulse) ist eines der führenden Schnellladenetze Deutschlands mit über 4.000 Ladepunkten. Das Netz umfasst vorwiegend moderne HPC-Stationen mit bis zu 300 kW an Aral-Tankstellen sowie neue Megawatt-Ladeparks für E-LKW. Neben schnellen Ladezeiten profitieren Fahrer von Payback-Punkten, REWE To Go Shops und verlässlicher Beleuchtung.",
+      "Aral pulse (betrieben von bp pulse) ist eines der führenden Schnellladenetze Deutschlands mit hoher Ausbaupräsenz an Fernstraßen. Das Netz umfasst vorwiegend moderne HPC-Stationen mit bis zu 300 kW an Aral-Tankstellen sowie neue Megawatt-Ladeparks für E-LKW. Neben schnellen Ladezeiten profitieren Fahrer von Payback-Punkten, REWE To Go Shops und verlässlicher Beleuchtung.",
     features: [
-      "4.000+ Ladepunkte an Aral-Tankstellen",
+      "Großflächiges HPC-Netz an Aral-Tankstellen",
       "Megawatt-Ladeparks für E-LKW (seit 2026)",
       "Integration mit Aral-App und Payback",
       "Plug & Charge unterstützt",
@@ -295,9 +295,9 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     standardPriceDc: 0.55,
     bnetzaAnteil: "Discounter-Ladenetz an Filialstandorten",
     description:
-      "Lidl betreibt über Tochterunternehmen und CPO-Kooperationen eigene Ladestationen an mehr als 2.400 Ladepunkten in deutschen Filialen. Das Netz wächst stark und zählt nach GoingElectric zu den größten Einzelhandels-Ladenetzen. Bezahlung per App, Karte oder per QR-Code.",
+      "Lidl betreibt über Tochterunternehmen und CPO-Kooperationen eigene Ladestationen an deutschen Filialen. Das Netz wächst kontinuierlich und zählt zu den großen Einzelhandels-Ladenetzen. Bezahlung per App, Karte oder per QR-Code.",
     features: [
-      "2.400+ Ladepunkte an Lidl-Filialen",
+      "Laden direkt an Lidl-Filialen",
       "Wachsendes HPC-Segment",
       "Einkaufen & Laden parallel",
       "Einfache Bezahlung ohne Abo",
@@ -525,9 +525,9 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     standardPriceDc: 0.53,
     bnetzaAnteil: "Großmarkt-integriertes Laden (Kaufland-Standorte)",
     description:
-      "Kaufland betreibt Ladestationen auf den Parkplätzen seiner Verbrauchermärkte in ganz Deutschland. Mit 1.350 Ladepunkten zählt Kaufland zu den großen Einzelhandels-Ladenetzwerken. Die Stationen sind vorwiegend AC-22-kW-Charger, ergänzt durch vereinzelte DC-Schnelllader.",
+      "Kaufland betreibt Ladestationen auf den Parkplätzen seiner Verbrauchermärkte in ganz Deutschland. Kaufland zählt zu den großen Einzelhandels-Ladenetzwerken. Die Stationen sind vorwiegend AC-22-kW-Charger, ergänzt durch vereinzelte DC-Schnelllader.",
     features: [
-      "Laden an 300+ Kaufland-Standorten",
+      "Laden an Kaufland-Verbrauchermärkten",
       "Kostenfrei während des Einkaufs (Standortabhängig)",
       "Grünstrom-Versorgung (laut Kaufland.de)",
       "Einfache Kreditkartenzahlung",
@@ -663,9 +663,8 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     standardPriceDc: 0.54,
     bnetzaAnteil: "Discounter-integriertes Laden, Eigenregie",
     description:
-      "ALDI SÜD betreibt mit 1.763 Ladepunkten eines der größten Discounter-Ladenetze in Deutschland. Die Stationen befinden sich auf den Parkplätzen der Märkte und ermöglichen kostengünstiges Laden beim Einkauf. ALDI NORD hat ein eigenständiges, kleineres Netz.",
+      "ALDI SÜD betreibt eines der größten Discounter-Ladenetze in Deutschland. Die Stationen befinden sich auf den Parkplätzen der Filialen und ermöglichen kostengünstiges Laden beim Einkauf. ALDI NORD verfügt über ein eigenständiges Ladenetz.",
     features: [
-      "1.763 Ladepunkte (GoingElectric Sep 2026)",
       "Laden an ALDI SÜD-Märkten",
       "Einfache Kreditkartenzahlung",
       "AC-Fokus (22 kW)",
