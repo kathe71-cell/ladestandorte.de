@@ -10,6 +10,7 @@ export interface BnetzaSearchStation {
   s: string;       // street + houseNumber
   p: string;       // plz
   c: string;       // city
+  st?: string;     // state
   k: number;       // maxKw
   n: number;       // pointsCount
   h: number;       // hpcPointsCount
@@ -181,7 +182,7 @@ function searchBnetzaRegistry(
     // Deduplication: if station belongs to an existing curated dossier, omit duplicate register card
     if (st.d) continue;
 
-    const searchableText = `${st.o} ${st.s} ${st.p} ${st.c} ${st.i}`.toLowerCase();
+    const searchableText = `${st.o} ${st.s} ${st.p} ${st.c} ${st.st || ''} ${st.i}`.toLowerCase();
 
     let allMatch = true;
     for (let t = 0; t < terms.length; t++) {
@@ -197,7 +198,7 @@ function searchBnetzaRegistry(
         type: 'bnetza',
         id: `bnetza-${st.i}`,
         title: `${st.o} · ${st.s || st.c}`,
-        subtitle: `${st.p} ${st.c} · ID: ${st.i} · ${st.n} ${st.n === 1 ? 'Ladepunkt' : 'Ladepunkte'}`,
+        subtitle: `${st.p} ${st.c} (${st.st || 'DE'}) · ID: ${st.i} · ${st.n} ${st.n === 1 ? 'Ladepunkt' : 'Ladepunkte'}`,
         badge: `${st.k} kW ${isHpc ? 'HPC' : 'AC'}`,
         url: `/ladestation-register/${st.cs}/${st.i}`,
         data: st,

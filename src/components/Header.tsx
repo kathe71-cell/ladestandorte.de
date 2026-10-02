@@ -181,20 +181,36 @@ export const Header: React.FC = () => {
                 </button>
 
                 {standorteOpen && (
-                  <div className="absolute top-full left-0 mt-1.5 w-60 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+                  <div className="absolute top-full left-0 mt-1.5 w-64 bg-white rounded-xl shadow-lg border border-[#DFE3DC] p-1.5 z-50">
+                    <Link
+                      to="/ladestationen"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
+                    >
+                      <Zap className="w-4 h-4 text-[#171917] shrink-0" />
+                      <div>
+                        <div className="leading-tight">Bundesweites Verzeichnis</div>
+                        <div className="text-[11px] text-[#6C716B] font-normal">Alle 117.043 BNetzA-Stationen</div>
+                      </div>
+                    </Link>
                     <Link
                       to="/staedte"
                       className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
                     >
                       <MapPin className="w-4 h-4 text-[#2F5E73] shrink-0" />
-                      <span>Top 50 Städte</span>
+                      <div>
+                        <div className="leading-tight">Top 50 Städte</div>
+                        <div className="text-[11px] text-[#6C716B] font-normal">Analytische Stadt-Profile</div>
+                      </div>
                     </Link>
                     <Link
                       to="/autobahnen"
                       className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-semibold"
                     >
                       <Navigation className="w-4 h-4 text-[#2F5E73] shrink-0" />
-                      <span>Autobahnen (A1–A99)</span>
+                      <div>
+                        <div className="leading-tight">Autobahnen (A1–A99)</div>
+                        <div className="text-[11px] text-[#6C716B] font-normal">Korridore &amp; Raststätten</div>
+                      </div>
                     </Link>
                     <Link
                       to="/suche"
@@ -461,6 +477,17 @@ export const Header: React.FC = () => {
             <span className="text-[10px] font-mono uppercase tracking-wider text-[#6C716B] font-bold px-3">
               Marktmonitore &amp; Verzeichnisse
             </span>
+
+            <Link
+              to="/ladestationen"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold min-h-[48px] ${
+                location.pathname === '/ladestationen' ? 'bg-[#171917] text-white' : 'text-[#171917] hover:bg-[#F7F7F2]'
+              }`}
+            >
+              <Zap className="w-5 h-5 text-[#2F5E73]" />
+              <span>Bundesweites Verzeichnis (117k)</span>
+            </Link>
 
             <Link
               to="/hpc-city-monitor"

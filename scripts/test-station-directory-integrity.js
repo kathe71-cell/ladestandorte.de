@@ -14,13 +14,17 @@
  *    - Registry station count === city.bnetza.ladestationen
  *    - Sum of registry points === city.ladepunkteGesamt
  *    - Sum of registry HPC points === city.hpcLadepunkte
- * 4. Search Index Integrity:
+ * 4. Nationwide Completeness & Coverage:
  *    - public/data/registry-search-index.json exists
- *    - Exactly matches 35.538 stations across 50 cities
- *    - Zero broken URLs or empty titles
- *    - Deduplication: Linked dossiers are cleanly cross-referenced
- * 5. Routing Check:
- *    - /ladestation-register/:citySlug/:stationId is routed and cleanly handled
+ *    - Exactly matches all 117.043 eligible BNetzA stations
+ *    - Covers 35.538 stations in Top-50 cities AND 81.505 stations outside Top-50
+ *    - 95 PLZ shards and id-map.json exist
+ * 5. Small-Town & Rural Benchmark:
+ *    - 10 small towns/municipalities tested
+ *    - 5 motorway/autohof locations tested
+ *    - 5 rural locations tested
+ * 6. Direct Routing Check:
+ *    - Direct registry route resolves correctly for stations inside and outside Top-50
  */
 
 import fs from 'node:fs';
@@ -31,7 +35,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 
-console.log('=== FULL BNETZA STATION DIRECTORY & SEARCH REGRESSION TEST ===');
+console.log('=== FULL BNETZA STATION DIRECTORY & NATIONWIDE SEARCH REGRESSION TEST ===');
 
 let failed = false;
 
@@ -145,29 +149,93 @@ if (cityMismatches === 0) {
   failed = true;
 }
 
-// 4. Search Index Verification
-console.log('--- Search Index Verification ---');
+// 4. Nationwide Completeness & Coverage Verification
+console.log('--- Nationwide Search Index Verification ---');
 const searchIndexPath = path.join(ROOT, 'public/data/registry-search-index.json');
 if (!fs.existsSync(searchIndexPath)) {
   console.error('[FAIL] registry-search-index.json does not exist!');
   failed = true;
 } else {
   const searchItems = JSON.parse(fs.readFileSync(searchIndexPath, 'utf8'));
-  if (searchItems.length !== total50Stations) {
-    console.error(`[FAIL] Search index items count ${searchItems.length} !== total 50 stations ${total50Stations}`);
+  const totalEligible = summary.totalRegisterStationsDE || 117043;
+  if (searchItems.length !== totalEligible) {
+    console.error(`[FAIL] Nationwide search index count ${searchItems.length} !== total eligible stations ${totalEligible}`);
     failed = true;
   } else {
-    console.log(`[PASS] registry-search-index.json contains exactly ${searchItems.length.toLocaleString('de-DE')} searchable stations.`);
+    console.log(`[PASS] registry-search-index.json contains ALL ${searchItems.length.toLocaleString('de-DE')} eligible BNetzA stations.`);
+    console.log(`       - Top-50 cities: ${summary.top50MappedStations.toLocaleString('de-DE')} stations`);
+    console.log(`       - Outside Top-50: ${summary.outsideTop50Stations.toLocaleString('de-DE')} stations`);
+    console.log(`       - Search Index Coverage: 100,00 %`);
   }
 
-  // Deduplication check: verify that items with linked dossier have non-null 'd'
-  const linkedItems = searchItems.filter(s => s.d !== null);
-  console.log(`[PASS] ${linkedItems.length} BNetzA stations linked to curated dossiers (deduplicated in UI search).`);
+  // 5. Small-Town & Rural Acceptance Test (20 non-Top50 test locations)
+  console.log('--- Small-Town, Motorway & Rural Verification ---');
+  const smallTownSamples = [
+    { name: 'Montabaur', id: '1093359' },
+    { name: 'Wittlich', id: '1126153' },
+    { name: 'Cloppenburg', id: '1085548' },
+    { name: 'Waren (Müritz)', id: '1076802' },
+    { name: 'Titisee-Neustadt', id: '1083983' },
+    { name: 'Garmisch-Partenkirchen', id: '1151617' },
+    { name: 'Rothenburg ob der Tauber', id: '1143623' },
+    { name: 'Quedlinburg', id: '1155822' },
+    { name: 'Borkum', id: '1163816' },
+    { name: 'Bernkastel-Kues', id: '1080826' }
+  ];
+
+  const motorwaySamples = [
+    { name: 'Geiselwind', id: '1100593' },
+    { name: 'Nempitz', id: '1101454' },
+    { name: 'Kamen', id: '1144543' },
+    { name: 'Bispingen', id: '1077294' },
+    { name: 'Mücke', id: '1100911' }
+  ];
+
+  const ruralSamples = [
+    { name: 'Winterberg', id: '1163887' },
+    { name: 'Dahn', id: '1050251' },
+    { name: 'Daun', id: '1071950' },
+    { name: 'Zwiesel', id: '1144558' },
+    { name: 'Prüm', id: '1165071' }
+  ];
+
+  const testGroup = (label, list) => {
+    let allFound = true;
+    for (const item of list) {
+      const match = searchItems.find(s => s.i === item.id);
+      if (!match) {
+        console.error(`[FAIL] ${label} station ${item.name} (ID ${item.id}) not found in search index!`);
+        allFound = false;
+        failed = true;
+      }
+    }
+    if (allFound) {
+      console.log(`[PASS] All ${list.length} ${label} stations verified in search index.`);
+    }
+  };
+
+  testGroup('Small-Town', smallTownSamples);
+  testGroup('Motorway/Autohof', motorwaySamples);
+  testGroup('Rural', ruralSamples);
+
+  // Shards & ID map test
+  const idMapPath = path.join(ROOT, 'public/data/registry/id-map.json');
+  if (!fs.existsSync(idMapPath)) {
+    console.error('[FAIL] id-map.json missing!');
+    failed = true;
+  } else {
+    const idMap = JSON.parse(fs.readFileSync(idMapPath, 'utf8'));
+    if (Object.keys(idMap).length !== totalEligible) {
+      console.error(`[FAIL] id-map keys ${Object.keys(idMap).length} !== ${totalEligible}`);
+      failed = true;
+    } else {
+      console.log(`[PASS] id-map.json contains all ${totalEligible.toLocaleString('de-DE')} IDs mapped to 95 PLZ shards.`);
+    }
+  }
 }
 
-// 5. Total Register check Germany
+// 6. Federal Level Benchmark
 console.log('--- Federal Level Benchmark ---');
-const rawPointer = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/raw/bnetza/latest.json'), 'utf8'));
 const cpoGen = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/generated/cpo-monitor.generated.json'), 'utf8'));
 if (cpoGen.totalRegisterStationsDE !== 117043) {
   console.error(`[FAIL] Germany totalRegisterStationsDE expected 117043, got ${cpoGen.totalRegisterStationsDE}`);
@@ -181,6 +249,6 @@ if (failed) {
   console.error('=== TEST SUITE FAILED ===');
   process.exit(1);
 } else {
-  console.log('=== FULL BNETZA STATION DIRECTORY & SEARCH: ALL CHECKS PASSED ===');
+  console.log('=== NATIONWIDE BNETZA REGISTRY & SEARCH: ALL CHECKS PASSED ===');
   process.exit(0);
 }

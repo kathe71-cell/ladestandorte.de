@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { 
   Zap, MapPin, Navigation, ShieldCheck, Database, ArrowLeft, ArrowRight, 
   ExternalLink, Info, CheckCircle2, AlertCircle 
@@ -21,6 +21,7 @@ export interface BnetzaRegistryStation {
   street: string;
   houseNumber: string;
   plz: string;
+  prefix?: string;
   city: string;
   state: string;
   lon: number | null;
@@ -35,6 +36,7 @@ export interface BnetzaRegistryStation {
   maxKw: number;
   powerLevels: number[];
   dossierId: string | null;
+  isTop50?: boolean;
 }
 
 export const RegisterStationDetailPage: React.FC = () => {
@@ -43,57 +45,82 @@ export const RegisterStationDetailPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const city = CITIES_DATA.find(c => c.slug === citySlug);
+  const matchedCity = CITIES_DATA.find(c => c.slug === citySlug);
 
   useEffect(() => {
     let isCancelled = false;
-    if (!citySlug || !stationId) {
+    if (!stationId) {
       setLoading(false);
       setError(true);
       return;
     }
 
     setLoading(true);
-    fetch(`/data/registry/${citySlug}.json`)
-      .then(res => {
-        if (!res.ok) throw new Error('Registry data not found');
-        return res.json();
-      })
-      .then((data: BnetzaRegistryStation[]) => {
-        if (isCancelled) return;
-        const found = data.find(s => s.id === stationId);
-        if (found) {
-          setStation(found);
-        } else {
-          setError(true);
+
+    async function loadStation() {
+      try {
+        // Strategy 1: If citySlug matches one of the 50 top cities, load direct city file
+        if (citySlug && matchedCity) {
+          const res = await fetch(`/data/registry/${citySlug}.json`);
+          if (res.ok) {
+            const data: BnetzaRegistryStation[] = await res.json();
+            const found = data.find(s => s.id === stationId);
+            if (found && !isCancelled) {
+              setStation(found);
+              setLoading(false);
+              return;
+            }
+          }
         }
-        setLoading(false);
-      })
-      .catch(() => {
+
+        // Strategy 2: Look up shard prefix in id-map.json (~316 KB gz) for ANY station in Germany
+        const idMapRes = await fetch('/data/registry/id-map.json');
+        if (idMapRes.ok) {
+          const idMap: Record<string, string> = await idMapRes.json();
+          const targetId = stationId as string;
+          const prefix = idMap[targetId];
+          if (prefix) {
+            const shardRes = await fetch(`/data/registry/shards/${prefix}.json`);
+            if (shardRes.ok) {
+              const shardData: BnetzaRegistryStation[] = await shardRes.json();
+              const found = shardData.find(s => s.id === stationId);
+              if (found && !isCancelled) {
+                setStation(found);
+                setLoading(false);
+                return;
+              }
+            }
+          }
+        }
+
         if (!isCancelled) {
           setError(true);
           setLoading(false);
         }
-      });
+      } catch (err) {
+        if (!isCancelled) {
+          setError(true);
+          setLoading(false);
+        }
+      }
+    }
+
+    loadStation();
 
     return () => {
       isCancelled = true;
     };
-  }, [citySlug, stationId]);
-
-  if (!city && !loading) {
-    return <Navigate to="/staedte" replace />;
-  }
+  }, [citySlug, stationId, matchedCity]);
 
   if (error && !loading) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-16 text-center space-y-4">
         <h1 className="text-2xl font-bold text-[#171917]">Ladestation im Register nicht gefunden</h1>
         <p className="text-sm text-[#6C716B]">
-          Der angeforderte Registerdatensatz ({stationId}) konnte im aktuellen amtlichen Snapshot für {city?.name || 'die Stadt'} nicht ermittelt werden.
+          Der angeforderte Registerdatensatz ({stationId}) konnte im aktuellen amtlichen Bundesnetzagentur-Snapshot nicht ermittelt werden.
         </p>
         <Link
-          to={city ? `/staedte/${city.slug}` : '/staedte'}
+          to={matchedCity ? `/staedte/${matchedCity.slug}` : '/ladestationen'}
           className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#171917] text-white text-xs font-bold"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -111,6 +138,9 @@ export const RegisterStationDetailPage: React.FC = () => {
     ? `https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lon}` 
     : null;
 
+  const cityName = station?.city || matchedCity?.name || 'Gemeinde';
+  const effectiveCitySlug = station?.citySlug || citySlug || 'deutschland';
+
   const schema = station ? {
     "@context": "https://schema.org",
     "@graph": [
@@ -118,9 +148,9 @@ export const RegisterStationDetailPage: React.FC = () => {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.ladestandorte.de/" },
-          { "@type": "ListItem", "position": 2, "name": "Städte", "item": "https://www.ladestandorte.de/staedte" },
-          { "@type": "ListItem", "position": 3, "name": station.city, "item": `https://www.ladestandorte.de/staedte/${station.citySlug}` },
-          { "@type": "ListItem", "position": 4, "name": `Station ${station.id}`, "item": `https://www.ladestandorte.de/ladestation-register/${station.citySlug}/${station.id}` }
+          { "@type": "ListItem", "position": 2, "name": "Ladestationen", "item": "https://www.ladestandorte.de/ladestationen" },
+          { "@type": "ListItem", "position": 3, "name": cityName, "item": `https://www.ladestandorte.de/ladestation-register/${effectiveCitySlug}/${station.id}` },
+          { "@type": "ListItem", "position": 4, "name": `Station ${station.id}`, "item": `https://www.ladestandorte.de/ladestation-register/${effectiveCitySlug}/${station.id}` }
         ]
       },
       {
@@ -132,6 +162,7 @@ export const RegisterStationDetailPage: React.FC = () => {
           "streetAddress": addressLine,
           "postalCode": station.plz,
           "addressLocality": station.city,
+          "addressRegion": station.state,
           "addressCountry": "DE"
         },
         ...(station.lat && station.lon ? {
@@ -150,16 +181,17 @@ export const RegisterStationDetailPage: React.FC = () => {
       <SEO
         title={station ? `${station.cpo} Ladestation ${station.id}: ${station.city} (${addressLine})` : 'Ladestation BNetzA-Register'}
         description={station ? `BNetzA-Registerdaten für Ladestation ${station.id} in ${station.city} (${addressLine}): ${station.pointsCount} Ladepunkte, bis ${station.maxKw} kW (${station.hpcPointsCount > 0 ? 'HPC-Schnelllader' : 'Normallader'}), Betreiber: ${station.cpo}.` : ''}
-        canonicalPath={station ? `/ladestation-register/${station.citySlug}/${station.id}` : undefined}
+        canonicalPath={station ? `/ladestation-register/${effectiveCitySlug}/${station.id}` : undefined}
         schema={schema}
+        noIndex={true}
       />
 
       <PageHero
         level={3}
         breadcrumbs={[
           { label: 'Startseite', href: '/' },
-          { label: 'Städte', href: '/staedte' },
-          { label: city?.name || 'Stadt', href: `/staedte/${citySlug}` },
+          { label: matchedCity ? matchedCity.name : 'Ladestationen', href: matchedCity ? `/staedte/${matchedCity.slug}` : '/ladestationen' },
+          { label: cityName, href: `/ladestation-register/${effectiveCitySlug}/${stationId}` },
           { label: `Register-Station ${stationId}`, isCurrent: true }
         ]}
         eyebrow={
@@ -168,8 +200,8 @@ export const RegisterStationDetailPage: React.FC = () => {
             <span>BNETZA-REGISTERDATENSATZ</span>
           </div>
         }
-        title={station ? `${station.cpo} · ${addressLine}` : `Ladestation ${stationId}`}
-        subtitle={station ? `${station.plz} ${station.city} · BNetzA-ID: ${station.id}` : 'Wird geladen...'}
+        title={station ? `${station.cpo} · ${addressLine || station.city}` : `Ladestation ${stationId}`}
+        subtitle={station ? `${station.plz} ${station.city} (${station.state}) · BNetzA-ID: ${station.id}` : 'Wird geladen...'}
       />
 
       {/* Distinction Banner: BNetzA Register vs Editorial Dossier */}
@@ -198,130 +230,129 @@ export const RegisterStationDetailPage: React.FC = () => {
         </div>
       ) : station ? (
         <div className="space-y-8">
-          {/* Key Metrics */}
+          {/* Key Metric Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
-              <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Max. Ladeleistung</span>
-              <span className="text-3xl font-black text-[#171917] font-mono mt-1 block tabular-nums">
-                {station.maxKw} kW
-              </span>
-              <span className="text-[11px] text-[#2F5E73] font-mono font-semibold mt-1 block">
-                {isHpc ? 'High Power Charging (HPC)' : 'Normalladung (AC)'}
-              </span>
+            <div className="bg-white p-5 rounded-2xl border border-[#DFE3DC] shadow-xs space-y-1">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#6C716B]">Maximale Ladeleistung</span>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-3xl font-extrabold text-[#171917]">{station.maxKw}</span>
+                <span className="text-xs font-bold text-[#6C716B]">kW</span>
+              </div>
+              <div className="text-xs font-medium text-[#2F5E73]">
+                {isHpc ? 'High-Power Charging (HPC)' : 'Normalladung (AC/DC)'}
+              </div>
             </div>
 
-            <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
-              <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte</span>
-              <span className="text-3xl font-black text-[#171917] font-mono mt-1 block tabular-nums">
-                {station.pointsCount}
-              </span>
-              <span className="text-[11px] text-[#6C716B] mt-1 block">
-                {station.hpcPointsCount > 0 ? `${station.hpcPointsCount} HPC (≥150 kW)` : 'Normalladepunkte'}
-              </span>
+            <div className="bg-white p-5 rounded-2xl border border-[#DFE3DC] shadow-xs space-y-1">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#6C716B]">Ladepunkte</span>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-3xl font-extrabold text-[#171917]">{station.pointsCount}</span>
+                <span className="text-xs font-bold text-[#6C716B]">Punkte</span>
+              </div>
+              <div className="text-xs text-[#6C716B]">
+                {station.hpcPointsCount > 0 ? `${station.hpcPointsCount}x HPC ≥150 kW` : 'Ausschließlich Normallader'}
+              </div>
             </div>
 
-            <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
-              <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Betreiber</span>
-              <span className="text-lg font-bold text-[#171917] line-clamp-1 mt-1 block">
-                {station.cpo}
-              </span>
-              <span className="text-[11px] text-[#6C716B] mt-1 block truncate">
-                {station.cpoRaw}
-              </span>
+            <div className="bg-white p-5 rounded-2xl border border-[#DFE3DC] shadow-xs space-y-1">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#6C716B]">Anschlussleistung</span>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-3xl font-extrabold text-[#171917]">{station.ratedKw || station.installedKw || '-'}</span>
+                <span className="text-xs font-bold text-[#6C716B]">kVA/kW</span>
+              </div>
+              <div className="text-xs text-[#6C716B]">
+                Installiert: {station.installedKw ? `${station.installedKw} kW` : 'n.a.'}
+              </div>
             </div>
 
-            <div className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs">
-              <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Nennleistung</span>
-              <span className="text-3xl font-black text-[#171917] font-mono mt-1 block tabular-nums">
-                {station.ratedKw} kW
-              </span>
-              <span className="text-[11px] text-[#6C716B] mt-1 block font-mono">
-                Installiert: {station.installedKw} kW
-              </span>
+            <div className="bg-white p-5 rounded-2xl border border-[#DFE3DC] shadow-xs space-y-1">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#6C716B]">Inbetriebnahme</span>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-xl font-extrabold text-[#171917]">
+                  {station.commissioningDate ? station.commissioningDate.split(' ')[0] : 'k.A.'}
+                </span>
+              </div>
+              <div className="text-xs text-[#6C716B]">
+                Art: {station.useCase || 'Öffentlich'}
+              </div>
             </div>
           </div>
 
           {/* Technical Specifications */}
-          <div className="bg-white rounded-2xl p-6 border border-[#DFE3DC] shadow-xs space-y-6">
-            <h2 className="text-lg font-bold text-[#171917]">
-              Technische Spezifikationen &amp; Registerangaben
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-              <div className="p-4 rounded-xl bg-[#F7F7F2] border border-[#DFE3DC] space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-[#6C716B]">BNetzA Stations-ID:</span>
-                  <strong className="font-mono text-[#171917]">{station.id}</strong>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-[#6C716B]">Standort-Adresse:</span>
-                  <strong className="text-[#171917] text-right">{fullAddress}</strong>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-[#6C716B]">Bundesland:</span>
-                  <strong className="text-[#171917]">{station.state}</strong>
-                </div>
-                {station.useCase && (
-                  <div className="flex justify-between">
-                    <span className="text-[#6C716B]">Nutzungsbereich / Use-Case:</span>
-                    <strong className="text-[#171917]">{station.useCase}</strong>
-                  </div>
-                )}
-                {station.commissioningDate && (
-                  <div className="flex justify-between">
-                    <span className="text-[#6C716B]">Inbetriebnahme:</span>
-                    <strong className="font-mono text-[#171917]">
-                      {station.commissioningDate.split(' ')[0]}
-                    </strong>
-                  </div>
-                )}
+          <div className="bg-white rounded-2xl border border-[#DFE3DC] shadow-xs overflow-hidden">
+            <div className="p-6 border-b border-[#DFE3DC] flex items-center justify-between">
+              <div>
+                <h2 className="text-lg font-bold text-[#171917]">Amtliche Registerdaten & Spezifikation</h2>
+                <p className="text-xs text-[#6C716B] mt-0.5">Stammdaten laut Bundesnetzagentur-Meldung</p>
               </div>
-
-              <div className="p-4 rounded-xl bg-[#F7F7F2] border border-[#DFE3DC] space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-[#6C716B]">Vorhandene Leistungsstufen:</span>
-                  <strong className="font-mono text-[#171917]">
-                    {station.powerLevels.length > 0 ? station.powerLevels.map(kw => `${kw} kW`).join(', ') : `${station.maxKw} kW`}
-                  </strong>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-[#6C716B]">HPC-Ladepunkte (≥150 kW):</span>
-                  <strong className="font-mono text-[#171917]">{station.hpcPointsCount}</strong>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-[#6C716B]">Normalladepunkte (&lt;150 kW):</span>
-                  <strong className="font-mono text-[#171917]">{station.pointsCount - station.hpcPointsCount}</strong>
-                </div>
-                {station.lat && station.lon && (
-                  <div className="flex justify-between">
-                    <span className="text-[#6C716B]">Koordinaten:</span>
-                    <strong className="font-mono text-[#171917]">{station.lat.toFixed(5)}, {station.lon.toFixed(5)}</strong>
-                  </div>
-                )}
-                <div className="flex justify-between">
-                  <span className="text-[#6C716B]">Datenherkunft:</span>
-                  <strong className="text-[#171917]">BNetzA Ladesäulenregister (CC BY 4.0)</strong>
-                </div>
-              </div>
+              <Database className="w-5 h-5 text-[#2F5E73]" />
             </div>
 
-            {/* Navigation & Maps */}
-            {googleMapsUrl && (
-              <div className="pt-4 border-t border-[#DFE3DC] flex flex-wrap items-center justify-between gap-3">
-                <span className="text-xs text-[#6C716B]">
-                  Navigation zum Standort starten:
-                </span>
-                <a
-                  href={googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-[#171917] hover:bg-black text-[#C7F000] rounded-xl font-bold text-xs inline-flex items-center gap-1.5 transition-colors"
-                >
-                  <Navigation className="w-3.5 h-3.5" />
-                  <span>Google Maps Navigation öffnen</span>
-                  <ExternalLink className="w-3 h-3 ml-1" />
-                </a>
+            <div className="divide-y divide-[#DFE3DC] text-sm">
+              <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span className="text-[#6C716B] font-medium">BNetzA Ladestation-ID</span>
+                <span className="font-mono font-bold text-[#171917]">{station.id}</span>
               </div>
+              <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span className="text-[#6C716B] font-medium">Betreiber (CPO)</span>
+                <span className="font-semibold text-[#171917]">{station.cpo} {station.cpoRaw !== station.cpo && `(${station.cpoRaw})`}</span>
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span className="text-[#6C716B] font-medium">Adresse</span>
+                <span className="font-medium text-[#171917]">{fullAddress}</span>
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span className="text-[#6C716B] font-medium">Bundesland</span>
+                <span className="font-medium text-[#171917]">{station.state}</span>
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span className="text-[#6C716B] font-medium">Geokoordinaten</span>
+                <span className="font-mono text-xs text-[#171917]">
+                  {station.lat && station.lon ? `${station.lat.toFixed(5)}, ${station.lon.toFixed(5)}` : 'Keine Koordinaten im Register'}
+                </span>
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span className="text-[#6C716B] font-medium">Vorhandene Leistungsstufen</span>
+                <div className="flex flex-wrap gap-1.5 mt-1 sm:mt-0">
+                  {station.powerLevels.length > 0 ? (
+                    station.powerLevels.map((kw, i) => (
+                      <span key={i} className="px-2 py-0.5 rounded bg-[#F7F7F2] border border-[#DFE3DC] text-xs font-mono font-bold text-[#171917]">
+                        {kw} kW
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-[#6C716B] text-xs">Keine Einzelstufen erfasst</span>
+                  )}
+                </div>
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span className="text-[#6C716B] font-medium">Anwendungsbereich / Lage</span>
+                <span className="font-medium text-[#171917]">{station.useCase || 'Nicht spezifiziert'}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Row */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-4">
+            <Link
+              to={matchedCity ? `/staedte/${matchedCity.slug}` : '/ladestationen'}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-[#DFE3DC] hover:border-[#171917] text-xs font-bold text-[#171917] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>{matchedCity ? `Alle Ladestationen in ${matchedCity.name}` : 'Zum bundesweiten Verzeichnis'}</span>
+            </Link>
+
+            {googleMapsUrl && (
+              <a
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#171917] hover:bg-black text-white text-xs font-bold transition-colors shadow-xs"
+              >
+                <Navigation className="w-4 h-4 text-[#C7F000]" />
+                <span>Route mit Google Maps planen</span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-60" />
+              </a>
             )}
           </div>
         </div>
@@ -329,7 +360,7 @@ export const RegisterStationDetailPage: React.FC = () => {
 
       <CitationBox
         title={station ? `BNetzA-Registerdatensatz ${station.id} (${station.cpo})` : 'BNetzA-Register'}
-        urlPath={station ? `/ladestation-register/${station.citySlug}/${station.id}` : `/staedte/${citySlug}`}
+        urlPath={station ? `/ladestation-register/${effectiveCitySlug}/${station.id}` : `/staedte/${citySlug}`}
       />
 
       <EEATBadge topic="BNetzA Ladesäulenregister" />
@@ -338,7 +369,6 @@ export const RegisterStationDetailPage: React.FC = () => {
         title="Günstig laden an allen Stationen"
         subtitle="Unabhängiger Ladekarten-Vergleich 2026"
         link="/ladekarten"
-        linkLabel="Ladekarten vergleichen"
       />
     </div>
   );

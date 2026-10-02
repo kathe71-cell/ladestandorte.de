@@ -31,6 +31,7 @@ const staticRoutes = [
   { url: '/mcs/was-ist-mcs', title: 'Was ist MCS? Das Megawatt Charging System technisch erklärt', desc: 'Alles zum MCS-Ladestandard für schwere Nutzfahrzeuge: CharIN-Norm, bis zu 3.750 kW Ladeleistung, flüssigkeitsgekühlte Stecker & ISO 15118-20.' },
   { url: '/mcs/mcs-vs-ccs', title: 'MCS vs. CCS im Vergleich: Unterschiede, Leistung & Ladezeiten', desc: 'Megawatt Charging System vs. Combined Charging System im direkten Vergleich: Steckergeometrie, Dauerstrom, Ladedauer und Einsatzbereiche.' },
   { url: '/mcs/lkw-laden', title: 'Lkw-Laden & 45-Minuten-Pause: Logistik im Fernverkehr', desc: 'Wie E-Lkw-Laden mit den gesetzlichen Lenk- und Ruhezeiten nach EG 561/2006 harmoniert. Nachlademengen, Drive-Through-Buchten und Depot vs. Highway.' },
+  { url: '/ladestationen', title: 'Bundesweites BNetzA-Ladestationsverzeichnis: Alle Ladestationen in Deutschland | ladestandorte.de', desc: 'Vollständiges Register aller 117.043 öffentlich registrierten BNetzA-Ladestationen in ganz Deutschland nach Bundesland, Ort, PLZ, Betreiber und HPC-Schnellladeleistung.' },
   { url: '/impressum', title: 'Impressum | ladestandorte.de', desc: 'Rechtliche Anbieterkennzeichnung und Kontaktinformationen von ladestandorte.de.' },
   { url: '/datenschutz', title: 'Datenschutzerklärung | ladestandorte.de', desc: 'Informationen zur Datenverarbeitung, DSGVO-Konformität und Privatsphäre auf ladestandorte.de.' },
   { url: '/404', title: '404 – Seite nicht gefunden | ladestandorte.de', desc: 'Die angeforderte Seite existiert nicht oder wurde verschoben.' },

@@ -1,7 +1,11 @@
 {
   "snapshotDate": "2026-10-01",
-  "totalCities": 50,
-  "totalMappedStations": 35538,
+  "totalRegisterStationsDE": 117043,
+  "totalRegisterPointsDE": 210185,
+  "top50CitiesCount": 50,
+  "top50MappedStations": 35538,
+  "top50MappedPoints": 62312,
+  "outsideTop50Stations": 81505,
   "cities": {
     "berlin": {
       "name": "Berlin",

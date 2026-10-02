@@ -27,6 +27,7 @@ const MUST_RESOLVE_ROUTES = [
   '/mcs/was-ist-mcs',
   '/mcs/mcs-vs-ccs',
   '/mcs/lkw-laden',
+  '/ladestationen',
   '/rechner',
   '/methodik'
 ];
