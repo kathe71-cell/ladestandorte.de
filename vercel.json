@@ -53,7 +53,7 @@
   "rewrites": [
     {
       "source": "/mcs/hub/((?!aral-pulse-lkw-megawatt-hub-schwarmstedt|aral-pulse-lkw-megawatt-hub-schnaittach|aral-pulse-lkw-megawatt-hub-rastow|aral-pulse-lkw-megawatt-hub-koenigs-wusterhausen|hola-forschungskorridor-raststaette-lipperland-sued|hola-forschungskorridor-lehre-wendhausen|milence-lkw-ladehub-hermsdorfer-kreuz|milence-lkw-ladehub-kassel-lohfelden).*)",
-      "destination": "/404.html"
+      "destination": "/api/mcs-hub-handler?slug=$1"
     },
     {
       "source": "/((?!_vercel/.*|api/.*|ads\\.txt|robots\\.txt|sitemap\\.xml|feed\\.xml|llms\\.txt|.*\\.svg|.*\\.png|.*\\.ico|.*\\.js|.*\\.css).*)",
