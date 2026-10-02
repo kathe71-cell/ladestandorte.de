@@ -64,6 +64,23 @@ const stationRoutes = (STATIONS_DATA || [])
     desc: `Ladestation ${s.name} in ${s.city} (${s.street}): ${s.pointsCount} Ladepunkte bis ${s.kwMax} kW HPC (${s.connectorTypes.join(', ')}). Betreiber: ${s.operator}. Anfahrt, Stecker & Ausstattung.`,
   }));
 
+// MCS Hub routes (/mcs/hub/:slug)
+const mcsHubStations = (STATIONS_DATA || []).filter((s) => s.truckCharging && s.truckCharging.supported);
+const mcsHubRoutes = mcsHubStations.map((s) => ({
+  url: `/mcs/hub/${s.slug}`,
+  title: `${s.name} · MCS Schwerlast-Ladehub | ladestandorte.de`,
+  desc: `E-Lkw Megawatt-Ladehub ${s.name} in ${s.city} (${s.motorway?.toUpperCase() || 'BAB'}). Bis zu ${s.kwMax} kW Ladeleistung, Durchfahrtsbuchten & verifizierte Betriebsdaten.`
+}));
+
+// Known user alias for Schwarmstedt: /mcs/hub/aral-pulse-schwarmstedt-a7
+const mcsAliasRoutes = [
+  {
+    url: '/mcs/hub/aral-pulse-schwarmstedt-a7',
+    title: 'Aral pulse E-Lkw Megawatt Hub Schwarmstedt (A7) · MCS Schwerlast-Ladehub | ladestandorte.de',
+    desc: 'E-Lkw Megawatt-Ladehub Aral pulse E-Lkw Megawatt Hub Schwarmstedt (A7) in Schwarmstedt (A7). Bis zu 1000 kW Ladeleistung, Durchfahrtsbuchten & verifizierte Betriebsdaten.'
+  }
+];
+
 // Legacy alias route for enbw-mobility-plus
 const aliasRoutes = [
   {
@@ -79,6 +96,8 @@ const allRoutes = [
   ...motorwayRoutes,
   ...operatorRoutes,
   ...stationRoutes,
+  ...mcsHubRoutes,
+  ...mcsAliasRoutes,
   ...aliasRoutes,
 ];
 

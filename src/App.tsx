@@ -29,6 +29,7 @@ import RegisterStationDetailPage from './pages/RegisterStationDetailPage';
 import NationwideDirectoryPage from './pages/NationwideDirectoryPage';
 import McsHubPage from './pages/McsHubPage';
 import McsStationsPage from './pages/McsStationsPage';
+import McsHubDetailPage from './pages/McsHubDetailPage';
 import McsWhatIsPage from './pages/McsWhatIsPage';
 import McsVsCcsPage from './pages/McsVsCcsPage';
 import McsTruckChargingPage from './pages/McsTruckChargingPage';
@@ -84,6 +85,7 @@ export function AppContent() {
         <Route path="/datenschutz" element={<DatenschutzPage />} />
         <Route path="/mcs" element={<McsHubPage />} />
         <Route path="/mcs/ladestationen" element={<McsStationsPage />} />
+        <Route path="/mcs/hub/:slug" element={<McsHubDetailPage />} />
         <Route path="/mcs/was-ist-mcs" element={<McsWhatIsPage />} />
         <Route path="/mcs/mcs-vs-ccs" element={<McsVsCcsPage />} />
         <Route path="/mcs/lkw-laden" element={<McsTruckChargingPage />} />

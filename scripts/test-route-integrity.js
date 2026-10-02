@@ -32,7 +32,7 @@ const MUST_RESOLVE_ROUTES = [
   '/methodik'
 ];
 
-// Add all 8 canonical MCS dossiers
+// Add all 8 canonical MCS dossiers and their /mcs/hub/:slug routes
 const mcsStations = getMcsStations(STATIONS_DATA);
 if (mcsStations.length !== 8) {
   console.error(`FAIL: Expected 8 MCS stations, found ${mcsStations.length}`);
@@ -41,7 +41,11 @@ if (mcsStations.length !== 8) {
 
 for (const st of mcsStations) {
   MUST_RESOLVE_ROUTES.push(getStationUrl(st));
+  MUST_RESOLVE_ROUTES.push(`/mcs/hub/${st.slug}`);
 }
+
+// User-friendly alias
+MUST_RESOLVE_ROUTES.push('/mcs/hub/aral-pulse-schwarmstedt-a7');
 
 let failures = 0;
 
@@ -68,7 +72,7 @@ for (const url of MUST_RESOLVE_ROUTES) {
 const UNKNOWN_ROUTES = [
   '/definitely-not-a-real-page',
   '/mcs/lkw-lenkzeitpause',
-  '/mcs/hub/aral-pulse-schwarmstedt-a7',
+  '/mcs/hub/nicht-existent',
   '/mcs/hub/definitely-not-real',
   '/standorte'
 ];
