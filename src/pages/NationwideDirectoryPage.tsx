@@ -466,8 +466,14 @@ export const NationwideDirectoryPage: React.FC = () => {
       {/* Directory Table / Cards */}
       <div className="space-y-4">
         {loading ? (
-          <div className="p-12 text-center text-sm font-mono text-[#6C716B] bg-white rounded-2xl border border-[#DFE3DC]">
-            Lade amtliche BNetzA-Ladestationen...
+          <div className="p-12 text-center bg-white rounded-2xl border border-[#DFE3DC] shadow-xs space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC] text-xs font-mono text-[#2F5E73]">
+              <Database className="w-4 h-4 animate-spin text-[#2F5E73]" />
+              <span>Amtlichen BNetzA-Registerindex initialisieren...</span>
+            </div>
+            <p className="text-xs text-[#6C716B] max-w-md mx-auto">
+              Lade 117.043 registrierte Ladestationen für bundesweite Echtzeit-Filterung und Volltextsuche.
+            </p>
           </div>
         ) : paginatedStations.length === 0 ? (
           <div className="p-12 text-center bg-white rounded-2xl border border-[#DFE3DC] space-y-4 max-w-xl mx-auto">
