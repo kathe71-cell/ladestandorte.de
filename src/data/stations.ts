@@ -44,6 +44,7 @@ export interface StationData {
   plz: string;
   street: string;
   motorway?: string;
+  motorways?: string[]; // All relevant motorway corridors (e.g. junction stations ['a7', 'a49'])
   operator: string;
   operatorSlug: string;
   kwMax: number;
@@ -145,7 +146,12 @@ export function getDossierCount(): number {
 }
 
 export function getMotorwayDossiers(motorwaySlug: string): StationData[] {
-  return STATIONS_DATA.filter(s => s.motorway === motorwaySlug && isIndexableLocation(s));
+  return STATIONS_DATA.filter((s) => {
+    if (!isIndexableLocation(s)) return false;
+    if (s.motorway === motorwaySlug) return true;
+    if (Array.isArray(s.motorways) && s.motorways.includes(motorwaySlug)) return true;
+    return false;
+  });
 }
 
 
@@ -232,6 +238,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "40721",
     street: "Nordpark 2",
     motorway: "a3",
+    motorways: ["a3", "a46"],
     operator: "Tesla Supercharger / Fastned",
     operatorSlug: "multiprovider",
     kwMax: 350,
@@ -255,6 +262,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "59174",
     street: "Kamen Karree 2",
     motorway: "a1",
+    motorways: ["a1", "a2"],
     operator: "EnBW mobility+",
     operatorSlug: "enbw",
     kwMax: 400,
@@ -651,6 +659,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "60549",
     street: "Hugo-Eckener-Ring",
     motorway: "a3",
+    motorways: ["a3", "a5"],
     operator: "EnBW mobility+",
     operatorSlug: "enbw",
     kwMax: 400,
@@ -2365,6 +2374,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "07586",
     street: "Am Rüdersdorfer Wege 5D",
     motorway: "a4",
+    motorways: ["a4", "a9"],
     operator: "Milence",
     operatorSlug: "milence",
     kwMax: 400,
@@ -2412,6 +2422,7 @@ export const STATIONS_DATA: StationData[] = [
     plz: "34253",
     street: "Alexander-von-Humboldt-Straße 1",
     motorway: "a7",
+    motorways: ["a7", "a49"],
     operator: "Milence",
     operatorSlug: "milence",
     kwMax: 400,
