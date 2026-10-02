@@ -131,6 +131,12 @@ for (const route of allRoutes) {
 
 console.log(`Successfully prerendered ${successCount} of ${allRoutes.length} routes!`);
 
+// Ensure Vercel custom 404 handler can serve static 404.html directly
+if (fs.existsSync(toAbsolute('dist/404/index.html'))) {
+  fs.copyFileSync(toAbsolute('dist/404/index.html'), toAbsolute('dist/404.html'));
+  console.log('Copied dist/404/index.html to dist/404.html for Vercel static error routing.');
+}
+
 // Generate static search index
 try {
   const { generateSearchIndex } = await import('./scripts/build-search-index.js');
