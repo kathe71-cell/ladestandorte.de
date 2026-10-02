@@ -12,6 +12,7 @@ import { SEO } from '../components/SEO';
 import { PageHero } from '../components/PageHero';
 import { CityStationDirectory } from '../components/CityStationDirectory';
 import { getSnapshotDateFormatted } from '../lib/datasetDate';
+import registrySummary from '../data/generated/registry-summary.generated.json';
 
 export const CityPage: React.FC = () => {
   const { citySlug } = useParams<{ citySlug: string }>();
@@ -128,45 +129,55 @@ export const CityPage: React.FC = () => {
         description={city.description}
       />
 
-      {/* City Primary KPI Strip */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
-          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte gesamt</span>
-          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
+      {/* City Primary Infrastructure KPI Strip (Exakt abgestimmt auf BNetzA-Register) */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div className="p-4 sm:p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte gesamt</span>
+          <span className="text-xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {city.ladepunkteGesamt.toLocaleString('de-DE')}
           </span>
-          <span className="text-[11px] text-[#6C716B] mt-1 block font-mono">
-            {city.bnetza.ladestationen.toLocaleString('de-DE')} Stationen
+          <span className="text-[11px] text-[#6C716B] mt-0.5 block font-mono">
+            {city.pointsPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 1 })} / 1k Einw.
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-xs">
-          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte ≥150 kW</span>
-          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
+        <div className="p-4 sm:p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">Registrierte Stationen</span>
+          <span className="text-xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
+            {city.bnetza.ladestationen.toLocaleString('de-DE')}
+          </span>
+          <span className="text-[11px] text-[#6C716B] mt-0.5 block font-mono">
+            amtlich gemeldet
+          </span>
+        </div>
+
+        <div className="p-4 sm:p-5 bg-white rounded-xl border border-[#DFE3DC] border-t-4 border-t-[#C7F000] shadow-xs">
+          <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">HPC-Ladepunkte</span>
+          <span className="text-xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
             {city.hpcLadepunkte.toLocaleString('de-DE')}
           </span>
-          <span className="text-[11px] text-[#2F5E73] font-mono font-semibold mt-1 block">
-            {((city.hpcLadepunkte / city.ladepunkteGesamt) * 100).toFixed(1)} % HPC-Klasse
+          <span className="text-[11px] text-[#2F5E73] font-mono font-semibold mt-0.5 block">
+            ≥150 kW ({((city.hpcLadepunkte / city.ladepunkteGesamt) * 100).toFixed(1)} %)
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
-          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">LP / 1.000 Einwohner</span>
-          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
-            {city.pointsPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })}
+        <div className="p-4 sm:p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
+          <span className="text-[11px] font-mono text-[#6C716B] uppercase font-bold block">HPC-Stationen</span>
+          <span className="text-xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
+            {(registrySummary.cities as Record<string, any>)[city.slug]?.hpcStationsCount?.toLocaleString('de-DE') || '-'}
           </span>
-          <span className="text-[11px] text-[#6C716B] mt-1 block font-mono">
-            {city.einwohner.toLocaleString('de-DE')} Einw.
+          <span className="text-[11px] text-[#6C716B] mt-0.5 block font-mono">
+            mit mind. 1 HPC
           </span>
         </div>
 
-        <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
-          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">≥150 kW / 1.000 Einw.</span>
-          <span className="text-2xl sm:text-4xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
-            {city.hpcPer1000Pop.toLocaleString('de-DE', { minimumFractionDigits: 2 })}
+        <div className="col-span-2 sm:col-span-1 p-4 sm:p-5 bg-white rounded-xl border border-amber-200 shadow-xs bg-linear-to-b from-amber-50/40 to-white">
+          <span className="text-[11px] font-mono text-amber-900 uppercase font-bold block">Redaktionelle Dossiers</span>
+          <span className="text-xl sm:text-3xl font-black text-[#171917] font-mono tracking-tight mt-1 block tabular-nums">
+            {cityStations.length}
           </span>
-          <span className="text-[11px] text-[#6C716B] mt-1 block">
-            HPC-Dichte
+          <span className="text-[11px] text-amber-800 mt-0.5 block font-semibold">
+            begutachtete Hubs
           </span>
         </div>
       </div>

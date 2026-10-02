@@ -224,9 +224,11 @@ export function instantSearch(
   const primaryIndex = buildSearchIndex();
   const cleanQuery = query.trim().toLowerCase();
 
-  // Trigger lazy loading of registry when user interacts
+  // Trigger lazy loading of registry ONLY when user actually searches or filters
   if (typeof window !== 'undefined') {
-    ensureRegistryLoaded();
+    if (cleanQuery.length > 0 || filters.hpcOnly || filters.operatorSlug || filters.connectorType || filters.motorwaySlug || filters.coveredOnly || filters.wcGastroOnly || filters.afirOnly || filters.autoChargeOnly) {
+      ensureRegistryLoaded();
+    }
   }
 
   if (!cleanQuery && !filters.hpcOnly && !filters.operatorSlug && !filters.connectorType && !filters.motorwaySlug) {

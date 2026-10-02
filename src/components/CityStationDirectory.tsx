@@ -4,6 +4,7 @@ import {
   Zap, Filter, Search, ChevronLeft, ChevronRight, ArrowRight, 
   MapPin, Building, ShieldCheck, Database, CheckCircle2 
 } from 'lucide-react';
+import { STATIONS_DATA, getStationUrl } from '../data/stations';
 
 export interface BnetzaRegistryStationItem {
   id: string;
@@ -335,21 +336,29 @@ export const CityStationDirectory: React.FC<Props> = ({
 
                   <div className="mt-3 pt-2.5 border-t border-[#DFE3DC] flex items-center justify-between text-xs">
                     {st.dossierId ? (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                        <span>Verifiziertes Dossier</span>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-950 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-amber-700" />
+                        <span>Redaktionelles Dossier</span>
                       </span>
                     ) : (
                       <span className="text-[11px] text-[#6C716B]">BNetzA-Register</span>
                     )}
 
-                    <Link
-                      to={`/ladestation-register/${st.citySlug}/${st.id}`}
-                      className="font-bold text-[#2F5E73] hover:underline inline-flex items-center gap-1"
-                    >
-                      <span>Registerdetails</span>
-                      <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
-                    </Link>
+                    {(() => {
+                      const dossier = st.dossierId ? STATIONS_DATA.find(d => d.id === st.dossierId) : null;
+                      const targetUrl = dossier ? getStationUrl(dossier) : `/ladestation-register/${st.citySlug}/${st.id}`;
+                      const label = dossier ? 'Dossier öffnen' : 'Registerdetails';
+
+                      return (
+                        <Link
+                          to={targetUrl}
+                          className="font-bold text-[#171917] hover:text-[#2F5E73] inline-flex items-center gap-1 min-h-[44px]"
+                        >
+                          <span>{label}</span>
+                          <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
+                        </Link>
+                      );
+                    })()}
                   </div>
                 </div>
               );
