@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Zap, MapPin, Navigation, ShieldCheck, X, ArrowRight, Gauge } from 'lucide-react';
+import { Search, Zap, MapPin, Navigation, ShieldCheck, X, ArrowRight, Gauge, Database } from 'lucide-react';
 import { instantSearch, SearchResultItem } from '../utils/searchEngine';
 import { StationData } from '../data/stations';
 import { StationDetailModal } from './StationDetailModal';
@@ -28,7 +28,7 @@ export const InstantFinder: React.FC<Props> = ({
   const [coveredOnly, setCoveredOnly] = useState(false);
   const [wcGastroOnly, setWcGastroOnly] = useState(false);
   const [afirOnly, setAfirOnly] = useState(false);
-  const [activeTab, setActiveTab] = useState<'all' | 'station' | 'city' | 'motorway' | 'operator'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'dossier' | 'bnetza' | 'city' | 'motorway' | 'operator'>('all');
   const [results, setResults] = useState<SearchResultItem[]>([]);
   const [durationMs, setDurationMs] = useState<number>(0);
   const [selectedStation, setSelectedStation] = useState<StationData | null>(null);
@@ -41,7 +41,7 @@ export const InstantFinder: React.FC<Props> = ({
       coveredOnly,
       wcGastroOnly,
       afirOnly
-    }, 25);
+    }, 35);
 
     let filtered = matched;
     if (activeTab !== 'all') {
@@ -58,7 +58,7 @@ export const InstantFinder: React.FC<Props> = ({
   };
 
   const handleItemClick = (item: SearchResultItem) => {
-    if (item.type === 'station') {
+    if (item.type === 'dossier') {
       setSelectedStation(item.data as StationData);
     } else {
       navigate(item.url);
@@ -132,22 +132,33 @@ export const InstantFinder: React.FC<Props> = ({
               </button>
               <button
                 type="button"
-                onClick={() => setActiveTab('station')}
+                onClick={() => setActiveTab('dossier')}
                 className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                  activeTab === 'station'
-                    ? 'bg-slate-900 text-white'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  activeTab === 'dossier'
+                    ? 'bg-[#171917] text-white'
+                    : 'bg-[#F7F7F2] text-[#171917] hover:bg-[#EAECE6]'
                 }`}
               >
-                Ladeparks
+                Redaktionelle Dossiers
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('bnetza')}
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                  activeTab === 'bnetza'
+                    ? 'bg-[#171917] text-white'
+                    : 'bg-[#F7F7F2] text-[#171917] hover:bg-[#EAECE6]'
+                }`}
+              >
+                BNetzA-Register
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab('city')}
                 className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                   activeTab === 'city'
-                    ? 'bg-slate-900 text-white'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    ? 'bg-[#171917] text-white'
+                    : 'bg-[#F7F7F2] text-[#171917] hover:bg-[#EAECE6]'
                 }`}
               >
                 Städte
@@ -157,8 +168,8 @@ export const InstantFinder: React.FC<Props> = ({
                 onClick={() => setActiveTab('motorway')}
                 className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                   activeTab === 'motorway'
-                    ? 'bg-slate-900 text-white'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    ? 'bg-[#171917] text-white'
+                    : 'bg-[#F7F7F2] text-[#171917] hover:bg-[#EAECE6]'
                 }`}
               >
                 Autobahnen
@@ -168,8 +179,8 @@ export const InstantFinder: React.FC<Props> = ({
                 onClick={() => setActiveTab('operator')}
                 className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                   activeTab === 'operator'
-                    ? 'bg-slate-900 text-white'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    ? 'bg-[#171917] text-white'
+                    : 'bg-[#F7F7F2] text-[#171917] hover:bg-[#EAECE6]'
                 }`}
               >
                 Betreiber
@@ -230,7 +241,8 @@ export const InstantFinder: React.FC<Props> = ({
             </div>
           ) : (
             results.map((item) => {
-              const isStation = item.type === 'station';
+              const isDossier = item.type === 'dossier';
+              const isBnetza = item.type === 'bnetza';
               const isCity = item.type === 'city';
               const isMotorway = item.type === 'motorway';
               const isOperator = item.type === 'operator';
@@ -243,42 +255,55 @@ export const InstantFinder: React.FC<Props> = ({
                 >
                   <div className="flex items-start gap-3 min-w-0">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                      isStation
-                        ? 'bg-[#171917] text-white'
+                      isDossier
+                        ? 'bg-[#171917] text-white border border-[#171917]'
+                        : isBnetza
+                        ? 'bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]'
                         : isCity
                         ? 'bg-[#F7F7F2] text-[#2F5E73] border border-[#DFE3DC]'
                         : isMotorway
-                        ? 'bg-amber-100 text-amber-900'
+                        ? 'bg-[#171917] text-[#C7F000]'
                         : 'bg-slate-100 text-slate-800'
                     }`}>
-                      {isStation && <Zap className="w-5 h-5 text-[#C7F000]" />}
+                      {isDossier && <Zap className="w-5 h-5 text-[#C7F000]" />}
+                      {isBnetza && <Database className="w-4 h-4 text-[#2F5E73]" />}
                       {isCity && <MapPin className="w-5 h-5 text-[#2F5E73]" />}
-                      {isMotorway && <Navigation className="w-5 h-5 text-amber-700" />}
+                      {isMotorway && <Navigation className="w-5 h-5 text-[#C7F000]" />}
                       {isOperator && <ShieldCheck className="w-5 h-5 text-[#171917]" />}
                     </div>
 
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-bold text-slate-900 text-sm sm:text-base group-hover:text-[#2F5E73] transition-colors truncate">
+                        <span className="font-bold text-[#171917] text-sm sm:text-base group-hover:text-[#2F5E73] transition-colors truncate">
                           {item.title}
                         </span>
-                        <span className={`px-2 py-0.5 rounded text-[11px] font-mono font-bold uppercase ${
-                          isStation
-                            ? 'bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]'
+                        
+                        {/* Type badge */}
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${
+                          isDossier
+                            ? 'bg-[#171917] text-[#C7F000]'
+                            : isBnetza
+                            ? 'bg-slate-100 text-slate-700 border border-slate-200'
                             : isCity
                             ? 'bg-blue-50 text-blue-800 border border-blue-200'
                             : isMotorway
                             ? 'bg-amber-50 text-amber-800 border border-amber-200'
                             : 'bg-slate-100 text-slate-800 border border-slate-200'
                         }`}>
+                          {isDossier ? 'Redaktionelles Dossier' : isBnetza ? 'BNetzA-Register' : item.type}
+                        </span>
+
+                        {/* Power / Count badge */}
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]">
                           {item.badge}
                         </span>
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-600 truncate mt-0.5">
+                      
+                      <p className="text-xs sm:text-sm text-[#6C716B] truncate mt-0.5">
                         {item.subtitle}
                       </p>
 
-                      {isStation && (
+                      {isDossier && (
                         <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
                           {((item.data as StationData).connectorTypes || []).map(t => (
                             <span key={t} className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]">
@@ -290,19 +315,14 @@ export const InstantFinder: React.FC<Props> = ({
                               E-Lkw {((item.data as StationData).truckCharging?.mcsStatus === 'operational' ? 'MCS' : 'Hub')}
                             </span>
                           )}
-                          {(item.data as StationData).exitDistance && (
-                            <span className="text-[10px] font-mono text-slate-500 hidden sm:inline">
-                              {(item.data as StationData).exitDistance}
-                            </span>
-                          )}
                         </div>
                       )}
                     </div>
                   </div>
 
-                  <div className="shrink-0 flex items-center gap-1 text-slate-400 group-hover:text-[#171917] transition-colors">
+                  <div className="shrink-0 flex items-center gap-1 text-[#6C716B] group-hover:text-[#171917] transition-colors">
                     <span className="hidden sm:inline text-xs font-semibold">
-                      {isStation ? 'Details ansehen' : 'Übersicht öffnen'}
+                      {isDossier ? 'Dossier ansehen' : isBnetza ? 'Registerdetails' : 'Öffnen'}
                     </span>
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" />
                   </div>

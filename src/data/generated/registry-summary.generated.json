@@ -1,0 +1,357 @@
+{
+  "snapshotDate": "2026-10-01",
+  "totalCities": 50,
+  "totalMappedStations": 35538,
+  "cities": {
+    "berlin": {
+      "name": "Berlin",
+      "stationCount": 4984,
+      "pointsCount": 7617,
+      "hpcPointsCount": 988,
+      "hpcStationsCount": 546
+    },
+    "hamburg": {
+      "name": "Hamburg",
+      "stationCount": 3377,
+      "pointsCount": 6058,
+      "hpcPointsCount": 830,
+      "hpcStationsCount": 464
+    },
+    "muenchen": {
+      "name": "München",
+      "stationCount": 2390,
+      "pointsCount": 3667,
+      "hpcPointsCount": 265,
+      "hpcStationsCount": 168
+    },
+    "koeln": {
+      "name": "Köln",
+      "stationCount": 1477,
+      "pointsCount": 2711,
+      "hpcPointsCount": 321,
+      "hpcStationsCount": 172
+    },
+    "frankfurt": {
+      "name": "Frankfurt am Main",
+      "stationCount": 1319,
+      "pointsCount": 2161,
+      "hpcPointsCount": 198,
+      "hpcStationsCount": 106
+    },
+    "stuttgart": {
+      "name": "Stuttgart",
+      "stationCount": 2324,
+      "pointsCount": 4231,
+      "hpcPointsCount": 150,
+      "hpcStationsCount": 78
+    },
+    "duesseldorf": {
+      "name": "Düsseldorf",
+      "stationCount": 1444,
+      "pointsCount": 2532,
+      "hpcPointsCount": 181,
+      "hpcStationsCount": 96
+    },
+    "leipzig": {
+      "name": "Leipzig",
+      "stationCount": 734,
+      "pointsCount": 1377,
+      "hpcPointsCount": 209,
+      "hpcStationsCount": 112
+    },
+    "dortmund": {
+      "name": "Dortmund",
+      "stationCount": 911,
+      "pointsCount": 1368,
+      "hpcPointsCount": 243,
+      "hpcStationsCount": 135
+    },
+    "essen": {
+      "name": "Essen",
+      "stationCount": 673,
+      "pointsCount": 1203,
+      "hpcPointsCount": 190,
+      "hpcStationsCount": 101
+    },
+    "bremen": {
+      "name": "Bremen",
+      "stationCount": 808,
+      "pointsCount": 1431,
+      "hpcPointsCount": 181,
+      "hpcStationsCount": 95
+    },
+    "dresden": {
+      "name": "Dresden",
+      "stationCount": 573,
+      "pointsCount": 1137,
+      "hpcPointsCount": 286,
+      "hpcStationsCount": 154
+    },
+    "hannover": {
+      "name": "Hannover",
+      "stationCount": 1110,
+      "pointsCount": 2015,
+      "hpcPointsCount": 175,
+      "hpcStationsCount": 91
+    },
+    "nuernberg": {
+      "name": "Nürnberg",
+      "stationCount": 844,
+      "pointsCount": 1712,
+      "hpcPointsCount": 200,
+      "hpcStationsCount": 99
+    },
+    "duisburg": {
+      "name": "Duisburg",
+      "stationCount": 644,
+      "pointsCount": 1145,
+      "hpcPointsCount": 113,
+      "hpcStationsCount": 56
+    },
+    "bochum": {
+      "name": "Bochum",
+      "stationCount": 601,
+      "pointsCount": 981,
+      "hpcPointsCount": 224,
+      "hpcStationsCount": 127
+    },
+    "wuppertal": {
+      "name": "Wuppertal",
+      "stationCount": 265,
+      "pointsCount": 483,
+      "hpcPointsCount": 100,
+      "hpcStationsCount": 60
+    },
+    "bielefeld": {
+      "name": "Bielefeld",
+      "stationCount": 396,
+      "pointsCount": 721,
+      "hpcPointsCount": 133,
+      "hpcStationsCount": 78
+    },
+    "bonn": {
+      "name": "Bonn",
+      "stationCount": 621,
+      "pointsCount": 1232,
+      "hpcPointsCount": 137,
+      "hpcStationsCount": 78
+    },
+    "muenster": {
+      "name": "Münster",
+      "stationCount": 404,
+      "pointsCount": 772,
+      "hpcPointsCount": 104,
+      "hpcStationsCount": 58
+    },
+    "karlsruhe": {
+      "name": "Karlsruhe",
+      "stationCount": 340,
+      "pointsCount": 655,
+      "hpcPointsCount": 173,
+      "hpcStationsCount": 97
+    },
+    "mannheim": {
+      "name": "Mannheim",
+      "stationCount": 468,
+      "pointsCount": 824,
+      "hpcPointsCount": 176,
+      "hpcStationsCount": 95
+    },
+    "augsburg": {
+      "name": "Augsburg",
+      "stationCount": 324,
+      "pointsCount": 578,
+      "hpcPointsCount": 110,
+      "hpcStationsCount": 68
+    },
+    "wiesbaden": {
+      "name": "Wiesbaden",
+      "stationCount": 744,
+      "pointsCount": 1370,
+      "hpcPointsCount": 142,
+      "hpcStationsCount": 85
+    },
+    "kassel": {
+      "name": "Kassel",
+      "stationCount": 304,
+      "pointsCount": 648,
+      "hpcPointsCount": 94,
+      "hpcStationsCount": 63
+    },
+    "gelsenkirchen": {
+      "name": "Gelsenkirchen",
+      "stationCount": 238,
+      "pointsCount": 474,
+      "hpcPointsCount": 118,
+      "hpcStationsCount": 62
+    },
+    "moenchengladbach": {
+      "name": "Mönchengladbach",
+      "stationCount": 387,
+      "pointsCount": 777,
+      "hpcPointsCount": 146,
+      "hpcStationsCount": 77
+    },
+    "braunschweig": {
+      "name": "Braunschweig",
+      "stationCount": 675,
+      "pointsCount": 1206,
+      "hpcPointsCount": 152,
+      "hpcStationsCount": 81
+    },
+    "chemnitz": {
+      "name": "Chemnitz",
+      "stationCount": 309,
+      "pointsCount": 544,
+      "hpcPointsCount": 150,
+      "hpcStationsCount": 83
+    },
+    "kiel": {
+      "name": "Kiel",
+      "stationCount": 312,
+      "pointsCount": 580,
+      "hpcPointsCount": 108,
+      "hpcStationsCount": 58
+    },
+    "aachen": {
+      "name": "Aachen",
+      "stationCount": 601,
+      "pointsCount": 1074,
+      "hpcPointsCount": 124,
+      "hpcStationsCount": 66
+    },
+    "halle": {
+      "name": "Halle (Saale)",
+      "stationCount": 174,
+      "pointsCount": 349,
+      "hpcPointsCount": 107,
+      "hpcStationsCount": 56
+    },
+    "magdeburg": {
+      "name": "Magdeburg",
+      "stationCount": 274,
+      "pointsCount": 561,
+      "hpcPointsCount": 190,
+      "hpcStationsCount": 102
+    },
+    "freiburg": {
+      "name": "Freiburg im Breisgau",
+      "stationCount": 477,
+      "pointsCount": 852,
+      "hpcPointsCount": 101,
+      "hpcStationsCount": 56
+    },
+    "krefeld": {
+      "name": "Krefeld",
+      "stationCount": 151,
+      "pointsCount": 279,
+      "hpcPointsCount": 76,
+      "hpcStationsCount": 45
+    },
+    "mainz": {
+      "name": "Mainz",
+      "stationCount": 329,
+      "pointsCount": 571,
+      "hpcPointsCount": 80,
+      "hpcStationsCount": 40
+    },
+    "luebeck": {
+      "name": "Lübeck",
+      "stationCount": 395,
+      "pointsCount": 758,
+      "hpcPointsCount": 152,
+      "hpcStationsCount": 86
+    },
+    "erfurt": {
+      "name": "Erfurt",
+      "stationCount": 268,
+      "pointsCount": 486,
+      "hpcPointsCount": 109,
+      "hpcStationsCount": 61
+    },
+    "oberhausen": {
+      "name": "Oberhausen",
+      "stationCount": 396,
+      "pointsCount": 677,
+      "hpcPointsCount": 114,
+      "hpcStationsCount": 69
+    },
+    "rostock": {
+      "name": "Rostock",
+      "stationCount": 214,
+      "pointsCount": 410,
+      "hpcPointsCount": 119,
+      "hpcStationsCount": 64
+    },
+    "hagen": {
+      "name": "Hagen",
+      "stationCount": 172,
+      "pointsCount": 311,
+      "hpcPointsCount": 81,
+      "hpcStationsCount": 39
+    },
+    "potsdam": {
+      "name": "Potsdam",
+      "stationCount": 158,
+      "pointsCount": 293,
+      "hpcPointsCount": 33,
+      "hpcStationsCount": 18
+    },
+    "saarbruecken": {
+      "name": "Saarbrücken",
+      "stationCount": 164,
+      "pointsCount": 275,
+      "hpcPointsCount": 73,
+      "hpcStationsCount": 41
+    },
+    "hamm": {
+      "name": "Hamm",
+      "stationCount": 209,
+      "pointsCount": 403,
+      "hpcPointsCount": 54,
+      "hpcStationsCount": 27
+    },
+    "ludwigshafen": {
+      "name": "Ludwigshafen am Rhein",
+      "stationCount": 211,
+      "pointsCount": 343,
+      "hpcPointsCount": 91,
+      "hpcStationsCount": 50
+    },
+    "muelheim": {
+      "name": "Mülheim an der Ruhr",
+      "stationCount": 215,
+      "pointsCount": 405,
+      "hpcPointsCount": 74,
+      "hpcStationsCount": 41
+    },
+    "oldenburg": {
+      "name": "Oldenburg (Oldb)",
+      "stationCount": 217,
+      "pointsCount": 364,
+      "hpcPointsCount": 137,
+      "hpcStationsCount": 69
+    },
+    "osnabrueck": {
+      "name": "Osnabrück",
+      "stationCount": 303,
+      "pointsCount": 574,
+      "hpcPointsCount": 120,
+      "hpcStationsCount": 61
+    },
+    "leverkusen": {
+      "name": "Leverkusen",
+      "stationCount": 199,
+      "pointsCount": 333,
+      "hpcPointsCount": 36,
+      "hpcStationsCount": 18
+    },
+    "heidelberg": {
+      "name": "Heidelberg",
+      "stationCount": 411,
+      "pointsCount": 784,
+      "hpcPointsCount": 46,
+      "hpcStationsCount": 23
+    }
+  }
+}

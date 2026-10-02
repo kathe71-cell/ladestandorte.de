@@ -10,6 +10,7 @@ import { CitationBox } from '../components/CitationBox';
 import { EEATBadge } from '../components/EEATBadge';
 import { SEO } from '../components/SEO';
 import { PageHero } from '../components/PageHero';
+import { CityStationDirectory } from '../components/CityStationDirectory';
 import { getSnapshotDateFormatted } from '../lib/datasetDate';
 
 export const CityPage: React.FC = () => {
@@ -352,36 +353,30 @@ export const CityPage: React.FC = () => {
         </div>
       )}
 
-      {/* Hervorgehobene Ladestationen in dieser Stadt */}
+      {/* EBENE A: REDAKTIONELL VERIFIZIERTE LADEPARKS */}
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[#DFE3DC] pb-4">
           <div>
-            <h2 className="text-2xl font-bold text-slate-950">
-              Hervorgehobene Schnellladestandorte in {city.name}
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-700 uppercase tracking-wider mb-1">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Kuratierte Standorte · Ebene A</span>
+            </div>
+            <h2 className="text-2xl font-bold text-[#171917]">
+              Redaktionelle Dossiers in {city.name}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500">
-              Dokumentierte Standorte aus dem BNetzA-Register mit Ladeleistung und Ausstattung.
+            <p className="text-xs text-[#6C716B] mt-1">
+              Detailliert recherchierte High-Power-Ladeparks mit technischer Analyse, Ausstattung und Vor-Ort-Daten.
             </p>
           </div>
-          <Link
-            to={`/suche?q=${encodeURIComponent(city.name)}`}
-            className="text-xs font-bold text-slate-900 hover:underline inline-flex items-center gap-1"
-          >
-            <span>Alle in der Suche filtern</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          <span className="text-xs font-mono text-[#6C716B]">
+            {cityStations.length} {cityStations.length === 1 ? 'Dossier' : 'Dossiers'} verifiziert
+          </span>
         </div>
 
         {cityStations.length === 0 ? (
-          <div className="p-6 bg-white rounded-2xl border border-slate-200 text-center text-slate-500">
-            <p>In der Schnellansicht sind für {city.name} alle Ladepunkte im Volltext-Finder verfügbar.</p>
-            <Link
-              to={`/suche?q=${encodeURIComponent(city.name)}`}
-              className="mt-3 inline-flex items-center gap-1.5 px-4 py-2 bg-[#171917] hover:bg-black text-white rounded-xl font-bold text-xs"
-            >
-              <span>Instant-Finder für {city.name} starten</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+          <div className="p-6 bg-white rounded-2xl border border-[#DFE3DC] text-center text-[#6C716B] space-y-2">
+            <p className="font-semibold text-[#171917] text-sm">Für {city.name} ist aktuell noch kein redaktionelles Dossier freigeschaltet.</p>
+            <p className="text-xs">Alle öffentlich erfassten Ladestationen finden Sie im nachfolgenden BNetzA-Registerverzeichnis.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -389,35 +384,35 @@ export const CityPage: React.FC = () => {
               <Link
                 key={st.id}
                 to={getStationUrl(st)}
-                className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-400 transition-all flex flex-col justify-between group"
+                className="p-5 bg-white rounded-2xl border border-[#DFE3DC] shadow-xs hover:shadow-md hover:border-[#2F5E73] transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-extrabold text-slate-950 group-hover:text-black transition-colors">
+                    <span className="font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors">
                       {st.name}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] shrink-0">
+                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-[#171917] text-[#C7F000] border border-[#171917] shrink-0">
                       {st.kwMax} kW {st.isHpc ? 'HPC' : 'AC'}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500 mb-3">
+                  <p className="text-xs text-[#6C716B] mb-3">
                     {st.street}, {st.plz} {st.city} · {st.operator}
                   </p>
 
                   <div className="flex flex-wrap gap-1.5 text-[11px] font-mono">
                     {st.connectorTypes.map(c => (
-                      <span key={c} className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+                      <span key={c} className="bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] px-2 py-0.5 rounded">
                         {c}
                       </span>
                     ))}
-                    <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+                    <span className="bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC] px-2 py-0.5 rounded">
                       {st.pointsCount} Anschlüsse
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-900 group-hover:underline">
-                  <span>Standort ansehen</span>
+                <div className="mt-4 pt-3 border-t border-[#DFE3DC] flex items-center justify-between text-xs font-bold text-[#2F5E73] group-hover:underline">
+                  <span>Ausführliches Standort-Dossier ansehen</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
@@ -425,6 +420,13 @@ export const CityPage: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* EBENE B: ALLE REGISTRIERTEN LADESTATIONEN (BNETZA) */}
+      <CityStationDirectory
+        citySlug={city.slug}
+        cityName={city.name}
+        totalRegisterCount={city.bnetza.ladestationen}
+      />
 
       {/* Local City FAQs */}
       <div className="space-y-4">
