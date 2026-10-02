@@ -24,10 +24,23 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
 }) => {
   const isFooter = variant === 'footer';
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <Link
       to="/"
-      onClick={onClick}
+      onClick={handleClick}
       className={`flex items-center gap-3 group shrink-0 ${className}`}
       aria-label="ladestandorte.de Startseite"
     >
