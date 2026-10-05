@@ -1,4 +1,5 @@
 {
+  "buildCommand": "npm run build:ci",
   "headers": [
     {
       "source": "/sitemap.xml",
