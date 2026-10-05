@@ -42,7 +42,7 @@
     {
       "source": "/mcs/hub/aral-pulse-schwarmstedt-a7",
       "destination": "/mcs/hub/aral-pulse-lkw-megawatt-hub-schwarmstedt",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/(.*)",

@@ -34,7 +34,7 @@ const staticRoutes = [
   { url: '/ladestationen', title: 'Bundesweites BNetzA-Ladestationsverzeichnis: Alle Ladestationen in Deutschland | ladestandorte.de', desc: 'Vollständiges Register aller 117.043 öffentlich registrierten BNetzA-Ladestationen in ganz Deutschland nach Bundesland, Ort, PLZ, Betreiber und HPC-Schnellladeleistung.' },
   { url: '/impressum', title: 'Impressum | ladestandorte.de', desc: 'Rechtliche Anbieterkennzeichnung und Kontaktinformationen von ladestandorte.de.' },
   { url: '/datenschutz', title: 'Datenschutzerklärung | ladestandorte.de', desc: 'Informationen zur Datenverarbeitung, DSGVO-Konformität und Privatsphäre auf ladestandorte.de.' },
-  { url: '/404', title: '404 – Seite nicht gefunden | ladestandorte.de', desc: 'Die angeforderte Seite existiert nicht oder wurde verschoben.' },
+  { url: '/404', title: '404 – Seite nicht gefunden | ladestandorte.de', desc: 'Die angeforderte Seite existiert nicht oder wurde verschoben.', noIndex: true },
 ];
 
 const cityRoutes = (CITIES_DATA || []).map((c) => ({
@@ -72,14 +72,7 @@ const mcsHubRoutes = mcsHubStations.map((s) => ({
   desc: `E-Lkw Megawatt-Ladehub ${s.name} in ${s.city} (${s.motorway?.toUpperCase() || 'BAB'}). Bis zu ${s.kwMax} kW Ladeleistung, Durchfahrtsbuchten & verifizierte Betriebsdaten.`
 }));
 
-// Known user alias for Schwarmstedt: /mcs/hub/aral-pulse-schwarmstedt-a7
-const mcsAliasRoutes = [
-  {
-    url: '/mcs/hub/aral-pulse-schwarmstedt-a7',
-    title: 'Aral pulse E-Lkw Megawatt Hub Schwarmstedt (A7) · MCS Schwerlast-Ladehub | ladestandorte.de',
-    desc: 'E-Lkw Megawatt-Ladehub Aral pulse E-Lkw Megawatt Hub Schwarmstedt (A7) in Schwarmstedt (A7). Bis zu 1000 kW Ladeleistung, Durchfahrtsbuchten & verifizierte Betriebsdaten.'
-  }
-];
+// /mcs/hub/aral-pulse-schwarmstedt-a7 is a permanent redirect in vercel.json (not prerendered, avoids duplicate title/description)
 
 // Legacy alias route for enbw-mobility-plus
 const aliasRoutes = [
@@ -97,7 +90,6 @@ const allRoutes = [
   ...operatorRoutes,
   ...stationRoutes,
   ...mcsHubRoutes,
-  ...mcsAliasRoutes,
   ...aliasRoutes,
 ];
 
@@ -118,6 +110,9 @@ for (const route of allRoutes) {
     rendered = rendered.replace(/<meta name="twitter:title" content=".*?" \/>/, `<meta name="twitter:title" content="${route.title}" />`);
     rendered = rendered.replace(/<meta property="og:description" content=".*?" \/>/, `<meta property="og:description" content="${route.desc}" />`);
     rendered = rendered.replace(/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${route.desc}" />`);
+    if (route.noIndex) {
+      rendered = rendered.replace(/<meta name="robots" content=".*?" \/>/, '<meta name="robots" content="noindex, follow" />');
+    }
 
     const filePath = route.url === '/' ? 'dist/index.html' : `dist${route.url}/index.html`;
     const absolutePath = toAbsolute(filePath);
