@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Mail, Phone } from 'lucide-react';
+import { ShieldCheck, Mail } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { AmazonPartnerSentence } from '@plattform/core';
 import { PageHero } from '../components/PageHero';
@@ -50,13 +50,6 @@ export const ImpressumPage: React.FC = () => {
             <span>E-Mail: </span>
             <a href="mailto:jens@kathe.org" className="text-[#2F5E73] hover:underline font-bold">
               jens@kathe.org
-            </a>
-          </div>
-          <div className="flex items-center gap-3 text-sm text-[#171917]">
-            <Phone className="w-4 h-4 text-[#2F5E73] shrink-0" />
-            <span>Telefon: </span>
-            <a href="tel:+491786652623" className="text-[#2F5E73] hover:underline font-bold">
-              +49 178 6652623
             </a>
           </div>
         </div>
