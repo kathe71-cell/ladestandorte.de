@@ -24,27 +24,6 @@ export const Home: React.FC = () => {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebSite",
-        "@id": "https://www.ladestandorte.de/#website",
-        "url": "https://www.ladestandorte.de/",
-        "name": "ladestandorte.de",
-        "description": "Bundesweites Ladesäulenregister und Instant-Finder öffentlicher Ladeinfrastruktur in Deutschland.",
-        "inLanguage": "de-DE",
-        "publisher": {
-          "@type": "Organization",
-          "name": "ladestandorte.de",
-          "url": "https://www.ladestandorte.de/"
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://www.ladestandorte.de/suche?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
-        }
-      },
-      {
         "@type": "FAQPage",
         "@id": "https://www.ladestandorte.de/#faq",
         "mainEntity": [
@@ -124,11 +103,11 @@ export const Home: React.FC = () => {
           {/* Display Headline & Subline */}
           <div className="max-w-4xl space-y-4 mb-8">
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.06]">
-              <span className="text-[#171917] block">Ladeinfrastruktur.</span>
-              <span className="text-[#6C716B] block">Datenbasiert.</span>
+              <span className="text-[#171917] block">Ladesäulen &amp; Ladenetz</span>
+              <span className="text-[#6C716B] block">in Deutschland.</span>
             </h1>
             <p className="text-lg sm:text-xl text-[#6C716B] leading-relaxed max-w-3xl">
-              Standorte, Betreiber und HPC-Ausbau in Deutschland – transparent aufbereitet auf Basis amtlicher Registerdaten der Bundesnetzagentur.
+              Ladeinfrastruktur, Standorte, Betreiber und HPC-Schnellladestationen – transparent aufbereitet auf Basis amtlicher Registerdaten der Bundesnetzagentur.
             </p>
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <Link

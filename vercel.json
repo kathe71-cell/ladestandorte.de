@@ -2,6 +2,15 @@
   "buildCommand": "npm run build:ci",
   "headers": [
     {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/sitemap.xml",
       "headers": [
         {
@@ -62,7 +71,7 @@
       "destination": "/api/mcs-hub-handler?slug=$1"
     },
     {
-      "source": "/((?!_vercel/.*|api/.*|ads\\.txt|robots\\.txt|sitemap\\.xml|feed\\.xml|llms\\.txt|.*\\.svg|.*\\.png|.*\\.ico|.*\\.js|.*\\.css).*)",
+      "source": "/((?!ads\\.txt|robots\\.txt|sitemap\\.xml|feed\\.xml|llms\\.txt|og-image\\.png|favicon\\.svg|assets/.*).*)",
       "destination": "/index.html"
     }
   ],

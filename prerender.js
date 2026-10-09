@@ -103,7 +103,7 @@ for (const route of allRoutes) {
     let rendered = template.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
     rendered = rendered.replace(/<title>.*?<\/title>/, `<title>${route.title}</title>`);
     rendered = rendered.replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${route.desc}" />`);
-    const fullUrl = `https://www.ladestandorte.de${route.url === '/' ? '' : route.url}`;
+    const fullUrl = `https://ladestandorte.de${route.url === '/' ? '' : route.url}`;
     rendered = rendered.replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="${fullUrl}" />`);
     rendered = rendered.replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${fullUrl}" />`);
     rendered = rendered.replace(/<meta property="og:title" content=".*?" \/>/, `<meta property="og:title" content="${route.title}" />`);
