@@ -34,6 +34,7 @@ const staticRoutes = [
   { url: '/ladestationen', title: 'Bundesweites BNetzA-Ladestationsverzeichnis: Alle Ladestationen in Deutschland | ladestandorte.de', desc: 'Vollständiges Register aller 117.043 öffentlich registrierten BNetzA-Ladestationen in ganz Deutschland nach Bundesland, Ort, PLZ, Betreiber und HPC-Schnellladeleistung.' },
   { url: '/impressum', title: 'Impressum | ladestandorte.de', desc: 'Rechtliche Anbieterkennzeichnung und Kontaktinformationen von ladestandorte.de.' },
   { url: '/datenschutz', title: 'Datenschutzerklärung | ladestandorte.de', desc: 'Informationen zur Datenverarbeitung, DSGVO-Konformität und Privatsphäre auf ladestandorte.de.' },
+  { url: '/projektuebernahme', title: 'Projektübernahme | ladestandorte.de', desc: 'Informationen zur möglichen Übernahme von ladestandorte.de', noIndex: true },
   { url: '/404', title: '404 – Seite nicht gefunden | ladestandorte.de', desc: 'Die angeforderte Seite existiert nicht oder wurde verschoben.', noIndex: true },
 ];
 

@@ -30,6 +30,25 @@ export const Footer: React.FC = () => {
                 ladestandorte.de ist ein unabhängiges Analyse- und Informationsportal und steht in keinem gesellschaftsrechtlichen Verhältnis zur Bundesnetzagentur oder den dargestellten Betreibern (CPOs).
               </p>
             </div>
+
+            <div className="p-3.5 rounded-xl bg-[#171917] border border-slate-800 text-xs text-slate-400 space-y-1">
+              <span className="text-slate-300 font-semibold block mb-1">Projektübernahme</span>
+              <p>
+                Interesse an der Übernahme von ladestandorte.de inklusive Projekt?
+              </p>
+              <Link 
+                to="/projektuebernahme" 
+                onClick={() => {
+                  try {
+                    import('@vercel/analytics').then(({ track }) => track('Footer_Projektuebernahme_Klick'));
+                  } catch(e) {}
+                }}
+                className="inline-flex items-center gap-1 text-[#C7F000] hover:text-white transition-colors mt-1 font-medium"
+              >
+                <span>Mehr erfahren</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
           </div>
 
           {/* Col 3: Verzeichnisse & Monitore */}

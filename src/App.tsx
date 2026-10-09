@@ -36,6 +36,7 @@ import McsTruckChargingPage from './pages/McsTruckChargingPage';
 import HpcCityMonitorPage from './pages/HpcCityMonitorPage';
 import CpoMonitorPage from './pages/CpoMonitorPage';
 import NotFoundPage from './pages/NotFoundPage';
+import ProjektuebernahmePage from './pages/ProjektuebernahmePage';
 
 import ScrollToTop from './components/ScrollToTop';
 import { siteConfig } from './site.config';
@@ -83,6 +84,7 @@ export function AppContent() {
         <Route path="/methodik" element={<MethodikPage />} />
         <Route path="/impressum" element={<ImpressumPage />} />
         <Route path="/datenschutz" element={<DatenschutzPage />} />
+        <Route path="/projektuebernahme" element={<ProjektuebernahmePage />} />
         <Route path="/mcs" element={<McsHubPage />} />
         <Route path="/mcs/ladestationen" element={<McsStationsPage />} />
         <Route path="/mcs/hub/:slug" element={<McsHubDetailPage />} />
