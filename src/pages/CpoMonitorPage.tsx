@@ -110,6 +110,41 @@ export const CpoMonitorPage: React.FC = () => {
         description:
           'Verifizierte Betreiber-Auswertung auf Basis amtlicher BNetzA-Registerdaten. Ladepunkte ≥150 kW, Ausbauquoten und Registeranteile der führenden CPOs in Deutschland.',
         inLanguage: 'de-DE'
+      },
+      {
+        '@type': 'Dataset',
+        '@id': 'https://www.ladestandorte.de/cpo-monitor#dataset',
+        name: 'CPO Monitor – Betreiber-Registerdaten der Bundesnetzagentur im Vergleich',
+        description:
+          'Deterministische Auswertung der im amtlichen BNetzA-Ladesäulenregister dokumentierten Ladeinfrastrukturbetreiber mit Schwerpunkt auf High-Power-Charging (≥150 kW), HPC-Marktanteilen und Leistungsklassen.',
+        url: 'https://www.ladestandorte.de/cpo-monitor',
+        creator: {
+          '@type': 'Organization',
+          '@id': 'https://www.ladestandorte.de/#org',
+          name: 'ladestandorte.de',
+          url: 'https://www.ladestandorte.de/'
+        },
+        publisher: {
+          '@type': 'Organization',
+          '@id': 'https://www.ladestandorte.de/#org',
+          name: 'ladestandorte.de'
+        },
+        dateModified: '2026-10-01',
+        temporalCoverage: '2026',
+        isBasedOn: 'https://www.bundesnetzagentur.de/',
+        license: 'https://creativecommons.org/licenses/by/4.0/',
+        distribution: [
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'text/csv',
+            contentUrl: 'https://www.ladestandorte.de/data/cpo-monitor.csv'
+          },
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'application/json',
+            contentUrl: 'https://www.ladestandorte.de/data/cpo-monitor.json'
+          }
+        ]
       }
     ]
   };

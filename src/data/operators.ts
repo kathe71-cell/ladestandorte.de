@@ -15,8 +15,10 @@ export interface OperatorData {
   roamingPartnersCount: number;
   plugAndCharge: boolean;
   autocharge: boolean;
-  standardPriceAc: number; // €/kWh, 0 if no AC
-  standardPriceDc: number; // €/kWh
+  standardPriceAc?: number | null; // €/kWh (nur wenn einheitlicher Fest-/Ad-hoc-Preis offiziell verifiziert); null/undefined wenn dynamisch/standortabhängig/nicht angeboten
+  standardPriceDc?: number | null; // €/kWh (nur wenn einheitlicher Fest-/Ad-hoc-Preis offiziell verifiziert); null/undefined wenn dynamisch/standortabhängig
+  tariffModel?: 'fixed_adhoc' | 'dynamic' | 'variable_station' | 'app_based';
+  tariffNote?: string; // Differenzierende Erläuterung (z.B. Tarifstruktur, App vs. Ad-hoc, Dynamik)
   bnetzaAnteil: string; // kurze Positionierungsbeschreibung
   description: string;
   features: string[];
@@ -35,11 +37,13 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 120,
     plugAndCharge: true,
     autocharge: true,
-    standardPriceAc: 0.49,
-    standardPriceDc: 0.49, // Tarif Free (ad-hoc); Tarif M: 0,46 €/kWh mit 5,99 € GG
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Preise differenziert nach Ladetarif (z. B. Tarif S/M/L per EnBW-App) bzw. Ad-hoc-Zahlung am Kartenterminal. Kein bundesweit einheitlicher 0,49-€-Pauschalpreis mehr.",
     bnetzaAnteil: "Überregionaler CPO mit breiter Bundesabdeckung",
     description:
-      "EnBW mobility+ ist einer der führenden überregionalen Ladeinfrastrukturbetreiber in Deutschland mit einem engmaschigen bundesweiten Ladenetz. Das Netz ist besonders dicht entlang von Autobahnen und in Ballungsräumen ausgebaut. Mit dem Tarif M (5,99 €/Monat) sinkt der kWh-Preis auf 0,46 € ohne weitere Unterscheidung zwischen AC und DC.",
+      "EnBW mobility+ ist einer der führenden überregionalen Ladeinfrastrukturbetreiber in Deutschland mit einem engmaschigen bundesweiten Ladenetz. Das Netz ist besonders dicht entlang von Autobahnen und in Ballungsräumen ausgebaut. Die Abrechnung erfolgt nutzungsbasiert über die EnBW mobility+ App (verschiedene Tarifstufen) oder per direktem Ad-hoc-Kartenleser.",
     features: [
       "Dichtes Schnellladenetz an Autobahnen",
       "AutoCharge (Plug & Charge ohne Karte)",
@@ -58,11 +62,13 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 80,
     plugAndCharge: true,
     autocharge: false,
-    standardPriceAc: 0,
-    standardPriceDc: 0.79, // ad-hoc 2026; Passport Power: 0,41 €/kWh + 11,99 €/Monat
+    standardPriceAc: null,
+    standardPriceDc: 0.79, // offizieller Ad-hoc-Direktladepreis Deutschland
+    tariffModel: "fixed_adhoc",
+    tariffNote: "Reines HPC-Netz (kein AC). Ad-hoc-Direktbezug ohne Grundgebühr: 0,79 €/kWh; mit IONITY Passport bzw. Partnerverträgen reduzierter kWh-Preis.",
     bnetzaAnteil: "HPC-Spezialist an Autobahnen (Raststätten)",
     description:
-      "IONITY ist das führende paneuropäische HPC-Netzwerk an Autobahnraststätten und wurde von den großen Automobilherstellern (BMW, Mercedes, Ford, VW-Gruppe, Hyundai) gegründet. Alle Säulen liefern bis zu 350 kW und ausschließlich CCS. Mit dem IONITY Passport lässt sich der kWh-Preis auf 0,41 € senken.",
+      "IONITY ist das führende paneuropäische HPC-Netzwerk an Autobahnraststätten und wurde von den großen Automobilherstellern (BMW, Mercedes, Ford, VW-Gruppe, Hyundai) gegründet. Alle Säulen liefern bis zu 350 kW und ausschließlich CCS. Mit dem IONITY Passport lässt sich der kWh-Preis deutlich senken.",
     features: [
       "Bis zu 350 kW Ladeleistung (CCS)",
       "Exklusiv an Autobahnraststätten",
@@ -81,11 +87,13 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 0, // Eigennetz; seit 2023 für Fremdmarken geöffnet
     plugAndCharge: true,
     autocharge: true,
-    standardPriceAc: 0,
-    standardPriceDc: 0.52, // Non-Tesla-Tarif; Tesla-Besitzer i.d.R. günstiger je nach Tarif
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "dynamic",
+    tariffNote: "Standort- und tageszeitabhängige dynamische Tarife (Haupt-/Nebenzeiten). Kein einheitlicher Festpreis. Reines DC-/HPC-Netz (kein AC).",
     bnetzaAnteil: "HPC-Netzwerk für Tesla- und CCS-Fahrzeuge",
     description:
-      "Tesla Supercharger ist nach installierter Leistung der zweitstärkste Betreiber in Deutschland. Seit 2022/23 sind viele Standorte für Fremdmarken geöffnet. Die V4-Generation liefert bis zu 350 kW. Tesla-Besitzer zahlen günstiger, da Kosten im Fahrzeugvertrag oder Ladeabo integriert sind.",
+      "Tesla Supercharger ist nach installierter Leistung der zweitstärkste Betreiber in Deutschland. Seit 2022/23 sind viele Standorte für Fremdmarken geöffnet. Die V4-Generation liefert bis zu 350 kW. Die Abrechnung erfolgt voll dynamisch je nach Uhrzeit und Standort.",
     features: [
       "V4-Supercharger bis 350 kW",
       "Für Fremdmarken (CCS) geöffnet",
@@ -104,8 +112,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 50,
     plugAndCharge: true,
     autocharge: false,
-    standardPriceAc: 0.52,
-    standardPriceDc: 0.62,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Preise standort- und anbieterabhängig via Aral pulse App oder Direktzahlung am Terminal.",
     bnetzaAnteil: "HPC-Netz an Tankstellen und Knotenpunkten",
     description:
       "Aral pulse (betrieben von bp pulse) ist eines der führenden Schnellladenetze Deutschlands mit hoher Ausbaupräsenz an Fernstraßen. Das Netz umfasst vorwiegend moderne HPC-Stationen mit bis zu 300 kW an Aral-Tankstellen sowie neue Megawatt-Ladeparks für E-LKW. Neben schnellen Ladezeiten profitieren Fahrer von Payback-Punkten, REWE To Go Shops und verlässlicher Beleuchtung.",
@@ -127,8 +137,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 60,
     plugAndCharge: true,
     autocharge: false,
-    standardPriceAc: 0,
-    standardPriceDc: 0.69, // ad-hoc; mit Fastned Unlimited günstiger
+    standardPriceAc: null,
+    standardPriceDc: 0.69, // offizieller Ad-hoc-Preis Deutschland
+    tariffModel: "fixed_adhoc",
+    tariffNote: "Reines HPC-Netz (kein AC). Ad-hoc-Laden: 0,69 €/kWh; mit Fastned-Gold-Mitgliedschaft oder EMP-Karten abweichende Konditionen.",
     bnetzaAnteil: "Premium-HPC-Netz an Autobahnen und Ballungsräumen",
     description:
       "Fastned betreibt charakteristische goldene Dachstationen ausschließlich mit HPC. In Deutschland konzentriert sich das Netz auf Autobahnen und Großstädte. Das Fastned Unlimited Abo bietet unbegrenzte Ladevorgänge für eine Monatspauschale.",
@@ -150,8 +162,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 70,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.48,
-    standardPriceDc: 0.68,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Ad-hoc- und Roaming-Preise variieren je nach Standorttyp (Einzelhandel, Autobahn, Stadt). Vor Ort an der Säule bzw. per smoov App ausgewiesen.",
     bnetzaAnteil: "Großer B2B-CPO mit Standorten an Einzelhandel und Parkplätzen",
     description:
       "Allego ist ein führender europäischer Charge Point Operator mit Fokus auf B2B-Lösungen (Einzelhandel, Gewerbeimmobilien, Kommunen). In Deutschland betreibt Allego ein umfangreiches gemischtes Netz aus AC- und DC-Ladepunkten.",
@@ -173,8 +187,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 90,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.47,
-    standardPriceDc: 0.57,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Abrechnung abhängig vom gewählten E.ON Drive Tarif bzw. Ad-hoc-Webportal an der Säule.",
     bnetzaAnteil: "Bundesweites Ladenetz an Gewerbestandorten",
     description:
       "E.ON Drive ist der zweitgrößte Ladeinfrastrukturbetreiber in Deutschland nach Bundesnetzagentur-Daten. Das Netz konzentriert sich auf städtische Standorte, Wohngebäude, Firmenparkplätze und Einzelhandelsstandorte mit einem Mix aus AC und DC.",
@@ -196,8 +212,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 85,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.55,
-    standardPriceDc: 0.64,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "dynamic",
+    tariffNote: "Dynamische börsenstrompreisbasierte Tarife an eigenen Schnellladesäulen. Preise variieren stündlich und nach Standort in der Shell Recharge App.",
     bnetzaAnteil: "Tankstellenintegriertes Netz mit dynamischer Preisgestaltung",
     description:
       "Shell Recharge kombiniert Ladeinfrastruktur an Shell-Tankstellen mit einem breiten Roaming-Netzwerk. 2026 führte Shell dynamische Ladepreise basierend auf Börsenstrompreisen ein. Das Netz deckt über 650.000 europaweite Roaming-Punkte ab.",
@@ -219,8 +237,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 40,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.45,
-    standardPriceDc: 0.55,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Tarifdifferenzierung zwischen EWE-Go-Kunden (App/Ladekarte) und Fremdkunden/Ad-hoc-Zahlung.",
     bnetzaAnteil: "Regionaler CPO im norddeutschen Raum",
     description:
       "EWE Go ist die E-Mobilitäts-Marke des norddeutschen Energieversorgers EWE AG. Das Ladenetz ist besonders stark in Norddeutschland (Niedersachsen, Bremen, Hamburg-Umland) und wächst kontinuierlich. Günstiger Regionaltarif für EWE-Kunden.",
@@ -242,8 +262,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 25,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.44,
-    standardPriceDc: 0.54,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Preise abhängig von Ladekarte, Partnernetz und Ad-hoc-Terminal.",
     bnetzaAnteil: "Regionaler Stadtwerke-CPO Rheinland-Pfalz/Saarland",
     description:
       "Pfalzwerke ePunkt ist der E-Mobilitätsanbieter der Pfalzwerke AG und deckt vorwiegend Rheinland-Pfalz und das Saarland ab. Das Netz wächst über Kooperationen mit Kommunen und Einzelhandel.",
@@ -268,8 +290,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 10,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.49,
-    standardPriceDc: 0.59,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Preise abhängig vom jeweiligen CPO-Partner an der Filiale (z. B. Shell, Allego, EnBW) und dessen Lade-App.",
     bnetzaAnteil: "Supermarkt-integriertes Laden (Betrieb durch CPO-Partner)",
     description:
       "REWE und Penny-Filialen bieten über Kooperationen mit verschiedenen CPOs Ladestationen auf ihren Parkplätzen an. Die Betreiber variieren (Shell, EVBox, Allego), das Laden ist beim Einkauf möglich. REWE Group zählt zu den wichtigsten Einzelhandels-Ladestandorten in Deutschland.",
@@ -291,8 +315,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 5,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.45,
-    standardPriceDc: 0.55,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Abrechnung über die Lidl Plus App bzw. Ad-hoc-Zahlung an der Säule zu tagesaktuellen Filialkonditionen.",
     bnetzaAnteil: "Discounter-Ladenetz an Filialstandorten",
     description:
       "Lidl betreibt über Tochterunternehmen und CPO-Kooperationen eigene Ladestationen an deutschen Filialen. Das Netz wächst kontinuierlich und zählt zu den großen Einzelhandels-Ladenetzen. Bezahlung per App, Karte oder per QR-Code.",
@@ -314,8 +340,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 200,
     plugAndCharge: true,
     autocharge: true,
-    standardPriceAc: 0.47,
-    standardPriceDc: 0.55,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Mobilitätsdienstleister (EMP) mit fahrzeuggebundenen Tarifen (Drive Free, City, Highway) statt einheitlichem Ad-hoc-Festpreis.",
     bnetzaAnteil: "VW-Gruppe-Mobilitätsdienstleister mit Plug-&-Charge-Integration",
     description:
       "Elli (Electric Life) ist der E-Mobilitätsdienstleister der Volkswagen-Gruppe und betreibt das We Charge-Netzwerk. Kunden von VW, Audi, Skoda, SEAT, Porsche und Cupra können über eine einheitliche Karte / App laden. We Charge hat Zugang zu über 500.000 Ladepunkten in Europa durch Roaming-Kooperationen.",
@@ -337,8 +365,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 60,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.48,
-    standardPriceDc: 0.58,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Preise standort- und säulenabhängig (z. B. Terminal oder TotalEnergies Ladekarte).",
     bnetzaAnteil: "Schnell wachsender internationaler CPO mit HPC-Fokus",
     description:
       "TotalEnergies Charge baut sein deutsches Netz rasant aus. 2026 eröffnete das Unternehmen einen 400-kW-Schnellladepark am Berliner Hauptbahnhof und am Berliner Flughafen. Bis Ende 2026 soll die Anzahl der HPC-Standorte auf ~800 verdoppelt werden. Zudem gewann TotalEnergies staatliche Fördermittel für 1.200+ Schnelllader.",
@@ -360,8 +390,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 40,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.50,
-    standardPriceDc: 0.60,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Abrechnung über bp pulse App oder Aral pulse Partnertarife.",
     bnetzaAnteil: "Internationaler CPO-Arm von BP in Deutschland",
     description:
       "bp pulse ist der internationale Ladeinfrastrukturarm von BP und in Deutschland primär über die Marke Aral pulse (Aral-Tankstellen) vertreten. Darüber hinaus betreibt bp pulse eigenständige Stationen außerhalb des Aral-Netzes, insbesondere im Gewerbe- und Flottenbereich.",
@@ -383,11 +415,13 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 55,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.47,
-    standardPriceDc: 0.57,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "dynamic",
+    tariffNote: "Dynamische, auslastungsbasierte Preisgestaltung über die Mer Connect App.",
     bnetzaAnteil: "Skandinavischer CPO mit wachsender DE-Präsenz",
     description:
-      "Mer (früher Fortum Charge & Drive) ist ein skandinavischer E-Mobilitätsdienstleister mit wachsender Präsenz in Deutschland. Das Netz fokussiert sich auf B2B-Lösungen für Immobilienbetreiber und Kommunen sowie AI-optimierte Preisstrategie. 2026 führte Mer dynamische Preise basierend auf Netzauslastung und Verkehr ein.",
+      "Mer (früher Fortum Charge & Drive) ist ein skandinavischer E-Mobilitätsdienstleister mit wachsender Präsenz in Deutschland. Das Netz fokussiert sich auf B2B-Lösungen für Immobilienbetreiber und Kommunen sowie dynamische Preismodelle. 2026 führte Mer dynamische Preise basierend auf Netzauslastung und Verkehr ein.",
     features: [
       "AI-optimierte dynamische Ladepreise",
       "B2B-Fokus: Immobilien, Kommunen",
@@ -406,11 +440,13 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 150,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.46,
-    standardPriceDc: 0.58,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Preise werden vom jeweiligen Stationsinhaber (Host) individuell festgelegt und in der ChargePoint App angezeigt.",
     bnetzaAnteil: "Software-Plattform-CPO mit eigenem Netz in NRW/BY/BW",
     description:
-      "ChargePoint ist primär ein Software-Plattformanbieter für Ladestationen-Management, betreibt aber auch eigene Stationen in Deutschland, v.a. in NRW, Bayern und Baden-Württemberg. Das Netz basiert auf Drittanbieter-Hardware mit ChargePoint-Software. Weltweit einer der größten Netzwerke nach Anzahl der Standorte.",
+      "ChargePoint ist primär ein Software-Plattformanbieter für Ladestationen-Management, betreibt aber auch Stationen mit Partnern in Deutschland. Das Netz basiert auf Drittanbieter-Hardware mit ChargePoint-Software.",
     features: [
       "Internationales Ladenetzwerk",
       "ChargePoint-App für alle Partner-Stationen",
@@ -429,11 +465,13 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 80,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.46,
-    standardPriceDc: 0.59,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Preise standort- und betreiberabhängig je nach angeschlossenem Standortpartner.",
     bnetzaAnteil: "Niederländischer Anbieter mit starker DE-Hardware-Präsenz",
     description:
-      "EVBox ist ein führender Hersteller von Ladesäulenhardware und betreibt in Deutschland auch selbst Ladepunkte unter der Marke Everon (früher EVBox Business Line). Das Netz ist stark bei Einzelhandel, Parkgaragen und Unternehmen vertreten.",
+      "EVBox ist ein führender Hersteller von Ladesäulenhardware und betreibt in Deutschland auch selbst Ladepunkte unter der Marke Everon. Das Netz ist stark bei Einzelhandel, Parkgaragen und Unternehmen vertreten.",
     features: [
       "Hardware + Betrieb aus einer Hand",
       "Starke Präsenz bei Einzelhandel und Garagen",
@@ -452,8 +490,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 30,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0,
-    standardPriceDc: 0.65,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Reines HPC-Netz (kein AC). Abrechnung über Clever App oder Roaming-Partner.",
     bnetzaAnteil: "Dänischer HPC-Betreiber mit zunehmender DE-Expansion",
     description:
       "Clever ist ein dänisches Schnelllade-Unternehmen mit wachsender Präsenz in Deutschland, v.a. entlang der Korridore Richtung Dänemark und Nordeuropa. Das Netz fokussiert fast ausschließlich auf HPC und bietet Kombi-Abos für Dänemark + Deutschland.",
@@ -475,8 +515,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 100,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.43,
-    standardPriceDc: 0.53,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "EMP-Mobilitätsangebot mit ADAC-Mitgliedervorteilen; kein statischer Ad-hoc-Festpreis.",
     bnetzaAnteil: "ADAC-Vertrauensmarke für Mitglieder",
     description:
       "ADAC e-Charge bietet ADAC-Mitgliedern und Nichtmitgliedern Zugang zu einem breiten Ladenetz. Die ADAC e-Charge-Karte ermöglicht Roaming auf über 100.000 DE-Ladepunkten. ADAC ist kein eigener CPO im klassischen Sinne, sondern bündelt Partnernetze unter einer Vertrauensmarke.",
@@ -498,8 +540,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 200,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.44,
-    standardPriceDc: 0.54,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Verbundnetz von über 100 Stadtwerken mit individuellen regionalen Tarifen des jeweiligen Stadtwerks.",
     bnetzaAnteil: "Stadtwerke-Verbundnetzwerk",
     description:
       "Ladenetz.de ist der Zusammenschluss von über 100 deutschen Stadtwerken und Regionalversorgern unter dem Dach der Bayernwerk Netz. Mit 5.725 Standorten ist es das größte regional verwurzelte Ladenetz Deutschlands. Die Stationen befinden sich vorwiegend in Wohnquartieren, Innenstädten und kommunalen Bereichen.",
@@ -521,8 +565,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 5,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.43,
-    standardPriceDc: 0.53,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Preise an Filialstandorten über Kaufland e-Charge App oder Ad-hoc-Kartenzahlung ausgewiesen.",
     bnetzaAnteil: "Großmarkt-integriertes Laden (Kaufland-Standorte)",
     description:
       "Kaufland betreibt Ladestationen auf den Parkplätzen seiner Verbrauchermärkte in ganz Deutschland. Kaufland zählt zu den großen Einzelhandels-Ladenetzwerken. Die Stationen sind vorwiegend AC-22-kW-Charger, ergänzt durch vereinzelte DC-Schnelllader.",
@@ -544,8 +590,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 10,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.46,
-    standardPriceDc: 0.56,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Dezentrale Betreiberschaft durch regionale EDEKA-Verbünde und Kooperations-CPOs mit standortspezifischen Tarifen.",
     bnetzaAnteil: "Dezentrale Einzelhandels-Ladestationen (regionale EDEKA-Verbünde)",
     description:
       "EDEKA-Märkte bieten regional unterschiedliche Ladeinfrastruktur an, betrieben über verschiedene regionale EDEKA-Verbünde und CPO-Kooperationspartner. Die Infrastruktur ist weniger zentral gesteuert als bei Lidl oder Kaufland.",
@@ -567,8 +615,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 20,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.43,
-    standardPriceDc: 0.53,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Abrechnung über TankE-Netzwerk-App bzw. Sondertarife für STAWAG-Stromkunden.",
     bnetzaAnteil: "Regionaler Stadtwerke-CPO Aachener Stadtgebiet",
     description:
       "TankE ist die E-Mobilitätsmarke der Stadtwerke Aachen (STAWAG). Das Netz deckt hauptsächlich die Region Aachen ab und ist in das regionale Stadtwerke-Roaming eingebunden. Günstiger Heimattarif für STAWAG-Kunden.",
@@ -590,8 +640,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 70,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.46,
-    standardPriceDc: 0.56,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Tarife abhängig von Partnerverträgen und Gewerbestandorten.",
     bnetzaAnteil: "Energiekonzern-CPO mit Fokus auf Westdeutschland",
     description:
       "RWE eMobility ist die E-Mobilitätssparte des Energiekonzerns RWE AG und betreibt Ladeinfrastruktur vorwiegend in Westdeutschland (NRW, Rheinland). RWE kooperiert mit Kommunen und Gewerbekunden und bietet B2B-Ladelösungen für Unternehmen.",
@@ -613,17 +665,19 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 65,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.47,
-    standardPriceDc: 0.44, // electrive.net März 2026: Senkung auf 0,44-0,49 €/kWh DC
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Tarife variieren nach Region (z. B. Berlin, Hamburg) und InCharge Ladekarte/App.",
     bnetzaAnteil: "Transparenter CPO mit gesenkten HPC-Preisen 2026",
     description:
-      "Vattenfall InCharge betreibt Schnellladestationen in Deutschland und hat 2026 seine DC-Preise auf 0,44–0,49 €/kWh gesenkt. Damit ist InCharge einer der günstigsten HPC-Anbieter ohne Abo. Das Netz fokussiert auf städtische Standorte und hat eine starke Präsenz in Berlin und Hamburg.",
+      "Vattenfall InCharge betreibt Schnellladestationen in Deutschland. Das Netz fokussiert auf städtische Standorte und hat eine starke Präsenz in Berlin und Hamburg.",
     features: [
-      "DC-Preis ab 0,44 €/kWh (ad-hoc, März 2026)",
-      "Keine Grundgebühr erforderlich",
-      "Starke Präsenz Berlin und Hamburg",
       "InCharge-App und -Ladekarte",
+      "Starke Präsenz Berlin und Hamburg",
+      "Keine Grundgebühr erforderlich",
       "Europaweites Roaming über InCharge-Netz",
+      "Hoher Ökostromanteil",
     ],
   },
   {
@@ -636,8 +690,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 15,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.44,
-    standardPriceDc: 0.54,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "app_based",
+    tariffNote: "Regionale Tarife der NEW AG mit Vergünstigungen für Haushaltsstromkunden.",
     bnetzaAnteil: "Regionaler CPO für die Niederrhein-Region",
     description:
       "NEW Mobility ist die E-Mobilitätsmarke der NEW AG (Niederrheinische Energie- und Wasserversorgung) mit Schwerpunkt im Großraum Mönchengladbach, Krefeld und Viersen. Das Netz umfasst Wohnquartiere, Einkaufszentren und öffentliche Parkplätze.",
@@ -659,8 +715,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     roamingPartnersCount: 5,
     plugAndCharge: false,
     autocharge: false,
-    standardPriceAc: 0.44,
-    standardPriceDc: 0.54,
+    standardPriceAc: null,
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Ad-hoc-Zahlung per EC-/Kreditkarte direkt an der Säule zu vor Ort ausgewiesenen Cent-Preisen.",
     bnetzaAnteil: "Discounter-integriertes Laden, Eigenregie",
     description:
       "ALDI SÜD betreibt eines der größten Discounter-Ladenetze in Deutschland. Die Stationen befinden sich auf den Parkplätzen der Filialen und ermöglichen kostengünstiges Laden beim Einkauf. ALDI NORD verfügt über ein eigenständiges Ladenetz.",

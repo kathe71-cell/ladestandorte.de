@@ -41,10 +41,28 @@ export const OperatorPage: React.FC = () => {
     (operator.slug === 'enbw' && s.operatorSlug === 'enbw-mobility-plus')
   );
 
+  const formatPriceAnswer = () => {
+    if (operator.tariffModel === 'dynamic') {
+      return `Bei ${operator.name} gelten dynamische, zeit- und standortabhängige Ladepreise. Es existiert kein bundesweit einheitlicher Festpreis pro Kilowattstunde. Die tagesaktuellen Preise für den jeweiligen Standort sind vor Ladebeginn direkt in der Betreiber-App bzw. an der Ladesäule einsehbar.`;
+    }
+    if (operator.tariffModel === 'variable_station') {
+      return `Die Ladepreise bei ${operator.name} variieren je nach Standort, Kooperationspartner und Ladeleistung. Einheitliche Pauschalpreise existieren nicht. Verbindliche kWh-Preise werden direkt an der Ladesäule (Ad-hoc-Zahlungsterminal / QR-Code) sowie über angebundene Roaming-Apps ausgewiesen.`;
+    }
+    if (operator.tariffModel === 'app_based' && !operator.standardPriceDc && !operator.standardPriceAc) {
+      return `Die Abrechnung bei ${operator.name} erfolgt primär über eigene Mobilitätstarife (Lade-App / Ladekarte) oder über Direktzahlung (Ad-hoc) am Kartenterminal. ${operator.tariffNote || 'Die genauen Konditionen hängen vom gewählten Tarif und eventuellen Monatsabonnements ab.'} Mit Ladekarten von Partner-EMPs (z. B. ADAC, EnBW mobility+, Maingau) können abweichende Roaming-Preise gelten.`;
+    }
+    if (operator.standardPriceDc && operator.standardPriceDc > 0) {
+      const dcText = `${operator.standardPriceDc.toFixed(2).replace('.', ',')} €/kWh für DC-Schnellladung`;
+      const acText = operator.standardPriceAc && operator.standardPriceAc > 0 ? ` und ${operator.standardPriceAc.toFixed(2).replace('.', ',')} €/kWh für AC-Normalladung` : '';
+      return `Im offiziellen Standard-Ad-hoc-Tarif ohne Vertragsbindung liegt der Direktladepreis bei ${dcText}${acText}. ${operator.tariffNote ? `${operator.tariffNote} ` : ''}Mit Ladekarten von Partner-EMPs oder einem Betreiber-Abonnement können die Kosten pro Kilowattstunde teils gesenkt werden.`;
+    }
+    return `Die Ladepreise bei ${operator.name} sind standort- und tarifabhängig. Ein bundesweit einheitlicher Festpreis ist nicht verifizierbar ausgewiesen. Bitte prüfe die aktuellen Konditionen direkt vor Ladebeginn in der Betreiber-App oder am Terminal der Station.`;
+  };
+
   const faqs = [
     {
       q: `Wie viel kostet das Laden bei ${operator.name}?`,
-      a: `Im Standard-Ad-hoc-Tarif ohne Vertragsbindung liegt der kWh-Preis bei ${operator.standardPriceDc > 0 ? `${operator.standardPriceDc.toFixed(2).replace('.', ',')} €/kWh für DC-Schnellladung` : 'marktüblichen Konditionen'}${operator.standardPriceAc > 0 ? ` und ${operator.standardPriceAc.toFixed(2).replace('.', ',')} €/kWh für AC-Normalladung` : ''}. Mit Ladekarten von Partner-EMPs (z.B. EnBW mobility+, ADAC, Maingau) oder einem Betreiber-Abonnement können die Kosten pro Kilowattstunde oft signifikant gesenkt werden.`
+      a: formatPriceAnswer()
     },
     {
       q: `Kann man an ${operator.name} Stationen ohne Ladekarte und Registrierung laden?`,
@@ -349,7 +367,7 @@ export const OperatorPage: React.FC = () => {
 
       {/* Preishinweis */}
       <div className="p-4 rounded-xl bg-white border border-[#DFE3DC] text-xs text-[#6C716B] leading-relaxed">
-        <strong className="text-[#171917]">Hinweis zu Tarifen:</strong> Alle Preisangaben (AC/DC €/kWh) basieren auf öffentlich zugänglichen Standard-Preisblättern des Betreibers (Ad-hoc ohne Vertrag). Reale Preise können durch Ladekarten-Tarife, Roaming-Partner und dynamische Preismodelle deutlich abweichen. Bitte prüfe die aktuellen Preise direkt beim Betreiber oder in der jeweiligen Lade-App.
+        <strong className="text-[#171917]">Hinweis zu Tarifen & Abrechnung:</strong> Feste Cent-Preise pro kWh werden ausschließlich dann genannt, wenn diese durch amtliche oder offizielle Standard-Ad-hoc-Preisblätter des Betreibers belastbar belegt sind. Bei dynamischen Preisen (z. B. Tesla, Shell Recharge), standortabhängigen Tarifen oder reinen App-Ladeverträgen wird kein fiktiver Festpreis angegeben. Reale Abrechnungspreise variieren nach Tageszeit, Roaming-Partner, Ladekarte und Säulenstandort. Verbindliche Preise vor Ladebeginn stets in der Betreiber-App oder am Kartenterminal prüfen.
       </div>
 
       {/* Citation Box */}

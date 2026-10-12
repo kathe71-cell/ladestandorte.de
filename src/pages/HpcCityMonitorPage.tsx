@@ -145,6 +145,42 @@ export const HpcCityMonitorPage: React.FC = () => {
           name: 'ladestandorte.de',
           url: 'https://www.ladestandorte.de/'
         }
+      },
+      {
+        '@type': 'Dataset',
+        '@id': 'https://www.ladestandorte.de/hpc-city-monitor#dataset',
+        name: 'HPC City Monitor – Ladeinfrastruktur-Kennzahlen in 50 deutschen Großstädten',
+        description: 'Vergleichende Auswertung öffentlicher Schnellladeinfrastruktur (≥150 kW), HPC-Anteile und Dichtekennzahlen bezogen auf amtliche Bevölkerungsstände in 50 deutschen Großstädten.',
+        url: 'https://www.ladestandorte.de/hpc-city-monitor',
+        creator: {
+          '@type': 'Organization',
+          '@id': 'https://www.ladestandorte.de/#org',
+          name: 'ladestandorte.de',
+          url: 'https://www.ladestandorte.de/'
+        },
+        publisher: {
+          '@type': 'Organization',
+          '@id': 'https://www.ladestandorte.de/#org',
+          name: 'ladestandorte.de'
+        },
+        dateModified: '2026-10-01',
+        temporalCoverage: '2024/2026',
+        isBasedOn: [
+          'https://www.bundesnetzagentur.de/',
+          'https://www.destatis.de/'
+        ],
+        distribution: [
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'application/json',
+            contentUrl: 'https://www.ladestandorte.de/data/hpc-city-monitor.json'
+          },
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'text/csv',
+            contentUrl: 'https://www.ladestandorte.de/data/hpc-city-monitor.csv'
+          }
+        ]
       }
     ]
   };

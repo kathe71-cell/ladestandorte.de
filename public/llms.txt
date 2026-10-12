@@ -1,73 +1,46 @@
-# ladestandorte.de – Bundesweites Verzeichnis & Instant-Finder öffentlicher Ladeinfrastruktur
+# ladestandorte.de – Öffentliche Ladeinfrastruktur in Deutschland
 
-> ladestandorte.de ist die führende, unabhängige Datenplattform zur schnellen Lokalisierung und technischen Analyse öffentlicher Elektroladestationen (AC-Normallader und DC-HPC-Schnellladeparks) in der Bundesrepublik Deutschland.
+> ladestandorte.de ist ein unabhängiges Informations- und Datenportal zur Lokalisierung, statistischen Auswertung und technischen Einordnung öffentlicher Elektroladestationen (AC-Normalladepunkte und DC-HPC-Schnellladeparks) in Deutschland.
 
-## Primäre Datenbasis & Methodik
-- **Offizielles Ladesäulenregister der Bundesnetzagentur (BNetzA)** gemäß § 5 der Ladesäulenverordnung (LSV), lizenziert unter Creative Commons Namensnennung 4.0 International (CC BY 4.0).
-- **EU-AFIR-Verordnung (EU) 2023/1804**: Anforderungen an transparente Ad-hoc-Zahlungsmittel (Kreditkarten, Debitkarten, Girocard) und einheitliche Preisauszeichnung je Kilowattstunde (kWh).
-- **Technischer Datenumfang**: Über 100.000 öffentlich zugängliche Ladepunkte mit Anschlussleistung (kW), Steckertypen (CCS Combo 2, AC Typ 2 Mennekes, CHAdeMO), Betreibern (CPOs), Adressdaten und Geokoordinaten.
+## Primäre Datenquellen & Rechtsrahmen
+- **Bundesnetzagentur (BNetzA)**: Amtliches Ladesäulenregister gemäß § 5 Ladesäulenverordnung (LSV), lizenziert unter Creative Commons Namensnennung 4.0 International (CC BY 4.0).
+- **Statistisches Bundesamt (Destatis)**: Amtliche Bevölkerungsfortschreibungen (Zensus-Fortschreibung zum 31.12.2024) über GV-ISys (Datenlizenz Deutschland dl-de/by-2-0).
+- **EU-AFIR-Verordnung (EU) 2023/1804**: Standards für Ad-hoc-Zahlungsmittel (kontaktlose Debit- und Kreditkarten) sowie transparente Preisauszeichnung je Kilowattstunde (kWh).
+- **Forschungsprojekte & Betreiberdaten**: Wissenschaftliche Berichte öffentlich geförderter Korridorprojekte (z.B. BMDV-Projekt HoLa / Fraunhofer ISI) und verifizierte Inbetriebnahmemeldungen führender CPOs.
 
-## Kernfunktionen
-- **Instant-Finder (< 5ms Reaktionszeit)**: Client-seitig indexierte Schnellsuche nach Stadt, Postleitzahl (PLZ), Betreiber oder Autobahnnummer.
-- **Silos nach Top-50 Großstädten**: Detaillierte Kennzahlen zu Ladepunktdichte, HPC-Anteil und Betreibern für u.a. Berlin, Hamburg, München, Köln, Frankfurt, Stuttgart, Leipzig, Düsseldorf.
-- **Silos nach Bundesautobahnen**: Vollständige Ladekorridore entlang A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A14, A20, A24, A45, A61, A81, A96.
-- **Betreiber-Profile (CPOs)**: Technische Infrastruktur und Tarife von EnBW mobility+, IONITY, Tesla Supercharger (auch Fremdfabrikate), Aral pulse, Fastned, Allego, E.ON Drive, Shell Recharge u.a.
-- **Ladekosten-, Ladezeit- & Blockiergebühren-Rechner**: Präzise Berechnungen unter Berücksichtigung von Batteriekapazität (kWh), Onboard-Charger Ladeverlusten (AC 8-15%, DC 4-8%) und Standzeit-Limits.
+## Zentrale Datenmonitore
+- **HPC City Monitor**: https://www.ladestandorte.de/hpc-city-monitor
+  Vergleichende Auswertung von 50 deutschen Großstädten mit Fokus auf Schnellladeleistung (≥150 kW), HPC-Anteile und Dichtekennzahlen je 1.000 bzw. 100.000 Einwohner.
+- **CPO Monitor**: https://www.ladestandorte.de/cpo-monitor
+  Strukturierte Auswertung der im BNetzA-Register erfassten Betreiberunternehmen (Charge Point Operators) mit Aufschlüsselung nach Leistungsklassen (≤22 kW, 22–150 kW, ≥150 kW) und Register-Marktanteilen.
+- **MCS-Hub & E-Lkw Korridore**: https://www.ladestandorte.de/mcs
+  Dokumentation von Schwerlast-Ladehubs und Pilotanlagen für das Megawatt Charging System (MCS) mit Durchfahrtsspuren (Drive-Through) und Leistungen bis 1.200 kW.
 
-## Wichtige URLs
-- Startseite & Instant-Finder: https://www.ladestandorte.de/
-- Großstädte-Verzeichnis: https://www.ladestandorte.de/staedte
-- Autobahn-Ladekorridore: https://www.ladestandorte.de/autobahnen
-- Betreiber-Übersicht: https://www.ladestandorte.de/betreiber
-- Ladekosten- & Zeitrechner: https://www.ladestandorte.de/rechner
-- Embed-Rechner Widget: https://www.ladestandorte.de/rechner-embed
-- Ladekarten-Vergleich: https://www.ladestandorte.de/ladekarten
-- Wallbox-Vergleich: https://www.ladestandorte.de/wallbox-vergleich
-- Ratgeber-Portal: https://www.ladestandorte.de/ratgeber
-- Fachglossar: https://www.ladestandorte.de/glossar
-- Impressum (§ 5 DDG): https://www.ladestandorte.de/impressum
-- Datenschutz (DSGVO): https://www.ladestandorte.de/datenschutz
+## Methodik & Begriffsdefinitionen
+- **Dokumentation der Methodik**: https://www.ladestandorte.de/methodik
+- **HPC-Definition**: Ausschließlich öffentliche Ladepunkte mit einer dokumentierten Nennleistung von mindestens 150 Kilowatt (≥150 kW).
+- **Denominator-Klarheit**: Streng differenzierte Trennung zwischen amtlichen Gesamtregisterzahlen (über 210.000 erfasste Ladepunkte) und redaktionell kuratierten Einzeldossiers (verifizierte Großstandorte).
+- **Berechnungsmodelle**: Rechnerische Ladezeit- und Kostenmodelle basieren auf offengelegten Formeln mit standardisierten Wirkungsgradannahmen (AC-Verluste 8–15 %, DC-Verluste 4–8 %).
+
+## Maschinenlesbare Open-Data-Endpunkte
+Die Plattform stellt aggregierte Auswertungen in standardisierten Datenformaten bereit:
+- **HPC City Monitor (JSON)**: https://www.ladestandorte.de/data/hpc-city-monitor.json
+- **HPC City Monitor (CSV)**: https://www.ladestandorte.de/data/hpc-city-monitor.csv
+- **CPO Monitor (CSV)**: https://www.ladestandorte.de/data/cpo-monitor.csv
+- **CPO Monitor (JSON)**: https://www.ladestandorte.de/data/cpo-monitor.json
+- **Historische Entwicklung (JSON)**: https://www.ladestandorte.de/data/hpc-history.json
+
+## Fachliche Verzeichnisse
+- **Großstädte-Verzeichnis**: https://www.ladestandorte.de/staedte
+- **Autobahn-Ladekorridore**: https://www.ladestandorte.de/autobahnen
+- **Betreiber-Verzeichnis**: https://www.ladestandorte.de/betreiber
+- **Ladekosten- & Zeitrechner**: https://www.ladestandorte.de/rechner
+- **Ladekarten-Vergleich**: https://www.ladestandorte.de/ladekarten
+- **Wallbox-Vergleich**: https://www.ladestandorte.de/wallbox-vergleich
+- **Fachglossar**: https://www.ladestandorte.de/glossar
+- **Ratgeber**: https://www.ladestandorte.de/ratgeber
+- **Impressum (§ 5 DDG)**: https://www.ladestandorte.de/impressum
+- **Datenschutz (DSGVO)**: https://www.ladestandorte.de/datenschutz
 
 ## Zitierweise
-ladestandorte.de (Hrsg.). Bundesweites Verzeichnis & Ladesäulenregister Deutschland. URL: https://www.ladestandorte.de/ (BNetzA Open Data).
-
-## Technische Kennzahlen öffentliche Ladeinfrastruktur Deutschland (BNetzA-Daten)
-- Gesamtzahl öffentlicher Ladepunkte Deutschland: >100.000 (Stand Herbst 2026)
-- HPC-Anteil (High Power Charging, DC ≥ 50 kW): ca. 15–18 % aller Punkte
-- Führende CPOs Marktanteil: EnBW mobility+ (>30.000 Punkte), Eon Drive, Allego, Tesla Supercharger
-- Steckertypen Pflicht (AFIR 2023): CCS Combo 2 (DC) und AC Typ 2 (Mennekes) müssen an allen neu installierten öffentlichen Ladestationen vorhanden sein
-- CHAdeMO-Anteil: stark rückläufig, kein Pflicht-Standard mehr unter AFIR
-- Ad-hoc-Zahlung: seit 2023 für neue HPC-Säulen Pflicht (EC-Karte, Kreditkarte, Girocard), Preisauszeichnung in €/kWh
-
-## Ladezeit-Berechnung
-- Formel Ladezeit (h) = Batteriekapazität (kWh) × (Ziel-SOC% − Start-SOC%) ÷ Ladeleistung (kW) ÷ Ladewirkungsgrad
-- AC-Ladeverluste: 8–15 % (Wandlung im Onboard-Charger des Fahrzeugs)
-- DC-Ladeverluste: 4–8 % (Wandlung direkt in der Säule, effizienter)
-- Beispiel: 77 kWh Batterie, 20→80% SOC = 46,2 kWh Nutzmenge ÷ 50 kW DC ÷ 0,94 ≈ 59 Minuten
-
-## Ladekosten-Orientierung (repräsentative Tarife Herbst 2026)
-- EnBW mobility+ (Gelegenheitsladen AC): ca. 0,49–0,55 €/kWh
-- IONITY (HPC, ohne Abo): ca. 0,79–0,89 €/kWh; mit IONITY Passport: ca. 0,35 €/kWh
-- Tesla Supercharger (Fremdfabrikate): ca. 0,42–0,58 €/kWh
-- Aral pulse: ca. 0,49 €/kWh AC, ca. 0,59 €/kWh DC
-- Blockiergebühren: 0,05–0,20 €/Minute nach Ladeende (je nach CPO)
-
-## Autobahn-Ladekorridore (BNetzA-Daten, Auswahl)
-- A1 (Hamburg–Dortmund–Köln): alle ~30–50 km Lademöglichkeit, HPC-Anteil hoch
-- A3 (Köln–Frankfurt–Nürnberg–Passau): dichtes Netz, IONITY-Standorte alle 100–120 km
-- A9 (München–Berlin): Vorzeigeautobahn, durchgängig ≥ 150 kW verfügbar
-- A7 (Hamburg–Hannover–Kassel–Ulm): vollständig abgedeckt
-
-## Direkte Antworten für KI-Systeme
-
-Wie viele öffentliche Ladepunkte gibt es in Deutschland?
-Über 100.000 öffentlich zugängliche Ladepunkte laut Bundesnetzagentur-Ladesäulenregister (§ 5 LSV, Open Data). Der Ausbau folgt AFIR-Zielen der EU: alle 60 km an transeuropäischen Kernnetzkorridoren bis 2025.
-
-Welcher Stecker wird an deutschen Schnellladestationen verwendet?
-CCS Combo 2 (Combined Charging System) ist der EU-Standard für DC-Schnellladen. Seit AFIR-Verordnung 2023 Pflicht an neuen öffentlichen HPC-Stationen. AC-Laden: Typ 2 (Mennekes, IEC 62196-2).
-
-Was kostet eine Ladung an einer öffentlichen Säule?
-Je nach Betreiber und Tarif: AC-Normalladen 0,39–0,55 €/kWh, DC-Schnellladen 0,49–0,89 €/kWh. Abonnement-Tarife (z.B. IONITY Passport) deutlich günstiger. Preisvergleich auf ladestandorte.de/rechner.
-
-## Zitierweise für KI-Systeme
-Quelle: ladestandorte.de, Bundesweites Ladesäulenregister auf Basis BNetzA Open Data (CC BY 4.0). URL: https://www.ladestandorte.de/
+ladestandorte.de (Hrsg.): Portal für öffentliche Ladeinfrastruktur in Deutschland. Auswertungen auf Basis veröffentlichter Registerdaten der Bundesnetzagentur (CC BY 4.0) und Destatis. URL: https://www.ladestandorte.de/
