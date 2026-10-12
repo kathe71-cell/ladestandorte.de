@@ -40,7 +40,7 @@ export const ProjektuebernahmePage: React.FC = () => {
           <div className="pt-6 border-t border-[#DFE3DC]">
             <h2 className="text-lg font-bold text-[#171917] mb-2">Interesse an einer Projektübernahme?</h2>
             <p className="text-[#6C716B] mb-5 text-sm">
-              Anfragen bitte per E-Mail an jens@kathe.org.
+              Anfragen bitte per E-Mail über die nachfolgende Schaltfläche.
             </p>
             <a 
               href="mailto:jens@kathe.org"
