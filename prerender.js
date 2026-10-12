@@ -10,7 +10,7 @@ const { render, CITIES_DATA, MOTORWAYS_DATA, OPERATORS_DATA, STATIONS_DATA, getS
 
 const staticRoutes = [
   { url: '/', title: 'Ladestandorte.de: Ladesäulen & Schnellladeparks in Deutschland', desc: 'Finde über 130.000 öffentlich zugängliche Ladesäulen, HPC-Schnelllader und Ladeparks in Deutschland. Bundesnetzagentur-Daten, Filter & Ladezeit-Rechner.' },
-  { url: '/suche', title: 'Ladesäulen Suche: Schnelllader & AC-Stationen finden | ladestandorte.de', desc: 'Interaktive Suche nach Ladesäulen in ganz Deutschland. Filtern nach Leistung (kW), Steckertypen, Betreibern und kostenlosem Laden.' },
+  { url: '/suche', title: 'Ladesäulen Suche: Schnelllader & AC-Stationen finden | ladestandorte.de', desc: 'Interaktive Suche nach Ladesäulen in ganz Deutschland. Filtern nach Leistung (kW), Steckertypen, Betreibern und kostenlosem Laden.', noIndex: true },
   { url: '/staedte', title: 'Ladeinfrastruktur nach Städten: Alle Standorte | ladestandorte.de', desc: 'Übersicht der Ladeinfrastruktur in über 50 deutschen Städten. Ladepunkte, durchschnittliche kW und Top-Betreiber im Vergleich.' },
   { url: '/hpc-city-monitor', title: 'HPC City Monitor: ≥150-kW-Ladepunkte in 50 Städten | ladestandorte.de', desc: 'Auswertung von Ladepunkten mit ≥150 kW Nennleistung in 50 deutschen Städten auf Basis veröffentlichter BNetzA-Registerdaten und amtlicher Destatis-Bevölkerung.' },
   { url: '/autobahnen', title: 'Laden an deutschen Autobahnen: HPC-Schnellladeparks | ladestandorte.de', desc: 'Schnellladestationen entlang der Bundesautobahnen A1 bis A99. Raststätten, Autohöfe und High-Power-Charging Ladeparks.' },
@@ -79,8 +79,10 @@ const mcsHubRoutes = mcsHubStations.map((s) => ({
 const aliasRoutes = [
   {
     url: '/betreiber/enbw-mobility-plus',
-    title: 'EnBW mobility+: Ladenetz, Tarife & 11.548 Ladepunkte in Deutschland 2026',
-    desc: 'EnBW mobility+ im Faktencheck: 11.548 Ladepunkte, bis zu 300 kW HPC, 66% HPC-Anteil. Preise, Roaming, Plug & Charge & BNetzA-Daten 2026.'
+    title: 'EnBW mobility+: Ladenetz, Tarife & 11.334 Ladepunkte in Deutschland 2026',
+    desc: 'EnBW mobility+ im Faktencheck: 11.334 Ladepunkte, bis zu 300 kW HPC, 74% HPC-Anteil. Preise, Roaming, Plug & Charge & BNetzA-Daten 2026.',
+    canonicalUrl: '/betreiber/enbw',
+    noIndex: true
   }
 ];
 
@@ -104,7 +106,8 @@ for (const route of allRoutes) {
     let rendered = template.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
     rendered = rendered.replace(/<title>.*?<\/title>/, `<title>${route.title}</title>`);
     rendered = rendered.replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${route.desc}" />`);
-    const fullUrl = `https://ladestandorte.de${route.url === '/' ? '' : route.url}`;
+    const canonicalPath = route.canonicalUrl || (route.url === '/' ? '/' : route.url);
+    const fullUrl = `https://www.ladestandorte.de${canonicalPath === '/' ? '/' : canonicalPath}`;
     rendered = rendered.replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="${fullUrl}" />`);
     rendered = rendered.replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${fullUrl}" />`);
     rendered = rendered.replace(/<meta property="og:title" content=".*?" \/>/, `<meta property="og:title" content="${route.title}" />`);

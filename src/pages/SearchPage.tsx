@@ -33,6 +33,7 @@ export const SearchPage: React.FC = () => {
         title={queryParam ? `Ladesäulen Suche: „${queryParam}“` : "Ladesäulen Instant-Finder · Bundesweites Register durchsuchen"}
         description="Durchsuchen Sie alle öffentlich registrierten Ladesäulen & HPC-Schnelllader in Deutschland nach Ort, PLZ, Betreiber oder Autobahn in Echtzeit."
         canonicalPath="/suche"
+        noIndex={true}
       />
       
       <PageHero

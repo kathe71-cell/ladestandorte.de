@@ -1,585 +1,949 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ladestandorte.de/</loc>
+    <loc>https://www.ladestandorte.de/</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/suche</loc>
+    <loc>https://www.ladestandorte.de/staedte</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte</loc>
+    <loc>https://www.ladestandorte.de/hpc-city-monitor</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/hpc-city-monitor</loc>
+    <loc>https://www.ladestandorte.de/autobahnen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen</loc>
+    <loc>https://www.ladestandorte.de/betreiber</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/cpo-monitor</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber</loc>
+    <loc>https://www.ladestandorte.de/rechner</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ladekarten</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/wallbox-vergleich</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ratgeber</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ratgeber/ladekarten-dschungel</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ratgeber/ac-vs-dc-ladeverluste</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/ratgeber/blockiergebuehren-vermeiden</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/glossar</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/methodik</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/cpo-monitor</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/rechner</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/ladekarten</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/wallbox-vergleich</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/ratgeber</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/ratgeber/ladekarten-dschungel</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/ratgeber/ac-vs-dc-ladeverluste</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/ratgeber/blockiergebuehren-vermeiden</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/glossar</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/methodik</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/mcs</loc>
+    <loc>https://www.ladestandorte.de/mcs/ladestationen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/mcs/ladestationen</loc>
+    <loc>https://www.ladestandorte.de/mcs/was-ist-mcs</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
-  </url>
-  <url>
-    <loc>https://ladestandorte.de/mcs/was-ist-mcs</loc>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/mcs/mcs-vs-ccs</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.ladestandorte.de/mcs/mcs-vs-ccs</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/mcs/lkw-laden</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.ladestandorte.de/mcs/lkw-laden</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/impressum</loc>
-    <changefreq>yearly</changefreq>
+    <loc>https://www.ladestandorte.de/ladestationen</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/impressum</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.3</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/datenschutz</loc>
-    <changefreq>yearly</changefreq>
+    <loc>https://www.ladestandorte.de/datenschutz</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.3</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/berlin</loc>
+    <loc>https://www.ladestandorte.de/staedte/berlin</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/hamburg</loc>
+    <loc>https://www.ladestandorte.de/staedte/hamburg</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/muenchen</loc>
+    <loc>https://www.ladestandorte.de/staedte/muenchen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/koeln</loc>
+    <loc>https://www.ladestandorte.de/staedte/koeln</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/frankfurt</loc>
+    <loc>https://www.ladestandorte.de/staedte/frankfurt</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/stuttgart</loc>
+    <loc>https://www.ladestandorte.de/staedte/stuttgart</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/duesseldorf</loc>
+    <loc>https://www.ladestandorte.de/staedte/duesseldorf</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/leipzig</loc>
+    <loc>https://www.ladestandorte.de/staedte/leipzig</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/dortmund</loc>
+    <loc>https://www.ladestandorte.de/staedte/dortmund</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/essen</loc>
+    <loc>https://www.ladestandorte.de/staedte/essen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/bremen</loc>
+    <loc>https://www.ladestandorte.de/staedte/bremen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/dresden</loc>
+    <loc>https://www.ladestandorte.de/staedte/dresden</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/hannover</loc>
+    <loc>https://www.ladestandorte.de/staedte/hannover</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/nuernberg</loc>
+    <loc>https://www.ladestandorte.de/staedte/nuernberg</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/duisburg</loc>
+    <loc>https://www.ladestandorte.de/staedte/duisburg</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/bochum</loc>
+    <loc>https://www.ladestandorte.de/staedte/bochum</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/wuppertal</loc>
+    <loc>https://www.ladestandorte.de/staedte/wuppertal</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/bielefeld</loc>
+    <loc>https://www.ladestandorte.de/staedte/bielefeld</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/bonn</loc>
+    <loc>https://www.ladestandorte.de/staedte/bonn</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/muenster</loc>
+    <loc>https://www.ladestandorte.de/staedte/muenster</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/karlsruhe</loc>
+    <loc>https://www.ladestandorte.de/staedte/karlsruhe</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/mannheim</loc>
+    <loc>https://www.ladestandorte.de/staedte/mannheim</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/augsburg</loc>
+    <loc>https://www.ladestandorte.de/staedte/augsburg</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/wiesbaden</loc>
+    <loc>https://www.ladestandorte.de/staedte/wiesbaden</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/kassel</loc>
+    <loc>https://www.ladestandorte.de/staedte/kassel</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/gelsenkirchen</loc>
+    <loc>https://www.ladestandorte.de/staedte/gelsenkirchen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/moenchengladbach</loc>
+    <loc>https://www.ladestandorte.de/staedte/moenchengladbach</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/braunschweig</loc>
+    <loc>https://www.ladestandorte.de/staedte/braunschweig</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/chemnitz</loc>
+    <loc>https://www.ladestandorte.de/staedte/chemnitz</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/kiel</loc>
+    <loc>https://www.ladestandorte.de/staedte/kiel</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/aachen</loc>
+    <loc>https://www.ladestandorte.de/staedte/aachen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/halle</loc>
+    <loc>https://www.ladestandorte.de/staedte/halle</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/magdeburg</loc>
+    <loc>https://www.ladestandorte.de/staedte/magdeburg</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/freiburg</loc>
+    <loc>https://www.ladestandorte.de/staedte/freiburg</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/krefeld</loc>
+    <loc>https://www.ladestandorte.de/staedte/krefeld</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/mainz</loc>
+    <loc>https://www.ladestandorte.de/staedte/mainz</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/luebeck</loc>
+    <loc>https://www.ladestandorte.de/staedte/luebeck</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/erfurt</loc>
+    <loc>https://www.ladestandorte.de/staedte/erfurt</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/oberhausen</loc>
+    <loc>https://www.ladestandorte.de/staedte/oberhausen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/rostock</loc>
+    <loc>https://www.ladestandorte.de/staedte/rostock</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/hagen</loc>
+    <loc>https://www.ladestandorte.de/staedte/hagen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/potsdam</loc>
+    <loc>https://www.ladestandorte.de/staedte/potsdam</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/saarbruecken</loc>
+    <loc>https://www.ladestandorte.de/staedte/saarbruecken</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/hamm</loc>
+    <loc>https://www.ladestandorte.de/staedte/hamm</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/ludwigshafen</loc>
+    <loc>https://www.ladestandorte.de/staedte/ludwigshafen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/muelheim</loc>
+    <loc>https://www.ladestandorte.de/staedte/muelheim</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/oldenburg</loc>
+    <loc>https://www.ladestandorte.de/staedte/oldenburg</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/osnabrueck</loc>
+    <loc>https://www.ladestandorte.de/staedte/osnabrueck</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/leverkusen</loc>
+    <loc>https://www.ladestandorte.de/staedte/leverkusen</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/staedte/heidelberg</loc>
+    <loc>https://www.ladestandorte.de/staedte/heidelberg</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a1</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a1</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a2</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a2</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a3</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a3</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a4</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a4</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a5</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a5</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a6</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a6</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a7</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a7</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a8</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a8</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a9</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a9</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a10</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a10</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a14</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a14</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a45</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a45</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a61</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a61</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/autobahnen/a81</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a81</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber/enbw</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a11</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber/ionity</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a12</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber/tesla-supercharger</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a13</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber/aral-pulse</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a15</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber/fastned</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a17</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber/allego</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a19</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber/eon-drive</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a20</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber/shell-recharge</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a21</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber/ewe-go</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a23</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
-    <loc>https://ladestandorte.de/betreiber/pfalzwerke</loc>
+    <loc>https://www.ladestandorte.de/autobahnen/a24</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-10-08</lastmod>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a25</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a26</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a27</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a28</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a29</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a30</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a31</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a33</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a38</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a39</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a40</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a42</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a43</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a44</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a46</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a48</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a49</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a52</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a57</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a59</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a60</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a62</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a63</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a64</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a65</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a66</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a67</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a70</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a71</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a72</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a73</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a93</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a94</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a95</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a96</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a98</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/autobahnen/a99</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/enbw</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/ionity</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/tesla-supercharger</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/aral-pulse</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/fastned</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/allego</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/eon-drive</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/shell-recharge</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/ewe-go</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/pfalzwerke</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/rewe-eMobility</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/lidl-charge</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/volkswagen-we-charge-elli</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/totalenergies-charge</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/bp-pulse</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/mer-charge</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/chargepoint</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/evbox</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/clever-charge</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/adac-e-charge</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/ladenetz-stadtwerke</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/kaufland-charge</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/edeka-charge</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/tanke-aachener-sw</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/rwe-emobility</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/vattenfall-incharge</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/new-mobility</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/betreiber/aldi-sued-charge</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/hub/aral-pulse-lkw-megawatt-hub-schwarmstedt</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/hub/aral-pulse-lkw-megawatt-hub-schnaittach</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/hub/aral-pulse-lkw-megawatt-hub-rastow</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/hub/aral-pulse-lkw-megawatt-hub-koenigs-wusterhausen</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/hub/hola-forschungskorridor-raststaette-lipperland-sued</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/hub/hola-forschungskorridor-lehre-wendhausen</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/hub/milence-lkw-ladehub-hermsdorfer-kreuz</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ladestandorte.de/mcs/hub/milence-lkw-ladehub-kassel-lohfelden</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>
