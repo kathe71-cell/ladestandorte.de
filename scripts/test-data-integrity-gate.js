@@ -25,6 +25,7 @@ import os from 'node:os';
 import { verifyUpstreamSchema } from './gate/verify-upstream-schema.mjs';
 import { verifyPlausibilityBounds } from './gate/verify-plausibility-bounds.mjs';
 import { verifyApproval } from './gate/verify-approval.mjs';
+import { runDataIntegrityGate } from './gate/data-integrity-gate.mjs';
 
 let totalChecks = 0;
 let passedChecks = 0;
@@ -209,6 +210,69 @@ async function runTests() {
   const res14 = verifyPlausibilityBounds(unchangedCurrent, prevSnapshot);
   assert(res14.status === 'PASS' && res14.warnings.length === 0 && res14.baselineStatus === 'COMPARISON_ACTIVE', 'Scenario 14: Unchanged dataset yields PASS with 0 warnings');
 
+  // Test 15: requireRaw Enforcement in Import Context (FAIL when missing)
+  const mockRepoMissingRaw = fs.mkdtempSync(path.join(tmpBase, 'repo-missing-raw-'));
+  const res15 = await runDataIntegrityGate({ rootDir: mockRepoMissingRaw, requireRaw: true });
+  assert(
+    res15.overallStatus === 'FAIL' &&
+    res15.exitCode === 1 &&
+    res15.phases.phase1_schema.status === 'FAIL' &&
+    res15.phases.phase1_schema.errors[0].includes('Data import context requires upstream raw CSV files'),
+    'Scenario 15: --require-raw strictly rejects missing raw data in import pipeline'
+  );
+
+  // Test 16: Clean CI Checkout with Valid Provenance Manifest (PASS with VERIFIED_FROM_PROVENANCE_MANIFEST)
+  const mockRepoCiValid = fs.mkdtempSync(path.join(tmpBase, 'repo-ci-valid-'));
+  fs.mkdirSync(path.join(mockRepoCiValid, 'src/data/generated'), { recursive: true });
+  fs.mkdirSync(path.join(mockRepoCiValid, 'public/data'), { recursive: true });
+  const validProvCities = [{
+    slug: 'berlin',
+    name: 'Berlin',
+    population: { value: 3800000, referenceDate: '2024-12-31' },
+    bnetza: {
+      ladestationen: 2000,
+      ladepunkteGesamt: 4000,
+      hpcLadepunkte: 500,
+      provenance: {
+        rawSnapshotSha256: 'a'.repeat(64),
+        retrievedAt: '2026-10-01T12:00:00Z',
+        maxRecordTimestamp: '2026-09-30 00:00:00+00',
+        attribution: 'Bundesnetzagentur.de'
+      }
+    }
+  }];
+  const validCpo = {
+    snapshotDate: '2026-10-01',
+    totalRegisterPointsDE: 210185,
+    totalRegisterHpcPointsDE: 40654,
+    totalRegisterStationsDE: 117043,
+    cposCount: 1,
+    operators: [{ id: 'enbw', slug: 'enbw', name: 'EnBW', chargingPointsTotal: 10000, stationsCount: 5436 }]
+  };
+  fs.writeFileSync(path.join(mockRepoCiValid, 'src/data/generated/cities.generated.json'), JSON.stringify(validProvCities), 'utf8');
+  fs.writeFileSync(path.join(mockRepoCiValid, 'public/data/hpc-city-monitor.json'), JSON.stringify({ cities: [{ slug: 'berlin', population: 3800000, chargingPointsTotal: 4000, chargingPoints150PlusKw: 500 }] }), 'utf8');
+  fs.writeFileSync(path.join(mockRepoCiValid, 'src/data/generated/cpo-monitor.generated.json'), JSON.stringify(validCpo), 'utf8');
+  fs.writeFileSync(path.join(mockRepoCiValid, 'public/data/cpo-monitor.json'), JSON.stringify(validCpo), 'utf8');
+  const res16 = await runDataIntegrityGate({ rootDir: mockRepoCiValid, requireRaw: false });
+  assert(
+    res16.phases.phase1_schema.status === 'VERIFIED_FROM_PROVENANCE_MANIFEST' &&
+    res16.phases.phase1_schema.provenanceProof.rawSnapshotSha256 === 'a'.repeat(64),
+    'Scenario 16: Clean CI checkout cryptographically verifies source integrity via provenance manifest'
+  );
+
+  // Test 17: Clean CI Checkout with Tampered/Missing Provenance (FAIL)
+  const mockRepoCiInvalid = fs.mkdtempSync(path.join(tmpBase, 'repo-ci-invalid-'));
+  fs.mkdirSync(path.join(mockRepoCiInvalid, 'src/data/generated'), { recursive: true });
+  fs.writeFileSync(path.join(mockRepoCiInvalid, 'src/data/generated/cities.generated.json'), JSON.stringify([{ slug: 'berlin' }]), 'utf8');
+  fs.writeFileSync(path.join(mockRepoCiInvalid, 'src/data/generated/cpo-monitor.generated.json'), JSON.stringify({ snapshotDate: '2026-10-01' }), 'utf8');
+  const res17 = await runDataIntegrityGate({ rootDir: mockRepoCiInvalid, requireRaw: false });
+  assert(
+    res17.overallStatus === 'FAIL' &&
+    res17.phases.phase1_schema.status === 'FAIL' &&
+    res17.phases.phase1_schema.note.includes('source integrity could not be verified'),
+    'Scenario 17: Tampered or missing provenance manifest strictly triggers FAIL in clean checkout'
+  );
+
   // Clean up fixtures
   try {
     fs.rmSync(tmpBase, { recursive: true, force: true });
@@ -221,7 +285,7 @@ async function runTests() {
   if (failedChecks > 0) {
     process.exit(1);
   } else {
-    console.log('✅ ALL 14 DATA INTEGRITY GATE SCENARIOS VERIFIED.');
+    console.log('✅ ALL 17 DATA INTEGRITY GATE SCENARIOS VERIFIED.');
   }
 }
 

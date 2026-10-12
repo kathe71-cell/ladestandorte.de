@@ -20,7 +20,7 @@
     "test:historical-deltas": "node scripts/test-historical-deltas.js",
     "test:routes": "node scripts/test-route-integrity.js",
     "data:bnetza:check": "node scripts/test-city-integrity.js && node scripts/test-cpo-monitor.js",
-    "data:bnetza:update": "node scripts/data/download-bnetza.mjs && node scripts/data/aggregate-cities.mjs && node scripts/generate-hpc-monitor-data.js && node scripts/generate-hpc-history-data.mjs && node scripts/generate-cpo-monitor-data.mjs && node scripts/test-city-integrity.js && node scripts/test-cpo-monitor.js && node scripts/gate/data-integrity-gate.mjs",
+    "data:bnetza:update": "node scripts/data/download-bnetza.mjs && node scripts/data/aggregate-cities.mjs && node scripts/generate-hpc-monitor-data.js && node scripts/generate-hpc-history-data.mjs && node scripts/generate-cpo-monitor-data.mjs && node scripts/test-city-integrity.js && node scripts/test-cpo-monitor.js && node scripts/gate/data-integrity-gate.mjs --require-raw",
     "check": "plattform-check",
     "preview": "vite preview"
   },

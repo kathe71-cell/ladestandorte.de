@@ -32,7 +32,7 @@ jobs:
         run: npm run data:bnetza:update
 
       - name: Run Mandatory Data Integrity Gate
-        run: npm run gate:check
+        run: npm run gate:check -- --require-raw
 
       - name: Run test suite & build verification
         run: |

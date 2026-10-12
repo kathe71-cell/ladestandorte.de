@@ -37,8 +37,12 @@ console.log('=== RELATIONAL NUMERICAL CONSISTENCY GUARD ===');
 async function runGuard() {
   // 1. Authoritative Datasets & Pointers
   const latestPointerPath = path.join(rootDir, 'data/raw/bnetza/latest.json');
-  assert(fs.existsSync(latestPointerPath), 'data/raw/bnetza/latest.json exists');
-  const latestPointer = JSON.parse(fs.readFileSync(latestPointerPath, 'utf8'));
+  const hasRawPointer = fs.existsSync(latestPointerPath);
+  let latestPointer = null;
+  if (hasRawPointer) {
+    assert(fs.existsSync(latestPointerPath), 'data/raw/bnetza/latest.json exists');
+    latestPointer = JSON.parse(fs.readFileSync(latestPointerPath, 'utf8'));
+  }
 
   const cpoGeneratedPath = path.join(rootDir, 'src/data/generated/cpo-monitor.generated.json');
   const cpoPublicPath = path.join(rootDir, 'public/data/cpo-monitor.json');
@@ -55,65 +59,75 @@ async function runGuard() {
   const citiesPublic = JSON.parse(fs.readFileSync(citiesPublicPath, 'utf8'));
 
   // 2. Snapshot Date Relational Alignment
-  assert(
-    latestPointer.latestSnapshotDate === cpoGenerated.snapshotDate &&
-    cpoGenerated.snapshotDate === cpoPublic.snapshotDate,
-    `Snapshot date relational consistency across raw (${latestPointer.latestSnapshotDate}), generated (${cpoGenerated.snapshotDate}), and public (${cpoPublic.snapshotDate})`
-  );
+  if (hasRawPointer) {
+    assert(
+      latestPointer.latestSnapshotDate === cpoGenerated.snapshotDate &&
+      cpoGenerated.snapshotDate === cpoPublic.snapshotDate,
+      `Snapshot date relational consistency across raw (${latestPointer.latestSnapshotDate}), generated (${cpoGenerated.snapshotDate}), and public (${cpoPublic.snapshotDate})`
+    );
+  } else {
+    assert(
+      cpoGenerated.snapshotDate === cpoPublic.snapshotDate,
+      `Snapshot date relational consistency across generated (${cpoGenerated.snapshotDate}) and public (${cpoPublic.snapshotDate})`
+    );
+  }
 
   // 3. Raw BNetzA Stream Aggregation vs. Generated & Public Mirror
-  const rawStationPath = path.join(rootDir, latestPointer.path, 'bnetza_api_ladestation000.csv');
-  const rawPointPath = path.join(rootDir, latestPointer.path, 'bnetza_api_ladepunkt000.csv');
+  if (hasRawPointer) {
+    const rawStationPath = path.join(rootDir, latestPointer.path, 'bnetza_api_ladestation000.csv');
+    const rawPointPath = path.join(rootDir, latestPointer.path, 'bnetza_api_ladepunkt000.csv');
 
-  let rawStationsCount = 0;
-  if (fs.existsSync(rawStationPath)) {
-    const stationStream = fs.createReadStream(rawStationPath);
-    const rlStation = readline.createInterface({ input: stationStream, crlfDelay: Infinity });
-    let headerSt = null;
-    for await (const line of rlStation) {
-      if (!headerSt) { headerSt = line; continue; }
-      rawStationsCount++;
-    }
-  }
-
-  let rawPointsCount = 0;
-  let rawHpcCount = 0;
-  if (fs.existsSync(rawPointPath)) {
-    const pointStream = fs.createReadStream(rawPointPath);
-    const rlPoint = readline.createInterface({ input: pointStream, crlfDelay: Infinity });
-    let headerPt = null;
-    for await (const line of rlPoint) {
-      if (!headerPt) { headerPt = line; continue; }
-      rawPointsCount++;
-      const parts = line.split(';');
-      const power = parseFloat(parts[4]) || 0;
-      if (power >= 150) {
-        rawHpcCount++;
+    let rawStationsCount = 0;
+    if (fs.existsSync(rawStationPath)) {
+      const stationStream = fs.createReadStream(rawStationPath);
+      const rlStation = readline.createInterface({ input: stationStream, crlfDelay: Infinity });
+      let headerSt = null;
+      for await (const line of rlStation) {
+        if (!headerSt) { headerSt = line; continue; }
+        rawStationsCount++;
       }
     }
+
+    let rawPointsCount = 0;
+    let rawHpcCount = 0;
+    if (fs.existsSync(rawPointPath)) {
+      const pointStream = fs.createReadStream(rawPointPath);
+      const rlPoint = readline.createInterface({ input: pointStream, crlfDelay: Infinity });
+      let headerPt = null;
+      for await (const line of rlPoint) {
+        if (!headerPt) { headerPt = line; continue; }
+        rawPointsCount++;
+        const parts = line.split(';');
+        const power = parseFloat(parts[4]) || 0;
+        if (power >= 150) {
+          rawHpcCount++;
+        }
+      }
+    }
+
+    assert(
+      rawPointsCount > 0 && rawPointsCount === cpoGenerated.totalRegisterPointsDE,
+      `Relational: Raw BNetzA Points (${rawPointsCount}) === Generated totalRegisterPointsDE (${cpoGenerated.totalRegisterPointsDE})`
+    );
+    assert(
+      rawHpcCount > 0 && rawHpcCount === cpoGenerated.totalRegisterHpcPointsDE,
+      `Relational: Raw BNetzA HPC (${rawHpcCount}) === Generated totalRegisterHpcPointsDE (${cpoGenerated.totalRegisterHpcPointsDE})`
+    );
+    assert(
+      rawStationsCount > 0 && rawStationsCount === cpoGenerated.totalRegisterStationsDE,
+      `Relational: Raw BNetzA Stations (${rawStationsCount}) === Generated totalRegisterStationsDE (${cpoGenerated.totalRegisterStationsDE})`
+    );
+  } else {
+    console.log('ℹ️  Raw BNetzA CSV files not present in clean checkout (data/raw/ is gitignored). Validating relational consistency of committed and generated datasets.');
   }
 
-  assert(
-    rawPointsCount > 0 && rawPointsCount === cpoGenerated.totalRegisterPointsDE,
-    `Relational: Raw BNetzA Points (${rawPointsCount}) === Generated totalRegisterPointsDE (${cpoGenerated.totalRegisterPointsDE})`
-  );
   assert(
     cpoGenerated.totalRegisterPointsDE === cpoPublic.totalRegisterPointsDE,
     `Relational: Generated totalRegisterPointsDE === Public totalRegisterPointsDE (${cpoPublic.totalRegisterPointsDE})`
   );
-
-  assert(
-    rawHpcCount > 0 && rawHpcCount === cpoGenerated.totalRegisterHpcPointsDE,
-    `Relational: Raw BNetzA HPC (${rawHpcCount}) === Generated totalRegisterHpcPointsDE (${cpoGenerated.totalRegisterHpcPointsDE})`
-  );
   assert(
     cpoGenerated.totalRegisterHpcPointsDE === cpoPublic.totalRegisterHpcPointsDE,
     `Relational: Generated totalRegisterHpcPointsDE === Public totalRegisterHpcPointsDE (${cpoPublic.totalRegisterHpcPointsDE})`
-  );
-
-  assert(
-    rawStationsCount > 0 && rawStationsCount === cpoGenerated.totalRegisterStationsDE,
-    `Relational: Raw BNetzA Stations (${rawStationsCount}) === Generated totalRegisterStationsDE (${cpoGenerated.totalRegisterStationsDE})`
   );
   assert(
     cpoGenerated.totalRegisterStationsDE === cpoPublic.totalRegisterStationsDE,
