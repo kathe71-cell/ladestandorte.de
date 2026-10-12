@@ -31,6 +31,9 @@ jobs:
       - name: Run BNetzA update pipeline
         run: npm run data:bnetza:update
 
+      - name: Run Mandatory Data Integrity Gate
+        run: npm run gate:check
+
       - name: Run test suite & build verification
         run: |
           npm test

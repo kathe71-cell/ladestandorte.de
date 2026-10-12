@@ -22,7 +22,7 @@ export const SEO: React.FC<SEOProps> = ({
 
   useEffect(() => {
     // 1. Page Title (< 60 chars recommended)
-    const formattedTitle = title.includes('ladestandorte.de')
+    const formattedTitle = title.toLowerCase().includes('ladestandorte.de')
       ? title
       : `${title} · ladestandorte.de`;
     document.title = formattedTitle;

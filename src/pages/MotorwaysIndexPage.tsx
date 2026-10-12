@@ -63,7 +63,7 @@ export const MotorwaysIndexPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
-        title="Ladesäulen Autobahn Deutschland: Schnellladeparks A1–A99 (2026)"
+        title="Ladesäulen Autobahn Deutschland: Schnellladeparks A1–A99"
         description="Alle HPC-Schnellladeparks an Autobahnen A1–A99: 59 Strecken, über 1.000 Ladepunkte an Tank & Rast. Bis zu 400 kW – IONITY, EnBW, Tesla, Aral pulse. BNetzA Open Data."
         canonicalPath="/autobahnen"
         schema={schema}

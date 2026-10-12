@@ -88,7 +88,7 @@ export const MotorwayPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
-        title={`Schnellladen ${motorway.name}: HPC-Ladeparks an Raststätten & Autobahn 2026`}
+        title={`Schnellladen ${motorway.name}: HPC-Ladeparks an Raststätten & Autobahn`}
         description={motorway.maxKw && motorway.mainCPOs.length > 0
           ? `HPC-Schnellladeparks an der ${motorway.name} (${motorway.route}): ${motorway.mainCPOs.join(', ')} u.v.m. Bis zu ${motorway.maxKw} kW Ladeleistung. Verifizierte Standorte und Anfahrt.`
           : `Ladekorridor ${motorway.name} (${motorway.route}): ${motorway.lengthKm} km Streckenführung, Knotenpunkte und Ladeinfrastruktur im Autobahnnetz.`

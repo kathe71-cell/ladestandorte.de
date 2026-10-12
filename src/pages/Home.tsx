@@ -75,7 +75,7 @@ export const Home: React.FC = () => {
   return (
     <div className="space-y-16 sm:space-y-24 pb-16">
       <SEO
-        title={`Ladesäulen Deutschland 2026: ${cpoDataset.totalRegisterPointsDE.toLocaleString('de-DE')} Ladepunkte · Finder & Vergleich`}
+        title="Ladestandorte.de – Schnellladestationen, Ladeparks & Ladeinfrastruktur"
         description={`Über ${Math.floor(cpoDataset.totalRegisterPointsDE / 10000) * 10}.000 registrierte Ladepunkte in Deutschland: Schnellladeparks an Autobahnen, Betreibervergleich (${cpoDataset.cposCount} CPOs), Ladekarten-Ranking & kostenloser Instant-Finder. BNetzA Open Data 2026.`}
         canonicalPath="/"
         schema={homeSchema}

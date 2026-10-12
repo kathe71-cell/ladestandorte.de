@@ -103,7 +103,7 @@ export const StationDetailPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
-        title={`${station.name} (${station.kwMax} kW HPC) · Ladepark ${station.city} 2026`}
+        title={`${station.name} (${station.kwMax} kW HPC) · Ladepark ${station.city}`}
         description={`Öffentlicher Schnellladepark ${station.name} in ${station.plz} ${station.city} (${station.street}): ${station.pointsCount} Ladepunkte, bis zu ${station.kwMax} kW HPC. Betreiber: ${station.operator}. BNetzA Open Data 2026.`}
         canonicalPath={`/ladestation/${station.citySlug}/${station.slug}`}
         schema={schema}

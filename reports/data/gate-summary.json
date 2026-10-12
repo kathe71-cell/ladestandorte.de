@@ -1,0 +1,39 @@
+{
+  "gateVersion": "1.1.0",
+  "executedAt": "2026-10-12T12:07:04.387Z",
+  "overallStatus": "PASS",
+  "exitCode": 0,
+  "buildContext": "REGULAR_BUILD",
+  "phases": {
+    "phase1_schema": {
+      "status": "PASS",
+      "errors": [],
+      "stats": {
+        "stationsChecked": 117043,
+        "pointsChecked": 210185,
+        "stationsFile": "/Users/MRT/Desktop/base44_projekte/ladestandorte.de/data/raw/bnetza/2026-10-01/bnetza_api_ladestation000.csv",
+        "pointsFile": "/Users/MRT/Desktop/base44_projekte/ladestandorte.de/data/raw/bnetza/2026-10-01/bnetza_api_ladepunkt000.csv"
+      }
+    },
+    "phase2_consistency": {
+      "status": "PASS",
+      "passed": 8,
+      "total": 8,
+      "errors": []
+    },
+    "phase3_plausibility": {
+      "status": "PASS",
+      "baselineStatus": "BASELINE_ESTABLISHED",
+      "warnings": [],
+      "deltas": {
+        "nationwide": {},
+        "operators": [],
+        "cities": []
+      }
+    },
+    "phase4_approval": {
+      "status": "SKIPPED",
+      "details": "No plausibility warnings triggered."
+    }
+  }
+}

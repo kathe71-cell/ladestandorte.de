@@ -132,7 +132,7 @@ export const McsStationsPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
-        title="MCS-Monitor Deutschland: Dokumentierte MCS- & E-Lkw-Ladestationen (2026)"
+        title="MCS-Monitor Deutschland: Dokumentierte MCS- & E-Lkw-Ladestationen"
         description="Quellenbasierte Übersicht der von ladestandorte.de dokumentierten Standorte für Megawatt- und Hochleistungs-Schwerlastladen in Deutschland. Technische Kennzahlen, Status und Betreiber."
         canonicalPath="/mcs/ladestationen"
         schema={schema}

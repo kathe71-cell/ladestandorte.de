@@ -126,7 +126,7 @@ export const OperatorPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       <SEO
-        title={`${operator.name}: Ladenetz, Tarife & ${operator.totalPointsDE.toLocaleString('de-DE')} Ladepunkte in Deutschland 2026`}
+        title={`${operator.name}: Ladenetz, Tarife & ${operator.totalPointsDE.toLocaleString('de-DE')} Ladepunkte in Deutschland`}
         description={`${operator.name} im Faktencheck: ${operator.totalPointsDE.toLocaleString('de-DE')} Ladepunkte, bis zu ${operator.maxKw} kW HPC, ${operator.hpcShare}% HPC-Anteil. Preise, Roaming, Plug & Charge & BNetzA-Daten 2026.`}
         canonicalPath={`/betreiber/${operator.slug}`}
         schema={schema}

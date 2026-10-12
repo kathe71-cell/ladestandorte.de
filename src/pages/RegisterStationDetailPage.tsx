@@ -367,7 +367,7 @@ export const RegisterStationDetailPage: React.FC = () => {
 
       <FloatingCTABar
         title="Günstig laden an allen Stationen"
-        subtitle="Unabhängiger Ladekarten-Vergleich 2026"
+        subtitle="Unabhängiger Ladekarten-Vergleich"
         link="/ladekarten"
       />
     </div>

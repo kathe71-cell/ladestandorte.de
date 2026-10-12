@@ -66,7 +66,7 @@ export const McsHubPage: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       <SEO
-        title="Megawatt Charging System (MCS): E-Lkw Ladehubs in Deutschland 2026"
+        title="Megawatt Charging System (MCS): E-Lkw Ladehubs in Deutschland"
         description="Megawatt-Schnellladen für schwere E-Lkw in Deutschland: Verifizierte MCS- und Lkw-Ladeparks bis 1.200 kW, Standorte, Normung & Korridore."
         canonicalPath="/mcs"
         schema={schema}

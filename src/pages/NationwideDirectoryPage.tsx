@@ -644,7 +644,7 @@ export const NationwideDirectoryPage: React.FC = () => {
 
       <FloatingCTABar
         title="Günstig laden in ganz Deutschland"
-        subtitle="Unabhängiger Ladekarten-Vergleich 2026"
+        subtitle="Unabhängiger Ladekarten-Vergleich"
         link="/ladekarten"
       />
     </div>

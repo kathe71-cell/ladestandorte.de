@@ -82,7 +82,7 @@ export const RatgeberArticlePage: React.FC = () => {
     return (
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
         <SEO
-          title={`${CHARGING_CARDS.length} Ladekarten im Vergleich 2026: Roaming, Tarife & wer wirklich spart`}
+          title={`${CHARGING_CARDS.length} Ladekarten im Vergleich: Roaming, Tarife & wer wirklich spart`}
           description={`Welche Ladekarte lohnt sich 2026? ${CHARGING_CARDS.length} Tarife im Faktencheck: ADAC, EnBW, Tesla, Maingau & Co. – Roaming-Netze, Grundgebühren, AC/DC-Preise & Sparstrategie.`}
           canonicalPath="/ratgeber/ladekarten-dschungel"
           schema={getArticleSchema(
@@ -316,7 +316,7 @@ export const RatgeberArticlePage: React.FC = () => {
   return (
     <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
       <SEO
-        title="Blockiergebühren vermeiden: Karenzzeiten, Kostenfallen & CPO-Vergleich 2026"
+        title="Blockiergebühren vermeiden: Karenzzeiten, Kostenfallen & CPO-Vergleich"
         description="Standzeitgebühren ab 240 Min. AC / 60 Min. DC vermeiden. Karenzzeiten, Kostenfallen, Nacht-Regelungen und Betreibervergleich verständlich aufbereitet."
         canonicalPath="/ratgeber/blockiergebuehren-vermeiden"
         schema={getArticleSchema(
