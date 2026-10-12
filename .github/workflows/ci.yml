@@ -31,8 +31,8 @@ jobs:
       - name: Run Mandatory Data Integrity Gate
         run: npm run gate:check
 
-      - name: Run Full Regression Test Suite
-        run: npm test
-
       - name: Verify Production SSR Build
         run: npm run build:ci
+
+      - name: Run Full Regression Test Suite
+        run: npm test
