@@ -75,7 +75,7 @@ export const RatgeberArticlePage: React.FC = () => {
       },
       {
         q: "Muss man heute noch zwingend eine Ladekarte besitzen?",
-        a: "Nein. Nach der EU-Verordnung AFIR müssen alle öffentlichen Schnelllader über 50 kW kontaktlose Kartenzahlung mit Debit- oder Kreditkarte ermöglichen. Allerdings sind die vertragsgebundenen Kilowattstundenpreise mit einer Ladekarte meist günstiger als der spontane Ad-hoc-Tarif."
+        a: "Nein. Gemäß Art. 5 der EU-Verordnung AFIR müssen alle seit dem 13. April 2024 neu in Betrieb genommenen Schnellladepunkte ab 50 kW kontaktlose Kartenzahlung mit Debit- oder Kreditkarte direkt an der Station akzeptieren. Eine Ladekarte oder App bietet im Vergleich zum Ad-hoc-Direktbezug jedoch häufig günstigere Kilowattstundenpreise."
       }
     ];
 
@@ -161,7 +161,7 @@ export const RatgeberArticlePage: React.FC = () => {
 
           <h2 className="text-2xl font-bold text-[#171917] mt-8 mb-4">3. Der Einfluss der AFIR-Verordnung (EU 2023/1804)</h2>
           <p>
-            Seit April 2024 müssen alle neu errichteten Schnellladepunkte in der EU mit kontaktlosen Kartenterminals (NFC für Girocard und Kreditkarten) ausgerüstet sein. Dies bedeutet das Ende der zwingenden Ladekartenpflicht: Jeder Fahrer kann ohne Voranmeldung spontan via Ad-hoc-Zahlung laden. Allerdings liegen die Ad-hoc-Preise meist über den konditionierten Ladekarten-Tarifen.
+            Gemäß Art. 5 der europäischen AFIR-Verordnung müssen alle seit dem 13. April 2024 neu in Betrieb genommenen Schnellladepunkte ab 50 kW verpflichtend mit kontaktlosen Kartenterminals (NFC für Girocard, Debit- und Kreditkarten) direkt an der Station ausgestattet sein. Dies beendet die zwingende Ladekarten- oder App-Pflicht: Jeder Fahrer kann ohne Voranmeldung spontan via Ad-hoc-Zahlung laden. An Ladepunkten unter 50 kW sowie an bestehenden Altanlagen kann die Ad-hoc-Zahlung weiterhin über QR-Codes abgewickelt werden. Zu beachten ist, dass spontane Ad-hoc-Preise in der Regel über den konditionierten Tarifen vertragsgebundener Ladekarten liegen.
           </p>
         </div>
 

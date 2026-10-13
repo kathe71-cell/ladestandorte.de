@@ -66,7 +66,7 @@ export const OperatorPage: React.FC = () => {
     },
     {
       q: `Kann man an ${operator.name} Stationen ohne Ladekarte und Registrierung laden?`,
-      a: `Ja. Gemäß der europäischen AFIR-Verordnung (EU 2023/1804) unterstützen alle neueren Schnellladepunkte von ${operator.name} das direkte Ad-hoc-Laden mit kontaktloser Debit- oder Kreditkarte (Girocard, Visa, Mastercard, Apple Pay, Google Pay) direkt an der Säule oder über einen dynamischen QR-Code.`
+      a: `Ja. Gemäß Art. 5 der europäischen AFIR-Verordnung (EU 2023/1804) müssen alle seit dem 13. April 2024 neu in Betrieb genommenen Schnellladepunkte ab 50 kW verpflichtend kontaktlose Kartenzahlung (Debit- oder Kreditkarte, NFC via Girocard, Apple Pay, Google Pay) direkt an der Station akzeptieren. An Ladepunkten unter 50 kW sowie an bestehenden Altanlagen kann die Ad-hoc-Zahlung auch über dynamische QR-Codes und eine sichere Zahlungswebsite erfolgen.`
     },
     {
       q: `Unterstützt ${operator.name} Plug & Charge oder AutoCharge?`,

@@ -2120,7 +2120,7 @@ export const STATIONS_DATA: StationData[] = [
       overnightCharging: false,
       provenance: "official-operator",
       source: "Aral / bp pulse Pressemitteilung (12.03.2026: bis zu 6 Durchfahrtsbuchten gesamt mit HYC1000 MCS/CCS)",
-      sourceUrl: "https://www.aral.de",
+      sourceUrl: "https://www.aral.de/de/global/retail/presse/pressemeldungen/pm2026-03-12-aral-pulse-geht-in-deutschland-mit-megawatt-ladetechnologie-fuer-e-lkw-an-den-start.html",
       lastVerifiedAt: "2026-10-01"
     }
   },

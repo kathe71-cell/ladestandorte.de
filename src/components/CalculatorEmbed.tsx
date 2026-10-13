@@ -438,7 +438,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
                       : 'bg-[#F7F7F2] hover:bg-[#DFE3DC] text-[#171917] border border-[#DFE3DC]'
                   }`}
                 >
-                  {kw} kW {kw <= 22 ? 'AC' : 'HPC'}
+                  {kw} kW {kw <= 22 ? 'AC' : kw < 150 ? 'DC' : 'HPC'}
                 </button>
               ))}
             </div>

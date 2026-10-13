@@ -31,7 +31,7 @@ export const RechnerEmbedPage: React.FC = () => {
       <SEO
         title="Ladezeit- & Ladekosten-Rechner Widget"
         description="Einbettbares Widget für den Ladezeit- und Ladekostenrechner für Elektroautos."
-        canonicalPath="/rechner"
+        canonicalPath="/rechner-embed"
         noIndex={true}
       />
       <div 

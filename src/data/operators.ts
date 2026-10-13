@@ -58,19 +58,19 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     headquarters: "München, Deutschland",
     totalPointsDE: 3200, // ca. 250 Standorte × ~13 Punkte, gerundet; GoingElectric + BNetzA Q1 2026
     hpcShare: 100,
-    maxKw: 400, // Alpitronic HYC400 & 350-kW-Stationen
+    maxKw: 400, // Alpitronic HYC400 & 350-kW-Stationen in Deutschland (europaweit vereinzelt Konzepte/Piloten bis 600 kW)
     roamingPartnersCount: 200,
     plugAndCharge: true,
     autocharge: false,
     standardPriceAc: null,
-    standardPriceDc: 0.79, // offizieller Ad-hoc-Direktladepreis Deutschland
-    tariffModel: "fixed_adhoc",
-    tariffNote: "Reines HPC-Netz (kein AC). Ad-hoc-Direktbezug ohne Grundgebühr: 0,79 €/kWh; mit IONITY Passport bzw. Partnerverträgen reduzierter kWh-Preis.",
+    standardPriceDc: null,
+    tariffModel: "variable_station",
+    tariffNote: "Standortabhängige Ad-hoc-Preise (ab 0,39 €/kWh Mindestpreis). Verbindliche Preise werden an der jeweiligen Ladesäule und über ionity.eu ausgewiesen; mit IONITY Passport bzw. Partnerverträgen gelten ermäßigte kWh-Preise.",
     bnetzaAnteil: "HPC-Spezialist an Fernstraßen und Autobahnen",
     description:
-      "IONITY ist das führende paneuropäische HPC-Netzwerk an Autobahnraststätten und autobahnnahen Fernverkehrsknotenpunkten, gegründet von BMW, Mercedes, Ford, Hyundai und der Volkswagen-Gruppe. Die Ladeleistung reicht von 350 kW bis zu 400 kW bei neueren Generationen, primär mit CCS-Anschlüssen. Mit dem IONITY Passport lässt sich der kWh-Preis deutlich senken.",
+      "IONITY ist das führende paneuropäische HPC-Netzwerk an Autobahnraststätten und autobahnnahen Fernverkehrsknotenpunkten, gegründet von BMW, Mercedes, Ford, Hyundai und der Volkswagen-Gruppe. In Deutschland liefert das Netz vorwiegend 350 kW bis 400 kW pro CCS-Ladepunkt (europaweit pilotieren Konzeptstandorte bis zu 600 kW). Die Abrechnung im Ad-hoc-Direktbezug erfolgt standortabhängig (ab 0,39 €/kWh); mit dem IONITY Passport lässt sich der kWh-Preis deutlich senken.",
     features: [
-      "Bis zu 350 bzw. 400 kW Ladeleistung (CCS)",
+      "Bis zu 350 bzw. 400 kW Ladeleistung in DE (CCS)",
       "Autobahnraststätten und autobahnnahe Schnellladeparks",
       "Plug & Charge (ISO 15118) unterstützt",
       "IONITY Passport für Vielnutzer",
@@ -131,9 +131,9 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     slug: "fastned",
     name: "Fastned",
     headquarters: "Amsterdam, Niederlande",
-    totalPointsDE: 620, // ca. 100 Stationen × 6 Punkte, Schätzung* basierend auf GoingElectric
+    totalPointsDE: 620, // ca. 100 Stationen × 6 Punkte, Schätzung* basierend auf GoingElectric & BNetzA
     hpcShare: 100,
-    maxKw: 300,
+    maxKw: 400, // BNetzA Q1 2026: 208 Ladepunkte mit 400 kW (Alpitronic HYC400) in Deutschland registriert
     roamingPartnersCount: 60,
     plugAndCharge: true,
     autocharge: false,
@@ -143,10 +143,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     tariffNote: "Reines HPC-Netz (kein AC). Ad-hoc-Laden: 0,69 €/kWh; mit monatlicher Fastned-Mitgliedschaft (Gold Member) ca. 30 % reduzierter kWh-Preis.",
     bnetzaAnteil: "Premium-HPC-Netz an Autobahnen und Ballungsräumen",
     description:
-      "Fastned betreibt charakteristische gelbe Solardachstationen ausschließlich mit HPC. In Deutschland konzentriert sich das Netz auf Autobahnen und Großstädte. Mit der Fastned-Gold-Mitgliedschaft (monatliche Grundgebühr) erhalten Viellader einen rabattierten Preis pro geladener Kilowattstunde (ca. 30 % Ersparnis).",
+      "Fastned betreibt charakteristische gelbe Solardachstationen ausschließlich mit HPC. In Deutschland erreicht das Netz mit modernen Alpitronic HYC400 Schnellladern bis zu 400 kW Spitzenleistung. Mit der Fastned-Gold-Mitgliedschaft (monatliche Grundgebühr) erhalten Viellader einen rabattierten Preis pro geladener Kilowattstunde (ca. 30 % Ersparnis).",
     features: [
       "Ikonische gelbe Solardach-Stationen",
-      "Nur HPC (kein AC)",
+      "HPC bis zu 400 kW Ladeleistung in Deutschland",
       "Gold-Mitgliedschaft mit kWh-Rabatt",
       "CCS und vereinzelt CHAdeMO (Bestand)",
       "Ökostrom aus Sonne und Wind",

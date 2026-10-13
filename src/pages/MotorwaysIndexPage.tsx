@@ -52,7 +52,7 @@ export const MotorwaysIndexPage: React.FC = () => {
             "name": "Muss ich zum Schnellladen an der Autobahn eine App haben?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nein. Seit April 2024 (AFIR-Verordnung) müssen alle HPC-Ladesäulen über 50 kW kontaktlose Kartenzahlung anbieten. Eine Ladekarte ermöglicht aber oft günstigere Tarife."
+              "text": "Nein. Gemäß Art. 5 der europäischen AFIR-Verordnung müssen alle seit dem 13. April 2024 neu errichteten Schnellladepunkte ab 50 kW kontaktlose Kartenzahlung (Debit-/Kreditkarte) direkt an der Station anbieten. Eine Ladekarte oder App ermöglicht jedoch häufig günstigere Konditionen als der Ad-hoc-Tarif."
             }
           }
         ]

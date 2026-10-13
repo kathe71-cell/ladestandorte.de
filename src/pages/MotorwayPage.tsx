@@ -77,7 +77,7 @@ export const MotorwayPage: React.FC = () => {
             "name": `Brauche ich eine Ladekarte für die ${motorway.name}?`,
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nein. Seit April 2024 (AFIR-Verordnung) müssen alle Schnelllader über 50 kW kontaktlose Kartenzahlung akzeptieren. Eine Ladekarte (z.B. ADAC, EnBW, IONITY Passport) ermöglicht aber deutlich günstigere kWh-Preise."
+              "text": "Nein. Gemäß Art. 5 der europäischen AFIR-Verordnung müssen alle seit dem 13. April 2024 neu errichteten Schnellladepunkte ab 50 kW kontaktlose Kartenzahlung (Debit-/Kreditkarte) direkt akzeptieren. Eine Ladekarte (z. B. ADAC, EnBW, IONITY Passport) ermöglicht an vielen Stationen jedoch günstigere kWh-Preise als der spontane Ad-hoc-Direktbezug."
             }
           }
         ]

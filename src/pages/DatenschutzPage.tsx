@@ -10,7 +10,7 @@ export const DatenschutzPage: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
       <SEO
         title="Datenschutzerklärung · ladestandorte.de"
-        description="Datenschutzerklärung nach DSGVO und TDDDG. Informationen über die Datenverarbeitung ohne Tracking-Cookies und ohne Drittstaaten-Transfer."
+        description="Datenschutzerklärung nach DSGVO und TDDDG. Informationen über die Datenverarbeitung, Server-Infrastruktur und Ihre Rechte als betroffene Person."
         canonicalPath="/datenschutz"
       />
 
@@ -123,7 +123,24 @@ export const DatenschutzPage: React.FC = () => {
         <div className="pt-4 border-t border-slate-100">
           <h2 className="text-lg font-bold text-slate-950 mb-2">10. Ihre Rechte als betroffene Person</h2>
           <p>
-            Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung (Art. 15 DSGVO), das Recht auf Berichtigung unrichtiger Daten (Art. 16 DSGVO), das Recht auf Löschung (Art. 17 DSGVO), das Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO) sowie das Recht auf Datenübertragbarkeit (Art. 20 DSGVO). Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Datenschutz-Aufsichtsbehörde zu (Art. 77 DSGVO). Wenden Sie sich bei datenschutzrechtlichen Anfragen an die im Impressum hinterlegten Kontaktdaten.
+            Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit folgende Rechte bezüglich Ihrer personenbezogenen Daten:
+          </p>
+          <ul className="list-disc pl-5 mt-2 space-y-1">
+            <li><strong>Recht auf Auskunft</strong> (Art. 15 DSGVO) über Ihre bei uns verarbeiteten Daten, deren Herkunft, Empfänger und Zweck der Verarbeitung.</li>
+            <li><strong>Recht auf Berichtigung</strong> (Art. 16 DSGVO) unrichtiger oder unvollständiger personenbezogener Daten.</li>
+            <li><strong>Recht auf Löschung</strong> (Art. 17 DSGVO, „Recht auf Vergessenwerden“), sofern keine gesetzlichen Aufbewahrungsfristen entgegenstehen.</li>
+            <li><strong>Recht auf Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO) unter den gesetzlich genannten Voraussetzungen.</li>
+            <li><strong>Recht auf Datenübertragbarkeit</strong> (Art. 20 DSGVO) in einem gängigen, maschinenlesbaren Format.</li>
+            <li><strong>Beschwerderecht</strong> (Art. 77 DSGVO) bei einer zuständigen Datenschutz-Aufsichtsbehörde.</li>
+          </ul>
+        </div>
+
+        <div className="pt-4 border-t border-slate-100">
+          <h2 className="text-lg font-bold text-slate-950 mb-2">11. Widerspruchsrecht gegen die Datenerhebung (Art. 21 DSGVO)</h2>
+          <p className="bg-[#F7F7F2] p-4 rounded-xl border border-[#DFE3DC] text-xs leading-relaxed">
+            <strong>WIDERSPRUCHSRECHT IM EINZELFALL:</strong> Wenn die Datenverarbeitung auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (Wahrnehmung berechtigter Interessen) erfolgt, haben Sie das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Ihrer personenbezogenen Daten Widerspruch einzulegen. Dies gilt auch für ein auf diese Bestimmungen gestütztes Profiling.<br /><br />
+            Wenn Sie Widerspruch einlegen, werden wir Ihre betroffenen personenbezogenen Daten nicht mehr verarbeiten, es sei denn, wir können zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen (Art. 21 Abs. 1 DSGVO).<br /><br />
+            Zur Ausübung Ihres Widerspruchsrechts genügt eine formlose Mitteilung per E-Mail an die im Impressum angegebene Kontaktadresse.
           </p>
         </div>
 
