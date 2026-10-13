@@ -1,7 +1,6 @@
 import React from 'react';
 import { CalculatorEmbed } from '../components/CalculatorEmbed';
 import { SEO } from '../components/SEO';
-import { AmazonPartnerSentence } from '@plattform/core';
 
 import { useSearchParams } from 'react-router-dom';
 
@@ -40,7 +39,6 @@ export const RechnerEmbedPage: React.FC = () => {
         className="w-full max-w-2xl border p-2 sm:p-4 shadow-sm"
       >
         <CalculatorEmbed isEmbed={true} />
-        <AmazonPartnerSentence className="sr-only" />
       </div>
     </div>
   );

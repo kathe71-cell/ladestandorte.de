@@ -9,7 +9,7 @@ export const DatenschutzPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
       <SEO
-        title="Datenschutzerklärung · DSGVO-konform · ladestandorte.de"
+        title="Datenschutzerklärung · ladestandorte.de"
         description="Datenschutzerklärung nach DSGVO und TDDDG. Informationen über die Datenverarbeitung ohne Tracking-Cookies und ohne Drittstaaten-Transfer."
         canonicalPath="/datenschutz"
       />
@@ -103,8 +103,25 @@ export const DatenschutzPage: React.FC = () => {
           </p>
         </div>
 
+        {/* Kontaktaufnahme per E-Mail */}
         <div className="pt-4 border-t border-slate-100">
-          <h2 className="text-lg font-bold text-slate-950 mb-2">9. Ihre Rechte als betroffene Person</h2>
+          <h2 className="text-lg font-bold text-slate-950 mb-2">9. Kontaktaufnahme per E-Mail</h2>
+          <p>
+            Wenn Sie uns per E-Mail kontaktieren, verarbeiten wir Ihre E-Mail-Adresse, die von Ihnen mitgeteilten Angaben sowie den Inhalt Ihrer Nachricht, um Ihre Anfrage zu bearbeiten und gegebenenfalls Rückfragen zu beantworten.
+          </p>
+          <p className="mt-2">
+            Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bearbeitung von Anfragen). Soweit Ihre Anfrage der Anbahnung oder Durchführung eines Vertrags dient, erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO.
+          </p>
+          <p className="mt-2">
+            Wir speichern Ihre Angaben nur so lange, wie dies zur Bearbeitung Ihrer Anfrage erforderlich ist. Gesetzliche Aufbewahrungspflichten bleiben unberührt.
+          </p>
+          <p className="mt-2">
+            Bei der E-Mail-Kommunikation können personenbezogene Daten durch die beteiligten E-Mail-Dienstleister verarbeitet werden.
+          </p>
+        </div>
+
+        <div className="pt-4 border-t border-slate-100">
+          <h2 className="text-lg font-bold text-slate-950 mb-2">10. Ihre Rechte als betroffene Person</h2>
           <p>
             Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung (Art. 15 DSGVO), das Recht auf Berichtigung unrichtiger Daten (Art. 16 DSGVO), das Recht auf Löschung (Art. 17 DSGVO), das Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO) sowie das Recht auf Datenübertragbarkeit (Art. 20 DSGVO). Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Datenschutz-Aufsichtsbehörde zu (Art. 77 DSGVO). Wenden Sie sich bei datenschutzrechtlichen Anfragen an die im Impressum hinterlegten Kontaktdaten.
           </p>

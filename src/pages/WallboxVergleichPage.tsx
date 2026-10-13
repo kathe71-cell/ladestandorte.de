@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Zap, CheckCircle2, Sun, Smartphone, Info, Shield, Network, SlidersHorizontal, ArrowUpDown, X, ShoppingCart } from 'lucide-react';
 import { WALLBOXES_DATA } from '../data/wallboxes';
-import { AffiliateLink, AdPageNotice } from '@plattform/core';
+import { AffiliateLink } from '@plattform/core';
 import { EEATBadge } from '../components/EEATBadge';
 import { CitationBox } from '../components/CitationBox';
 import { SEO } from '../components/SEO';
@@ -117,7 +117,14 @@ export const WallboxVergleichPage: React.FC = () => {
       </div>
 
       {/* Affiliate-Hinweis */}
-      <AdPageNotice />
+      <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-1">
+        <p data-ad-notice="" className="font-semibold text-slate-900">
+          Werbung / Affiliate-Links: Diese Seite enthält Partnerlinks. Wenn Sie über einen solchen Link einkaufen, können wir eine Provision erhalten. Für Sie entstehen dadurch keine zusätzlichen Kosten.
+        </p>
+        <p className="text-[11px] text-slate-500">
+          Die redaktionelle Auswahl und Bewertung der Wallboxen erfolgt unabhängig. Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.
+        </p>
+      </div>
 
       {/* ── Filter & Sort Bar ─────────────────────────────── */}
       <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 space-y-4">

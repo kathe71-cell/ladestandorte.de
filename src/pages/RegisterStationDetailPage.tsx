@@ -134,7 +134,21 @@ export const RegisterStationDetailPage: React.FC = () => {
   const isHpc = (station?.maxKw || 0) >= 150;
   const addressLine = station ? `${station.street} ${station.houseNumber}`.trim() : '';
   const fullAddress = station ? `${addressLine}, ${station.plz} ${station.city}` : '';
-  const googleMapsUrl = station?.lat && station?.lon 
+  const hasValidCoordinates = 
+    station?.lat !== undefined && 
+    station?.lon !== undefined && 
+    typeof station.lat === 'number' && 
+    typeof station.lon === 'number' && 
+    Number.isFinite(station.lat) && 
+    Number.isFinite(station.lon) && 
+    station.lat >= -90 && 
+    station.lat <= 90 && 
+    station.lon >= -180 && 
+    station.lon <= 180 && 
+    station.lat !== 0 && 
+    station.lon !== 0;
+
+  const googleMapsUrl = hasValidCoordinates 
     ? `https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lon}` 
     : null;
 

@@ -35,8 +35,12 @@ export const StationDetailPage: React.FC = () => {
   const hasValidCoordinates = 
     typeof station.lat === 'number' && 
     typeof station.lng === 'number' && 
-    !isNaN(station.lat) && 
-    !isNaN(station.lng) && 
+    Number.isFinite(station.lat) && 
+    Number.isFinite(station.lng) && 
+    station.lat >= -90 && 
+    station.lat <= 90 && 
+    station.lng >= -180 && 
+    station.lng <= 180 && 
     station.lat !== 0 && 
     station.lng !== 0;
 
