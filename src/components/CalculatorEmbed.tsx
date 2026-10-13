@@ -417,7 +417,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               type="range"
               min="3"
               max="400"
-              step={chargePower > 50 ? 10 : 1}
+              step="1"
               value={chargePower}
               aria-valuenow={chargePower}
               aria-valuemin={3}
