@@ -184,8 +184,10 @@ export const WallboxVergleichPage: React.FC = () => {
 
         <div className="flex flex-wrap gap-3 items-center pt-1 border-t border-slate-200">
           <div className="flex items-center gap-2">
-            <label className="text-xs font-semibold text-slate-600 whitespace-nowrap">Marke:</label>
+            <label htmlFor="wallbox-brand-filter" className="text-xs font-semibold text-slate-600 whitespace-nowrap">Marke:</label>
             <select
+              id="wallbox-brand-filter"
+              name="brand"
               value={filters.brand}
               onChange={(e) => setFilters((f) => ({ ...f, brand: e.target.value }))}
               className="text-xs border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white text-slate-700 focus:outline-none focus:border-slate-500"
@@ -199,8 +201,10 @@ export const WallboxVergleichPage: React.FC = () => {
 
           <div className="flex items-center gap-2 ml-auto">
             <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
-            <label className="text-xs font-semibold text-slate-600 whitespace-nowrap">Sortierung:</label>
+            <label htmlFor="wallbox-sort-select" className="text-xs font-semibold text-slate-600 whitespace-nowrap">Sortierung:</label>
             <select
+              id="wallbox-sort-select"
+              name="sort"
               value={sort}
               onChange={(e) => setSort(e.target.value as SortKey)}
               className="text-xs border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white text-slate-700 focus:outline-none focus:border-slate-500"

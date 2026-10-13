@@ -510,8 +510,14 @@ export const HpcCityMonitorPage: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <Filter className="w-4 h-4 text-slate-400 shrink-0" />
+            <Filter className="w-4 h-4 text-slate-400 shrink-0" aria-hidden="true" />
+            <label htmlFor="hpc-bundesland-filter" className="sr-only">
+              Bundesland filtern
+            </label>
             <select
+              id="hpc-bundesland-filter"
+              name="bundesland"
+              aria-label="Bundesland filtern"
               value={selectedBundesland}
               onChange={(e) => setSelectedBundesland(e.target.value)}
               className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-hidden focus:ring-2 focus:ring-slate-900 transition-all font-mono"

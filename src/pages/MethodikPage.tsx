@@ -347,10 +347,10 @@ export const MethodikPage: React.FC = () => {
                 Modelliert den realen Ladevorgang über vereinfachte, transparente Modellannahmen:
               </p>
               <div className="p-3 bg-white rounded-xl border border-[#DFE3DC] text-xs font-mono text-[#171917] space-y-1">
-                <div>Verluste: 6 % bei DC (&gt;22 kW), 12 % bei AC (&le;22 kW)</div>
+                <div>Modellierter Energieaufschlag: +6 % bei DC (&gt;22 kW), +12 % bei AC (&le;22 kW)</div>
                 <div>Effektive Leistung = Peak &times; Ladekurvenfaktor</div>
                 <div>Ladekurvenfaktor: 0,76 (Standard) bzw. 0,82 (800V-Profil)</div>
-                <div>Bruttoenergie = Nettoenergie &times; (1 + Verlust)</div>
+                <div>Bruttoenergie = Nettoenergie &times; (1 + Aufschlag)</div>
                 <div>Ladedauer [h] = Bruttoenergie / Effektive Leistung</div>
               </div>
             </div>

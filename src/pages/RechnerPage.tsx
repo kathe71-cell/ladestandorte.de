@@ -115,7 +115,7 @@ export const RechnerPage: React.FC = () => {
           <BookOpen className="w-4 h-4 text-slate-800 shrink-0 mt-0.5" />
           <div>
             <strong className="text-slate-900 font-semibold block sm:inline">Transparente Modellierung: </strong>
-            <span>Alle Formeln, Wirkungsgrade (AC 88 % / DC 94 %) und Ladekurven-Plateaufaktoren (0,76 / 0,82) sind in unserer Methodik offengelegt.</span>
+            <span>Alle Formeln, modellierten Ladeverlust-Aufschläge (+12 % AC / +6 % DC) und Ladekurven-Plateaufaktoren (0,76 / 0,82) sind in unserer Methodik offengelegt.</span>
           </div>
         </div>
         <Link

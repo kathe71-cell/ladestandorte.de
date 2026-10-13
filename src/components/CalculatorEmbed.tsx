@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { Calculator, Zap, Clock, Euro, Check, Code, Share2, Car, Sparkles, AlertTriangle, Info } from 'lucide-react';
 import { VEHICLES_DATA } from '../data/vehicles';
@@ -19,6 +19,9 @@ function parseNum(val: string | null, fallback: number, min?: number, max?: numb
 
 export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
   const [searchParams] = useSearchParams();
+  const rawId = useId();
+  // Safe HTML id prefix removing colons from React useId
+  const uid = rawId.replace(/:/g, '');
 
   // Mode: 'estimate' (Praxis-Schätzung, default) or 'theoretical' (Theoretisch)
   const [calcMode, setCalcMode] = useState<'estimate' | 'theoretical'>(() => {
@@ -312,7 +315,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* Fahrzeug-Schnellwähler */}
           <div className="p-4 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] space-y-3">
             <div className="flex items-center justify-between">
-              <label htmlFor="vehicle-select" className="text-xs font-mono uppercase tracking-wider text-[#171917] font-bold flex items-center gap-1.5">
+              <label htmlFor={`${uid}-vehicle-select`} className="text-xs font-mono uppercase tracking-wider text-[#171917] font-bold flex items-center gap-1.5">
                 <Car className="w-4 h-4 text-[#2F5E73]" />
                 <span>Fahrzeug-Schnellwähler:</span>
               </label>
@@ -329,7 +332,8 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
             </div>
 
             <select
-              id="vehicle-select"
+              id={`${uid}-vehicle-select`}
+              name="vehicle"
               value={selectedVehicleId}
               onChange={(e) => handleVehicleSelect(e.target.value)}
               className="w-full px-3 py-2.5 text-sm bg-white border border-[#DFE3DC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#171917] font-semibold text-[#171917] shadow-xs cursor-pointer"
@@ -358,7 +362,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* Battery Capacity */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
-              <label htmlFor="capacity-range" className="font-bold text-[#171917] flex items-center gap-1.5">
+              <label htmlFor={`${uid}-capacity-range`} className="font-bold text-[#171917] flex items-center gap-1.5">
                 <span>Akkukapazität (netto nutzbar):</span>
                 {isCustomCapacity && (
                   <span className="text-[10px] font-mono text-[#171917] bg-[#F7F7F2] border border-[#DFE3DC] px-1.5 py-0.2 rounded font-semibold">
@@ -371,12 +375,17 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               </span>
             </div>
             <input
-              id="capacity-range"
+              id={`${uid}-capacity-range`}
+              name="capacity"
               type="range"
               min="20"
               max="130"
               step="1"
               value={batteryCapacity}
+              aria-valuenow={batteryCapacity}
+              aria-valuemin={20}
+              aria-valuemax={130}
+              aria-valuetext={`${batteryCapacity} Kilowattstunden`}
               onChange={(e) => handleCapacityChange(Number(e.target.value))}
               className="w-full accent-[#171917] h-2 bg-[#DFE3DC] rounded-lg cursor-pointer"
             />
@@ -390,7 +399,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* Ladeleistung in kW */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
-              <label htmlFor="kw-range" className="font-bold text-[#171917] flex items-center gap-1.5">
+              <label htmlFor={`${uid}-kw-range`} className="font-bold text-[#171917] flex items-center gap-1.5">
                 <span>Ladesäulen-Nennleistung:</span>
                 {isCustomKw && (
                   <span className="text-[10px] font-mono text-[#171917] bg-[#F7F7F2] border border-[#DFE3DC] px-1.5 py-0.2 rounded font-semibold">
@@ -403,12 +412,17 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               </span>
             </div>
             <input
-              id="kw-range"
+              id={`${uid}-kw-range`}
+              name="kw"
               type="range"
               min="3"
               max="400"
               step={chargePower > 50 ? 10 : 1}
               value={chargePower}
+              aria-valuenow={chargePower}
+              aria-valuemin={3}
+              aria-valuemax={400}
+              aria-valuetext={`${chargePower} Kilowatt`}
               onChange={(e) => handlePowerChange(Number(e.target.value))}
               className="w-full accent-[#171917] h-2 bg-[#DFE3DC] rounded-lg cursor-pointer"
             />
@@ -451,31 +465,41 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* State of Charge (SoC) Slider Range */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label htmlFor="start-soc" className="text-xs font-bold text-[#171917] block">
+              <label htmlFor={`${uid}-start-soc`} className="text-xs font-bold text-[#171917] block">
                 Start-Ladestand (SoC): <span className="font-mono font-black text-[#171917]">{startSoc} %</span>
               </label>
               <input
-                id="start-soc"
+                id={`${uid}-start-soc`}
+                name="start"
                 type="range"
                 min="0"
                 max="95"
                 step="5"
                 value={startSoc}
+                aria-valuenow={startSoc}
+                aria-valuemin={0}
+                aria-valuemax={95}
+                aria-valuetext={`${startSoc} Prozent`}
                 onChange={(e) => setStartSoc(Number(e.target.value))}
                 className="w-full accent-[#171917] h-2 bg-[#DFE3DC] rounded-lg cursor-pointer"
               />
             </div>
             <div className="space-y-1.5">
-              <label htmlFor="end-soc" className="text-xs font-bold text-[#171917] block">
+              <label htmlFor={`${uid}-end-soc`} className="text-xs font-bold text-[#171917] block">
                 Ziel-Ladestand (SoC): <span className="font-mono font-black text-[#171917]">{endSoc} %</span>
               </label>
               <input
-                id="end-soc"
+                id={`${uid}-end-soc`}
+                name="end"
                 type="range"
                 min="5"
                 max="100"
                 step="5"
                 value={endSoc}
+                aria-valuenow={endSoc}
+                aria-valuemin={5}
+                aria-valuemax={100}
+                aria-valuetext={`${endSoc} Prozent`}
                 onChange={(e) => setEndSoc(Number(e.target.value))}
                 className="w-full accent-[#171917] h-2 bg-[#DFE3DC] rounded-lg cursor-pointer"
               />
@@ -485,7 +509,7 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
           {/* Strompreis je kWh */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
-              <label htmlFor="price-range" className="font-bold text-[#171917]">
+              <label htmlFor={`${uid}-price-range`} className="font-bold text-[#171917]">
                 Strompreis je Kilowattstunde:
               </label>
               <span className="font-mono font-black text-[#171917] bg-[#F7F7F2] border border-[#DFE3DC] px-2.5 py-0.5 rounded-md text-base">
@@ -493,12 +517,17 @@ export const CalculatorEmbed: React.FC<Props> = ({ isEmbed = false }) => {
               </span>
             </div>
             <input
-              id="price-range"
+              id={`${uid}-price-range`}
+              name="price"
               type="range"
               min="0.25"
               max="0.89"
               step="0.01"
               value={pricePerKwh}
+              aria-valuenow={pricePerKwh}
+              aria-valuemin={0.25}
+              aria-valuemax={0.89}
+              aria-valuetext={`${pricePerKwh.toFixed(2).replace('.', ',')} Euro pro Kilowattstunde`}
               onChange={(e) => setPricePerKwh(Number(e.target.value))}
               className="w-full accent-[#171917] h-2 bg-[#DFE3DC] rounded-lg cursor-pointer"
             />

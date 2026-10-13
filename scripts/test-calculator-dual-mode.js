@@ -120,8 +120,36 @@ if (resKia.html.includes("800V System")) {
   process.exit(1);
 }
 
+// 6. Accessibility & Unique IDs verification
+const resRechnerFull = ssr.render("/rechner");
+const htmlRechner = resRechnerFull.html;
+
+// Check aria-valuetext and aria-valuenow on range sliders
+if (
+  htmlRechner.includes('aria-valuetext="150 Kilowatt"') &&
+  htmlRechner.includes('aria-valuenow="150"') &&
+  htmlRechner.includes('aria-valuetext="75 Kilowattstunden"') &&
+  htmlRechner.includes('aria-valuenow="75"')
+) {
+  console.log("[PASS] Range sliders render accurate aria-valuenow and human-readable aria-valuetext.");
+} else {
+  console.error("[FAIL] Missing or inaccurate aria-valuetext / aria-valuenow on range sliders!");
+  process.exit(1);
+}
+
+// Check for duplicate HTML IDs on /rechner (main calculator + embed configurator preview)
+const idMatches = htmlRechner.match(/\sid="([^"]+)"/g) || [];
+const ids = idMatches.map(m => m.replace(/\sid="/, '').replace(/"$/, ''));
+const duplicateIds = ids.filter((item, index) => ids.indexOf(item) !== index);
+if (duplicateIds.length > 0) {
+  console.error("[FAIL] Duplicate IDs detected on /rechner:", [...new Set(duplicateIds)]);
+  process.exit(1);
+} else {
+  console.log("[PASS] Zero duplicate HTML IDs on /rechner across multiple calculator instances.");
+}
+
 if (passed === testUrls.length) {
-  console.log("\n=> ALL " + passed + " URL TESTS & NUMERICAL ASSERTIONS PASSED.");
+  console.log("\n=> ALL " + passed + " URL TESTS, ACCESSIBILITY & NUMERICAL ASSERTIONS PASSED.");
   process.exit(0);
 } else {
   console.error("\n=> REGRESSION FAILED.");

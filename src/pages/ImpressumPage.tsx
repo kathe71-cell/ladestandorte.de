@@ -76,9 +76,9 @@ export const ImpressumPage: React.FC = () => {
           <h2 className="text-sm font-mono uppercase tracking-wider text-[#6C716B] font-bold mb-2">
             Amazon-Partnerprogramm
           </h2>
-          <p className="text-xs text-[#6C716B] leading-relaxed">
+          <div className="text-xs text-[#6C716B] leading-relaxed">
             <AmazonPartnerSentence />
-          </p>
+          </div>
         </div>
 
         <div className="pt-4 border-t border-[#DFE3DC] space-y-2">

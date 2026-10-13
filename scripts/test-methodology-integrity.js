@@ -27,7 +27,7 @@ if (!fs.existsSync(methodikHtmlPath)) {
     'Abschnitt E: Berechnungsmodell des Laderechners',
     'Abschnitt F: Ressourcenbezogene Zitierweise',
     'isIndexableLocation',
-    'Verluste: 6 % bei DC',
+    'Modellierter Energieaufschlag: +6 % bei DC',
     'Ladekurvenfaktor: 0,76',
     '<code>lastVerifiedAt</code> bezeichnet das Datum der letzten dokumentierten redaktionellen Quellenprüfung durch ladestandorte.de.'
   ];
