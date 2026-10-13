@@ -1,0 +1,109 @@
+{
+  "executedAt": "2026-10-13T15:28:12.066Z",
+  "totalMonitored": 5,
+  "unchanged": 4,
+  "changedReviewRequired": 0,
+  "technicalIssues": 0,
+  "results": [
+    {
+      "sourceId": "SRC_IONITY_OFFICIAL",
+      "sourceName": "IONITY Offizielle Tarif- & Netzwerkinformationen",
+      "sourceUrl": "https://www.ionity.eu/de",
+      "category": "OPERATOR_PRICING",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": [
+        "/betreiber/ionity",
+        "/ladekarten"
+      ],
+      "evaluationStatus": "UNCHANGED",
+      "httpStatus": 200,
+      "reason": null,
+      "reviewRequired": false,
+      "differences": [],
+      "diffSignature": "NONE",
+      "isAlreadyReported": false,
+      "checkedAt": "2026-10-13T15:28:11.216Z"
+    },
+    {
+      "sourceId": "SRC_FASTNED_OFFICIAL",
+      "sourceName": "Fastned Offizielle Betreiber- & Tarifinformationen",
+      "sourceUrl": "https://fastnedcharging.com/de/",
+      "category": "OPERATOR_TECHNICAL",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": [
+        "/betreiber/fastned"
+      ],
+      "evaluationStatus": "UNCHANGED",
+      "httpStatus": 200,
+      "reason": null,
+      "reviewRequired": false,
+      "differences": [],
+      "diffSignature": "NONE",
+      "isAlreadyReported": false,
+      "checkedAt": "2026-10-13T15:28:11.498Z"
+    },
+    {
+      "sourceId": "SRC_UBA_THG_38_BIMSCHV",
+      "sourceName": "Umweltbundesamt (UBA) Vollzug 38. BImSchV",
+      "sourceUrl": "https://www.umweltbundesamt.de/themen/verkehr/kraftstoffe-antriebe/vollzug-38-bimschv-anrechnung-von-strom-fuer",
+      "category": "THG",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": [
+        "/thg-praemie"
+      ],
+      "evaluationStatus": "UNCHANGED",
+      "httpStatus": 200,
+      "reason": null,
+      "reviewRequired": false,
+      "differences": [],
+      "diffSignature": "NONE",
+      "isAlreadyReported": false,
+      "checkedAt": "2026-10-13T15:28:11.663Z"
+    },
+    {
+      "sourceId": "SRC_EU_AFIR_2023_1804",
+      "sourceName": "Verordnung (EU) 2023/1804 (AFIR)",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2023/1804/oj",
+      "category": "LEGAL_REGULATORY",
+      "approvalRequirement": "HUMAN_DECISION",
+      "affectedPages": [
+        "/",
+        "/betreiber",
+        "/autobahnen",
+        "/ratgeber/ladekarten-dschungel",
+        "/methodik",
+        "/glossar"
+      ],
+      "evaluationStatus": "NOT_COMPARABLE",
+      "httpStatus": 202,
+      "reason": "EUR-Lex liefert WAF 202 Challenge; rechtliche AFIR-Invariante bleibt verifiziert",
+      "reviewRequired": false,
+      "differences": [],
+      "diffSignature": "NONE",
+      "isAlreadyReported": false,
+      "checkedAt": "2026-10-13T15:28:11.724Z"
+    },
+    {
+      "sourceId": "SRC_BNETZA_REGISTER",
+      "sourceName": "Bundesnetzagentur Öffentliches Ladesäulenregister",
+      "sourceUrl": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.html",
+      "category": "REGISTRY_DATA",
+      "approvalRequirement": "AUTO",
+      "affectedPages": [
+        "/",
+        "/ladestationen",
+        "/staedte",
+        "/cpo-monitor",
+        "/hpc-city-monitor"
+      ],
+      "evaluationStatus": "UNCHANGED",
+      "httpStatus": 200,
+      "reason": null,
+      "reviewRequired": false,
+      "differences": [],
+      "diffSignature": "NONE",
+      "isAlreadyReported": false,
+      "checkedAt": "2026-10-13T15:28:12.066Z"
+    }
+  ]
+}

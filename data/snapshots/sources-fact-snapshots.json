@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "sources": {
+    "SRC_IONITY_OFFICIAL": {
+      "sourceId": "SRC_IONITY_OFFICIAL",
+      "sourceName": "IONITY Offizielle Tarif- & Netzwerkinformationen",
+      "sourceUrl": "https://www.ionity.eu/de",
+      "category": "OPERATOR_PRICING",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": ["/betreiber/ionity", "/ladekarten"],
+      "lastChecked": "2026-10-13T17:00:00.000Z",
+      "facts": {
+        "tariffModel": "variable_station",
+        "hasStationVariablePricing": true,
+        "standardPriceDc": null,
+        "mentionsDirect": true,
+        "mentionsPassport": false,
+        "maxKwDe": 400
+      }
+    },
+    "SRC_FASTNED_OFFICIAL": {
+      "sourceId": "SRC_FASTNED_OFFICIAL",
+      "sourceName": "Fastned Offizielle Betreiber- & Tarifinformationen",
+      "sourceUrl": "https://fastnedcharging.com/de/",
+      "canonicalUrl": "https://www.fastnedcharging.com/de/",
+      "category": "OPERATOR_TECHNICAL",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": ["/betreiber/fastned"],
+      "lastChecked": "2026-10-13T17:00:00.000Z",
+      "facts": {
+        "tariffModel": "fixed_adhoc",
+        "standardPriceDc": 0.69,
+        "hasGoldMembership": true,
+        "goldDiscountPercent": 30,
+        "maxKwDe": 400
+      }
+    },
+    "SRC_UBA_THG_38_BIMSCHV": {
+      "sourceId": "SRC_UBA_THG_38_BIMSCHV",
+      "sourceName": "Umweltbundesamt (UBA) Vollzug 38. BImSchV",
+      "sourceUrl": "https://www.umweltbundesamt.de/themen/verkehr/kraftstoffe-antriebe/vollzug-38-bimschv-anrechnung-von-strom-fuer",
+      "category": "THG",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": ["/thg-praemie"],
+      "lastChecked": "2026-10-13T17:00:00.000Z",
+      "facts": {
+        "legalBasis": "38. BImSchV",
+        "annualDeadlineGov": "15.11.",
+        "activeQuotaYear": 2026,
+        "upcomingQuotaYear": 2027,
+        "pageTitle": "Vollzug 38. BImSchV: Anrechnung von Strom für Elektrofahrzeuge | Umweltbundesamt",
+        "lastPublicationDate": "06. August 2026"
+      }
+    },
+    "SRC_EU_AFIR_2023_1804": {
+      "sourceId": "SRC_EU_AFIR_2023_1804",
+      "sourceName": "Verordnung (EU) 2023/1804 (AFIR)",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2023/1804/oj",
+      "category": "LEGAL_REGULATORY",
+      "approvalRequirement": "HUMAN_DECISION",
+      "affectedPages": ["/", "/betreiber", "/autobahnen", "/ratgeber/ladekarten-dschungel", "/methodik", "/glossar"],
+      "lastChecked": "2026-10-13T17:00:00.000Z",
+      "facts": {
+        "regulationNumber": "2023/1804",
+        "article5ThresholdKw": 50,
+        "effectiveDateMandatoryPayment": "2024-04-13",
+        "retrofittingDateMandatoryPayment": "2027-01-01",
+        "qrSoleMethodAllowedFor50Plus": false,
+        "qrMethodProhibitedGenerally": false,
+        "contentExtractionStatus": "PROTECTED_WAF_CHALLENGE"
+      }
+    },
+    "SRC_BNETZA_REGISTER": {
+      "sourceId": "SRC_BNETZA_REGISTER",
+      "sourceName": "Bundesnetzagentur Öffentliches Ladesäulenregister",
+      "sourceUrl": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.html",
+      "category": "REGISTRY_DATA",
+      "approvalRequirement": "AUTO",
+      "affectedPages": ["/", "/ladestationen", "/staedte", "/cpo-monitor", "/hpc-city-monitor"],
+      "lastChecked": "2026-10-13T17:00:00.000Z",
+      "facts": {
+        "totalRegisterStationsDE": 117043,
+        "totalRegisterPointsDE": 210185,
+        "totalRegisterHpcPointsDE": 33418,
+        "datasetSnapshotDate": "2026-10-01",
+        "bnetzaReportLabel": "Stand: September 2026",
+        "csvReleaseFilename": "Ladesaeulenregister_BNetzA_2026-09-01.csv",
+        "gateValidationMechanism": "data-integrity-gate"
+      }
+    }
+  }
+}

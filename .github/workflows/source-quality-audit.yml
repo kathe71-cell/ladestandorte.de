@@ -34,8 +34,20 @@ jobs:
       - name: Check Source Reachability & Status
         run: node scripts/monitor/check-sources.mjs
 
+      - name: Monitor Fact Changes & Snapshot Diffs
+        run: node scripts/monitor/check-source-changes.mjs
+
+      - name: Dispatch Fact Review Notifications (GitHub Issues)
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/monitor/create-github-issues.mjs
+
       - name: Verify Content Consistency Rules
         run: node scripts/monitor/check-content-consistency.mjs
+
+      - name: Run Fact Monitoring Unit & Regression Tests
+        run: node scripts/test-fact-monitoring.js
 
       - name: Archive Audit Reports
         uses: actions/upload-artifact@v4
