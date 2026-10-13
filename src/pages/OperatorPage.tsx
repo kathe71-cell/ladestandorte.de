@@ -46,7 +46,7 @@ export const OperatorPage: React.FC = () => {
       return `Bei ${operator.name} gelten dynamische, zeit- und standortabhängige Ladepreise. Es existiert kein bundesweit einheitlicher Festpreis pro Kilowattstunde. Die tagesaktuellen Preise für den jeweiligen Standort sind vor Ladebeginn direkt in der Betreiber-App bzw. an der Ladesäule einsehbar.`;
     }
     if (operator.tariffModel === 'variable_station') {
-      return `Die Ladepreise bei ${operator.name} variieren je nach Standort, Kooperationspartner und Ladeleistung. Einheitliche Pauschalpreise existieren nicht. Verbindliche kWh-Preise werden direkt an der Ladesäule (Ad-hoc-Zahlungsterminal / QR-Code) sowie über angebundene Roaming-Apps ausgewiesen.`;
+      return `Die Ladepreise bei ${operator.name} variieren je nach Standort, Kooperationspartner und Ladeleistung. Einheitliche Pauschalpreise existieren nicht. ${operator.tariffNote ? `${operator.tariffNote} ` : ''}Verbindliche kWh-Preise werden direkt an der jeweiligen Ladesäule (Ad-hoc-Zahlungsterminal / QR-Code) sowie über angebundene Roaming-Apps ausgewiesen.`;
     }
     if (operator.tariffModel === 'app_based' && !operator.standardPriceDc && !operator.standardPriceAc) {
       return `Die Abrechnung bei ${operator.name} erfolgt primär über eigene Mobilitätstarife (Lade-App / Ladekarte) oder über Direktzahlung (Ad-hoc) am Kartenterminal. ${operator.tariffNote || 'Die genauen Konditionen hängen vom gewählten Tarif und eventuellen Monatsabonnements ab.'} Mit Ladekarten von Partner-EMPs (z. B. ADAC, EnBW mobility+, Maingau) können abweichende Roaming-Preise gelten.`;
