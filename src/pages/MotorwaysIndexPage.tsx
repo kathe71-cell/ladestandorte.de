@@ -52,7 +52,7 @@ export const MotorwaysIndexPage: React.FC = () => {
             "name": "Muss ich zum Schnellladen an der Autobahn eine App haben?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nein. Gemäß Art. 5 der europäischen AFIR-Verordnung müssen alle seit dem 13. April 2024 neu errichteten Schnellladepunkte ab 50 kW kontaktlose Kartenzahlung (Debit-/Kreditkarte) direkt an der Station anbieten. Eine Ladekarte oder App ermöglicht jedoch häufig günstigere Konditionen als der Ad-hoc-Tarif."
+              "text": "Nein. Gemäß Art. 5 Abs. 1 der europäischen AFIR-Verordnung müssen alle seit dem 13. April 2024 neu errichteten Schnellladepunkte ab 50 kW kontaktlose Kartenzahlung direkt an der Station anbieten (ein QR-Code allein reicht hier nicht aus). Zudem gilt für Bestandsanlagen am TEN-V-Netz eine Nachrüstpflicht zum 1. Januar 2027. Eine Ladekarte oder App ermöglicht jedoch häufig günstigere Konditionen als der Ad-hoc-Tarif."
             }
           }
         ]

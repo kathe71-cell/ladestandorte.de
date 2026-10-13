@@ -75,7 +75,7 @@ export const RatgeberArticlePage: React.FC = () => {
       },
       {
         q: "Muss man heute noch zwingend eine Ladekarte besitzen?",
-        a: "Nein. Gemäß Art. 5 der EU-Verordnung AFIR müssen alle seit dem 13. April 2024 neu in Betrieb genommenen Schnellladepunkte ab 50 kW kontaktlose Kartenzahlung mit Debit- oder Kreditkarte direkt an der Station akzeptieren. Eine Ladekarte oder App bietet im Vergleich zum Ad-hoc-Direktbezug jedoch häufig günstigere Kilowattstundenpreise."
+        a: "Nein. Gemäß Art. 5 Abs. 1 der EU-Verordnung AFIR müssen alle seit dem 13. April 2024 neu in Betrieb genommenen öffentlich zugänglichen Schnellladepunkte ab 50 kW kontaktlose Kartenzahlung mit Debit- oder Kreditkarte direkt an der Station akzeptieren (ein QR-Code allein reicht hier nicht aus). Zudem gilt für bestehende Ladepunkte am TEN-V-Netz eine Nachrüstpflicht zum 1. Januar 2027. Eine Ladekarte oder App bietet im Vergleich zum Ad-hoc-Direktbezug jedoch häufig günstigere Kilowattstundenpreise."
       }
     ];
 
@@ -161,7 +161,7 @@ export const RatgeberArticlePage: React.FC = () => {
 
           <h2 className="text-2xl font-bold text-[#171917] mt-8 mb-4">3. Der Einfluss der AFIR-Verordnung (EU 2023/1804)</h2>
           <p>
-            Gemäß Art. 5 der europäischen AFIR-Verordnung müssen alle seit dem 13. April 2024 neu in Betrieb genommenen Schnellladepunkte ab 50 kW verpflichtend mit kontaktlosen Kartenterminals (NFC für Girocard, Debit- und Kreditkarten) direkt an der Station ausgestattet sein. Dies beendet die zwingende Ladekarten- oder App-Pflicht: Jeder Fahrer kann ohne Voranmeldung spontan via Ad-hoc-Zahlung laden. An Ladepunkten unter 50 kW sowie an bestehenden Altanlagen kann die Ad-hoc-Zahlung weiterhin über QR-Codes abgewickelt werden. Zu beachten ist, dass spontane Ad-hoc-Preise in der Regel über den konditionierten Tarifen vertragsgebundener Ladekarten liegen.
+            Gemäß Art. 5 Abs. 1 der europäischen AFIR-Verordnung müssen alle seit dem 13. April 2024 neu in Betrieb genommenen öffentlich zugänglichen Schnellladepunkte ab 50 kW verpflichtend mit kontaktlosen Kartenterminals (NFC für Debit- und Kreditkarten) direkt an der Station ausgestattet sein. Ein QR-Code allein erfüllt an diesen neuen Schnellladepunkten nicht die vorgeschriebenen Zahlungsanforderungen – zusätzliche QR-basierte Bezahloptionen sind dadurch jedoch nicht verboten. Für bestehende Schnellladepunkte entlang des transeuropäischen Verkehrsnetzes (TEN-V) greift eine gesetzliche Nachrüstpflicht zum 1. Januar 2027. An Ladepunkten unter 50 kW sowie an sonstigen Altanlagen kann die Ad-hoc-Zahlung weiterhin über QR-Codes abgewickelt werden. Zu beachten ist, dass spontane Ad-hoc-Preise in der Regel über den konditionierten Tarifen vertragsgebundener Ladekarten liegen.
           </p>
         </div>
 

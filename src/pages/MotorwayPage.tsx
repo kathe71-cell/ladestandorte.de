@@ -77,7 +77,7 @@ export const MotorwayPage: React.FC = () => {
             "name": `Brauche ich eine Ladekarte für die ${motorway.name}?`,
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nein. Gemäß Art. 5 der europäischen AFIR-Verordnung müssen alle seit dem 13. April 2024 neu errichteten Schnellladepunkte ab 50 kW kontaktlose Kartenzahlung (Debit-/Kreditkarte) direkt akzeptieren. Eine Ladekarte (z. B. ADAC, EnBW, IONITY Passport) ermöglicht an vielen Stationen jedoch günstigere kWh-Preise als der spontane Ad-hoc-Direktbezug."
+              "text": "Nein. Gemäß Art. 5 Abs. 1 der europäischen AFIR-Verordnung müssen alle seit dem 13. April 2024 neu errichteten Schnellladepunkte ab 50 kW kontaktlose Kartenzahlung direkt akzeptieren (ein QR-Code allein genügt nicht). Für bestehende Schnelllader entlang des TEN-V-Netzes greift eine Nachrüstpflicht zum 1. Januar 2027. Eine Ladekarte oder App (z. B. ADAC, EnBW, IONITY Passport) ermöglicht jedoch häufig deutlich günstigere kWh-Preise."
             }
           }
         ]

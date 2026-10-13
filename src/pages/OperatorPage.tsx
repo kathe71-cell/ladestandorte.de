@@ -46,7 +46,7 @@ export const OperatorPage: React.FC = () => {
       return `Bei ${operator.name} gelten dynamische, zeit- und standortabhängige Ladepreise. Es existiert kein bundesweit einheitlicher Festpreis pro Kilowattstunde. Die tagesaktuellen Preise für den jeweiligen Standort sind vor Ladebeginn direkt in der Betreiber-App bzw. an der Ladesäule einsehbar.`;
     }
     if (operator.tariffModel === 'variable_station') {
-      return `Die Ladepreise bei ${operator.name} variieren je nach Standort, Kooperationspartner und Ladeleistung. Einheitliche Pauschalpreise existieren nicht. ${operator.tariffNote ? `${operator.tariffNote} ` : ''}Verbindliche kWh-Preise werden direkt an der jeweiligen Ladesäule (Ad-hoc-Zahlungsterminal / QR-Code) sowie über angebundene Roaming-Apps ausgewiesen.`;
+      return `Die Ladepreise bei ${operator.name} variieren je nach Standort, Land und Ladetarif. Einheitliche deutschlandweite Pauschalpreise existieren nicht. ${operator.tariffNote ? `${operator.tariffNote} ` : ''}Verbindliche, tagesaktuelle Konditionen werden direkt an der Ladesäule sowie in den offiziellen Portalen des Anbieters ausgewiesen.`;
     }
     if (operator.tariffModel === 'app_based' && !operator.standardPriceDc && !operator.standardPriceAc) {
       return `Die Abrechnung bei ${operator.name} erfolgt primär über eigene Mobilitätstarife (Lade-App / Ladekarte) oder über Direktzahlung (Ad-hoc) am Kartenterminal. ${operator.tariffNote || 'Die genauen Konditionen hängen vom gewählten Tarif und eventuellen Monatsabonnements ab.'} Mit Ladekarten von Partner-EMPs (z. B. ADAC, EnBW mobility+, Maingau) können abweichende Roaming-Preise gelten.`;
@@ -66,7 +66,7 @@ export const OperatorPage: React.FC = () => {
     },
     {
       q: `Kann man an ${operator.name} Stationen ohne Ladekarte und Registrierung laden?`,
-      a: `Ja. Gemäß Art. 5 der europäischen AFIR-Verordnung (EU 2023/1804) müssen alle seit dem 13. April 2024 neu in Betrieb genommenen Schnellladepunkte ab 50 kW verpflichtend kontaktlose Kartenzahlung (Debit- oder Kreditkarte, NFC via Girocard, Apple Pay, Google Pay) direkt an der Station akzeptieren. An Ladepunkten unter 50 kW sowie an bestehenden Altanlagen kann die Ad-hoc-Zahlung auch über dynamische QR-Codes und eine sichere Zahlungswebsite erfolgen.`
+      a: `Ja. Gemäß Art. 5 Abs. 1 der europäischen AFIR-Verordnung (EU 2023/1804) müssen alle seit dem 13. April 2024 neu in Betrieb genommenen öffentlich zugänglichen Schnellladepunkte ab 50 kW verpflichtend ein kontaktloses Zahlungskarten-Lesegerät (Debit-/Kreditkarte, NFC) direkt an der Station bereitstellen – ein QR-Code allein erfüllt an diesen neuen Ladepunkten nicht die gesetzlichen Mindestanforderungen, zusätzliche QR-basierte Bezahloptionen bleiben jedoch zulässig. An Ladepunkten unter 50 kW sowie an bestehenden Altanlagen (für die entlang des TEN-V-Netzes eine Nachrüstpflicht bis zum 1. Januar 2027 gilt) kann die Ad-hoc-Zahlung auch über dynamische QR-Codes und eine sichere Zahlungswebsite erfolgen.`
     },
     {
       q: `Unterstützt ${operator.name} Plug & Charge oder AutoCharge?`,

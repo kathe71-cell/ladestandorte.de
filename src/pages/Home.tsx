@@ -56,7 +56,7 @@ export const Home: React.FC = () => {
             "name": "Kann man an allen öffentlichen Ladesäulen ohne Vertrag laden?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ja, grundsätzlich ist das vertragslose Laden (Ad-hoc-Laden) an allen öffentlich zugänglichen Ladesäulen möglich. Die Verordnung (EU) 2023/1804 (AFIR, Art. 5) schreibt vor, dass an seit dem 13. April 2024 neu errichteten Schnellladepunkten ab 50 kW direkt mit gängigen Zahlungskarten (Debit-/Kreditkarte, NFC) bezahlt werden kann. An Ladepunkten unter 50 kW sowie an bestehenden Säulen erfolgt die Ad-hoc-Zahlung häufig über einen dynamischen QR-Code auf eine sichere Zahlungswebsite."
+              "text": "Ja, grundsätzlich ist das vertragslose Laden (Ad-hoc-Laden) an allen öffentlich zugänglichen Ladesäulen möglich. Die Verordnung (EU) 2023/1804 (AFIR, Art. 5 Abs. 1) schreibt vor, dass an seit dem 13. April 2024 neu errichteten Schnellladepunkten ab 50 kW Zahlungskartenleser oder kontaktlose Lesegeräte (Debit-/Kreditkarte, NFC) vorhanden sein müssen – ein QR-Code allein genügt für diese neuen Schnellladepunkte nicht, zusätzliche QR-basierte Zahlungsoptionen sind dadurch jedoch nicht verboten. Für bestehende Schnellladepunkte entlang des TEN-V-Netzes greift eine Nachrüstpflicht zum 1. Januar 2027. An Ladepunkten unter 50 kW sowie an bestehenden Altanlagen kann die Ad-hoc-Zahlung weiterhin über QR-Codes und webbasierte Bezahldienste erfolgen."
             }
           },
           {
@@ -706,7 +706,7 @@ export const Home: React.FC = () => {
               <span className="text-[#6C716B] group-open:rotate-180 transition-transform text-lg">▾</span>
             </summary>
             <p className="text-sm text-[#6C716B] leading-relaxed mt-3 pt-3 border-t border-[#DFE3DC]">
-              Ja, grundsätzlich ist das vertragslose Laden (Ad-hoc-Laden) an allen öffentlichen Ladesäulen möglich. Gemäß der europäischen AFIR-Verordnung (EU 2023/1804, Art. 5) müssen an seit dem 13. April 2024 neu errichteten Schnellladepunkten ab 50 kW Zahlungskartenleser oder kontaktlose Lesegeräte (Debit-/Kreditkarte, NFC) vorhanden sein. An Ladepunkten unter 50 kW sowie an älteren Bestandssäulen erfolgt das Ad-hoc-Laden meist über einen dynamischen QR-Code und eine sichere Zahlungswebsite des Betreibers.
+              Ja, grundsätzlich ist das vertragslose Laden (Ad-hoc-Laden) an allen öffentlichen Ladesäulen möglich. Gemäß der europäischen AFIR-Verordnung (EU 2023/1804, Art. 5 Abs. 1) müssen an seit dem 13. April 2024 neu errichteten Schnellladepunkten ab 50 kW Zahlungskartenleser oder kontaktlose Lesegeräte (Debit-/Kreditkarte, NFC) vorhanden sein – ein QR-Code allein erfüllt an diesen neuen Ladepunkten nicht die vorgeschriebenen Mindestanforderungen, zusätzliche QR-basierte Bezahloptionen sind dadurch jedoch nicht verboten. Für bestehende Schnellladepunkte entlang des TEN-V-Netzes gilt eine Nachrüstpflicht zum 1. Januar 2027. An Ladepunkten unter 50 kW sowie an bestehenden Altanlagen erfolgt das Ad-hoc-Laden weiterhin meist über dynamische QR-Codes und eine sichere Zahlungswebsite des Betreibers.
             </p>
           </details>
 

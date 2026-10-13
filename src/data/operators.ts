@@ -65,10 +65,10 @@ const BASE_OPERATORS_DATA: OperatorData[] = [
     standardPriceAc: null,
     standardPriceDc: null,
     tariffModel: "variable_station",
-    tariffNote: "Standortabhängige Ad-hoc-Preise (ab 0,39 €/kWh Mindestpreis). Verbindliche Preise werden an der jeweiligen Ladesäule und über ionity.eu ausgewiesen; mit IONITY Passport bzw. Partnerverträgen gelten ermäßigte kWh-Preise.",
+    tariffNote: "Standortabhängige Preise. IONITY unterscheidet zwischen vertragslosem Ad-hoc-Direktladen ('IONITY Direct'), dem kostenlosen Registrierungstarif ('IONITY Go') und monatlichen Abonnements ('IONITY Passport') mit rabattierten kWh-Preisen. Die Preise variieren nach Land, Währung und Standort und werden vor Ladebeginn an der Säule sowie über ionity.eu ausgewiesen.",
     bnetzaAnteil: "HPC-Spezialist an Fernstraßen und Autobahnen",
     description:
-      "IONITY ist das führende paneuropäische HPC-Netzwerk an Autobahnraststätten und autobahnnahen Fernverkehrsknotenpunkten, gegründet von BMW, Mercedes, Ford, Hyundai und der Volkswagen-Gruppe. In Deutschland liefert das Netz vorwiegend 350 kW bis 400 kW pro CCS-Ladepunkt (europaweit pilotieren Konzeptstandorte bis zu 600 kW). Die Abrechnung im Ad-hoc-Direktbezug erfolgt standortabhängig (ab 0,39 €/kWh); mit dem IONITY Passport lässt sich der kWh-Preis deutlich senken.",
+      "IONITY ist das führende paneuropäische HPC-Netzwerk an Autobahnraststätten und autobahnnahen Fernverkehrsknotenpunkten, gegründet von BMW, Mercedes, Ford, Hyundai und der Volkswagen-Gruppe. In Deutschland liefert das Netz vorwiegend 350 kW bis 400 kW pro CCS-Ladepunkt (europaweit pilotieren Konzeptstandorte bis zu 600 kW). Das Tarifmodell unterscheidet zwischen spontanem Ad-hoc-Laden ('IONITY Direct'), Basiskonten ('IONITY Go') und Abonnementtarifen ('IONITY Passport') mit jeweils standort- und länderspezifischen kWh-Preisen, die tagesaktuell über die offiziellen Portale und Apps des Betreibers eingesehen werden können.",
     features: [
       "Bis zu 350 bzw. 400 kW Ladeleistung in DE (CCS)",
       "Autobahnraststätten und autobahnnahe Schnellladeparks",
