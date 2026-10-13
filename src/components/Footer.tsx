@@ -141,8 +141,6 @@ export const Footer: React.FC = () => {
             <span>QUELLE / BUNDESNETZAGENTUR (CC BY 4.0)</span>
             <span>·</span>
             <span className="text-[#C7F000] font-bold">STAND / {getSnapshotDateFormatted()}</span>
-            <span>·</span>
-            <span>WCAG AAA KONFORM</span>
           </div>
         </div>
 

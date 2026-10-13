@@ -152,12 +152,12 @@ export const OperatorPage: React.FC = () => {
       {/* Operator Metrics KPI Strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="p-5 bg-white rounded-xl border border-[#DFE3DC] shadow-xs">
-          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Ladepunkte in DE</span>
+          <span className="text-xs font-mono text-[#6C716B] uppercase font-bold block">Gesamt-Ladepunkte (DE)</span>
           <span className="text-3xl font-black text-[#171917] font-mono mt-1 block tabular-nums">
             {operator.totalPointsDE.toLocaleString('de-DE')}
           </span>
           <span className="text-[11px] text-[#6C716B] mt-1 block font-medium">
-            {verifiedCpo ? 'BNetzA-Registerbestand' : 'Betreiberangabe'}
+            {verifiedCpo ? 'Gesamtbestand (AC + DC/HPC)' : 'Betreiberangabe'}
           </span>
         </div>
 

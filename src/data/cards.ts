@@ -441,25 +441,26 @@ export const CHARGING_CARDS: ChargingCard[] = [
     ],
   },
   {
-    id: "fastned-unlimited",
-    name: "Fastned Unlimited",
+    id: "fastned-gold",
+    name: "Fastned Gold Member",
     provider: "Fastned",
     monthlyFee: 11.99,
     acPriceOwn: 0.0,
-    dcPriceOwn: 0.44, // Abopreis; ohne Abo: 0,69 €/kWh
+    dcPriceOwn: 0.48, // Abopreis mit ca. 30 % Nachlass; regulär ad-hoc: 0,69 €/kWh
     acPriceRoaming: 0.0,
     dcPriceRoaming: 0.0, // Fastned hat kein Fremdnetz-Roaming
     blockiergebuehr: "Keine Blockiergebühr",
     roamingPoints: "Exklusiv Fastned-Stationen",
-    badge: "Günstigstes HPC-Abo",
-    bestFor: "Vielfahrer auf Autobahnen mit Fastned-Stationen",
+    badge: "HPC-Mitgliedschaft (Rabatt)",
+    bestFor: "Vielfahrer mit regelmäßiger Nutzung von Fastned-Stationen",
     officialUrl: "https://fastned.nl/de",
     features: [
-      "Unbegrenzt laden für 11,99 €/Monat im Fastned-Netz",
-      "Nur HPC-Stationen (keine AC)",
-      "Charakteristische goldene Solardachstationen",
+      "Ca. 30 % Rabatt auf den kWh-Preis an Fastned-Stationen",
+      "Grundgebühr 11,99 €/Monat",
+      "Nur HPC-Stationen (kein AC)",
+      "Charakteristische gelbe Solardachstationen",
       "Monatlich kündbar",
-      "Ideal in Kombination mit häufiger Autobahnnutzung",
+      "Ideal für Vielreisende entlang von Fastned-Korridoren",
     ],
   },
   {

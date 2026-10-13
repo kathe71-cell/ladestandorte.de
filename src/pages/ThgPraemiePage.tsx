@@ -245,8 +245,8 @@ export const ThgPraemiePage: React.FC = () => {
                   </tr>
                   <tr>
                     <td className="p-4 font-semibold text-[#171917]">Anbieter-Annahmeschluss</td>
-                    <td className="p-4 text-[#171917] font-medium">Ca. Ende Oktober / Anfang November 2026</td>
-                    <td className="p-4 text-[#6C716B]">Startet zum Jahreswechsel 2026/2027</td>
+                    <td className="p-4 text-[#171917] font-medium">Je nach Dienstleister ca. Ende Oktober bis Anfang November 2026 (zur fristgerechten Bündelung)</td>
+                    <td className="p-4 text-[#6C716B]">Folgt mit Bekanntgabe der Referenzwerte für das Antragsjahr 2027</td>
                   </tr>
                   <tr>
                     <td className="p-4 font-semibold text-[#171917]">Pauschale Strommenge (Pkw M1)</td>
@@ -259,7 +259,7 @@ export const ThgPraemiePage: React.FC = () => {
                       Marktabhängig (beobachtete Angebote bis zu 350 € für Pkw)
                     </td>
                     <td className="p-4 text-[#6C716B]">
-                      Noch offen (wird marktweit erst festgelegt)
+                      Noch offen (Markterlöse für 2027 stehen noch nicht fest)
                     </td>
                   </tr>
                 </tbody>
@@ -267,7 +267,7 @@ export const ThgPraemiePage: React.FC = () => {
             </div>
 
             <p className="text-xs text-[#6C716B]">
-              * Hinweis zu Fristen: Die gesetzliche Frist gemäß § 8 der 38. BImSchV verpflichtet Dienstleister, gesammelte Quotenanträge bis spätestens 15. November des jeweiligen Jahres beim Umweltbundesamt einzureichen. Wer sein Fahrzeug für 2026 nicht fristgerecht anmeldet, kann diesen Anspruch für 2026 später nicht mehr nachholen.
+              * Hinweis zu Fristen: Die gesetzliche Meldefrist gemäß § 8 der 38. BImSchV verpflichtet Dienstleister, gebündelte Quotenanträge bis spätestens 15. November des jeweiligen Kalenderjahres beim Umweltbundesamt einzureichen. Einzelne Vermittler setzen ihren internen Annahmeschluss bereits auf Ende Oktober oder Anfang November fest, um Unterlagen zu prüfen und fristgerecht zu übertragen. Wer sein Fahrzeug für 2026 nicht rechtzeitig einreicht, verliert den Anspruch für dieses Kalenderjahr.
             </p>
           </section>
 
@@ -554,7 +554,7 @@ export const ThgPraemiePage: React.FC = () => {
           <CitationBox
             title="THG-Prämie für Elektroautos: Antrag &amp; Voraussetzungen"
             urlPath={THG_CONFIG.canonicalPath}
-            dateStr={`Stand: ${THG_CONFIG.lastVerified}`}
+            dateStr={THG_CONFIG.lastVerified}
           />
 
           <EEATBadge

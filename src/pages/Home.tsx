@@ -56,7 +56,7 @@ export const Home: React.FC = () => {
             "name": "Kann man an allen öffentlichen Ladesäulen ohne Vertrag laden?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ja. Gemäß AFIR-Richtlinie müssen alle öffentlich zugänglichen Schnellladepunkte spontanes Ad-hoc-Laden via Debitkarte, Kreditkarte oder kontaktlose Zahlung ohne feste Vertragsbindung ermöglichen."
+              "text": "Ja, grundsätzlich ist das vertragslose Laden (Ad-hoc-Laden) an allen öffentlich zugänglichen Ladesäulen möglich. Die Verordnung (EU) 2023/1804 (AFIR, Art. 5) schreibt vor, dass an seit dem 13. April 2024 neu errichteten Schnellladepunkten ab 50 kW direkt mit gängigen Zahlungskarten (Debit-/Kreditkarte, NFC) bezahlt werden kann. An Ladepunkten unter 50 kW sowie an bestehenden Säulen erfolgt die Ad-hoc-Zahlung häufig über einen dynamischen QR-Code auf eine sichere Zahlungswebsite."
             }
           },
           {
@@ -284,15 +284,15 @@ export const Home: React.FC = () => {
                 <div className="pt-2 space-y-2 font-mono text-xs">
                   <div className="flex items-center justify-between p-2 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC]">
                     <span className="font-semibold text-[#171917]">EnBW mobility+</span>
-                    <span className="font-bold text-[#171917] tabular-nums">8.338</span>
+                    <span className="font-bold text-[#171917] tabular-nums" title="Dokumentierte BNetzA-Ladepunkte ≥150 kW">8.338 <span className="text-[10px] font-normal text-[#6C716B]">HPC</span></span>
                   </div>
                   <div className="flex items-center justify-between p-2 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC]">
                     <span className="font-semibold text-[#171917]">Tesla Supercharger</span>
-                    <span className="font-bold text-[#171917] tabular-nums">3.950</span>
+                    <span className="font-bold text-[#171917] tabular-nums" title="Dokumentierte BNetzA-Ladepunkte ≥150 kW">3.950 <span className="text-[10px] font-normal text-[#6C716B]">HPC</span></span>
                   </div>
                   <div className="flex items-center justify-between p-2 rounded-lg bg-[#F7F7F2] border border-[#DFE3DC]">
                     <span className="font-semibold text-[#171917]">Aral pulse</span>
-                    <span className="font-bold text-[#171917] tabular-nums">3.119</span>
+                    <span className="font-bold text-[#171917] tabular-nums" title="Dokumentierte BNetzA-Ladepunkte ≥150 kW">3.119 <span className="text-[10px] font-normal text-[#6C716B]">HPC</span></span>
                   </div>
                 </div>
               </div>
@@ -706,7 +706,7 @@ export const Home: React.FC = () => {
               <span className="text-[#6C716B] group-open:rotate-180 transition-transform text-lg">▾</span>
             </summary>
             <p className="text-sm text-[#6C716B] leading-relaxed mt-3 pt-3 border-t border-[#DFE3DC]">
-              Ja. Gemäß europäischer AFIR-Richtlinie müssen alle öffentlich zugänglichen Schnellladepunkte spontanes Ad-hoc-Laden via Debitkarte, Kreditkarte oder kontaktlose Zahlung ohne feste Vertragsbindung oder App-Zwang ermöglichen.
+              Ja, grundsätzlich ist das vertragslose Laden (Ad-hoc-Laden) an allen öffentlichen Ladesäulen möglich. Gemäß der europäischen AFIR-Verordnung (EU 2023/1804, Art. 5) müssen an seit dem 13. April 2024 neu errichteten Schnellladepunkten ab 50 kW Zahlungskartenleser oder kontaktlose Lesegeräte (Debit-/Kreditkarte, NFC) vorhanden sein. An Ladepunkten unter 50 kW sowie an älteren Bestandssäulen erfolgt das Ad-hoc-Laden meist über einen dynamischen QR-Code und eine sichere Zahlungswebsite des Betreibers.
             </p>
           </details>
 
