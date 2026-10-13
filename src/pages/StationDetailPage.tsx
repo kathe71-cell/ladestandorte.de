@@ -17,11 +17,6 @@ import { getSnapshotDateFormatted } from '../lib/datasetDate';
 
 export const StationDetailPage: React.FC = () => {
   const { citySlug, stationSlug } = useParams<{ citySlug: string; stationSlug: string }>();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const station = STATIONS_DATA.find(s => 
     s.citySlug === citySlug && (s.slug === stationSlug || s.id === stationSlug)
@@ -37,9 +32,17 @@ export const StationDetailPage: React.FC = () => {
   const nearbyStations = getNearbyStations(station, STATIONS_DATA, 5, 85);
   const isIndexable = isIndexableLocation(station);
 
-  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lng}`;
-  const osmUrl = `https://www.openstreetmap.org/?mlat=${station.lat}&mlon=${station.lng}#map=16/${station.lat}/${station.lng}`;
-  const appleMapsUrl = `https://maps.apple.com/?daddr=${station.lat},${station.lng}`;
+  const hasValidCoordinates = 
+    typeof station.lat === 'number' && 
+    typeof station.lng === 'number' && 
+    !isNaN(station.lat) && 
+    !isNaN(station.lng) && 
+    station.lat !== 0 && 
+    station.lng !== 0;
+
+  const googleMapsUrl = hasValidCoordinates
+    ? `https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lng}`
+    : null;
 
   const schema = {
     "@context": "https://schema.org",
@@ -464,74 +467,57 @@ export const StationDetailPage: React.FC = () => {
 
         </div>
 
-        {/* Rechte Spalte (1 Spalte breit): OpenStreetMap, Navigation, Trassen-Links */}
+        {/* Rechte Spalte (1 Spalte breit): Standort-Navigation & Verzeichnisse */}
         <div className="space-y-6">
           
-          {/* Karte & Navigations-Box */}
+          {/* Standort- & Navigations-Box */}
           <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-700 font-bold">
                 <Compass className="w-4 h-4 text-slate-800" />
                 <span>Geografische Lage</span>
               </div>
-              <span className="text-[11px] font-mono text-slate-500">
-                {station.lat.toFixed(4)}°, {station.lng.toFixed(4)}°
-              </span>
+              {hasValidCoordinates && (
+                <span className="text-[11px] font-mono text-slate-500">
+                  {station.lat.toFixed(4)}°, {station.lng.toFixed(4)}°
+                </span>
+              )}
             </div>
 
-            {/* OpenStreetMap iframe Embed (0 € API-Kosten, DSGVO-konform, SSR-safe) */}
-            <div className="relative w-full h-56 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 shadow-inner flex items-center justify-center">
-              {mounted ? (
-                <iframe
-                  title={`OpenStreetMap Karte für ${station.name}`}
-                  width="100%"
-                  height="100%"
-                  loading="lazy"
-                  className="border-0"
-                  src={`https://www.openstreetmap.org/export/embed.html?bbox=${station.lng - 0.008}%2C${station.lat - 0.005}%2C${station.lng + 0.008}%2C${station.lat + 0.005}&layer=mapnik&marker=${station.lat}%2C${station.lng}`}
-                />
-              ) : (
-                <div className="text-center p-4 text-xs text-slate-500 font-mono">
-                  <span>Karte lädt nach Seitenaufruf…</span>
+            {/* Standort-Details */}
+            <div className="space-y-2 text-xs text-slate-700">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-slate-900 block">{station.street}</span>
+                  <span className="text-slate-600">{station.plz} {station.city}</span>
+                </div>
+              </div>
+
+              {station.exitDistance && (
+                <div className="pt-2 border-t border-slate-100 text-[11px] text-slate-600">
+                  <span className="font-medium text-slate-800">Autobahn-Entfernung:</span> {station.exitDistance}
                 </div>
               )}
             </div>
 
-            {/* Navigations-Buttons */}
-            <div className="space-y-2 pt-1">
-              <a
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors shadow-2xs"
-              >
-                <Navigation className="w-3.5 h-3.5 text-[#C7F000]" />
-                <span>Google Maps Navigation starten</span>
-                <ExternalLink className="w-3 h-3 text-slate-400" />
-              </a>
-
-              <div className="grid grid-cols-2 gap-2">
+            {/* Navigations-Button */}
+            {googleMapsUrl && (
+              <div className="pt-1">
                 <a
-                  href={osmUrl}
+                  href={googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-700 font-semibold text-xs transition-colors text-center"
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-colors shadow-2xs group"
                 >
-                  <span>OpenStreetMap</span>
-                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                  <Navigation className="w-4 h-4 text-[#C7F000]" />
+                  <span>Route mit Google Maps planen ↗</span>
                 </a>
-
-                <a
-                  href={appleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-700 font-semibold text-xs transition-colors text-center"
-                >
-                  <span>Apple Maps</span>
-                  <ExternalLink className="w-3 h-3 text-slate-400" />
-                </a>
+                <p className="text-[10px] text-slate-600 mt-2 text-center leading-normal">
+                  Öffnet Google Maps mit Zielkoordinaten in neuem Fenster. Keine Datenübertragung vor dem Klick.
+                </p>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Anbindung & Verwandte Verzeichnisse */}

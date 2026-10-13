@@ -92,8 +92,19 @@ export const DatenschutzPage: React.FC = () => {
           </p>
         </div>
 
+        {/* Externe Navigations-Links (Google Maps) */}
         <div className="pt-4 border-t border-slate-100">
-          <h2 className="text-lg font-bold text-slate-950 mb-2">8. Ihre Rechte als betroffene Person</h2>
+          <h2 className="text-lg font-bold text-slate-950 mb-2">8. Externe Navigationslinks (Google Maps)</h2>
+          <p>
+            Auf unseren Standort- und Stationsdetailseiten bieten wir optionale Verlinkungen zur Routenplanung mit externen Navigationsdiensten (Google Maps) an.
+          </p>
+          <p className="mt-2">
+            Die Einbindung erfolgt <strong>ausschließlich über standardmäßige ausgehende Hyperlinks</strong> (<code>target="_blank" rel="noopener noreferrer"</code>) mit den statischen Geokoordinaten des jeweiligen Ladestandorts. Es werden <strong>keine dynamischen Karten-Dienste (wie Google Maps JavaScript API oder OpenStreetMap-Kacheln), keine iFrames und keine Tracking-Skripte</strong> auf unseren Seiten geladen. Erst wenn Sie einen solchen Navigationslink aktiv anklicken, werden Sie auf die Website von Google Maps weitergeleitet. Bis zu Ihrem aktiven Klick findet keinerlei Datenübertragung an den Kartenanbieter statt. Für die Datenverarbeitung nach Verlassen unseres Angebots ist der jeweilige Betreiber verantwortlich. Rechtsgrundlage für die Bereitstellung dieser Komfortfunktion ist Art. 6 Abs. 1 lit. f DSGVO (unser berechtigtes Interesse an nutzerfreundlicher Standortinformation).
+          </p>
+        </div>
+
+        <div className="pt-4 border-t border-slate-100">
+          <h2 className="text-lg font-bold text-slate-950 mb-2">9. Ihre Rechte als betroffene Person</h2>
           <p>
             Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung (Art. 15 DSGVO), das Recht auf Berichtigung unrichtiger Daten (Art. 16 DSGVO), das Recht auf Löschung (Art. 17 DSGVO), das Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO) sowie das Recht auf Datenübertragbarkeit (Art. 20 DSGVO). Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Datenschutz-Aufsichtsbehörde zu (Art. 77 DSGVO). Wenden Sie sich bei datenschutzrechtlichen Anfragen an die im Impressum hinterlegten Kontaktdaten.
           </p>
