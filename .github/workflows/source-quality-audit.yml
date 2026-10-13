@@ -43,6 +43,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/monitor/create-github-issues.mjs
 
+      - name: Build SSR Bundle for Quality Rules
+        run: npm run build:server
+
       - name: Verify Content Consistency Rules
         run: node scripts/monitor/check-content-consistency.mjs
 
