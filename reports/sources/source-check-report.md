@@ -1,6 +1,6 @@
 # Prüfbericht: Quellenaktualität und Erreichbarkeit
 
-**Prüfdatum:** 13.10.2026, 18:48:01
+**Prüfdatum:** 13.10.2026, 19:05:12
 **Geprüfte Quellen:** 11
 **Erreichbar:** 11 | **Auffälligkeiten / Fehler:** 0
 

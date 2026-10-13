@@ -14,6 +14,7 @@ import {
   Info,
   ChevronDown,
   Scale,
+  Euro,
   FileCheck,
   Shield,
   CheckSquare,
@@ -338,7 +339,7 @@ export const ThgPraemiePage: React.FC = () => {
                 <span className="text-xs text-[#6C716B] block">Vor- und Nachname bzw. Firmenname exakt wie im amtlichen Fahrzeugschein vermerkt.</span>
               </li>
               <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1">
-                <Scale className="w-5 h-5 text-[#2F5E73]" />
+                <Euro className="w-5 h-5 text-[#2F5E73]" />
                 <strong className="block text-sm font-bold text-[#171917]">Bankverbindung</strong>
                 <span className="text-xs text-[#6C716B] block">Gültige IBAN eines europäischen SEPA-Kontos für die Auszahlung.</span>
               </li>

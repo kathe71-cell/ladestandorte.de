@@ -1,5 +1,5 @@
 {
-  "executedAt": "2026-10-13T16:48:01.144Z",
+  "executedAt": "2026-10-13T17:05:12.098Z",
   "totalSources": 11,
   "reachable": 11,
   "issues": 0,
@@ -23,7 +23,7 @@
       "ok": true,
       "error": null,
       "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:47:58.391Z"
+      "checkedAt": "2026-10-13T17:05:08.919Z"
     },
     {
       "id": "SRC_EU_AFIR_2023_1804",
@@ -44,7 +44,7 @@
       "ok": true,
       "error": null,
       "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:47:58.502Z"
+      "checkedAt": "2026-10-13T17:05:08.993Z"
     },
     {
       "id": "SRC_JURIS_38_BIMSCHV",
@@ -60,7 +60,7 @@
       "ok": true,
       "error": null,
       "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:47:58.732Z"
+      "checkedAt": "2026-10-13T17:05:09.070Z"
     },
     {
       "id": "SRC_UBA_THG_38_BIMSCHV",
@@ -76,7 +76,7 @@
       "ok": true,
       "error": null,
       "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:47:58.882Z"
+      "checkedAt": "2026-10-13T17:05:09.215Z"
     },
     {
       "id": "SRC_IONITY_OFFICIAL",
@@ -93,7 +93,7 @@
       "ok": true,
       "error": null,
       "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:47:59.049Z"
+      "checkedAt": "2026-10-13T17:05:09.337Z"
     },
     {
       "id": "SRC_FASTNED_OFFICIAL",
@@ -108,8 +108,8 @@
       "statusCode": 200,
       "ok": true,
       "error": null,
-      "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:47:59.693Z"
+      "redirectLocation": "https://www.fastnedcharging.com/de",
+      "checkedAt": "2026-10-13T17:05:09.646Z"
     },
     {
       "id": "SRC_ARAL_PULSE_MCS_PM",
@@ -130,7 +130,7 @@
       "ok": true,
       "error": null,
       "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:47:59.951Z"
+      "checkedAt": "2026-10-13T17:05:10.911Z"
     },
     {
       "id": "SRC_HOLA_PROJECT",
@@ -148,8 +148,8 @@
       "statusCode": 200,
       "ok": true,
       "error": null,
-      "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:48:00.365Z"
+      "redirectLocation": "https://hochleistungsladen-lkw.de/hola-de/index.php",
+      "checkedAt": "2026-10-13T17:05:11.244Z"
     },
     {
       "id": "SRC_MILENCE_OFFICIAL",
@@ -168,7 +168,7 @@
       "ok": true,
       "error": null,
       "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:48:00.512Z"
+      "checkedAt": "2026-10-13T17:05:11.394Z"
     },
     {
       "id": "SRC_METHODOLOGY_CHARIN_MCS",
@@ -186,7 +186,7 @@
       "ok": true,
       "error": null,
       "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:48:00.879Z"
+      "checkedAt": "2026-10-13T17:05:11.800Z"
     },
     {
       "id": "SRC_THGVERKAUF_OFFICIAL",
@@ -202,7 +202,7 @@
       "ok": true,
       "error": null,
       "redirectLocation": null,
-      "checkedAt": "2026-10-13T16:48:01.143Z"
+      "checkedAt": "2026-10-13T17:05:12.097Z"
     }
   ]
 }
