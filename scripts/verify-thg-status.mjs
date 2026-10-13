@@ -41,6 +41,21 @@ if (!has2026Active || !has2027Upcoming || !has2027Disabled) {
   process.exit(1);
 }
 
+// Prüfe P1-03: Keine unzulässigen UBA-Mindestmengenbegründungen auf /thg-praemie
+const thgPagePath = path.join(rootDir, 'src/pages/ThgPraemiePage.tsx');
+if (fs.existsSync(thgPagePath)) {
+  const pageContent = fs.readFileSync(thgPagePath, 'utf8');
+  if (pageContent.includes('Mindestquotenmengen verlangt') || pageContent.includes('Mindestmenge')) {
+    console.error('❌ P1-03 Regression: Unzutreffende UBA-Mindestmengenbegründung in ThgPraemiePage.tsx gefunden!');
+    process.exit(1);
+  }
+  if (!pageContent.includes('selbst beim Umweltbundesamt (UBA) beantragen')) {
+    console.error('❌ P1-03 Regression: Korrigierter Text zur eigenständigen UBA-Meldung fehlt in ThgPraemiePage.tsx!');
+    process.exit(1);
+  }
+  console.log('[CHECK] P1-03 Rechtsbegründung: Eigenständige UBA-Antragsoption sachlich korrekt abgebildet (keine Mindestmengenbehauptung).');
+}
+
 // Prüfe Fristen bezogen auf heute
 const today = new Date('2026-10-13T12:00:00Z');
 const ubaDeadline2026 = new Date('2026-11-15T23:59:59Z');

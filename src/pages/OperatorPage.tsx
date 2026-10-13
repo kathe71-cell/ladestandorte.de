@@ -218,7 +218,7 @@ export const OperatorPage: React.FC = () => {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
             <div className="p-3.5 bg-[#F7F7F2] rounded-lg border border-[#DFE3DC]">
-              <span className="text-[#6C716B] block uppercase font-mono text-[10px]">Dokumentierte Ladestationen</span>
+              <span className="text-[#6C716B] block uppercase font-mono text-[10px]">BNetzA-Registereinträge</span>
               <strong className="text-[#171917] text-base font-mono block mt-0.5 tabular-nums">{verifiedCpo.stationsTotal.toLocaleString('de-DE')}</strong>
             </div>
             <div className="p-3.5 bg-[#F7F7F2] rounded-lg border border-[#DFE3DC]">
@@ -235,7 +235,7 @@ export const OperatorPage: React.FC = () => {
             </div>
           </div>
           <p className="text-[11px] text-[#6C716B] leading-normal">
-            * <strong>Hinweis:</strong> Anteil an den im amtlichen BNetzA-Snapshot erfassten HPC-Ladepunkten bundesweit ({cpoDataset.totalRegisterHpcPointsDE.toLocaleString('de-DE')} Ladepunkte).
+            * <strong>Hinweis:</strong> BNetzA-Registereinträge bezeichnen melderechtlich erfasste Einheiten im amtlichen Snapshot (ein physischer Ladepark kann mehrere Registereinträge umfassen). Anteil bezogen auf {cpoDataset.totalRegisterHpcPointsDE.toLocaleString('de-DE')} im Bundesregister erfasste HPC-Ladepunkte.
           </p>
         </div>
       )}

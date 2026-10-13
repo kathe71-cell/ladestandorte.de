@@ -277,7 +277,7 @@ export const ThgPraemiePage: React.FC = () => {
               4. Unterlagen &amp; Schritt-für-Schritt-Ablauf der Beantragung
             </h2>
             <p className="text-base text-[#171917]">
-              Als privater oder gewerblicher Fahrzeughalter kann man die THG-Quote in der Regel nicht direkt als Einzelfahrzeug beim Umweltbundesamt abrechnen, da das UBA Mindestquotenmengen verlangt. Die Abwicklung erfolgt daher über spezialisierte THG-Dienstleister.
+              Fahrzeughalter können die Anrechnung der Strommenge ihres reinen Elektrofahrzeugs grundsätzlich auch selbst beim Umweltbundesamt (UBA) beantragen. Das UBA zahlt jedoch keine THG-Prämie aus, sondern bescheinigt die anrechenbare Strommenge. Für eine finanzielle Vergütung muss diese anschließend vermarktet werden. Da die eigenständige Antragstellung und Vermarktung mit Aufwand verbunden sein können und gegebenenfalls Gebühren anfallen, nutzen viele Fahrzeughalter spezialisierte THG-Dienstleister. Diese übernehmen die Antragstellung und Vermarktung nach ihren jeweiligen Vertragsbedingungen.
             </p>
 
             <h3 className="text-lg font-bold text-[#171917]">Benötigte Unterlagen:</h3>

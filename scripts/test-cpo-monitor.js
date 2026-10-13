@@ -62,6 +62,16 @@ const csvLines = fs.readFileSync(pubCsvPath, 'utf-8').trim().split('\n');
 if (csvLines.length !== 31) { // 1 header + 30 CPOs
   throw new Error(`Expected 31 CSV lines, got ${csvLines.length}`);
 }
-console.log(`[PASS] Machine-readable CSV verified (${csvLines.length} lines, header + 30 CPO records).`);
+// 6. Verify Operator Semantics (P1-02: Registereinträge vs. Ladepunkte)
+const fastnedOp = dataset.operators.find(o => o.slug === 'fastned');
+const ionityOp = dataset.operators.find(o => o.slug === 'ionity');
+
+if (!fastnedOp || fastnedOp.stationsTotal !== 204 || fastnedOp.chargingPointsTotal !== 404) {
+  throw new Error(`Fastned metrics mismatch: stationsTotal=${fastnedOp?.stationsTotal} (exp 204), chargingPointsTotal=${fastnedOp?.chargingPointsTotal} (exp 404)`);
+}
+if (!ionityOp || ionityOp.stationsTotal !== 1311 || ionityOp.chargingPointsTotal !== 1510) {
+  throw new Error(`IONITY metrics mismatch: stationsTotal=${ionityOp?.stationsTotal} (exp 1311), chargingPointsTotal=${ionityOp?.chargingPointsTotal} (exp 1510)`);
+}
+console.log(`[PASS] Fastned (${fastnedOp.stationsTotal} Registereinträge, ${fastnedOp.chargingPointsTotal} Ladepunkte) and IONITY (${ionityOp.stationsTotal} Registereinträge, ${ionityOp.chargingPointsTotal} Ladepunkte) verified.`);
 
 console.log('\n✅ ALL CPO MONITOR REGRESSION CHECKS PASSED (0 ERRORS).\n');

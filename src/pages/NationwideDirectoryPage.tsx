@@ -384,14 +384,14 @@ export const NationwideDirectoryPage: React.FC = () => {
           >
             <span>
               {loading ? (
-                'Lade 117.043 Standorte...'
+                'Lade 117.043 BNetzA-Registereinträge...'
               ) : hasActiveFilters ? (
                 <>
-                  <strong className="text-[#171917] font-bold">{filteredCount.toLocaleString('de-DE')}</strong> von <strong className="text-[#171917] font-bold">{totalCount.toLocaleString('de-DE')}</strong> Ladestationen
+                  <strong className="text-[#171917] font-bold">{filteredCount.toLocaleString('de-DE')}</strong> von <strong className="text-[#171917] font-bold">{totalCount.toLocaleString('de-DE')}</strong> Einträgen
                 </>
               ) : (
                 <>
-                  <strong className="text-[#171917] font-bold">{totalCount.toLocaleString('de-DE')}</strong> Ladestationen in Deutschland
+                  <strong className="text-[#171917] font-bold">{totalCount.toLocaleString('de-DE')}</strong> BNetzA-Registereinträge in Deutschland
                 </>
               )}
             </span>

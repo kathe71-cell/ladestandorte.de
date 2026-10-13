@@ -245,6 +245,74 @@ if (cpoGen.totalRegisterStationsDE !== 117043) {
   console.log(`[PASS] Germany totalRegisterPointsDE: ${cpoGen.totalRegisterPointsDE.toLocaleString('de-DE')} Charging points`);
 }
 
+// 7. Register Detail Route Regression Tests (P1-01 Fix Verification)
+console.log('--- Register Detail Route & Handler Verification ---');
+try {
+  const handlerMod = await import('../api/register-station-handler.js');
+  const handler = handlerMod.default;
+
+  function createMockContext(city, id) {
+    const req = { url: `https://www.ladestandorte.de/api/register-station-handler?city=${city}&id=${id}` };
+    let statusCode = 200;
+    const headers = {};
+    let body = '';
+    const res = {
+      status(c) { statusCode = c; return this; },
+      setHeader(k, v) { headers[k] = v; },
+      send(b) { body = b; return this; },
+      end() { return this; }
+    };
+    return { req, res, getResult: () => ({ statusCode, headers, body }) };
+  }
+
+  // A. Three confirmed valid register detail routes
+  const validCases = [
+    { city: 'ruedenhausen', id: '1030466' },
+    { city: 'gladbeck', id: '1030528' },
+    { city: 'eching', id: '1030481' }
+  ];
+
+  for (const c of validCases) {
+    const ctx = createMockContext(c.city, c.id);
+    await handler(ctx.req, ctx.res);
+    const result = ctx.getResult();
+    if (result.statusCode !== 200) {
+      console.error(`[FAIL] Expected 200 for valid register station ${c.city}/${c.id}, got ${result.statusCode}`);
+      failed = true;
+    } else if (!result.headers['X-Robots-Tag'] || !result.headers['X-Robots-Tag'].includes('noindex')) {
+      console.error(`[FAIL] Expected noindex X-Robots-Tag for register station ${c.id}`);
+      failed = true;
+    } else {
+      console.log(`[PASS] Valid station /ladestation-register/${c.city}/${c.id} -> HTTP 200 (noindex enforced)`);
+    }
+  }
+
+  // B. Invalid register ID -> Strict HTTP 404
+  const invalidCtx = createMockContext('ruedenhausen', '999999999');
+  await handler(invalidCtx.req, invalidCtx.res);
+  const invalidRes = invalidCtx.getResult();
+  if (invalidRes.statusCode !== 404) {
+    console.error(`[FAIL] Expected 404 for non-existent station ID 999999999, got ${invalidRes.statusCode}`);
+    failed = true;
+  } else {
+    console.log('[PASS] Non-existent station ID 999999999 -> Strict HTTP 404');
+  }
+
+  // C. Mismatched citySlug -> 301 Redirect to canonical citySlug
+  const mismatchCtx = createMockContext('falsche-stadt', '1030466');
+  await handler(mismatchCtx.req, mismatchCtx.res);
+  const mismatchRes = mismatchCtx.getResult();
+  if (mismatchRes.statusCode !== 301 || mismatchRes.headers['Location'] !== '/ladestation-register/ruedenhausen/1030466') {
+    console.error(`[FAIL] Expected 301 canonical redirect for mismatched city, got ${mismatchRes.statusCode} Location: ${mismatchRes.headers['Location']}`);
+    failed = true;
+  } else {
+    console.log('[PASS] Mismatched citySlug -> 301 Redirect to canonical URL /ladestation-register/ruedenhausen/1030466');
+  }
+} catch (handlerErr) {
+  console.error('[FAIL] Error testing register-station-handler:', handlerErr);
+  failed = true;
+}
+
 if (failed) {
   console.error('=== TEST SUITE FAILED ===');
   process.exit(1);

@@ -136,6 +136,10 @@
       "destination": "/api/mcs-hub-handler?slug=$1"
     },
     {
+      "source": "/ladestation-register/([^/]+)/([^/]+)",
+      "destination": "/api/register-station-handler?city=$1&id=$2"
+    },
+    {
       "source": "/((?!ads\\.txt|robots\\.txt|sitemap\\.xml|feed\\.xml|llms\\.txt|og-image\\.png|favicon\\.svg|assets/.*).*)",
       "destination": "/index.html"
     }

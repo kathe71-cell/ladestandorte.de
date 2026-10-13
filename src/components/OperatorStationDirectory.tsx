@@ -152,10 +152,10 @@ export const OperatorStationDirectory: React.FC<Props> = ({
             <span>Vollständiges BNetzA-Register</span>
           </div>
           <h2 className="text-2xl font-bold text-[#171917]">
-            Alle registrierten {operatorName}-Ladestationen
+            Alle registrierten {operatorName}-Ladeeinrichtungen
           </h2>
           <p className="text-xs text-[#6C716B] mt-1">
-            Vollständiger Datenbestand aller {totalRegisterCount.toLocaleString('de-DE')} im amtlichen BNetzA-Ladesäulenregister gemeldeten Standorte von {operatorName}.
+            Vollständiger Datenbestand aller {totalRegisterCount.toLocaleString('de-DE')} im amtlichen BNetzA-Ladesäulenregister geführten BNetzA-Registereinträge von {operatorName}.
           </p>
         </div>
 
@@ -229,14 +229,14 @@ export const OperatorStationDirectory: React.FC<Props> = ({
         >
           <span>
             {loading ? (
-              `Lade ${totalRegisterCount.toLocaleString('de-DE')} Standorte...`
+              `Lade ${totalRegisterCount.toLocaleString('de-DE')} BNetzA-Registereinträge...`
             ) : hasActiveFilters ? (
               <>
-                <strong className="text-[#171917] font-bold">{totalFiltered.toLocaleString('de-DE')}</strong> von <strong className="text-[#171917] font-bold">{stations.length.toLocaleString('de-DE')}</strong> Stationen
+                <strong className="text-[#171917] font-bold">{totalFiltered.toLocaleString('de-DE')}</strong> von <strong className="text-[#171917] font-bold">{stations.length.toLocaleString('de-DE')}</strong> Einträgen
               </>
             ) : (
               <>
-                <strong className="text-[#171917] font-bold">{stations.length.toLocaleString('de-DE')}</strong> registrierte Ladestationen
+                <strong className="text-[#171917] font-bold">{stations.length.toLocaleString('de-DE')}</strong> BNetzA-Registereinträge
               </>
             )}
           </span>
