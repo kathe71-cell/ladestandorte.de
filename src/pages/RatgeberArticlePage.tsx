@@ -687,13 +687,13 @@ export const RatgeberArticlePage: React.FC = () => {
               <strong>Ladeleistung:</strong> Bis zu 22 kW AC (dreiphasig 400 V, 32 A, 50 Hz, Mode 3 nach IEC 61851-1).
             </li>
             <li>
-              <strong>Schutzart:</strong> IP68 für das gekapselte Elektronikmodul; IP54 für das Gesamtsystem im geschlossenen Zustand; Stoßfestigkeitsgrad IK10.
+              <strong>Schutzart:</strong> IP68 für das gekapselte Elektronikmodul; IP54 für das Gesamtsystem im geschlossenen Zustand; Stoßfestigkeitsgrad IK10 (Herstellerangaben Rheinmetall).
             </li>
             <li>
               <strong>Klimabereich:</strong> Ausgelegt für −25 °C bis +60 °C; integriertes Heizkonzept gegen Vereisung der mechanischen Klappe.
             </li>
             <li>
-              <strong>Kommunikation &amp; Backend:</strong> OCPP 1.6J (vorbereitet für OCPP 2.0.1), integriertes 4G-Mobilfunkmodem, Ethernet-Option, Freigabe via RFID, App oder QR-Code.
+              <strong>Kommunikation &amp; Backend:</strong> OCPP 1.6 (Standard für Backend-Anbindung und Lastmanagement), integriertes 4G-Mobilfunkmodem, Ethernet-Option, Freigabe via RFID, Betreiber-App oder dynamischem QR-Code.
             </li>
           </ul>
 
@@ -704,7 +704,7 @@ export const RatgeberArticlePage: React.FC = () => {
             Im April 2024 startete die Stadt Köln in Kooperation mit Rheinmetall und dem regionalen Betreiber <em>TankE GmbH</em> (Tochter der RheinEnergie AG) einen Praxistest in Köln-Lindenthal (u. a. an der Herbert-Lewin-Straße).
           </p>
           <p>
-            Nach Abschluss der einjährigen Pilotphase zogen die Projektpartner eine offizielle Bilanz: Über <strong>2.800 Ladevorgänge</strong> wurden dokumentiert, rund <strong>50 Megawattstunden</strong> elektrische Energie abgegeben und eine technische Systemverfügbarkeit von über <strong>99 Prozent</strong> verzeichnet. Im Sommer 2025 wurden im Testfeld optimierte Grauguss-Körper sowie modulare Kabelschutzelemente erprobt. Die installierten Ladepunkte wurden nach Abschluss des wissenschaftlichen Feldversuchs in den regulären Betrieb übernommen.
+            Nach Abschluss der einjährigen Pilotphase zogen die Projektpartner eine offizielle Bilanz: Über <strong>2.800 Ladevorgänge</strong> wurden dokumentiert, rund <strong>50 Megawattstunden</strong> elektrische Energie abgegeben und eine technische Systemverfügbarkeit von über <strong>99 Prozent</strong> verzeichnet (Hersteller- und Betreiberangaben Rheinmetall/TankE). Im Sommer 2025 wurden im Testfeld optimierte Grauguss-Körper sowie modulare Kabelschutzelemente erprobt. Die installierten Ladepunkte wurden nach Abschluss des wissenschaftlichen Feldversuchs in den regulären Betrieb übernommen.
           </p>
 
           {/* E. Kosten */}
@@ -720,7 +720,7 @@ export const RatgeberArticlePage: React.FC = () => {
                 1. Hardware-Kosten:
               </strong>
               <p className="text-xs text-[#6C716B] leading-relaxed">
-                Hersteller beziffern die Hardwarekosten für serienreife Bordsteinlader im unteren bis mittleren vierstelligen Euro-Bereich je Ladepunkt (in Fachmedien werden Richtwerte um ca. 4.000 bis 6.000 € genannt, abhängig von Stückzahl, Gehäusematerial und Ausstattung). Die Kosten liegen damit in einer ähnlichen Größenordnung wie hochwertige, eichrechtskonforme AC-Ladesäulen.
+                Herstellerangaben beziffern die Hardware für serienreife Bordsteinlader im unteren bis mittleren vierstelligen Euro-Bereich je Ladepunkt (projektabhängig nach Stückzahl, Gehäusematerial und Konfiguration). Die Anschaffung liegt damit in einer vergleichbaren Größenordnung wie hochwertige, eichrechtskonforme AC-Ladesäulen.
               </p>
             </div>
             <div className="p-4 bg-white rounded-xl border border-[#DFE3DC]">
@@ -832,17 +832,17 @@ export const RatgeberArticlePage: React.FC = () => {
             7. Barrierefreiheit, Chancen und planerische Herausforderungen
           </h2>
           <p>
-            In der verkehrsplanerischen Diskussion wird der Ladebordstein häufig im Zusammenhang mit <strong>Barrierefreiheit im Straßenraum</strong> (DIN 18040-3) diskutiert. Hierbei ist eine sachliche Differenzierung erforderlich:
+            In der verkehrsplanerischen Diskussion wird der Ladebordstein im Kontext barrierefreier Verkehrsraumgestaltung (DIN 18040-3) betrachtet. Eine pauschale Normkonformität ergibt sich nicht automatisch aus der Bauform, sondern hängt von der konkreten baulichen Umsetzung vor Ort ab:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-base">
             <li>
-              <strong>Erhalt der lichten Gehwegbreite:</strong> Der wesentliche Vorteil besteht darin, dass keine zusätzlichen Barrieren auf Gehwegen aufgestellt werden. Fußgänger, Menschen mit Sehbehinderung, Rollstuhlnutzer und Personen mit Kinderwagen behalten die volle Durchgangsbreite.
+              <strong>Erhalt der lichten Gehwegbreite:</strong> Der wesentliche Vorzug liegt im Verzicht auf störende Einbauten im Gehbereich. Die nutzbare Gehwegbreite bleibt für Rollstuhlnutzer, Blindenleitsysteme und Fußgänger frei von Hindernissen.
             </li>
             <li>
-              <strong>Bodennahe Bedienung:</strong> Die Steckdose und Entriegelung befinden sich in Bordsteinhöhe. Während eine aufrecht stehende Ladesäule Bedienelemente in genormter Greifhöhe (85 bis 105 cm nach DIN 18040-3) anbringen kann, erfordert der Ladebordstein ein Bücken bis an die Bordsteinkante. Dies kann für mobilitätseingeschränkte Personen eine Hürde darstellen.
+              <strong>Bodennahe Bedienhöhe:</strong> Da sich Steckdose und Klappenmechanismus auf Bordsteinniveau befinden, weicht die Bedienhöhe von der empfohlenen DIN-Greifhöhe (85 bis 105 cm über Boden) ab. Für Rollstuhlnutzer oder Personen mit motorischen Einschränkungen erfordert das Anstecken ein tiefes Bücken an die Bordsteinkante.
             </li>
             <li>
-              <strong>Kabelverlauf &amp; Stolperstellen:</strong> Wenn ein Fahrzeug geladen wird, verläuft das Ladekabel von der Bordsteinkante zum Fahrzeug. Je nach Parkposition und Ladeanschluss des Pkw kann das Kabel über den Gehweg oder die Parkbucht verlaufen, was umsichtige Verkehrsplanung erfordert.
+              <strong>Kabelverlauf &amp; Stolperfallen:</strong> Beim Ladevorgang verläuft das Ladekabel fahrzeugabhängig entlang der Bordkante oder über Teilbereiche des Gehwegs. Ohne bauliche Schutzrinnen oder geordnete Stellplatzaufteilung können Kabel zu Stolperstellen werden.
             </li>
           </ul>
 
@@ -905,10 +905,10 @@ export const RatgeberArticlePage: React.FC = () => {
           </p>
           <ul className="list-disc pl-6 space-y-2 text-base">
             <li>
-              <strong>Köln (Stadt Köln &amp; TankE / RheinEnergie):</strong> Seit April 2024 erprobten die Projektpartner in Köln-Lindenthal (Herbert-Lewin-Straße) Rheinmetall-Ladebordsteine im öffentlichen Anwohnerparkraum. Mit über 2.800 Ladevorgängen und über 99 % Verfügbarkeit demonstrierte das Projekt die Funktionsfähigkeit unter realen Umweltbedingungen und ging nach Testabschluss in den regulären Dauerbetrieb über.
+              <strong>Köln (Stadt Köln, TankE &amp; Rheinmetall):</strong> Seit April 2024 erprobten die Projektpartner in Köln-Lindenthal (Herbert-Lewin-Straße) Rheinmetall-Ladebordsteine im öffentlichen Anwohnerparkraum. Die Partner bezifferten in ihrem Abschlussbericht über 2.800 Ladevorgänge und über 99 % Verfügbarkeit unter realen Verkehrsbedingungen. Die Testpunkte wurden in den regulären Dauerbetrieb überführt.
             </li>
             <li>
-              <strong>Dortmund (Stadt Dortmund &amp; DEW21):</strong> In der Dortmunder Innenstadt (Betenstraße) wurden im Spätsommer 2025 Ladebordsteine im öffentlichen Verkehrsraum installiert, um platzsparende Ladeinfrastruktur in engen Straßenprofilen zu evaluieren.
+              <strong>Dortmund (Stadt Dortmund &amp; DEW21):</strong> In der Dortmunder Innenstadt (Betenstraße nahe Mercure Hotel) wurden im Spätsommer 2025 zehn Ladebordsteine (11 kW) installiert. Nach anfänglicher Erprobung von sechs aktiven Punkten wurden die verbleibenden vier Punkte nachgerüstet, sodass alle zehn Ladepunkte im Regelbetrieb zur Verfügung stehen.
             </li>
             <li>
               <strong>Vergleichsfeld Laternenladen (z. B. Berlin):</strong> Als alternatives Konzept für Laternenparker nutzt das Berliner Ladenetz (über 1.000 Punkte via ubitricity) bestehende Straßenlaternen. Während Laternenladen ohne zusätzlichen Tiefbau auskommt, limitiert der einphasige Anschluss (3,7 kW) die Nachladegeschwindigkeit gegenüber Ladebordsteinen (11–22 kW).
@@ -924,7 +924,7 @@ export const RatgeberArticlePage: React.FC = () => {
               <li className="flex items-start gap-2">
                 <ExternalLink className="w-4 h-4 text-[#2F5E73] shrink-0 mt-0.5" />
                 <div>
-                  <strong>Rheinmetall AG:</strong> Offizielle Projektberichte und Pressemitteilungen zum Ladebordstein und zum Kölner Pilotprojekt.{' '}
+                  <strong>Rheinmetall AG:</strong> Offizieller Projektbericht zum Ladebordstein und zum Kölner Pilotprojekt.{' '}
                   <a
                     href="https://www.rheinmetall.com/de/media/stories/2024/ladebordstein-pilotprojekt-in-koeln-erfolgreich"
                     target="_blank"
@@ -938,21 +938,27 @@ export const RatgeberArticlePage: React.FC = () => {
               <li className="flex items-start gap-2">
                 <ExternalLink className="w-4 h-4 text-[#2F5E73] shrink-0 mt-0.5" />
                 <div>
-                  <strong>Stadt Köln / TankE GmbH:</strong> Dokumentation des Pilotbetriebs in Köln-Lindenthal (Herbert-Lewin-Straße) mit TankE GmbH.{' '}
+                  <strong>TankE GmbH:</strong> Produktübersicht und Dokumentation der Ladebordstein-Infrastruktur.{' '}
                   <a
-                    href="https://www.tanke.io"
+                    href="https://www.tanke.io/ladebordstein"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#2F5E73] underline hover:text-[#171917]"
                   >
-                    Offizielle Informationen des Betreibers TankE
+                    Ladebordstein-Portal auf tanke.io
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <ExternalLink className="w-4 h-4 text-[#2F5E73] shrink-0 mt-0.5" />
                 <div>
-                  <strong>Technische Richtlinien &amp; Normen:</strong> DIN EN 61851-1 (Konduktive Ladesysteme), DIN EN 60529 (IP-Schutzarten), DIN EN 62262 (IK-Stoßfestigkeitsgrade), DIN 18040-3 (Barrierefreies Bauen im öffentlichen Verkehrsraum).
+                  <strong>Stadt Dortmund / DEW21:</strong> Dokumentation des Smart-City-Ladeinfrastrukturprojekts Betenstraße (Dortmund) zur Evaluierung platzsparender Ladekonzepte.
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <ExternalLink className="w-4 h-4 text-[#2F5E73] shrink-0 mt-0.5" />
+                <div>
+                  <strong>Relevante Normen &amp; Regelwerke:</strong> DIN EN 61851-1 (Konduktive Ladesysteme), DIN EN 60529 (IP-Schutzarten), DIN EN 62262 (IK-Stoßfestigkeitsgrade), DIN 18040-3 (Barrierefreies Bauen im öffentlichen Verkehrsraum).
                 </div>
               </li>
             </ul>
