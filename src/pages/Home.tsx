@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Zap, MapPin, Navigation, ShieldCheck, Database, ArrowRight, CheckCircle2, TrendingUp, Cpu, Award, HelpCircle } from 'lucide-react';
+import { Zap, MapPin, Navigation, ShieldCheck, Database, ArrowRight, CheckCircle2, TrendingUp, Cpu, Award, HelpCircle, Leaf } from 'lucide-react';
 import { InstantFinder } from '../components/InstantFinder';
 import { CalculatorEmbed } from '../components/CalculatorEmbed';
 import { EEATBadge } from '../components/EEATBadge';
@@ -542,7 +542,7 @@ export const Home: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
           <Link
             to="/ratgeber/ladekarten-dschungel"
@@ -552,11 +552,11 @@ export const Home: React.FC = () => {
               <span className="text-xs font-mono uppercase tracking-wider text-[#2F5E73] font-bold block mb-2">
                 Tarife &amp; Roaming
               </span>
-              <h3 className="text-lg font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors mb-3 leading-snug">
-                Ladekarten-Dschungel: Roaming-Preise, Grundgebühren &amp; wer wirklich spart
+              <h3 className="text-base sm:text-lg font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors mb-3 leading-snug">
+                Ladekarten-Dschungel: Roaming-Preise &amp; Grundgebühren
               </h3>
               <p className="text-xs text-[#6C716B] leading-relaxed">
-                Überblick über Grundgebühren, Roaming-Aufschläge bei Dritt-CPOs und die besten Kombinationen für Viellader vs. Gelegenheitslader.
+                Überblick über Grundgebühren, Roaming-Aufschläge bei Dritt-CPOs und die besten Kombinationen für E-Mobilisten.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-[#DFE3DC] flex items-center gap-2 text-xs font-bold text-[#171917] group-hover:text-[#2F5E73]">
@@ -573,11 +573,11 @@ export const Home: React.FC = () => {
               <span className="text-xs font-mono uppercase tracking-wider text-[#2F5E73] font-bold block mb-2">
                 Elektrotechnik &amp; Physik
               </span>
-              <h3 className="text-lg font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors mb-3 leading-snug">
-                AC vs. DC Ladeverluste im Praxis-Vergleich: Wirkungsgrade &amp; Sparpotenziale
+              <h3 className="text-base sm:text-lg font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors mb-3 leading-snug">
+                AC vs. DC Ladeverluste im Praxis-Vergleich
               </h3>
               <p className="text-xs text-[#6C716B] leading-relaxed">
-                Warum an der Schuko-Steckdose bis zu 20 % verloren gehen, wie der Onboard-Charger arbeitet und welche Ladeleistung am effizientesten ist.
+                Warum an Schuko bis zu 20 % verloren gehen, wie Onboard-Charger arbeiten und welche Leistung am effizientesten ist.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-[#DFE3DC] flex items-center gap-2 text-xs font-bold text-[#171917] group-hover:text-[#2F5E73]">
@@ -594,15 +594,37 @@ export const Home: React.FC = () => {
               <span className="text-xs font-mono uppercase tracking-wider text-[#2F5E73] font-bold block mb-2">
                 Verbraucherschutz
               </span>
-              <h3 className="text-lg font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors mb-3 leading-snug">
-                Blockiergebühren an Ladesäulen vermeiden: Karenzzeiten &amp; CPO-Übersicht
+              <h3 className="text-base sm:text-lg font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors mb-3 leading-snug">
+                Blockiergebühren an Ladesäulen vermeiden
               </h3>
               <p className="text-xs text-[#6C716B] leading-relaxed">
-                Ab wann greift die Standzeitgebühr? Vergleichen Sie Karenzzeiten (240 Min. AC vs. 60 Min. DC) und Nachtregelungen aller Anbieter.
+                Ab wann greift die Standzeitgebühr? Vergleichen Sie Karenzzeiten (240 Min. AC vs. 60 Min. DC) und Nachtregelungen.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-[#DFE3DC] flex items-center gap-2 text-xs font-bold text-[#171917] group-hover:text-[#2F5E73]">
               <span>Gebühren-Vergleich</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+
+          <Link
+            to="/thg-praemie"
+            className="group p-6 bg-white rounded-xl border border-[#DFE3DC] hover:border-[#171917] transition-all flex flex-col justify-between"
+          >
+            <div>
+              <span className="text-xs font-mono uppercase tracking-wider text-[#2F5E73] font-bold block mb-2 flex items-center gap-1">
+                <Leaf className="w-3.5 h-3.5 text-emerald-600 inline" />
+                <span>Prämie &amp; Förderung</span>
+              </span>
+              <h3 className="text-base sm:text-lg font-bold text-[#171917] group-hover:text-[#2F5E73] transition-colors mb-3 leading-snug">
+                THG-Prämie für Elektroautos: Fristen &amp; Quoten
+              </h3>
+              <p className="text-xs text-[#6C716B] leading-relaxed">
+                Rechtliche Grundlagen nach BImSchG, Antragsfristen beim Umweltbundesamt und verlässliche Kriterien zur Anbieterauswahl.
+              </p>
+            </div>
+            <div className="mt-6 pt-4 border-t border-[#DFE3DC] flex items-center gap-2 text-xs font-bold text-[#171917] group-hover:text-[#2F5E73]">
+              <span>THG-Ratgeber lesen</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </div>
           </Link>

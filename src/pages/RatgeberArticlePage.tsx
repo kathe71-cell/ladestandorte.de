@@ -272,6 +272,27 @@ export const RatgeberArticlePage: React.FC = () => {
             <li>Bei 11 kW Ladeleistung (3 Phasen à 16 Ampere) arbeitet der fahrzeugeigene Inverter in seinem optimalen Wirkungsgradfenster, während die thermische Belastung von Hausanschluss und Kabel moderat bleibt.</li>
           </ul>
 
+          <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] not-prose my-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-2xs">
+            <div className="space-y-1">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#2F5E73]">
+                PRODUKTVERGLEICH · 11 KW &amp; PV-ÜBERSCHUSS
+              </span>
+              <div className="text-base font-bold text-[#171917]">
+                Wallboxen für Zuhause vergleichen
+              </div>
+              <p className="text-xs text-[#6C716B]">
+                33 Modelle im technischen Direktvergleich mit Filter nach Ladeleistung, KfW-Fähigkeit, Solarladen und MID-Zähler.
+              </p>
+            </div>
+            <Link
+              to="/wallbox-vergleich"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#171917] hover:bg-[#2F5E73] text-white font-bold text-xs shrink-0 transition-colors"
+            >
+              <span>Zum Wallbox-Vergleich</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
           <h2 className="text-2xl font-bold text-[#171917] mt-8 mb-4">3. Drei Praxis-Tipps zur Minimierung von Ladeverlusten</h2>
           <div className="space-y-3 not-prose my-6">
             <div className="flex items-start gap-3 p-4 bg-white rounded-xl border border-[#DFE3DC] text-sm">

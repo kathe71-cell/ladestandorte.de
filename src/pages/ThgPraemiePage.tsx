@@ -442,7 +442,7 @@ export const ThgPraemiePage: React.FC = () => {
                   <a
                     href={cfg2026.affiliateUrl}
                     target="_blank"
-                    rel="sponsored noopener"
+                    rel="sponsored noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-[#171917] hover:bg-[#2F5E73] text-[#C7F000] font-bold text-sm shadow-xs transition-colors"
                   >
                     <span>THG-Prämie 2026 beim Partner beantragen *</span>
@@ -652,7 +652,7 @@ export const ThgPraemiePage: React.FC = () => {
               <a
                 href={cfg2026.affiliateUrl}
                 target="_blank"
-                rel="sponsored noopener"
+                rel="sponsored noopener noreferrer"
                 className="inline-flex items-center justify-center gap-1.5 w-full px-3.5 py-2.5 rounded-xl bg-[#171917] hover:bg-[#2F5E73] text-[#C7F000] font-bold text-xs transition-colors"
               >
                 <span>Zum THG-Partner 2026 *</span>

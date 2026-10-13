@@ -15,7 +15,8 @@ import {
   BookOpen,
   HelpCircle,
   Truck,
-  Activity
+  Activity,
+  Leaf
 } from 'lucide-react';
 import { GlobalSearchModal } from './GlobalSearchModal';
 import { BrandLogo } from './BrandLogo';
@@ -76,7 +77,7 @@ export const Header: React.FC = () => {
   const isMcsActive = location.pathname.startsWith('/mcs');
   const isToolsActive = location.pathname.startsWith('/rechner');
   const isRechnerActive = location.pathname.startsWith('/rechner');
-  const isWissenActive = location.pathname.startsWith('/ratgeber') || location.pathname.startsWith('/ladekarten') || location.pathname.startsWith('/glossar') || location.pathname.startsWith('/wallbox-vergleich') || location.pathname.startsWith('/methodik');
+  const isWissenActive = location.pathname.startsWith('/ratgeber') || location.pathname.startsWith('/ladekarten') || location.pathname.startsWith('/glossar') || location.pathname.startsWith('/wallbox-vergleich') || location.pathname.startsWith('/methodik') || location.pathname.startsWith('/thg-praemie');
 
   return (
     <header className="bg-white/95 backdrop-blur-md border-b border-[#DFE3DC] sticky top-0 z-40">
@@ -379,6 +380,13 @@ export const Header: React.FC = () => {
                       <span>Ratgeber &amp; Leitfäden</span>
                     </Link>
                     <Link
+                      to="/thg-praemie"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
+                    >
+                      <Leaf className="w-4 h-4 text-[#2F5E73] shrink-0" />
+                      <span>THG-Prämie Ratgeber</span>
+                    </Link>
+                    <Link
                       to="/glossar"
                       className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[#171917] hover:bg-[#F7F7F2] font-medium"
                     >
@@ -607,6 +615,17 @@ export const Header: React.FC = () => {
             >
               <BookOpen className="w-5 h-5 text-[#6C716B]" />
               <span>Ratgeber &amp; Leitfäden</span>
+            </Link>
+
+            <Link
+              to="/thg-praemie"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium min-h-[44px] ${
+                location.pathname.startsWith('/thg-praemie') ? 'bg-[#171917] text-white' : 'text-[#171917] hover:bg-[#F7F7F2]'
+              }`}
+            >
+              <Leaf className="w-4 h-4 text-[#6C716B]" />
+              <span>THG-Prämie Ratgeber</span>
             </Link>
 
             <Link
