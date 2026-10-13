@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ShieldCheck, Zap, CheckCircle2, ArrowRight, CreditCard, HelpCircle, MapPin, Database } from 'lucide-react';
 import { OPERATORS_DATA } from '../data/operators';
-import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
+import { STATIONS_DATA, StationData, getStationUrl, isIndexableLocation } from '../data/stations';
 import cpoDataset from '../data/generated/cpo-monitor.generated.json';
 import { CitationBox } from '../components/CitationBox';
 import { FloatingCTABar } from '../components/FloatingCTABar';
@@ -35,10 +35,12 @@ export const OperatorPage: React.FC = () => {
     (operator.slug === 'enbw' && (c.id === 'enbw' || c.slug === 'enbw-mobility-plus'))
   );
 
-  // Match stations strictly by operator slug
+  // Match stations strictly by operator slug (and ensure station dossier is indexable and prerendered)
   const operatorStations = STATIONS_DATA.filter(s => 
-    s.operatorSlug === operator.slug ||
-    (operator.slug === 'enbw' && s.operatorSlug === 'enbw-mobility-plus')
+    isIndexableLocation(s) && (
+      s.operatorSlug === operator.slug ||
+      (operator.slug === 'enbw' && s.operatorSlug === 'enbw-mobility-plus')
+    )
   );
 
   const formatPriceAnswer = () => {

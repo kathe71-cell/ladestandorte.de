@@ -43,12 +43,12 @@ export const products: Product[] = [
   // ── Easee ─────────────────────────────────────────────
   {
     id: 'easee-charge',
-    asin: 'B0FM86TJK1',
+    asin: '',
     label: 'Easee Charge Up 11 kW',
     hint: 'Kompakteste Bauform, integrierter eSIM-Mobilfunk',
-    checked: '2026-09-28',
+    checked: '2026-10-13',
     type: 'produkt',
-    status: 'aktiv',
+    status: 'inaktiv',
   },
   // ── ABL ───────────────────────────────────────────────
   {
@@ -62,12 +62,12 @@ export const products: Product[] = [
   },
   {
     id: 'abl-emh2',
-    asin: 'B08QFXFFFJ',
+    asin: '',
     label: 'ABL eMH2 Wallbox 22 kW',
     hint: 'RFID, Lastmanagement-Schnittstelle, 22 kW',
-    checked: '2026-09-28',
+    checked: '2026-10-13',
     type: 'produkt',
-    status: 'aktiv',
+    status: 'inaktiv',
   },
   // ── Keba ──────────────────────────────────────────────
   {
@@ -189,12 +189,12 @@ export const products: Product[] = [
   // ── Alfen ─────────────────────────────────────────────
   {
     id: 'alfen-eve-single-pro-22',
-    asin: 'B08TGTPVPG',
+    asin: '',
     label: 'Alfen Eve Single Pro-Line 11 kW',
     hint: '11 kW, OCPP, MID-Zähler, professionelle Ausstattung',
-    checked: '2026-09-28',
+    checked: '2026-10-13',
     type: 'produkt',
-    status: 'aktiv',
+    status: 'inaktiv',
   },
   // ── Smappee ───────────────────────────────────────────
   {

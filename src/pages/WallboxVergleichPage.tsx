@@ -333,7 +333,7 @@ export const WallboxVergleichPage: React.FC = () => {
           Wie viel Solarenergie wird für das Laden zu Hause benötigt?
         </h3>
         <p>
-          Um ein Elektroauto an sonnigen Tagen ganz oder teilweise mit eigenem Dachstrom zu versorgen, wird in der Praxis meist eine Photovoltaikanlage ab etwa 6–10 kWp in Kombination mit einer steuerbaren Wallbox empfohlen. Den voraussichtlichen Jahresertrag für verschiedene Dachausrichtungen können Sie mit dem herstellerneutralen <a href="https://www.wattpeak.de/ertragsrechner" target="_blank" rel="noopener" className="font-bold text-slate-900 underline hover:text-black">PV-Ertragsrechner auf wattpeak.de</a> berechnen.
+          Um ein Elektroauto an sonnigen Tagen ganz oder teilweise mit eigenem Dachstrom zu versorgen, wird in der Praxis meist eine Photovoltaikanlage ab etwa 6–10 kWp in Kombination mit einer steuerbaren Wallbox empfohlen. Den voraussichtlichen Jahresertrag für verschiedene Dachausrichtungen können Sie mit dem herstellerneutralen <a href="https://wattpeak.de/ertragsrechner" target="_blank" rel="noopener" className="font-bold text-slate-900 underline hover:text-black">PV-Ertragsrechner auf wattpeak.de</a> berechnen.
         </p>
       </div>
 

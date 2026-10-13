@@ -22,6 +22,7 @@ import { PageHero } from '../components/PageHero';
 import { SEO } from '../components/SEO';
 import { EEATBadge } from '../components/EEATBadge';
 import cpoDataset from '../data/generated/cpo-monitor.generated.json';
+import { OPERATORS_DATA } from '../data/operators';
 import { CpoAggregateRecord } from '../lib/cpoMetrics';
 
 type SortField = 'chargingPoints150PlusKw' | 'chargingPointsTotal' | 'share150PlusKwPercent' | 'shareOfRegisterHpcPercent' | 'name' | 'stationsTotal';
@@ -345,53 +346,71 @@ export const CpoMonitorPage: React.FC = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-slate-800">
-              {filteredAndSorted.map((op, idx) => (
-                <tr key={op.id} className="hover:bg-slate-50/80 transition-colors">
-                  <td className="py-3.5 px-4 font-medium">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono text-slate-600 w-5 text-right">{idx + 1}.</span>
-                      <div>
-                        <Link to={`/betreiber/${op.slug}`} className="font-bold text-slate-950 hover:text-purple-700 underline">
-                          {op.name}
-                        </Link>
-                        <span className="block text-[11px] text-slate-700">
-                          {op.parentCompany} · {op.headquarters}
-                        </span>
+              {filteredAndSorted.map((op, idx) => {
+                const dossierSlug = op.slug === 'tesla'
+                  ? 'tesla-supercharger'
+                  : (OPERATORS_DATA.some(o => o.slug === op.slug) ? op.slug : null);
+
+                return (
+                  <tr key={op.id} className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 font-medium">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-mono text-slate-600 w-5 text-right">{idx + 1}.</span>
+                        <div>
+                          {dossierSlug ? (
+                            <Link to={`/betreiber/${dossierSlug}`} className="font-bold text-slate-950 hover:text-purple-700 underline">
+                              {op.name}
+                            </Link>
+                          ) : (
+                            <span className="font-bold text-slate-950">
+                              {op.name}
+                            </span>
+                          )}
+                          <span className="block text-[11px] text-slate-700">
+                            {op.parentCompany} · {op.headquarters}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="py-3.5 px-4 text-right font-mono font-bold text-purple-900">
-                    {op.chargingPoints150PlusKw.toLocaleString('de-DE')}
-                  </td>
-                  <td className="py-3.5 px-4 text-right font-mono text-slate-700">
-                    {op.chargingPointsTotal.toLocaleString('de-DE')}
-                  </td>
-                  <td className="py-3.5 px-4 text-right font-mono">
-                    <span className={`inline-block px-2 py-0.5 rounded text-xs font-semibold ${
-                      op.share150PlusKwPercent >= 70 ? 'bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]' :
-                      op.share150PlusKwPercent >= 40 ? 'bg-purple-50 text-purple-800 border border-purple-200' :
-                      'bg-slate-100 text-slate-700'
-                    }`}>
-                      {op.share150PlusKwPercent.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %
-                    </span>
-                  </td>
-                  <td className="py-3.5 px-4 text-right font-mono text-slate-900 font-semibold">
-                    {op.shareOfRegisterHpcPercent.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %
-                  </td>
-                  <td className="py-3.5 px-4 text-center font-mono text-xs text-slate-600">
-                    {op.citiesWithPresenceCount} / 50
-                  </td>
-                  <td className="py-3.5 px-4 text-right">
-                    <Link
-                      to={`/betreiber/${op.slug}`}
-                      className="px-2.5 py-1 rounded bg-slate-100 hover:bg-purple-50 hover:text-purple-700 text-slate-700 text-xs font-semibold inline-flex items-center gap-1 transition-colors"
-                    >
-                      <span>Profil</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                    <td className="py-3.5 px-4 text-right font-mono font-bold text-purple-900">
+                      {op.chargingPoints150PlusKw.toLocaleString('de-DE')}
+                    </td>
+                    <td className="py-3.5 px-4 text-right font-mono text-slate-700">
+                      {op.chargingPointsTotal.toLocaleString('de-DE')}
+                    </td>
+                    <td className="py-3.5 px-4 text-right font-mono">
+                      <span className={`inline-block px-2 py-0.5 rounded text-xs font-semibold ${
+                        op.share150PlusKwPercent >= 70 ? 'bg-[#F7F7F2] text-[#171917] border border-[#DFE3DC]' :
+                        op.share150PlusKwPercent >= 40 ? 'bg-purple-50 text-purple-800 border border-purple-200' :
+                        'bg-slate-100 text-slate-700'
+                      }`}>
+                        {op.share150PlusKwPercent.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %
+                      </span>
+                    </td>
+                    <td className="py-3.5 px-4 text-right font-mono text-slate-900 font-semibold">
+                      {op.shareOfRegisterHpcPercent.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %
+                    </td>
+                    <td className="py-3.5 px-4 text-center font-mono text-xs text-slate-600">
+                      {op.citiesWithPresenceCount} / 50
+                    </td>
+                    <td className="py-3.5 px-4 text-right">
+                      {dossierSlug ? (
+                        <Link
+                          to={`/betreiber/${dossierSlug}`}
+                          className="px-2.5 py-1 rounded bg-slate-100 hover:bg-purple-50 hover:text-purple-700 text-slate-700 text-xs font-semibold inline-flex items-center gap-1 transition-colors"
+                        >
+                          <span>Profil</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
+                      ) : (
+                        <span className="px-2 py-1 rounded bg-slate-50 text-slate-400 text-[11px] font-mono">
+                          Register
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

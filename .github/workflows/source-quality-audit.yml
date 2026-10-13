@@ -43,19 +43,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/monitor/create-github-issues.mjs
 
-      - name: Build SSR Bundle for Quality Rules
-        run: npm run build:server
+      - name: Build SSR and Static Site for Link & Route Audit
+        run: npm run build
 
-      - name: Verify Content Consistency Rules
-        run: node scripts/monitor/check-content-consistency.mjs
+      - name: Audit All Internal & External Links
+        run: node scripts/monitor/check-all-links.mjs
 
-      - name: Run Fact Monitoring Unit & Regression Tests
-        run: node scripts/test-fact-monitoring.js
+      - name: Run Link & Route Integrity Regression Tests
+        run: node scripts/test-link-integrity.js && node scripts/test-route-integrity.js
 
       - name: Archive Audit Reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: source-quality-reports
-          path: reports/sources/
+          path: |
+            reports/sources/
+            reports/links/
           retention-days: 30

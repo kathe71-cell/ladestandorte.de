@@ -1,0 +1,1050 @@
+{
+  "timestamp": "2026-10-13T18:27:04.293Z",
+  "environment": "local",
+  "htmlPagesScanned": 223,
+  "internalLinks": {
+    "uniqueRoutes": 230,
+    "failuresCount": 0,
+    "failures": []
+  },
+  "anchors": {
+    "uniqueChecked": 11,
+    "failuresCount": 0,
+    "failures": []
+  },
+  "sitemap": {
+    "totalUrls": 172,
+    "failuresCount": 0,
+    "failures": []
+  },
+  "externalLinks": {
+    "uniqueChecked": 81,
+    "okCount": 31,
+    "redirectCount": 50,
+    "brokenCount": 0,
+    "blockedOrTimeoutCount": 0,
+    "broken": [],
+    "redirects": [
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.2782,12.1482",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.2782,12.1482&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/bad-duerrenberg/fastned-autohof-nempitz/index.html"
+      },
+      {
+        "url": "https://www.bundesnetzagentur.de",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "http://www.bundesnetzagentur.de/DE/Home/home_node.html",
+        "occurrences": 265,
+        "sampleSource": "404/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.5218,13.4132",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.5218,13.4132&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/berlin/berliner-stadtwerke-hub-alexanderplatz/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.4812,13.3598",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.4812,13.3598&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/berlin/enbw-schnellladepark-berlin-schoeneberg/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.6041,10.2482",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.6041,10.2482&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/braak/tesla-supercharger-braak/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.2182,6.7612",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.2182,6.7612&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/duesseldorf/stadtwerke-duesseldorf-hub-rheinturm/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.4998,13.3752",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.4998,13.3752&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/berlin/tesla-supercharger-berlin-gleisdreieck/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.5255,13.3695",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.5255,13.3695&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/berlin/aral-pulse-schnellladestation-berlin-hauptbahnhof/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.1245,8.8712",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.1245,8.8712&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/extertal/hola-forschungskorridor-raststaette-lipperland-sued/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.1389,8.7482",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.1389,8.7482&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/frankfurt/fastned-frankfurt-borsigallee/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.1198,8.6412",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.1198,8.6412&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/frankfurt/mainova-schnelllade-hub-frankfurt-messe/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.0524,8.5712",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.0524,8.5712&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/frankfurt/enbw-hyperhub-frankfurt-flughafen/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/gp/help/customer/display.html?nodeId=201909010",
+        "status": 301,
+        "classification": "REDIRECT",
+        "location": "/gp/help/customer/display.html?nodeId=GX7NJQ4ZB8MHFRNJ",
+        "occurrences": 1,
+        "sampleSource": "datenschutz/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.7712,10.4682",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.7712,10.4682&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/geiselwind/enbw-hyperhub-geiselwind/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.5512,9.9421",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.5512,9.9421&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/hamburg/enbw-schnellladepark-hamburg-altona/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.5541,10.0862",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.5541,10.0862&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/hamburg/fastned-ladepark-hamburg-horner-rennbahn/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.5412,10.0014",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.5412,10.0014&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/hamburg/shell-recharge-hamburg-hafencity/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.1738,6.9421",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.1738,6.9421&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/hilden/seed-und-greet-ladepark-kreuz-hilden/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.5892,7.6748",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.5892,7.6748&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/kamen/enbw-hyperhub-kamener-kreuz/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.5342,10.0215",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.5342,10.0215&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/hamburg/stromnetz-hamburg-hpc-hub-elbbruecken/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.3012,13.6214",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.3012,13.6214&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/koenigs-wusterhausen/aral-pulse-lkw-megawatt-hub-koenigs-wusterhausen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.8841,7.0012",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.8841,7.0012&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/koeln/enbw-schnellladepark-koeln-rodenkirchen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.8892,11.9214",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.8892,11.9214&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/kraftsdorf/milence-lkw-ladehub-hermsdorfer-kreuz/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.9782,6.8991",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.9782,6.8991&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/koeln/rheinenergie-tanke-ladepark-butzweilerhof/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.3298,10.6412",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.3298,10.6412&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/lehre/hola-forschungskorridor-lehre-wendhausen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.0282,7.0082",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.0282,7.0082&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/leverkusen/tesla-supercharger-und-enbw-leverkusen-chempark/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.2789,9.5312",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.2789,9.5312&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/lohfelden/milence-lkw-ladehub-kassel-lohfelden/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.1782,6.3891",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.1782,6.3891&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/moenchengladbach/aral-pulse-flagship-hub-moenchengladbach/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.1882,11.5841",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.1882,11.5841&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/muenchen/aral-pulse-muenchen-frankfurter-ring/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.8412,12.4789",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.8412,12.4789&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/meerane/enbw-hyperhub-meerane/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.6282,9.0212",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.6282,9.0212&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/muecke/fastned-autohof-muecke/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.1012,11.6421",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.1012,11.6421&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/muenchen/enbw-hyperhub-muenchen-neuperlach/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.4521,7.2182",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.4521,7.2182&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/niederzissen/ionity-raststaette-brohltal-ost/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.3982,11.1082",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.3982,11.1082&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/nuernberg/aral-pulse-nuernberg-zollhaus/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.4562,11.4289",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.4562,11.4289&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/rastow/aral-pulse-lkw-megawatt-hub-rastow/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.4182,11.0541",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.4182,11.0541&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/nuernberg/n-ergie-und-enbw-schnellladepark-nuernberg-hafen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.1751,11.5512",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.1751,11.5512&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/muenchen/swm-lade-campus-olympiapark/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.8972,9.3982",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.8972,9.3982&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/rohrbrunn/ionity-raststaette-spessart-sued/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.8041,8.9482",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.8041,8.9482&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/rutesheim/enbw-hyperhub-rutesheim/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.5841,12.1882",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.5841,12.1882&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/sandersdorf-brehna/ionity-raststaette-koeckern-west/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.5621,11.3412",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.5621,11.3412&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/schnaittach/aral-pulse-lkw-megawatt-hub-schnaittach/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.8142,9.1824",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.8142,9.1824&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/stuttgart/enbw-flagship-hub-stuttgart-pragsattel/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.6789,9.6194",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.6789,9.6194&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/schwarmstedt/aral-pulse-lkw-megawatt-hub-schwarmstedt/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.7312,9.1124",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.7312,9.1124&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/stuttgart/stadtwerke-stuttgart-hub-vaihingen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.4012,10.6014",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.4012,10.6014&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/zusmarshausen/sortimo-innovationspark-zusmarshausen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.0082,12.4082",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.0082,12.4082&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/woerth-an-der-donau/enbw-hyperhub-woerth-an-der-donau/index.html"
+      },
+      {
+        "url": "https://www.hochleistungsladen-lkw.de",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://www.hochleistungsladen-lkw.de/hola-de/index.php",
+        "occurrences": 4,
+        "sampleSource": "mcs/hub/hola-forschungskorridor-lehre-wendhausen/index.html"
+      },
+      {
+        "url": "https://thgverkauf.de/c/ladestandorte?k=ladestandorte-info&amp;zu=%2Fso-funktionierts",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://thgverkauf.de/so-funktionierts",
+        "occurrences": 1,
+        "sampleSource": "thg-praemie/index.html"
+      },
+      {
+        "url": "https://thg2026.de/c/ladestandorte?k=ladestandorte-2026&amp;zu=%2Fhochladen",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://thg2026.de/hochladen",
+        "occurrences": 2,
+        "sampleSource": "thg-praemie/index.html"
+      },
+      {
+        "url": "https://thg2027.de/c/ladestandorte?k=ladestandorte-2027",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://thg2027.de/",
+        "occurrences": 1,
+        "sampleSource": "thg-praemie/index.html"
+      }
+    ],
+    "all": [
+      {
+        "url": "https://creativecommons.org/licenses/by/4.0/deed.de",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 44,
+        "sampleSource": "ladestation/bad-duerrenberg/fastned-autohof-nempitz/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.2782,12.1482",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.2782,12.1482&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/bad-duerrenberg/fastned-autohof-nempitz/index.html"
+      },
+      {
+        "url": "https://www.bundesnetzagentur.de",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "http://www.bundesnetzagentur.de/DE/Home/home_node.html",
+        "occurrences": 265,
+        "sampleSource": "404/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.5218,13.4132",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.5218,13.4132&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/berlin/berliner-stadtwerke-hub-alexanderplatz/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.4812,13.3598",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.4812,13.3598&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/berlin/enbw-schnellladepark-berlin-schoeneberg/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.6041,10.2482",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.6041,10.2482&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/braak/tesla-supercharger-braak/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.2182,6.7612",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.2182,6.7612&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/duesseldorf/stadtwerke-duesseldorf-hub-rheinturm/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.4998,13.3752",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.4998,13.3752&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/berlin/tesla-supercharger-berlin-gleisdreieck/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.5255,13.3695",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.5255,13.3695&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/berlin/aral-pulse-schnellladestation-berlin-hauptbahnhof/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.1245,8.8712",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.1245,8.8712&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/extertal/hola-forschungskorridor-raststaette-lipperland-sued/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.1389,8.7482",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.1389,8.7482&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/frankfurt/fastned-frankfurt-borsigallee/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.1198,8.6412",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.1198,8.6412&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/frankfurt/mainova-schnelllade-hub-frankfurt-messe/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.0524,8.5712",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.0524,8.5712&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/frankfurt/enbw-hyperhub-frankfurt-flughafen/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/gp/help/customer/display.html?nodeId=201909010",
+        "status": 301,
+        "classification": "REDIRECT",
+        "location": "/gp/help/customer/display.html?nodeId=GX7NJQ4ZB8MHFRNJ",
+        "occurrences": 1,
+        "sampleSource": "datenschutz/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.7712,10.4682",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.7712,10.4682&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/geiselwind/enbw-hyperhub-geiselwind/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.5512,9.9421",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.5512,9.9421&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/hamburg/enbw-schnellladepark-hamburg-altona/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.5541,10.0862",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.5541,10.0862&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/hamburg/fastned-ladepark-hamburg-horner-rennbahn/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.5412,10.0014",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.5412,10.0014&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/hamburg/shell-recharge-hamburg-hafencity/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.1738,6.9421",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.1738,6.9421&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/hilden/seed-und-greet-ladepark-kreuz-hilden/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.5892,7.6748",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.5892,7.6748&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/kamen/enbw-hyperhub-kamener-kreuz/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.5342,10.0215",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.5342,10.0215&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/hamburg/stromnetz-hamburg-hpc-hub-elbbruecken/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.3012,13.6214",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.3012,13.6214&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/koenigs-wusterhausen/aral-pulse-lkw-megawatt-hub-koenigs-wusterhausen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.8841,7.0012",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.8841,7.0012&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/koeln/enbw-schnellladepark-koeln-rodenkirchen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.8892,11.9214",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.8892,11.9214&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/kraftsdorf/milence-lkw-ladehub-hermsdorfer-kreuz/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.9782,6.8991",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.9782,6.8991&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/koeln/rheinenergie-tanke-ladepark-butzweilerhof/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.3298,10.6412",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.3298,10.6412&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/lehre/hola-forschungskorridor-lehre-wendhausen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.0282,7.0082",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.0282,7.0082&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/leverkusen/tesla-supercharger-und-enbw-leverkusen-chempark/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.2789,9.5312",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.2789,9.5312&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/lohfelden/milence-lkw-ladehub-kassel-lohfelden/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.1782,6.3891",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.1782,6.3891&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/moenchengladbach/aral-pulse-flagship-hub-moenchengladbach/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.1882,11.5841",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.1882,11.5841&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/muenchen/aral-pulse-muenchen-frankfurter-ring/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.8412,12.4789",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.8412,12.4789&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/meerane/enbw-hyperhub-meerane/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.6282,9.0212",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.6282,9.0212&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/muecke/fastned-autohof-muecke/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.1012,11.6421",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.1012,11.6421&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/muenchen/enbw-hyperhub-muenchen-neuperlach/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=50.4521,7.2182",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D50.4521,7.2182&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/niederzissen/ionity-raststaette-brohltal-ost/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.3982,11.1082",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.3982,11.1082&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/nuernberg/aral-pulse-nuernberg-zollhaus/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=53.4562,11.4289",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D53.4562,11.4289&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/rastow/aral-pulse-lkw-megawatt-hub-rastow/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.4182,11.0541",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.4182,11.0541&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/nuernberg/n-ergie-und-enbw-schnellladepark-nuernberg-hafen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.1751,11.5512",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.1751,11.5512&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/muenchen/swm-lade-campus-olympiapark/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.8972,9.3982",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.8972,9.3982&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/rohrbrunn/ionity-raststaette-spessart-sued/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.8041,8.9482",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.8041,8.9482&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/rutesheim/enbw-hyperhub-rutesheim/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=51.5841,12.1882",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D51.5841,12.1882&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/sandersdorf-brehna/ionity-raststaette-koeckern-west/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.5621,11.3412",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.5621,11.3412&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/schnaittach/aral-pulse-lkw-megawatt-hub-schnaittach/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.8142,9.1824",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.8142,9.1824&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/stuttgart/enbw-flagship-hub-stuttgart-pragsattel/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=52.6789,9.6194",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D52.6789,9.6194&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 2,
+        "sampleSource": "ladestation/schwarmstedt/aral-pulse-lkw-megawatt-hub-schwarmstedt/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.7312,9.1124",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.7312,9.1124&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/stuttgart/stadtwerke-stuttgart-hub-vaihingen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=48.4012,10.6014",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D48.4012,10.6014&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/zusmarshausen/sortimo-innovationspark-zusmarshausen/index.html"
+      },
+      {
+        "url": "https://www.google.com/maps/dir/?api=1&amp;destination=49.0082,12.4082",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://consent.google.com/m?continue=https://www.google.com/maps/dir/?api%3D1%26amp;destination%3D49.0082,12.4082&gl=DE&m=0&pc=m&uxe=eomtm&cm=2&hl=de&src=1",
+        "occurrences": 1,
+        "sampleSource": "ladestation/woerth-an-der-donau/enbw-hyperhub-woerth-an-der-donau/index.html"
+      },
+      {
+        "url": "https://www.aral.de",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 6,
+        "sampleSource": "mcs/hub/aral-pulse-lkw-megawatt-hub-koenigs-wusterhausen/index.html"
+      },
+      {
+        "url": "https://www.aral.de/de/global/retail/presse/pressemeldungen/pm2026-03-12-aral-pulse-geht-in-deutschland-mit-megawatt-ladetechnologie-fuer-e-lkw-an-den-start.html",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 2,
+        "sampleSource": "mcs/hub/aral-pulse-lkw-megawatt-hub-schwarmstedt/index.html"
+      },
+      {
+        "url": "https://www.hochleistungsladen-lkw.de",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://www.hochleistungsladen-lkw.de/hola-de/index.php",
+        "occurrences": 4,
+        "sampleSource": "mcs/hub/hola-forschungskorridor-lehre-wendhausen/index.html"
+      },
+      {
+        "url": "https://www.rheinmetall.com/de/media/news-watch/news/2024/04/2024-04-25-pilotprojekt-fuer-ladebordsteine-in-koeln",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "ratgeber/bordsteinladen/index.html"
+      },
+      {
+        "url": "https://www.rheinmetall.com/de/produkte/ladeinfrastruktur/ladebordstein",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "ratgeber/bordsteinladen/index.html"
+      },
+      {
+        "url": "https://www.tanke.io/angebot/ladehardware/ladebordstein/",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "ratgeber/bordsteinladen/index.html"
+      },
+      {
+        "url": "https://milence.com",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 4,
+        "sampleSource": "mcs/hub/milence-lkw-ladehub-hermsdorfer-kreuz/index.html"
+      },
+      {
+        "url": "https://thgverkauf.de/c/ladestandorte?k=ladestandorte-info&amp;zu=%2Fso-funktionierts",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://thgverkauf.de/so-funktionierts",
+        "occurrences": 1,
+        "sampleSource": "thg-praemie/index.html"
+      },
+      {
+        "url": "https://thg2026.de/c/ladestandorte?k=ladestandorte-2026&amp;zu=%2Fhochladen",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://thg2026.de/hochladen",
+        "occurrences": 2,
+        "sampleSource": "thg-praemie/index.html"
+      },
+      {
+        "url": "https://thg2027.de/c/ladestandorte?k=ladestandorte-2027",
+        "status": 302,
+        "classification": "REDIRECT",
+        "location": "https://thg2027.de/",
+        "occurrences": 1,
+        "sampleSource": "thg-praemie/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0CP5X2ZQ4?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B07XKGCPKL?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B094R5YRDQ?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0CCSD136M?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0BCNX3T5T?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0FNCZD36Y?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0C1N1NXW5?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B08Y5KTBJ4?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0BW16BBKQ?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0CKRK7BBG?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B092R9CRBG?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0DKFVC2HC?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0BXLXLRG5?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B09SPQ57KL?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0BVZCHJ5Y?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0D58MXQPJ?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0DQ96YJMR?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B09DG815ZD?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B00YMG2TFM?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B09DLCY5K4?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0CYHC2GWD?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://wattpeak.de/ertragsrechner",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0DQ8X19HT?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      },
+      {
+        "url": "https://www.amazon.de/dp/B0D9C73JSP?tag=ladestandorte.de-21",
+        "status": 200,
+        "classification": "OK",
+        "occurrences": 1,
+        "sampleSource": "wallbox-vergleich/index.html"
+      }
+    ]
+  },
+  "conclusion": "CLEAN"
+}

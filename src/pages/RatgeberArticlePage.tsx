@@ -926,13 +926,23 @@ export const RatgeberArticlePage: React.FC = () => {
                 <div>
                   <strong>Rheinmetall AG:</strong> Offizieller Projektbericht zum Ladebordstein und zum Kölner Pilotprojekt.{' '}
                   <a
-                    href="https://www.rheinmetall.com/de/media/stories/2024/ladebordstein-pilotprojekt-in-koeln-erfolgreich"
+                    href="https://www.rheinmetall.com/de/media/news-watch/news/2024/04/2024-04-25-pilotprojekt-fuer-ladebordsteine-in-koeln"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#2F5E73] underline hover:text-[#171917]"
                   >
                     Projektbericht Köln auf rheinmetall.com
                   </a>
+                  {' '}sowie die{' '}
+                  <a
+                    href="https://www.rheinmetall.com/de/produkte/ladeinfrastruktur/ladebordstein"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#2F5E73] underline hover:text-[#171917]"
+                  >
+                    technische Produktübersicht Ladebordstein
+                  </a>
+                  .
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -940,7 +950,7 @@ export const RatgeberArticlePage: React.FC = () => {
                 <div>
                   <strong>TankE GmbH:</strong> Produktübersicht und Dokumentation der Ladebordstein-Infrastruktur.{' '}
                   <a
-                    href="https://www.tanke.io/ladebordstein"
+                    href="https://www.tanke.io/angebot/ladehardware/ladebordstein/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#2F5E73] underline hover:text-[#171917]"

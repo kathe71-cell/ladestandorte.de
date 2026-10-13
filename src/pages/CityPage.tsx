@@ -3,7 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { MapPin, Zap, ShieldCheck, ArrowLeft, ArrowRight, Database, ExternalLink, Navigation, HelpCircle, Activity } from 'lucide-react';
 import { CITIES_DATA, getCityMotorwaySlugs } from '../data/cities';
 import { MOTORWAYS_DATA } from '../data/motorways';
-import { STATIONS_DATA, StationData, getStationUrl } from '../data/stations';
+import { STATIONS_DATA, StationData, getStationUrl, isIndexableLocation } from '../data/stations';
 import { getOperatorSlugByName } from '../utils/operatorHelper';
 import { StationDetailModal } from '../components/StationDetailModal';
 import { CitationBox } from '../components/CitationBox';
@@ -23,7 +23,7 @@ export const CityPage: React.FC = () => {
     return <Navigate to="/staedte" replace />;
   }
 
-  const cityStations = STATIONS_DATA.filter(s => s.citySlug === city.slug);
+  const cityStations = STATIONS_DATA.filter(s => s.citySlug === city.slug && isIndexableLocation(s));
 
   const motorwaySlugs = getCityMotorwaySlugs(city.slug);
   const connectedMotorways = motorwaySlugs

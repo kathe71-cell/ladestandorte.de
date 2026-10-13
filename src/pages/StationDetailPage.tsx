@@ -29,7 +29,7 @@ export const StationDetailPage: React.FC = () => {
   const hasCityPage = CITIES_DATA.some(c => c.slug === station.citySlug);
   const operatorProfile = OPERATORS_DATA.find(o => o.slug === station.operatorSlug && (o.name === station.operator || o.slug === station.operator.toLowerCase()));
   const connectors = getStationConnectors(station);
-  const nearbyStations = getNearbyStations(station, STATIONS_DATA, 5, 85);
+  const nearbyStations = getNearbyStations(station, STATIONS_DATA.filter(isIndexableLocation), 5, 85);
   const isIndexable = isIndexableLocation(station);
 
   const hasValidCoordinates = 
@@ -184,12 +184,18 @@ export const StationDetailPage: React.FC = () => {
             <span className="hidden sm:inline text-slate-300">•</span>
             <div className="flex items-center gap-1.5">
               <span className="text-slate-500">Betreiber:</span>
-              <Link 
-                to={`/betreiber/${station.operatorSlug}`} 
-                className="font-bold text-slate-900 hover:underline decoration-slate-300 transition-colors"
-              >
-                {station.operator}
-              </Link>
+              {operatorProfile ? (
+                <Link 
+                  to={`/betreiber/${station.operatorSlug}`} 
+                  className="font-bold text-slate-900 hover:underline decoration-slate-300 transition-colors"
+                >
+                  {station.operator}
+                </Link>
+              ) : (
+                <span className="font-bold text-slate-900">
+                  {station.operator}
+                </span>
+              )}
             </div>
           </div>
         }
