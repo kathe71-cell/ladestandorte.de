@@ -34,63 +34,101 @@ console.log('🔍 AUTOMATISCHE QUELLEN- UND AKTUALITÄTSPRÜFUNG · LADESTANDORT
 console.log('================================================================');
 console.log(`Auditiere ${sources.length} registrierte Primärquellen...\n`);
 
-function checkHttpUrl(urlStr, timeoutMs = 12000) {
+function checkHttpUrlOnce(urlStr, timeoutMs = 15000, maxRedirects = 2) {
   return new Promise((resolve) => {
     let resolved = false;
-    const urlObj = new URL(urlStr);
-    const client = urlObj.protocol === 'https:' ? https : http;
+    let redirectsCount = 0;
 
-    const req = client.request(
-      urlStr,
-      {
-        method: 'GET',
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-          'Accept-Language': 'de-DE,de;q=0.9,en;q=0.8'
-        },
-        timeout: timeoutMs
-      },
-      (res) => {
-        if (resolved) return;
-        resolved = true;
-        const statusCode = res.statusCode || 0;
-        const location = res.headers.location || null;
-        res.destroy(); // Response Body nicht laden, Header genügt
-        resolve({
-          ok: statusCode >= 200 && statusCode < 400,
-          statusCode,
-          redirectLocation: location,
-          error: null
-        });
+    function doCheck(currUrl) {
+      let client;
+      try {
+        const urlObj = new URL(currUrl);
+        client = urlObj.protocol === 'https:' ? https : http;
+      } catch (err) {
+        if (!resolved) {
+          resolved = true;
+          resolve({ ok: false, statusCode: 0, redirectLocation: null, error: `Ungültige URL: ${err.message}` });
+        }
+        return;
       }
-    );
 
-    req.on('timeout', () => {
-      if (resolved) return;
-      resolved = true;
-      req.destroy();
-      resolve({
-        ok: false,
-        statusCode: 0,
-        redirectLocation: null,
-        error: `Timeout nach ${timeoutMs}ms`
+      const req = client.request(
+        currUrl,
+        {
+          method: 'GET',
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'de-DE,de;q=0.9,en;q=0.8'
+          },
+          timeout: timeoutMs
+        },
+        (res) => {
+          const statusCode = res.statusCode || 0;
+          const location = res.headers.location || null;
+
+          // Folge internen 3xx Weiterleitungen
+          if (statusCode >= 300 && statusCode < 400 && location && redirectsCount < maxRedirects) {
+            redirectsCount++;
+            const nextUrl = new URL(location, currUrl).href;
+            res.destroy();
+            return doCheck(nextUrl);
+          }
+
+          if (!resolved) {
+            resolved = true;
+            res.destroy();
+            resolve({
+              ok: statusCode >= 200 && statusCode < 400,
+              statusCode,
+              redirectLocation: location,
+              error: null
+            });
+          }
+        }
+      );
+
+      req.on('timeout', () => {
+        if (!resolved) {
+          resolved = true;
+          req.destroy();
+          resolve({
+            ok: false,
+            statusCode: 0,
+            redirectLocation: null,
+            error: `Timeout nach ${timeoutMs}ms`
+          });
+        }
       });
-    });
 
-    req.on('error', (err) => {
-      if (resolved) return;
-      resolved = true;
-      resolve({
-        ok: false,
-        statusCode: 0,
-        redirectLocation: null,
-        error: err.message
+      req.on('error', (err) => {
+        if (!resolved) {
+          resolved = true;
+          resolve({
+            ok: false,
+            statusCode: 0,
+            redirectLocation: null,
+            error: err.message
+          });
+        }
       });
-    });
 
-    req.end();
+      req.end();
+    }
+
+    doCheck(urlStr);
   });
+}
+
+async function checkHttpUrl(urlStr, timeoutMs = 15000) {
+  // Versuch 1
+  const res1 = await checkHttpUrlOnce(urlStr, timeoutMs);
+  if (res1.ok) return res1;
+
+  // Einmaliger Retry nach 2s bei Netzwerk-Timeout oder temporärem Verbindungsfehler
+  await new Promise(r => setTimeout(r, 2000));
+  const res2 = await checkHttpUrlOnce(urlStr, timeoutMs);
+  return res2;
 }
 
 export async function runSourceCheck(options = {}) {
