@@ -105,6 +105,11 @@ export function searchEntities(
     const streetLower = clean(doc.street);
     const plzLower = clean(doc.plz);
 
+    const descLower = clean(doc.description || doc.subtitle);
+    const descNorm = normalizeSearchTerm(doc.description || doc.subtitle);
+    const synonymsList = (doc.synonyms || []).map(clean);
+    const synonymsNorm = (doc.synonyms || []).map(normalizeSearchTerm);
+
     let score = 0;
     let matchType: 'exact' | 'prefix' | 'word' | 'fulltext' = 'fulltext';
 
@@ -117,9 +122,12 @@ export function searchEntities(
       }
     }
 
-    // 1. Exact Name / Title Match
+    // 1. Exact Name / Title / Synonym Match
     if (nameLower === q || titleLower === q || nameNorm === qNorm || titleNorm === qNorm) {
       score += 1200;
+      matchType = 'exact';
+    } else if (synonymsList.includes(q) || synonymsNorm.includes(qNorm)) {
+      score += 1100;
       matchType = 'exact';
     } else if (
       (doc.motorway && (motorwayLower === q || motorwayLower === `a${targetBabNum}`)) ||
@@ -129,7 +137,7 @@ export function searchEntities(
       // 2. Exact City / Motorway / Operator Match
       score += 900;
       matchType = 'exact';
-    } else if (nameLower.startsWith(q) || nameNorm.startsWith(qNorm) || titleLower.startsWith(q)) {
+    } else if (nameLower.startsWith(q) || nameNorm.startsWith(qNorm) || titleLower.startsWith(q) || titleNorm.startsWith(qNorm)) {
       // 3. Prefix Match
       score += 650;
       matchType = 'prefix';
@@ -158,13 +166,22 @@ export function searchEntities(
         const inMotorway = motorwayLower.includes(token);
         const inConnectors = doc.connectors ? doc.connectors.includes(token) : false;
         const inKeywords = doc.keywords ? doc.keywords.some(k => k.includes(token) || normalizeSearchTerm(k).includes(tokenNorm)) : false;
+        const inSynonyms = synonymsList.some(s => s.includes(token)) || synonymsNorm.some(s => s.includes(tokenNorm));
+        const inDesc = descLower.includes(token) || descNorm.includes(tokenNorm);
+        const inContent = doc.content ? clean(doc.content).includes(token) || normalizeSearchTerm(doc.content).includes(tokenNorm) : false;
 
         if (inName || inTitle) {
           tokenBonus += 150;
+        } else if (inSynonyms) {
+          tokenBonus += 120;
         } else if (inCity || inMotorway || inOperator) {
           tokenBonus += 100;
-        } else if (inPlz || inStreet || inConnectors || inKeywords) {
-          tokenBonus += 60;
+        } else if (inKeywords) {
+          tokenBonus += 70;
+        } else if (inPlz || inStreet || inConnectors) {
+          tokenBonus += 50;
+        } else if (inDesc || inContent) {
+          tokenBonus += 30;
         } else {
           allTokensFound = false;
           break;
@@ -173,7 +190,7 @@ export function searchEntities(
 
       if (allTokensFound) {
         score += 300 + tokenBonus;
-        matchType = tokenBonus >= 150 ? 'word' : 'fulltext';
+        matchType = tokenBonus >= 120 ? 'word' : 'fulltext';
       }
     }
 

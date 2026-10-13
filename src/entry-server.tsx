@@ -15,6 +15,7 @@ export { CHARGING_CARDS } from './data/cards';
 export { WALLBOXES_DATA } from './data/wallboxes';
 export { THG_CONFIG, THG_FAQS } from './data/thg';
 export { computeSafePercentChange, computeCityHistoricalTrend } from './lib/hpcHistory';
+export { STATIC_ROUTES, getIndexableStaticRoutes } from './data/staticRoutes';
 
 export function render(url: string) {
   const html = renderToString(

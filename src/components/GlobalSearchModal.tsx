@@ -366,7 +366,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
         {/* Footer info (Desktop keyboard hint, Mobile dismiss) */}
         <div className="p-3 bg-[#F7F7F2] border-t border-[#DFE3DC] flex items-center justify-between text-xs text-[#6C716B] shrink-0">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[11px]">240 Entitäten im Index</span>
+            <span className="font-mono text-[11px]">{docs.length > 0 ? `${docs.length} Entitäten im Index` : 'Indexiert'}</span>
             <span>·</span>
             <span className="text-[#171917] font-medium">BNetzA &amp; Redaktion</span>
           </div>

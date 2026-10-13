@@ -24,6 +24,9 @@ export interface SearchDoc {
   motorway?: string;
   connectors?: string;
   keywords?: string[];
+  description?: string;
+  synonyms?: string[];
+  content?: string;
   // Priority weight for tie-breaking
   priority: number;
 }

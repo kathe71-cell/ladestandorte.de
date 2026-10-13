@@ -9,6 +9,12 @@ const toAbsolute = (p) => path.resolve(rootDir, p);
 /**
  * Builds the static search index from verified SSR exports.
  * Generates public/search-index.json for client-side search.
+ * 
+ * GUARANTEE:
+ * NEW PUBLIC CONTENT MUST BE SEARCHABLE.
+ * All public, indexable routes defined in STATIC_ROUTES or generated
+ * from CITIES_DATA, MOTORWAYS_DATA, OPERATORS_DATA and STATIONS_DATA
+ * are automatically indexed exactly once.
  */
 export async function generateSearchIndex() {
   const entryServerPath = toAbsolute('dist-ssr/entry-server.js');
@@ -20,27 +26,62 @@ export async function generateSearchIndex() {
     STATIONS_DATA,
     getStationUrl,
     isIndexableLocation,
+    STATIC_ROUTES,
+    getIndexableStaticRoutes,
     GLOSSARY_DATA,
     CHARGING_CARDS,
     WALLBOXES_DATA
   } = ssr;
 
   const docs = [];
+  const registeredUrls = new Set();
 
-  // 1. Motorways (Autobahnen A1 - A99)
+  // Helper to ensure each canonical URL is indexed once as primary entity
+  const addDoc = (doc) => {
+    docs.push(doc);
+    if (!doc.url.includes('#')) {
+      registeredUrls.add(doc.url);
+    }
+  };
+
+  // 1. Static Routes (Central Source of Truth for all top-level public pages)
+  const indexableStaticRoutes = getIndexableStaticRoutes
+    ? getIndexableStaticRoutes()
+    : (STATIC_ROUTES || []).filter(r => !r.excludeFromSearch && !r.noIndex);
+
+  for (const sr of indexableStaticRoutes) {
+    const slugId = sr.url === '/' ? 'home' : sr.url.replace(/^\//, '').replace(/\//g, '-');
+    addDoc({
+      id: `page-${slugId}`,
+      category: sr.category || 'knowledge',
+      categoryLabel: sr.categoryLabel || 'Wissen & Ratgeber',
+      title: sr.title,
+      subtitle: sr.desc,
+      description: sr.desc,
+      badge: sr.badge || 'Ratgeber',
+      url: sr.url,
+      name: sr.title,
+      keywords: sr.keywords || [sr.title.toLowerCase()],
+      priority: sr.priority ?? 80
+    });
+  }
+
+  // 2. Motorways (Autobahnen A1 - A99)
   for (const m of (MOTORWAYS_DATA || [])) {
     const numOnly = m.name.replace(/[^0-9]/g, '');
-    docs.push({
+    addDoc({
       id: `motorway-${m.slug}`,
       category: 'motorways',
       categoryLabel: 'Autobahnen',
       title: `Bundesautobahn ${m.name}`,
       subtitle: `${m.route} · ${m.lengthKm} km · bis ${m.maxKw} kW HPC`,
+      description: `Schnellladeparks an der Autobahn ${m.name} (${m.route}) mit bis zu ${m.maxKw} kW HPC.`,
       badge: `bis ${m.maxKw} kW`,
       url: `/autobahnen/${m.slug}`,
       name: m.name,
       motorway: m.name.toLowerCase(),
       operator: (m.mainCPOs || []).join(' '),
+      synonyms: [m.name, `a ${numOnly}`, `bab ${numOnly}`, `bab ${m.name}`, `autobahn ${m.name}`],
       keywords: [
         m.name.toLowerCase(),
         `bab ${m.name}`.toLowerCase(),
@@ -55,20 +96,22 @@ export async function generateSearchIndex() {
     });
   }
 
-  // 2. Cities (Top 50 Städte)
+  // 3. Cities (Top 50 Städte)
   for (const c of (CITIES_DATA || [])) {
-    docs.push({
+    addDoc({
       id: `city-${c.slug}`,
       category: 'cities',
       categoryLabel: 'Städte',
       title: `${c.name} (${c.bundesland})`,
       subtitle: `${c.ladepunkteGesamt.toLocaleString('de-DE')} Ladepunkte · ${c.hpcLadepunkte} HPC-Lader · Top: ${c.topBetreiber.slice(0, 2).join(', ')}`,
+      description: `Ladeinfrastruktur in ${c.name} (${c.bundesland}): ${c.ladepunkteGesamt} Ladepunkte und ${c.hpcLadepunkte} HPC-Schnelllader.`,
       badge: `${c.ladepunkteGesamt} Ladepunkte`,
       url: `/staedte/${c.slug}`,
       name: c.name,
       city: c.name.toLowerCase(),
       plz: (c.plzs || []).join(' '),
       operator: (c.topBetreiber || []).join(' '),
+      synonyms: [c.name, ...(c.plzs || [])],
       keywords: [
         c.name.toLowerCase(),
         c.bundesland.toLowerCase(),
@@ -81,18 +124,20 @@ export async function generateSearchIndex() {
     });
   }
 
-  // 3. Operators (CPOs)
+  // 4. Operators (CPOs)
   for (const op of (OPERATORS_DATA || [])) {
-    docs.push({
+    addDoc({
       id: `op-${op.slug}`,
       category: 'operators',
-      categoryLabel: 'Betreiber',
+      categoryLabel: 'Betreiber (CPOs)',
       title: `${op.name}`,
       subtitle: `${op.totalPointsDE.toLocaleString('de-DE')} Ladepunkte · bis ${op.maxKw} kW HPC · ${op.bnetzaAnteil}`,
+      description: `${op.name} Ladeanbieterprofil: ${op.totalPointsDE} Ladepunkte in Deutschland, bis ${op.maxKw} kW Ladeleistung.`,
       badge: `${op.maxKw} kW HPC`,
       url: `/betreiber/${op.slug}`,
       name: op.name,
       operator: op.name.toLowerCase(),
+      synonyms: [op.name, op.slug],
       keywords: [
         op.name.toLowerCase(),
         op.headquarters.toLowerCase(),
@@ -106,23 +151,25 @@ export async function generateSearchIndex() {
     });
   }
 
-  // 4. Standorte (44 verifizierte Ladepark-Dossiers) & MCS-Cluster
-  const indexableStations = (STATIONS_DATA || []).filter(s => isIndexableLocation(s));
+  // 5. Standorte (44 verifizierte Ladepark-Dossiers)
+  // Jedes Dossier wird genau einmal in den Index aufgenommen
+  const indexableStations = (STATIONS_DATA || []).filter(s => isIndexableLocation ? isIndexableLocation(s) : s.isPilot);
   for (const s of indexableStations) {
     const isMcs = !!s.truckCharging?.supported;
     const connectors = (s.connectorTypes || []).join(', ');
     const motorwayStr = s.motorway ? `A${s.motorway.replace(/[^0-9]/g, '')}` : undefined;
+    const stationUrl = getStationUrl(s);
 
-    // Distinguish between MCS Category and Standard Stations Category
     if (isMcs) {
-      docs.push({
-        id: `station-mcs-${s.id}`,
-        category: 'mcs',
+      addDoc({
+        id: `station-${s.id}`,
+        category: 'stations',
         categoryLabel: 'MCS & Lkw',
         title: s.name,
         subtitle: `${s.street}, ${s.plz} ${s.city} · ${s.operator} · ${s.truckCharging?.mcsAvailable ? 'MCS aktiv (1.000+ kW)' : '400 kW CCS aktiv (MCS geplant)'}`,
+        description: `E-Lkw Ladepark ${s.name} in ${s.city} (${s.operator}): Drive-Through-Buchten, bis ${s.kwMax} kW HPC / MCS.`,
         badge: s.truckCharging?.mcsAvailable ? 'MCS Aktiv' : 'MCS Geplant',
-        url: getStationUrl(s),
+        url: stationUrl,
         name: s.name,
         city: s.city.toLowerCase(),
         plz: s.plz,
@@ -130,6 +177,7 @@ export async function generateSearchIndex() {
         operator: s.operator.toLowerCase(),
         motorway: motorwayStr ? motorwayStr.toLowerCase() : undefined,
         connectors: `${connectors} MCS Megawatt`.toLowerCase(),
+        synonyms: ['mcs', 'megawatt', 'e-lkw', s.name],
         keywords: [
           'mcs',
           'megawatt',
@@ -138,196 +186,86 @@ export async function generateSearchIndex() {
           'schwerlast',
           s.operator.toLowerCase(),
           s.city.toLowerCase(),
+          s.name.toLowerCase(),
           ...(motorwayStr ? [motorwayStr.toLowerCase(), `bab ${motorwayStr}`.toLowerCase()] : [])
         ],
         priority: 88
       });
+    } else {
+      addDoc({
+        id: `station-${s.id}`,
+        category: 'stations',
+        categoryLabel: 'Ladestandorte',
+        title: s.name,
+        subtitle: `${s.street}, ${s.plz} ${s.city} · ${s.operator} · ${s.pointsCount} Ladepunkte bis ${s.kwMax} kW`,
+        description: `Ladepark ${s.name} in ${s.city}: ${s.pointsCount} Ladepunkte mit bis zu ${s.kwMax} kW HPC.`,
+        badge: `${s.kwMax} kW ${s.isHpc ? 'HPC' : 'AC'}`,
+        url: stationUrl,
+        name: s.name,
+        city: s.city.toLowerCase(),
+        plz: s.plz,
+        street: s.street.toLowerCase(),
+        operator: s.operator.toLowerCase(),
+        motorway: motorwayStr ? motorwayStr.toLowerCase() : undefined,
+        connectors: connectors.toLowerCase(),
+        synonyms: [s.name],
+        keywords: [
+          s.name.toLowerCase(),
+          s.city.toLowerCase(),
+          s.operator.toLowerCase(),
+          s.plz,
+          `${s.kwMax} kw`,
+          `${s.kwMax}kw`,
+          ...(motorwayStr ? [motorwayStr.toLowerCase(), `bab ${motorwayStr}`.toLowerCase()] : []),
+          'ladepark',
+          'schnelllader',
+          'hpc'
+        ],
+        priority: 80
+      });
     }
-
-    // Always register in Stations category as well (or single entry with clear categorization)
-    docs.push({
-      id: `station-${s.id}`,
-      category: 'stations',
-      categoryLabel: 'Ladestandorte',
-      title: s.name,
-      subtitle: `${s.street}, ${s.plz} ${s.city} · ${s.operator} · ${s.pointsCount} Ladepunkte bis ${s.kwMax} kW`,
-      badge: `${s.kwMax} kW ${s.isHpc ? 'HPC' : 'AC'}`,
-      url: getStationUrl(s),
-      name: s.name,
-      city: s.city.toLowerCase(),
-      plz: s.plz,
-      street: s.street.toLowerCase(),
-      operator: s.operator.toLowerCase(),
-      motorway: motorwayStr ? motorwayStr.toLowerCase() : undefined,
-      connectors: connectors.toLowerCase(),
-      keywords: [
-        s.name.toLowerCase(),
-        s.city.toLowerCase(),
-        s.operator.toLowerCase(),
-        s.plz,
-        `${s.kwMax} kw`,
-        `${s.kwMax}kw`,
-        ...(motorwayStr ? [motorwayStr.toLowerCase(), `bab ${motorwayStr}`.toLowerCase()] : []),
-        'ladepark',
-        'schnelllader',
-        'hpc'
-      ],
-      priority: isMcs ? 82 : 80
-    });
   }
 
-  // 5. MCS Wissens- und Übersichtsseiten
-  const mcsPages = [
-    {
-      url: '/mcs',
-      title: 'MCS Themenhub: Megawatt Charging System',
-      subtitle: 'Übersicht über den MCS-Standard für schwere E-Lkw, Korridore & Ladeleistung',
-      keywords: ['mcs', 'megawatt', 'lkw', 'truck', 'e-lkw', 'charin', 'laden']
-    },
-    {
-      url: '/mcs/ladestationen',
-      title: 'MCS & E-Lkw Ladestationen Verzeichnis',
-      subtitle: 'Alle verifizierten Schwerlast-Ladeparks mit Drive-Through-Buchten in Deutschland',
-      keywords: ['mcs', 'ladestationen', 'lkw', 'standorte', 'verzeichnis', 'korridore']
-    },
-    {
-      url: '/mcs/was-ist-mcs',
-      title: 'Was ist MCS? Technik & Normung erklärt',
-      subtitle: 'CharIN-Standard, bis zu 3.750 kW Ladeleistung, flüssigkeitsgekühlte Stecker & ISO 15118-20',
-      keywords: ['mcs', 'technik', 'was ist mcs', 'charin', 'stecker', 'kw', 'leistung', 'ampere']
-    },
-    {
-      url: '/mcs/mcs-vs-ccs',
-      title: 'MCS vs. CCS im Vergleich',
-      subtitle: 'Unterschiede zwischen Pkw-CCS und Lkw-Megawatt-Laden: Dauerstrom, Pin-Layout & Kabel',
-      keywords: ['mcs', 'ccs', 'vergleich', 'unterschied', 'stecker', 'pin', 'kabel']
-    },
-    {
-      url: '/mcs/lkw-laden',
-      title: 'Lkw-Laden & 45-Minuten-Pause im Fernverkehr',
-      subtitle: 'Logistik im Fernverkehr: Harmonisierung mit gesetzlichen Lenk- und Ruhezeiten (EG 561/2006)',
-      keywords: ['lkw-laden', 'pause', 'lenkzeit', 'ruhezeit', '45 minuten', 'logistik', 'fernverkehr']
-    }
-  ];
-
-  for (const p of mcsPages) {
-    docs.push({
-      id: `mcs-page-${p.url.replace(/\//g, '-')}`,
-      category: 'mcs',
-      categoryLabel: 'MCS & Lkw',
-      title: p.title,
-      subtitle: p.subtitle,
-      badge: 'MCS Leitfaden',
-      url: p.url,
-      name: p.title,
-      keywords: p.keywords,
-      priority: 84
-    });
-  }
-
-  // 6. Tools & Rechner
-  docs.push({
-    id: 'tool-rechner',
-    category: 'tools',
-    categoryLabel: 'Tools & Rechner',
-    title: 'Ladezeit- & Kostenrechner für Elektroautos',
-    subtitle: 'Interaktiver Rechner für Ladedauer, Ladeverluste und Stromkosten bei AC & DC',
-    badge: 'Rechner',
-    url: '/rechner',
-    name: 'Ladezeit- & Kostenrechner',
-    keywords: ['rechner', 'ladezeit', 'kosten', 'ladezeitrechner', 'ladekosten', 'kwh', 'ladeverluste', 'batterie', 'soc'],
-    priority: 87
-  });
-
-  docs.push({
-    id: 'tool-suche',
-    category: 'tools',
-    categoryLabel: 'Tools & Rechner',
-    title: 'Ladesäulen Instant-Finder & Schnellsuche',
-    subtitle: 'Bundesweites Verzeichnis aller öffentlich registrierten Ladesäulen durchsuchen',
-    badge: 'Finder',
-    url: '/suche',
-    name: 'Ladesäulen Instant-Finder',
-    keywords: ['suche', 'finder', 'instant', 'filter', 'karte', 'bnetza'],
-    priority: 80
-  });
-
-  // 7. Wissen & Ratgeber (Artikel)
-  const ratgeberArticles = [
-    {
-      slug: 'ladekarten-dschungel',
-      title: 'Ladekarten-Dschungel: Roaming-Preise & Grundgebühren',
-      subtitle: 'Unabhängige Analyse: Welche Ladekarte lohnt sich für welches Fahrprofil?',
-      keywords: ['ladekarten', 'roaming', 'grundgebühr', 'preise', 'dschungel', 'tarife', 'sparen', 'ladekarte']
-    },
-    {
-      slug: 'ac-vs-dc-ladeverluste',
-      title: 'AC vs. DC Ladeverluste im Praxis-Vergleich',
-      subtitle: 'Wirkungsgrade & Sparpotenziale: Wo geht beim Laden Energie verloren?',
-      keywords: ['ladeverluste', 'ac', 'dc', 'wirkungsgrad', 'onboard', 'hpc', 'verlust']
-    },
-    {
-      slug: 'blockiergebuehren-vermeiden',
-      title: 'Blockiergebühren an Ladesäulen vermeiden',
-      subtitle: 'Karenzzeiten (240 Min. AC vs. 60 Min. DC), Nachtregelungen und Deckel im CPO-Vergleich',
-      keywords: ['blockiergebühr', 'blockiergebuehren', 'standzeit', 'karenzzeit', 'standgebühr', 'kostenfalle']
-    }
-  ];
-
-  for (const art of ratgeberArticles) {
-    docs.push({
-      id: `ratgeber-${art.slug}`,
+  // 6. Sub-Entitäten (Tiefeinbettungen mit Hash-URLs oder spezifischen Begriffen)
+  // Glossar-Begriffe mit Deep-Links (/glossar#slug)
+  for (const g of (GLOSSARY_DATA || [])) {
+    addDoc({
+      id: `glossar-${g.slug}`,
       category: 'knowledge',
-      categoryLabel: 'Wissen',
-      title: art.title,
-      subtitle: art.subtitle,
-      badge: 'Ratgeber',
-      url: `/ratgeber/${art.slug}`,
-      name: art.title,
-      keywords: art.keywords,
-      priority: 76
+      categoryLabel: 'Wissen & Ratgeber',
+      title: `${g.term}`,
+      subtitle: `${g.shortDef}`,
+      description: g.shortDef,
+      badge: g.category,
+      url: `/glossar#${g.slug}`,
+      name: g.term,
+      synonyms: [g.term, ...(g.standardNorm ? [g.standardNorm] : [])],
+      keywords: [
+        g.term.toLowerCase(),
+        g.category.toLowerCase(),
+        'glossar',
+        'definition',
+        'fachbegriff',
+        ...(g.standardNorm ? [g.standardNorm.toLowerCase()] : [])
+      ],
+      priority: 72
     });
   }
 
-  // Ratgeber Index
-  docs.push({
-    id: 'knowledge-ratgeber-index',
-    category: 'knowledge',
-    categoryLabel: 'Wissen',
-    title: 'Ratgeber & Leitfäden für Elektromobilität',
-    subtitle: 'Fachartikel zu Ladeverlusten, Roaming-Tarifen, Batterieschonung und Normen',
-    badge: 'Ratgeber',
-    url: '/ratgeber',
-    name: 'Ratgeber Elektromobilität',
-    keywords: ['ratgeber', 'leitfaden', 'wissen', 'tipps', 'anleitungen'],
-    priority: 75
-  });
-
-  // 8. Ladekarten-Vergleich & Einzelkarten
-  docs.push({
-    id: 'knowledge-ladekarten-vergleich',
-    category: 'knowledge',
-    categoryLabel: 'Wissen',
-    title: 'Ladekarten-Vergleich 2026: Tarife, Roaming & Preise',
-    subtitle: 'Die wichtigsten Ladekarten und Lade-Apps für Deutschland und Europa im Vergleich',
-    badge: 'Ladekarten',
-    url: '/ladekarten',
-    name: 'Ladekarten-Vergleich',
-    keywords: ['ladekarten', 'vergleich', 'tarife', 'roaming', 'kwh-preise', 'apps', 'enbw', 'maingau', 'dkv'],
-    priority: 82
-  });
-
+  // Ladekarten-Tarife mit Deep-Link auf /ladekarten#tarif-id
   for (const card of (CHARGING_CARDS || []).slice(0, 15)) {
-    docs.push({
+    addDoc({
       id: `card-${card.id}`,
       category: 'knowledge',
-      categoryLabel: 'Wissen',
+      categoryLabel: 'Wissen & Ratgeber',
       title: `${card.name} (${card.provider})`,
       subtitle: `Ab ${card.dcPriceOwn.toFixed(2)} €/kWh DC · ${card.roamingPoints} · ${card.bestFor}`,
+      description: `${card.name} Ladekartentarif von ${card.provider}: ${card.roamingPoints} Roaming-Punkte, ${card.bestFor}.`,
       badge: 'Ladekarte',
-      url: '/ladekarten',
+      url: `/ladekarten#${card.id}`,
       name: card.name,
       operator: card.provider.toLowerCase(),
+      synonyms: [card.name, card.provider],
       keywords: [
         card.name.toLowerCase(),
         card.provider.toLowerCase(),
@@ -340,65 +278,19 @@ export async function generateSearchIndex() {
     });
   }
 
-  // 9. Glossar
-  docs.push({
-    id: 'knowledge-glossar-index',
-    category: 'knowledge',
-    categoryLabel: 'Wissen',
-    title: 'E-Mobilität Glossar: Fachbegriffe von AC bis V2G',
-    subtitle: 'Verständliche Erklärungen zu Ladeleistung, Steckertypen, Normen & Gesetzen',
-    badge: 'Glossar',
-    url: '/glossar',
-    name: 'E-Mobilität Glossar',
-    keywords: ['glossar', 'lexikon', 'begriffe', 'definitionen', 'faq', 'fachbegriffe'],
-    priority: 74
-  });
-
-  for (const g of (GLOSSARY_DATA || [])) {
-    docs.push({
-      id: `glossar-${g.slug}`,
-      category: 'knowledge',
-      categoryLabel: 'Wissen',
-      title: `${g.term}`,
-      subtitle: `${g.shortDef}`,
-      badge: g.category,
-      url: `/glossar#${g.slug}`,
-      name: g.term,
-      keywords: [
-        g.term.toLowerCase(),
-        g.category.toLowerCase(),
-        'glossar',
-        'definition',
-        ...(g.standardNorm ? [g.standardNorm.toLowerCase()] : [])
-      ],
-      priority: 72
-    });
-  }
-
-  // 10. Wallbox-Vergleich
-  docs.push({
-    id: 'knowledge-wallbox-vergleich',
-    category: 'knowledge',
-    categoryLabel: 'Wissen',
-    title: 'Wallbox-Vergleich 2026: Private Ladestationen für Zuhause',
-    subtitle: '11 kW & 22 kW Wallboxen mit PV-Überschussladen, App-Steuerung und KfW-Förderung',
-    badge: 'Wallboxen',
-    url: '/wallbox-vergleich',
-    name: 'Wallbox-Vergleich',
-    keywords: ['wallbox', 'wallboxen', 'heimladen', 'zuhause', 'pv-laden', 'solar', '11 kw', '22 kw'],
-    priority: 78
-  });
-
+  // Wallboxen mit Deep-Link auf /wallbox-vergleich#wallbox-id
   for (const wb of (WALLBOXES_DATA || []).slice(0, 10)) {
-    docs.push({
+    addDoc({
       id: `wallbox-${wb.id}`,
       category: 'knowledge',
-      categoryLabel: 'Wissen',
+      categoryLabel: 'Wissen & Ratgeber',
       title: `${wb.name}`,
       subtitle: `${wb.brand} · ${wb.maxKw} kW · ${wb.priceEst} € UVP · ${wb.hasSolarCharging ? 'PV-Laden' : 'App-Steuerung'}`,
+      description: `${wb.name} Heimladestation von ${wb.brand}: ${wb.maxKw} kW Ladeleistung, ${wb.hasSolarCharging ? 'PV-Überschussladen' : 'App-Steuerung'}.`,
       badge: `${wb.maxKw} kW Wallbox`,
-      url: '/wallbox-vergleich',
+      url: `/wallbox-vergleich#${wb.id}`,
       name: wb.name,
+      synonyms: [wb.name, wb.brand],
       keywords: [
         wb.name.toLowerCase(),
         wb.brand.toLowerCase(),
