@@ -59,7 +59,8 @@ function checkHttpUrlOnce(urlStr, timeoutMs = 15000, maxRedirects = 2) {
           headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'de-DE,de;q=0.9,en;q=0.8'
+            'Accept-Language': 'de-DE,de;q=0.9,en;q=0.8',
+            'Connection': 'close'
           },
           timeout: timeoutMs
         },
@@ -71,20 +72,23 @@ function checkHttpUrlOnce(urlStr, timeoutMs = 15000, maxRedirects = 2) {
           if (statusCode >= 300 && statusCode < 400 && location && redirectsCount < maxRedirects) {
             redirectsCount++;
             const nextUrl = new URL(location, currUrl).href;
-            res.destroy();
+            res.resume();
             return doCheck(nextUrl);
           }
 
-          if (!resolved) {
-            resolved = true;
-            res.destroy();
-            resolve({
-              ok: statusCode >= 200 && statusCode < 400,
-              statusCode,
-              redirectLocation: location,
-              error: null
-            });
-          }
+          // Konsumiere Response-Daten schonend (max 64KB) und schließe sauber ab
+          res.on('data', () => {});
+          res.on('end', () => {
+            if (!resolved) {
+              resolved = true;
+              resolve({
+                ok: statusCode >= 200 && statusCode < 400,
+                statusCode,
+                redirectLocation: location,
+                error: null
+              });
+            }
+          });
         }
       );
 
