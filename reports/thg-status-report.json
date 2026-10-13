@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-13T15:31:26.700Z",
+  "timestamp": "2026-10-13T15:39:12.334Z",
   "auditDate": "2026-10-13",
   "framework": "38. BImSchV / § 37a BImSchG",
   "daysUntil2026Deadline": 34,
@@ -17,19 +17,30 @@
   },
   "links": [
     {
-      "year": 2026,
-      "url": "https://thg2026.de/c/ladestandorte?k=thg-ratgeber&zu=%2Fquote-anmelden",
+      "id": "info",
+      "name": "Allgemeine Informationen",
+      "url": "https://thgverkauf.de/c/ladestandorte?k=ladestandorte-info&zu=%2Fso-funktionierts",
       "httpStatus": 302,
       "isRedirect": true,
-      "redirectLocation": "https://thg2026.de/quote-anmelden",
+      "redirectLocation": "https://thgverkauf.de/so-funktionierts",
       "verified": true
     },
     {
-      "year": 2027,
-      "url": "https://thg2027.de/c/ladestandorte?k=thg-ratgeber&zu=%2Fquote-anmelden",
+      "id": "year2026",
+      "name": "THG-Prämie 2026",
+      "url": "https://thg2026.de/c/ladestandorte?k=ladestandorte-2026&zu=%2Fhochladen",
       "httpStatus": 302,
       "isRedirect": true,
-      "redirectLocation": "https://thg2027.de/quote-anmelden",
+      "redirectLocation": "https://thg2026.de/hochladen",
+      "verified": true
+    },
+    {
+      "id": "year2027",
+      "name": "THG-Prämie 2027",
+      "url": "https://thg2027.de/c/ladestandorte?k=ladestandorte-2027",
+      "httpStatus": 302,
+      "isRedirect": true,
+      "redirectLocation": "https://thg2027.de/",
       "verified": true
     }
   ]

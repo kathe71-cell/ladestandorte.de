@@ -14,9 +14,10 @@ import {
   Info,
   ChevronDown,
   Scale,
-  DollarSign,
-  TrendingUp,
-  FileCheck
+  FileCheck,
+  Shield,
+  CheckSquare,
+  Eye
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { PageHero } from '../components/PageHero';
@@ -87,6 +88,9 @@ export const ThgPraemiePage: React.FC = () => {
 
   const cfg2026 = THG_CONFIG.years[2026];
   const cfg2027 = THG_CONFIG.years[2027];
+  const linkInfo = THG_CONFIG.affiliateLinks.info;
+  const link2026 = THG_CONFIG.affiliateLinks.year2026;
+  const link2027 = THG_CONFIG.affiliateLinks.year2027;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
@@ -271,62 +275,124 @@ export const ThgPraemiePage: React.FC = () => {
             </p>
           </section>
 
-          {/* 4. Ablauf & Unterlagen */}
-          <section id="beantragung-und-unterlagen" className="space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#171917]">
-              4. Unterlagen &amp; Schritt-für-Schritt-Ablauf der Beantragung
-            </h2>
-            <p className="text-base text-[#171917]">
-              Fahrzeughalter können die Anrechnung der Strommenge ihres reinen Elektrofahrzeugs grundsätzlich auch selbst beim Umweltbundesamt (UBA) beantragen. Das UBA zahlt jedoch keine THG-Prämie aus, sondern bescheinigt die anrechenbare Strommenge. Für eine finanzielle Vergütung muss diese anschließend vermarktet werden. Da die eigenständige Antragstellung und Vermarktung mit Aufwand verbunden sein können und gegebenenfalls Gebühren anfallen, nutzen viele Fahrzeughalter spezialisierte THG-Dienstleister. Diese übernehmen die Antragstellung und Vermarktung nach ihren jeweiligen Vertragsbedingungen.
-            </p>
+          {/* 4. Was bedeutet THG-Quote verkaufen und wie funktioniert die Beantragung? */}
+          <section id="beantragung-und-unterlagen" className="space-y-6">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#171917]">
+                4. Was bedeutet „THG-Quote verkaufen“ und wie läuft die Beantragung ab?
+              </h2>
+              <p className="text-base text-[#171917] mt-2">
+                Halter berechtigter reiner Elektrofahrzeuge können unter den gesetzlichen Voraussetzungen der 38. BImSchV die pauschalierte Strommenge ihres Fahrzeugs bescheinigen lassen. Diese Bescheinigung kann anschließend wirtschaftlich vermarktet werden.
+              </p>
+            </div>
+
+            {/* Differenzierung: Zertifizierung vs. Vermarktung */}
+            <div className="p-5 rounded-2xl bg-[#F7F7F2] border border-[#DFE3DC] text-sm text-[#171917] space-y-3">
+              <strong className="text-[#2F5E73] font-bold block flex items-center gap-2">
+                <Scale className="w-4 h-4 text-[#2F5E73]" />
+                Wichtig: Unterschied zwischen behördlicher Zertifizierung und wirtschaftlicher Auszahlung
+              </strong>
+              <p>
+                Das <strong>Umweltbundesamt (UBA)</strong> zahlt selbst <em>keine</em> Prämie aus. Die Behörde prüft ausschließlich die amtliche Zulassung anhand der Fahrzeug-Identifizierungsnummer (FIN) und stellt bei Erfüllung der Voraussetzungen eine rechtsgültige Bescheinigung über die pauschale Strommenge aus.
+              </p>
+              <p>
+                Um aus dieser Bescheinigung eine finanzielle Prämie zu erzielen, muss die Quote an quotenpflichtige Mineralölunternehmen verkauft werden. Fahrzeughalter können die Anrechnung der Strommenge grundsätzlich auch selbst beim Umweltbundesamt (UBA) beantragen. Da der bilaterale Quotenverkauf an Großkonzerne jedoch mit bürokratischem Aufwand und Vermarktungshürden verbunden ist, übernehmen <strong>spezialisierte THG-Dienstleister</strong> die organisatorische Bündelung und Vermarktung und zahlen dafür eine vertraglich vereinbarte Prämie aus.
+              </p>
+            </div>
+
+            {/* Redaktionelle Box mit Partnerlink 1: Allgemeine Information */}
+            <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#2F5E73] flex items-center gap-1.5">
+                  <Info className="w-3.5 h-3.5" />
+                  <span>EXTERNES INFORMATIONSANGEBOT · PARTNER-PORTAL</span>
+                </span>
+                <div className="text-sm font-bold text-[#171917]">
+                  Ablauf des THG-Quotenverkaufs im Detail
+                </div>
+                <p className="text-xs text-[#6C716B]">
+                  Detaillierte Erläuterungen zu Bündelung, Abwicklungsfristen und Registrierungsschritten bei unserem Partner thgverkauf.de.
+                </p>
+              </div>
+              <a
+                href={linkInfo.url}
+                target="_blank"
+                rel={linkInfo.rel}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#F7F7F2] hover:bg-[#EAECE6] text-[#171917] border border-[#DFE3DC] font-bold text-xs shrink-0 transition-colors"
+              >
+                <span>{linkInfo.ctaText}</span>
+                <ExternalLink className="w-3.5 h-3.5 text-[#2F5E73]" />
+              </a>
+            </div>
 
             <h3 className="text-lg font-bold text-[#171917]">Benötigte Unterlagen:</h3>
             <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 not-prose">
               <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1">
                 <FileCheck className="w-5 h-5 text-[#2F5E73]" />
                 <strong className="block text-sm font-bold text-[#171917]">Fahrzeugschein</strong>
-                <span className="text-xs text-[#6C716B] block">Vorder- und Rückseite der Zulassungsbescheinigung Teil I (Foto oder Scan).</span>
+                <span className="text-xs text-[#6C716B] block">Vorder- und Rückseite der Zulassungsbescheinigung Teil I (gut lesbares Foto oder Scan).</span>
               </li>
               <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1">
                 <Car className="w-5 h-5 text-[#2F5E73]" />
                 <strong className="block text-sm font-bold text-[#171917]">Halterdaten</strong>
-                <span className="text-xs text-[#6C716B] block">Vor- und Nachname bzw. Firmenname exakt wie im Fahrzeugschein.</span>
+                <span className="text-xs text-[#6C716B] block">Vor- und Nachname bzw. Firmenname exakt wie im amtlichen Fahrzeugschein vermerkt.</span>
               </li>
               <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1">
-                <DollarSign className="w-5 h-5 text-[#2F5E73]" />
+                <Scale className="w-5 h-5 text-[#2F5E73]" />
                 <strong className="block text-sm font-bold text-[#171917]">Bankverbindung</strong>
-                <span className="text-xs text-[#6C716B] block">Gültige IBAN eines SEPA-Kontos für die spätere Prämienauszahlung.</span>
+                <span className="text-xs text-[#6C716B] block">Gültige IBAN eines europäischen SEPA-Kontos für die Auszahlung.</span>
               </li>
             </ul>
 
-            <h3 className="text-lg font-bold text-[#171917] mt-6">Der Prozess in 4 Schritten:</h3>
+            <h3 className="text-lg font-bold text-[#171917] mt-6">Der Antrags- und Vermarktungsprozess in 7 Schritten:</h3>
             <ol className="space-y-3 not-prose">
               <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] flex items-start gap-3">
                 <span className="w-6 h-6 rounded-full bg-[#171917] text-[#C7F000] font-mono font-bold text-xs flex items-center justify-center shrink-0">1</span>
                 <div>
-                  <strong className="text-sm font-bold text-[#171917] block">Registrierung &amp; Upload</strong>
-                  <p className="text-xs text-[#6C716B] mt-0.5">Fahrzeugschein hochladen und Bankverbindung angeben. Der Dienstleister prüft die amtliche Ausfertigung.</p>
+                  <strong className="text-sm font-bold text-[#171917] block">Grundsätzliche Berechtigung prüfen</strong>
+                  <p className="text-xs text-[#6C716B] mt-0.5">Sicherstellen, dass es sich um ein reines Batterie-Elektrofahrzeug (BEV) handelt und Sie in Teil I als Halter eingetragen sind.</p>
                 </div>
               </li>
               <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] flex items-start gap-3">
                 <span className="w-6 h-6 rounded-full bg-[#171917] text-[#C7F000] font-mono font-bold text-xs flex items-center justify-center shrink-0">2</span>
                 <div>
-                  <strong className="text-sm font-bold text-[#171917] block">Einreichung beim Umweltbundesamt</strong>
-                  <p className="text-xs text-[#6C716B] mt-0.5">Der Dienstleister bündelt tausende Fahrzeuge und reicht die Anträge gesammelt beim UBA zur behördlichen Prüfung ein.</p>
+                  <strong className="text-sm font-bold text-[#171917] block">Quotenjahr und Frist prüfen</strong>
+                  <p className="text-xs text-[#6C716B] mt-0.5">Aktuell ist das Verpflichtungsjahr 2026 aktiv (UBA-Stichtag: 15.11.2026). Dienstleister schließen die Annahme häufig bereits Ende Oktober.</p>
                 </div>
               </li>
               <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] flex items-start gap-3">
                 <span className="w-6 h-6 rounded-full bg-[#171917] text-[#C7F000] font-mono font-bold text-xs flex items-center justify-center shrink-0">3</span>
                 <div>
-                  <strong className="text-sm font-bold text-[#171917] block">Behördliche Zertifizierung</strong>
-                  <p className="text-xs text-[#6C716B] mt-0.5">Das Umweltbundesamt gleicht die Fahrgestellnummer (FIN) ab, schließt Doppeleinreichungen aus und stellt ein offizielles Quoten-Zertifikat aus.</p>
+                  <strong className="text-sm font-bold text-[#171917] block">Anbieter bzw. Abwicklungsweg auswählen</strong>
+                  <p className="text-xs text-[#6C716B] mt-0.5">Entscheidung zwischen Festpreis-Garantie oder marktabhängiger Flex-Prämie sowie Prüfung von Vertragslaufzeit und Bedingungen.</p>
                 </div>
               </li>
               <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] flex items-start gap-3">
                 <span className="w-6 h-6 rounded-full bg-[#171917] text-[#C7F000] font-mono font-bold text-xs flex items-center justify-center shrink-0">4</span>
                 <div>
-                  <strong className="text-sm font-bold text-[#171917] block">Quotenverkauf &amp; Auszahlung</strong>
-                  <p className="text-xs text-[#6C716B] mt-0.5">Die zertifizierte Quote wird an quotenpflichtige Unternehmen verkauft und der vereinbarte Betrag auf Ihr Konto überwiesen.</p>
+                  <strong className="text-sm font-bold text-[#171917] block">Registrierung beim Anbieter</strong>
+                  <p className="text-xs text-[#6C716B] mt-0.5">Nutzerkonto beim gewählten Partner anlegen und Kontakt- sowie Auszahlungsdaten hinterlegen.</p>
+                </div>
+              </li>
+              <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-[#171917] text-[#C7F000] font-mono font-bold text-xs flex items-center justify-center shrink-0">5</span>
+                <div>
+                  <strong className="text-sm font-bold text-[#171917] block">Fahrzeugschein übermitteln &amp; Vorprüfung</strong>
+                  <p className="text-xs text-[#6C716B] mt-0.5">Foto oder Scan der Zulassungsbescheinigung Teil I hochladen. Der Anbieter prüft Lesbarkeit und formale Gültigkeit.</p>
+                </div>
+              </li>
+              <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-[#171917] text-[#C7F000] font-mono font-bold text-xs flex items-center justify-center shrink-0">6</span>
+                <div>
+                  <strong className="text-sm font-bold text-[#171917] block">UBA-Prüfung &amp; Zertifizierung abwarten</strong>
+                  <p className="text-xs text-[#6C716B] mt-0.5">Das Umweltbundesamt gleicht die Fahrgestellnummer (FIN) ab, schließt Doppeleinreichungen aus und erteilt das offizielle Zertifikat (Dauer meist mehrere Wochen).</p>
+                </div>
+              </li>
+              <li className="p-4 bg-white rounded-xl border border-[#DFE3DC] flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-[#171917] text-[#C7F000] font-mono font-bold text-xs flex items-center justify-center shrink-0">7</span>
+                <div>
+                  <strong className="text-sm font-bold text-[#171917] block">Vermarktung &amp; Auszahlung gemäß gewähltem Modell</strong>
+                  <p className="text-xs text-[#6C716B] mt-0.5">Nach Veräußerung der Quote an quotenpflichtige Unternehmen überweist der Dienstleister den Erlös auf das hinterlegte Bankkonto.</p>
                 </div>
               </li>
             </ol>
@@ -385,21 +451,64 @@ export const ThgPraemiePage: React.FC = () => {
           {/* 7. Worauf bei Anbietern achten */}
           <section id="anbieter-auswahl" className="space-y-4">
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#171917]">
-              7. Worauf sollte man bei THG-Dienstleistern achten?
+              7. Worauf sollte man bei der Anbieterwahl achten? (Verbraucher-Checkliste)
             </h2>
-            <div className="space-y-3 text-sm text-[#171917]">
-              <p>
-                Bei der Auswahl eines Vermittlers sollten Fahrzeughalter insbesondere folgende Punkte prüfen:
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose">
-                <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1">
-                  <strong className="text-sm font-bold text-[#171917] block">Vertragslaufzeit &amp; Abtretung</strong>
-                  <p className="text-xs text-[#6C716B]">Vermeiden Sie Verträge, die die THG-Quote automatisch für Folgejahre abtreten oder mehrjährige Kündigungsfristen vorsehen. Seriöse Partner beschränken den Antrag auf das ausgewählte Quotenjahr.</p>
+            <p className="text-sm text-[#171917]">
+              Vor Abschluss eines Abtretungsvertrags sollten Fahrzeughalter das Kleingedruckte des Anbieters sorgfältig prüfen:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 not-prose">
+              <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1.5">
+                <div className="flex items-center gap-2 text-[#2F5E73] font-bold text-xs uppercase font-mono">
+                  <CheckSquare className="w-4 h-4 text-[#2F5E73]" />
+                  <span>1. Vergütungsmodell</span>
                 </div>
-                <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1">
-                  <strong className="text-sm font-bold text-[#171917] block">Transparente Gebühren</strong>
-                  <p className="text-xs text-[#6C716B]">Prüfen Sie, ob der genannte Betrag eine Netto- oder Brutto-Angabe ist und ob zusätzliche Bearbeitungs- oder Transaktionsgebühren einbehalten werden.</p>
+                <strong className="text-sm font-bold text-[#171917] block">Garantie vs. Flex-Prämie</strong>
+                <p className="text-xs text-[#6C716B]">Prüfen Sie, ob ein fester Mindestbetrag zugesichert wird oder ob das Erlösrisiko sinkender Quotenpreise vollständig beim Halter verbleibt.</p>
+              </div>
+
+              <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1.5">
+                <div className="flex items-center gap-2 text-[#2F5E73] font-bold text-xs uppercase font-mono">
+                  <CheckSquare className="w-4 h-4 text-[#2F5E73]" />
+                  <span>2. Gebührentransparenz</span>
                 </div>
+                <strong className="text-sm font-bold text-[#171917] block">Einbehaltene Abzüge</strong>
+                <p className="text-xs text-[#6C716B]">Achten Sie darauf, ob Provisionen, Bearbeitungsgebühren oder UBA-Zertifizierungskosten vom Auszahlungsbetrag abgezogen werden.</p>
+              </div>
+
+              <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1.5">
+                <div className="flex items-center gap-2 text-[#2F5E73] font-bold text-xs uppercase font-mono">
+                  <CheckSquare className="w-4 h-4 text-[#2F5E73]" />
+                  <span>3. Auszahlungszeitpunkt</span>
+                </div>
+                <strong className="text-sm font-bold text-[#171917] block">Express vs. Standard</strong>
+                <p className="text-xs text-[#6C716B]">Sofortauszahlungen erfolgen in wenigen Werktagen (häufig mit Sicherheitsabschlag), Standardmodelle erst nach amtlicher UBA-Freigabe (meist 8–16 Wochen).</p>
+              </div>
+
+              <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1.5">
+                <div className="flex items-center gap-2 text-[#2F5E73] font-bold text-xs uppercase font-mono">
+                  <CheckSquare className="w-4 h-4 text-[#2F5E73]" />
+                  <span>4. Vertragslaufzeit</span>
+                </div>
+                <strong className="text-sm font-bold text-[#171917] block">Keine automatische Bindung</strong>
+                <p className="text-xs text-[#6C716B]">Vermeiden Sie Klauseln, die die Quote automatisch für Folgejahre übertragen. Verträge sollten auf das konkrete Kalenderjahr befristet sein.</p>
+              </div>
+
+              <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1.5">
+                <div className="flex items-center gap-2 text-[#2F5E73] font-bold text-xs uppercase font-mono">
+                  <CheckSquare className="w-4 h-4 text-[#2F5E73]" />
+                  <span>5. Kündigungsrechte</span>
+                </div>
+                <strong className="text-sm font-bold text-[#171917] block">Fristen &amp; Widerruf</strong>
+                <p className="text-xs text-[#6C716B]">Prüfen Sie gesetzliche Widerrufsfristen und klare Regelungen für den Fall eines Fahrzeugwechsels oder vorzeitigen Halterwechsels.</p>
+              </div>
+
+              <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1.5">
+                <div className="flex items-center gap-2 text-[#2F5E73] font-bold text-xs uppercase font-mono">
+                  <CheckSquare className="w-4 h-4 text-[#2F5E73]" />
+                  <span>6. Datenschutz &amp; Dokumente</span>
+                </div>
+                <strong className="text-sm font-bold text-[#171917] block">Verarbeitung von Teil I</strong>
+                <p className="text-xs text-[#6C716B]">Der Fahrzeugschein enthält sensible Halter- und Fahrgestelldaten. Seriöse Anbieter verarbeiten Dokumente DSGVO-konform auf EU-Servern.</p>
               </div>
             </div>
           </section>
@@ -435,23 +544,23 @@ export const ThgPraemiePage: React.FC = () => {
                       Antrag für 2026 möglich
                     </div>
                     <p className="text-xs text-[#6C716B] mt-1">
-                      Einreichung beim Umweltbundesamt bis 15.11.2026. Gültig für alle reinen E-Autos mit Zulassung im Jahr 2026.
+                      Einreichung beim Umweltbundesamt bis 15.11.2026. Gültig für alle reinen E-Autos mit amtlicher Zulassung im Kalenderjahr 2026.
                     </p>
                   </div>
 
                   <a
-                    href={cfg2026.affiliateUrl}
+                    href={link2026.url}
                     target="_blank"
-                    rel="sponsored noopener noreferrer"
+                    rel={link2026.rel}
                     className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-[#171917] hover:bg-[#2F5E73] text-[#C7F000] font-bold text-sm shadow-xs transition-colors"
                   >
-                    <span>THG-Prämie 2026 beim Partner beantragen *</span>
+                    <span>{link2026.ctaText}</span>
                     <ExternalLink className="w-4 h-4 shrink-0" />
                   </a>
                 </div>
 
-                {/* 2027: Noch nicht freigeschaltet */}
-                <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] space-y-3 flex flex-col justify-between opacity-80">
+                {/* 2027: Vorschau mit Informationslink */}
+                <div className="p-5 rounded-2xl bg-white border border-[#DFE3DC] space-y-3 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-mono text-xs font-bold text-[#6C716B]">QUOTENJAHR 2027</span>
@@ -463,17 +572,28 @@ export const ThgPraemiePage: React.FC = () => {
                       Beträge noch offen
                     </div>
                     <p className="text-xs text-[#6C716B] mt-1">
-                      Verbindliche Quotenwerte und Anbieterangebote für 2027 stehen marktweit noch nicht fest. Freischaltung erfolgt nach Marktbestätigung.
+                      Verbindliche Quotenwerte und Anbieterangebote für 2027 stehen marktweit noch nicht fest. Eine Antragstellung ist noch nicht geöffnet.
                     </p>
                   </div>
 
-                  <button
-                    type="button"
-                    disabled
-                    className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-500 font-bold text-sm cursor-not-allowed border border-slate-200"
-                  >
-                    <span>Antrag 2027 demnächst verfügbar</span>
-                  </button>
+                  <div className="space-y-2">
+                    <button
+                      type="button"
+                      disabled
+                      className="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-slate-100 text-slate-500 font-bold text-xs cursor-not-allowed border border-slate-200"
+                    >
+                      <span>Antrag 2027 noch nicht freigeschaltet</span>
+                    </button>
+                    <a
+                      href={link2027.url}
+                      target="_blank"
+                      rel={link2027.rel}
+                      className="inline-flex items-center justify-center gap-1.5 w-full text-[11px] text-[#2F5E73] hover:text-[#171917] font-semibold py-1 text-center transition-colors"
+                    >
+                      <span>{link2027.ctaText}</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
                 </div>
 
               </div>
@@ -483,7 +603,7 @@ export const ThgPraemiePage: React.FC = () => {
                 <strong className="text-[#171917] font-semibold block mb-0.5">
                   * Werbelink / Partnerlink:
                 </strong>
-                Wenn du über diesen Link einen erfolgreichen Antrag bei unserem Partner stellst, können wir eine Provision erhalten. Für dich entstehen dadurch keine zusätzlichen Kosten. ladestandorte.de ist ein unabhängiges Informationsportal und steht in keinem gesellschaftsrechtlichen Verhältnis zum Anbieter.
+                Einige Links auf dieser Seite führen zu einem externen Partner. Wenn Sie dort einen Antrag stellen oder einen Vertrag abschließen, kann ladestandorte.de eine Provision erhalten. ladestandorte.de ist ein unabhängiges Informationsportal und steht in keinem gesellschaftsrechtlichen Verhältnis zum Anbieter.
               </div>
             </div>
           </section>
@@ -650,9 +770,9 @@ export const ThgPraemiePage: React.FC = () => {
                 Anträge für das Quotenjahr 2026 werden aktuell angenommen. Prüfe deinen Anspruch in wenigen Minuten.
               </p>
               <a
-                href={cfg2026.affiliateUrl}
+                href={link2026.url}
                 target="_blank"
-                rel="sponsored noopener noreferrer"
+                rel={link2026.rel}
                 className="inline-flex items-center justify-center gap-1.5 w-full px-3.5 py-2.5 rounded-xl bg-[#171917] hover:bg-[#2F5E73] text-[#C7F000] font-bold text-xs transition-colors"
               >
                 <span>Zum THG-Partner 2026 *</span>

@@ -1,3 +1,15 @@
+export interface ThgAffiliateLink {
+  id: 'info' | 'year2026' | 'year2027';
+  partnerDomain: string;
+  campaignKey: string;
+  url: string;
+  targetDescription: string;
+  purpose: string;
+  ctaText: string;
+  enabled: boolean;
+  rel: string;
+}
+
 export interface ThgYearConfig {
   year: number;
   affiliateUrl: string;
@@ -29,13 +41,47 @@ export interface ThgFaqItem {
 export const THG_CONFIG = {
   canonicalPath: '/thg-praemie',
   canonicalUrl: 'https://www.ladestandorte.de/thg-praemie',
-  affiliatePartnerId: 'thg-ratgeber',
   lastVerified: '13. Oktober 2026',
   editorialCheckDate: '2026-10-13',
+  affiliateLinks: {
+    info: {
+      id: 'info',
+      partnerDomain: 'thgverkauf.de',
+      campaignKey: 'ladestandorte-info',
+      url: 'https://thgverkauf.de/c/ladestandorte?k=ladestandorte-info&zu=%2Fso-funktionierts',
+      targetDescription: 'So funktioniert es',
+      purpose: 'Allgemeine Informationen zum Ablauf des THG-Quotenverkaufs.',
+      ctaText: 'So funktioniert der THG-Quotenverkauf beim Partner *',
+      enabled: true,
+      rel: 'sponsored noopener noreferrer'
+    } as ThgAffiliateLink,
+    year2026: {
+      id: 'year2026',
+      partnerDomain: 'thg2026.de',
+      campaignKey: 'ladestandorte-2026',
+      url: 'https://thg2026.de/c/ladestandorte?k=ladestandorte-2026&zu=%2Fhochladen',
+      targetDescription: 'Fahrzeugschein hochladen',
+      purpose: 'Einstieg in den Antragsprozess für das Quotenjahr 2026.',
+      ctaText: 'THG-Prämie 2026 beim Partner beantragen *',
+      enabled: true,
+      rel: 'sponsored noopener noreferrer'
+    } as ThgAffiliateLink,
+    year2027: {
+      id: 'year2027',
+      partnerDomain: 'thg2027.de',
+      campaignKey: 'ladestandorte-2027',
+      url: 'https://thg2027.de/c/ladestandorte?k=ladestandorte-2027',
+      targetDescription: 'Startseite',
+      purpose: 'Informationen zum Quotenjahr 2027.',
+      ctaText: 'Informationen zur THG-Prämie 2027 beim Partner *',
+      enabled: false, // WICHTIG: Antrag 2027 noch nicht geöffnet, Human-in-the-Loop Safety Guard aktiv
+      rel: 'sponsored noopener noreferrer'
+    } as ThgAffiliateLink
+  },
   years: {
     2026: {
       year: 2026,
-      affiliateUrl: 'https://thg2026.de/c/ladestandorte?k=thg-ratgeber&zu=%2Fquote-anmelden',
+      affiliateUrl: 'https://thg2026.de/c/ladestandorte?k=ladestandorte-2026&zu=%2Fhochladen',
       enabled: true,
       status: 'active',
       statusLabel: 'Antrag aktiv möglich',
@@ -49,7 +95,7 @@ export const THG_CONFIG = {
     } as ThgYearConfig,
     2027: {
       year: 2027,
-      affiliateUrl: 'https://thg2027.de/c/ladestandorte?k=thg-ratgeber&zu=%2Fquote-anmelden',
+      affiliateUrl: 'https://thg2027.de/c/ladestandorte?k=ladestandorte-2027',
       enabled: false,
       status: 'upcoming',
       statusLabel: 'Ausblick / Beträge noch offen',

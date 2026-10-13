@@ -63,10 +63,11 @@ const diffDays2026 = Math.ceil((ubaDeadline2026 - today) / (1000 * 60 * 60 * 24)
 
 console.log(`[FRIST] Verbleibende Tage bis UBA-Meldeschluss 2026 (15.11.2026): ${diffDays2026} Tage`);
 
-// Prüfe Link-Erreichbarkeit
+// Prüfe Link-Erreichbarkeit aller drei Affiliate-Einstiege
 const linksToVerify = [
-  { year: 2026, url: 'https://thg2026.de/c/ladestandorte?k=thg-ratgeber&zu=%2Fquote-anmelden' },
-  { year: 2027, url: 'https://thg2027.de/c/ladestandorte?k=thg-ratgeber&zu=%2Fquote-anmelden' }
+  { id: 'info', name: 'Allgemeine Informationen', url: 'https://thgverkauf.de/c/ladestandorte?k=ladestandorte-info&zu=%2Fso-funktionierts' },
+  { id: 'year2026', name: 'THG-Prämie 2026', url: 'https://thg2026.de/c/ladestandorte?k=ladestandorte-2026&zu=%2Fhochladen' },
+  { id: 'year2027', name: 'THG-Prämie 2027', url: 'https://thg2027.de/c/ladestandorte?k=ladestandorte-2027' }
 ];
 
 const checkResults = [];
@@ -83,10 +84,11 @@ for (const item of linksToVerify) {
     const status = res.status;
     const isRedirect = status === 301 || status === 302 || status === 307 || status === 308;
     
-    console.log(`[LINK ${item.year}] HTTP ${status} -> Location: ${location || 'keine'}`);
+    console.log(`[LINK ${item.id}] (${item.name}) HTTP ${status} -> Location: ${location || 'keine'}`);
     
     checkResults.push({
-      year: item.year,
+      id: item.id,
+      name: item.name,
       url: item.url,
       httpStatus: status,
       isRedirect,
@@ -94,9 +96,10 @@ for (const item of linksToVerify) {
       verified: status >= 200 && status < 400
     });
   } catch (err) {
-    console.warn(`[WARNUNG ${item.year}] Konnte Partner-URL nicht kontaktieren:`, err.message);
+    console.warn(`[WARNUNG ${item.id}] Konnte Partner-URL nicht kontaktieren:`, err.message);
     checkResults.push({
-      year: item.year,
+      id: item.id,
+      name: item.name,
       url: item.url,
       httpStatus: null,
       error: err.message,

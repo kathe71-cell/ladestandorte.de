@@ -185,5 +185,22 @@
     "criticality": "MEDIUM",
     "approvalRequirement": "HUMAN_REVIEW",
     "validationMethod": "CharIN Portal HTTP Check"
+  },
+  {
+    "id": "SRC_THGVERKAUF_OFFICIAL",
+    "name": "thgverkauf.de Offizielles Informations- und Partnerportal",
+    "url": "https://thgverkauf.de",
+    "type": "official-operator",
+    "category": "THG",
+    "affectedContent": {
+      "pages": ["/thg-praemie"],
+      "dataFiles": ["src/data/thg.ts", "src/pages/ThgPraemiePage.tsx"],
+      "structuredData": ["FAQPage (THG-Ablauf & Vermarktung)"]
+    },
+    "checkIntervalDays": 30,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "MEDIUM",
+    "approvalRequirement": "HUMAN_REVIEW",
+    "validationMethod": "thgverkauf.de HTTP Check & Informationsportal Erreichbarkeit"
   }
 ]
