@@ -57,7 +57,7 @@ export const RatgeberIndexPage: React.FC = () => {
     },
     {
       slug: 'bordsteinladen',
-      title: 'Ladebordstein: Funktion, Kosten & Bordsteinlader 2026',
+      title: 'Ladebordstein: Funktion, Kosten & Bordsteinlader',
       category: 'Hardware & Infrastruktur',
       readTime: '10 Min. Lesezeit',
       date: 'Redaktionell geprüft',

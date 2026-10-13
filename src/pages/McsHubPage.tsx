@@ -50,7 +50,7 @@ export const McsHubPage: React.FC = () => {
         "@type": "WebPage",
         "@id": "https://www.ladestandorte.de/mcs#webpage",
         "url": "https://www.ladestandorte.de/mcs",
-        "name": "Megawatt Charging System (MCS): E-Lkw Ladehubs in Deutschland 2026",
+        "name": "Megawatt Charging System (MCS): E-Lkw Ladehubs in Deutschland",
         "description": "Übersicht und verifizierte Dossiers öffentlich zugänglicher MCS- und Schwerlast-Ladeparks für schwere Nutzfahrzeuge entlang der Bundesautobahnen. Ladeleistungen von 400 kW bis 1.200 kW.",
         "inLanguage": "de-DE",
         "isPartOf": {

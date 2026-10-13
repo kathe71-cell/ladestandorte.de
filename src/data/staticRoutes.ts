@@ -193,7 +193,7 @@ export const STATIC_ROUTES: StaticRouteItem[] = [
   },
   {
     url: '/ratgeber/bordsteinladen',
-    title: 'Ladebordstein: Funktion, Kosten & Bordsteinlader 2026',
+    title: 'Ladebordstein: Funktion, Kosten & Bordsteinlader',
     desc: 'Wie funktioniert ein Ladebordstein? Technik, 22 kW Ladeleistung, Kosten & Erfahrungen mit Bordsteinladern. Rheinmetall & Laternenladen im Praxisvergleich.',
     category: 'knowledge',
     categoryLabel: 'Wissen & Ratgeber',
