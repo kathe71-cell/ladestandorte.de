@@ -29,6 +29,7 @@ const MUST_RESOLVE_ROUTES = [
   '/mcs/lkw-laden',
   '/ladestationen',
   '/rechner',
+  '/thg-praemie',
   '/methodik'
 ];
 

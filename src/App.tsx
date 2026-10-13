@@ -37,6 +37,7 @@ import HpcCityMonitorPage from './pages/HpcCityMonitorPage';
 import CpoMonitorPage from './pages/CpoMonitorPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProjektuebernahmePage from './pages/ProjektuebernahmePage';
+import ThgPraemiePage from './pages/ThgPraemiePage';
 
 import ScrollToTop from './components/ScrollToTop';
 import { siteConfig } from './site.config';
@@ -80,6 +81,7 @@ export function AppContent() {
         <Route path="/wallbox-vergleich" element={<WallboxVergleichPage />} />
         <Route path="/ratgeber" element={<RatgeberIndexPage />} />
         <Route path="/ratgeber/:articleSlug" element={<RatgeberArticlePage />} />
+        <Route path="/thg-praemie" element={<ThgPraemiePage />} />
         <Route path="/glossar" element={<GlossarPage />} />
         <Route path="/methodik" element={<MethodikPage />} />
         <Route path="/impressum" element={<ImpressumPage />} />

@@ -84,6 +84,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/ratgeber/ladekarten-dschungel" className="hover:text-white transition-colors">Ladekarten-Dschungel</Link></li>
               <li><Link to="/ratgeber/ac-vs-dc-ladeverluste" className="hover:text-white transition-colors">AC vs. DC Ladeverluste</Link></li>
               <li><Link to="/ratgeber/blockiergebuehren-vermeiden" className="hover:text-white transition-colors">Blockiergebühren-Guide</Link></li>
+              <li><Link to="/thg-praemie" className="hover:text-white transition-colors">THG-Prämie Ratgeber</Link></li>
               <li><Link to="/glossar" className="hover:text-white transition-colors">E-Mobilitäts Glossar</Link></li>
             </ul>
           </div>

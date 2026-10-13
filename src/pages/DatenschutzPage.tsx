@@ -81,8 +81,19 @@ export const DatenschutzPage: React.FC = () => {
           <PrivacyAmazonSection number="6." />
         </div>
 
+        {/* Externe Partnerprogramme & THG-Vermittlung */}
         <div className="pt-4 border-t border-slate-100">
-          <h2 className="text-lg font-bold text-slate-950 mb-2">7. Ihre Rechte als betroffene Person</h2>
+          <h2 className="text-lg font-bold text-slate-950 mb-2">7. Externe Partnerlinks &amp; THG-Vermittlung (Affiliate-Links)</h2>
+          <p>
+            Auf einzelnen Informationsseiten (wie dem Ratgeber zur THG-Prämie) binden wir redaktionell gekennzeichnete Verlinkungen zu externen Kooperationspartnern ein (z.&nbsp;B. zu Dienstleistern für die Abwicklung der Treibhausgasminderungsquote).
+          </p>
+          <p className="mt-2">
+            Die Einbindung erfolgt <strong>ausschließlich über standardmäßige ausgehende Hyperlinks</strong> (mit dem Attribut <code>rel="sponsored"</code>). Auf ladestandorte.de kommen <strong>keine Drittanbieter-Skripte, keine externen Tracking-Pixel, keine eingebetteten Formulare und keine Marketing-Cookies</strong> zum Einsatz. Erst wenn Sie einen solchen Partnerlink freiwillig anklicken, verlassen Sie unser Angebot und werden auf die Zielseite des Anbieters weitergeleitet. Dabei wird über die URL ein Kennungsparameter übermittelt, damit der Anbieter einen eventuellen Vertragsabschluss unserer Empfehlung zuordnen kann. Für die Datenverarbeitung auf den Zielseiten ist der jeweilige Betreiber verantwortlich. Rechtsgrundlage ist unser berechtigtes Interesse an der Refinanzierung unseres redaktionellen Portals (Art. 6 Abs. 1 lit. f DSGVO).
+          </p>
+        </div>
+
+        <div className="pt-4 border-t border-slate-100">
+          <h2 className="text-lg font-bold text-slate-950 mb-2">8. Ihre Rechte als betroffene Person</h2>
           <p>
             Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung (Art. 15 DSGVO), das Recht auf Berichtigung unrichtiger Daten (Art. 16 DSGVO), das Recht auf Löschung (Art. 17 DSGVO), das Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO) sowie das Recht auf Datenübertragbarkeit (Art. 20 DSGVO). Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Datenschutz-Aufsichtsbehörde zu (Art. 77 DSGVO). Wenden Sie sich bei datenschutzrechtlichen Anfragen an die im Impressum hinterlegten Kontaktdaten.
           </p>

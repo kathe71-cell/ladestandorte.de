@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-10-13T09:23:26.394Z",
+  "auditDate": "2026-10-13",
+  "framework": "38. BImSchV / § 37a BImSchG",
+  "daysUntil2026Deadline": 34,
+  "status": {
+    "year2026": {
+      "active": true,
+      "enabled": true,
+      "deadlineUBA": "2026-11-15"
+    },
+    "year2027": {
+      "active": false,
+      "enabled": false,
+      "pendingMarketVerification": true
+    }
+  },
+  "links": [
+    {
+      "year": 2026,
+      "url": "https://thg2026.de/c/ladestandorte?k=thg-ratgeber&zu=%2Fquote-anmelden",
+      "httpStatus": 302,
+      "isRedirect": true,
+      "redirectLocation": "https://thg2026.de/quote-anmelden",
+      "verified": true
+    },
+    {
+      "year": 2027,
+      "url": "https://thg2027.de/c/ladestandorte?k=thg-ratgeber&zu=%2Fquote-anmelden",
+      "httpStatus": 302,
+      "isRedirect": true,
+      "redirectLocation": "https://thg2027.de/quote-anmelden",
+      "verified": true
+    }
+  ]
+}

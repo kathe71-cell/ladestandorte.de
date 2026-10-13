@@ -39,6 +39,7 @@ Die Plattform stellt aggregierte Auswertungen in standardisierten Datenformaten 
 - **Wallbox-Vergleich**: https://www.ladestandorte.de/wallbox-vergleich
 - **Fachglossar**: https://www.ladestandorte.de/glossar
 - **Ratgeber**: https://www.ladestandorte.de/ratgeber
+- **THG-Prämie Ratgeber**: https://www.ladestandorte.de/thg-praemie
 - **Impressum (§ 5 DDG)**: https://www.ladestandorte.de/impressum
 - **Datenschutz (DSGVO)**: https://www.ladestandorte.de/datenschutz
 

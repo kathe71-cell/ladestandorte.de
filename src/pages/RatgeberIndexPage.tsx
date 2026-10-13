@@ -54,6 +54,15 @@ export const RatgeberIndexPage: React.FC = () => {
       readTime: '6 Min. Lesezeit',
       date: 'Redaktionell geprüft',
       excerpt: 'Ab wann greift die Standzeitgebühr? Wir vergleichen Karenzzeiten (240 Min. AC vs. 60 Min. DC), Nacht-Regelungen und maximale Kostendeckel aller großen Betreiber.'
+    },
+    {
+      slug: 'thg-praemie',
+      href: '/thg-praemie',
+      title: 'THG-Prämie für Elektroautos: Voraussetzungen, Fristen & Antrag',
+      category: 'Klimaschutz & Recht',
+      readTime: '8 Min. Lesezeit',
+      date: 'Redaktionell geprüft',
+      excerpt: 'Wie funktioniert die Treibhausgasminderungsquote nach 38. BImSchV? Wer anspruchsberechtigt ist, welche Fristen für 2026 und 2027 gelten und wie die Auszahlung abläuft.'
     }
   ];
 
@@ -83,38 +92,46 @@ export const RatgeberIndexPage: React.FC = () => {
       />
 
       {/* Articles Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {articles.map((art) => (
-          <article
-            key={art.slug}
-            className="p-6 sm:p-8 bg-white rounded-3xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all flex flex-col justify-between group"
-          >
-            <div>
-              <div className="flex items-center justify-between text-xs font-mono text-[#6C716B] mb-3">
-                <span className="font-bold text-[#2F5E73] uppercase">{art.category}</span>
-                <span className="flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>{art.readTime}</span>
-                </span>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {articles.map((art) => {
+          const articlePath = (art as { href?: string }).href || `/ratgeber/${art.slug}`;
+          return (
+            <article
+              key={art.slug}
+              className="p-6 sm:p-8 bg-white rounded-3xl border border-[#DFE3DC] shadow-xs hover:border-[#2F5E73] transition-all flex flex-col justify-between group"
+            >
+              <div>
+                <div className="flex items-center justify-between text-xs font-mono text-[#6C716B] mb-3">
+                  <span className="font-bold text-[#2F5E73] uppercase">{art.category}</span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>{art.readTime}</span>
+                  </span>
+                </div>
+
+                <h2 className="text-xl font-black text-[#171917] group-hover:text-[#2F5E73] transition-colors leading-snug mb-3">
+                  <Link to={articlePath}>
+                    {art.title}
+                  </Link>
+                </h2>
+
+                <p className="text-xs sm:text-sm text-[#6C716B] leading-relaxed">
+                  {art.excerpt}
+                </p>
               </div>
 
-              <h2 className="text-xl font-black text-[#171917] group-hover:text-[#2F5E73] transition-colors leading-snug mb-3">
-                <Link to={`/ratgeber/${art.slug}`}>
-                  {art.title}
+              <div className="mt-6 pt-4 border-t border-[#DFE3DC]">
+                <Link
+                  to={articlePath}
+                  className="flex items-center justify-between text-xs font-bold text-[#2F5E73]"
+                >
+                  <span>Vollständigen Leitfaden lesen</span>
+                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                 </Link>
-              </h2>
-
-              <p className="text-xs sm:text-sm text-[#6C716B] leading-relaxed">
-                {art.excerpt}
-              </p>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-[#DFE3DC] flex items-center justify-between text-xs font-bold text-[#2F5E73]">
-              <span>Vollständigen Artikel lesen</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-            </div>
-          </article>
-        ))}
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       {/* EEAT Badge */}
