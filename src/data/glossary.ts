@@ -98,5 +98,59 @@ export const GLOSSARY_DATA: GlossaryEntry[] = [
     fullExplanation: "In Deutschland verlangt das Mess- und Eichgesetz (MessEG), dass jeder geladene Kilowattstunden-Wert durch einen zertifizierten, manipulationssicheren Gleichstrom- bzw. Wechselstromzähler erfasst wird. Die Messwerte werden signiert und können vom Kunden im Nachhinein über eine Transparenzsoftware auf ihre Richtigkeit geprüft werden.",
     standardNorm: "Mess- und Eichgesetz (MessEG) / Mess- und Eichverordnung (MessEV)",
     practicalTip: "Auf Ihrer Ladeabrechnung finden Sie die Signatur und den Zählerstand. Über die kostenfreie 'Transparenzsoftware' können Sie nachvollziehen, ob die Abrechnung exakt den Messwerten der Säule entspricht."
+  },
+  {
+    slug: "ladepunkt",
+    term: "Ladepunkt (Definition nach LSV & AFIR)",
+    category: "Normen & Gesetze",
+    shortDef: "Rechtlich und technisch eigenständige Schnittstelle, an der genau ein Elektrofahrzeug zur selben Zeit geladen werden kann.",
+    fullExplanation: "Nach § 2 Nr. 1 der Ladesäulenverordnung (LSV) und Art. 2 Nr. 41 der EU-Verordnung 2023/1804 (AFIR) ist ein Ladepunkt eine Vorrichtung, mit der zur selben Zeit nur ein einziges Elektrofahrzeug aufgeladen oder die Batterie eines Elektrofahrzeugs ausgetauscht werden kann. Eine Ladesäule oder ein Ladepark mit mehreren Ladekabeln oder Buchsen kann somit mehrere Ladepunkte umfassen, sofern diese simultan Fahrzeuge mit Strom versorgen können.",
+    standardNorm: "§ 2 Nr. 1 LSV / Art. 2 Nr. 41 AFIR (EU 2023/1804)",
+    practicalTip: "Achten Sie bei Auswertungen auf die Unterscheidung: Eine physische Ladesäule besitzt typischerweise 2 Ladepunkte (z. B. 2x CCS oder 2x Typ 2). Statistiken der Bundesnetzagentur weisen stets Ladepunkte und Ladestationen getrennt aus."
+  },
+  {
+    slug: "ladestation-ladesaeule",
+    term: "Ladestation & Ladesäule",
+    category: "Stecker & Hardware",
+    shortDef: "Physische Einheit bzw. Anlage, die aus einem oder mehreren Ladepunkten besteht.",
+    fullExplanation: "Als Ladestation (häufig synonym Ladesäule oder Ladeeinrichtung genannt) wird die bauliche und elektrotechnische Gesamteinheit an einem festen Standort bezeichnet. Eine Ladestation bündelt Netzanschluss, Gehäuse, Leistungselektronik, Benutzerschnittstelle und einen oder mehrere Ladepunkte. Ein Ladepark (oder Ladehub) besteht wiederum aus mehreren räumlich zusammenhängenden Ladestationen an einem einheitlichen Standort.",
+    standardNorm: "DIN EN 61851-1 / VDE-AR-N 4100",
+    practicalTip: "An Schnellladestationen mit mehreren Anschlüssen teilen sich die Ladepunkte oft die Gesamtanschlussleistung (Dynamic Power Sharing). Wenn ein zweites Auto einsteckt, kann sich die maximale Ladeleistung des ersten Fahrzeugs temporär halbieren."
+  },
+  {
+    slug: "mcs-megawatt-charging-system",
+    term: "MCS (Megawatt Charging System)",
+    category: "Stecker & Hardware",
+    shortDef: "Internationaler Hochleistungs-Ladestandard für schwere Nutzfahrzeuge und E-Lkw mit bis zu 3,75 MW (3.750 kW).",
+    fullExplanation: "Das Megawatt Charging System (MCS) wurde von der internationalen Initiative CharIN speziell für batterieelektrische Fernverkehrs-Lkw, Reisebusse und maritime Anwendungen konzipiert. Es erlaubt Ladespannungen von bis zu 1.250 Volt und Ströme bis zu 3.000 Ampere bei flüssigkeitsgekühlter Stecker- und Kabelgeometrie. Ziel ist es, schwere 40-Tonnen-Lkw während der gesetzlich vorgeschriebenen 45-minütigen Fahrer-Lenkzeitpause (EG 561/2006) für die nächsten 4,5 Stunden Fahrt aufzuladen.",
+    standardNorm: "CharIN MCS Technical Specification / ISO 5188 / SAE J3271",
+    practicalTip: "Erste Pilot-Megawatt-Ladestationen (u. a. im Forschungsprojekt HoLa und bei Milence/Aral pulse) operieren in Deutschland bereits mit initialen Ausbaustufen von 1.000 bis 1.200 kW."
+  },
+  {
+    slug: "nacs-north-american-charging-standard",
+    term: "NACS (SAE J3400 / Tesla Connector)",
+    category: "Stecker & Hardware",
+    shortDef: "Der vor allem in Nordamerika führende kompakte Ladestecker für kombiniertes AC- und DC-Laden.",
+    fullExplanation: "Der North American Charging Standard (NACS, standardisiert als SAE J3400) kombiniert Wechsel- und Gleichstrom über dieselben Pin-Kontakte in einem sehr kompakten Steckergehäuse. In Europa ist NACS für öffentliche Ladesäulen regulatorisch nicht als Primärstandard zugelassen; europäische Tesla Supercharger und europäische Tesla-Fahrzeuge nutzen ausnahmslos den nach LSV und AFIR verbindlich vorgeschriebenen CCS2-Standard.",
+    standardNorm: "SAE J3400",
+    practicalTip: "Für Fahrten in Europa benötigen Sie an keinem Standort einen NACS-Adapter: Alle europäischen Supercharger und Ladeparks sind auf den CCS2- bzw. Typ-2-Standard ausgelegt."
+  },
+  {
+    slug: "ocpp-open-charge-point-protocol",
+    term: "OCPP (Open Charge Point Protocol)",
+    category: "Normen & Gesetze",
+    shortDef: "Herstellerunabhängiges Kommunikationsprotokoll zwischen der physischen Ladesäule und dem Backend-Managementsystem.",
+    fullExplanation: "Das Open Charge Point Protocol (OCPP) ist der weltweite De-facto-Standard der Open Charge Alliance (OCA) für die Datenkommunikation zwischen Ladesäule und Betreiber-Backend (CSMS). Es übermittelt Autorisierungsdaten, Ladekurven, Statusmeldungen (frei, belegt, gestört) sowie Zählerstände für die Abrechnung. Die aktuelle Version OCPP 2.0.1 unterstützt native ISO 15118 Zertifikate (Plug & Charge) sowie fortgeschrittenes Smart Charging.",
+    standardNorm: "Open Charge Alliance OCPP 1.6J / OCPP 2.0.1",
+    practicalTip: "Dank OCPP sind Ladesäulenbetreiber hardwareunabhängig: Säulen eines Herstellers können problemlos in die Leitwarte eines anderen Softwareanbieters integriert werden."
+  },
+  {
+    slug: "bordsteinladen",
+    term: "Bordsteinladen & Laternenladen",
+    category: "Stecker & Hardware",
+    shortDef: "In den Straßenrand oder Straßenleuchten integrierte AC-Ladepunkte für Laternenparker im urbanen Raum.",
+    fullExplanation: "Bordsteinladepunkte (und das verwandte Laternenladen) sind innovative Ladeinfrastrukturkonzepte für den städtischen Straßenraum ohne private Stellplätze. Die Ladeelektronik wird entweder direkt in die Randsteinkante, in den Gehweg versenkt (z. B. Rheinmetall) oder in bestehende Straßenlaternen (z. B. ubitricity) eingebaut. Dadurch bleibt der Gehweg barrierefrei und frei von störenden Säulenkästen, während Anwohner ihr Elektroauto über Nacht mit 3,7 bis 22 kW AC laden können.",
+    standardNorm: "DIN EN 61851 / DIN 18040-3 (Barrierefreies Bauen im Verkehrsraum)",
+    practicalTip: "Für das Bordstein- oder Laternenladen wird meist das fahrzeugeigene Typ-2-Ladekabel verwendet. Achten Sie auf eventuelle lokale Höchstparkdauern oder Anwohnerparkzonen."
   }
 ];

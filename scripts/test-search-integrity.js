@@ -106,28 +106,23 @@ if (duplicateUrls === 0) {
   console.log('✅ Zero duplicate URLs found across index');
 }
 
-// 5. Verify essential static pages are indexed
-const ESSENTIAL_STATIC = [
-  '/',
-  '/thg-praemie',
-  '/wallbox-vergleich',
-  '/ladekarten',
-  '/hpc-city-monitor',
-  '/cpo-monitor',
-  '/methodik',
-  '/ladestationen',
-  '/staedte',
-  '/autobahnen',
-  '/betreiber'
-];
+// 5. Verify all indexable static pages from STATIC_ROUTES are indexed
+const entryServerPath = path.resolve(rootDir, 'dist-ssr', 'entry-server.js');
+let indexableStaticRoutes = [];
+if (fs.existsSync(entryServerPath)) {
+  const ssr = await import(entryServerPath);
+  indexableStaticRoutes = ssr.getIndexableStaticRoutes
+    ? ssr.getIndexableStaticRoutes()
+    : (ssr.STATIC_ROUTES || []).filter(r => !r.excludeFromSearch && !r.noIndex);
+}
 
-for (const route of ESSENTIAL_STATIC) {
-  const match = searchIndex.find(doc => doc.id === route || doc.url === route);
+for (const sr of indexableStaticRoutes) {
+  const match = searchIndex.find(doc => doc.id === sr.url || doc.url === sr.url || doc.id === `page-${sr.url === '/' ? 'home' : sr.url.replace(/^\//, '').replace(/\//g, '-')}`);
   if (!match) {
-    console.error(`❌ Essential public page "${route}" missing from search index!`);
+    console.error(`❌ CRITICAL: Public static route "${sr.url}" is missing from search index!`);
     hasError = true;
   } else {
-    console.log(`✅ Essential page "${route}" is indexed (${match.title})`);
+    console.log(`✅ Static route "${sr.url}" is indexed (${match.title})`);
   }
 }
 
@@ -195,6 +190,14 @@ function search(query) {
 const TEST_QUERIES = [
   { q: 'THG', expectedUrlPrefix: '/thg-praemie' },
   { q: 'THG-Prämie', expectedUrlPrefix: '/thg-praemie' },
+  { q: 'Ladepunkt', expectedAny: true },
+  { q: 'Ladepunkte', expectedAny: true },
+  { q: 'Ladestation', expectedAny: true },
+  { q: 'Ladestationen', expectedAny: true },
+  { q: 'Ladesäule', expectedAny: true },
+  { q: 'Ladesäulen', expectedAny: true },
+  { q: 'Ladestandort', expectedAny: true },
+  { q: 'Ladestandorte', expectedAny: true },
   { q: 'Treibhausgasminderungsquote', expectedUrlPrefix: '/thg-praemie' },
   { q: 'IONITY', expectedUrlPrefix: '/betreiber/ionity' },
   { q: 'Fastned', expectedUrlPrefix: '/betreiber/fastned' },
@@ -206,7 +209,6 @@ const TEST_QUERIES = [
   { q: 'A3', expectedUrlPrefix: '/autobahnen/a3' },
   { q: 'A7', expectedUrlPrefix: '/autobahnen/a7' },
   { q: 'Freiburg', expectedUrlPrefix: '/staedte/freiburg' },
-  { q: 'Ladestation', expectedAny: true },
   { q: 'Ladeleistung', expectedAny: true }
 ];
 
