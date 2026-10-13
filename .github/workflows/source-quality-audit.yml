@@ -1,0 +1,46 @@
+name: Weekly Source Quality & Integrity Audit
+
+on:
+  schedule:
+    # Wöchentlich montags um 04:00 Uhr UTC
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  source-audit:
+    name: Audit Source Availability & Consistency Rules
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate Source Registry Schema
+        run: node scripts/test-source-registry.js
+
+      - name: Check Source Reachability & Status
+        run: node scripts/monitor/check-sources.mjs
+
+      - name: Verify Content Consistency Rules
+        run: node scripts/monitor/check-content-consistency.mjs
+
+      - name: Archive Audit Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source-quality-reports
+          path: reports/sources/
+          retention-days: 30

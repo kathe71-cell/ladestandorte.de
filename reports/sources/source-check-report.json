@@ -1,0 +1,192 @@
+{
+  "executedAt": "2026-10-13T14:42:37.499Z",
+  "totalSources": 10,
+  "reachable": 10,
+  "issues": 0,
+  "allReachable": true,
+  "results": [
+    {
+      "id": "SRC_BNETZA_REGISTER",
+      "name": "Bundesnetzagentur Öffentliches Ladesäulenregister",
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.html",
+      "category": "REGISTRY_DATA",
+      "criticality": "HIGH",
+      "approvalRequirement": "AUTO",
+      "affectedPages": [
+        "/",
+        "/ladestationen",
+        "/staedte",
+        "/cpo-monitor",
+        "/hpc-city-monitor"
+      ],
+      "statusCode": 200,
+      "ok": true,
+      "error": null,
+      "redirectLocation": null,
+      "checkedAt": "2026-10-13T14:42:36.453Z"
+    },
+    {
+      "id": "SRC_EU_AFIR_2023_1804",
+      "name": "Verordnung (EU) 2023/1804 (AFIR)",
+      "url": "https://eur-lex.europa.eu/eli/reg/2023/1804/oj",
+      "category": "LEGAL_REGULATORY",
+      "criticality": "HIGH",
+      "approvalRequirement": "HUMAN_DECISION",
+      "affectedPages": [
+        "/",
+        "/betreiber",
+        "/autobahnen",
+        "/ratgeber/ladekarten-dschungel",
+        "/methodik",
+        "/glossar"
+      ],
+      "statusCode": 202,
+      "ok": true,
+      "error": null,
+      "redirectLocation": null,
+      "checkedAt": "2026-10-13T14:42:36.541Z"
+    },
+    {
+      "id": "SRC_JURIS_38_BIMSCHV",
+      "name": "38. BImSchV (Verordnung zur Festlegung weiterer Bestimmungen zur Treibhausgasminderung bei Kraftstoffen)",
+      "url": "https://www.gesetze-im-internet.de/bimschv_38_2017/",
+      "category": "THG",
+      "criticality": "HIGH",
+      "approvalRequirement": "HUMAN_DECISION",
+      "affectedPages": [
+        "/thg-praemie"
+      ],
+      "statusCode": 200,
+      "ok": true,
+      "error": null,
+      "redirectLocation": null,
+      "checkedAt": "2026-10-13T14:42:36.624Z"
+    },
+    {
+      "id": "SRC_UBA_THG_38_BIMSCHV",
+      "name": "Umweltbundesamt (UBA) Vollzug 38. BImSchV",
+      "url": "https://www.umweltbundesamt.de/themen/verkehr/kraftstoffe-antriebe/vollzug-38-bimschv-anrechnung-von-strom-fuer",
+      "category": "THG",
+      "criticality": "HIGH",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": [
+        "/thg-praemie"
+      ],
+      "statusCode": 200,
+      "ok": true,
+      "error": null,
+      "redirectLocation": null,
+      "checkedAt": "2026-10-13T14:42:36.721Z"
+    },
+    {
+      "id": "SRC_IONITY_OFFICIAL",
+      "name": "IONITY Offizielle Tarif- & Netzwerkinformationen",
+      "url": "https://www.ionity.eu/de",
+      "category": "OPERATOR_PRICING",
+      "criticality": "MEDIUM",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": [
+        "/betreiber/ionity",
+        "/ladekarten"
+      ],
+      "statusCode": 200,
+      "ok": true,
+      "error": null,
+      "redirectLocation": null,
+      "checkedAt": "2026-10-13T14:42:36.807Z"
+    },
+    {
+      "id": "SRC_FASTNED_OFFICIAL",
+      "name": "Fastned Offizielle Betreiber- & Tarifinformationen",
+      "url": "https://fastnedcharging.com/de/",
+      "category": "OPERATOR_TECHNICAL",
+      "criticality": "MEDIUM",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": [
+        "/betreiber/fastned"
+      ],
+      "statusCode": 301,
+      "ok": true,
+      "error": null,
+      "redirectLocation": "https://www.fastnedcharging.com/de/",
+      "checkedAt": "2026-10-13T14:42:36.878Z"
+    },
+    {
+      "id": "SRC_ARAL_PULSE_MCS_PM",
+      "name": "Aral pulse Pressemitteilung E-Lkw Megawatt-Laden (12.03.2026)",
+      "url": "https://www.aral.de/de/global/retail/presse/pressemeldungen/pm2026-03-12-aral-pulse-geht-in-deutschland-mit-megawatt-ladetechnologie-fuer-e-lkw-an-den-start.html",
+      "category": "MCS_INFRASTRUCTURE",
+      "criticality": "HIGH",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": [
+        "/mcs/hub/aral-pulse-lkw-megawatt-hub-schwarmstedt",
+        "/mcs/hub/aral-pulse-lkw-megawatt-hub-schnaittach",
+        "/mcs/hub/aral-pulse-lkw-megawatt-hub-rastow",
+        "/mcs/hub/aral-pulse-lkw-megawatt-hub-koenigs-wusterhausen",
+        "/mcs/ladestationen",
+        "/mcs"
+      ],
+      "statusCode": 200,
+      "ok": true,
+      "error": null,
+      "redirectLocation": null,
+      "checkedAt": "2026-10-13T14:42:36.934Z"
+    },
+    {
+      "id": "SRC_HOLA_PROJECT",
+      "name": "BMDV-Förderprojekt HoLa (Hochleistungsladen im Lkw-Fernverkehr)",
+      "url": "https://www.hochleistungsladen-lkw.de",
+      "category": "MCS_INFRASTRUCTURE",
+      "criticality": "HIGH",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": [
+        "/mcs/hub/hola-lkw-megawatt-hub-lipperland-sued",
+        "/mcs/hub/hola-lkw-megawatt-hub-lehre",
+        "/mcs/ladestationen",
+        "/mcs"
+      ],
+      "statusCode": 302,
+      "ok": true,
+      "error": null,
+      "redirectLocation": "https://www.hochleistungsladen-lkw.de/hola-de/index.php",
+      "checkedAt": "2026-10-13T14:42:37.002Z"
+    },
+    {
+      "id": "SRC_MILENCE_OFFICIAL",
+      "name": "Milence Offizielles Netzwerk- & Standortportal",
+      "url": "https://milence.com",
+      "category": "MCS_INFRASTRUCTURE",
+      "criticality": "MEDIUM",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": [
+        "/mcs/hub/milence-lkw-ladehub-hermsdorfer-kreuz",
+        "/mcs/hub/milence-lkw-ladehub-kassel-lohfelden",
+        "/mcs/ladestationen",
+        "/mcs"
+      ],
+      "statusCode": 200,
+      "ok": true,
+      "error": null,
+      "redirectLocation": null,
+      "checkedAt": "2026-10-13T14:42:37.127Z"
+    },
+    {
+      "id": "SRC_METHODOLOGY_CHARIN_MCS",
+      "name": "CharIN e.V. Megawatt Charging System (MCS) Spezifikation",
+      "url": "https://www.charin.global",
+      "category": "METHODOLOGY",
+      "criticality": "MEDIUM",
+      "approvalRequirement": "HUMAN_REVIEW",
+      "affectedPages": [
+        "/mcs/was-ist-mcs",
+        "/mcs/mcs-vs-ccs",
+        "/methodik"
+      ],
+      "statusCode": 200,
+      "ok": true,
+      "error": null,
+      "redirectLocation": null,
+      "checkedAt": "2026-10-13T14:42:37.497Z"
+    }
+  ]
+}

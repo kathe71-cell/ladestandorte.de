@@ -1,0 +1,189 @@
+[
+  {
+    "id": "SRC_BNETZA_REGISTER",
+    "name": "Bundesnetzagentur Öffentliches Ladesäulenregister",
+    "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.html",
+    "type": "official-government",
+    "category": "REGISTRY_DATA",
+    "affectedContent": {
+      "pages": ["/", "/ladestationen", "/staedte", "/cpo-monitor", "/hpc-city-monitor"],
+      "dataFiles": ["src/data/cities.ts", "src/data/cpo-monitor.json", "data/raw/bnetza/latest.json"],
+      "structuredData": ["FAQPage (Registermeldepflicht)"]
+    },
+    "checkIntervalDays": 30,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "HIGH",
+    "approvalRequirement": "AUTO",
+    "validationMethod": "BNetzA CSV Schema & Hash Check via gate:check"
+  },
+  {
+    "id": "SRC_EU_AFIR_2023_1804",
+    "name": "Verordnung (EU) 2023/1804 (AFIR)",
+    "url": "https://eur-lex.europa.eu/eli/reg/2023/1804/oj",
+    "type": "official-government",
+    "category": "LEGAL_REGULATORY",
+    "affectedContent": {
+      "pages": ["/", "/betreiber", "/autobahnen", "/ratgeber/ladekarten-dschungel", "/methodik", "/glossar"],
+      "dataFiles": ["src/pages/Home.tsx", "src/pages/OperatorPage.tsx", "src/pages/RatgeberArticlePage.tsx"],
+      "structuredData": ["FAQPage (Ad-hoc-Zahlung & Kartenzahlungspflicht)"]
+    },
+    "checkIntervalDays": 30,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "HIGH",
+    "approvalRequirement": "HUMAN_DECISION",
+    "validationMethod": "HTTP Status & EUR-Lex Canonical Availability Check"
+  },
+  {
+    "id": "SRC_JURIS_38_BIMSCHV",
+    "name": "38. BImSchV (Verordnung zur Festlegung weiterer Bestimmungen zur Treibhausgasminderung bei Kraftstoffen)",
+    "url": "https://www.gesetze-im-internet.de/bimschv_38_2017/",
+    "type": "official-government",
+    "category": "THG",
+    "affectedContent": {
+      "pages": ["/thg-praemie"],
+      "dataFiles": ["src/data/thg.ts", "src/pages/ThgPraemiePage.tsx"],
+      "structuredData": ["FAQPage (THG-Fristen & Rechtsgrundlage)"]
+    },
+    "checkIntervalDays": 30,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "HIGH",
+    "approvalRequirement": "HUMAN_DECISION",
+    "validationMethod": "Gesetze im Internet HTTP Check & Juris Verordnungsstand"
+  },
+  {
+    "id": "SRC_UBA_THG_38_BIMSCHV",
+    "name": "Umweltbundesamt (UBA) Vollzug 38. BImSchV",
+    "url": "https://www.umweltbundesamt.de/themen/verkehr/kraftstoffe-antriebe/vollzug-38-bimschv-anrechnung-von-strom-fuer",
+    "type": "official-government",
+    "category": "THG",
+    "affectedContent": {
+      "pages": ["/thg-praemie"],
+      "dataFiles": ["src/data/thg.ts"],
+      "structuredData": ["FAQPage (UBA-Stichtag 15.11.)"]
+    },
+    "checkIntervalDays": 14,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "HIGH",
+    "approvalRequirement": "HUMAN_REVIEW",
+    "validationMethod": "UBA Vollzugsportal Erreichbarkeit & Fristenabgleich"
+  },
+  {
+    "id": "SRC_IONITY_OFFICIAL",
+    "name": "IONITY Offizielle Tarif- & Netzwerkinformationen",
+    "url": "https://www.ionity.eu/de",
+    "type": "official-operator",
+    "category": "OPERATOR_PRICING",
+    "affectedContent": {
+      "pages": ["/betreiber/ionity", "/ladekarten"],
+      "dataFiles": ["src/data/operators.ts", "src/pages/OperatorPage.tsx"],
+      "structuredData": ["Organization", "FAQPage (IONITY Ladepreise)"]
+    },
+    "checkIntervalDays": 7,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "MEDIUM",
+    "approvalRequirement": "HUMAN_REVIEW",
+    "validationMethod": "IONITY Webportal HTTP & Keyword Check"
+  },
+  {
+    "id": "SRC_FASTNED_OFFICIAL",
+    "name": "Fastned Offizielle Betreiber- & Tarifinformationen",
+    "url": "https://fastnedcharging.com/de/",
+    "type": "official-operator",
+    "category": "OPERATOR_TECHNICAL",
+    "affectedContent": {
+      "pages": ["/betreiber/fastned"],
+      "dataFiles": ["src/data/operators.ts"],
+      "structuredData": ["Organization", "FAQPage (Fastned Ladeleistung & Preise)"]
+    },
+    "checkIntervalDays": 7,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "MEDIUM",
+    "approvalRequirement": "HUMAN_REVIEW",
+    "validationMethod": "Fastned Webportal HTTP Check"
+  },
+  {
+    "id": "SRC_ARAL_PULSE_MCS_PM",
+    "name": "Aral pulse Pressemitteilung E-Lkw Megawatt-Laden (12.03.2026)",
+    "url": "https://www.aral.de/de/global/retail/presse/pressemeldungen/pm2026-03-12-aral-pulse-geht-in-deutschland-mit-megawatt-ladetechnologie-fuer-e-lkw-an-den-start.html",
+    "type": "official-operator",
+    "category": "MCS_INFRASTRUCTURE",
+    "affectedContent": {
+      "pages": [
+        "/mcs/hub/aral-pulse-lkw-megawatt-hub-schwarmstedt",
+        "/mcs/hub/aral-pulse-lkw-megawatt-hub-schnaittach",
+        "/mcs/hub/aral-pulse-lkw-megawatt-hub-rastow",
+        "/mcs/hub/aral-pulse-lkw-megawatt-hub-koenigs-wusterhausen",
+        "/mcs/ladestationen",
+        "/mcs"
+      ],
+      "dataFiles": ["src/data/stations.ts"],
+      "structuredData": ["TechArticle", "BreadcrumbList"]
+    },
+    "checkIntervalDays": 30,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "HIGH",
+    "approvalRequirement": "HUMAN_REVIEW",
+    "validationMethod": "Aral Presseportal HTTP Check & Dokumentverfügbarkeit"
+  },
+  {
+    "id": "SRC_HOLA_PROJECT",
+    "name": "BMDV-Förderprojekt HoLa (Hochleistungsladen im Lkw-Fernverkehr)",
+    "url": "https://www.hochleistungsladen-lkw.de",
+    "type": "official-project",
+    "category": "MCS_INFRASTRUCTURE",
+    "affectedContent": {
+      "pages": [
+        "/mcs/hub/hola-lkw-megawatt-hub-lipperland-sued",
+        "/mcs/hub/hola-lkw-megawatt-hub-lehre",
+        "/mcs/ladestationen",
+        "/mcs"
+      ],
+      "dataFiles": ["src/data/stations.ts"],
+      "structuredData": ["TechArticle"]
+    },
+    "checkIntervalDays": 30,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "HIGH",
+    "approvalRequirement": "HUMAN_REVIEW",
+    "validationMethod": "HoLa Projektportal HTTP Check"
+  },
+  {
+    "id": "SRC_MILENCE_OFFICIAL",
+    "name": "Milence Offizielles Netzwerk- & Standortportal",
+    "url": "https://milence.com",
+    "type": "official-operator",
+    "category": "MCS_INFRASTRUCTURE",
+    "affectedContent": {
+      "pages": [
+        "/mcs/hub/milence-lkw-ladehub-hermsdorfer-kreuz",
+        "/mcs/hub/milence-lkw-ladehub-kassel-lohfelden",
+        "/mcs/ladestationen",
+        "/mcs"
+      ],
+      "dataFiles": ["src/data/stations.ts"],
+      "structuredData": ["TechArticle"]
+    },
+    "checkIntervalDays": 30,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "MEDIUM",
+    "approvalRequirement": "HUMAN_REVIEW",
+    "validationMethod": "Milence Portal HTTP Check"
+  },
+  {
+    "id": "SRC_METHODOLOGY_CHARIN_MCS",
+    "name": "CharIN e.V. Megawatt Charging System (MCS) Spezifikation",
+    "url": "https://www.charin.global",
+    "type": "standardization-body",
+    "category": "METHODOLOGY",
+    "affectedContent": {
+      "pages": ["/mcs/was-ist-mcs", "/mcs/mcs-vs-ccs", "/methodik"],
+      "dataFiles": ["src/pages/MethodikPage.tsx"],
+      "structuredData": ["TechArticle"]
+    },
+    "checkIntervalDays": 60,
+    "lastVerifiedAt": "2026-10-13",
+    "criticality": "MEDIUM",
+    "approvalRequirement": "HUMAN_REVIEW",
+    "validationMethod": "CharIN Portal HTTP Check"
+  }
+]
