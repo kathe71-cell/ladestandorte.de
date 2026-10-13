@@ -480,8 +480,8 @@ export const ThgPraemiePage: React.FC = () => {
                   <CheckSquare className="w-4 h-4 text-[#2F5E73]" />
                   <span>3. Auszahlungszeitpunkt</span>
                 </div>
-                <strong className="text-sm font-bold text-[#171917] block">Express vs. Standard</strong>
-                <p className="text-xs text-[#6C716B]">Sofortauszahlungen erfolgen in wenigen Werktagen (häufig mit Sicherheitsabschlag), Standardmodelle erst nach amtlicher UBA-Freigabe (meist 8–16 Wochen).</p>
+                <strong className="text-sm font-bold text-[#171917] block">Auszahlungsmodelle</strong>
+                <p className="text-xs text-[#6C716B]">Einige Anbieter bieten Express-Auszahlungen in wenigen Tagen an (häufig mit Sicherheitsabschlag). Reguläre Modelle zahlen erst nach amtlicher UBA-Freigabe und Quotenvermarktung aus, was je nach behördlichem Prüfaufkommen variieren kann.</p>
               </div>
 
               <div className="p-4 bg-white rounded-xl border border-[#DFE3DC] space-y-1.5">

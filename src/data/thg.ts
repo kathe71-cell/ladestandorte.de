@@ -196,7 +196,7 @@ export const THG_FAQS: ThgFaqItem[] = [
   },
   {
     q: 'Wann erfolgt die Auszahlung?',
-    a: 'Bei flexiblen Modellen erfolgt die Auszahlung, sobald das Umweltbundesamt die Bescheinigung erteilt und der Dienstleister die Quote veräußert hat (üblicherweise 8 bis 16 Wochen nach Einreichung). Einige Anbieter offerieren Express-Auszahlungen innerhalb weniger Tage, behalten dafür jedoch einen Risikoabschlag ein.',
+    a: 'Der genaue Zeitpunkt hängt vom gewählten Modell und den jeweiligen Vertragsbedingungen des Anbieters ab. Bei regulären Abwicklungen erfolgt die Auszahlung üblicherweise erst, nachdem das Umweltbundesamt die Bescheinigung erteilt und der Dienstleister die Strommenge vermarktet hat. Dies kann je nach Bearbeitungsaufkommen der Behörde mehrere Wochen oder Monate in Anspruch nehmen. Einige Dienstleister bieten gesonderte Express- oder Sofortmodelle an, für die jedoch abweichende Konditionen oder Sicherheitsabschläge gelten können.',
     category: 'Finanzen & Markt'
   },
   {
