@@ -192,6 +192,29 @@ export const STATIC_ROUTES: StaticRouteItem[] = [
     priority: 80
   },
   {
+    url: '/ratgeber/bordsteinladen',
+    title: 'Ladebordstein: Funktion, Kosten & Bordsteinlader 2026',
+    desc: 'Wie funktioniert ein Ladebordstein? Technik, 22 kW Ladeleistung, Kosten & Erfahrungen mit Bordsteinladern. Rheinmetall & Laternenladen im Praxisvergleich.',
+    category: 'knowledge',
+    categoryLabel: 'Wissen & Ratgeber',
+    badge: 'Ratgeber',
+    keywords: [
+      'ladebordstein',
+      'bordsteinlader',
+      'ladebordsteine',
+      'rheinmetall ladebordstein',
+      'bordsteinladen',
+      'bordsteinladepunkt',
+      'laternenladen',
+      'laternenlader',
+      'laternenparker',
+      'strassenrand laden',
+      'curb charger',
+      'ac laden gehweg'
+    ],
+    priority: 82
+  },
+  {
     url: '/glossar',
     title: 'E-Mobilität Glossar: Fachbegriffe von AC bis V2G | ladestandorte.de',
     desc: 'Verständliche Erklärungen aller wichtigen Begriffe rund um Laden, Batterietechnik, Steckertypen und Normen.',

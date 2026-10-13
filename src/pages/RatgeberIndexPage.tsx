@@ -56,6 +56,14 @@ export const RatgeberIndexPage: React.FC = () => {
       excerpt: 'Ab wann greift die Standzeitgebühr? Wir vergleichen Karenzzeiten (240 Min. AC vs. 60 Min. DC), Nacht-Regelungen und maximale Kostendeckel aller großen Betreiber.'
     },
     {
+      slug: 'bordsteinladen',
+      title: 'Ladebordstein: Funktion, Kosten & Bordsteinlader 2026',
+      category: 'Hardware & Infrastruktur',
+      readTime: '10 Min. Lesezeit',
+      date: 'Redaktionell geprüft',
+      excerpt: 'Wie funktioniert ein Ladebordstein? Technische Integration, bis zu 22 kW AC-Leistung, Kostenfaktoren, Pilotprojekte wie Rheinmetall in Köln und Laternenladen im Vergleich.'
+    },
+    {
       slug: 'thg-praemie',
       href: '/thg-praemie',
       title: 'THG-Prämie für Elektroautos: Voraussetzungen, Fristen & Antrag',

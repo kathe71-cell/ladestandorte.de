@@ -151,6 +151,6 @@ export const GLOSSARY_DATA: GlossaryEntry[] = [
     shortDef: "In den Straßenrand oder Straßenleuchten integrierte AC-Ladepunkte für Laternenparker im urbanen Raum.",
     fullExplanation: "Bordsteinladepunkte (und das verwandte Laternenladen) sind innovative Ladeinfrastrukturkonzepte für den städtischen Straßenraum ohne private Stellplätze. Die Ladeelektronik wird entweder direkt in die Randsteinkante, in den Gehweg versenkt (z. B. Rheinmetall) oder in bestehende Straßenlaternen (z. B. ubitricity) eingebaut. Dadurch bleibt der Gehweg barrierefrei und frei von störenden Säulenkästen, während Anwohner ihr Elektroauto über Nacht mit 3,7 bis 22 kW AC laden können.",
     standardNorm: "DIN EN 61851 / DIN 18040-3 (Barrierefreies Bauen im Verkehrsraum)",
-    practicalTip: "Für das Bordstein- oder Laternenladen wird meist das fahrzeugeigene Typ-2-Ladekabel verwendet. Achten Sie auf eventuelle lokale Höchstparkdauern oder Anwohnerparkzonen."
+    practicalTip: "Für das Bordstein- oder Laternenladen wird meist das fahrzeugeigene Typ-2-Ladekabel verwendet. Achten Sie auf eventuelle lokale Höchstparkdauern oder Anwohnerparkzonen. Eine detaillierte Übersicht zu Technik, Kosten und Pilotprojekten finden Sie in unserem Ratgeber Ladebordstein & Bordsteinlader (/ratgeber/bordsteinladen)."
   }
 ];

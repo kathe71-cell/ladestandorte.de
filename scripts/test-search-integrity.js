@@ -209,7 +209,9 @@ const TEST_QUERIES = [
   { q: 'A3', expectedUrlPrefix: '/autobahnen/a3' },
   { q: 'A7', expectedUrlPrefix: '/autobahnen/a7' },
   { q: 'Freiburg', expectedUrlPrefix: '/staedte/freiburg' },
-  { q: 'Ladeleistung', expectedAny: true }
+  { q: 'Ladeleistung', expectedAny: true },
+  { q: 'Ladebordstein', expectedUrlPrefix: '/ratgeber/bordsteinladen' },
+  { q: 'Bordsteinlader', expectedUrlPrefix: '/ratgeber/bordsteinladen' }
 ];
 
 console.log('\n🎯 Testing Search Queries...');
